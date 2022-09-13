@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "proceso1"
+		},
+		{
+			"path": "shared"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"proceso1.h": "c",
+			"stdio.h": "c"
+		}
+	}
+}
