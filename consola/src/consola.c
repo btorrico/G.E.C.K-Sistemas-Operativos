@@ -1,28 +1,81 @@
 
-#include "../include/consola.h"
+#include "consola.h"
+int main(void)
+{
+	/*---------------------------------------------------PARTE 2-------------------------------------------------------------*/
 
-int main(int argc, char ** argv){
-    if(argc > 1 && strcmp(argv[1],"-test")==0)
-        return run_tests();
-    else{  
-        t_log* logger = log_create("./consola.log", "CONSOLA", true, LOG_LEVEL_INFO);
-        printf("esta ok");
-        log_info(logger, "Soy la consola! %s", mi_funcion_compartida());
-        log_destroy(logger);
-    } 
+	int conexion;
+	char* ip;
+	char* puerto;
+	char* valor;
 
-    int a=5;
-    int b=10;
+	t_log* logger;
+	t_config* config;
 
-    int* c = suma_alloc(a,b);
-    printf("%d",*c);
+	/* ---------------- LOGGING ---------------- */
+
+	logger = iniciar_logger();
+
+
+	// Usando el logger creado previamente
+	// Escribi: "Hola! Soy un log"
+
+	log_info(logger, "Hola! Soy un log");
+
+
+
+	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
+
+	config = iniciar_config();
+
+	// Usando el config creado previamente, leemos los valores del config y los
+	// dejamos en las variables 'ip', 'puerto' y 'valor'
+
+	ip = config_get_string_value(config, "IP");
+	valor = config_get_string_value(config, "CLAVE");
+	puerto = config_get_string_value(config, "PUERTO");
+
+	// Loggeamos el valor de config
+	log_info(logger, ip);
+	log_info(logger, valor);
+	log_info(logger, puerto);
+
+	/* ---------------- LEER DE CONSOLA ---------------- */
+
+	leer_consola(logger);
+
+	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
+
+	// ADVERTENCIA: Antes de continuar, tenemos que asegurarnos que el servidor esté corriendo para poder conectarnos a él
+
+	// Creamos una conexión hacia el servidor
+	conexion = crear_conexion(ip, puerto);
+
+	// Enviamos al servidor el valor de CLAVE como mensaje
+	enviar_mensaje(valor, conexion);
+
+	// Armamos y enviamos el paquete
+	paquete(conexion);
+
+	terminar_programa(conexion, logger, config);
+
+	/*---------------------------------------------------PARTE 5-------------------------------------------------------------*/
+	// Proximamente
 }
+// int main(int argc, char ** argv){
+  
+//     int a=5;
+//     int b=10;
+
+//     int* c = suma_alloc(a,b);
+//     printf("%d",*c);
+// }
 
 
 
 
-int* suma_alloc(int a ,int b){
-   int* ret = malloc(sizeof(int));
-   *ret = a+b;
-   return ret;
-}
+// int* suma_alloc(int a ,int b){
+//    int* ret = malloc(sizeof(int));
+//    *ret = a+b;
+//    return ret;
+// }

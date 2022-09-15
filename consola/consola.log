@@ -21,3 +21,5 @@
 [INFO] 01:39:41:185 CONSOLA/(5661:5661): Soy el proceso 1! Hice uso de la shared!
 [INFO] 01:40:40:656 CONSOLA/(5793:5793): Soy el proceso 1! Hice uso de la shared!
 [INFO] 19:39:04:054 CONSOLA/(3934:3934): Soy la consola! Hice uso de la shared!
+[INFO] 20:19:43:809 CONSOLA/(6288:6288): Soy la consola! Hice uso de la shared!
+[INFO] 20:20:15:769 CONSOLA/(6355:6355): Soy la consola! Hice uso de la shared!
