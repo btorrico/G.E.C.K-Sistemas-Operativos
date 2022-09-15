@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "proceso1"
+			"path": "consola"
 		},
 		{
 			"path": "shared"
@@ -9,7 +9,7 @@
 	],
 	"settings": {
 		"files.associations": {
-			"proceso1.h": "c",
+			"consola.h": "c",
 			"stdio.h": "c"
 		}
 	}

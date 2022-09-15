@@ -1,6 +1,0 @@
-#!/bin/bash
-FILE=proceso4
-make $FILE
-if test -f "./$FILE"; then
-    ./$FILE
-fi
