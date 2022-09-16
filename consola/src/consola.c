@@ -11,7 +11,7 @@ int main(void)
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 //Se tiene que leer la configuracion del archivo consola.config (Todavia no existe)
-    leerConfig();
+    leerConfig(); //podria agregarse un parametro que sea archivoConfig cosa de hacerlo mas global,al igual que los parametros ip, puerto y valor, despues ver
 	
 	/* ---------------- LEER DE CONSOLA ---------------- */
 

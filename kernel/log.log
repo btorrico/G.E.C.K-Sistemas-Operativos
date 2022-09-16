@@ -71,3 +71,19 @@
 [INFO] 05:03:52:323 Servidor/(23075:23075): dfdfd
 [INFO] 05:03:52:323 Servidor/(23075:23075): dfdf
 [ERROR] 05:03:52:323 Servidor/(23075:23075): el cliente se desconecto. Terminando servidor
+[INFO] 19:15:51:350 Servidor/(2457:2457): Servidor listo para recibir al cliente
+[INFO] 19:19:23:220 Servidor/(2596:2596): Servidor listo para recibir al cliente
+[INFO] 19:20:12:318 Servidor/(2731:2731): Servidor listo para recibir al cliente
+[INFO] 19:20:41:556 Servidor/(2731:2731): Se conecto un cliente!
+[INFO] 19:20:41:556 Servidor/(2731:2731): Me llego el mensaje valor
+[INFO] 19:28:57:282 Servidor/(2731:2731): Me llegaron los siguientes valores:
+[INFO] 19:28:57:283 Servidor/(2731:2731): Hola
+[INFO] 19:28:57:283 Servidor/(2731:2731): que 
+[INFO] 19:28:57:283 Servidor/(2731:2731): pasa
+[ERROR] 19:28:57:284 Servidor/(2731:2731): el cliente se desconecto. Terminando servidor
+[INFO] 19:30:49:390 Servidor/(3435:3435): Servidor listo para recibir al cliente
+[INFO] 19:30:55:103 Servidor/(3435:3435): Se conecto un cliente!
+[INFO] 19:30:55:103 Servidor/(3435:3435): Me llego el mensaje valor
+[INFO] 19:31:05:208 Servidor/(3435:3435): Me llegaron los siguientes valores:
+[INFO] 19:31:05:208 Servidor/(3435:3435): hola
+[ERROR] 19:31:05:208 Servidor/(3435:3435): el cliente se desconecto. Terminando servidor
