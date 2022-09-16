@@ -1,4 +1,4 @@
-#include "../include/memoria.h"
+#include "memoria.h"
 
 int main(int argc, char ** argv){
     if(argc > 1 && strcmp(argv[1],"-test")==0)
