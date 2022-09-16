@@ -1,5 +1,5 @@
-
 #include "consola.h"
+
 int main(void)
 {
 	/*---------------------------------------------------PARTE 2-------------------------------------------------------------*/
@@ -14,7 +14,7 @@ int main(void)
 
 	/* ---------------- LOGGING ---------------- */
 
-	logger = iniciar_logger();
+	logger = iniciar_logger("consola.log");
 
 
 	// Usando el logger creado previamente
@@ -26,7 +26,7 @@ int main(void)
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
-	config = iniciar_config();
+	config = iniciar_config("./consola.config");
 
 	// Usando el config creado previamente, leemos los valores del config y los
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
@@ -59,23 +59,5 @@ int main(void)
 
 	terminar_programa(conexion, logger, config);
 
-	/*---------------------------------------------------PARTE 5-------------------------------------------------------------*/
-	// Proximamente
+	
 }
-// int main(int argc, char ** argv){
-  
-//     int a=5;
-//     int b=10;
-
-//     int* c = suma_alloc(a,b);
-//     printf("%d",*c);
-// }
-
-
-
-
-// int* suma_alloc(int a ,int b){
-//    int* ret = malloc(sizeof(int));
-//    *ret = a+b;
-//    return ret;
-// }

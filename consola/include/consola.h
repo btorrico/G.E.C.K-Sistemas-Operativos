@@ -8,5 +8,5 @@
 #include "server.h"
 #include "tests.h"
 
-int* suma_alloc(int a, int b);
+
 #endif

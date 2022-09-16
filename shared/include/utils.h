@@ -13,12 +13,16 @@
 #include<commons/collections/list.h>
 #include<assert.h>
 
+#define IP "127.0.0.1"
+#define PUERTO "4444"
 typedef enum
 {
 	MENSAJE,
 	PAQUETE
 }op_code;
 
+
+//Utils del cliente
 typedef struct
 {
 	int size;
@@ -43,19 +47,16 @@ void liberar_conexion(int socket_cliente);
 void eliminar_paquete(t_paquete* paquete);
 
 
-
-#define IP "127.0.0.1"
-#define PUERTO "4444"
+//Utils del servidor
 
 
 extern t_log* logger;
-
-void* recibir_buffer(int*, int);
 
 int iniciar_servidor(void);
 int esperar_cliente(int);
 t_list* recibir_paquete(int);
 void recibir_mensaje(int);
 int recibir_operacion(int);
+void* recibir_buffer(int*, int);
 
 #endif /* UTILS_H_ */

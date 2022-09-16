@@ -23,3 +23,21 @@
 [INFO] 19:39:04:054 CONSOLA/(3934:3934): Soy la consola! Hice uso de la shared!
 [INFO] 20:19:43:809 CONSOLA/(6288:6288): Soy la consola! Hice uso de la shared!
 [INFO] 20:20:15:769 CONSOLA/(6355:6355): Soy la consola! Hice uso de la shared!
+[INFO] 22:09:44:724 creacionLogger/(8826:8826): Hola! Soy un log
+[INFO] 22:10:31:901 creacionLogger/(8945:8945): Hola! Soy un log
+[INFO] 22:27:45:792 creacionLogger/(10036:10036): Hola! Soy un log
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): 127.0.0.1
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): valor
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): 4444
+[INFO] 22:27:54:832 creacionLogger/(10036:10036): hola
+[INFO] 22:27:57:144 creacionLogger/(10036:10036): estas
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): Hola! Soy un log
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): 127.0.0.1
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): valor
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): 4444
+[INFO] 22:30:05:867 creacionLogger/(10374:10374): hola
+[INFO] 22:30:07:025 creacionLogger/(10374:10374): como
+[INFO] 00:04:58:931 creacionLogger/(3687:3687): Hola! Soy un log
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): 127.0.0.1
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): valor
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): 4444

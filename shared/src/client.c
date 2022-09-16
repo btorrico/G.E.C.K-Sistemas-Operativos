@@ -1,20 +1,19 @@
 #include "client.h"
 
 
-
-t_log* iniciar_logger(void)
+t_log* iniciar_logger(char* archivoDeLog)
 {
 	t_log* nuevo_logger;
-	if((nuevo_logger = log_create("tp0.log","creacionLogger", true, LOG_LEVEL_INFO)) == NULL){
+	if((nuevo_logger = log_create(archivoDeLog,"creacionLogger", true, LOG_LEVEL_INFO)) == NULL){
 		printf("¡No se pudo crear el logger!");
 	}
 	return nuevo_logger;
 }
 
-t_config* iniciar_config(void)
+t_config* iniciar_config(char* archivoDeConfig)
 {
 	t_config* nuevo_config;
-	if((nuevo_config = config_create("./cliente.config")) == NULL){
+	if((nuevo_config = config_create(archivoDeConfig)) == NULL){
 		printf("¡No se pudo crear el config!");
 	}
 	return nuevo_config;
@@ -45,7 +44,6 @@ void paquete(int conexion)
 
 	//creo el paquete
 	paquete = crear_paquete();
-	//paquete = crear_super_paquete();
 
 	// Leemos y esta vez agregamos las lineas al paquete
 

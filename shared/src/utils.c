@@ -75,16 +75,6 @@ void crear_buffer(t_paquete* paquete)
 	paquete->buffer->stream = NULL;
 }
 
-t_paquete* crear_super_paquete(void)
-{
-	//me falta un malloc!
-	t_paquete* paquete=malloc(sizeof(t_paquete));
-
-	//descomentar despues de arreglar
-	paquete->codigo_operacion = PAQUETE;
-	crear_buffer(paquete);
-	return paquete;
-}
 
 t_paquete* crear_paquete(void)
 {
@@ -133,8 +123,6 @@ t_log* logger;
 
 int iniciar_servidor(void)
 {
-	// Quitar esta línea cuando hayamos terminado de implementar la funcion
-	//assert(!"no implementado!");
 
 	int socket_servidor;
 
@@ -173,8 +161,6 @@ int iniciar_servidor(void)
 
 int esperar_cliente(int socket_servidor)
 {
-	// Quitar esta línea cuando hayamos terminado de implementar la funcion
-	//assert(!"no implementado!");
 
 	// Aceptamos un nuevo cliente
 	int socket_cliente = accept(socket_servidor, NULL, NULL);
