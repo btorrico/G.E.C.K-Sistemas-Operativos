@@ -1,28 +1,49 @@
+#include "consola.h"
 
-#include "../include/consola.h"
+int main(void)
+{
 
-int main(int argc, char ** argv){
-    if(argc > 1 && strcmp(argv[1],"-test")==0)
-        return run_tests();
-    else{  
-        t_log* logger = log_create("./consola.log", "CONSOLA", true, LOG_LEVEL_INFO);
-        printf("esta ok");
-        log_info(logger, "Soy la consola! %s", mi_funcion_compartida());
-        log_destroy(logger);
-    } 
+	/* ---------------- LOGGING ---------------- */
 
-    int a=5;
-    int b=10;
+	logger = iniciar_logger("consola.log");
 
-    int* c = suma_alloc(a,b);
-    printf("%d",*c);
+	log_info(logger, "Hola! Soy la consola");
+
+	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
+//Se tiene que leer la configuracion del archivo consola.config (Todavia no existe)
+    leerConfig();
+	
+	/* ---------------- LEER DE CONSOLA ---------------- */
+
+//	leer_consola(logger);
+
+	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
+
+
+	conexion = crear_conexion(ip, puerto);
+
+	// Enviamos al servidor el valor de CLAVE como mensaje
+	enviar_mensaje(valor, conexion);
+
+	// Armamos y enviamos el paquete
+	paquete(conexion);
+
+	terminar_programa(conexion, logger, config);
+
+	
 }
 
 
+void leerConfig(){
+	config = iniciar_config("./consola.config");
+// Usando el config creado previamente, leemos los valores del config y los
+	// dejamos en las variables 'ip', 'puerto' y 'valor'
 
+	ip = config_get_string_value(config, "IP");
+	valor = config_get_string_value(config, "CLAVE");
+	puerto = config_get_string_value(config, "PUERTO");
 
-int* suma_alloc(int a ,int b){
-   int* ret = malloc(sizeof(int));
-   *ret = a+b;
-   return ret;
+	// Loggeamos el valor de config
+	//Los colores salen del archivo globals.h :)
+	printf(PRINT_COLOR_GREEN"\n===== Archivo de configuracion =====\n IP: %s \n CLAVE: %s \n PUERTO: %s"PRINT_COLOR_RESET,ip,valor,puerto);
 }

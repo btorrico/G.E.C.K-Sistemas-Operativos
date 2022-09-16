@@ -20,3 +20,158 @@
 [INFO] 01:34:44:360 CONSOLA/(5140:5140): Soy el proceso 1! Hice uso de la shared!
 [INFO] 01:39:41:185 CONSOLA/(5661:5661): Soy el proceso 1! Hice uso de la shared!
 [INFO] 01:40:40:656 CONSOLA/(5793:5793): Soy el proceso 1! Hice uso de la shared!
+[INFO] 19:39:04:054 CONSOLA/(3934:3934): Soy la consola! Hice uso de la shared!
+[INFO] 20:19:43:809 CONSOLA/(6288:6288): Soy la consola! Hice uso de la shared!
+[INFO] 20:20:15:769 CONSOLA/(6355:6355): Soy la consola! Hice uso de la shared!
+[INFO] 22:09:44:724 creacionLogger/(8826:8826): Hola! Soy un log
+[INFO] 22:10:31:901 creacionLogger/(8945:8945): Hola! Soy un log
+[INFO] 22:27:45:792 creacionLogger/(10036:10036): Hola! Soy un log
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): 127.0.0.1
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): valor
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): 4444
+[INFO] 22:27:54:832 creacionLogger/(10036:10036): hola
+[INFO] 22:27:57:144 creacionLogger/(10036:10036): estas
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): Hola! Soy un log
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): 127.0.0.1
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): valor
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): 4444
+[INFO] 22:30:05:867 creacionLogger/(10374:10374): hola
+[INFO] 22:30:07:025 creacionLogger/(10374:10374): como
+[INFO] 00:04:58:931 creacionLogger/(3687:3687): Hola! Soy un log
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): 127.0.0.1
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): valor
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): 4444
+[INFO] 03:09:52:708 creacionLogger/(13097:13097): Hola! Soy un log
+[INFO] 03:09:52:709 creacionLogger/(13097:13097): 127.0.0.1
+[INFO] 03:09:52:709 creacionLogger/(13097:13097): valor
+[INFO] 03:09:52:709 creacionLogger/(13097:13097): 4444
+[INFO] 03:10:03:777 creacionLogger/(13097:13097): lll
+[INFO] 03:18:19:646 creacionLogger/(13704:13704): Hola! Soy un log
+[INFO] 03:18:19:647 creacionLogger/(13704:13704): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:23:20:489 creacionLogger/(14514:14514): Hola! Soy un log
+[INFO] 03:23:20:489 creacionLogger/(14514:14514): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:24:08:136 creacionLogger/(14604:14604): Hola! Soy un log
+[INFO] 03:24:08:136 creacionLogger/(14604:14604): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:24:57:390 creacionLogger/(14792:14792): Hola! Soy un log
+[INFO] 03:24:57:390 creacionLogger/(14792:14792): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:35:40:575 creacionLogger/(15590:15590): Hola! Soy un log
+[INFO] 03:35:40:576 creacionLogger/(15590:15590): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:39:01:592 creacionLogger/(15868:15868): Hola! Soy un log
+[INFO] 03:39:01:594 creacionLogger/(15868:15868): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:40:07:408 creacionLogger/(16043:16043): Hola! Soy un log
+[INFO] 03:40:07:410 creacionLogger/(16043:16043): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:52:05:477 creacionLogger/(16474:16474): Hola! Soy un log
+[INFO] 03:52:05:479 creacionLogger/(16474:16474): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:55:14:864 creacionLogger/(16665:16665): Hola! Soy un log
+[INFO] 03:55:14:865 creacionLogger/(16665:16665): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:09:29:205 creacionLogger/(17491:17491): Hola! Soy un log
+[INFO] 04:09:29:207 creacionLogger/(17491:17491): === Archivo de configuracion ====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:09:50:909 creacionLogger/(17567:17567): Hola! Soy un log
+[INFO] 04:09:50:911 creacionLogger/(17567:17567): === Archivo de configuracion ====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:14:00:726 creacionLogger/(17850:17850): Hola! Soy un log
+[INFO] 04:14:00:727 creacionLogger/(17850:17850): === Archivo de configuracion ====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:14:09:703 creacionLogger/(17900:17900): Hola! Soy un log
+[INFO] 04:14:09:705 creacionLogger/(17900:17900): 
+=== Archivo de configuracion ====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:14:29:461 creacionLogger/(17952:17952): Hola! Soy un log
+[INFO] 04:14:29:463 creacionLogger/(17952:17952): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:16:00:406 creacionLogger/(18109:18109): Hola! Soy un log
+[INFO] 04:16:00:408 creacionLogger/(18109:18109): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:20:11:589 creacionLogger/(18467:18467): Hola! Soy un log
+[INFO] 04:20:11:591 creacionLogger/(18467:18467): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:37:42:846 creacionLogger/(20362:20362): Hola! Soy un log
+[INFO] 04:37:42:847 creacionLogger/(20362:20362): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:38:03:919 creacionLogger/(20427:20427): Hola! Soy un log
+[INFO] 04:38:03:921 creacionLogger/(20427:20427): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:39:03:254 creacionLogger/(20511:20511): Hola! Soy un log
+[INFO] 04:39:03:255 creacionLogger/(20511:20511): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:40:02:061 creacionLogger/(20588:20588): Hola! Soy un log
+[INFO] 04:40:02:063 creacionLogger/(20588:20588): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:40:26:102 creacionLogger/(20656:20656): Hola! Soy un log
+[INFO] 04:40:26:104 creacionLogger/(20656:20656): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:40:43:782 creacionLogger/(20725:20725): Hola! Soy un log
+[INFO] 04:40:43:788 creacionLogger/(20725:20725): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:41:35:264 creacionLogger/(20790:20790): Hola! Soy un log
+[INFO] 04:42:31:110 creacionLogger/(20876:20876): Hola! Soy un log
+[INFO] 04:43:18:863 creacionLogger/(20930:20930): Hola! Soy la consola
+[INFO] 04:52:29:838 creacionLogger/(21615:21615): Hola! Soy la consola
+[INFO] 04:54:04:214 creacionLogger/(21695:21695): Hola! Soy la consola
+[INFO] 04:58:47:545 creacionLogger/(22405:22405): Hola! Soy la consola
+[INFO] 04:59:31:559 creacionLogger/(22540:22540): Hola! Soy la consola
+[INFO] 05:02:37:047 creacionLogger/(22846:22846): Hola! Soy la consola
+[INFO] 05:03:48:201 creacionLogger/(23144:23144): Hola! Soy la consola

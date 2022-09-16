@@ -1,0 +1,73 @@
+[INFO] 03:51:31:525 Servidor/(16330:16330): Servidor listo para recibir al cliente
+[INFO] 03:51:59:061 Servidor/(16426:16426): Servidor listo para recibir al cliente
+[INFO] 03:52:05:479 Servidor/(16426:16426): Se conecto un cliente!
+[INFO] 03:52:05:479 Servidor/(16426:16426): Me llego el mensaje valor
+[INFO] 03:54:46:867 Servidor/(16426:16426): Me llegaron los siguientes valores:
+
+[INFO] 03:54:46:867 Servidor/(16426:16426): fhgfghf
+[INFO] 03:54:46:867 Servidor/(16426:16426): ghgh
+[ERROR] 03:54:46:867 Servidor/(16426:16426): el cliente se desconecto. Terminando servidor
+[INFO] 03:55:09:253 Servidor/(16616:16616): Servidor listo para recibir al cliente
+[INFO] 03:55:14:865 Servidor/(16616:16616): Se conecto un cliente!
+[INFO] 03:55:14:865 Servidor/(16616:16616): Me llego el mensaje valor
+[INFO] 03:55:32:793 Servidor/(16616:16616): Me llegaron los siguientes valores:
+
+[INFO] 03:55:32:793 Servidor/(16616:16616): We are
+[INFO] 03:55:32:793 Servidor/(16616:16616): the champions
+[ERROR] 03:55:32:793 Servidor/(16616:16616): el cliente se desconecto. Terminando servidor
+[INFO] 04:09:45:734 Servidor/(17518:17518): Servidor listo para recibir al cliente
+[INFO] 04:09:50:911 Servidor/(17518:17518): Se conecto un cliente!
+[INFO] 04:09:50:911 Servidor/(17518:17518): Me llego el mensaje valor
+[INFO] 04:10:23:176 Servidor/(17518:17518): Me llegaron los siguientes valores:
+
+[INFO] 04:10:23:176 Servidor/(17518:17518): Hola personita que revisa logs :)
+[INFO] 04:10:23:176 Servidor/(17518:17518): Hasta la proxima.....
+[ERROR] 04:10:23:176 Servidor/(17518:17518): el cliente se desconecto. Terminando servidor
+[INFO] 04:15:53:646 Servidor/(18049:18049): Servidor listo para recibir al cliente
+[INFO] 04:16:00:408 Servidor/(18049:18049): Se conecto un cliente!
+[INFO] 04:16:00:408 Servidor/(18049:18049): Me llego el mensaje valor
+[INFO] 04:16:08:563 Servidor/(18049:18049): Me llegaron los siguientes valores:
+
+[INFO] 04:16:08:563 Servidor/(18049:18049): fgfg
+[INFO] 04:16:08:563 Servidor/(18049:18049): fgfg
+[ERROR] 04:16:08:563 Servidor/(18049:18049): el cliente se desconecto. Terminando servidor
+[INFO] 04:20:07:777 Servidor/(18432:18432): Servidor listo para recibir al cliente
+[INFO] 04:20:11:591 Servidor/(18432:18432): Se conecto un cliente!
+[INFO] 04:20:11:591 Servidor/(18432:18432): Me llego el mensaje valor
+[INFO] 04:20:23:450 Servidor/(18432:18432): Me llegaron los siguientes valores:
+
+[INFO] 04:20:23:450 Servidor/(18432:18432): Hola???
+[INFO] 04:20:23:450 Servidor/(18432:18432): adios
+[ERROR] 04:20:23:450 Servidor/(18432:18432): el cliente se desconecto. Terminando servidor
+[INFO] 04:54:33:423 Servidor/(21835:21835): Servidor listo para recibir al cliente
+[INFO] 04:54:33:425 Servidor/(21835:21835): Se conecto un cliente!
+[ERROR] 04:54:33:425 Servidor/(21835:21835): el cliente se desconecto. Terminando servidor
+[INFO] 04:54:58:113 Servidor/(21878:21878): Servidor listo para recibir al cliente
+[INFO] 04:54:58:113 Servidor/(21878:21878): Se conecto un cliente!
+[ERROR] 04:54:58:113 Servidor/(21878:21878): el cliente se desconecto. Terminando servidor
+[INFO] 04:56:41:990 Servidor/(22040:22040): Servidor listo para recibir al cliente
+[INFO] 04:56:41:991 Servidor/(22040:22040): Se conecto un cliente!
+[ERROR] 04:56:41:991 Servidor/(22040:22040): el cliente se desconecto. Terminando servidor
+[INFO] 04:57:57:190 Servidor/(22216:22216): Servidor listo para recibir al cliente
+[INFO] 04:58:47:545 Servidor/(22216:22216): Se conecto un cliente!
+[INFO] 04:58:47:545 Servidor/(22216:22216): Me llego el mensaje valor
+[INFO] 04:58:56:675 Servidor/(22216:22216): Me llegaron los siguientes valores:
+
+[INFO] 04:58:56:675 Servidor/(22216:22216): bomba
+[ERROR] 04:58:56:675 Servidor/(22216:22216): el cliente se desconecto. Terminando servidor
+[INFO] 05:02:27:646 Servidor/(22769:22769): Servidor listo para recibir al cliente
+[INFO] 05:02:37:048 Servidor/(22769:22769): Se conecto un cliente!
+[INFO] 05:02:37:049 Servidor/(22769:22769): Me llego el mensaje valor
+[INFO] 05:02:42:540 Servidor/(22769:22769): Me llegaron los siguientes valores:
+
+[INFO] 05:02:42:540 Servidor/(22769:22769): dfdfd
+[INFO] 05:02:42:540 Servidor/(22769:22769): dfdf
+[ERROR] 05:02:42:540 Servidor/(22769:22769): el cliente se desconecto. Terminando servidor
+[INFO] 05:03:28:447 Servidor/(22994:22994): Servidor listo para recibir al cliente
+[INFO] 05:03:38:414 Servidor/(23075:23075): Servidor listo para recibir al cliente
+[INFO] 05:03:48:201 Servidor/(23075:23075): Se conecto un cliente!
+[INFO] 05:03:48:201 Servidor/(23075:23075): Me llego el mensaje valor
+[INFO] 05:03:52:323 Servidor/(23075:23075): Me llegaron los siguientes valores:
+[INFO] 05:03:52:323 Servidor/(23075:23075): dfdfd
+[INFO] 05:03:52:323 Servidor/(23075:23075): dfdf
+[ERROR] 05:03:52:323 Servidor/(23075:23075): el cliente se desconecto. Terminando servidor

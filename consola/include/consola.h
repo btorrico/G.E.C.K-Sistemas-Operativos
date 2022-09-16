@@ -4,8 +4,24 @@
 #include <stdio.h>
 #include <commons/log.h>
 #include <stdbool.h>
-#include "shared_utils.h"
+#include "client.h"
+#include "server.h"
 #include "tests.h"
+#include<signal.h>
+#include<sys/socket.h>
+#include<string.h>
+#include<unistd.h>
+#include<netdb.h>
+#include<commons/collections/list.h>
+#include<assert.h>
 
-int* suma_alloc(int a, int b);
+
+	int conexion;
+	char* ip;
+	char* puerto;
+	char* valor;
+	t_config* config;
+
+    void leerConfig();
+
 #endif

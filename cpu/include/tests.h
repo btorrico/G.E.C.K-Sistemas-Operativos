@@ -3,5 +3,4 @@
 #include <CUnit/Basic.h>
 int run_tests();
 void suma_proceso1();
-
 #endif

@@ -1,3 +1,16 @@
 [INFO] 01:16:28:083 PROCESO1/(13159:13159): Soy el proceso 1! Hice uso de la shared!
 [INFO] 01:58:34:481 KERNEL/(7406:7406): Ser o no ser, esa es la cuestion, en fin, soy el Kernel Hice uso de la shared!
-[INFO] 14:03:42:414 KERNEL/(4629:4629): Ser o no ser, esa es la cuestion, en fin, soy el Kernel Hice uso de la shared!
+[INFO] 23:03:17:587 KERNEL/(12621:12621): Ser o no ser, esa es la cuestion, en fin, soy el Kernel
+[INFO] 02:59:24:221 KERNEL/(12758:12758): Servidor listo para recibir al cliente
+[INFO] 03:05:46:464 KERNEL/(12903:12903): Servidor listo para recibir al cliente
+[INFO] 03:17:16:330 KERNEL/(13528:13528): Servidor listo para recibir al cliente
+[INFO] 03:20:44:593 KERNEL/(14313:14313): Servidor listo para recibir al cliente
+[INFO] 03:24:13:431 KERNEL/(14647:14647): Servidor listo para recibir al cliente
+[INFO] 03:35:32:540 KERNEL/(15518:15518): Servidor listo para recibir al cliente
+[INFO] 03:38:54:334 KERNEL/(15802:15802): Servidor listo para recibir al cliente
+[INFO] 03:39:58:682 KERNEL/(15972:15972): Servidor listo para recibir al cliente
+[INFO] 03:54:46:867 KERNEL/(16426:16426): Servidor listo para recibir al cliente
+[INFO] 03:55:32:793 KERNEL/(16616:16616): Servidor listo para recibir al cliente
+[INFO] 04:10:23:176 KERNEL/(17518:17518): Servidor listo para recibir al cliente
+[INFO] 04:16:08:563 KERNEL/(18049:18049): Servidor listo para recibir al cliente
+[INFO] 04:20:23:450 KERNEL/(18432:18432): Finalizo la conexion
