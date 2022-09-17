@@ -1,0 +1,28 @@
+[INFO] 21:51:33:683 Servidor/(11172:11172): Servidor listo para recibir al cliente
+[INFO] 21:51:33:683 Servidor/(11172:11172): Se conecto un cliente!
+[ERROR] 21:51:33:683 Servidor/(11172:11172): el cliente se desconecto. Terminando servidor
+[INFO] 21:53:42:641 Servidor/(11356:11356): Servidor listo para recibir al cliente
+[INFO] 21:53:42:641 Servidor/(11356:11356): Se conecto un cliente!
+[ERROR] 21:53:42:641 Servidor/(11356:11356): el cliente se desconecto. Terminando servidor
+[INFO] 22:01:04:924 Servidor/(11992:11992): Servidor listo para recibir al cliente
+[INFO] 22:03:01:457 Servidor/(11992:11992): Se conecto un cliente!
+[INFO] 22:03:01:457 Servidor/(11992:11992): Me llego el mensaje valor
+[INFO] 22:03:09:798 Servidor/(11992:11992): Me llegaron los siguientes valores:
+[INFO] 22:03:09:798 Servidor/(11992:11992): holaa
+[ERROR] 22:03:09:798 Servidor/(11992:11992): el cliente se desconecto. Terminando servidor
+[INFO] 22:04:48:913 Servidor/(12414:12414): Servidor listo para recibir al cliente
+[INFO] 22:05:54:697 Servidor/(12617:12617): Servidor listo para recibir al cliente
+[INFO] 23:39:32:356 Servidor/(15789:15789): Servidor listo para recibir al cliente
+[INFO] 23:40:57:080 Servidor/(15789:15789): Se conecto un cliente!
+[INFO] 23:40:57:080 Servidor/(15789:15789): Me llego el mensaje valor
+[INFO] 23:44:32:872 Servidor/(15789:15789): Me llegaron los siguientes valores:
+[INFO] 23:44:32:885 Servidor/(15789:15789): hojlh
+[INFO] 23:44:32:885 Servidor/(15789:15789): }
+[ERROR] 23:44:32:885 Servidor/(15789:15789): el cliente se desconecto. Terminando servidor
+[INFO] 23:44:49:929 Servidor/(16116:16116): Servidor listo para recibir al cliente
+[INFO] 23:45:05:367 Servidor/(16116:16116): Se conecto un cliente!
+[INFO] 23:45:05:367 Servidor/(16116:16116): Me llego el mensaje valor
+[INFO] 23:45:29:730 Servidor/(16116:16116): Me llegaron los siguientes valores:
+[INFO] 23:45:29:730 Servidor/(16116:16116): dsdsds
+[ERROR] 23:45:29:730 Servidor/(16116:16116): el cliente se desconecto. Terminando servidor
+[INFO] 23:46:50:630 Servidor/(16414:16414): Servidor listo para recibir al cliente

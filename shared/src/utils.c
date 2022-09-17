@@ -1,6 +1,8 @@
 #include "utils.h"
 
 //Esto es del cliente
+
+
 void* serializar_paquete(t_paquete* paquete, int bytes)
 {
 	void * magic = malloc(bytes);
@@ -126,7 +128,7 @@ void liberar_conexion(int socket_cliente)
 
 t_log* logger;
 
-int iniciar_servidor(void)
+int iniciar_servidor(char* IP, char* PUERTO)
 {
 
 	int socket_servidor;
@@ -137,6 +139,10 @@ int iniciar_servidor(void)
 	hints.ai_family = AF_INET;  /* ai_family = Protocol family for socket.  */
 	hints.ai_socktype = SOCK_STREAM; 	/* ai_socktype =	Socket type.  */
 	hints.ai_flags = AI_PASSIVE;  /*ai_flags= Input flags.  */
+
+	// char* ip = config_get_string_value(archivoConfig, "IP");
+	
+	// char* puerto = config_get_string_value(archivoConfig, "PUERTO");
 
 	getaddrinfo(IP, PUERTO, &hints, &servinfo);
 

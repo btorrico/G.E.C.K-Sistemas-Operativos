@@ -87,3 +87,43 @@
 [INFO] 19:31:05:208 Servidor/(3435:3435): Me llegaron los siguientes valores:
 [INFO] 19:31:05:208 Servidor/(3435:3435): hola
 [ERROR] 19:31:05:208 Servidor/(3435:3435): el cliente se desconecto. Terminando servidor
+[INFO] 20:49:26:180 Servidor/(6077:6077): Servidor listo para recibir al cliente
+[INFO] 21:34:29:060 Servidor/(9975:9975): Servidor listo para recibir al cliente
+[INFO] 21:34:37:384 Servidor/(9975:9975): Se conecto un cliente!
+[INFO] 21:34:37:384 Servidor/(9975:9975): Me llego el mensaje valor
+[INFO] 21:34:46:357 Servidor/(9975:9975): Me llegaron los siguientes valores:
+[INFO] 21:34:46:357 Servidor/(9975:9975): hola
+[INFO] 21:34:46:357 Servidor/(9975:9975): que
+[ERROR] 21:34:46:357 Servidor/(9975:9975): el cliente se desconecto. Terminando servidor
+[INFO] 21:36:27:674 Servidor/(10323:10323): Servidor listo para recibir al cliente
+[INFO] 21:36:32:323 Servidor/(10323:10323): Se conecto un cliente!
+[INFO] 21:36:32:323 Servidor/(10323:10323): Me llego el mensaje valor
+[INFO] 21:36:36:920 Servidor/(10323:10323): Me llegaron los siguientes valores:
+[INFO] 21:36:36:920 Servidor/(10323:10323): hola
+[ERROR] 21:36:36:920 Servidor/(10323:10323): el cliente se desconecto. Terminando servidor
+[INFO] 21:59:19:446 Servidor/(11676:11676): Servidor listo para recibir al cliente
+[INFO] 21:59:33:235 Servidor/(11676:11676): Se conecto un cliente!
+[INFO] 21:59:33:235 Servidor/(11676:11676): Me llego el mensaje valor
+[INFO] 21:59:33:426 Servidor/(11676:11676): Me llegaron los siguientes valores:
+[ERROR] 21:59:33:426 Servidor/(11676:11676): el cliente se desconecto. Terminando servidor
+[INFO] 21:59:45:756 Servidor/(11803:11803): Servidor listo para recibir al cliente
+[INFO] 21:59:50:507 Servidor/(11803:11803): Se conecto un cliente!
+[INFO] 21:59:50:507 Servidor/(11803:11803): Me llego el mensaje valor
+[INFO] 21:59:57:392 Servidor/(11803:11803): Me llegaron los siguientes valores:
+[INFO] 21:59:57:392 Servidor/(11803:11803): hola
+[ERROR] 21:59:57:392 Servidor/(11803:11803): el cliente se desconecto. Terminando servidor
+[INFO] 22:01:10:994 Servidor/(12034:12034): Servidor listo para recibir al cliente
+[INFO] 22:01:10:997 Servidor/(12034:12034): Se conecto un cliente!
+[ERROR] 22:01:10:997 Servidor/(12034:12034): el cliente se desconecto. Terminando servidor
+[INFO] 23:33:30:425 Servidor/(15347:15347): Servidor listo para recibir al cliente
+[INFO] 23:37:16:529 Servidor/(15347:15347): Se conecto un cliente!
+[INFO] 23:37:16:529 Servidor/(15347:15347): Me llego el mensaje valor
+[INFO] 23:37:30:202 Servidor/(15347:15347): Me llegaron los siguientes valores:
+[INFO] 23:37:30:203 Servidor/(15347:15347): hola
+[ERROR] 23:37:30:203 Servidor/(15347:15347): el cliente se desconecto. Terminando servidor
+[INFO] 23:40:57:078 Servidor/(15946:15946): Servidor listo para recibir al cliente
+[INFO] 23:40:57:079 Servidor/(15946:15946): Se conecto un cliente!
+[ERROR] 23:40:57:079 Servidor/(15946:15946): el cliente se desconecto. Terminando servidor
+[INFO] 23:45:29:730 Servidor/(16194:16194): Servidor listo para recibir al cliente
+[INFO] 23:45:29:730 Servidor/(16194:16194): Se conecto un cliente!
+[ERROR] 23:45:29:730 Servidor/(16194:16194): el cliente se desconecto. Terminando servidor

@@ -1,3 +1,4 @@
 [INFO] 00:54:04:931 PROCESO1/(11565:11565): Soy el proceso 1! Hice uso de la shared!
 [INFO] 01:18:04:208 PROCESO1/(13479:13479): Soy el proceso 1! Hice uso de la shared!
 [INFO] 01:53:35:265 CPU/(6872:6872): Soy la Cpu! Hice uso de la shared!
+[INFO] 21:51:33:683 creacionLogger/(11172:11172): Hola! Soy el CPU

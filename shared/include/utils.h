@@ -8,14 +8,14 @@
 #include<sys/socket.h>
 #include<string.h>
 #include<commons/log.h>
+#include<commons/config.h>
 #include<unistd.h>
 #include<netdb.h>
 #include<commons/collections/list.h>
 #include<assert.h>
 #include "../globals.h"
 
-#define IP "127.0.0.1"
-#define PUERTO "4444"
+
 typedef enum
 {
 	MENSAJE,
@@ -53,7 +53,7 @@ void eliminar_paquete(t_paquete* paquete);
 
 extern t_log* logger;
 
-int iniciar_servidor(void);
+int iniciar_servidor(char* , char*);
 int esperar_cliente(int);
 t_list* recibir_paquete(int);
 void recibir_mensaje(int);

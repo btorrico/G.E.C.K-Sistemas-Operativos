@@ -1,0 +1,7 @@
+[INFO] 00:03:11:302 Servidor/(16872:16872): Servidor listo para recibir al cliente
+[INFO] 00:03:55:611 Servidor/(16872:16872): Se conecto un cliente!
+[INFO] 00:03:55:611 Servidor/(16872:16872): Me llego el mensaje valor
+[INFO] 00:04:08:407 Servidor/(16872:16872): Me llegaron los siguientes valores:
+[INFO] 00:04:08:407 Servidor/(16872:16872): hola 
+[INFO] 00:04:08:407 Servidor/(16872:16872): jeje
+[ERROR] 00:04:08:407 Servidor/(16872:16872): el cliente se desconecto. Terminando servidor

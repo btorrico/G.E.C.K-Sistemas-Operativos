@@ -8,7 +8,7 @@
 #include "utils.h"
 #include "../globals.h"
 
-int conectar_y_mostrar_mensajes_de_cliente(void);
+int conectar_y_mostrar_mensajes_de_cliente(char*, char*);
 void iterator(char* value);
 
 #endif /* SERVER_H_ */

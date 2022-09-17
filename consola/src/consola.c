@@ -1,9 +1,12 @@
 #include "consola.h"
 
-int main(void)
+   
+int main(char** argc, char ** argv)
 {
-
-	/* ---------------- LOGGING ---------------- */
+	 if(argc > 1 && strcmp(argv[1],"-test")==0)
+        return run_tests();
+    else{  
+       /* ---------------- LOGGING ---------------- */
 
 	logger = iniciar_logger("consola.log");
 
@@ -11,7 +14,7 @@ int main(void)
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 //Se tiene que leer la configuracion del archivo consola.config (Todavia no existe)
-    leerConfig(); //podria agregarse un parametro que sea archivoConfig cosa de hacerlo mas global,al igual que los parametros ip, puerto y valor, despues ver
+    leerConfig("./consola.config"); //podria agregarse un parametro que sea archivoConfig cosa de hacerlo mas global,al igual que los parametros ip, puerto y valor, despues ver
 	
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
@@ -30,12 +33,12 @@ int main(void)
 
 	terminar_programa(conexion, logger, config);
 
-	
+    } 
+
 }
 
-
-void leerConfig(){
-	config = iniciar_config("./consola.config");
+void leerConfig(char* archivoConfig){
+	config = iniciar_config(archivoConfig);
 // Usando el config creado previamente, leemos los valores del config y los
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
 

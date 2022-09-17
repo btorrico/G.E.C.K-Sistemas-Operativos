@@ -1,11 +1,11 @@
 #include "server.h"
 
 
-int conectar_y_mostrar_mensajes_de_cliente(void){
+int conectar_y_mostrar_mensajes_de_cliente(char* IP, char* PUERTO){
 
 	logger = log_create("log.log", "Servidor", 1, LOG_LEVEL_DEBUG);
 
-	int server_fd = iniciar_servidor();
+	int server_fd = iniciar_servidor(IP, PUERTO);
 	log_info(logger, "Servidor listo para recibir al cliente");
 	int cliente_fd = esperar_cliente(server_fd);
 

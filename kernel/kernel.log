@@ -14,3 +14,13 @@
 [INFO] 04:10:23:176 KERNEL/(17518:17518): Servidor listo para recibir al cliente
 [INFO] 04:16:08:563 KERNEL/(18049:18049): Servidor listo para recibir al cliente
 [INFO] 04:20:23:450 KERNEL/(18432:18432): Finalizo la conexion
+[INFO] 21:59:33:426 creacionLogger/(11676:11676): Hola! Soy el kernel
+[INFO] 21:59:57:392 creacionLogger/(11803:11803): Hola! Soy el kernel
+[INFO] 22:01:10:997 creacionLogger/(12034:12034): Hola! Soy el kernel
+[INFO] 22:02:18:159 creacionLogger/(12153:12153): Hola! Soy el kernel
+[INFO] 22:02:34:481 creacionLogger/(12204:12204): Hola! Soy el kernel
+[INFO] 22:05:37:307 creacionLogger/(12531:12531): Hola! Soy el kernel
+[INFO] 22:06:00:120 creacionLogger/(12671:12671): Hola! Soy el kernel
+[INFO] 23:40:57:079 creacionLogger/(15946:15946): Hola! Soy el kernel
+[INFO] 23:45:05:364 creacionLogger/(16194:16194): Hola! Soy el kernel
+[INFO] 00:03:55:599 creacionLogger/(16964:16964): Hola! Soy el kernel
