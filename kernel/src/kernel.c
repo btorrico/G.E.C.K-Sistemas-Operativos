@@ -5,45 +5,18 @@ int main(char** argc, char ** argv)
 	 if(argc > 1 && strcmp(argv[1],"-test")==0)
         return run_tests();
     else{  
+    //Parte Server
+    t_log* logger = log_create("kernel.log", "KERNEL", true, LOG_LEVEL_INFO);
+    leerConfig("./kernel.config");
 
-    // //Parte Server
-    // t_log* logger = log_create("kernel.log", "KERNEL", true, LOG_LEVEL_INFO);
-    //   leerConfig("./kernel.config");
-    // //Se conecta el Kernel
-    //  conectar_y_mostrar_mensajes_de_cliente(IP, PUERTO);
-
-
-//Parte Cliente
-/* ---------------- LOGGING ---------------- */
-
-	logger = iniciar_logger("kernel.log");
-
-	log_info(logger, "Hola! Soy el kernel");
-
-	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
-//Se tiene que leer la configuracion del archivo consola.config (Todavia no existe)
-    leerConfig("./kernel.config"); //podria agregarse un parametro que sea archivoConfig cosa de hacerlo mas global,al igual que los parametros ip, puerto y valor, despues ver
+    //Se conecta el Kernel
+    conectar_y_mostrar_mensajes_de_cliente(IP, PUERTO);
+    logger = log_create("log.log", "Servidor", 1, LOG_LEVEL_DEBUG);
 	
-	/* ---------------- LEER DE CONSOLA ---------------- */
-
-//	leer_consola(logger);
-
-	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
-
-
-	conexion = crear_conexion(ip, puerto);
-
-	// Enviamos al servidor el valor de CLAVE como mensaje
-	enviar_mensaje(valor, conexion);
-
-	// Armamos y enviamos el paquete
-	paquete(conexion);
-
-	terminar_programa(conexion, logger, config);
-
-    } 
-
+	}	
 }
+
+
 
 void leerConfig(char* archivoConfig){
 	config = iniciar_config(archivoConfig);

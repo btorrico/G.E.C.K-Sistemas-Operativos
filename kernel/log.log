@@ -127,3 +127,105 @@
 [INFO] 23:45:29:730 Servidor/(16194:16194): Servidor listo para recibir al cliente
 [INFO] 23:45:29:730 Servidor/(16194:16194): Se conecto un cliente!
 [ERROR] 23:45:29:730 Servidor/(16194:16194): el cliente se desconecto. Terminando servidor
+[INFO] 00:59:54:154 Servidor/(21004:21004): Servidor listo para recibir al cliente
+[INFO] 01:00:13:830 Servidor/(21004:21004): Se conecto un cliente!
+[INFO] 01:05:23:240 Servidor/(21342:21342): Servidor listo para recibir al cliente
+[INFO] 01:05:36:005 Servidor/(21342:21342): Se conecto un cliente!
+[INFO] 01:05:36:005 Servidor/(21342:21342): Se creo un nuevo hilo y se mostro los mensajes
+[INFO] 01:09:14:409 Servidor/(21682:21682): Servidor listo para recibir al cliente
+[INFO] 01:09:26:163 Servidor/(21682:21682): Se conecto un cliente!
+[INFO] 01:09:26:163 Servidor/(21682:21682): Se creo un nuevo hilo y se mostro los mensajes
+[INFO] 21:32:27:938 Servidor/(2276:2276): Servidor listo para recibir al cliente
+[INFO] 21:33:16:577 Servidor/(2276:2276): Se conecto un cliente!
+[INFO] 22:14:27:485 Servidor/(2877:2877): Servidor listo para recibir al cliente
+[INFO] 22:14:31:940 Servidor/(2877:2877): Se conecto un cliente!
+[INFO] 22:14:45:490 Servidor/(3009:3009): Servidor listo para recibir al cliente
+[INFO] 22:14:51:704 Servidor/(3009:3009): Se conecto un cliente!
+[INFO] 22:29:14:380 Servidor/(4917:4917): Servidor listo para recibir al cliente
+[INFO] 22:29:20:241 Servidor/(4917:4917): Se conecto un cliente!
+[INFO] 22:29:20:242 Servidor/(4917:4917): consola conectada, paso a crear el hilo
+[INFO] 22:36:40:292 Servidor/(5463:5463): Servidor listo para recibir al cliente
+[INFO] 22:36:47:219 Servidor/(5463:5463): Se conecto un cliente!
+[INFO] 22:36:47:219 Servidor/(5463:5463): consola conectada, paso a crear el hilo
+[INFO] 22:37:43:597 Servidor/(5628:5628): Servidor listo para recibir al cliente
+[INFO] 22:37:49:241 Servidor/(5628:5628): Se conecto un cliente!
+[INFO] 22:37:49:241 Servidor/(5628:5628): consola conectada, paso a crear el hilo
+[INFO] 22:38:26:889 Servidor/(5857:5857): Servidor listo para recibir al cliente
+[INFO] 22:38:31:270 Servidor/(5857:5857): Se conecto un cliente!
+[INFO] 22:38:31:270 Servidor/(5857:5857): consola conectada, paso a crear el hilo
+[INFO] 22:46:45:235 Servidor/(6385:6385): Servidor listo para recibir al cliente
+[INFO] 22:46:50:214 Servidor/(6385:6385): Se conecto un cliente!
+[INFO] 22:46:50:214 Servidor/(6385:6385): consola conectada, paso a crear el hilo
+[INFO] 22:48:43:183 Servidor/(6683:6683): Servidor listo para recibir al cliente
+[INFO] 22:48:46:477 Servidor/(6683:6683): Se conecto un cliente!
+[INFO] 22:48:46:477 Servidor/(6683:6683): consola conectada, paso a crear el hilo
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:48:46:477 Servidor/(6683:6714): llamo a la funcion
+[INFO] 22:58:09:342 Servidor/(7208:7208): Servidor listo para recibir al cliente
+[INFO] 22:58:12:268 Servidor/(7208:7208): Se conecto un cliente!
+[INFO] 22:58:12:268 Servidor/(7208:7208): consola conectada, paso a crear el hilo
+[INFO] 22:58:12:268 Servidor/(7208:7208): se creo el hilo
+[INFO] 22:58:12:268 Servidor/(7208:7239): Me llego el mensaje valor
+[INFO] 22:58:27:084 Servidor/(7208:7239): Me llegaron los siguientes valores:
+[INFO] 22:58:27:084 Servidor/(7208:7239): hola
+[INFO] 22:58:27:084 Servidor/(7208:7239): como estas
+[ERROR] 22:58:27:084 Servidor/(7208:7239): el cliente se desconecto. Terminando servidor
+[WARNING] 22:58:27:084 Servidor/(7208:7239): Operacion desconocida. No quieras meter la pata
+[INFO] 23:01:06:364 Servidor/(7524:7524): Servidor listo para recibir al cliente
+[INFO] 23:01:13:052 Servidor/(7524:7524): Se conecto un cliente!
+[INFO] 23:01:13:052 Servidor/(7524:7524): consola conectada, paso a crear el hilo
+[INFO] 23:01:13:052 Servidor/(7524:7524): se creo el hilo
+[INFO] 23:01:13:052 Servidor/(7524:7579): Me llego el mensaje valor
+[INFO] 23:01:20:081 Servidor/(7524:7579): Me llegaron los siguientes valores:
+[INFO] 23:01:20:082 Servidor/(7524:7579): hola
+[INFO] 23:01:20:082 Servidor/(7524:7579): jajaja
+[ERROR] 23:01:20:082 Servidor/(7524:7579): el cliente se desconecto. Terminando servidor
+[INFO] 23:06:21:895 Servidor/(7862:7862): Servidor listo para recibir al cliente
+[INFO] 23:06:28:446 Servidor/(7862:7862): Se conecto un cliente!
+[INFO] 23:06:28:446 Servidor/(7862:7862): consola conectada, paso a crear el hilo
+[INFO] 23:06:28:446 Servidor/(7862:7908): Me llego el mensaje valor
+[INFO] 23:06:46:501 Servidor/(7862:7908): Me llegaron los siguientes valores:
+[INFO] 23:06:46:501 Servidor/(7862:7908): hola como
+[INFO] 23:06:46:501 Servidor/(7862:7908): estas
+[INFO] 23:06:46:501 Servidor/(7862:7908): jaja
+[ERROR] 23:06:46:501 Servidor/(7862:7908): el cliente se desconecto. Terminando servidor
+[INFO] 23:11:45:112 Servidor/(8246:8246): Servidor listo para recibir al cliente
+[INFO] 23:25:36:205 Servidor/(8246:8246): Se conecto un cliente!
+[INFO] 23:25:36:206 Servidor/(8246:8246): consola conectada, paso a crear el hilo
+[INFO] 23:25:36:206 Servidor/(8246:8982): Me llego el mensaje valor
+[INFO] 23:26:35:829 Servidor/(8246:8982): Me llegaron los siguientes valores:
+[INFO] 23:26:35:829 Servidor/(8246:8982): sasa
+[ERROR] 23:26:35:830 Servidor/(8246:8982): el cliente se desconecto. Terminando servidor
+[INFO] 23:34:02:252 Servidor/(9620:9620): Servidor listo para recibir al cliente
+[INFO] 23:34:14:877 Servidor/(9620:9620): Se conecto un cliente!
+[INFO] 23:34:14:877 Servidor/(9620:9620): consola conectada, paso a crear el hilo
+[INFO] 23:34:14:877 Servidor/(9620:9648): Me llego el mensaje valor
+[INFO] 23:35:11:736 Servidor/(9620:9620): Se conecto un cliente!
+[INFO] 23:35:11:736 Servidor/(9620:9620): consola conectada, paso a crear el hilo
+[INFO] 23:35:11:736 Servidor/(9620:9724): Me llego el mensaje valor
+[INFO] 23:42:45:044 Servidor/(10068:10068): Servidor listo para recibir al cliente
+[INFO] 23:42:49:686 Servidor/(10068:10068): Se conecto un cliente!
+[INFO] 23:42:49:686 Servidor/(10068:10068): consola conectada, paso a crear el hilo
+[INFO] 23:42:49:686 Servidor/(10068:10109): Me llego el mensaje valor
+[INFO] 23:45:34:045 Servidor/(10068:10110): Me llegaron los siguientes valores:
+[INFO] 23:45:34:045 Servidor/(10068:10110): fffgg
+[ERROR] 23:45:34:045 Servidor/(10068:10110): el cliente se desconecto. Terminando servidor
+[ERROR] 23:45:34:045 Servidor/(10068:10109): el cliente se desconecto. Terminando servidor
