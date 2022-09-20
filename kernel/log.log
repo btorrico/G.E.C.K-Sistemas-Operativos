@@ -229,3 +229,133 @@
 [INFO] 23:45:34:045 Servidor/(10068:10110): fffgg
 [ERROR] 23:45:34:045 Servidor/(10068:10110): el cliente se desconecto. Terminando servidor
 [ERROR] 23:45:34:045 Servidor/(10068:10109): el cliente se desconecto. Terminando servidor
+[INFO] 02:41:29:479 Servidor/(12029:12029): Servidor listo para recibir al cliente
+[INFO] 02:41:36:240 Servidor/(12029:12029): Se conecto un cliente!
+[INFO] 02:41:36:240 Servidor/(12029:12029): consola conectada, paso a crear el hilo
+[INFO] 02:41:36:241 Servidor/(12029:12082): Me llego el mensaje valor
+[INFO] 02:41:42:213 Servidor/(12029:12082): Me llegaron los siguientes valores:
+[INFO] 02:41:42:213 Servidor/(12029:12082): dsd
+[INFO] 02:41:42:213 Servidor/(12029:12082): s
+[ERROR] 02:41:42:213 Servidor/(12029:12082): el cliente se desconecto. Terminando servidor
+[INFO] 02:43:17:500 Servidor/(12259:12259): Servidor listo para recibir al cliente
+[INFO] 02:43:34:619 Servidor/(12259:12259): Se conecto un cliente!
+[INFO] 02:43:34:619 Servidor/(12259:12259): consola conectada, paso a crear el hilo
+[INFO] 02:43:34:619 Servidor/(12259:12329): Me llego el mensaje valor
+[INFO] 02:43:51:597 Servidor/(12259:12329): Me llegaron los siguientes valores:
+[INFO] 02:43:51:597 Servidor/(12259:12329): hdjs
+[INFO] 02:43:51:597 Servidor/(12259:12329): s
+[ERROR] 02:43:51:597 Servidor/(12259:12329): el cliente se desconecto. Terminando servidor
+[INFO] 02:45:35:215 Servidor/(12501:12501): Servidor listo para recibir al cliente
+[INFO] 02:45:39:188 Servidor/(12501:12501): Se conecto un cliente!
+[INFO] 02:45:39:188 Servidor/(12501:12501): consola conectada, paso a crear el hilo
+[INFO] 02:45:39:188 Servidor/(12501:12532): Me llego el mensaje valor
+[INFO] 02:45:59:014 Servidor/(12501:12532): Me llegaron los siguientes valores:
+[INFO] 02:45:59:014 Servidor/(12501:12532): dsdsd
+[INFO] 02:45:59:014 Servidor/(12501:12532): s
+[ERROR] 02:45:59:014 Servidor/(12501:12532): el cliente se desconecto. Terminando servidor
+[INFO] 02:46:44:071 Servidor/(12501:12501): Se conecto un cliente!
+[INFO] 02:46:44:072 Servidor/(12501:12501): consola conectada, paso a crear el hilo
+[INFO] 02:47:45:518 Servidor/(12869:12869): Servidor listo para recibir al cliente
+[INFO] 02:48:05:851 Servidor/(12869:12869): Se conecto un cliente!
+[INFO] 02:48:05:851 Servidor/(12869:12869): consola conectada, paso a crear el hilo
+[INFO] 02:48:05:851 Servidor/(12869:12915): Me llego el mensaje valor
+[INFO] 02:48:13:418 Servidor/(12869:12915): Me llegaron los siguientes valores:
+[INFO] 02:48:13:418 Servidor/(12869:12915): hghgh
+[INFO] 02:48:13:418 Servidor/(12869:12915): f
+[ERROR] 02:48:13:418 Servidor/(12869:12915): el cliente se desconecto. Terminando servidor
+[INFO] 02:48:22:196 Servidor/(12869:12869): Se conecto un cliente!
+[INFO] 02:48:22:196 Servidor/(12869:12869): consola conectada, paso a crear el hilo
+[INFO] 02:48:22:196 Servidor/(12869:13043): Me llego el mensaje valor
+[INFO] 02:49:22:294 Servidor/(12869:13043): Me llegaron los siguientes valores:
+[INFO] 02:49:22:294 Servidor/(12869:13043): ksjaks
+[INFO] 02:49:22:294 Servidor/(12869:13043): s
+[ERROR] 02:49:22:294 Servidor/(12869:13043): el cliente se desconecto. Terminando servidor
+[INFO] 02:49:56:626 Servidor/(12869:12869): Se conecto un cliente!
+[INFO] 02:49:56:626 Servidor/(12869:12869): consola conectada, paso a crear el hilo
+[INFO] 02:56:43:110 Servidor/(14029:14029): Servidor listo para recibir al cliente
+[INFO] 02:56:47:942 Servidor/(14029:14029): Se conecto un cliente!
+[INFO] 02:56:47:942 Servidor/(14029:14029): consola conectada, paso a crear el hilo
+[INFO] 02:56:47:943 Servidor/(14029:14070): Me llego el mensaje valor
+[INFO] 02:56:52:652 Servidor/(14029:14070): Me llegaron los siguientes valores:
+[INFO] 02:56:52:652 Servidor/(14029:14070): sds
+[INFO] 02:56:52:652 Servidor/(14029:14070): s
+[ERROR] 02:56:52:652 Servidor/(14029:14070): el cliente se desconecto. Terminando servidor
+[INFO] 03:04:39:602 Servidor/(14873:14873): Servidor listo para recibir al cliente
+[INFO] 03:04:44:227 Servidor/(14873:14873): Se conecto un cliente!
+[INFO] 03:04:44:227 Servidor/(14873:14873): consola conectada, paso a crear el hilo
+[INFO] 03:04:54:228 Servidor/(14873:14914): Me llego el mensaje valor
+[INFO] 03:04:54:228 Servidor/(14873:14914): Me llegaron los siguientes valores:
+[INFO] 03:04:54:228 Servidor/(14873:14914): jka
+[INFO] 03:04:54:228 Servidor/(14873:14914): a
+[ERROR] 03:04:54:228 Servidor/(14873:14914): el cliente se desconecto. Terminando servidor
+[INFO] 03:06:28:708 Servidor/(15361:15361): Servidor listo para recibir al cliente
+[INFO] 03:06:31:039 Servidor/(15361:15361): Se conecto un cliente!
+[INFO] 03:06:31:039 Servidor/(15361:15361): consola conectada, paso a crear el hilo
+[INFO] 03:06:36:040 Servidor/(15361:15386): Me llego el mensaje valor
+[INFO] 03:06:50:039 Servidor/(15361:15386): Me llegaron los siguientes valores:
+[INFO] 03:06:50:039 Servidor/(15361:15386): sa
+[INFO] 03:06:50:039 Servidor/(15361:15386): s
+[ERROR] 03:06:50:039 Servidor/(15361:15386): el cliente se desconecto. Terminando servidor
+[INFO] 03:07:37:493 Servidor/(15830:15830): Servidor listo para recibir al cliente
+[INFO] 03:07:41:695 Servidor/(15830:15830): Se conecto un cliente!
+[INFO] 03:07:41:695 Servidor/(15830:15830): consola conectada, paso a crear el hilo
+[INFO] 03:07:46:696 Servidor/(15830:15874): Me llego el mensaje valor
+[INFO] 03:07:46:696 Servidor/(15830:15874): Me llegaron los siguientes valores:
+[INFO] 03:07:46:696 Servidor/(15830:15874): sd
+[INFO] 03:07:46:696 Servidor/(15830:15874): s
+[ERROR] 03:07:46:696 Servidor/(15830:15874): el cliente se desconecto. Terminando servidor
+[INFO] 03:07:54:534 Servidor/(15830:15830): Se conecto un cliente!
+[INFO] 03:07:54:534 Servidor/(15830:15830): consola conectada, paso a crear el hilo
+[INFO] 03:07:59:535 Servidor/(15830:15981): Me llego el mensaje valor
+[INFO] 03:08:00:300 Servidor/(15830:15981): Me llegaron los siguientes valores:
+[INFO] 03:08:00:300 Servidor/(15830:15981): ds
+[ERROR] 03:08:00:300 Servidor/(15830:15981): el cliente se desconecto. Terminando servidor
+[INFO] 03:08:10:529 Servidor/(15830:15830): Se conecto un cliente!
+[INFO] 03:08:10:529 Servidor/(15830:15830): consola conectada, paso a crear el hilo
+[INFO] 03:15:55:415 Servidor/(16561:16561): Servidor listo para recibir al cliente
+[INFO] 03:16:10:401 Servidor/(16561:16561): Se conecto un cliente!
+[INFO] 03:16:10:401 Servidor/(16561:16561): consola conectada, paso a crear el hilo
+[INFO] 03:16:15:401 Servidor/(16561:16607): Me llego el mensaje valor
+[INFO] 03:16:30:879 Servidor/(16561:16607): Me llegaron los siguientes valores:
+[INFO] 03:16:30:879 Servidor/(16561:16607): hola1
+[ERROR] 03:16:30:879 Servidor/(16561:16607): el cliente se desconecto. Terminando servidor
+[INFO] 03:17:29:527 Servidor/(16561:16561): Se conecto un cliente!
+[INFO] 03:17:29:527 Servidor/(16561:16561): consola conectada, paso a crear el hilo
+[INFO] 03:17:34:528 Servidor/(16561:16837): Me llego el mensaje valor
+[INFO] 03:18:12:812 Servidor/(16561:16837): Me llegaron los siguientes valores:
+[INFO] 03:18:12:813 Servidor/(16561:16837): hola2
+[INFO] 03:18:12:813 Servidor/(16561:16837): hola3
+[ERROR] 03:18:12:813 Servidor/(16561:16837): el cliente se desconecto. Terminando servidor
+[INFO] 03:18:22:753 Servidor/(16561:16561): Se conecto un cliente!
+[INFO] 03:18:22:753 Servidor/(16561:16561): consola conectada, paso a crear el hilo
+[INFO] 03:18:27:753 Servidor/(16561:17132): Me llego el mensaje valor
+[INFO] 03:18:29:207 Servidor/(16561:17132): Me llegaron los siguientes valores:
+[INFO] 03:18:29:207 Servidor/(16561:17132): hola4
+[INFO] 03:18:29:207 Servidor/(16561:17132): hola5
+[ERROR] 03:18:29:207 Servidor/(16561:17132): el cliente se desconecto. Terminando servidor
+[INFO] 03:19:37:978 Servidor/(16561:16561): Se conecto un cliente!
+[INFO] 03:19:37:978 Servidor/(16561:16561): consola conectada, paso a crear el hilo
+[INFO] 03:19:42:978 Servidor/(16561:17289): Me llego el mensaje valor
+[INFO] 03:19:43:373 Servidor/(16561:16561): Se conecto un cliente!
+[INFO] 03:19:43:373 Servidor/(16561:16561): consola conectada, paso a crear el hilo
+[INFO] 03:19:48:374 Servidor/(16561:17335): Me llego el mensaje valor
+[INFO] 03:20:16:613 Servidor/(16561:17289): Me llegaron los siguientes valores:
+[INFO] 03:20:16:614 Servidor/(16561:17289): hola7
+[ERROR] 03:20:16:614 Servidor/(16561:17289): el cliente se desconecto. Terminando servidor
+[INFO] 03:20:30:359 Servidor/(16561:17335): Me llegaron los siguientes valores:
+[INFO] 03:20:30:359 Servidor/(16561:17335): hola8
+[ERROR] 03:20:30:359 Servidor/(16561:17335): el cliente se desconecto. Terminando servidor
+[INFO] 03:22:00:173 Servidor/(16561:16561): Se conecto un cliente!
+[INFO] 03:22:00:173 Servidor/(16561:16561): consola conectada, paso a crear el hilo
+[INFO] 03:22:05:174 Servidor/(16561:17601): Me llego el mensaje valor
+[INFO] 03:22:10:946 Servidor/(16561:16561): Se conecto un cliente!
+[INFO] 03:22:10:946 Servidor/(16561:16561): consola conectada, paso a crear el hilo
+[INFO] 03:22:15:946 Servidor/(16561:17697): Me llego el mensaje valor
+[INFO] 03:23:25:555 Servidor/(16561:17697): Me llegaron los siguientes valores:
+[INFO] 03:23:25:555 Servidor/(16561:17697): hola
+[INFO] 03:23:25:555 Servidor/(16561:17697): hola2
+[ERROR] 03:23:25:555 Servidor/(16561:17697): el cliente se desconecto. Terminando servidor
+[INFO] 03:23:50:989 Servidor/(16561:17601): Me llegaron los siguientes valores:
+[INFO] 03:23:50:989 Servidor/(16561:17601): hola 3
+[INFO] 03:23:50:989 Servidor/(16561:17601): hola 4
+[ERROR] 03:23:50:989 Servidor/(16561:17601): el cliente se desconecto. Terminando servidor

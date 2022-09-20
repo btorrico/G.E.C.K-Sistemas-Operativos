@@ -5,7 +5,7 @@ int conectar_y_mostrar_mensajes_de_cliente(char* IP, char* PUERTO){
 
 	logger = log_create("log.log", "Servidor", 1, LOG_LEVEL_DEBUG);
 
-	int server_fd = iniciar_servidor(IP, PUERTO);
+	int server_fd = iniciar_servidor(IP, PUERTO); //listen()
 	log_info(logger, "Servidor listo para recibir al cliente");
 	
 	
@@ -17,24 +17,29 @@ int conectar_y_mostrar_mensajes_de_cliente(char* IP, char* PUERTO){
 }
 
 void crear_hilos(int server_fd){
-
+int  r1;
 	while(1){
-		int cliente_fd = esperar_cliente(server_fd);
+		//for(int i=0; i<3; i++){
+			r1=0;
+			int cliente_fd = esperar_cliente(server_fd);
 		//aca hay un log que dice que se conecto un cliente
-		log_info(logger,"consola conectada, paso a crear el hilo");
+			log_info(logger,"consola conectada, paso a crear el hilo");
 		
-		pthread_t thr1;
-   
+			pthread_t thr1;
    //(1)esto funca pero sin pasarle argumentos, utiliza una variable global (cliente_fd)
    /*pthread_create(&thr1, NULL, (void *)mostrar_mensajes_del_cliente, NULL);
 	log_info(logger,"se creo el hilo");*/
 
 	//(2)esto esta funcionando, con pasarle una variable por parametro
-	pthread_create(&thr1, NULL, (void *)mostrar_mensajes_del_cliente, cliente_fd);
-	
-	pthread_join(&thr1, NULL);
-	
-	}		
+			r1 = pthread_create(&thr1, NULL, (void *)mostrar_mensajes_del_cliente, cliente_fd);
+	 		
+			printf("Thread 1 devolvió: %d ", r1);
+			
+			pthread_detach(&thr1);
+			
+		}
+		//printf("Thread 1 devolvió: %d y el Thread 2: %d\n", r1, r2);
+	//}		
 	
 }
 
@@ -70,7 +75,7 @@ void mostrar_mensajes_del_cliente(){
 
 //(2)
 void mostrar_mensajes_del_cliente(int cliente_fd){
-
+	sleep(5);
 	t_list* lista;
 	int y = 1;
 		while (y) {
