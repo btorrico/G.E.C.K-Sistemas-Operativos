@@ -14,7 +14,7 @@ int main(char** argc, char ** argv)
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 //Se tiene que leer la configuracion del archivo consola.config (Todavia no existe)
-    leerConfig("./consola.config"); //podria agregarse un parametro que sea archivoConfig cosa de hacerlo mas global,al igual que los parametros ip, puerto y valor, despues ver
+    leerConfig(argv[1]); //podria agregarse un parametro que sea archivoConfig cosa de hacerlo mas global,al igual que los parametros ip, puerto y valor, despues ver
 	
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
