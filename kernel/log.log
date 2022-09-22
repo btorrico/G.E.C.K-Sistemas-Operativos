@@ -127,3 +127,10 @@
 [INFO] 23:45:29:730 Servidor/(16194:16194): Servidor listo para recibir al cliente
 [INFO] 23:45:29:730 Servidor/(16194:16194): Se conecto un cliente!
 [ERROR] 23:45:29:730 Servidor/(16194:16194): el cliente se desconecto. Terminando servidor
+[INFO] 05:30:23:355 Servidor/(6804:6804): Servidor listo para recibir al cliente
+[INFO] 05:30:32:132 Servidor/(6804:6804): Se conecto un cliente!
+[INFO] 05:30:32:132 Servidor/(6804:6804): Me llego el mensaje valor
+[INFO] 05:30:50:710 Servidor/(6804:6804): Me llegaron los siguientes valores:
+[INFO] 05:30:50:710 Servidor/(6804:6804): hola
+[INFO] 05:30:50:710 Servidor/(6804:6804): como estas querido kernel??
+[ERROR] 05:30:50:710 Servidor/(6804:6804): el cliente se desconecto. Terminando servidor

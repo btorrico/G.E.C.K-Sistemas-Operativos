@@ -18,6 +18,6 @@ char* ip;
 t_config* config;
 int conexion;
 	
-
+int conectar_y_mostrar_mensajes_de_cliente(char*, char*);
     void leerConfig(char*);
 #endif

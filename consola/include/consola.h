@@ -20,7 +20,15 @@ char* ip;
 	char* valor;
 t_config* config;
 	int conexion;
+char* rutaArchivoConfiguracion;
+char* rutaInstrucciones;
 
 
+/*******Funcion que permite leer la configuracion del puerrto y la ip del kernel*******/
 void leerConfig(char*);
+
+/*******Funcion que recibe y valida los argumentos que se ingresan cuando se inicia el modulo *******/
+void obtenerArgumentos(int, char**);
+
+
 #endif

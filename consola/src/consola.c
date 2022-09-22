@@ -1,27 +1,29 @@
 #include "consola.h"
 
    
-int main(char** argc, char ** argv)
+int main(int argc, char ** argv)
 {
 	 if(argc > 1 && strcmp(argv[1],"-test")==0)
         return run_tests();
     else{  
        /* ---------------- LOGGING ---------------- */
 
+
 	logger = iniciar_logger("consola.log");
 
-	log_info(logger, "Hola! Soy la consola");
+	log_info(logger, "\nIniciando consola...");
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
-//Se tiene que leer la configuracion del archivo consola.config (Todavia no existe)
-    leerConfig(argv[1]); //podria agregarse un parametro que sea archivoConfig cosa de hacerlo mas global,al igual que los parametros ip, puerto y valor, despues ver
 	
+	obtenerArgumentos(argc,argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
+	                              //Valida la cantidad de argumentos y utiliza la funcion leerConfig() para leer el 2do parametro
+	
+
 	/* ---------------- LEER DE CONSOLA ---------------- */
 
 //	leer_consola(logger);
 
-	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
-
+	
 
 	conexion = crear_conexion(ip, puerto);
 
@@ -37,8 +39,9 @@ int main(char** argc, char ** argv)
 
 }
 
-void leerConfig(char* archivoConfig){
-	config = iniciar_config(archivoConfig);
+void leerConfig(char* rutaConfig){
+	config = iniciar_config(rutaConfig);
+    
 // Usando el config creado previamente, leemos los valores del config y los
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
 
@@ -46,7 +49,29 @@ void leerConfig(char* archivoConfig){
 	valor = config_get_string_value(config, "CLAVE");
 	puerto = config_get_string_value(config, "PUERTO");
 
-	// Loggeamos el valor de config
+
 	//Los colores salen del archivo globals.h :)
 	printf(PRINT_COLOR_GREEN"\n===== Archivo de configuracion =====\n IP: %s \n CLAVE: %s \n PUERTO: %s"PRINT_COLOR_RESET,ip,valor,puerto);
+}
+
+
+
+void obtenerArgumentos(int argc,char** argv){
+	rutaArchivoConfiguracion = "./consola.config";
+	rutaInstrucciones = "./pseudocodigo/pseudocodigo";
+
+	if(argc != 3) {
+		printf(PRINT_COLOR_RED"\nError: cantidad de argumentos incorrecta:"PRINT_COLOR_RESET"\n");
+		//return -1;
+		}else{
+			rutaArchivoConfiguracion = argv[1];
+			rutaInstrucciones = argv[2];
+			
+			leerConfig(rutaArchivoConfiguracion);
+
+			printf(PRINT_COLOR_GREEN"\nCantidad de argumentos de entrada Correctos!"PRINT_COLOR_RESET"\n");
+		}
+
+
+	printf("=== Argumentos de entrada ===\n rutaArchivoConfig: %s \n rutaArchivoDeInstrucciones: %s \n\n", rutaArchivoConfiguracion, rutaInstrucciones);
 }
