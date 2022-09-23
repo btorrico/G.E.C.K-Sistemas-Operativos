@@ -9,15 +9,11 @@
 #include "tests.h"
 #include<string.h>
 
-#define IP "127.0.0.1"
-#define PUERTO "4445"
 
-char* ip;
-	char* puerto;
-	char* valor;
-t_config* config;
-int conexion;
+	char* ip_consola;
+	char* puerto_escucha;
+	t_config* config;
+	int conexion;
 	
-
     void leerConfig(char*);
 #endif

@@ -1,10 +1,10 @@
 #include "client.h"
 
 
-t_log* iniciar_logger(char* archivoDeLog)
+t_log* iniciar_logger(char* archivoDeLog, char* nombreLogger, t_log_level nivel)
 {
 	t_log* nuevo_logger;
-	if((nuevo_logger = log_create(archivoDeLog,"creacionLogger", true, LOG_LEVEL_INFO)) == NULL){
+	if((nuevo_logger = log_create(archivoDeLog, nombreLogger, true, nivel)) == NULL){
 		printf("¡No se pudo crear el logger!");
 	}
 	return nuevo_logger;

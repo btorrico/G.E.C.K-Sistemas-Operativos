@@ -15,10 +15,12 @@
 #include "server.h"
 #include "tests.h"
 
-char* ip;
-	char* puerto;
-	char* valor;
-t_config* config;
+
+	char* ip_kernel;
+	char* puerto_kernel;
+	char* buffer;
+	t_list* segmentos;
+	t_config* config;
 	int conexion;
 
 
