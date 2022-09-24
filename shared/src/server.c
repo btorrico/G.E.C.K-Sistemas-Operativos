@@ -5,7 +5,7 @@ int conectar_y_mostrar_mensajes_de_cliente(char* IP, char* PUERTO, t_log* logger
 
 	
 
-	int server_fd = iniciar_servidor(IP, PUERTO); //listen()
+	int server_fd = iniciar_servidor(IP, PUERTO); //socket(), bind()listen()
 	log_info(logger, "Servidor listo para recibir al cliente");
 	
 	

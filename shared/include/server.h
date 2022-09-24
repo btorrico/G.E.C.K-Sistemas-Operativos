@@ -9,6 +9,7 @@
 #include "utils.h"
 #include "../globals.h"
 
+
 int conectar_y_mostrar_mensajes_de_cliente(char*, char*, t_log*);
 void mostrar_mensajes_del_cliente();
 void crear_hilos(int );

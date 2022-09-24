@@ -8,18 +8,29 @@
 #include "server.h"
 #include "tests.h"
 
-
-#define IP "127.0.0.1"
-#define PUERTO "4445"
-
-
-char* ip;
-	char* puerto;
-	char* valor;
 t_config* config;
 int conexion;
 	
+typedef struct {
+	int entradasTLB;
+	char* reemplazoTLB;
+	int retardoInstruccion;
+	char* ipMemoria;
+	char* puertoMemoria;
+	char* puertoEscuchaDispatch;
+	char* puertoEscuchaInterrupt;
 
-    void leerConfig(char*);
+	char* ipCPU;
+
+}t_configCPU;
+
+t_configCPU configCPU;
+
+
+	t_configCPU extraerDatosConfig(t_config* );
+
+void iniciar_servidor_dispatch();
+void iniciar_servidor_interrupt();
+
 
 #endif

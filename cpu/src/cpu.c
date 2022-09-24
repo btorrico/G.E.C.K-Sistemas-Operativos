@@ -1,60 +1,67 @@
 #include "cpu.h"
 
-int main(char** argc, char ** argv)
+int main(char **argc, char **argv)
 {
-	 if(argc > 1 && strcmp(argv[1],"-test")==0)
-        return run_tests();
-    else{  
+	if (argc > 1 && strcmp(argv[1], "-test") == 0)
+		return run_tests();
+	else
+	{
 
-    //Parte Server
-    t_log* logger = log_create("cpu.log", "CPU", true, LOG_LEVEL_INFO);
-      
-    //Se conecta el Kernel
-    conectar_y_mostrar_mensajes_de_cliente(IP, PUERTO);
+		logger = iniciar_logger("cpu.log", "CPU", LOG_LEVEL_DEBUG);
 
+		config = iniciar_config("cpu.config");
 
-//Parte Cliente
-/* ---------------- LOGGING ---------------- */
+		extraerDatosConfig(config);
 
-// 	logger = iniciar_logger("cpu.log");
+		pthread_t thrDispatchKernel, thrInterruptKernel;
 
-// 	log_info(logger, "Hola! Soy el CPU");
+		pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
+		pthread_create(&thrInterruptKernel, NULL, (void *)iniciar_servidor_interrupt, NULL);
 
-// 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
-// //Se tiene que leer la configuracion del archivo consola.config (Todavia no existe)
-//     leerConfig("./cpu.config"); //podria agregarse un parametro que sea archivoConfig cosa de hacerlo mas global,al igual que los parametros ip, puerto y valor, despues ver
-	
-// 	/* ---------------- LEER DE CONSOLA ---------------- */
+		pthread_join(thrDispatchKernel, NULL);
+		pthread_join(thrInterruptKernel, NULL);
+	}
+}
+t_configCPU extraerDatosConfig(t_config *archivoConfig)
+{
 
-// //	leer_consola(logger);
+	configCPU.ipCPU = string_new();
 
-// 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
+	configCPU.reemplazoTLB = string_new();
+	configCPU.ipMemoria = string_new();
+	configCPU.puertoMemoria = string_new();
+	configCPU.puertoEscuchaDispatch = string_new();
+	configCPU.puertoEscuchaInterrupt = string_new();
 
+	configCPU.ipCPU = config_get_string_value(archivoConfig, "IP_CPU");
 
-// 	conexion = crear_conexion(ip, puerto);
+	configCPU.ipMemoria = config_get_string_value(archivoConfig, "IP_MEMORIA");
+	configCPU.puertoMemoria = config_get_string_value(archivoConfig, "PUERTO_MEMORIA");
+	configCPU.reemplazoTLB = config_get_string_value(archivoConfig, "REEMPLAZO_TLB");
+	configCPU.puertoEscuchaDispatch = config_get_string_value(archivoConfig, "PUERTO_ESCUCHA_DISPATCH");
+	configCPU.puertoEscuchaInterrupt = config_get_string_value(archivoConfig, "PUERTO_ESCUCHA_INTERRUPT");
+	configCPU.retardoInstruccion = config_get_int_value(archivoConfig, "RETARDO_INSTRUCCION");
+	configCPU.entradasTLB = config_get_int_value(archivoConfig, "ENTRADAS_TLB");
 
-// 	// Enviamos al servidor el valor de CLAVE como mensaje
-// 	enviar_mensaje(valor, conexion);
-
-// 	// Armamos y enviamos el paquete
-// 	paquete(conexion);
-
-// 	terminar_programa(conexion, logger, config);
-
-    } 
-
+	return configCPU;
 }
 
-void leerConfig(char* archivoConfig){
-	config = iniciar_config(archivoConfig);
-// Usando el config creado previamente, leemos los valores del config y los
-	// dejamos en las variables 'ip', 'puerto' y 'valor'
+void iniciar_servidor_dispatch()
+{
+	int server_fd = iniciar_servidor(configCPU.ipCPU, configCPU.puertoEscuchaDispatch); // socket(), bind()listen()
+	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
-	ip = config_get_string_value(config, "IP");
-	valor = config_get_string_value(config, "CLAVE");
-	puerto = config_get_string_value(config, "PUERTO");
+	int cliente_fd = esperar_cliente(server_fd);
+	mostrar_mensajes_del_cliente(cliente_fd);
 
-	// Loggeamos el valor de config
-	//Los colores salen del archivo globals.h :)
-	printf(PRINT_COLOR_GREEN"\n===== Archivo de configuracion =====\n IP: %s \n CLAVE: %s \n PUERTO: %s"PRINT_COLOR_RESET,ip,valor,puerto);
+	
+}
+
+void iniciar_servidor_interrupt()
+{
+	int server_fd = iniciar_servidor(configCPU.ipCPU, configCPU.puertoEscuchaInterrupt);
+	log_info(logger, "Servidor listo para recibir al interrupt kernel");
+
+	int cliente_fd = esperar_cliente(server_fd);
+	mostrar_mensajes_del_cliente(cliente_fd);
 }

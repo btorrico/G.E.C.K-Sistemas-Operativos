@@ -10,10 +10,36 @@
 #include<string.h>
 
 
-	char* ip_consola;
-	char* puerto_escucha;
 	t_config* config;
 	int conexion;
+
+	typedef struct {
 	
-    void leerConfig(char*);
+	char* ipMemoria;
+	char* puertoMemoria;
+	char* ipCPU;
+	char* puertoCPUDispatch;
+	char* puertoCPUInterrupt;
+	char* ipKernel;
+	char* puertoEscucha;
+	char* algoritmo;
+
+	int gradoMultiprogramacion;
+	t_list* dispositivosIO;
+	t_list* tiemposIO;
+	int quantum;
+}t_configKernel;
+
+t_configKernel configKernel;
+
+
+	t_configKernel extraerDatosConfig(t_config* );
+    
+
+void crear_hilo_consola();
+void crear_hilo_cpu();
+	void funcionX();
+	void funcionY();
+	void conectar_dispatch();
+	void conectar_interrupt();
 #endif
