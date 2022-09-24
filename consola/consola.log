@@ -1,0 +1,261 @@
+[INFO] 00:54:04:931 PROCESO1/(11565:11565): Soy el proceso 1! Hice uso de la shared!
+[INFO] 04:09:42:536 PROCESO1/(3092:3092): Soy el proceso 1! Hice uso de la shared!
+[INFO] 04:10:53:853 PROCESO1/(3224:3224): Soy el proceso 1! Hice uso de la shared!
+[INFO] 04:59:04:882 PROCESO1/(4165:4165): Soy el proceso 1! Hice uso de la shared!
+[INFO] 05:02:39:434 PROCESO1/(4288:4288): Soy el proceso 1! Hice uso de la shared!
+[INFO] 05:10:07:261 PROCESO1/(4569:4569): Soy el proceso 1! Hice uso de la shared!
+[INFO] 05:12:03:587 PROCESO1/(4702:4702): Soy el proceso 1! Hice uso de la shared!
+[INFO] 05:12:28:202 PROCESO1/(4775:4775): Soy el proceso 1! Hice uso de la shared!
+[INFO] 05:12:53:666 PROCESO1/(4832:4832): Soy el proceso 1! Hice uso de la shared!
+[INFO] 05:23:27:721 PROCESO1/(5375:5375): Soy el proceso 1! Hice uso de la shared!
+[INFO] 05:30:59:894 PROCESO1/(5567:5567): Soy el proceso 1! Hice uso de la shared!
+[INFO] 00:09:03:476 PROCESO1/(6110:6110): Soy el proceso 1! Hice uso de la shared!
+[INFO] 04:01:03:986 PROCESO1/(6770:6770): Soy el proceso 1! Hice uso de la shared!
+[INFO] 04:01:10:722 PROCESO1/(6840:6840): Soy el proceso 1! Hice uso de la shared!
+[INFO] 01:19:36:216 CONSOLA/(3840:3840): Soy el proceso 1! Hice uso de la shared!
+[INFO] 01:20:03:962 CONSOLA/(3936:3936): Soy el proceso 1! Hice uso de la shared!
+[INFO] 01:30:29:553 CONSOLA/(4782:4782): Soy el proceso 1! Hice uso de la shared!
+[INFO] 01:30:44:769 CONSOLA/(4829:4829): Soy el proceso 1! Hice uso de la shared!
+[INFO] 01:33:03:224 CONSOLA/(5007:5007): Soy el proceso 1! Hice uso de la shared!
+[INFO] 01:34:44:360 CONSOLA/(5140:5140): Soy el proceso 1! Hice uso de la shared!
+[INFO] 01:39:41:185 CONSOLA/(5661:5661): Soy el proceso 1! Hice uso de la shared!
+[INFO] 01:40:40:656 CONSOLA/(5793:5793): Soy el proceso 1! Hice uso de la shared!
+[INFO] 19:39:04:054 CONSOLA/(3934:3934): Soy la consola! Hice uso de la shared!
+[INFO] 20:19:43:809 CONSOLA/(6288:6288): Soy la consola! Hice uso de la shared!
+[INFO] 20:20:15:769 CONSOLA/(6355:6355): Soy la consola! Hice uso de la shared!
+[INFO] 22:09:44:724 creacionLogger/(8826:8826): Hola! Soy un log
+[INFO] 22:10:31:901 creacionLogger/(8945:8945): Hola! Soy un log
+[INFO] 22:27:45:792 creacionLogger/(10036:10036): Hola! Soy un log
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): 127.0.0.1
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): valor
+[INFO] 22:27:45:793 creacionLogger/(10036:10036): 4444
+[INFO] 22:27:54:832 creacionLogger/(10036:10036): hola
+[INFO] 22:27:57:144 creacionLogger/(10036:10036): estas
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): Hola! Soy un log
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): 127.0.0.1
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): valor
+[INFO] 22:30:00:051 creacionLogger/(10374:10374): 4444
+[INFO] 22:30:05:867 creacionLogger/(10374:10374): hola
+[INFO] 22:30:07:025 creacionLogger/(10374:10374): como
+[INFO] 00:04:58:931 creacionLogger/(3687:3687): Hola! Soy un log
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): 127.0.0.1
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): valor
+[INFO] 00:04:58:932 creacionLogger/(3687:3687): 4444
+[INFO] 03:09:52:708 creacionLogger/(13097:13097): Hola! Soy un log
+[INFO] 03:09:52:709 creacionLogger/(13097:13097): 127.0.0.1
+[INFO] 03:09:52:709 creacionLogger/(13097:13097): valor
+[INFO] 03:09:52:709 creacionLogger/(13097:13097): 4444
+[INFO] 03:10:03:777 creacionLogger/(13097:13097): lll
+[INFO] 03:18:19:646 creacionLogger/(13704:13704): Hola! Soy un log
+[INFO] 03:18:19:647 creacionLogger/(13704:13704): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:23:20:489 creacionLogger/(14514:14514): Hola! Soy un log
+[INFO] 03:23:20:489 creacionLogger/(14514:14514): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:24:08:136 creacionLogger/(14604:14604): Hola! Soy un log
+[INFO] 03:24:08:136 creacionLogger/(14604:14604): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:24:57:390 creacionLogger/(14792:14792): Hola! Soy un log
+[INFO] 03:24:57:390 creacionLogger/(14792:14792): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:35:40:575 creacionLogger/(15590:15590): Hola! Soy un log
+[INFO] 03:35:40:576 creacionLogger/(15590:15590): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:39:01:592 creacionLogger/(15868:15868): Hola! Soy un log
+[INFO] 03:39:01:594 creacionLogger/(15868:15868): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:40:07:408 creacionLogger/(16043:16043): Hola! Soy un log
+[INFO] 03:40:07:410 creacionLogger/(16043:16043): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:52:05:477 creacionLogger/(16474:16474): Hola! Soy un log
+[INFO] 03:52:05:479 creacionLogger/(16474:16474): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 03:55:14:864 creacionLogger/(16665:16665): Hola! Soy un log
+[INFO] 03:55:14:865 creacionLogger/(16665:16665): Datos de cliente.config: 
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:09:29:205 creacionLogger/(17491:17491): Hola! Soy un log
+[INFO] 04:09:29:207 creacionLogger/(17491:17491): === Archivo de configuracion ====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:09:50:909 creacionLogger/(17567:17567): Hola! Soy un log
+[INFO] 04:09:50:911 creacionLogger/(17567:17567): === Archivo de configuracion ====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:14:00:726 creacionLogger/(17850:17850): Hola! Soy un log
+[INFO] 04:14:00:727 creacionLogger/(17850:17850): === Archivo de configuracion ====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:14:09:703 creacionLogger/(17900:17900): Hola! Soy un log
+[INFO] 04:14:09:705 creacionLogger/(17900:17900): 
+=== Archivo de configuracion ====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:14:29:461 creacionLogger/(17952:17952): Hola! Soy un log
+[INFO] 04:14:29:463 creacionLogger/(17952:17952): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:16:00:406 creacionLogger/(18109:18109): Hola! Soy un log
+[INFO] 04:16:00:408 creacionLogger/(18109:18109): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:20:11:589 creacionLogger/(18467:18467): Hola! Soy un log
+[INFO] 04:20:11:591 creacionLogger/(18467:18467): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:37:42:846 creacionLogger/(20362:20362): Hola! Soy un log
+[INFO] 04:37:42:847 creacionLogger/(20362:20362): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:38:03:919 creacionLogger/(20427:20427): Hola! Soy un log
+[INFO] 04:38:03:921 creacionLogger/(20427:20427): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:39:03:254 creacionLogger/(20511:20511): Hola! Soy un log
+[INFO] 04:39:03:255 creacionLogger/(20511:20511): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:40:02:061 creacionLogger/(20588:20588): Hola! Soy un log
+[INFO] 04:40:02:063 creacionLogger/(20588:20588): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:40:26:102 creacionLogger/(20656:20656): Hola! Soy un log
+[INFO] 04:40:26:104 creacionLogger/(20656:20656): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:40:43:782 creacionLogger/(20725:20725): Hola! Soy un log
+[INFO] 04:40:43:788 creacionLogger/(20725:20725): 
+===== Archivo de configuracion =====
+ IP: 127.0.0.1 
+ CLAVE: valor 
+ PUERTO: 4444
+[INFO] 04:41:35:264 creacionLogger/(20790:20790): Hola! Soy un log
+[INFO] 04:42:31:110 creacionLogger/(20876:20876): Hola! Soy un log
+[INFO] 04:43:18:863 creacionLogger/(20930:20930): Hola! Soy la consola
+[INFO] 04:52:29:838 creacionLogger/(21615:21615): Hola! Soy la consola
+[INFO] 04:54:04:214 creacionLogger/(21695:21695): Hola! Soy la consola
+[INFO] 04:58:47:545 creacionLogger/(22405:22405): Hola! Soy la consola
+[INFO] 04:59:31:559 creacionLogger/(22540:22540): Hola! Soy la consola
+[INFO] 05:02:37:047 creacionLogger/(22846:22846): Hola! Soy la consola
+[INFO] 05:03:48:201 creacionLogger/(23144:23144): Hola! Soy la consola
+[INFO] 19:20:41:554 creacionLogger/(2801:2801): Hola! Soy la consola
+[INFO] 19:30:55:102 creacionLogger/(3469:3469): Hola! Soy la consola
+[INFO] 21:28:06:560 creacionLogger/(9319:9319): Hola! Soy la consola
+[INFO] 21:30:45:893 creacionLogger/(9426:9426): Hola! Soy la consola
+[INFO] 21:34:37:383 creacionLogger/(10029:10029): Hola! Soy la consola
+[INFO] 21:36:32:321 creacionLogger/(10364:10364): Hola! Soy la consola
+[INFO] 21:59:33:233 creacionLogger/(11734:11734): Hola! Soy la consola
+[INFO] 21:59:50:504 creacionLogger/(11836:11836): Hola! Soy la consola
+[INFO] 22:03:01:455 creacionLogger/(12240:12240): Hola! Soy la consola
+[INFO] 22:40:20:613 creacionLogger/(14509:14509): Hola! Soy la consola
+[INFO] 23:35:32:925 creacionLogger/(15468:15468): Hola! Soy la consola
+[INFO] 23:37:16:528 creacionLogger/(15554:15554): Hola! Soy la consola
+[INFO] 01:00:13:817 creacionLogger/(21065:21065): Hola! Soy la consola
+[INFO] 01:05:36:002 creacionLogger/(21399:21399): Hola! Soy la consola
+[INFO] 01:09:26:160 creacionLogger/(21757:21757): Hola! Soy la consola
+[INFO] 01:13:42:933 creacionLogger/(22262:22262): Hola! Soy la consola
+[INFO] 21:31:43:283 creacionLogger/(2081:2081): Hola! Soy la consola
+[INFO] 21:33:16:576 creacionLogger/(2391:2391): Hola! Soy la consola
+[INFO] 22:14:31:939 creacionLogger/(2914:2914): Hola! Soy la consola
+[INFO] 22:14:51:701 creacionLogger/(3069:3069): Hola! Soy la consola
+[INFO] 22:29:20:240 creacionLogger/(4985:4985): Hola! Soy la consola
+[INFO] 22:36:47:217 creacionLogger/(5521:5521): Hola! Soy la consola
+[INFO] 22:37:49:240 creacionLogger/(5687:5687): Hola! Soy la consola
+[INFO] 22:38:31:267 creacionLogger/(5914:5914): Hola! Soy la consola
+[INFO] 22:46:50:211 creacionLogger/(6428:6428): Hola! Soy la consola
+[INFO] 22:48:46:473 creacionLogger/(6713:6713): Hola! Soy la consola
+[INFO] 22:58:12:266 creacionLogger/(7238:7238): Hola! Soy la consola
+[INFO] 23:01:13:051 creacionLogger/(7578:7578): Hola! Soy la consola
+[INFO] 23:06:28:445 creacionLogger/(7907:7907): Hola! Soy la consola
+[INFO] 23:11:29:923 creacionLogger/(8179:8179): Hola! Soy la consola
+[INFO] 23:25:36:203 creacionLogger/(8981:8981): Hola! Soy la consola
+[INFO] 23:25:51:920 creacionLogger/(9122:9122): Hola! Soy la consola
+[INFO] 23:34:14:876 creacionLogger/(9647:9647): Hola! Soy la consola
+[INFO] 23:35:11:735 creacionLogger/(9723:9723): Hola! Soy la consola
+[INFO] 23:42:49:685 creacionLogger/(10108:10108): Hola! Soy la consola
+[INFO] 23:43:01:384 creacionLogger/(10178:10178): Hola! Soy la consola
+[INFO] 02:41:36:199 creacionLogger/(12081:12081): Hola! Soy la consola
+[INFO] 02:43:34:616 creacionLogger/(12328:12328): Hola! Soy la consola
+[INFO] 02:45:39:188 creacionLogger/(12531:12531): Hola! Soy la consola
+[INFO] 02:46:44:071 creacionLogger/(12771:12771): Hola! Soy la consola
+[INFO] 02:48:05:849 creacionLogger/(12914:12914): Hola! Soy la consola
+[INFO] 02:48:22:192 creacionLogger/(13042:13042): Hola! Soy la consola
+[INFO] 02:49:56:625 creacionLogger/(13300:13300): Hola! Soy la consola
+[INFO] 02:56:47:942 creacionLogger/(14069:14069): Hola! Soy la consola
+[INFO] 02:56:57:814 creacionLogger/(14171:14171): Hola! Soy la consola
+[INFO] 02:57:29:855 creacionLogger/(14250:14250): Hola! Soy la consola
+[INFO] 03:04:44:225 creacionLogger/(14913:14913): Hola! Soy la consola
+[INFO] 03:05:11:336 creacionLogger/(15064:15064): Hola! Soy la consola
+[INFO] 03:05:53:967 creacionLogger/(15137:15137): Hola! Soy la consola
+[INFO] 03:06:31:039 creacionLogger/(15385:15385): Hola! Soy la consola
+[INFO] 03:07:01:923 creacionLogger/(15541:15541): Hola! Soy la consola
+[INFO] 03:07:41:693 creacionLogger/(15873:15873): Hola! Soy la consola
+[INFO] 03:07:54:534 creacionLogger/(15980:15980): Hola! Soy la consola
+[INFO] 03:08:10:528 creacionLogger/(16149:16149): Hola! Soy la consola
+[INFO] 03:16:10:399 creacionLogger/(16606:16606): Hola! Soy la consola
+[INFO] 03:17:29:527 creacionLogger/(16836:16836): Hola! Soy la consola
+[INFO] 03:18:22:753 creacionLogger/(17131:17131): Hola! Soy la consola
+[INFO] 03:19:37:976 creacionLogger/(17288:17288): Hola! Soy la consola
+[INFO] 03:19:43:369 creacionLogger/(17334:17334): Hola! Soy la consola
+[INFO] 03:22:00:171 creacionLogger/(17600:17600): Hola! Soy la consola
+[INFO] 03:22:10:944 creacionLogger/(17696:17696): Hola! Soy la consola
+[INFO] 23:49:36:260 creacionLogger/(3744:3744): Hola! Soy la consola
+[INFO] 23:51:23:924 creacionLogger/(3854:3854): Hola! Soy la consola
+[INFO] 23:56:17:627 creacionLogger/(4103:4103): Hola! Soy la consola
+[INFO] 00:39:06:234 CONSOLA/(5405:5405): Hola! Soy la consola
+[INFO] 00:39:33:592 CONSOLA/(5570:5570): Hola! Soy la consola
+[INFO] 00:50:23:589 CONSOLA/(6709:6709): Hola! Soy la consola
+[INFO] 00:54:35:366 CONSOLA/(7168:7168): Hola! Soy la consola
+[INFO] 19:34:26:227 CONSOLA/(2300:2300): Hola! Soy la consola
+[INFO] 19:34:42:604 CONSOLA/(2358:2358): Hola! Soy la consola
+[INFO] 19:35:54:526 CONSOLA/(2583:2583): Hola! Soy la consola
+[INFO] 23:12:29:272 CONSOLA/(6196:6196): Hola! Soy la consola
+[INFO] 23:13:31:699 CONSOLA/(6457:6457): Hola! Soy la consola
+[INFO] 23:14:02:251 CONSOLA/(6556:6556): Hola! Soy la consola
+[INFO] 00:45:02:300 CONSOLA/(10950:10950): Hola! Soy la consola
+[INFO] 00:46:11:984 CONSOLA/(11088:11088): Hola! Soy la consola
+[INFO] 01:10:30:958 CONSOLA/(14216:14216): Hola! Soy la consola
+[INFO] 19:59:12:899 CONSOLA/(6878:6878): Hola! Soy la consola
+[INFO] 20:00:38:018 CONSOLA/(7127:7127): Hola! Soy la consola
+[INFO] 20:24:06:493 CONSOLA/(8757:8757): Hola! Soy la consola
+[INFO] 20:51:12:919 CONSOLA/(11465:11465): Hola! Soy la consola
+[INFO] 20:52:15:201 CONSOLA/(11648:11648): Hola! Soy la consola
+[INFO] 20:52:31:097 CONSOLA/(11750:11750): Hola! Soy la consola
+[INFO] 20:53:10:053 CONSOLA/(11948:11948): Hola! Soy la consola
