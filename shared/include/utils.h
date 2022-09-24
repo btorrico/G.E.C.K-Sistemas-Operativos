@@ -22,6 +22,23 @@ typedef enum
 	PAQUETE
 }op_code;
 
+typedef enum
+{
+	SET, 
+	ADD, 
+	MOV_IN, 
+	MOV_OUT, 
+	IO,
+    EXIT
+} t_instCode;
+
+typedef enum
+{
+  AX,
+  BX,
+  CX,
+  DX
+} t_registro;
 
 //Utils del cliente
 typedef struct
@@ -35,7 +52,22 @@ typedef struct
 	op_code codigo_operacion;
 	t_buffer* buffer;
 } t_paquete;
+/*
+typedef struct 
+{
+    t_instCode instCode;
+    uint32_t param[2];
+	t_registro registro;
+	char* dispositivo;
+} t_instruccion;
+*/
 
+typedef struct 
+{
+    t_instCode instCode;
+    uint32_t paramInt;
+	char* paramChar[1];
+} t_instruccion;
 
 
 int crear_conexion(char* ip, char* puerto);

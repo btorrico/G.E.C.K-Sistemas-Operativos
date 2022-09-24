@@ -31,4 +31,10 @@ void leerConfig(char*);
 void obtenerArgumentos(int, char**);
 
 
+
+FILE* abrirArchivo(char* );
+
+void agregarInstruccionesDesdeArchivo(FILE* instructionsFile,t_list *instrucciones); 
+
+
 #endif
