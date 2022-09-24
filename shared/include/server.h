@@ -10,10 +10,12 @@
 #include "../globals.h"
 
 
-int conectar_y_mostrar_mensajes_de_cliente(char*, char*, t_log*);
-void mostrar_mensajes_del_cliente();
-void crear_hilos(int );
+void conectar_y_mostrar_mensajes_de_cliente(char*, char*, t_log*);
+void mostrar_mensajes_del_cliente(int);
+int crear_hilos(int );
 void iterator(char* value);
+
+#define IP_SERVER "0.0.0.0"
 
 
 void cambiaValor();

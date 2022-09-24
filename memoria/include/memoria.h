@@ -9,7 +9,28 @@
 #include "server.h"
 #include "tests.h"
 
-#define IP "127.0.0.1"
-#define PUERTO "4445"
+t_config* config;
+	typedef struct {
+	char* puertoEscuchaUno;
+	char* puertoEscuchaDos;
+	int tamMemoria;
+	int tamPagina;
+	int entradasPorTabla;
+	char* retardoMemoria;
+	char* algoritmoReemplazo;
+	int marcosPorProceso;
+    int retardoSwap;
+    char* pathSwap;
+    int tamanioSwap;
+
+}t_configMemoria;
+
+t_configMemoria configMemoria;
+
+
+void iniciar_servidor_hacia_kernel();
+void iniciar_servidor_hacia_cpu();
+
+t_configMemoria extraerDatosConfig(t_config* );
 
 #endif

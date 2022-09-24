@@ -1,7 +1,7 @@
 #include "server.h"
 
 
-int conectar_y_mostrar_mensajes_de_cliente(char* IP, char* PUERTO, t_log* logger){
+void conectar_y_mostrar_mensajes_de_cliente(char* IP, char* PUERTO, t_log* logger){
 
 	
 
@@ -13,14 +13,15 @@ int conectar_y_mostrar_mensajes_de_cliente(char* IP, char* PUERTO, t_log* logger
 	crear_hilos(server_fd);
 
 	
-	return EXIT_SUCCESS;
+	
 }
 
-void crear_hilos(int server_fd){
+int crear_hilos(int server_fd){
+
 
 	while(1){
 		
-			
+			//esto se podria cambiar como int* cliente_fd= malloc(sizeof(int)); si lo ponemos, va antes del while
 			int cliente_fd = esperar_cliente(server_fd);
 		//aca hay un log que dice que se conecto un cliente
 			log_info(logger,"consola conectada, paso a crear el hilo");
@@ -33,7 +34,7 @@ void crear_hilos(int server_fd){
 			pthread_detach(&thr1);
 			
 		}
-
+return EXIT_SUCCESS;
 	
 }
 

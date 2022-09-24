@@ -31,6 +31,7 @@ t_configCPU configCPU;
 
 void iniciar_servidor_dispatch();
 void iniciar_servidor_interrupt();
+void conectar_memoria();
 
 
 #endif

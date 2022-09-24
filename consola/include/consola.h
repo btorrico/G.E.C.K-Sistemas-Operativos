@@ -15,14 +15,19 @@
 #include "server.h"
 #include "tests.h"
 
-
-	char* ip_kernel;
-	char* puerto_kernel;
-	char* buffer;
-	t_list* segmentos;
 	t_config* config;
 	int conexion;
 
+	typedef struct {
+	
+	char* ipKernel;
+	char* puertoKernel;
 
-void leerConfig(char*);
+	t_list* segmentos;
+}t_configConsola;
+
+t_configConsola configConsola;
+t_configConsola extraerDatosConfig(t_config*);
+
+
 #endif

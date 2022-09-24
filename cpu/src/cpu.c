@@ -13,19 +13,23 @@ int main(char **argc, char **argv)
 
 		extraerDatosConfig(config);
 
-		pthread_t thrDispatchKernel, thrInterruptKernel;
+
+		pthread_t thrDispatchKernel, thrInterruptKernel, thrMemoria;
 
 		pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
 		pthread_create(&thrInterruptKernel, NULL, (void *)iniciar_servidor_interrupt, NULL);
+		pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 
 		pthread_join(thrDispatchKernel, NULL);
 		pthread_join(thrInterruptKernel, NULL);
+		pthread_join(thrMemoria, NULL);
+
+		log_destroy(logger);
+		config_destroy(config);
 	}
 }
 t_configCPU extraerDatosConfig(t_config *archivoConfig)
 {
-
-	configCPU.ipCPU = string_new();
 
 	configCPU.reemplazoTLB = string_new();
 	configCPU.ipMemoria = string_new();
@@ -48,7 +52,7 @@ t_configCPU extraerDatosConfig(t_config *archivoConfig)
 
 void iniciar_servidor_dispatch()
 {
-	int server_fd = iniciar_servidor(configCPU.ipCPU, configCPU.puertoEscuchaDispatch); // socket(), bind()listen()
+	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaDispatch); // socket(), bind()listen()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
@@ -59,9 +63,16 @@ void iniciar_servidor_dispatch()
 
 void iniciar_servidor_interrupt()
 {
-	int server_fd = iniciar_servidor(configCPU.ipCPU, configCPU.puertoEscuchaInterrupt);
+	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaInterrupt);
 	log_info(logger, "Servidor listo para recibir al interrupt kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
 	mostrar_mensajes_del_cliente(cliente_fd);
+}
+
+void conectar_memoria(){
+	conexion = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
+	enviar_mensaje("hola memoria, soy el cpu", conexion);
+
+	
 }

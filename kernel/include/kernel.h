@@ -38,8 +38,8 @@ t_configKernel configKernel;
 
 void crear_hilo_consola();
 void crear_hilo_cpu();
-	void funcionX();
-	void funcionY();
+void conectar_memoria();
+
 	void conectar_dispatch();
 	void conectar_interrupt();
 #endif
