@@ -30,9 +30,9 @@ int crear_hilos(int server_fd){
 
 			pthread_create(&thr1, NULL, (void *)mostrar_mensajes_del_cliente, cliente_fd);
 	 		
-			
 			pthread_detach(&thr1);
 			
+		
 		}
 return EXIT_SUCCESS;
 	
