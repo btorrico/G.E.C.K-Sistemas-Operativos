@@ -1,2 +1,52 @@
-[INFO] 01:18:38:835 PROCESO1/(13638:13638): Soy el proceso 1! Hice uso de la shared!
-[INFO] 02:02:50:169 MEMORIA/(7793:7793): Quien soy? ah si, la memoria! Hice uso de la shared!
+[INFO] 19:48:46:587 MEMORIA/(5717:5719): Servidor listo para recibir al cpu
+[INFO] 19:48:46:587 MEMORIA/(5717:5718): Servidor listo para recibir al kernel
+[INFO] 19:50:03:535 MEMORIA/(5831:5833): Servidor listo para recibir al cpu
+[INFO] 19:50:03:535 MEMORIA/(5831:5832): Servidor listo para recibir al kernel
+[INFO] 19:50:29:107 MEMORIA/(5831:5832): Se conecto un cliente!
+[INFO] 19:50:29:107 MEMORIA/(5831:5832): Me llego el mensaje soy el dispatch
+[INFO] 19:54:17:681 MEMORIA/(6240:6242): Servidor listo para recibir al cpu
+[INFO] 19:54:17:684 MEMORIA/(6240:6241): Servidor listo para recibir al kernel
+[INFO] 19:54:25:812 MEMORIA/(6240:6242): Se conecto un cliente!
+[INFO] 19:54:25:812 MEMORIA/(6240:6242): Me llego el mensaje soy el dispatch
+[ERROR] 19:56:20:105 MEMORIA/(6240:6242): el cliente se desconecto. Terminando servidor
+[INFO] 19:56:28:538 MEMORIA/(6476:6478): Servidor listo para recibir al cpu
+[INFO] 19:56:28:540 MEMORIA/(6476:6477): Servidor listo para recibir al kernel
+[INFO] 19:56:35:602 MEMORIA/(6476:6478): Se conecto un cliente!
+[INFO] 19:56:35:602 MEMORIA/(6476:6478): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 19:58:06:724 MEMORIA/(6476:6477): Se conecto un cliente!
+[INFO] 19:58:06:724 MEMORIA/(6476:6477): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 20:00:50:337 MEMORIA/(6476:6477): el cliente se desconecto. Terminando servidor
+[ERROR] 20:00:50:340 MEMORIA/(6476:6478): el cliente se desconecto. Terminando servidor
+[INFO] 20:22:27:337 MEMORIA/(8380:8382): Servidor listo para recibir al cpu
+[INFO] 20:22:27:337 MEMORIA/(8380:8381): Servidor listo para recibir al kernel
+[INFO] 20:22:36:280 MEMORIA/(8380:8382): Se conecto un cliente!
+[INFO] 20:22:36:280 MEMORIA/(8380:8382): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 20:22:54:855 MEMORIA/(8380:8381): Se conecto un cliente!
+[INFO] 20:22:54:855 MEMORIA/(8380:8381): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 20:22:54:855 MEMORIA/(8380:8381): el cliente se desconecto. Terminando servidor
+[ERROR] 20:22:54:856 MEMORIA/(8380:8382): el cliente se desconecto. Terminando servidor
+[INFO] 20:40:57:347 MEMORIA/(10291:10293): Servidor listo para recibir al cpu
+[INFO] 20:40:57:347 MEMORIA/(10291:10292): Servidor listo para recibir al kernel
+[INFO] 20:41:22:560 MEMORIA/(10291:10293): Se conecto un cliente!
+[INFO] 20:42:25:544 MEMORIA/(10291:10293): Me llegaron los siguientes valores:
+[INFO] 20:42:25:544 MEMORIA/(10291:10293): aA
+[INFO] 20:42:25:544 MEMORIA/(10291:10293): AAA
+[INFO] 20:42:54:936 MEMORIA/(10291:10292): Se conecto un cliente!
+[INFO] 20:43:26:280 MEMORIA/(10291:10292): Me llegaron los siguientes valores:
+[INFO] 20:43:26:280 MEMORIA/(10291:10292): hola 
+[INFO] 20:49:58:116 MEMORIA/(11229:11231): Servidor listo para recibir al cpu
+[INFO] 20:49:58:116 MEMORIA/(11229:11230): Servidor listo para recibir al kernel
+[INFO] 20:50:18:482 MEMORIA/(11229:11231): Se conecto un cliente!
+[INFO] 20:50:18:482 MEMORIA/(11229:11231): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 20:50:31:959 MEMORIA/(11229:11230): Se conecto un cliente!
+[INFO] 20:50:31:959 MEMORIA/(11229:11230): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 20:53:40:817 MEMORIA/(11229:11230): el cliente se desconecto. Terminando servidor
+[ERROR] 20:53:40:819 MEMORIA/(11229:11231): el cliente se desconecto. Terminando servidor
+[INFO] 23:08:33:040 MEMORIA/(13833:13835): Servidor listo para recibir al cpu
+[INFO] 23:08:33:040 MEMORIA/(13833:13834): Servidor listo para recibir al kernel
+[INFO] 23:10:16:724 MEMORIA/(13833:13835): Se conecto un cliente!
+[INFO] 23:10:16:724 MEMORIA/(13833:13835): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 23:11:44:313 MEMORIA/(13833:13834): Se conecto un cliente!
+[INFO] 23:11:44:313 MEMORIA/(13833:13834): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 23:15:25:355 MEMORIA/(13833:13834): el cliente se desconecto. Terminando servidor
+[ERROR] 23:15:25:370 MEMORIA/(13833:13835): el cliente se desconecto. Terminando servidor

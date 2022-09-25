@@ -9,15 +9,37 @@
 #include "tests.h"
 #include<string.h>
 
-#define IP "127.0.0.1"
-#define PUERTO "4445"
 
-char* ip;
-	char* puerto;
-	char* valor;
-t_config* config;
-int conexion;
+	t_config* config;
+	int conexion;
+
+	typedef struct {
 	
-int conectar_y_mostrar_mensajes_de_cliente(char*, char*);
-    void leerConfig(char*);
+	char* ipMemoria;
+	char* puertoMemoria;
+	char* ipCPU;
+	char* puertoCPUDispatch;
+	char* puertoCPUInterrupt;
+	char* ipKernel;
+	char* puertoEscucha;
+	char* algoritmo;
+
+	int gradoMultiprogramacion;
+	t_list* dispositivosIO;
+	t_list* tiemposIO;
+	int quantum;
+}t_configKernel;
+
+t_configKernel configKernel;
+
+
+	t_configKernel extraerDatosConfig(t_config* );
+    
+
+void crear_hilo_consola();
+void crear_hilo_cpu();
+void conectar_memoria();
+
+	void conectar_dispatch();
+	void conectar_interrupt();
 #endif

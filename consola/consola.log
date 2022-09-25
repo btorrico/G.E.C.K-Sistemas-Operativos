@@ -187,74 +187,78 @@
 [INFO] 22:40:20:613 creacionLogger/(14509:14509): Hola! Soy la consola
 [INFO] 23:35:32:925 creacionLogger/(15468:15468): Hola! Soy la consola
 [INFO] 23:37:16:528 creacionLogger/(15554:15554): Hola! Soy la consola
-[INFO] 03:08:45:998 creacionLogger/(2944:2944): Hola! Soy la consola
-[INFO] 03:09:07:952 creacionLogger/(3015:3015): Hola! Soy la consola
-[INFO] 04:12:26:877 creacionLogger/(3617:3617): Hola! Soy la consola
-[INFO] 04:14:36:740 creacionLogger/(3779:3779): Hola! Soy la consola
-[INFO] 04:15:04:549 creacionLogger/(3850:3850): Hola! Soy la consola
-[INFO] 04:15:26:046 creacionLogger/(3913:3913): Hola! Soy la consola
-[INFO] 04:15:35:628 creacionLogger/(3959:3959): Hola! Soy la consola
-[INFO] 04:15:43:156 creacionLogger/(3994:3994): Hola! Soy la consola
-[INFO] 04:17:37:700 creacionLogger/(4070:4070): Hola! Soy la consola
-[INFO] 04:21:28:999 creacionLogger/(4266:4266): Hola! Soy la consola
-[INFO] 04:21:57:398 creacionLogger/(4313:4313): Hola! Soy la consola
-[INFO] 04:22:37:612 creacionLogger/(4463:4463): Hola! Soy la consola
-[INFO] 04:22:47:595 creacionLogger/(4498:4498): Hola! Soy la consola
-[INFO] 04:22:58:060 creacionLogger/(4536:4536): Hola! Soy la consola
-[INFO] 04:32:17:139 creacionLogger/(4872:4872): Iniciando consola...
-[INFO] 04:36:32:656 creacionLogger/(4991:4991): Iniciando consola...
-[INFO] 04:36:57:396 creacionLogger/(5058:5058): 
-Iniciando consola...
-[INFO] 04:37:28:875 creacionLogger/(5117:5117): 
-Iniciando consola...
-[INFO] 04:38:29:064 creacionLogger/(5169:5169): 
-Iniciando consola...
-[INFO] 04:38:38:795 creacionLogger/(5215:5215): 
-Iniciando consola...
-[INFO] 04:58:45:331 creacionLogger/(5656:5656): 
-Iniciando consola...
-[INFO] 04:58:56:501 creacionLogger/(5704:5704): 
-Iniciando consola...
-[INFO] 05:00:25:509 creacionLogger/(5844:5844): 
-Iniciando consola...
-[INFO] 05:01:00:347 creacionLogger/(5907:5907): 
-Iniciando consola...
-[INFO] 05:04:43:619 creacionLogger/(6053:6053): 
-Iniciando consola...
-[INFO] 05:30:32:130 creacionLogger/(6872:6872): 
-Iniciando consola...
-[INFO] 13:01:38:552 creacionLogger/(8524:8524): 
-Iniciando consola...
-[INFO] 04:01:20:685 creacionLogger/(14958:14958): 
-Iniciando consola...
-[INFO] 04:01:20:687 creacionLogger/(14958:14958): Se parsearon #Instrucciones: 6
-[INFO] 06:32:26:882 creacionLogger/(2640:2640): 
-Iniciando consola...
-[ERROR] 06:32:26:904 creacionLogger/(2640:2640): Error: no se pudo abrir el archivo de instrucciones.
-[INFO] 06:32:34:981 creacionLogger/(2686:2686): 
-Iniciando consola...
-[INFO] 06:32:35:001 creacionLogger/(2686:2686): Se parsearon #Instrucciones: 6
-[INFO] 06:40:39:326 creacionLogger/(2864:2864): 
-Iniciando consola...
-[INFO] 06:40:39:329 creacionLogger/(2864:2864): Se parsearon #Instrucciones: 6
-[INFO] 06:42:00:476 creacionLogger/(2963:2963): 
-Iniciando consola...
-[INFO] 06:42:00:478 creacionLogger/(2963:2963): Se parsearon #Instrucciones: 6
-[INFO] 06:42:15:821 creacionLogger/(3029:3029): 
-Iniciando consola...
-[INFO] 06:42:15:823 creacionLogger/(3029:3029): Se parsearon #Instrucciones: 6
-[INFO] 06:51:26:597 creacionLogger/(3146:3146): 
-Iniciando consola...
-[INFO] 06:51:26:599 creacionLogger/(3146:3146): Se parsearon #Instrucciones: 6
-[INFO] 07:34:12:635 creacionLogger/(3800:3800): 
-Iniciando consola...
-[INFO] 07:34:12:637 creacionLogger/(3800:3800): Se parsearon #Instrucciones: 6
-[INFO] 07:35:10:546 creacionLogger/(3923:3923): 
-Iniciando consola...
-[INFO] 07:35:10:548 creacionLogger/(3923:3923): Se parsearon #Instrucciones: 6
-[INFO] 07:37:54:170 creacionLogger/(4062:4062): 
-Iniciando consola...
-[INFO] 07:37:54:172 creacionLogger/(4062:4062): Se parsearon #Instrucciones: 6
-[INFO] 07:40:08:922 creacionLogger/(4139:4139): 
-Iniciando consola...
-[INFO] 07:40:08:923 creacionLogger/(4139:4139): Se parsearon #Instrucciones: 6
+[INFO] 01:00:13:817 creacionLogger/(21065:21065): Hola! Soy la consola
+[INFO] 01:05:36:002 creacionLogger/(21399:21399): Hola! Soy la consola
+[INFO] 01:09:26:160 creacionLogger/(21757:21757): Hola! Soy la consola
+[INFO] 01:13:42:933 creacionLogger/(22262:22262): Hola! Soy la consola
+[INFO] 21:31:43:283 creacionLogger/(2081:2081): Hola! Soy la consola
+[INFO] 21:33:16:576 creacionLogger/(2391:2391): Hola! Soy la consola
+[INFO] 22:14:31:939 creacionLogger/(2914:2914): Hola! Soy la consola
+[INFO] 22:14:51:701 creacionLogger/(3069:3069): Hola! Soy la consola
+[INFO] 22:29:20:240 creacionLogger/(4985:4985): Hola! Soy la consola
+[INFO] 22:36:47:217 creacionLogger/(5521:5521): Hola! Soy la consola
+[INFO] 22:37:49:240 creacionLogger/(5687:5687): Hola! Soy la consola
+[INFO] 22:38:31:267 creacionLogger/(5914:5914): Hola! Soy la consola
+[INFO] 22:46:50:211 creacionLogger/(6428:6428): Hola! Soy la consola
+[INFO] 22:48:46:473 creacionLogger/(6713:6713): Hola! Soy la consola
+[INFO] 22:58:12:266 creacionLogger/(7238:7238): Hola! Soy la consola
+[INFO] 23:01:13:051 creacionLogger/(7578:7578): Hola! Soy la consola
+[INFO] 23:06:28:445 creacionLogger/(7907:7907): Hola! Soy la consola
+[INFO] 23:11:29:923 creacionLogger/(8179:8179): Hola! Soy la consola
+[INFO] 23:25:36:203 creacionLogger/(8981:8981): Hola! Soy la consola
+[INFO] 23:25:51:920 creacionLogger/(9122:9122): Hola! Soy la consola
+[INFO] 23:34:14:876 creacionLogger/(9647:9647): Hola! Soy la consola
+[INFO] 23:35:11:735 creacionLogger/(9723:9723): Hola! Soy la consola
+[INFO] 23:42:49:685 creacionLogger/(10108:10108): Hola! Soy la consola
+[INFO] 23:43:01:384 creacionLogger/(10178:10178): Hola! Soy la consola
+[INFO] 02:41:36:199 creacionLogger/(12081:12081): Hola! Soy la consola
+[INFO] 02:43:34:616 creacionLogger/(12328:12328): Hola! Soy la consola
+[INFO] 02:45:39:188 creacionLogger/(12531:12531): Hola! Soy la consola
+[INFO] 02:46:44:071 creacionLogger/(12771:12771): Hola! Soy la consola
+[INFO] 02:48:05:849 creacionLogger/(12914:12914): Hola! Soy la consola
+[INFO] 02:48:22:192 creacionLogger/(13042:13042): Hola! Soy la consola
+[INFO] 02:49:56:625 creacionLogger/(13300:13300): Hola! Soy la consola
+[INFO] 02:56:47:942 creacionLogger/(14069:14069): Hola! Soy la consola
+[INFO] 02:56:57:814 creacionLogger/(14171:14171): Hola! Soy la consola
+[INFO] 02:57:29:855 creacionLogger/(14250:14250): Hola! Soy la consola
+[INFO] 03:04:44:225 creacionLogger/(14913:14913): Hola! Soy la consola
+[INFO] 03:05:11:336 creacionLogger/(15064:15064): Hola! Soy la consola
+[INFO] 03:05:53:967 creacionLogger/(15137:15137): Hola! Soy la consola
+[INFO] 03:06:31:039 creacionLogger/(15385:15385): Hola! Soy la consola
+[INFO] 03:07:01:923 creacionLogger/(15541:15541): Hola! Soy la consola
+[INFO] 03:07:41:693 creacionLogger/(15873:15873): Hola! Soy la consola
+[INFO] 03:07:54:534 creacionLogger/(15980:15980): Hola! Soy la consola
+[INFO] 03:08:10:528 creacionLogger/(16149:16149): Hola! Soy la consola
+[INFO] 03:16:10:399 creacionLogger/(16606:16606): Hola! Soy la consola
+[INFO] 03:17:29:527 creacionLogger/(16836:16836): Hola! Soy la consola
+[INFO] 03:18:22:753 creacionLogger/(17131:17131): Hola! Soy la consola
+[INFO] 03:19:37:976 creacionLogger/(17288:17288): Hola! Soy la consola
+[INFO] 03:19:43:369 creacionLogger/(17334:17334): Hola! Soy la consola
+[INFO] 03:22:00:171 creacionLogger/(17600:17600): Hola! Soy la consola
+[INFO] 03:22:10:944 creacionLogger/(17696:17696): Hola! Soy la consola
+[INFO] 23:49:36:260 creacionLogger/(3744:3744): Hola! Soy la consola
+[INFO] 23:51:23:924 creacionLogger/(3854:3854): Hola! Soy la consola
+[INFO] 23:56:17:627 creacionLogger/(4103:4103): Hola! Soy la consola
+[INFO] 00:39:06:234 CONSOLA/(5405:5405): Hola! Soy la consola
+[INFO] 00:39:33:592 CONSOLA/(5570:5570): Hola! Soy la consola
+[INFO] 00:50:23:589 CONSOLA/(6709:6709): Hola! Soy la consola
+[INFO] 00:54:35:366 CONSOLA/(7168:7168): Hola! Soy la consola
+[INFO] 19:34:26:227 CONSOLA/(2300:2300): Hola! Soy la consola
+[INFO] 19:34:42:604 CONSOLA/(2358:2358): Hola! Soy la consola
+[INFO] 19:35:54:526 CONSOLA/(2583:2583): Hola! Soy la consola
+[INFO] 23:12:29:272 CONSOLA/(6196:6196): Hola! Soy la consola
+[INFO] 23:13:31:699 CONSOLA/(6457:6457): Hola! Soy la consola
+[INFO] 23:14:02:251 CONSOLA/(6556:6556): Hola! Soy la consola
+[INFO] 00:45:02:300 CONSOLA/(10950:10950): Hola! Soy la consola
+[INFO] 00:46:11:984 CONSOLA/(11088:11088): Hola! Soy la consola
+[INFO] 01:10:30:958 CONSOLA/(14216:14216): Hola! Soy la consola
+[INFO] 19:59:12:899 CONSOLA/(6878:6878): Hola! Soy la consola
+[INFO] 20:00:38:018 CONSOLA/(7127:7127): Hola! Soy la consola
+[INFO] 20:24:06:493 CONSOLA/(8757:8757): Hola! Soy la consola
+[INFO] 20:51:12:919 CONSOLA/(11465:11465): Hola! Soy la consola
+[INFO] 20:52:15:201 CONSOLA/(11648:11648): Hola! Soy la consola
+[INFO] 20:52:31:097 CONSOLA/(11750:11750): Hola! Soy la consola
+[INFO] 20:53:10:053 CONSOLA/(11948:11948): Hola! Soy la consola
+[INFO] 23:13:24:651 CONSOLA/(14121:14121): Hola! Soy la consola
+[INFO] 23:13:52:104 CONSOLA/(14292:14292): Hola! Soy la consola
+[INFO] 23:14:43:369 CONSOLA/(14508:14508): Hola! Soy la consola

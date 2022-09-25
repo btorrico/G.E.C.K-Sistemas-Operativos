@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 	{
 		/* ---------------- LOGGING ---------------- */
 
-		logger = iniciar_logger("consola.log");
+		logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_DEBUG);
 
 		log_info(logger, "\nIniciando consola...");
 
@@ -24,10 +24,10 @@ int main(int argc, char **argv)
 		FILE *instructionsFile = abrirArchivo(argv[2]);
 
 		t_list *instrucciones = list_create();
-
-		agregarInstruccionesDesdeArchivo(instructionsFile, instrucciones);
+		extraerDatosConfig(config);
+			agregarInstruccionesDesdeArchivo(instructionsFile, instrucciones);
 		list_get(instrucciones, 1);
-		conexion = crear_conexion(ip, puerto);
+		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
 		// Enviamos al servidor el valor de CLAVE como mensaje
 		enviar_mensaje(valor, conexion);
