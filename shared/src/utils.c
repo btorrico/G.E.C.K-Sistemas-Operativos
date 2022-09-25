@@ -1,6 +1,6 @@
 #include "utils.h"
 
-//Esto es del cliente
+//Esto es del cliente 
 
 
 void* serializar_paquete(t_paquete* paquete, int bytes)
