@@ -10,29 +10,28 @@ int main(int argc, char **argv)
 
 		logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_DEBUG);
 
-		log_info(logger, "\nIniciando consola...");
+		log_info(logger, "\n Iniciando consola...");
 
 		/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
-printf("hola");
-		//obtenerArgumentos(argc, argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
-									   // Valida la cantidad de argumentos y utiliza la funcion leerConfig() para leer el 2do parametro
+
+		obtenerArgumentos(argc, argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
+
 
 		/* ---------------- LEER DE CONSOLA ---------------- */
-	//config = iniciar_config("consola.config");
 	
 		FILE *instructionsFile = abrirArchivo(argv[2]);
 
 		t_list *instrucciones = list_create();
 		
 		agregarInstruccionesDesdeArchivo(instructionsFile, instrucciones);
-		list_get(instrucciones, 1);
 
 		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
-		// Enviamos al servidor el valor de CLAVE como mensaje
-		//enviar_mensaje(valor, conexion);
+		// Enviamos un mensajillo illo illo illo
+		enviar_mensaje("Hola", conexion);
 
 		// Armamos y enviamos el paquete
+
 		paquete(conexion);
 
 		terminar_programa(conexion, logger, config);
@@ -42,20 +41,13 @@ printf("hola");
 void leerConfig(char *rutaConfig)
 {
 	config = iniciar_config(rutaConfig);
-	extraerDatosConfig(rutaConfig);
-	// Usando el config creado previamente, leemos los valores del config y los
-	// dejamos en las variables 'ip', 'puerto' y 'valor'
-
-	// ip = config_get_string_value(config, "IP");
-	// valor = config_get_string_value(config, "CLAVE");
-	// puerto = config_get_string_value(config, "PUERTO");
+	extraerDatosConfig(config);
 
 	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s" PRINT_COLOR_RESET, configConsola.ipKernel, configConsola.puertoKernel);
 }
 
 void obtenerArgumentos(int argc, char **argv)
 {
-
 
 	if (argc != 3)
 	{
@@ -72,7 +64,7 @@ void obtenerArgumentos(int argc, char **argv)
 		printf(PRINT_COLOR_GREEN "\nCantidad de argumentos de entrada Correctos!" PRINT_COLOR_RESET "\n");
 	}
 
-	printf("=== Argumentos de entrada ===\n rutaArchivoConfig: %s \n rutaArchivoDeInstrucciones: %s \n\n", rutaArchivoConfiguracion, rutaInstrucciones);
+    printf("=== Argumentos de entrada ===\n rutaArchivoConfig: %s \n rutaArchivoDeInstrucciones: %s \n\n", rutaArchivoConfiguracion, rutaInstrucciones);
 }
 
 FILE *abrirArchivo(char *filename)
@@ -150,8 +142,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		else if (strcmp(palabra[0], "EXIT") == 0)
 		{
 			instr->instCode = EXIT;
-			instr->paramChar[0] = NULL; // TODO : checkear esto!!! tira un warning por el tipo de dato!!!
-			instr->paramChar[1] = NULL; // Tengo alergia a los warnings(?
+			instr->paramChar[0] = NULL; 
+			instr->paramChar[1] = NULL; 
 			free(palabra[0]);
 		}
 		list_add(instrucciones, instr);

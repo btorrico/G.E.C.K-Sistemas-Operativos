@@ -24,3 +24,29 @@
 [INFO] 23:40:57:079 creacionLogger/(15946:15946): Hola! Soy el kernel
 [INFO] 23:45:05:364 creacionLogger/(16194:16194): Hola! Soy el kernel
 [INFO] 00:03:55:599 creacionLogger/(16964:16964): Hola! Soy el kernel
+[INFO] 02:32:31:315 KERNEL/(18782:18783): Servidor listo para recibir al cliente
+[INFO] 02:32:52:180 KERNEL/(18782:18783): Se conecto un cliente!
+[INFO] 02:32:52:180 KERNEL/(18782:18783): consola conectada, paso a crear el hilo
+[INFO] 02:32:52:180 KERNEL/(18782:18898): Me llego el mensaje Hola
+[INFO] 02:33:02:790 KERNEL/(18782:18898): Me llegaron los siguientes valores:
+[INFO] 02:33:02:790 KERNEL/(18782:18898): ghghgh
+[INFO] 02:33:02:790 KERNEL/(18782:18898): ghghg
+[ERROR] 02:33:02:790 KERNEL/(18782:18898): el cliente se desconecto. Terminando servidor
+[INFO] 02:37:37:828 KERNEL/(19387:19388): Servidor listo para recibir al cliente
+[INFO] 02:37:43:788 KERNEL/(19387:19388): Se conecto un cliente!
+[INFO] 02:37:43:788 KERNEL/(19387:19388): consola conectada, paso a crear el hilo
+[INFO] 02:37:43:788 KERNEL/(19387:19468): Me llego el mensaje Hola
+[INFO] 02:37:49:926 KERNEL/(19387:19468): Me llegaron los siguientes valores:
+[INFO] 02:37:49:926 KERNEL/(19387:19468): yhjhj
+[INFO] 02:37:49:926 KERNEL/(19387:19468): utggjh
+[ERROR] 02:37:49:926 KERNEL/(19387:19468): el cliente se desconecto. Terminando servidor
+[INFO] 02:39:48:077 KERNEL/(19387:19388): Se conecto un cliente!
+[INFO] 02:39:48:077 KERNEL/(19387:19388): consola conectada, paso a crear el hilo
+[INFO] 02:39:48:077 KERNEL/(19387:19649): Me llego el mensaje Hola
+[ERROR] 02:39:52:949 KERNEL/(19387:19649): el cliente se desconecto. Terminando servidor
+[INFO] 02:39:56:732 KERNEL/(19387:19388): Se conecto un cliente!
+[INFO] 02:39:56:732 KERNEL/(19387:19388): consola conectada, paso a crear el hilo
+[INFO] 02:39:56:732 KERNEL/(19387:19763): Me llego el mensaje Hola
+[INFO] 02:40:15:158 KERNEL/(19387:19763): Me llegaron los siguientes valores:
+[INFO] 02:40:15:158 KERNEL/(19387:19763): fgfgfgfg
+[ERROR] 02:40:15:158 KERNEL/(19387:19763): el cliente se desconecto. Terminando servidor

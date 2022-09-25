@@ -1,12 +1,11 @@
 #include "kernel.h"
 
-int main(char **argc, char **argv)
+int main(int argc, char **argv)
 {
 	if (argc > 1 && strcmp(argv[1], "-test") == 0)
 		return run_tests();
 	else
 	{
-
 		// Parte Server
 		logger = iniciar_logger("kernel.log", "KERNEL", LOG_LEVEL_DEBUG);
 

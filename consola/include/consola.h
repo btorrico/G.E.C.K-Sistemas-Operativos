@@ -25,17 +25,16 @@ char *rutaInstrucciones;
 
 typedef struct
 {
-
 	char *ipKernel;
 	char *puertoKernel;
-
 	t_list *segmentos;
+	
 } t_configConsola;
 
 t_configConsola configConsola;
 
 /*******Funcion que permite leer la configuracion del puerrto y la ip del kernel*******/
-t_configConsola extraerDatosConfig(t_config *);
+t_configConsola extraerDatosConfig(t_config * ruta);
 
 /*******Funcion que recibe y valida los argumentos que se ingresan cuando se inicia el modulo *******/
 void obtenerArgumentos(int, char **);
