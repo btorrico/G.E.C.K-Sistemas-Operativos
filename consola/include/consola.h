@@ -15,12 +15,12 @@
 #include "server.h"
 #include "tests.h"
 
-char *ip;
-char *puerto;
-char *valor;
+	// rutaArchivoConfiguracion = ;
+	// rutaInstrucciones = "./pseudocodigo/pseudocodigo";
+
 t_config *config;
 int conexion;
-char *rutaArchivoConfiguracion;
+char *rutaArchivoConfiguracion ;
 char *rutaInstrucciones;
 
 typedef struct
@@ -29,11 +29,12 @@ typedef struct
 	char *ipKernel;
 	char *puertoKernel;
 
-	/*******Funcion que permite leer la configuracion del puerrto y la ip del kernel*******/
 	t_list *segmentos;
 } t_configConsola;
 
 t_configConsola configConsola;
+
+/*******Funcion que permite leer la configuracion del puerrto y la ip del kernel*******/
 t_configConsola extraerDatosConfig(t_config *);
 
 /*******Funcion que recibe y valida los argumentos que se ingresan cuando se inicia el modulo *******/

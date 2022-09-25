@@ -13,24 +13,24 @@ int main(int argc, char **argv)
 		log_info(logger, "\nIniciando consola...");
 
 		/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
-
-		obtenerArgumentos(argc, argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
+printf("hola");
+		//obtenerArgumentos(argc, argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
 									   // Valida la cantidad de argumentos y utiliza la funcion leerConfig() para leer el 2do parametro
 
 		/* ---------------- LEER DE CONSOLA ---------------- */
-
-		//	leer_consola(logger);
-
+	//config = iniciar_config("consola.config");
+	
 		FILE *instructionsFile = abrirArchivo(argv[2]);
 
 		t_list *instrucciones = list_create();
-		extraerDatosConfig(config);
-			agregarInstruccionesDesdeArchivo(instructionsFile, instrucciones);
+		
+		agregarInstruccionesDesdeArchivo(instructionsFile, instrucciones);
 		list_get(instrucciones, 1);
+
 		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
 		// Enviamos al servidor el valor de CLAVE como mensaje
-		enviar_mensaje(valor, conexion);
+		//enviar_mensaje(valor, conexion);
 
 		// Armamos y enviamos el paquete
 		paquete(conexion);
@@ -42,21 +42,20 @@ int main(int argc, char **argv)
 void leerConfig(char *rutaConfig)
 {
 	config = iniciar_config(rutaConfig);
-
+	extraerDatosConfig(rutaConfig);
 	// Usando el config creado previamente, leemos los valores del config y los
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
 
-	ip = config_get_string_value(config, "IP");
-	valor = config_get_string_value(config, "CLAVE");
-	puerto = config_get_string_value(config, "PUERTO");
+	// ip = config_get_string_value(config, "IP");
+	// valor = config_get_string_value(config, "CLAVE");
+	// puerto = config_get_string_value(config, "PUERTO");
 
-	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n CLAVE: %s \n PUERTO: %s" PRINT_COLOR_RESET, ip, valor, puerto);
+	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s" PRINT_COLOR_RESET, configConsola.ipKernel, configConsola.puertoKernel);
 }
 
 void obtenerArgumentos(int argc, char **argv)
 {
-	// rutaArchivoConfiguracion = "./consola.config";
-	// rutaInstrucciones = "./pseudocodigo/pseudocodigo";
+
 
 	if (argc != 3)
 	{
@@ -162,4 +161,17 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 	fclose(instructionsFile);
 	log_info(logger, "Se parsearon #Instrucciones: %d", list_size(instrucciones));
 
+}
+
+t_configConsola extraerDatosConfig(t_config *archivoConfig)
+{
+	configConsola.ipKernel = string_new();
+	configConsola.puertoKernel = string_new();
+
+
+	configConsola.ipKernel = config_get_string_value(archivoConfig, "IP_KERNEL");
+	configConsola.puertoKernel = config_get_string_value(archivoConfig, "PUERTO_KERNEL");
+	
+
+	return configConsola;
 }
