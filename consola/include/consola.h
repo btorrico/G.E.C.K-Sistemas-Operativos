@@ -43,4 +43,6 @@ FILE *abrirArchivo(char *);
 
 void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instrucciones);
 
+t_registro devolverRegistro(char *);
+
 #endif

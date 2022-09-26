@@ -97,7 +97,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		if (strcmp(palabra[i], "SET") == 0)
 		{
 			instr->instCode = SET;
-			instr->paramChar[0] = palabra[1];
+			instr->paramReg[0] = devolverRegistro(palabra[1]);
 			instr->paramInt = atoi(palabra[2]);
 			free(palabra[0]);
 			free(palabra[1]);
@@ -106,8 +106,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		else if (strcmp(palabra[0], "ADD") == 0)
 		{
 			instr->instCode = ADD;
-			instr->paramChar[0] = palabra[1];
-			instr->paramChar[1]= palabra[2];
+			instr->paramReg[0] = devolverRegistro(palabra[1]);
+			instr->paramReg[1] = devolverRegistro(palabra[2]);
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -115,7 +115,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		else if (strcmp(palabra[0], "MOV_IN") == 0)
 		{
 			instr->instCode = MOV_IN;
-			instr->paramChar[0] = palabra[1];
+			instr->paramReg[0] = devolverRegistro(palabra[1]);
 			instr->paramInt = atoi(palabra[2]);
 			free(palabra[0]);
 			free(palabra[1]);
@@ -125,7 +125,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		{
 			instr->instCode = MOV_OUT;
 			instr->paramInt = atoi(palabra[1]);
-			instr->paramChar[0] = palabra[2];
+			instr->paramReg[0] = devolverRegistro(palabra[2]);
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -133,17 +133,35 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		else if (strcmp(palabra[0], "I/O") == 0)
 		{
 			instr->instCode = IO;
-			instr->paramChar[0] = palabra[1];
-			instr->paramInt = atoi(palabra[2]);
-			free(palabra[0]);
-			free(palabra[1]);
-			free(palabra[2]);
-		}
-		else if (strcmp(palabra[0], "EXIT") == 0)
+			if (strcmp(palabra[1],"DISCO")==0) 
+			{
+				instr->paramIO = DISCO;
+				instr->paramInt = atoi(palabra[2]);
+				free(palabra[0]);
+				free(palabra[1]);
+				free(palabra[2]);
+			} else if(strcmp(palabra[1],"TECLADO")==0) 
+			{
+				instr->paramIO = TECLADO;
+				instr->paramReg[0] = devolverRegistro(palabra[2]);
+				free(palabra[0]);
+				free(palabra[1]);
+				free(palabra[2]);
+			} else if(strcmp(palabra[1],"PANTALLA")==0) 
+			{
+				instr->paramIO = PANTALLA;
+				instr->paramReg[0] = devolverRegistro(palabra[2]);
+				free(palabra[0]);
+				free(palabra[1]);
+				free(palabra[2]);
+			}		
+		} else if (strcmp(palabra[0], "EXIT") == 0)
 		{
 			instr->instCode = EXIT;
-			instr->paramChar[0] = NULL; 
-			instr->paramChar[1] = NULL; 
+			instr->paramInt = NULL;
+			instr->paramIO = NULL;
+			instr->paramReg[0] = NULL;
+			instr->paramReg[1] = NULL;
 			free(palabra[0]);
 		}
 		list_add(instrucciones, instr);
@@ -155,7 +173,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 
 }
 
-t_configConsola extraerDatosConfig(t_config *archivoConfig)
+t_configConsola extraerDatosConfig(t_config *archivoConfig) 
 {
 	configConsola.ipKernel = string_new();
 	configConsola.puertoKernel = string_new();
@@ -167,3 +185,22 @@ t_configConsola extraerDatosConfig(t_config *archivoConfig)
 
 	return configConsola;
 }
+
+t_registro devolverRegistro(char* registro){
+
+	if (strcmp(registro, "AX") == 0) {
+		return AX;
+		} else if (strcmp(registro, "BX") == 0) {
+			return BX;
+		} else if (strcmp(registro, "CX") == 0) {
+			return CX;
+		} else if (strcmp(registro, "DX") == 0) {
+			return DX;
+		}
+}
+
+/* void imprimirInstruccion(Nodo *cabeza){
+	t_instruccion *actual;
+	printf("las instrucciones son:\n");
+	for(actual=cabeza; actual!=NULL; actual=actual->siguiente)
+} */

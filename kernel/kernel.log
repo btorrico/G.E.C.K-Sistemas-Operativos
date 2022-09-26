@@ -50,3 +50,11 @@
 [INFO] 02:40:15:158 KERNEL/(19387:19763): Me llegaron los siguientes valores:
 [INFO] 02:40:15:158 KERNEL/(19387:19763): fgfgfgfg
 [ERROR] 02:40:15:158 KERNEL/(19387:19763): el cliente se desconecto. Terminando servidor
+[INFO] 17:49:16:435 KERNEL/(2941:2942): Servidor listo para recibir al cliente
+[INFO] 17:49:40:336 KERNEL/(2941:2942): Se conecto un cliente!
+[INFO] 17:49:40:336 KERNEL/(2941:2942): consola conectada, paso a crear el hilo
+[INFO] 17:49:40:336 KERNEL/(2941:2948): Me llego el mensaje Hola
+[INFO] 17:50:09:682 KERNEL/(2941:2948): Me llegaron los siguientes valores:
+[INFO] 17:50:09:682 KERNEL/(2941:2948): buenas
+[INFO] 17:50:09:682 KERNEL/(2941:2948): creando paquete
+[ERROR] 17:50:09:682 KERNEL/(2941:2948): el cliente se desconecto. Terminando servidor

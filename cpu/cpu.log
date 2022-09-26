@@ -122,3 +122,9 @@
 [INFO] 02:37:37:828 CPU/(19344:19346): Me llego el mensaje soy el interrupt
 [INFO] 02:37:37:828 CPU/(19344:19345): Se conecto un cliente!
 [INFO] 02:37:37:828 CPU/(19344:19345): Me llego el mensaje soy el dispatch
+[INFO] 17:48:39:280 CPU/(2926:2928): Servidor listo para recibir al interrupt kernel
+[INFO] 17:48:39:281 CPU/(2926:2927): Servidor listo para recibir al dispatch kernel
+[INFO] 17:49:16:436 CPU/(2926:2928): Se conecto un cliente!
+[INFO] 17:49:16:436 CPU/(2926:2928): Me llego el mensaje soy el interrupt
+[INFO] 17:49:16:436 CPU/(2926:2927): Se conecto un cliente!
+[INFO] 17:49:16:436 CPU/(2926:2927): Me llego el mensaje soy el dispatch
