@@ -45,4 +45,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 
 t_registro devolverRegistro(char *);
 
+/**Funcion que crea la estructura que sera enviada**/
+t_informacion* crearInformacion(); 
+
 #endif

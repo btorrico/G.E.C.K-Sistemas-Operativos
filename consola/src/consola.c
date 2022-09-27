@@ -20,18 +20,16 @@ int main(int argc, char **argv)
 		/* ---------------- LEER DE CONSOLA ---------------- */
 	
 		FILE *instructionsFile = abrirArchivo(argv[2]);
-
-		t_list *instrucciones = list_create();
 		
-		agregarInstruccionesDesdeArchivo(instructionsFile, instrucciones);
+		t_informacion *informacion = crearInformacion();
+		
+		agregarInstruccionesDesdeArchivo(instructionsFile, informacion->instrucciones);
 
 		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
-		// Enviamos un mensajillo illo illo illo
 		enviar_mensaje("Hola", conexion);
 
 		// Armamos y enviamos el paquete
-
 		paquete(conexion);
 
 		terminar_programa(conexion, logger, config);
@@ -44,6 +42,8 @@ void leerConfig(char *rutaConfig)
 	extraerDatosConfig(config);
 
 	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s" PRINT_COLOR_RESET, configConsola.ipKernel, configConsola.puertoKernel);
+
+
 }
 
 void obtenerArgumentos(int argc, char **argv)
@@ -158,10 +158,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		} else if (strcmp(palabra[0], "EXIT") == 0)
 		{
 			instr->instCode = EXIT;
-			instr->paramInt = NULL;
-			instr->paramIO = NULL;
-			instr->paramReg[0] = NULL;
-			instr->paramReg[1] = NULL;
+			instr->paramInt = NULL; //TODO Cheaquear este Warning!
+
 			free(palabra[0]);
 		}
 		list_add(instrucciones, instr);
@@ -177,11 +175,13 @@ t_configConsola extraerDatosConfig(t_config *archivoConfig)
 {
 	configConsola.ipKernel = string_new();
 	configConsola.puertoKernel = string_new();
-
+	configConsola.segmentos = string_array_new();  //CHEQUEAR
 
 	configConsola.ipKernel = config_get_string_value(archivoConfig, "IP_KERNEL");
 	configConsola.puertoKernel = config_get_string_value(archivoConfig, "PUERTO_KERNEL");
-	
+	configConsola.segmentos =  config_get_array_value(archivoConfig,"SEGMENTOS"); //CHEQUEAR, CREO QUE TOMA LA LISTA PERO FALTARIA AGREGAR
+																				 //UN FOR TAL VEZ PARA RECORRER LA LISTA DE LOS SEGMENTOS
+
 
 	return configConsola;
 }
@@ -199,8 +199,23 @@ t_registro devolverRegistro(char* registro){
 		}
 }
 
+t_informacion* crearInformacion() {
+	t_informacion *informacion = malloc(sizeof(t_informacion));
+	informacion->instrucciones = list_create();
+	informacion->segmentos = list_create(); // Hay que cambiarlo por la lista de segmentos!
+	return informacion;
+}
 /* void imprimirInstruccion(Nodo *cabeza){
 	t_instruccion *actual;
 	printf("las instrucciones son:\n");
 	for(actual=cabeza; actual!=NULL; actual=actual->siguiente)
 } */
+
+void liberar_programa(t_informacion* informacion) {
+	list_destroy_and_destroy_elements(informacion->instrucciones, free);
+	free(informacion);
+}
+
+t_paquete* crear_paquete_programa(t_informacion* informacion) {
+
+}

@@ -69,6 +69,11 @@ typedef struct
 	t_registro paramReg[1]; 
 } t_instruccion;
 
+typedef struct 
+{
+	t_list* instrucciones;
+	t_list* segmentos;
+} t_informacion;
 
 int crear_conexion(char* ip, char* puerto);
 void enviar_mensaje(char* mensaje, int socket_cliente);
