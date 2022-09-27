@@ -12,6 +12,7 @@
 
 void conectar_y_mostrar_mensajes_de_cliente(char*, char*, t_log*);
 void mostrar_mensajes_del_cliente(int);
+void mostrar_mensajes_del_cliente_dos(int );
 int crear_hilos(int );
 void iterator(char* value);
 

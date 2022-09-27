@@ -69,6 +69,19 @@ typedef struct
 	char* paramChar[1];
 } t_instruccion;
 
+typedef struct  
+{
+	uint32_t ID;
+	t_list* instrucciones;
+	uint32_t programCounter;
+	t_registro registros;
+	t_list* segmentos;
+}PCB;
+
+typedef struct {
+    char* primerNombre[20];
+    char* segundoNombre[20];
+}nombre;
 
 int crear_conexion(char* ip, char* puerto);
 void enviar_mensaje(char* mensaje, int socket_cliente);
@@ -79,7 +92,7 @@ void enviar_paquete(t_paquete* paquete, int socket_cliente);
 void liberar_conexion(int socket_cliente);
 void eliminar_paquete(t_paquete* paquete);
 
-
+nombre* recibir_paqueteDos(int );
 //Utils del servidor
 
 

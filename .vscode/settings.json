@@ -2,6 +2,11 @@
     "files.associations": {
         "readline.h": "c",
         "utils.h": "c",
-        "server.h": "c"
+        "server.h": "c",
+        "*.tcc": "c",
+        "memory_resource": "c",
+        "memory": "c",
+        "ostream": "c",
+        "streambuf": "c"
     }
 }

@@ -1,6 +1,8 @@
 #include "client.h"
 
 
+
+
 t_log* iniciar_logger(char* archivoDeLog, char* nombreLogger, t_log_level nivel)
 {
 	t_log* nuevo_logger;
@@ -42,6 +44,7 @@ void paquete(int conexion)
 	char* leido;
 	t_paquete* paquete;
 
+	
 	//creo el paquete
 	paquete = crear_paquete();
 
@@ -63,6 +66,72 @@ void paquete(int conexion)
 	eliminar_paquete(paquete);
 	
 }
+
+void paqueteKernelACPU(int conexion)
+{
+	t_paquete* paquete;
+
+	nombre* personaUno = malloc(sizeof(nombre));
+	
+	memcpy(personaUno->primerNombre, "Daniela", 8);
+	memcpy(personaUno -> segundoNombre, "Andrea", 7);
+
+	paquete = crear_paquete();	
+
+	paquete = empaquetarEstructura(personaUno);
+	printf("%d %d %s", paquete->codigo_operacion, paquete->buffer->size, paquete->buffer->stream);
+
+	enviar_paquete(paquete, conexion);
+
+	// ¡No te olvides de liberar las líneas y el paquete antes de regresar!
+	eliminar_paquete(paquete);
+	
+}
+
+t_paquete* empaquetarEstructura(nombre* estructura){
+
+	t_paquete* paquete;
+	char* auxiliar = malloc(sizeof(estructura));
+
+	char* separador = '|';
+
+	string_append(&auxiliar, estructura->primerNombre);
+	string_append(&auxiliar, separador);
+	string_append(&auxiliar, estructura->segundoNombre);
+	
+	paquete->buffer->stream = auxiliar;
+	paquete->buffer->size = sizeof(estructura) + 1 + 2;
+	paquete->codigo_operacion = PAQUETE;
+
+	return paquete;
+}
+
+
+nombre* desempaquetarEstructura(char* stream){
+
+	char* separador = '|';
+
+	nombre* estructura = malloc(sizeof(nombre));
+
+	char* buffer = strtok(stream, separador);
+	
+	for (int i = 0; i < 2; i++)
+	{
+		if (i==0)
+		{
+			memcpy(estructura->primerNombre, buffer, string_length(buffer));
+			buffer =strtok(stream, NULL);
+		}else if(i == 1){
+			memcpy(estructura->segundoNombre, buffer, string_length(buffer));
+		}
+		
+	}
+
+
+	return estructura;
+}
+
+
 
 void terminar_programa(int conexion, t_log* logger, t_config* config)
 {
