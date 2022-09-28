@@ -254,23 +254,23 @@ t_list *recibir_paquete(int socket_cliente)
 	return valores;
 }
 
-t_buffer *cargar_buffer_a_PCB(PCB pcb)
+t_buffer *cargar_buffer_a_t_pcb(t_pcb t_pcb)
 {
 
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
 	buffer->size = sizeof(uint8_t) * 3;
-	//+ (sizeof(t_link_element) + sizeof(int))* list_size(&pcb->instrucciones);
-	//  + (sizeof(t_link_element) + sizeof(int))* list_size(&pcb->segmentos);
+	//+ (sizeof(t_link_element) + sizeof(int))* list_size(&t_pcb->instrucciones);
+	//  + (sizeof(t_link_element) + sizeof(int))* list_size(&t_pcb->segmentos);
 
 	void *stream = malloc(buffer->size);
 	int offset = 0; // Desplazamiento
 
-	memcpy(stream + offset, &pcb.id, sizeof(uint8_t));
+	memcpy(stream + offset, &t_pcb.id, sizeof(uint8_t));
 	offset += sizeof(uint8_t);
-	memcpy(stream + offset, &pcb.program_counter, sizeof(uint8_t));
+	memcpy(stream + offset, &t_pcb.program_counter, sizeof(uint8_t));
 	offset += sizeof(uint8_t);
-	memcpy(stream + offset, &pcb.registro_CPU, sizeof(uint8_t));
+	memcpy(stream + offset, &t_pcb.registro_CPU, sizeof(uint8_t));
 	// offset += sizeof(uint8_t);
 	// agregar listras
 
@@ -279,11 +279,11 @@ t_buffer *cargar_buffer_a_PCB(PCB pcb)
 	return buffer;
 }
 
-void cargar_buffer_a_paquete(t_buffer* buffer, int conexion)
+void cargar_buffer_a_paquete(t_buffer *buffer, int conexion)
 {
 	t_paquete *paquete = malloc(sizeof(t_paquete));
 
-	paquete->codigo_operacion = PAQUETE; // Podemos usar una constante por operación
+	paquete->codigo_operacion = PCB; // Podemos usar una constante por operación
 	paquete->buffer = buffer;			 // Nuestro buffer de antes.
 
 	// Armamos el stream a enviar
@@ -304,4 +304,52 @@ void cargar_buffer_a_paquete(t_buffer* buffer, int conexion)
 	free(paquete->buffer->stream);
 	free(paquete->buffer);
 	free(paquete);
+}
+
+void deserializar_paquete (int conexion)
+{
+	t_paquete *paquete = malloc(sizeof(t_paquete));
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	// Primero recibimos el codigo de operacion
+	recv(conexion, &(paquete->codigo_operacion), sizeof(uint8_t), 0);
+
+	// Después ya podemos recibir el buffer. Primero su tamaño seguido del contenido
+	recv(conexion, &(paquete->buffer->size), sizeof(uint32_t), 0);
+	paquete->buffer->stream = malloc(paquete->buffer->size);
+	recv(conexion, paquete->buffer->stream, paquete->buffer->size, 0);
+
+
+printf("estoy en seserializar_paquete");
+	// Ahora en función del código recibido procedemos a deserializar el resto
+	switch (paquete->codigo_operacion)
+	{
+	case PCB:
+		t_pcb* pcb = deserializar_pcb(paquete->buffer);
+		printf("tengo el paquete ");
+			// Hacemos lo que necesitemos con esta info
+			// Y eventualmente liberamos memoria
+			free(pcb);
+		break;
+		// Evaluamos los demás casos según corresponda
+	}
+
+	// Liberamos memoria
+	free(paquete->buffer->stream);
+	free(paquete->buffer);
+	free(paquete);
+}
+
+t_pcb* deserializar_pcb(t_buffer* buffer) {
+    t_pcb* pcb = malloc(sizeof(t_pcb));
+
+    void* stream = buffer->stream;
+    // Deserializamos los campos que tenemos en el buffer
+    memcpy(&(pcb->id), stream, sizeof(uint8_t));
+    stream += sizeof(uint8_t);
+    memcpy(&(pcb->program_counter), stream, sizeof(uint8_t));
+    stream += sizeof(uint8_t);
+    memcpy(&(pcb->registro_CPU), stream, sizeof(uint8_t));
+  
+    return pcb;
 }

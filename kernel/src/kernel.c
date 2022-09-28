@@ -72,14 +72,15 @@ void crear_hilo_cpu()
 void conectar_dispatch()
 {
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
-	enviar_mensaje("soy el dispatch", conexion);
+	//enviar_mensaje("soy el dispatch", conexion);
 
-	PCB pcb;
+    
+	 t_pcb pcb;
 	pcb.id = 1;
 	pcb.program_counter = 10;
 	pcb.registro_CPU = 20;
 
-	t_buffer* buffer=cargar_buffer_a_PCB(pcb);
+	t_buffer* buffer = cargar_buffer_a_t_pcb(pcb);
 
 	cargar_buffer_a_paquete(buffer, conexion);
 

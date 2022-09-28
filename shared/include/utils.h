@@ -76,8 +76,12 @@ typedef struct
     uint8_t program_counter;
     uint8_t registro_CPU;
     //t_list segmentos;
-    
-}PCB;
+
+} t_pcb;
+
+enum tipo_mensaje{
+    PCB
+};
 
 
 int crear_conexion(char* ip, char* puerto);
@@ -88,8 +92,10 @@ void agregar_a_paquete(t_paquete* paquete, void* valor, int tamanio);
 void enviar_paquete(t_paquete* paquete, int socket_cliente);
 void liberar_conexion(int socket_cliente);
 void eliminar_paquete(t_paquete* paquete);
-t_buffer* cargar_buffer_a_PCB(PCB pcb);
+t_buffer* cargar_buffer_a_t_pcb(t_pcb t_pcb);
 void cargar_buffer_a_paquete(t_buffer* buffer, int conexion);
+t_pcb* deserializar_pcb(t_buffer* buffer); 
+void deserializar_paquete (int conexion);
 //Utils del servidor
 
 
