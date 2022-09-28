@@ -64,6 +64,7 @@ void crear_hilo_consola()
 void crear_hilo_cpu()
 {
 
+
 	pthread_t thrDispatch, thrInterrupt;
 
 	pthread_create(&thrDispatch, NULL, (void *)conectar_dispatch, NULL);
