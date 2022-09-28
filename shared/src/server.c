@@ -53,7 +53,30 @@ void mostrar_mensajes_del_cliente(int cliente_fd){
 					lista = recibir_paquete(cliente_fd);
 					log_info(logger, "Me llegaron los siguientes valores:");
 					list_iterate(lista, (void*) iterator);
-					break;
+					break; 
+			    case NEW:
+					log_info(logger, "Llegó un Programa");
+					int size;
+					void* buffer = recibir_buffer(&size, cliente_fd);
+					t_informacion programa;
+					int offset = 0;
+				
+					int cantidadInstr = (size - sizeof(uint32_t)) / sizeof(t_instruccion); // Kejesto ? (?
+					offset += sizeof(uint32_t);
+
+					programa.instrucciones = list_create();
+					t_instruccion* instruccion;
+					int k = 0;
+					while (k < cantidadInstr) {
+						instruccion = malloc(sizeof(t_instruccion));
+							memcpy(instruccion, buffer + offset, sizeof(t_instruccion));
+							offset += sizeof(t_instruccion);
+							list_add(programa.instrucciones, instruccion);
+								k++;
+					}
+						free(buffer);
+						log_info(logger, "FALTA MODIFICAR LOGICA PARA RECIBIR LAS LISTAS, ACTUALMENTE NO ESTA TOMANDO EN CUENTA A LA LISTA DE SEGMENTOS");
+				
 				case -1:
 					/*while(cod_op_servidor =! -1){
 						close(socket_cliente);

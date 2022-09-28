@@ -22,8 +22,10 @@ int main(int argc, char **argv)
 		FILE *instructionsFile = abrirArchivo(argv[2]);
 		
 		t_informacion *informacion = crearInformacion();
-		
+
 		agregarInstruccionesDesdeArchivo(instructionsFile, informacion->instrucciones);
+
+		t_paquete *nuevoPaquete = crear_paquete_programa(informacion);
 
 		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
@@ -32,6 +34,12 @@ int main(int argc, char **argv)
 		// Armamos y enviamos el paquete
 		paquete(conexion);
 
+		
+//--------
+		enviar_paquete(nuevoPaquete, conexion);
+		eliminar_paquete(nuevoPaquete);
+		liberar_programa(informacion);
+		//---
 		terminar_programa(conexion, logger, config);
 	}
 }
@@ -42,6 +50,7 @@ void leerConfig(char *rutaConfig)
 	extraerDatosConfig(config);
 
 	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s" PRINT_COLOR_RESET, configConsola.ipKernel, configConsola.puertoKernel);
+	 printf("=== SEGEMENTOS: %s", configConsola.segmentos->head);
 
 
 }
@@ -205,11 +214,7 @@ t_informacion* crearInformacion() {
 	informacion->segmentos = list_create(); // Hay que cambiarlo por la lista de segmentos!
 	return informacion;
 }
-/* void imprimirInstruccion(Nodo *cabeza){
-	t_instruccion *actual;
-	printf("las instrucciones son:\n");
-	for(actual=cabeza; actual!=NULL; actual=actual->siguiente)
-} */
+
 
 void liberar_programa(t_informacion* informacion) {
 	list_destroy_and_destroy_elements(informacion->instrucciones, free);
@@ -217,5 +222,40 @@ void liberar_programa(t_informacion* informacion) {
 }
 
 t_paquete* crear_paquete_programa(t_informacion* informacion) {
+	t_buffer *buffer = malloc(sizeof(t_buffer));
 
+	buffer->size = sizeof(uint32_t)+ list_size(informacion->instrucciones) * sizeof(t_instruccion) + list_size(informacion-> segmentos) * sizeof(t_instruccion);
+
+	void* stream = malloc(buffer->size);
+
+	int offset = 0; // Desplazamiento
+
+		//Serializa las instrucciones
+	int i = 0;
+	int j = 0;
+	while (i < list_size(informacion->instrucciones)) {
+		memcpy(stream + offset, list_get(informacion->instrucciones, i),sizeof(t_instruccion));
+		offset += sizeof(t_instruccion);
+		i++;
+		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n",i);
+	}
+
+
+		//Serializa los segmentos (La lista esta vacia todavia, hay que apuntar a esa lista!)
+		while (j < list_size(informacion->segmentos)) {
+	
+		memcpy(stream + offset, list_get(informacion->segmentos, j),sizeof(t_instruccion));
+		offset += sizeof(t_instruccion);
+		j++;
+		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento %d" PRINT_COLOR_RESET "\n",j);
+	}
+
+	
+	buffer->stream = stream;
+
+	//lleno el paquete
+	t_paquete *paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = NEW;
+	paquete->buffer = buffer;
+	return paquete;
 }

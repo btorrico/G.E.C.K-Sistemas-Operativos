@@ -48,4 +48,8 @@ t_registro devolverRegistro(char *);
 /**Funcion que crea la estructura que sera enviada**/
 t_informacion* crearInformacion(); 
 
+t_paquete* crear_paquete_programa(t_informacion* informacion);
+
+void liberar_programa(t_informacion* informacion);
+
 #endif

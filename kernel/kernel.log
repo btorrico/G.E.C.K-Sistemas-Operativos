@@ -58,3 +58,83 @@
 [INFO] 17:50:09:682 KERNEL/(2941:2948): buenas
 [INFO] 17:50:09:682 KERNEL/(2941:2948): creando paquete
 [ERROR] 17:50:09:682 KERNEL/(2941:2948): el cliente se desconecto. Terminando servidor
+[INFO] 01:52:12:816 KERNEL/(15349:15350): Servidor listo para recibir al cliente
+[INFO] 01:52:19:353 KERNEL/(15349:15350): Se conecto un cliente!
+[INFO] 01:52:19:353 KERNEL/(15349:15350): consola conectada, paso a crear el hilo
+[INFO] 01:52:19:354 KERNEL/(15349:15454): Me llego el mensaje Hola
+[INFO] 01:52:26:971 KERNEL/(15349:15454): Me llegaron los siguientes valores:
+[INFO] 01:52:26:971 KERNEL/(15349:15454): fgdfgf
+[INFO] 01:52:26:971 KERNEL/(15349:15454): ghghg
+[ERROR] 01:52:26:971 KERNEL/(15349:15454): el cliente se desconecto. Terminando servidor
+[INFO] 01:54:09:752 KERNEL/(15349:15350): Se conecto un cliente!
+[INFO] 01:54:09:752 KERNEL/(15349:15350): consola conectada, paso a crear el hilo
+[INFO] 01:54:13:619 KERNEL/(15349:15613): Me llegaron los siguientes valores:
+[INFO] 01:54:13:619 KERNEL/(15349:15613): klkl
+[ERROR] 01:54:13:619 KERNEL/(15349:15613): el cliente se desconecto. Terminando servidor
+[INFO] 01:54:27:257 KERNEL/(15349:15350): Se conecto un cliente!
+[INFO] 01:54:27:257 KERNEL/(15349:15350): consola conectada, paso a crear el hilo
+[INFO] 01:54:27:257 KERNEL/(15349:15731): Me llego el mensaje Hola
+[INFO] 01:54:29:291 KERNEL/(15349:15731): Me llegaron los siguientes valores:
+[ERROR] 01:54:29:291 KERNEL/(15349:15731): el cliente se desconecto. Terminando servidor
+[INFO] 02:09:54:527 KERNEL/(15349:15350): Se conecto un cliente!
+[INFO] 02:09:54:527 KERNEL/(15349:15350): consola conectada, paso a crear el hilo
+[INFO] 02:09:54:527 KERNEL/(15349:16249): Me llego el mensaje Hola
+[INFO] 02:09:57:186 KERNEL/(15349:16249): Me llegaron los siguientes valores:
+[ERROR] 02:09:57:186 KERNEL/(15349:16249): el cliente se desconecto. Terminando servidor
+[INFO] 02:11:02:000 KERNEL/(15349:15350): Se conecto un cliente!
+[INFO] 02:11:02:000 KERNEL/(15349:15350): consola conectada, paso a crear el hilo
+[INFO] 02:11:02:000 KERNEL/(15349:16409): Me llego el mensaje Hola
+[INFO] 02:11:05:634 KERNEL/(15349:16409): Me llegaron los siguientes valores:
+[INFO] 02:11:05:634 KERNEL/(15349:16409): fgfg
+[INFO] 02:11:05:634 KERNEL/(15349:16409): fgfg
+[ERROR] 02:11:05:634 KERNEL/(15349:16409): el cliente se desconecto. Terminando servidor
+[INFO] 02:12:11:504 KERNEL/(15349:15350): Se conecto un cliente!
+[INFO] 02:12:11:504 KERNEL/(15349:15350): consola conectada, paso a crear el hilo
+[INFO] 02:12:11:504 KERNEL/(15349:16540): Me llego el mensaje Hola
+[INFO] 02:12:15:210 KERNEL/(15349:16540): Me llegaron los siguientes valores:
+[INFO] 02:12:15:210 KERNEL/(15349:16540): hgjhj
+[INFO] 02:12:15:210 KERNEL/(15349:16540): hjh
+[WARNING] 02:12:15:210 KERNEL/(15349:16540): Operacion desconocida. No quieras meter la pata
+[WARNING] 02:12:15:210 KERNEL/(15349:16540): Operacion desconocida. No quieras meter la pata
+[INFO] 02:12:15:210 KERNEL/(15349:16540): Me llego el mensaje 
+[INFO] 02:12:15:210 KERNEL/(15349:16540): Me llego el mensaje 
+[ERROR] 02:12:15:210 KERNEL/(15349:16540): el cliente se desconecto. Terminando servidor
+[INFO] 02:32:38:902 KERNEL/(17232:17233): Servidor listo para recibir al cliente
+[INFO] 02:34:04:446 KERNEL/(17625:17626): Servidor listo para recibir al cliente
+[INFO] 02:34:10:693 KERNEL/(17625:17626): Se conecto un cliente!
+[INFO] 02:34:10:693 KERNEL/(17625:17626): consola conectada, paso a crear el hilo
+[INFO] 02:34:10:693 KERNEL/(17625:17722): Me llego el mensaje Hola
+[INFO] 02:34:24:121 KERNEL/(17625:17722): Me llegaron los siguientes valores:
+[INFO] 02:34:24:121 KERNEL/(17625:17722): Hola
+[INFO] 02:34:24:121 KERNEL/(17625:17722): FALTA IMPLEMENTAR LOGICA PARA RECIBIR LAS LISTAS
+[ERROR] 02:34:24:121 KERNEL/(17625:17722): el cliente se desconecto. Terminando servidor
+[INFO] 02:35:52:597 KERNEL/(18014:18015): Servidor listo para recibir al cliente
+[INFO] 02:36:01:564 KERNEL/(18014:18015): Se conecto un cliente!
+[INFO] 02:36:01:564 KERNEL/(18014:18015): consola conectada, paso a crear el hilo
+[INFO] 02:36:01:566 KERNEL/(18014:18105): Me llego el mensaje Hola
+[INFO] 02:36:06:355 KERNEL/(18014:18105): Me llegaron los siguientes valores:
+[INFO] 02:36:06:355 KERNEL/(18014:18105): Bomba
+[INFO] 02:36:32:198 KERNEL/(18316:18317): Servidor listo para recibir al cliente
+[INFO] 02:36:35:134 KERNEL/(18316:18317): Se conecto un cliente!
+[INFO] 02:36:35:134 KERNEL/(18316:18317): consola conectada, paso a crear el hilo
+[INFO] 02:36:35:134 KERNEL/(18316:18365): Me llego el mensaje Hola
+[INFO] 02:36:57:778 KERNEL/(18316:18365): Me llegaron los siguientes valores:
+[INFO] 02:36:57:778 KERNEL/(18316:18365): Son las 5 e la mañan y io no he dormido nada...(?
+[INFO] 02:37:16:662 KERNEL/(18671:18672): Servidor listo para recibir al cliente
+[INFO] 02:37:19:934 KERNEL/(18671:18672): Se conecto un cliente!
+[INFO] 02:37:19:934 KERNEL/(18671:18672): consola conectada, paso a crear el hilo
+[INFO] 02:37:19:934 KERNEL/(18671:18725): Me llego el mensaje Hola
+[INFO] 02:37:27:746 KERNEL/(18671:18725): Me llegaron los siguientes valores:
+[INFO] 02:37:27:746 KERNEL/(18671:18725): bebito fiu fiu
+[INFO] 02:37:27:746 KERNEL/(18671:18725): FALTA IMPLEMENTAR LOGICA PARA RECIBIR LAS LISTAS
+[ERROR] 02:37:27:746 KERNEL/(18671:18725): el cliente se desconecto. Terminando servidor
+[INFO] 02:54:19:876 KERNEL/(19302:19303): Servidor listo para recibir al cliente
+[INFO] 02:54:36:629 KERNEL/(19499:19500): Servidor listo para recibir al cliente
+[INFO] 02:54:41:548 KERNEL/(19499:19500): Se conecto un cliente!
+[INFO] 02:54:41:548 KERNEL/(19499:19500): consola conectada, paso a crear el hilo
+[INFO] 02:54:41:548 KERNEL/(19499:19560): Me llego el mensaje Hola
+[INFO] 02:54:49:639 KERNEL/(19499:19560): Me llegaron los siguientes valores:
+[INFO] 02:54:49:639 KERNEL/(19499:19560): aloja
+[INFO] 02:54:49:639 KERNEL/(19499:19560): Llegó un Programa
+[INFO] 02:54:49:639 KERNEL/(19499:19560): FALTA IMPLEMENTAR LOGICA PARA RECIBIR LAS LISTAS
+[ERROR] 02:54:49:639 KERNEL/(19499:19560): el cliente se desconecto. Terminando servidor

@@ -19,7 +19,9 @@
 typedef enum
 {
 	MENSAJE,
-	PAQUETE
+	PAQUETE,
+	NEW
+
 }op_code;
 
 typedef enum
