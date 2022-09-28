@@ -2,10 +2,10 @@
 
 int main(int argc, char **argv)
 {
-	/*if (argc > 1 && strcmp(argv[1], "-test") == 0)
+	if (argc > 1 && strcmp(argv[1], "-test") == 0)
 		return run_tests();
 	else
-	{*/
+	{
 		// Parte Server
 		logger = iniciar_logger("kernel.log", "KERNEL", LOG_LEVEL_DEBUG);
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 		
 		log_destroy(logger);
 		config_destroy(config);
-	//}
+	}
 }
 
 t_configKernel extraerDatosConfig(t_config *archivoConfig)
@@ -76,11 +76,9 @@ void crear_hilo_cpu()
 void conectar_dispatch()
 {
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
-	//enviar_mensaje("soy el dispatch", conexion);
+	enviar_mensaje("soy el dispatch", conexion);
 
-	paqueteKernelACPU(conexion);
-
-	log_info(logger, "se enviaron los mensajes");
+	
 }
 
 void conectar_interrupt()
@@ -99,26 +97,3 @@ void conectar_memoria()
 
 	
 }
-
-/*
-void cambiarEstado(){
-	bool valido=true;
-	estados actual = NEW;
-
-	while(valido){
-		switch(actual){
-			case NEW:
-			break;
-			case READY:
-			break;
-			case EXEC: 
-			break;
-			case BLOCK:
-			break;
-			case EXIT: 
-			break;
-
-		}
-	}
-
-}*/

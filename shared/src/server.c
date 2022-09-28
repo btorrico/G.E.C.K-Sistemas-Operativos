@@ -3,11 +3,17 @@
 
 void conectar_y_mostrar_mensajes_de_cliente(char* IP, char* PUERTO, t_log* logger){
 
+	
+
 	int server_fd = iniciar_servidor(IP, PUERTO); //socket(), bind()listen()
 	log_info(logger, "Servidor listo para recibir al cliente");
+	
+	
 
 	crear_hilos(server_fd);
 
+	
+	
 }
 
 int crear_hilos(int server_fd){
@@ -47,37 +53,6 @@ void mostrar_mensajes_del_cliente(int cliente_fd){
 					lista = recibir_paquete(cliente_fd);
 					log_info(logger, "Me llegaron los siguientes valores:");
 					list_iterate(lista, (void*) iterator);
-					break;
-				case -1:
-					/*while(cod_op_servidor =! -1){
-						close(socket_cliente);
-					}*/
-					log_error(logger, "el cliente se desconecto. Terminando servidor");
-					y=0;
-					break;
-				default:
-					log_warning(logger,"Operacion desconocida. No quieras meter la pata");
-					break;
-			}
-		}	
-}
-
-void mostrar_mensajes_del_cliente_dos(int cliente_fd){
-
-	t_list* lista;
-	int y = 1;
-		while (y) {
-			int cod_op = recibir_operacion(cliente_fd);
-		
-			switch (cod_op) {
-				case MENSAJE:
-					recibir_mensaje(cliente_fd);
-					break;
-				case PAQUETE:
-					nombre* estructura = recibir_paqueteDos(cliente_fd);
-					log_info(logger, "Me llegaron los siguientes valores:");
-					printf(estructura->primerNombre);
-					printf(estructura->segundoNombre);
 					break;
 				case -1:
 					/*while(cod_op_servidor =! -1){

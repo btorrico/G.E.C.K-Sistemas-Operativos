@@ -259,19 +259,3 @@ t_list* recibir_paquete(int socket_cliente)
 	free(buffer);
 	return valores;
 }
-
-nombre* recibir_paqueteDos(int socket_cliente)
-{
-	int size;
-	int desplazamiento = 0;
-	void * buffer;
-	t_list* valores = list_create();
-	int tamanio;
-
-	buffer = recibir_buffer(&size, socket_cliente);
-	
-	nombre* estructura = desempaquetarEstructura(buffer);
-
-	free(buffer);
-	return estructura;
-}

@@ -9,14 +9,9 @@
 #include "tests.h"
 #include<string.h>
 
+
 	t_config* config;
 	int conexion;
-
-
-typedef enum { //falta EXIT, despues agregar
-	NEW, READY, EXEC, BLOCK 
-}estados;
-
 
 	typedef struct {
 	

@@ -50,16 +50,3 @@
 [INFO] 02:40:15:158 KERNEL/(19387:19763): Me llegaron los siguientes valores:
 [INFO] 02:40:15:158 KERNEL/(19387:19763): fgfgfgfg
 [ERROR] 02:40:15:158 KERNEL/(19387:19763): el cliente se desconecto. Terminando servidor
-[INFO] 00:55:54:510 KERNEL/(24343:24344): Servidor listo para recibir al cliente
-[INFO] 00:57:39:692 KERNEL/(24691:24692): Servidor listo para recibir al cliente
-[INFO] 00:57:39:692 KERNEL/(24691:24695): se enviaron los mensajes
-[INFO] 01:02:29:898 KERNEL/(25153:25154): Servidor listo para recibir al cliente
-[INFO] 01:02:29:898 KERNEL/(25153:25157): se enviaron los mensajes
-[INFO] 01:05:11:437 KERNEL/(25457:25458): Servidor listo para recibir al cliente
-[INFO] 01:05:11:438 KERNEL/(25457:25461): se enviaron los mensajes
-[INFO] 00:07:55:079 KERNEL/(4647:4648): Servidor listo para recibir al cliente
-[INFO] 00:07:55:079 KERNEL/(4647:4651): se enviaron los mensajes
-[INFO] 00:10:13:153 KERNEL/(5047:5048): Servidor listo para recibir al cliente
-[INFO] 00:11:27:861 KERNEL/(5541:5542): Servidor listo para recibir al cliente
-[INFO] 00:20:02:333 KERNEL/(6401:6402): Servidor listo para recibir al cliente
-[INFO] 00:21:45:595 KERNEL/(6740:6741): Servidor listo para recibir al cliente
