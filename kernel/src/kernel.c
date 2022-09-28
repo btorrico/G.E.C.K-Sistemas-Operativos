@@ -14,6 +14,14 @@ int main(int argc, char **argv)
 		// creo el struct
 		extraerDatosConfig(config);
 
+			PCB pcb;
+	pcb.id = 1;
+	pcb.program_counter = 10;
+	pcb.registro_CPU = 20;
+
+
+	cargar_buffer_a_PCB (pcb);
+
 		pthread_t thrConsola, thrCpu, thrMemoria;
 
 		pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
@@ -24,9 +32,10 @@ int main(int argc, char **argv)
 		pthread_join(thrCpu, NULL);
 		pthread_join(thrMemoria, NULL);
 
-		
 		log_destroy(logger);
 		config_destroy(config);
+
+	
 	}
 }
 
@@ -49,8 +58,6 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 	configKernel.algoritmo = config_get_string_value(archivoConfig, "ALGORITMO_PLANIFICACION");
 	configKernel.gradoMultiprogramacion = config_get_int_value(archivoConfig, "GRADO_MAX_MULTIPROGRAMACION");
 
-
-
 	return configKernel;
 }
 
@@ -58,12 +65,10 @@ void crear_hilo_consola()
 {
 
 	conectar_y_mostrar_mensajes_de_cliente(IP_SERVER, configKernel.puertoEscucha, logger);
-	
 }
 
 void crear_hilo_cpu()
 {
-
 
 	pthread_t thrDispatch, thrInterrupt;
 
@@ -78,7 +83,6 @@ void conectar_dispatch()
 {
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 	enviar_mensaje("soy el dispatch", conexion);
-
 	
 }
 
@@ -87,14 +91,10 @@ void conectar_interrupt()
 
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
 	enviar_mensaje("soy el interrupt", conexion);
-
-	
 }
 
 void conectar_memoria()
 {
 	conexion = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
 	enviar_mensaje("hola memoria, soy el kernel", conexion);
-
-	
 }
