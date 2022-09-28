@@ -14,14 +14,6 @@ int main(int argc, char **argv)
 		// creo el struct
 		extraerDatosConfig(config);
 
-			PCB pcb;
-	pcb.id = 1;
-	pcb.program_counter = 10;
-	pcb.registro_CPU = 20;
-
-
-	cargar_buffer_a_PCB (pcb);
-
 		pthread_t thrConsola, thrCpu, thrMemoria;
 
 		pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
@@ -34,8 +26,6 @@ int main(int argc, char **argv)
 
 		log_destroy(logger);
 		config_destroy(config);
-
-	
 	}
 }
 
@@ -83,7 +73,17 @@ void conectar_dispatch()
 {
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 	enviar_mensaje("soy el dispatch", conexion);
-	
+
+	PCB pcb;
+	pcb.id = 1;
+	pcb.program_counter = 10;
+	pcb.registro_CPU = 20;
+
+	t_buffer* buffer=cargar_buffer_a_PCB(pcb);
+
+	cargar_buffer_a_paquete(buffer, conexion);
+
+	printf("se envio paquete");
 }
 
 void conectar_interrupt()

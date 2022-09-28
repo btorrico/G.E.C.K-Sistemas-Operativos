@@ -254,14 +254,14 @@ t_list *recibir_paquete(int socket_cliente)
 	return valores;
 }
 
-t_buffer* cargar_buffer_a_PCB(PCB pcb)
+t_buffer *cargar_buffer_a_PCB(PCB pcb)
 {
 
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
-	buffer->size = sizeof(uint8_t) * 3		;	
-				   //+ (sizeof(t_link_element) + sizeof(int))* list_size(&pcb->instrucciones);
-				 //  + (sizeof(t_link_element) + sizeof(int))* list_size(&pcb->segmentos);
+	buffer->size = sizeof(uint8_t) * 3;
+	//+ (sizeof(t_link_element) + sizeof(int))* list_size(&pcb->instrucciones);
+	//  + (sizeof(t_link_element) + sizeof(int))* list_size(&pcb->segmentos);
 
 	void *stream = malloc(buffer->size);
 	int offset = 0; // Desplazamiento
@@ -271,21 +271,37 @@ t_buffer* cargar_buffer_a_PCB(PCB pcb)
 	memcpy(stream + offset, &pcb.program_counter, sizeof(uint8_t));
 	offset += sizeof(uint8_t);
 	memcpy(stream + offset, &pcb.registro_CPU, sizeof(uint8_t));
-	//offset += sizeof(uint8_t);
+	// offset += sizeof(uint8_t);
+	// agregar listras
 
-
-/*	memcpy(stream + offset, &persona.nombre_length, sizeof(uint32_t));
-	offset += sizeof(uint32_t);
-	memcpy(stream + offset, persona.nombre, strlen(persona.nombre) + 1);
-	// No tiene sentido seguir calculando el desplazamiento, ya ocupamos el buffer completo*/
 	buffer->stream = stream;
-	
-
-	// Si usamos memoria dinámica para el nombre, y no la precisamos más, ya podemos liberarla:
-	//free(&pcb);
-
-	printf("termine el buffer");
-
 
 	return buffer;
+}
+
+void cargar_buffer_a_paquete(t_buffer* buffer, int conexion)
+{
+	t_paquete *paquete = malloc(sizeof(t_paquete));
+
+	paquete->codigo_operacion = PAQUETE; // Podemos usar una constante por operación
+	paquete->buffer = buffer;			 // Nuestro buffer de antes.
+
+	// Armamos el stream a enviar
+	void *a_enviar = malloc(buffer->size + sizeof(uint8_t));
+	int offset = 0;
+
+	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(uint8_t));
+	offset += sizeof(uint8_t);
+	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
+
+	// Por último enviamos
+	send(conexion, a_enviar, buffer->size + sizeof(uint8_t), 0);
+
+	// No nos olvidamos de liberar la memoria que ya no usaremos
+	free(a_enviar);
+	free(paquete->buffer->stream);
+	free(paquete->buffer);
+	free(paquete);
 }

@@ -223,3 +223,23 @@
 [INFO] 01:50:53:815 CPU/(12805:12806): Se conecto un cliente!
 [INFO] 01:50:53:815 CPU/(12805:12807): Me llego el mensaje soy el interrupt
 [INFO] 01:50:53:815 CPU/(12805:12806): Me llego el mensaje soy el dispatch
+[ERROR] 02:04:40:936 CPU/(12805:12807): el cliente se desconecto. Terminando servidor
+[ERROR] 02:04:40:937 CPU/(12805:12806): el cliente se desconecto. Terminando servidor
+[INFO] 02:04:50:195 CPU/(13844:13846): Servidor listo para recibir al interrupt kernel
+[INFO] 02:04:50:196 CPU/(13844:13845): Servidor listo para recibir al dispatch kernel
+[INFO] 02:04:54:065 CPU/(13844:13846): Se conecto un cliente!
+[INFO] 02:04:54:065 CPU/(13844:13846): Me llego el mensaje soy el interrupt
+[INFO] 02:04:54:065 CPU/(13844:13845): Se conecto un cliente!
+[INFO] 02:04:54:065 CPU/(13844:13845): Me llego el mensaje soy el dispatch
+[WARNING] 02:04:54:065 CPU/(13844:13845): Operacion desconocida. No quieras meter la pata
+[ERROR] 02:05:38:216 CPU/(13844:13846): el cliente se desconecto. Terminando servidor
+[ERROR] 02:05:38:216 CPU/(13844:13845): el cliente se desconecto. Terminando servidor
+[INFO] 02:05:59:387 CPU/(14093:14095): Servidor listo para recibir al interrupt kernel
+[INFO] 02:05:59:387 CPU/(14093:14094): Servidor listo para recibir al dispatch kernel
+[INFO] 02:06:04:954 CPU/(14093:14095): Se conecto un cliente!
+[INFO] 02:06:04:954 CPU/(14093:14095): Me llego el mensaje soy el interrupt
+[INFO] 02:06:04:955 CPU/(14093:14094): Se conecto un cliente!
+[INFO] 02:06:04:955 CPU/(14093:14094): Me llego el mensaje soy el dispatch
+[WARNING] 02:06:04:955 CPU/(14093:14094): Operacion desconocida. No quieras meter la pata
+[ERROR] 02:06:04:956 CPU/(14093:14094): el cliente se desconecto. Terminando servidor
+[ERROR] 02:06:04:956 CPU/(14093:14095): el cliente se desconecto. Terminando servidor

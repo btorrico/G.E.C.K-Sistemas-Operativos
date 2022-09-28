@@ -89,6 +89,7 @@ void enviar_paquete(t_paquete* paquete, int socket_cliente);
 void liberar_conexion(int socket_cliente);
 void eliminar_paquete(t_paquete* paquete);
 t_buffer* cargar_buffer_a_PCB(PCB pcb);
+void cargar_buffer_a_paquete(t_buffer* buffer, int conexion);
 //Utils del servidor
 
 
