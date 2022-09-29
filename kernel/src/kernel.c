@@ -49,6 +49,7 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 	configKernel.gradoMultiprogramacion = config_get_int_value(archivoConfig, "GRADO_MAX_MULTIPROGRAMACION");
 
 	return configKernel;
+	
 }
 
 void crear_hilo_consola()
