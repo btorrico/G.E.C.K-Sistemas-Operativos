@@ -39,7 +39,8 @@ typedef enum
   AX,
   BX,
   CX,
-  DX
+  DX,
+  DESCONOCIDO
 } t_registro;
 
 typedef enum
@@ -68,8 +69,8 @@ typedef struct
     t_instCode instCode;
     uint32_t paramInt;
 	t_IO paramIO;
-	t_registro paramReg[1]; 
-} t_instruccion;
+	t_registro paramReg[2]; 
+} t_instruccion;  //__attribute__((packed)) 
 
 typedef struct 
 {

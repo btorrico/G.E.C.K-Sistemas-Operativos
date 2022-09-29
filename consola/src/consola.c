@@ -99,15 +99,17 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 	char buffer[MAX_LENGTH];
 	while (fgets(buffer, 256, instructionsFile) != NULL)
 	{
-		int i = 0;
+		//int i = 0;
 		char **palabra = string_split(buffer, " ");
 		t_instruccion *instr = malloc(sizeof(t_instruccion));
 
-		if (strcmp(palabra[i], "SET") == 0)
+		if (strcmp(palabra[0], "SET") == 0)
 		{
 			instr->instCode = SET;
 			instr->paramReg[0] = devolverRegistro(palabra[1]);
 			instr->paramInt = atoi(palabra[2]);
+			instr->paramReg[1]= -1; // Se asigna -1 a los parametros que no se usa en la instruccion
+			instr->paramIO =-1;
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -117,6 +119,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->instCode = ADD;
 			instr->paramReg[0] = devolverRegistro(palabra[1]);
 			instr->paramReg[1] = devolverRegistro(palabra[2]);
+			instr->paramInt = -1;
+			instr->paramIO = -1;
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -126,6 +130,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->instCode = MOV_IN;
 			instr->paramReg[0] = devolverRegistro(palabra[1]);
 			instr->paramInt = atoi(palabra[2]);
+			instr->paramReg[1]= -1;
+			instr->paramIO = -1;
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -135,6 +141,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->instCode = MOV_OUT;
 			instr->paramInt = atoi(palabra[1]);
 			instr->paramReg[0] = devolverRegistro(palabra[2]);
+			instr->paramReg[1]= -1;
+			instr->paramIO = -1;
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -146,6 +154,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			{
 				instr->paramIO = DISCO;
 				instr->paramInt = atoi(palabra[2]);
+				instr->paramReg[0] = -1;
+				instr->paramReg[1]= -1;
 				free(palabra[0]);
 				free(palabra[1]);
 				free(palabra[2]);
@@ -153,6 +163,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			{
 				instr->paramIO = TECLADO;
 				instr->paramReg[0] = devolverRegistro(palabra[2]);
+				instr->paramInt = -1;
+				instr->paramReg[1] = -1;
 				free(palabra[0]);
 				free(palabra[1]);
 				free(palabra[2]);
@@ -160,6 +172,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			{
 				instr->paramIO = PANTALLA;
 				instr->paramReg[0] = devolverRegistro(palabra[2]);
+				instr->paramInt = -1;
+				instr->paramReg[1] = -1;
 				free(palabra[0]);
 				free(palabra[1]);
 				free(palabra[2]);
@@ -167,11 +181,17 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		} else if (strcmp(palabra[0], "EXIT") == 0)
 		{
 			instr->instCode = EXIT;
-			instr->paramInt = NULL; //TODO Cheaquear este Warning!
+			instr->paramInt = -1; 
+			instr->paramReg[0] = -1;
+			instr->paramReg[1]= -1;
+			instr->paramIO = -1;
 
 			free(palabra[0]);
 		}
 		list_add(instrucciones, instr);
+		log_info(logger, "\nEl codigo de instruccion es %d,\n el entero es %d,\n el registroCPU1 es %d,\n el registroCPU2 es %d,\n el dispos\
+itivo IO es %d\n", instr->instCode, instr->paramInt, instr->paramReg[0], instr->paramReg[1], instr->paramIO);
+
 
 		free(palabra);
 	}
@@ -197,15 +217,16 @@ t_configConsola extraerDatosConfig(t_config *archivoConfig)
 
 t_registro devolverRegistro(char* registro){
 
-	if (strcmp(registro, "AX") == 0) {
+	if (strcmp(registro, "AX") == 0 || strcmp(registro, "AX\n") == 0  ) {
 		return AX;
-		} else if (strcmp(registro, "BX") == 0) {
+		} else if (strcmp(registro, "BX") == 0 || strcmp(registro, "BX\n") == 0  ) {
 			return BX;
-		} else if (strcmp(registro, "CX") == 0) {
+		} else if (strcmp(registro, "CX") == 0 || strcmp(registro, "CX\n") == 0  ) {
 			return CX;
-		} else if (strcmp(registro, "DX") == 0) {
+		} else if (strcmp(registro, "DX") == 0 || strcmp(registro, "DX\n") == 0  ) {
 			return DX;
 		}
+		return DESCONOCIDO;
 }
 
 t_informacion* crearInformacion() {
