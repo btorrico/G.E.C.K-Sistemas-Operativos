@@ -257,3 +257,12 @@ t_list* recibir_paquete(int socket_cliente)
 	free(buffer);
 	return valores;
 }
+
+int size_char_array(char** array) {
+	int i = 0;
+
+	while(array[i]!=NULL){
+		i++;
+	}
+	return i;
+}

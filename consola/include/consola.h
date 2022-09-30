@@ -27,7 +27,7 @@ typedef struct
 {
 	char *ipKernel;
 	char *puertoKernel;
-	t_list *segmentos;
+	char **segmentos;
 	
 } t_configConsola;
 
