@@ -138,3 +138,21 @@
 [INFO] 02:54:49:639 KERNEL/(19499:19560): Llegó un Programa
 [INFO] 02:54:49:639 KERNEL/(19499:19560): FALTA IMPLEMENTAR LOGICA PARA RECIBIR LAS LISTAS
 [ERROR] 02:54:49:639 KERNEL/(19499:19560): el cliente se desconecto. Terminando servidor
+[INFO] 04:59:09:688 KERNEL/(13504:13505): Servidor listo para recibir al cliente
+[INFO] 05:38:45:429 KERNEL/(19158:19159): Servidor listo para recibir al cliente
+[INFO] 05:39:03:325 KERNEL/(19158:19159): Se conecto un cliente!
+[INFO] 05:39:03:325 KERNEL/(19158:19159): consola conectada, paso a crear el hilo
+[INFO] 05:39:03:327 KERNEL/(19158:19284): Me llego el mensaje Hola
+[INFO] 05:39:08:560 KERNEL/(19158:19284): Me llegaron los siguientes valores:
+[INFO] 05:39:08:560 KERNEL/(19158:19284): fgfghfg
+[INFO] 05:39:08:560 KERNEL/(19158:19284): Llegó un Programa
+[INFO] 05:39:08:560 KERNEL/(19158:19284): FALTA IMPLEMENTAR LOGICA PARA RECIBIR LAS LISTAS
+[ERROR] 05:39:08:560 KERNEL/(19158:19284): el cliente se desconecto. Terminando servidor
+[INFO] 06:11:21:015 KERNEL/(20579:20580): Servidor listo para recibir al cliente
+[INFO] 06:11:29:751 KERNEL/(20579:20580): Se conecto un cliente!
+[INFO] 06:11:29:751 KERNEL/(20579:20580): consola conectada, paso a crear el hilo
+[INFO] 06:11:29:751 KERNEL/(20579:20674): Me llego el mensaje Hola
+[INFO] 06:12:05:866 KERNEL/(20579:20674): Me llegaron los siguientes valores:
+[INFO] 06:12:05:866 KERNEL/(20579:20674): Odio la serializacion(?
+[INFO] 06:12:05:866 KERNEL/(20579:20674): bye
+[INFO] 06:12:05:866 KERNEL/(20579:20674): Llegó un Programa

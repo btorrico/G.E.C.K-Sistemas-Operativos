@@ -2947,3 +2947,2722 @@ El codigo de instruccion es 5,
  el dispositivo IO es -1
 
 [INFO] 04:20:14:245 CONSOLA/(6904:6904): Se parsearon #Instrucciones: 8
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+ Iniciando consola...
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 04:59:18:859 CONSOLA/(13593:13593): Se parsearon #Instrucciones: 8
+[INFO] 05:01:35:119 CONSOLA/(14114:14114): 
+ Iniciando consola...
+[INFO] 05:02:17:334 CONSOLA/(14195:14195): 
+ Iniciando consola...
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:03:28:575 CONSOLA/(14195:14195): Se parsearon #Instrucciones: 8
+[INFO] 05:07:07:036 CONSOLA/(14682:14682): 
+ Iniciando consola...
+[ERROR] 05:07:07:037 CONSOLA/(14682:14682): Error: no se pudo abrir el archivo de instrucciones.
+[INFO] 05:07:13:473 CONSOLA/(14704:14704): 
+ Iniciando consola...
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:07:13:475 CONSOLA/(14704:14704): Se parsearon #Instrucciones: 8
+[INFO] 05:08:43:319 CONSOLA/(15141:15141): 
+ Iniciando consola...
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:09:00:933 CONSOLA/(15141:15141): Se parsearon #Instrucciones: 8
+[INFO] 05:11:16:522 CONSOLA/(15533:15533): 
+ Iniciando consola...
+[INFO] 05:11:16:524 CONSOLA/(15533:15533): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:16:524 CONSOLA/(15533:15533): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:16:524 CONSOLA/(15533:15533): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:16:525 CONSOLA/(15533:15533): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:16:525 CONSOLA/(15533:15533): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:16:525 CONSOLA/(15533:15533): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:16:525 CONSOLA/(15533:15533): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:16:525 CONSOLA/(15533:15533): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:16:525 CONSOLA/(15533:15533): Se parsearon #Instrucciones: 8
+[INFO] 05:11:31:778 CONSOLA/(15598:15598): 
+ Iniciando consola...
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:31:780 CONSOLA/(15598:15598): Se parsearon #Instrucciones: 8
+[INFO] 05:11:35:266 CONSOLA/(15624:15624): 
+ Iniciando consola...
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:35:268 CONSOLA/(15624:15624): Se parsearon #Instrucciones: 8
+[INFO] 05:11:37:826 CONSOLA/(15632:15632): 
+ Iniciando consola...
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:37:828 CONSOLA/(15632:15632): Se parsearon #Instrucciones: 8
+[INFO] 05:11:42:634 CONSOLA/(15671:15671): 
+ Iniciando consola...
+[INFO] 05:11:42:636 CONSOLA/(15671:15671): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:42:636 CONSOLA/(15671:15671): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:42:636 CONSOLA/(15671:15671): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:42:636 CONSOLA/(15671:15671): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:42:636 CONSOLA/(15671:15671): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:42:636 CONSOLA/(15671:15671): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:42:636 CONSOLA/(15671:15671): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:42:637 CONSOLA/(15671:15671): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:42:637 CONSOLA/(15671:15671): Se parsearon #Instrucciones: 8
+[INFO] 05:11:45:610 CONSOLA/(15685:15685): 
+ Iniciando consola...
+[INFO] 05:11:45:612 CONSOLA/(15685:15685): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:45:612 CONSOLA/(15685:15685): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:45:612 CONSOLA/(15685:15685): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:45:613 CONSOLA/(15685:15685): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:45:613 CONSOLA/(15685:15685): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:45:613 CONSOLA/(15685:15685): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:45:613 CONSOLA/(15685:15685): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:45:613 CONSOLA/(15685:15685): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:45:613 CONSOLA/(15685:15685): Se parsearon #Instrucciones: 8
+[INFO] 05:11:48:218 CONSOLA/(15693:15693): 
+ Iniciando consola...
+[INFO] 05:11:48:219 CONSOLA/(15693:15693): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:48:219 CONSOLA/(15693:15693): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:48:219 CONSOLA/(15693:15693): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:48:220 CONSOLA/(15693:15693): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:48:220 CONSOLA/(15693:15693): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:48:220 CONSOLA/(15693:15693): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:48:220 CONSOLA/(15693:15693): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:48:220 CONSOLA/(15693:15693): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:48:220 CONSOLA/(15693:15693): Se parsearon #Instrucciones: 8
+[INFO] 05:11:50:652 CONSOLA/(15707:15707): 
+ Iniciando consola...
+[INFO] 05:11:50:652 CONSOLA/(15707:15707): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:50:653 CONSOLA/(15707:15707): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:50:653 CONSOLA/(15707:15707): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:50:653 CONSOLA/(15707:15707): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:50:653 CONSOLA/(15707:15707): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:50:653 CONSOLA/(15707:15707): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:50:654 CONSOLA/(15707:15707): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:50:654 CONSOLA/(15707:15707): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:50:654 CONSOLA/(15707:15707): Se parsearon #Instrucciones: 8
+[INFO] 05:11:53:194 CONSOLA/(15715:15715): 
+ Iniciando consola...
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:53:196 CONSOLA/(15715:15715): Se parsearon #Instrucciones: 8
+[INFO] 05:11:57:666 CONSOLA/(15742:15742): 
+ Iniciando consola...
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:11:57:668 CONSOLA/(15742:15742): Se parsearon #Instrucciones: 8
+[INFO] 05:12:00:707 CONSOLA/(15757:15757): 
+ Iniciando consola...
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:00:709 CONSOLA/(15757:15757): Se parsearon #Instrucciones: 8
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+ Iniciando consola...
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:03:835 CONSOLA/(15784:15784): Se parsearon #Instrucciones: 8
+[INFO] 05:12:07:811 CONSOLA/(15805:15805): 
+ Iniciando consola...
+[INFO] 05:12:07:811 CONSOLA/(15805:15805): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:07:811 CONSOLA/(15805:15805): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:07:812 CONSOLA/(15805:15805): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:07:812 CONSOLA/(15805:15805): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:07:812 CONSOLA/(15805:15805): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:12:07:812 CONSOLA/(15805:15805): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:12:07:812 CONSOLA/(15805:15805): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:12:07:812 CONSOLA/(15805:15805): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:07:812 CONSOLA/(15805:15805): Se parsearon #Instrucciones: 8
+[INFO] 05:12:11:053 CONSOLA/(15820:15820): 
+ Iniciando consola...
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:11:057 CONSOLA/(15820:15820): Se parsearon #Instrucciones: 8
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+ Iniciando consola...
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:14:109 CONSOLA/(15834:15834): Se parsearon #Instrucciones: 8
+[INFO] 05:12:58:738 CONSOLA/(15875:15875): 
+ Iniciando consola...
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:12:58:740 CONSOLA/(15875:15875): Se parsearon #Instrucciones: 8
+[INFO] 05:13:01:963 CONSOLA/(15902:15902): 
+ Iniciando consola...
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:01:965 CONSOLA/(15902:15902): Se parsearon #Instrucciones: 8
+[INFO] 05:13:05:511 CONSOLA/(15929:15929): 
+ Iniciando consola...
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:05:513 CONSOLA/(15929:15929): Se parsearon #Instrucciones: 8
+[INFO] 05:13:08:627 CONSOLA/(15938:15938): 
+ Iniciando consola...
+[INFO] 05:13:08:628 CONSOLA/(15938:15938): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:08:628 CONSOLA/(15938:15938): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:08:628 CONSOLA/(15938:15938): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:08:628 CONSOLA/(15938:15938): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:08:628 CONSOLA/(15938:15938): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:13:08:629 CONSOLA/(15938:15938): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:13:08:629 CONSOLA/(15938:15938): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:13:08:629 CONSOLA/(15938:15938): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:08:629 CONSOLA/(15938:15938): Se parsearon #Instrucciones: 8
+[INFO] 05:13:48:399 CONSOLA/(16402:16402): 
+ Iniciando consola...
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:13:59:592 CONSOLA/(16402:16402): Se parsearon #Instrucciones: 8
+[INFO] 05:14:27:694 CONSOLA/(16492:16492): 
+ Iniciando consola...
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:14:45:369 CONSOLA/(16492:16492): Se parsearon #Instrucciones: 8
+[INFO] 05:15:25:269 CONSOLA/(16584:16584): 
+ Iniciando consola...
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:15:56:987 CONSOLA/(16584:16584): Se parsearon #Instrucciones: 8
+[INFO] 05:16:23:332 CONSOLA/(16672:16672): 
+ Iniciando consola...
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:16:26:796 CONSOLA/(16672:16672): Se parsearon #Instrucciones: 8
+[INFO] 05:19:30:884 CONSOLA/(16832:16832): 
+ Iniciando consola...
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:19:36:136 CONSOLA/(16832:16832): Se parsearon #Instrucciones: 8
+[INFO] 05:31:50:491 CONSOLA/(17461:17461): 
+ Iniciando consola...
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:31:50:493 CONSOLA/(17461:17461): Se parsearon #Instrucciones: 8
+[INFO] 05:32:08:219 CONSOLA/(17552:17552): 
+ Iniciando consola...
+[INFO] 05:32:08:221 CONSOLA/(17552:17552): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:08:221 CONSOLA/(17552:17552): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:08:221 CONSOLA/(17552:17552): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:08:221 CONSOLA/(17552:17552): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:08:221 CONSOLA/(17552:17552): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:08:221 CONSOLA/(17552:17552): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:08:221 CONSOLA/(17552:17552): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:08:223 CONSOLA/(17552:17552): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:08:223 CONSOLA/(17552:17552): Se parsearon #Instrucciones: 8
+[INFO] 05:32:13:187 CONSOLA/(17598:17598): 
+ Iniciando consola...
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:13:189 CONSOLA/(17598:17598): Se parsearon #Instrucciones: 8
+[INFO] 05:32:15:599 CONSOLA/(17609:17609): 
+ Iniciando consola...
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:15:601 CONSOLA/(17609:17609): Se parsearon #Instrucciones: 8
+[INFO] 05:32:17:875 CONSOLA/(17620:17620): 
+ Iniciando consola...
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:17:877 CONSOLA/(17620:17620): Se parsearon #Instrucciones: 8
+[INFO] 05:32:19:965 CONSOLA/(17628:17628): 
+ Iniciando consola...
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:19:966 CONSOLA/(17628:17628): Se parsearon #Instrucciones: 8
+[INFO] 05:32:23:059 CONSOLA/(17654:17654): 
+ Iniciando consola...
+[INFO] 05:32:23:060 CONSOLA/(17654:17654): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:23:060 CONSOLA/(17654:17654): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:23:061 CONSOLA/(17654:17654): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:23:061 CONSOLA/(17654:17654): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:23:061 CONSOLA/(17654:17654): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:23:061 CONSOLA/(17654:17654): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:23:061 CONSOLA/(17654:17654): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:23:061 CONSOLA/(17654:17654): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:23:061 CONSOLA/(17654:17654): Se parsearon #Instrucciones: 8
+[INFO] 05:32:25:571 CONSOLA/(17662:17662): 
+ Iniciando consola...
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:25:573 CONSOLA/(17662:17662): Se parsearon #Instrucciones: 8
+[INFO] 05:32:27:967 CONSOLA/(17676:17676): 
+ Iniciando consola...
+[INFO] 05:32:27:969 CONSOLA/(17676:17676): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:27:969 CONSOLA/(17676:17676): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:27:969 CONSOLA/(17676:17676): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:27:969 CONSOLA/(17676:17676): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:27:969 CONSOLA/(17676:17676): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:27:969 CONSOLA/(17676:17676): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:27:970 CONSOLA/(17676:17676): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:27:970 CONSOLA/(17676:17676): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:27:970 CONSOLA/(17676:17676): Se parsearon #Instrucciones: 8
+[INFO] 05:32:30:195 CONSOLA/(17684:17684): 
+ Iniciando consola...
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:30:197 CONSOLA/(17684:17684): Se parsearon #Instrucciones: 8
+[INFO] 05:32:32:196 CONSOLA/(17698:17698): 
+ Iniciando consola...
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:32:197 CONSOLA/(17698:17698): Se parsearon #Instrucciones: 8
+[INFO] 05:32:34:955 CONSOLA/(17718:17718): 
+ Iniciando consola...
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:34:957 CONSOLA/(17718:17718): Se parsearon #Instrucciones: 8
+[INFO] 05:32:36:493 CONSOLA/(17732:17732): 
+ Iniciando consola...
+[INFO] 05:32:36:493 CONSOLA/(17732:17732): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:36:493 CONSOLA/(17732:17732): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:36:493 CONSOLA/(17732:17732): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:36:494 CONSOLA/(17732:17732): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:36:494 CONSOLA/(17732:17732): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:36:494 CONSOLA/(17732:17732): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:36:494 CONSOLA/(17732:17732): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:36:494 CONSOLA/(17732:17732): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:36:494 CONSOLA/(17732:17732): Se parsearon #Instrucciones: 8
+[INFO] 05:32:37:991 CONSOLA/(17740:17740): 
+ Iniciando consola...
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:37:993 CONSOLA/(17740:17740): Se parsearon #Instrucciones: 8
+[INFO] 05:32:39:376 CONSOLA/(17748:17748): 
+ Iniciando consola...
+[INFO] 05:32:39:378 CONSOLA/(17748:17748): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:39:378 CONSOLA/(17748:17748): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:39:379 CONSOLA/(17748:17748): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:39:379 CONSOLA/(17748:17748): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:39:379 CONSOLA/(17748:17748): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:32:39:379 CONSOLA/(17748:17748): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:32:39:379 CONSOLA/(17748:17748): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:32:39:379 CONSOLA/(17748:17748): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:32:39:380 CONSOLA/(17748:17748): Se parsearon #Instrucciones: 8
+[INFO] 05:33:30:791 CONSOLA/(18220:18220): 
+ Iniciando consola...
+[INFO] 05:33:54:016 CONSOLA/(18220:18220): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:33:54:016 CONSOLA/(18220:18220): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:33:54:016 CONSOLA/(18220:18220): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:33:54:016 CONSOLA/(18220:18220): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:33:54:016 CONSOLA/(18220:18220): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:33:54:016 CONSOLA/(18220:18220): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:33:54:017 CONSOLA/(18220:18220): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:33:54:017 CONSOLA/(18220:18220): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:33:54:017 CONSOLA/(18220:18220): Se parsearon #Instrucciones: 8
+[INFO] 05:39:03:323 CONSOLA/(19283:19283): 
+ Iniciando consola...
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 05:39:03:325 CONSOLA/(19283:19283): Se parsearon #Instrucciones: 8
+[INFO] 06:11:29:750 CONSOLA/(20673:20673): 
+ Iniciando consola...
+[INFO] 06:11:29:750 CONSOLA/(20673:20673): 
+El codigo de instruccion es 0,
+ el entero es 1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 06:11:29:750 CONSOLA/(20673:20673): 
+El codigo de instruccion es 1,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es 1,
+ el dispositivo IO es -1
+
+[INFO] 06:11:29:751 CONSOLA/(20673:20673): 
+El codigo de instruccion es 2,
+ el entero es 4,
+ el registroCPU1 es 2,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 06:11:29:751 CONSOLA/(20673:20673): 
+El codigo de instruccion es 3,
+ el entero es 8,
+ el registroCPU1 es 3,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 06:11:29:751 CONSOLA/(20673:20673): 
+El codigo de instruccion es 4,
+ el entero es 10,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 0
+
+[INFO] 06:11:29:751 CONSOLA/(20673:20673): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 0,
+ el registroCPU2 es -1,
+ el dispositivo IO es 1
+
+[INFO] 06:11:29:751 CONSOLA/(20673:20673): 
+El codigo de instruccion es 4,
+ el entero es -1,
+ el registroCPU1 es 1,
+ el registroCPU2 es -1,
+ el dispositivo IO es 2
+
+[INFO] 06:11:29:751 CONSOLA/(20673:20673): 
+El codigo de instruccion es 5,
+ el entero es -1,
+ el registroCPU1 es -1,
+ el registroCPU2 es -1,
+ el dispositivo IO es -1
+
+[INFO] 06:11:29:751 CONSOLA/(20673:20673): Se parsearon #Instrucciones: 8

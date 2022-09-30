@@ -55,27 +55,53 @@ void mostrar_mensajes_del_cliente(int cliente_fd){
 					list_iterate(lista, (void*) iterator);
 					break; 
 			    case NEW:
-					log_info(logger, "Llegó un Programa");
+				// PROBAR LAS CONSOLAS Y VER LOS BELLOS ERRORES POR FAVOR(?)
+					log_info(logger, "Llegaron las instrucciones y los segmentos"); // Mentiraaaa
 					int size;
 					void* buffer = recibir_buffer(&size, cliente_fd);
 					t_informacion programa;
 					int offset = 0;
-				
-					int cantidadInstr = (size - sizeof(uint32_t)) / sizeof(t_instruccion); // Kejesto ? (?
+
+					memcpy(&programa.instrucciones_size, buffer + offset, sizeof(uint32_t));
+					memcpy(&programa.segmentos_size, buffer + offset, sizeof(uint32_t));
+
+					int cantidadInstrucciones = (size - sizeof(uint32_t)) / sizeof(t_instruccion); // Calcula la cantidad de instrucciones
+				    offset += sizeof(uint32_t);										               // para recorrerlas al deserializar
+
+					int cantidadSegmentos= (size - sizeof(uint32_t)) / sizeof(char**);
 					offset += sizeof(uint32_t);
 
 					programa.instrucciones = list_create();
 					t_instruccion* instruccion;
+
+				    programa.segmentos = ""; //?????? char** /////!!!!!!!!!!1
+					char** segmento;
+					
 					int k = 0;
-					while (k < cantidadInstr) {
+					int l =0;
+
+					while (k < cantidadInstrucciones) {
 						instruccion = malloc(sizeof(t_instruccion));
 							memcpy(instruccion, buffer + offset, sizeof(t_instruccion));
 							offset += sizeof(t_instruccion);
 							list_add(programa.instrucciones, instruccion);
 								k++;
+
+								//Retornamos la lista?????
+					}
+
+					while (l < cantidadSegmentos) {
+						segmento = malloc(sizeof(char**));
+							memcpy(segmento, buffer + offset, sizeof(char**));
+							offset += sizeof(char**);
+							list_add(programa.segmentos, segmento); // LOS SEGMENTOS NO SON UNA LISTA :()
+								l++;
+
+								//Retornamos la lista????? o los char
 					}
 						free(buffer);
-						log_info(logger, "FALTA MODIFICAR LOGICA PARA RECIBIR LAS LISTAS, ACTUALMENTE NO ESTA TOMANDO EN CUENTA A LA LISTA DE SEGMENTOS");
+						log_info(logger, "YA TIENE INCLUIDA LA LISTA DE SEGMENTO, FALTA REVISAR BIEN");
+						log_info(logger,"CUANDO FUNCIONE PODRIAMOS CREAR UNA FUNCION PARA ABSTRAER TODO EL CHOCLO(?");
 				
 				case -1:
 					/*while(cod_op_servidor =! -1){

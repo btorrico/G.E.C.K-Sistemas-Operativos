@@ -192,3 +192,27 @@
 [INFO] 02:54:36:630 CPU/(19431:19432): Me llego el mensaje soy el dispatch
 [ERROR] 02:55:17:721 CPU/(19431:19433): el cliente se desconecto. Terminando servidor
 [ERROR] 02:55:17:722 CPU/(19431:19432): el cliente se desconecto. Terminando servidor
+[INFO] 04:58:22:300 CPU/(13254:13256): Servidor listo para recibir al interrupt kernel
+[INFO] 04:58:22:300 CPU/(13254:13255): Servidor listo para recibir al dispatch kernel
+[INFO] 04:59:09:689 CPU/(13254:13256): Se conecto un cliente!
+[INFO] 04:59:09:689 CPU/(13254:13256): Me llego el mensaje soy el interrupt
+[INFO] 04:59:09:689 CPU/(13254:13255): Se conecto un cliente!
+[INFO] 04:59:09:689 CPU/(13254:13255): Me llego el mensaje soy el dispatch
+[ERROR] 05:01:03:708 CPU/(13254:13256): el cliente se desconecto. Terminando servidor
+[ERROR] 05:01:03:708 CPU/(13254:13255): el cliente se desconecto. Terminando servidor
+[INFO] 05:38:23:869 CPU/(19034:19036): Servidor listo para recibir al interrupt kernel
+[INFO] 05:38:23:869 CPU/(19034:19035): Servidor listo para recibir al dispatch kernel
+[INFO] 05:38:45:429 CPU/(19034:19036): Se conecto un cliente!
+[INFO] 05:38:45:429 CPU/(19034:19036): Me llego el mensaje soy el interrupt
+[INFO] 05:38:45:429 CPU/(19034:19035): Se conecto un cliente!
+[INFO] 05:38:45:429 CPU/(19034:19035): Me llego el mensaje soy el dispatch
+[ERROR] 06:08:55:180 CPU/(19034:19036): el cliente se desconecto. Terminando servidor
+[ERROR] 06:08:55:180 CPU/(19034:19035): el cliente se desconecto. Terminando servidor
+[INFO] 06:11:18:411 CPU/(20536:20538): Servidor listo para recibir al interrupt kernel
+[INFO] 06:11:18:411 CPU/(20536:20537): Servidor listo para recibir al dispatch kernel
+[INFO] 06:11:21:015 CPU/(20536:20538): Se conecto un cliente!
+[INFO] 06:11:21:016 CPU/(20536:20538): Me llego el mensaje soy el interrupt
+[INFO] 06:11:21:016 CPU/(20536:20537): Se conecto un cliente!
+[INFO] 06:11:21:016 CPU/(20536:20537): Me llego el mensaje soy el dispatch
+[ERROR] 06:12:06:121 CPU/(20536:20538): el cliente se desconecto. Terminando servidor
+[ERROR] 06:12:06:121 CPU/(20536:20537): el cliente se desconecto. Terminando servidor

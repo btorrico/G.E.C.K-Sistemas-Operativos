@@ -244,7 +244,7 @@ t_informacion *crearInformacion()
 	t_informacion *informacion = malloc(sizeof(t_informacion));
 	informacion->instrucciones = list_create();
 	informacion->segmentos = configConsola.segmentos; // Hay que cambiarlo por la lista de segmentos!
-	return informacion;
+	return informacion; //
 }
 
 void liberar_programa(t_informacion *informacion)
@@ -258,12 +258,15 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
 	buffer->size = sizeof(uint32_t) + list_size(informacion->instrucciones) * sizeof(t_instruccion) 
-					+ sizeof(uint32_t) + list_size(informacion->segmentos) * sizeof(char**);
+					+ sizeof(uint32_t) + size_char_array(informacion->segmentos) * sizeof(char**);
 
 	void *stream = malloc(buffer->size);
 
 	int offset = 0; // Desplazamiento
-
+	memcpy(stream + offset, &(informacion->instrucciones_size), sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+		memcpy(stream + offset, &(informacion->segmentos_size), sizeof(uint32_t));
+	offset += sizeof(uint32_t);
 	// Serializa las instrucciones
 	int i = 0;
 	int j = 0;
