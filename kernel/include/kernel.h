@@ -42,4 +42,7 @@ void conectar_memoria();
 
 	void conectar_dispatch();
 	void conectar_interrupt();
+
+void iniciar_kernel();
+	
 #endif

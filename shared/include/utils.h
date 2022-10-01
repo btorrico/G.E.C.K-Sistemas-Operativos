@@ -12,6 +12,7 @@
 #include<unistd.h>
 #include<netdb.h>
 #include<commons/collections/list.h>
+#include<semaphore.h>
 #include<assert.h>
 #include "../globals.h"
 
@@ -19,8 +20,17 @@
 typedef enum
 {
 	MENSAJE,
-	PAQUETE
+	PAQUETE,
+    PROGRAMA
 }op_code;
+
+typedef enum
+{
+	AGREGAR_PCB,
+	ELIMINAR_PCB
+}t_cod_planificador;
+
+t_cod_planificador cod_planificador;
 
 typedef enum
 {
