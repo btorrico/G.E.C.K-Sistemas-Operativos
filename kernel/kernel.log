@@ -156,3 +156,8 @@
 [INFO] 06:12:05:866 KERNEL/(20579:20674): Odio la serializacion(?
 [INFO] 06:12:05:866 KERNEL/(20579:20674): bye
 [INFO] 06:12:05:866 KERNEL/(20579:20674): Llegó un Programa
+[INFO] 14:44:26:030 KERNEL/(7436:7437): Servidor listo para recibir al cliente
+[INFO] 14:44:56:929 KERNEL/(7436:7437): Se conecto un cliente!
+[INFO] 14:44:56:929 KERNEL/(7436:7437): consola conectada, paso a crear el hilo
+[INFO] 14:44:56:929 KERNEL/(7436:7494): Me llego el mensaje Hola
+[ERROR] 14:55:16:680 KERNEL/(7436:7494): el cliente se desconecto. Terminando servidor

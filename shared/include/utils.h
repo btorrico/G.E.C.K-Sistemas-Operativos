@@ -54,8 +54,8 @@ typedef enum
 //Utils del cliente
 typedef struct
 {
-	int size;
-	void* stream;
+	uint32_t size; // Tamaño del payload
+	void* stream;  // Payload
 } t_buffer;
 
 typedef struct

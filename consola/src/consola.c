@@ -47,12 +47,16 @@ void leerConfig(char *rutaConfig)
 	config = iniciar_config(rutaConfig);
 	extraerDatosConfig(config);
 
-	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s" PRINT_COLOR_RESET, configConsola.ipKernel, configConsola.puertoKernel);
+	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s \n SEGMENTOS: [", configConsola.ipKernel, configConsola.puertoKernel);
 	
 	for(int i=0; i<size_char_array(configConsola.segmentos); i++) {
-		printf("Segmentos [%i]: %s\n",i,configConsola.segmentos[i]);
-	
+		printf("%s",configConsola.segmentos[i]);
+		if((i+1)<size_char_array(configConsola.segmentos)){
+			printf(", ");
+		}
 	}
+	printf("]" PRINT_COLOR_RESET);
+
 
 }
 
@@ -191,8 +195,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			free(palabra[0]);
 		}
 		list_add(instrucciones, instr);
-		log_info(logger, "\nEl codigo de instruccion es %d,\n el entero es %d,\n el registroCPU1 es %d,\n el registroCPU2 es %d,\n el dispos\
-itivo IO es %d\n",
+		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d\n",
 				 instr->instCode, instr->paramInt, instr->paramReg[0], instr->paramReg[1], instr->paramIO);
 
 		free(palabra);
@@ -209,10 +212,7 @@ t_configConsola extraerDatosConfig(t_config *archivoConfig)
 
 	configConsola.ipKernel = config_get_string_value(archivoConfig, "IP_KERNEL");
 	configConsola.puertoKernel = config_get_string_value(archivoConfig, "PUERTO_KERNEL");
-	
-	
-	configConsola.segmentos = config_get_array_value(archivoConfig, "SEGMENTOS"); // CHEQUEAR, CREO QUE TOMA LA LISTA PERO FALTARIA AGREGAR
-																				  // UN FOR TAL VEZ PARA RECORRER LA LISTA DE LOS SEGMENTOS
+	configConsola.segmentos = config_get_array_value(archivoConfig, "SEGMENTOS"); 																		
 
 	return configConsola;
 }
@@ -236,15 +236,15 @@ t_registro devolverRegistro(char *registro)
 	{
 		return DX;
 	}
-	return DESCONOCIDO;
+	return DESCONOCIDO;  // ver si hace falta
 }
 
 t_informacion *crearInformacion()
 {
 	t_informacion *informacion = malloc(sizeof(t_informacion));
 	informacion->instrucciones = list_create();
-	informacion->segmentos = configConsola.segmentos; // Hay que cambiarlo por la lista de segmentos!
-	return informacion; //
+	informacion->segmentos = configConsola.segmentos;
+	return informacion; 
 }
 
 void liberar_programa(t_informacion *informacion)
@@ -257,8 +257,10 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 {
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
-	buffer->size = sizeof(uint32_t) + list_size(informacion->instrucciones) * sizeof(t_instruccion) 
-					+ sizeof(uint32_t) + size_char_array(informacion->segmentos) * sizeof(char**);
+	buffer->size = sizeof(uint32_t)  // instrucciones_size
+				 + list_size(informacion->instrucciones) * sizeof(t_instruccion) 
+				 + sizeof(uint32_t)  // segmentos_size
+				 + size_char_array(informacion->segmentos) * sizeof(char**);
 
 	void *stream = malloc(buffer->size);
 
@@ -289,7 +291,10 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		
 	}
 
-	buffer->stream = stream;
+	buffer->stream = stream; //Payload
+
+	free(informacion->instrucciones);
+	free(informacion->segmentos);
 
 	// lleno el paquete
 	t_paquete *paquete = malloc(sizeof(t_paquete));
