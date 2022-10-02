@@ -122,6 +122,7 @@ void liberar_conexion(int socket_cliente)
 // Esto es del servidor
 
 t_log *logger;
+//t_log* loggerKernel;
 
 int iniciar_servidor(char *IP, char *PUERTO)
 {
@@ -353,3 +354,4 @@ t_pcb* deserializar_pcb(t_buffer* buffer) {
   
     return pcb;
 }
+
