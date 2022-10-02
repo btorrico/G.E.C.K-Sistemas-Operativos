@@ -316,3 +316,65 @@
 [INFO] 18:48:32:865 CPU/(23188:23190): Me llego el mensaje soy el interrupt
 [INFO] 18:48:32:865 CPU/(23188:23189): Se conecto un cliente!
 [INFO] 18:48:32:865 CPU/(23188:23189): Me llego el mensaje soy el dispatch
+[ERROR] 18:53:36:825 CPU/(23188:23190): el cliente se desconecto. Terminando servidor
+[ERROR] 18:53:36:825 CPU/(23188:23189): el cliente se desconecto. Terminando servidor
+[INFO] 18:53:44:837 CPU/(23736:23738): Servidor listo para recibir al interrupt kernel
+[INFO] 18:53:44:838 CPU/(23736:23737): Servidor listo para recibir al dispatch kernel
+[INFO] 18:53:49:954 CPU/(23736:23738): Se conecto un cliente!
+[INFO] 18:53:49:954 CPU/(23736:23738): Me llego el mensaje soy el interrupt
+[INFO] 18:53:49:955 CPU/(23736:23737): Se conecto un cliente!
+[INFO] 18:53:49:955 CPU/(23736:23737): Me llego el mensaje soy el dispatch
+[ERROR] 18:56:08:121 CPU/(23736:23738): el cliente se desconecto. Terminando servidor
+[ERROR] 18:56:08:121 CPU/(23736:23737): el cliente se desconecto. Terminando servidor
+[INFO] 18:56:17:686 CPU/(24123:24125): Servidor listo para recibir al interrupt kernel
+[INFO] 18:56:17:686 CPU/(24123:24124): Servidor listo para recibir al dispatch kernel
+[INFO] 18:56:21:498 CPU/(24123:24125): Se conecto un cliente!
+[INFO] 18:56:21:498 CPU/(24123:24125): Me llego el mensaje soy el interrupt
+[INFO] 18:56:21:499 CPU/(24123:24124): Se conecto un cliente!
+[INFO] 18:56:21:499 CPU/(24123:24124): Me llego el mensaje soy el dispatch
+[ERROR] 19:01:58:093 CPU/(24123:24125): el cliente se desconecto. Terminando servidor
+[ERROR] 19:01:58:093 CPU/(24123:24124): el cliente se desconecto. Terminando servidor
+[INFO] 19:02:06:766 CPU/(24481:24483): Servidor listo para recibir al interrupt kernel
+[INFO] 19:02:06:766 CPU/(24481:24482): Servidor listo para recibir al dispatch kernel
+[INFO] 19:02:10:694 CPU/(24481:24483): Se conecto un cliente!
+[INFO] 19:02:10:694 CPU/(24481:24483): Me llego el mensaje soy el interrupt
+[INFO] 19:02:10:694 CPU/(24481:24482): Se conecto un cliente!
+[INFO] 19:02:10:694 CPU/(24481:24482): Me llego el mensaje soy el dispatch
+[INFO] 19:19:55:145 CPU/(25429:25431): Servidor listo para recibir al interrupt kernel
+[INFO] 19:19:55:145 CPU/(25429:25430): Servidor listo para recibir al dispatch kernel
+[INFO] 19:20:48:503 CPU/(25429:25431): Se conecto un cliente!
+[INFO] 19:20:48:503 CPU/(25429:25431): Me llego el mensaje soy el interrupt
+[INFO] 19:20:48:503 CPU/(25429:25430): Se conecto un cliente!
+[INFO] 19:20:48:504 CPU/(25429:25430): Me llego el mensaje soy el dispatch
+[ERROR] 19:22:51:228 CPU/(25429:25431): el cliente se desconecto. Terminando servidor
+[ERROR] 19:22:51:228 CPU/(25429:25430): el cliente se desconecto. Terminando servidor
+[INFO] 19:23:08:149 CPU/(26021:26023): Servidor listo para recibir al interrupt kernel
+[INFO] 19:23:08:149 CPU/(26021:26022): Servidor listo para recibir al dispatch kernel
+[INFO] 19:23:20:416 CPU/(26021:26023): Se conecto un cliente!
+[INFO] 19:23:20:416 CPU/(26021:26023): Me llego el mensaje soy el interrupt
+[INFO] 19:23:20:416 CPU/(26021:26022): Se conecto un cliente!
+[INFO] 19:23:20:416 CPU/(26021:26022): Me llego el mensaje soy el dispatch
+[ERROR] 19:30:31:447 CPU/(26021:26023): el cliente se desconecto. Terminando servidor
+[ERROR] 19:30:31:447 CPU/(26021:26022): el cliente se desconecto. Terminando servidor
+[INFO] 19:31:14:857 CPU/(26481:26483): Servidor listo para recibir al interrupt kernel
+[INFO] 19:31:14:857 CPU/(26481:26482): Servidor listo para recibir al dispatch kernel
+[INFO] 19:31:19:338 CPU/(26481:26483): Se conecto un cliente!
+[INFO] 19:31:19:338 CPU/(26481:26483): Me llego el mensaje soy el interrupt
+[INFO] 19:31:19:338 CPU/(26481:26482): Se conecto un cliente!
+[INFO] 19:31:19:338 CPU/(26481:26482): Me llego el mensaje soy el dispatch
+[ERROR] 19:32:45:455 CPU/(26481:26483): el cliente se desconecto. Terminando servidor
+[ERROR] 19:32:45:455 CPU/(26481:26482): el cliente se desconecto. Terminando servidor
+[INFO] 19:32:57:057 CPU/(26913:26915): Servidor listo para recibir al interrupt kernel
+[INFO] 19:32:57:057 CPU/(26913:26914): Servidor listo para recibir al dispatch kernel
+[INFO] 19:33:01:477 CPU/(26913:26915): Se conecto un cliente!
+[INFO] 19:33:01:477 CPU/(26913:26915): Me llego el mensaje soy el interrupt
+[INFO] 19:33:01:477 CPU/(26913:26914): Se conecto un cliente!
+[INFO] 19:33:01:477 CPU/(26913:26914): Me llego el mensaje soy el dispatch
+[ERROR] 19:42:18:748 CPU/(26913:26915): el cliente se desconecto. Terminando servidor
+[ERROR] 19:42:18:748 CPU/(26913:26914): el cliente se desconecto. Terminando servidor
+[INFO] 19:53:14:402 CPU/(27698:27700): Servidor listo para recibir al interrupt kernel
+[INFO] 19:53:14:402 CPU/(27698:27699): Servidor listo para recibir al dispatch kernel
+[INFO] 19:53:19:930 CPU/(27698:27700): Se conecto un cliente!
+[INFO] 19:53:19:930 CPU/(27698:27700): Me llego el mensaje soy el interrupt
+[INFO] 19:53:19:930 CPU/(27698:27699): Se conecto un cliente!
+[INFO] 19:53:19:930 CPU/(27698:27699): Me llego el mensaje soy el dispatch

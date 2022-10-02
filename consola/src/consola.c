@@ -284,7 +284,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
 	buffer->size = sizeof(uint32_t)  // instrucciones_size
-				 + list_size(informacion->instrucciones) * sizeof(t_instruccion); 
+				 + list_size(informacion->instrucciones) * sizeof(t_instruccion)
 				 + sizeof(uint32_t)  // segmentos_size
 				 + list_size(informacion->segmentos) * sizeof(t_list);
 
@@ -322,8 +322,8 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 
 	buffer->stream = stream; //Payload
 
-//	free(informacion->instrucciones);
-//	free(informacion->segmentos);
+	//free(informacion->instrucciones);
+	//free(informacion->segmentos);
 
 	// lleno el paquete
 	t_paquete *paquete = malloc(sizeof(t_paquete));

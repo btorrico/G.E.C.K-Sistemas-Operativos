@@ -75,7 +75,7 @@ void mostrar_mensajes_del_cliente(int cliente_fd){
 					t_instruccion* instruccion;
 
 				    programa.segmentos = list_create(); 
-					t_list* segmento;
+					char* segmento;
 					
 					int k = 0;
 					int l =0;
@@ -92,14 +92,16 @@ void mostrar_mensajes_del_cliente(int cliente_fd){
 					list_iterate(programa.instrucciones,(void*) iterator); // RETORNA 8 ESPACIOS VACIOS
 					
 					while (l < cantidadSegmentos) {
-						segmento = malloc(sizeof(t_list));
-							memcpy(segmento, buffer + offset, sizeof(t_list));
-							offset += sizeof(t_list);
-							list_add(programa.segmentos, segmento); // LOS SEGMENTOS NO SON UNA LISTA :()
+						segmento = malloc(sizeof(char));
+							memcpy(segmento, buffer + offset, sizeof(char));
+							offset += sizeof(char);
+							list_add(programa.segmentos, segmento); 
 								l++;
+								
+							
 					}
+							list_iterate(programa.segmentos,(void*) iterator);	
 					
-					list_iterate(programa.segmentos,(void*) iterator);
 
 						free(buffer);
 						log_info(logger,"CUANDO FUNCIONE PODRIAMOS CREAR UNA FUNCION PARA ABSTRAER TODO EL CHOCLO(?");
