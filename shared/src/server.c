@@ -122,3 +122,8 @@ void iterator(char* value) {
 
 	log_info(logger,"%s", value);
 }
+
+void iteratorInt(int value) {
+
+	log_info(logger,"Segmento = %d", value);
+}

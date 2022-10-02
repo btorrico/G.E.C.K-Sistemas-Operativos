@@ -20,7 +20,7 @@
 
 t_config *config;
 int conexion;
-char *rutaArchivoConfiguracion ;
+char *rutaArchivoConfiguracion;
 char *rutaInstrucciones;
 
 typedef struct
@@ -51,5 +51,7 @@ t_informacion* crearInformacion();
 t_paquete* crear_paquete_programa(t_informacion* informacion);
 
 void liberar_programa(t_informacion* informacion);
+
+t_list* listaSegmentos();
 
 #endif

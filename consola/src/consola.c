@@ -15,6 +15,11 @@ int main(int argc, char **argv)
 		/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
 		obtenerArgumentos(argc, argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
+		
+		t_list* listaCreada = listaSegmentos();
+		
+		list_iterate(listaCreada,(void*) iteratorInt);
+		//list_take(listaCreada, 2);
 
 		/* ---------------- LEER DE CONSOLA ---------------- */
 
@@ -51,11 +56,27 @@ void leerConfig(char *rutaConfig)
 	
 	for(int i=0; i<size_char_array(configConsola.segmentos); i++) {
 		printf("%s",configConsola.segmentos[i]);
+
 		if((i+1)<size_char_array(configConsola.segmentos)){
 			printf(", ");
 		}
 	}
 	printf("]" PRINT_COLOR_RESET);
+
+
+}
+
+t_list* listaSegmentos(){
+
+	t_list* listaDeSegmentos = list_create();
+	for(int i=0; i<size_char_array(configConsola.segmentos); i++) {
+		int segmento = atoi(configConsola.segmentos[i]);	
+		
+		list_add(listaDeSegmentos,segmento);
+	
+
+	}
+		return listaDeSegmentos;
 
 
 }
@@ -302,3 +323,6 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	paquete->buffer = buffer;
 	return paquete;
 }
+
+
+

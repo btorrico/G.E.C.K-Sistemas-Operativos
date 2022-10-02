@@ -14,6 +14,7 @@ void conectar_y_mostrar_mensajes_de_cliente(char*, char*, t_log*);
 void mostrar_mensajes_del_cliente(int);
 int crear_hilos(int );
 void iterator(char* value);
+void iteratorInt(int value);
 
 #define IP_SERVER "0.0.0.0"
 
