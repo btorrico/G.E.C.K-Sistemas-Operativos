@@ -6959,3 +6959,9 @@ instCode: 5, paramInt: -1, paramReg[0]: -1,paramReg[1] -1, dispositivoIO: -1
 [INFO] 23:08:13:226 CONSOLA/(28045:28045): 
  Iniciando consola...
 [INFO] 23:08:13:241 CONSOLA/(28045:28045): Se parsearon #Instrucciones: 8
+[INFO] 23:22:16:377 CONSOLA/(30711:30711): 
+ Iniciando consola...
+[INFO] 23:22:16:378 CONSOLA/(30711:30711): Se parsearon #Instrucciones: 8
+[INFO] 23:22:35:735 CONSOLA/(30821:30821): 
+ Iniciando consola...
+[INFO] 23:22:35:738 CONSOLA/(30821:30821): Se parsearon #Instrucciones: 8

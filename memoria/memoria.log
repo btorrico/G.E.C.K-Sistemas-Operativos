@@ -78,3 +78,9 @@
 [INFO] 23:01:46:430 MEMORIA/(27022:27023): Me llego el mensaje hola memoria, soy el kernel
 [ERROR] 23:08:28:298 MEMORIA/(27022:27023): el cliente se desconecto. Terminando servidor
 [ERROR] 23:08:28:300 MEMORIA/(27022:27024): el cliente se desconecto. Terminando servidor
+[INFO] 23:21:40:292 MEMORIA/(30432:30434): Servidor listo para recibir al cpu
+[INFO] 23:21:40:292 MEMORIA/(30432:30433): Servidor listo para recibir al kernel
+[INFO] 23:21:47:922 MEMORIA/(30432:30434): Se conecto un cliente!
+[INFO] 23:21:47:922 MEMORIA/(30432:30434): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 23:22:03:435 MEMORIA/(30432:30433): Se conecto un cliente!
+[INFO] 23:22:03:435 MEMORIA/(30432:30433): Me llego el mensaje hola memoria, soy el kernel
