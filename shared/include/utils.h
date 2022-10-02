@@ -83,7 +83,7 @@ typedef struct
 {	
 	t_list* instrucciones;
 	uint32_t instrucciones_size;
-	char** segmentos;
+	t_list* segmentos;
 	uint32_t segmentos_size;
 } t_informacion;
 

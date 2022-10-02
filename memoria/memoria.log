@@ -165,3 +165,97 @@
 [INFO] 14:44:26:030 MEMORIA/(7373:7374): Se conecto un cliente!
 [INFO] 14:44:26:030 MEMORIA/(7373:7374): Me llego el mensaje hola memoria, soy el kernel
 [ERROR] 14:55:13:493 MEMORIA/(7373:7375): el cliente se desconecto. Terminando servidor
+[INFO] 05:47:48:919 MEMORIA/(12039:12041): Servidor listo para recibir al cpu
+[INFO] 05:47:48:920 MEMORIA/(12039:12040): Servidor listo para recibir al kernel
+[INFO] 05:48:02:914 MEMORIA/(12039:12041): Se conecto un cliente!
+[INFO] 05:48:02:916 MEMORIA/(12039:12041): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 05:48:17:043 MEMORIA/(12039:12040): Se conecto un cliente!
+[INFO] 05:48:17:043 MEMORIA/(12039:12040): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 05:48:41:553 MEMORIA/(12039:12040): el cliente se desconecto. Terminando servidor
+[ERROR] 05:48:41:554 MEMORIA/(12039:12041): el cliente se desconecto. Terminando servidor
+[INFO] 05:49:49:327 MEMORIA/(12533:12535): Servidor listo para recibir al cpu
+[INFO] 05:49:49:329 MEMORIA/(12533:12534): Servidor listo para recibir al kernel
+[INFO] 05:49:51:156 MEMORIA/(12533:12535): Se conecto un cliente!
+[INFO] 05:49:51:158 MEMORIA/(12533:12535): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 05:50:03:718 MEMORIA/(12533:12534): Se conecto un cliente!
+[INFO] 05:50:03:720 MEMORIA/(12533:12534): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 06:22:04:558 MEMORIA/(12533:12534): el cliente se desconecto. Terminando servidor
+[ERROR] 06:22:04:559 MEMORIA/(12533:12535): el cliente se desconecto. Terminando servidor
+[INFO] 06:22:24:163 MEMORIA/(13525:13527): Servidor listo para recibir al cpu
+[INFO] 06:22:24:163 MEMORIA/(13525:13526): Servidor listo para recibir al kernel
+[INFO] 06:22:29:037 MEMORIA/(13525:13527): Se conecto un cliente!
+[INFO] 06:22:29:039 MEMORIA/(13525:13527): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 06:22:34:842 MEMORIA/(13525:13526): Se conecto un cliente!
+[INFO] 06:22:34:843 MEMORIA/(13525:13526): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 06:23:21:184 MEMORIA/(13525:13526): el cliente se desconecto. Terminando servidor
+[ERROR] 06:23:21:185 MEMORIA/(13525:13527): el cliente se desconecto. Terminando servidor
+[INFO] 06:23:30:602 MEMORIA/(13932:13934): Servidor listo para recibir al cpu
+[INFO] 06:23:30:604 MEMORIA/(13932:13933): Servidor listo para recibir al kernel
+[INFO] 06:23:33:907 MEMORIA/(13932:13934): Se conecto un cliente!
+[INFO] 06:23:33:908 MEMORIA/(13932:13934): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 06:23:38:500 MEMORIA/(13932:13933): Se conecto un cliente!
+[INFO] 06:23:38:500 MEMORIA/(13932:13933): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 06:29:55:797 MEMORIA/(13932:13933): el cliente se desconecto. Terminando servidor
+[ERROR] 06:29:55:799 MEMORIA/(13932:13934): el cliente se desconecto. Terminando servidor
+[INFO] 06:30:18:500 MEMORIA/(14484:14486): Servidor listo para recibir al cpu
+[INFO] 06:30:18:500 MEMORIA/(14484:14485): Servidor listo para recibir al kernel
+[INFO] 06:30:22:602 MEMORIA/(14484:14486): Se conecto un cliente!
+[INFO] 06:30:22:604 MEMORIA/(14484:14486): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 06:30:28:148 MEMORIA/(14484:14485): Se conecto un cliente!
+[INFO] 06:30:28:148 MEMORIA/(14484:14485): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 06:31:38:801 MEMORIA/(14484:14485): el cliente se desconecto. Terminando servidor
+[ERROR] 06:31:38:803 MEMORIA/(14484:14486): el cliente se desconecto. Terminando servidor
+[INFO] 06:39:33:638 MEMORIA/(14977:14979): Servidor listo para recibir al cpu
+[INFO] 06:39:33:640 MEMORIA/(14977:14978): Servidor listo para recibir al kernel
+[INFO] 06:39:35:497 MEMORIA/(14977:14979): Se conecto un cliente!
+[INFO] 06:39:35:497 MEMORIA/(14977:14979): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 06:39:40:524 MEMORIA/(14977:14978): Se conecto un cliente!
+[INFO] 06:39:40:526 MEMORIA/(14977:14978): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 06:47:44:750 MEMORIA/(14977:14978): el cliente se desconecto. Terminando servidor
+[ERROR] 06:47:44:752 MEMORIA/(14977:14979): el cliente se desconecto. Terminando servidor
+[INFO] 06:49:03:195 MEMORIA/(15583:15585): Servidor listo para recibir al cpu
+[INFO] 06:49:03:196 MEMORIA/(15583:15584): Servidor listo para recibir al kernel
+[INFO] 06:49:07:435 MEMORIA/(15583:15585): Se conecto un cliente!
+[INFO] 06:49:07:437 MEMORIA/(15583:15585): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 06:49:13:306 MEMORIA/(15583:15584): Se conecto un cliente!
+[INFO] 06:49:13:309 MEMORIA/(15583:15584): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 06:50:57:340 MEMORIA/(15583:15584): el cliente se desconecto. Terminando servidor
+[ERROR] 06:50:57:341 MEMORIA/(15583:15585): el cliente se desconecto. Terminando servidor
+[INFO] 06:51:03:834 MEMORIA/(16423:16425): Servidor listo para recibir al cpu
+[INFO] 06:51:03:837 MEMORIA/(16423:16424): Servidor listo para recibir al kernel
+[INFO] 06:51:06:945 MEMORIA/(16423:16425): Se conecto un cliente!
+[INFO] 06:51:06:945 MEMORIA/(16423:16425): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 06:51:27:739 MEMORIA/(16423:16424): Se conecto un cliente!
+[INFO] 06:51:27:740 MEMORIA/(16423:16424): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 07:03:38:359 MEMORIA/(16423:16424): el cliente se desconecto. Terminando servidor
+[ERROR] 07:03:38:359 MEMORIA/(16423:16425): el cliente se desconecto. Terminando servidor
+[INFO] 07:04:17:192 MEMORIA/(17209:17211): Servidor listo para recibir al cpu
+[INFO] 07:04:17:192 MEMORIA/(17209:17210): Servidor listo para recibir al kernel
+[INFO] 07:04:32:737 MEMORIA/(17209:17211): Se conecto un cliente!
+[INFO] 07:04:32:737 MEMORIA/(17209:17211): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 07:04:54:170 MEMORIA/(17209:17210): Se conecto un cliente!
+[INFO] 07:04:54:170 MEMORIA/(17209:17210): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 07:07:53:675 MEMORIA/(17209:17210): el cliente se desconecto. Terminando servidor
+[ERROR] 07:07:53:676 MEMORIA/(17209:17211): el cliente se desconecto. Terminando servidor
+[INFO] 18:15:00:046 MEMORIA/(19883:19885): Servidor listo para recibir al cpu
+[INFO] 18:15:00:046 MEMORIA/(19883:19884): Servidor listo para recibir al kernel
+[INFO] 18:15:05:794 MEMORIA/(19883:19885): Se conecto un cliente!
+[INFO] 18:15:05:794 MEMORIA/(19883:19885): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 18:15:15:905 MEMORIA/(19883:19884): Se conecto un cliente!
+[INFO] 18:15:15:907 MEMORIA/(19883:19884): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 18:31:57:048 MEMORIA/(19883:19884): el cliente se desconecto. Terminando servidor
+[ERROR] 18:31:57:049 MEMORIA/(19883:19885): el cliente se desconecto. Terminando servidor
+[INFO] 18:32:05:803 MEMORIA/(20953:20955): Servidor listo para recibir al cpu
+[INFO] 18:32:05:805 MEMORIA/(20953:20954): Servidor listo para recibir al kernel
+[INFO] 18:32:09:714 MEMORIA/(20953:20955): Se conecto un cliente!
+[INFO] 18:32:09:716 MEMORIA/(20953:20955): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 18:32:17:450 MEMORIA/(20953:20954): Se conecto un cliente!
+[INFO] 18:32:17:452 MEMORIA/(20953:20954): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 18:38:03:564 MEMORIA/(20953:20954): el cliente se desconecto. Terminando servidor
+[ERROR] 18:38:03:564 MEMORIA/(20953:20955): el cliente se desconecto. Terminando servidor
+[INFO] 18:48:10:762 MEMORIA/(23130:23132): Servidor listo para recibir al cpu
+[INFO] 18:48:10:764 MEMORIA/(23130:23131): Servidor listo para recibir al kernel
+[INFO] 18:48:17:824 MEMORIA/(23130:23132): Se conecto un cliente!
+[INFO] 18:48:17:825 MEMORIA/(23130:23132): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 18:48:32:862 MEMORIA/(23130:23131): Se conecto un cliente!
+[INFO] 18:48:32:864 MEMORIA/(23130:23131): Me llego el mensaje hola memoria, soy el kernel

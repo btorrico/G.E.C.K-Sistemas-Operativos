@@ -16,9 +16,11 @@ int main(int argc, char **argv)
 
 		obtenerArgumentos(argc, argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
 		
-		t_list* listaCreada = listaSegmentos();
+		//t_list* listaCreada = listaSegmentos();
 		
-		list_iterate(listaCreada,(void*) iteratorInt);
+		//list_iterate(listaCreada,(void*) iteratorInt);
+		//list_iterate(listaCreada,(void*) iterator);
+
 		//list_take(listaCreada, 2);
 
 		/* ---------------- LEER DE CONSOLA ---------------- */
@@ -70,8 +72,11 @@ t_list* listaSegmentos(){
 
 	t_list* listaDeSegmentos = list_create();
 	for(int i=0; i<size_char_array(configConsola.segmentos); i++) {
-		int segmento = atoi(configConsola.segmentos[i]);	
-		
+
+		//uint32_t segmento = atoi(configConsola.segmentos[i]);	
+		char* segmento = (char*)configConsola.segmentos[i];	 //De esta forma se crea una lista de segmentos de tipo char*
+		//del lado del kernel podriamos despues de serializar podriamos obtener cada elemento y convertirlo a int
+
 		list_add(listaDeSegmentos,segmento);
 	
 
@@ -229,7 +234,7 @@ t_configConsola extraerDatosConfig(t_config *archivoConfig)
 {
 	configConsola.ipKernel = string_new();
 	configConsola.puertoKernel = string_new();
-	configConsola.segmentos = string_array_new(); // CHEQUEAR
+	configConsola.segmentos = string_array_new(); 
 
 	configConsola.ipKernel = config_get_string_value(archivoConfig, "IP_KERNEL");
 	configConsola.puertoKernel = config_get_string_value(archivoConfig, "PUERTO_KERNEL");
@@ -264,7 +269,7 @@ t_informacion *crearInformacion()
 {
 	t_informacion *informacion = malloc(sizeof(t_informacion));
 	informacion->instrucciones = list_create();
-	informacion->segmentos = configConsola.segmentos;
+	informacion->segmentos = listaSegmentos();
 	return informacion; 
 }
 
@@ -279,16 +284,17 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
 	buffer->size = sizeof(uint32_t)  // instrucciones_size
-				 + list_size(informacion->instrucciones) * sizeof(t_instruccion) 
+				 + list_size(informacion->instrucciones) * sizeof(t_instruccion); 
 				 + sizeof(uint32_t)  // segmentos_size
-				 + size_char_array(informacion->segmentos) * sizeof(char**);
+				 + list_size(informacion->segmentos) * sizeof(t_list);
 
 	void *stream = malloc(buffer->size);
 
 	int offset = 0; // Desplazamiento
 	memcpy(stream + offset, &(informacion->instrucciones_size), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
-		memcpy(stream + offset, &(informacion->segmentos_size), sizeof(uint32_t));
+	
+	memcpy(stream + offset, &(informacion->segmentos_size), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 	// Serializa las instrucciones
 	int i = 0;
@@ -301,21 +307,23 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
-	// Serializa los segmentos (La lista esta vacia todavia, hay que apuntar a esa lista!)
-	while (j < size_char_array(informacion->segmentos))
+	
+	while (j < list_size(informacion->segmentos))
 	{
 
-		memcpy(stream + offset, informacion->segmentos[j], sizeof(char**));
-		offset += sizeof(char**);
-		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento[%d]: %s" PRINT_COLOR_RESET "\n", j,informacion->segmentos[j]);
+		memcpy(stream + offset, list_get(informacion->segmentos, j), sizeof(t_list));
+		offset += sizeof(t_list);
 		j++;
+		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
+		
 		
 	}
+	
 
 	buffer->stream = stream; //Payload
 
-	free(informacion->instrucciones);
-	free(informacion->segmentos);
+//	free(informacion->instrucciones);
+//	free(informacion->segmentos);
 
 	// lleno el paquete
 	t_paquete *paquete = malloc(sizeof(t_paquete));

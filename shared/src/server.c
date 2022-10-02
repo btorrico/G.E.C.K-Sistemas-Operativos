@@ -55,8 +55,8 @@ void mostrar_mensajes_del_cliente(int cliente_fd){
 					list_iterate(lista, (void*) iterator);
 					break; 
 			    case NEW:
-				// PROBAR LAS CONSOLAS Y VER LOS BELLOS ERRORES POR FAVOR(?)
-					log_info(logger, "Llegaron las instrucciones y los segmentos"); // Mentiraaaa
+				// PROBAR LAS CONSOLAS 
+					log_info(logger, "Llegaron las instrucciones y los segmentos"); // Ya casi!
 					int size;
 					void* buffer = recibir_buffer(&size, cliente_fd);
 					t_informacion programa;
@@ -68,14 +68,14 @@ void mostrar_mensajes_del_cliente(int cliente_fd){
 					int cantidadInstrucciones = (size - sizeof(uint32_t)) / sizeof(t_instruccion); // Calcula la cantidad de instrucciones
 				    offset += sizeof(uint32_t);										               // para recorrerlas al deserializar
 
-					int cantidadSegmentos= (size - sizeof(uint32_t)) / sizeof(char**);
+					int cantidadSegmentos= (size - sizeof(uint32_t)) / sizeof(t_list);
 					offset += sizeof(uint32_t);
 
 					programa.instrucciones = list_create();
 					t_instruccion* instruccion;
 
-				    programa.segmentos = ""; //?????? char** /////!!!!!!!!!!1
-					char** segmento;
+				    programa.segmentos = list_create(); 
+					t_list* segmento;
 					
 					int k = 0;
 					int l =0;
@@ -87,22 +87,23 @@ void mostrar_mensajes_del_cliente(int cliente_fd){
 							list_add(programa.instrucciones, instruccion);
 								k++;
 
-								//Retornamos la lista?????
 					}
 
+					list_iterate(programa.instrucciones,(void*) iterator); // RETORNA 8 ESPACIOS VACIOS
+					
 					while (l < cantidadSegmentos) {
-						segmento = malloc(sizeof(char**));
-							memcpy(segmento, buffer + offset, sizeof(char**));
-							offset += sizeof(char**);
+						segmento = malloc(sizeof(t_list));
+							memcpy(segmento, buffer + offset, sizeof(t_list));
+							offset += sizeof(t_list);
 							list_add(programa.segmentos, segmento); // LOS SEGMENTOS NO SON UNA LISTA :()
 								l++;
-
-								//Retornamos la lista????? o los char
 					}
+					
+					list_iterate(programa.segmentos,(void*) iterator);
+
 						free(buffer);
-						log_info(logger, "YA TIENE INCLUIDA LA LISTA DE SEGMENTO, FALTA REVISAR BIEN");
 						log_info(logger,"CUANDO FUNCIONE PODRIAMOS CREAR UNA FUNCION PARA ABSTRAER TODO EL CHOCLO(?");
-				
+				break; 
 				case -1:
 					/*while(cod_op_servidor =! -1){
 						close(socket_cliente);
