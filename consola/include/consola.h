@@ -54,4 +54,33 @@ void liberar_programa(t_informacion* informacion);
 
 t_list* listaSegmentos();
 
+
+
+
+//planificador largo plazo
+t_cod_planificador* cod_planificador ;
+
+// LISTAS
+t_list *LISTA_NEW;
+t_list *LISTA_READY;
+t_list *LISTA_EXEC;
+t_list *LISTA_BLOCKED;
+t_list *LISTA_EXIT;
+t_list *LISTA_SOCKETS;
+
+// MUTEX
+pthread_mutex_t mutex_creacion_ID;
+pthread_mutex_t mutex_lista_new;
+pthread_mutex_t mutex_lista_ready;
+pthread_mutex_t mutex_lista_exec;
+pthread_mutex_t mutex_lista_blocked;
+pthread_mutex_t mutex_lista_exit;
+
+// SEMAFOROS
+sem_t sem_planif_largo_plazo;
+sem_t contador_multiprogramacion;
+sem_t sem_ready;
+sem_t sem_bloqueo;
+sem_t sem_procesador;
+
 #endif

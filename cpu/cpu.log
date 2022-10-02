@@ -676,3 +676,14 @@
 [INFO] 02:24:48:255 CPU/(21332:21333): Se conecto un cliente!
 [ERROR] 02:25:21:154 CPU/(21332:21334): el cliente se desconecto. Terminando servidor
 >>>>>>> MergeConsolaKernel
+[INFO] 22:59:23:583 CPU/(26538:26540): Servidor listo para recibir al interrupt kernel
+[INFO] 22:59:23:583 CPU/(26538:26539): Servidor listo para recibir al dispatch kernel
+[INFO] 22:59:37:828 CPU/(26538:26540): Se conecto un cliente!
+[INFO] 22:59:37:828 CPU/(26538:26540): Me llego el mensaje soy el interrupt
+[INFO] 22:59:37:828 CPU/(26538:26539): Se conecto un cliente!
+[INFO] 23:01:39:611 CPU/(27066:27068): Servidor listo para recibir al interrupt kernel
+[INFO] 23:01:39:611 CPU/(27066:27067): Servidor listo para recibir al dispatch kernel
+[INFO] 23:01:46:430 CPU/(27066:27068): Se conecto un cliente!
+[INFO] 23:01:46:430 CPU/(27066:27068): Me llego el mensaje soy el interrupt
+[INFO] 23:01:46:430 CPU/(27066:27067): Se conecto un cliente!
+[ERROR] 23:08:28:296 CPU/(27066:27068): el cliente se desconecto. Terminando servidor
