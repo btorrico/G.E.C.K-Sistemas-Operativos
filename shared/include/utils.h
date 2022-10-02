@@ -9,6 +9,7 @@
 #include<string.h>
 #include<commons/log.h>
 #include<commons/config.h>
+#include<semaphore.h>
 #include<unistd.h>
 #include<netdb.h>
 #include<commons/collections/list.h>
@@ -21,7 +22,8 @@ typedef enum
 	MENSAJE,
 	PAQUETE,
 	NEW
-
+,
+	PROGRAMA
 }op_code;
 
 typedef enum
@@ -88,6 +90,26 @@ typedef struct
 } t_informacion;
 
 int size_char_array(char**) ;
+typedef struct
+{
+    uint8_t id;
+    //t_list instrucciones;
+    uint8_t program_counter;
+    uint8_t registro_CPU;
+    //t_list segmentos;
+
+} t_pcb;
+
+enum tipo_mensaje{
+    PCB
+};
+
+typedef enum
+{
+	AGREGAR_PCB,
+	ELIMINAR_PCB
+}t_cod_planificador;
+
 
 int crear_conexion(char* ip, char* puerto);
 void enviar_mensaje(char* mensaje, int socket_cliente);
@@ -97,12 +119,16 @@ void agregar_a_paquete(t_paquete* paquete, void* valor, int tamanio);
 void enviar_paquete(t_paquete* paquete, int socket_cliente);
 void liberar_conexion(int socket_cliente);
 void eliminar_paquete(t_paquete* paquete);
-
-
+t_buffer* cargar_buffer_a_t_pcb(t_pcb t_pcb);
+void cargar_buffer_a_paquete(t_buffer* buffer, int conexion);
+t_pcb* deserializar_pcb(t_buffer* buffer); 
+void deserializar_paquete (int conexion);
 //Utils del servidor
 
 
 extern t_log* logger;
+extern t_cod_planificador* cod_planificador;
+//extern t_log* loggerKernel;
 
 int iniciar_servidor(char* , char*);
 int esperar_cliente(int);
@@ -110,5 +136,33 @@ t_list* recibir_paquete(int);
 void recibir_mensaje(int);
 int recibir_operacion(int);
 void* recibir_buffer(int*, int);
+
+
+t_pcb* crear_pcb();
+
+// LISTAS
+extern t_list* LISTA_NEW;
+extern t_list* LISTA_READY;
+extern t_list* LISTA_EXEC;
+extern t_list* LISTA_BLOCKED;
+extern t_list* LISTA_EXIT;
+extern t_list* LISTA_SOCKETS;
+
+
+// MUTEX
+extern pthread_mutex_t mutex_creacion_ID;
+extern pthread_mutex_t mutex_lista_new;
+extern pthread_mutex_t mutex_lista_ready;
+extern pthread_mutex_t mutex_lista_exec;
+extern pthread_mutex_t mutex_lista_blocked;
+extern pthread_mutex_t mutex_lista_exit;
+
+
+// SEMAFOROS
+extern sem_t sem_planif_largo_plazo;
+extern sem_t contador_multiprogramacion;
+extern sem_t sem_ready;
+extern sem_t sem_bloqueo;
+extern sem_t sem_procesador;
 
 #endif /* UTILS_H_ */

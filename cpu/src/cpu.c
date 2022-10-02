@@ -56,8 +56,10 @@ void iniciar_servidor_dispatch()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
-	mostrar_mensajes_del_cliente(cliente_fd);
+	//mostrar_mensajes_del_cliente(cliente_fd);
 
+	deserializar_paquete(cliente_fd);
+    printf("se envio paquete en");
 	
 }
 

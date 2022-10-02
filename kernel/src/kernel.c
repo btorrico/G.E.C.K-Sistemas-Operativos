@@ -6,25 +6,25 @@ int main(int argc, char **argv)
 		return run_tests();
 	else
 	{
-		// Parte Server
-		logger = iniciar_logger("kernel.log", "KERNEL", LOG_LEVEL_DEBUG);
-
-		config = iniciar_config("kernel.config");
-
-		// creo el struct
-		extraerDatosConfig(config);
-
-		pthread_t thrConsola, thrCpu, thrMemoria;
+		iniciar_kernel();
+ 
+		pthread_t thrConsola, thrCpu, thrMemoria , thrPlanificadorLargoPlazo;
 
 		pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
 		pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 		pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
+		pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, &cod_planificador);
+
+		/*pthread_detach(&thrConsola);
+		pthread_detach(&thrCpu);
+		pthread_detach(&thrMemoria);
+		pthread_detach(&thrPlanificadorLargoPlazo);*/
 
 		pthread_join(thrConsola, NULL);
 		pthread_join(thrCpu, NULL);
 		pthread_join(thrMemoria, NULL);
+		pthread_join(thrPlanificadorLargoPlazo, NULL);
 
-		
 		log_destroy(logger);
 		config_destroy(config);
 	}
@@ -49,16 +49,14 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 	configKernel.algoritmo = config_get_string_value(archivoConfig, "ALGORITMO_PLANIFICACION");
 	configKernel.gradoMultiprogramacion = config_get_int_value(archivoConfig, "GRADO_MAX_MULTIPROGRAMACION");
 
-
-
 	return configKernel;
+	
 }
 
 void crear_hilo_consola()
 {
 
 	conectar_y_mostrar_mensajes_de_cliente(IP_SERVER, configKernel.puertoEscucha, logger);
-	
 }
 
 void crear_hilo_cpu()
@@ -76,9 +74,19 @@ void crear_hilo_cpu()
 void conectar_dispatch()
 {
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
-	enviar_mensaje("soy el dispatch", conexion);
+	//enviar_mensaje("soy el dispatch", conexion);
 
-	
+    
+	 t_pcb pcb;
+	pcb.id = 1;
+	pcb.program_counter = 10;
+	pcb.registro_CPU = 20;
+
+	t_buffer* buffer = cargar_buffer_a_t_pcb(pcb);
+
+	cargar_buffer_a_paquete(buffer, conexion);
+
+	printf("se envio paquete");
 }
 
 void conectar_interrupt()
@@ -86,14 +94,25 @@ void conectar_interrupt()
 
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
 	enviar_mensaje("soy el interrupt", conexion);
-
-	
 }
 
 void conectar_memoria()
 {
 	conexion = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
 	enviar_mensaje("hola memoria, soy el kernel", conexion);
+}
 
-	
+void iniciar_kernel()
+{
+
+	// Parte Server
+	logger = iniciar_logger("kernel.log", "KERNEL", LOG_LEVEL_DEBUG);
+
+	config = iniciar_config("kernel.config");
+
+	// creo el struct
+	extraerDatosConfig(config);
+
+	iniciar_listas_y_semaforos();
+
 }
