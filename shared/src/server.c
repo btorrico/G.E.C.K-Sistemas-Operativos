@@ -193,4 +193,5 @@ void eliminar_pcb(t_cod_planificador cod_planificador)
 t_pcb *crear_pcb()
 {
 	// TODO
+	
 }
