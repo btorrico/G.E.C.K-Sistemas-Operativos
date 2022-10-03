@@ -286,7 +286,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	buffer->size = sizeof(uint32_t)  // instrucciones_size
 				 + list_size(informacion->instrucciones) * sizeof(t_instruccion)
 				 + sizeof(uint32_t)  // segmentos_size
-				 + list_size(informacion->segmentos) * sizeof(t_list);
+				 + list_size(informacion->segmentos) * sizeof(char*);
 
 	void *stream = malloc(buffer->size);
 
@@ -311,8 +311,8 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	while (j < list_size(informacion->segmentos))
 	{
 
-		memcpy(stream + offset, list_get(informacion->segmentos, j), sizeof(t_list));
-		offset += sizeof(t_list);
+		memcpy(stream + offset, list_get(informacion->segmentos, j), sizeof(char*));
+		offset += sizeof(char*);
 		j++;
 		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
 		

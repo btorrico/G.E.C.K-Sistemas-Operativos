@@ -59,10 +59,10 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 					memcpy(&programa.instrucciones_size, buffer + offset, sizeof(uint32_t));
 					memcpy(&programa.segmentos_size, buffer + offset, sizeof(uint32_t));
 
-					int cantidadInstrucciones = (size - sizeof(uint32_t)) / sizeof(t_instruccion); // Calcula la cantidad de instrucciones
+					int cantidadInstrucciones = (size - sizeof(uint32_t)- sizeof(uint32_t) - (4 * sizeof(char*))) / sizeof(t_instruccion); // Calcula la cantidad de instrucciones
 				    offset += sizeof(uint32_t);										               // para recorrerlas al deserializar
 
-					int cantidadSegmentos= (size - sizeof(uint32_t)) / sizeof(t_list);
+					int cantidadSegmentos = (size - sizeof(uint32_t) - sizeof(uint32_t) -(8 * sizeof(t_instruccion))) / sizeof(char*);
 					offset += sizeof(uint32_t);
 
 					programa.instrucciones = list_create();
@@ -86,9 +86,9 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 					list_iterate(programa.instrucciones,(void*) iterator); // RETORNA 8 ESPACIOS VACIOS
 					
 					while (l < cantidadSegmentos) {
-						segmento = malloc(sizeof(char));
-							memcpy(segmento, buffer + offset, sizeof(char));
-							offset += sizeof(char);
+						segmento = malloc(sizeof(char*));
+							memcpy(segmento, buffer + offset, sizeof(char*));
+							offset += sizeof(char*);
 							list_add(programa.segmentos, segmento); 
 								l++;
 								

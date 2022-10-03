@@ -75,11 +75,11 @@ typedef struct
 } t_instruccion;  //__attribute__((packed)) 
 
 
-typedef struct 
+/* typedef struct 
 {
 	char** segmento;
 	uint32_t segmentos_size;
-} t_segmento;
+} t_segmento; */
 
 typedef struct 
 {	
