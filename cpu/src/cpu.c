@@ -58,8 +58,13 @@ void iniciar_servidor_dispatch()
 	int cliente_fd = esperar_cliente(server_fd);
 	//mostrar_mensajes_del_cliente(cliente_fd);
 
-	deserializar_paquete(cliente_fd);
-    printf("se envio paquete en");
+	t_paquete* paquete = recibirPaquete(cliente_fd);
+
+
+	t_pcb* pcb=deserializoPCB(paquete->buffer);
+	printf("\n%d.\n",pcb->id);
+	printf("\n%s.\n",pcb->instrucciones);
+    printf("se recibio pcb\n");
 	
 }
 

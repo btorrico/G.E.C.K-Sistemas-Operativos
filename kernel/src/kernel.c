@@ -7,8 +7,8 @@ int main(int argc, char **argv)
 	else
 	{
 		iniciar_kernel();
- 
-		pthread_t thrConsola, thrCpu, thrMemoria , thrPlanificadorLargoPlazo;
+
+		pthread_t thrConsola, thrCpu, thrMemoria, thrPlanificadorLargoPlazo;
 
 		pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
 		pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
@@ -50,7 +50,6 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 	configKernel.gradoMultiprogramacion = config_get_int_value(archivoConfig, "GRADO_MAX_MULTIPROGRAMACION");
 
 	return configKernel;
-	
 }
 
 void crear_hilo_consola()
@@ -74,19 +73,25 @@ void crear_hilo_cpu()
 void conectar_dispatch()
 {
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
-	//enviar_mensaje("soy el dispatch", conexion);
+	// enviar_mensaje("soy el dispatch", conexion);
 
-    
-	 t_pcb pcb;
-	pcb.id = 1;
-	pcb.program_counter = 10;
-	pcb.registro_CPU = 20;
+	t_pcb *pcb = (t_pcb*) malloc(sizeof(t_pcb));
+	pcb->id = 10;
+	pcb->program_counter = 0;
+	pcb->instrucciones = malloc(26 + 1);
 
-	t_buffer* buffer = cargar_buffer_a_t_pcb(pcb);
+	strcpy(pcb->instrucciones, "estas son las intrucciones");
+	pcb->ins_length = strlen(pcb->instrucciones) + 1;
 
-	cargar_buffer_a_paquete(buffer, conexion);
+	serializarPCB(conexion, pcb, DISPATCH_PCB);
 
-	printf("se envio paquete");
+	printf("\nse envio paquete.\n");
+
+	/*free(pcb->id);
+	free(pcb->program_counter);
+	free(pcb->instrucciones);
+	free(pcb->ins_length);
+	free(pcb);*/
 }
 
 void conectar_interrupt()
@@ -114,5 +119,4 @@ void iniciar_kernel()
 	extraerDatosConfig(config);
 
 	iniciar_listas_y_semaforos();
-
 }

@@ -262,6 +262,7 @@ int size_char_array(char** array) {
 	return i;
 }
 
+/*
 t_buffer *cargar_buffer_a_t_pcb(t_pcb t_pcb)
 {
 
@@ -361,4 +362,114 @@ t_pcb* deserializar_pcb(t_buffer* buffer) {
   
     return pcb;
 }
+*/
 
+
+
+//Serializar
+void serializarPCB(int socket, t_pcb* pcb, t_tipoMensaje tipoMensaje) {
+	t_buffer* buffer = malloc(sizeof(t_buffer));
+	buffer->size = sizeof(uint32_t)*3
+				//+ sizeof(double)*3
+				+ strlen(pcb->instrucciones) + 1;
+
+	void* stream = malloc(buffer->size);
+	int offset = 0;
+
+	memcpy(stream + offset, &pcb->id, sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+	//memcpy(stream + offset, &pcb->tamanio, sizeof(uint32_t));
+	//offset += sizeof(uint32_t);
+	memcpy(stream + offset, &pcb->program_counter, sizeof(uint32_t));
+	//offset += sizeof(uint32_t);
+	//memcpy(stream + offset, &pcb->tablaPag, sizeof(uint32_t));
+	//offset += sizeof(uint32_t);
+	/*memcpy(stream + offset, &pcb->estimacion_actual, sizeof(double));
+	offset += sizeof(double);
+	memcpy(stream + offset, &pcb->real_anterior, sizeof(double));
+	offset += sizeof(double);
+	memcpy(stream + offset, &pcb->ejecutados_total, sizeof(double));
+	offset += sizeof(double);*/
+
+	//primero agregamos el largo del char*
+	memcpy(stream + offset, &pcb->ins_length, sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+	memcpy(stream + offset, pcb->instrucciones, strlen(pcb->instrucciones) + 1);
+
+	buffer->stream= stream;
+
+	crearPaquete(buffer, tipoMensaje, socket);
+}
+
+void crearPaquete(t_buffer* buffer, t_tipoMensaje op, int unSocket) {
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->codigo_operacion = (uint8_t) op;
+	paquete->buffer = buffer;
+
+	void* a_enviar = malloc(buffer->size + sizeof(uint8_t) + sizeof(uint32_t));
+	int offset = 0;
+
+	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(uint8_t));
+	offset += sizeof(uint8_t);
+	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
+
+	send(unSocket, a_enviar, buffer->size + sizeof(uint8_t) + sizeof(uint32_t), 0);
+
+	free(a_enviar);
+	free(paquete->buffer->stream);
+	free(paquete->buffer);
+	free(paquete);
+}
+
+
+
+//Deserializar
+t_paquete* recibirPaquete(int socket) {
+	t_paquete* paquete = malloc(sizeof(t_paquete));
+	paquete->buffer = malloc(sizeof(t_buffer));
+
+	// Primero recibimos el codigo de operacion
+	int rec = recv(socket, &(paquete->codigo_operacion), sizeof(uint8_t), MSG_WAITALL);
+	if(rec <= 0){
+		return NULL;
+	}
+
+	// Después ya podemos recibir el buffer. Primero su tamaño seguido del contenido
+	recv(socket, &(paquete->buffer->size), sizeof(uint32_t), MSG_WAITALL);
+	paquete->buffer->stream = malloc(paquete->buffer->size);
+	recv(socket, paquete->buffer->stream, paquete->buffer->size, MSG_WAITALL);
+
+	return paquete;
+}
+
+
+t_pcb* deserializoPCB(t_buffer* buffer){
+	t_pcb* pcb = malloc(sizeof(t_pcb));
+
+	void* stream = buffer->stream;
+
+	// Deserializamos los campos que tenemos en el buffer
+	memcpy(&(pcb->id), stream, sizeof(uint32_t));
+	stream += sizeof(uint32_t);
+	//memcpy(&(pcb->tamanio), stream, sizeof(uint32_t));
+	//stream += sizeof(uint32_t);
+	memcpy(&(pcb->program_counter), stream, sizeof(uint32_t));
+//	stream += sizeof(uint32_t);
+	//memcpy(&(pcb->tablaPag), stream, sizeof(uint32_t));
+	//stream += sizeof(uint32_t);
+	//memcpy(&(pcb->estimacion_actual), stream, sizeof(double));
+	//stream += sizeof(double);
+	//memcpy(&(pcb->real_anterior), stream, sizeof(double));
+	//stream += sizeof(double);
+	//memcpy(&(pcb->ejecutados_total), stream, sizeof(double));
+	//stream += sizeof(double);
+
+	// char*
+	memcpy(&(pcb->ins_length), stream, sizeof(uint32_t));
+	stream += sizeof(uint32_t);
+	pcb->instrucciones = malloc(pcb->ins_length);
+	memcpy(pcb->instrucciones, stream, pcb->ins_length);
+	return pcb;
+}
