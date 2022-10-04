@@ -21,7 +21,7 @@ void iteratorInt(int value);
 void cambiaValor();
 void planifLargoPlazo(t_cod_planificador*);
 
-
+void recibir_informacion(int cliente_fd);
 
 // //t_cod_planificador* cod_planificador ;
 

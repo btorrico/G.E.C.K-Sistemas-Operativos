@@ -14,13 +14,21 @@
 #include "client.h"
 #include "server.h"
 #include "tests.h"
+#include "instrucciones.h"
+#include "programa.h"
 
 	// rutaArchivoConfiguracion = ;
 	// rutaInstrucciones = "./pseudocodigo/pseudocodigo";
 
-t_config *config;
+
 int conexion;
+
+
+
+t_config *config;
+
 char *rutaArchivoConfiguracion;
+
 char *rutaInstrucciones;
 
 typedef struct
@@ -33,17 +41,16 @@ typedef struct
 
 t_configConsola configConsola;
 
+
 /*******Funcion que permite leer la configuracion del puerrto y la ip del kernel*******/
 t_configConsola extraerDatosConfig(t_config * ruta);
+
 
 /*******Funcion que recibe y valida los argumentos que se ingresan cuando se inicia el modulo *******/
 void obtenerArgumentos(int, char **);
 
 FILE *abrirArchivo(char *);
 
-void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instrucciones);
-
-t_registro devolverRegistro(char *);
 
 /**Funcion que crea la estructura que sera enviada**/
 t_informacion* crearInformacion(); 

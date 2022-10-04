@@ -49,8 +49,33 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 			list_iterate(lista, (void *)iterator);
 			break; 
 			    case NEW:
-				// PROBAR LAS CONSOLAS 
-					log_info(logger, "Llegaron las instrucciones y los segmentos"); // Ya casi!
+
+					log_info(logger, "Llegaron las instrucciones y los segmentos"); 
+					
+					recibir_informacion(cliente_fd);
+						
+				break; 
+		case PROGRAMA:
+			t_pcb *pcb = crear_pcb();
+
+			pasar_a_new(pcb);
+
+			planifLargoPlazo(AGREGAR_PCB);
+		case -1:
+			/*while(cod_op_servidor =! -1){
+				close(socket_cliente);
+			}*/
+			log_error(logger, "el cliente se desconecto. Terminando servidor");
+			y = 0;
+			break;
+		default:
+			log_warning(logger, "Operacion desconocida. No quieras meter la pata");
+			break;
+		}
+	}
+}
+
+		void recibir_informacion(cliente_fd){
 					int size;
 					void* buffer = recibir_buffer(&size, cliente_fd);
 					t_informacion programa;
@@ -83,7 +108,14 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 
 					}
 
-					list_iterate(programa.instrucciones,(void*) iterator); // RETORNA 8 ESPACIOS VACIOS
+						printf("Instrucciones:");
+					for (int i = 0; i < list_size(programa.instrucciones); ++i) {
+						t_instruccion* instruccion= list_get(programa.instrucciones, i);
+							
+						printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+						}
+
 					
 					while (l < cantidadSegmentos) {
 						segmento = malloc(sizeof(char*));
@@ -94,30 +126,12 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 								
 							
 					}
-							list_iterate(programa.segmentos,(void*) iterator);	
-					
+					printf("\n\nSegmentos:");
+
+					printf("\n[%s,%s,%s,%s]\n",list_get(programa.segmentos,0), list_get(programa.segmentos,1), list_get(programa.segmentos,2), list_get(programa.segmentos,3));
+							
 
 						free(buffer);
-						log_info(logger,"CUANDO FUNCIONE PODRIAMOS CREAR UNA FUNCION PARA ABSTRAER TODO EL CHOCLO(?");
-				break; 
-		case PROGRAMA:
-			t_pcb *pcb = crear_pcb();
-
-			pasar_a_new(pcb);
-
-			planifLargoPlazo(AGREGAR_PCB);
-		case -1:
-			/*while(cod_op_servidor =! -1){
-				close(socket_cliente);
-			}*/
-			log_error(logger, "el cliente se desconecto. Terminando servidor");
-			y = 0;
-			break;
-		default:
-			log_warning(logger, "Operacion desconocida. No quieras meter la pata");
-			break;
-		}
-	}
 }
 
 void iterator(char *value)
