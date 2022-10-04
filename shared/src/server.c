@@ -82,13 +82,9 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 					int offset = 0;
 
 					memcpy(&(programa.instrucciones_size), buffer + offset, sizeof(uint32_t));
+					offset += sizeof(uint32_t);
 					memcpy(&(programa.segmentos_size), buffer + offset, sizeof(uint32_t));
-
-					/* int cantidadInstrucciones = (size - sizeof(uint32_t)- sizeof(uint32_t) - (programa.segmentos_size * sizeof(char*))) / sizeof(t_instruccion); // Calcula la cantidad de instrucciones
-				    offset += sizeof(uint32_t);										               // para recorrerlas al deserializar
-
-					int cantidadSegmentos = (size - sizeof(uint32_t) - sizeof(uint32_t) -(programa.instrucciones_size * sizeof(t_instruccion))) / sizeof(char*);
-					offset += sizeof(uint32_t); */
+					offset += sizeof(uint32_t);
 
 					programa.instrucciones = list_create();
 					t_instruccion* instruccion;

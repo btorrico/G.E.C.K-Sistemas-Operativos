@@ -116,7 +116,8 @@ t_list* listaSegmentos(){
 	for(int i=0; i<size_char_array(configConsola.segmentos); i++) {
 
 		//uint32_t segmento = atoi(configConsola.segmentos[i]);	
-		char* segmento = (char*)configConsola.segmentos[i];	 //De esta forma se crea una lista de segmentos de tipo char*
+		char* segmento = string_new();
+		string_append(&segmento,configConsola.segmentos[i]);	 //De esta forma se crea una lista de segmentos de tipo char*
 		//del lado del kernel podriamos despues de serializar podriamos obtener cada elemento y convertirlo a int
 
 		list_add(listaDeSegmentos,segmento);
@@ -158,7 +159,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 
 	void *stream = malloc(buffer->size);
 
-	int offset = 0; // Desplazamiento
+	int offset = 0; // Desplazamiento 
 	memcpy(stream + offset, &(informacion->instrucciones->elements_count), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 	
