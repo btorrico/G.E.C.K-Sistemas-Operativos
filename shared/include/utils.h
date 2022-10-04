@@ -72,7 +72,7 @@ typedef struct
     uint32_t paramInt;
 	t_IO paramIO;
 	t_registro paramReg[2]; 
-} t_instruccion;  //__attribute__((packed)) 
+} __attribute__((packed)) t_instruccion; 
 
 
 /* typedef struct 
@@ -87,7 +87,7 @@ typedef struct
 	uint32_t instrucciones_size;
 	t_list* segmentos;
 	uint32_t segmentos_size;
-} t_informacion;
+} __attribute__((packed)) t_informacion;
 
 int size_char_array(char**) ;
 typedef struct

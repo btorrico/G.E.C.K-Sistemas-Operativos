@@ -159,10 +159,10 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	void *stream = malloc(buffer->size);
 
 	int offset = 0; // Desplazamiento
-	memcpy(stream + offset, &(informacion->instrucciones_size), sizeof(uint32_t));
+	memcpy(stream + offset, &(informacion->instrucciones->elements_count), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 	
-	memcpy(stream + offset, &(informacion->segmentos_size), sizeof(uint32_t));
+	memcpy(stream + offset, &(informacion->segmentos->elements_count), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 	// Serializa las instrucciones
 	int i = 0;

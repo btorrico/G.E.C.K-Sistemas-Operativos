@@ -81,14 +81,14 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 					t_informacion programa;
 					int offset = 0;
 
-					memcpy(&programa.instrucciones_size, buffer + offset, sizeof(uint32_t));
-					memcpy(&programa.segmentos_size, buffer + offset, sizeof(uint32_t));
+					memcpy(&(programa.instrucciones_size), buffer + offset, sizeof(uint32_t));
+					memcpy(&(programa.segmentos_size), buffer + offset, sizeof(uint32_t));
 
-					int cantidadInstrucciones = (size - sizeof(uint32_t)- sizeof(uint32_t) - (4 * sizeof(char*))) / sizeof(t_instruccion); // Calcula la cantidad de instrucciones
+					/* int cantidadInstrucciones = (size - sizeof(uint32_t)- sizeof(uint32_t) - (programa.segmentos_size * sizeof(char*))) / sizeof(t_instruccion); // Calcula la cantidad de instrucciones
 				    offset += sizeof(uint32_t);										               // para recorrerlas al deserializar
 
-					int cantidadSegmentos = (size - sizeof(uint32_t) - sizeof(uint32_t) -(8 * sizeof(t_instruccion))) / sizeof(char*);
-					offset += sizeof(uint32_t);
+					int cantidadSegmentos = (size - sizeof(uint32_t) - sizeof(uint32_t) -(programa.instrucciones_size * sizeof(t_instruccion))) / sizeof(char*);
+					offset += sizeof(uint32_t); */
 
 					programa.instrucciones = list_create();
 					t_instruccion* instruccion;
@@ -99,7 +99,7 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 					int k = 0;
 					int l =0;
 
-					while (k < cantidadInstrucciones) {
+					while (k < (programa.instrucciones_size)) {
 						instruccion = malloc(sizeof(t_instruccion));
 							memcpy(instruccion, buffer + offset, sizeof(t_instruccion));
 							offset += sizeof(t_instruccion);
@@ -109,7 +109,7 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 					}
 
 						printf("Instrucciones:");
-					for (int i = 0; i < list_size(programa.instrucciones); ++i) {
+					for (int i = 0; i < programa.instrucciones_size; ++i) {
 						t_instruccion* instruccion= list_get(programa.instrucciones, i);
 							
 						printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
@@ -117,7 +117,7 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 						}
 
 					
-					while (l < cantidadSegmentos) {
+					while (l < (programa.segmentos_size)) {
 						segmento = malloc(sizeof(char*));
 							memcpy(segmento, buffer + offset, sizeof(char*));
 							offset += sizeof(char*);

@@ -15,7 +15,6 @@
 #include "server.h"
 #include "tests.h"
 #include "instrucciones.h"
-#include "programa.h"
 
 	// rutaArchivoConfiguracion = ;
 	// rutaInstrucciones = "./pseudocodigo/pseudocodigo";
