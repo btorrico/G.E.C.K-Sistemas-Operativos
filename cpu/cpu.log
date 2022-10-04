@@ -781,3 +781,12 @@
 [INFO] 00:39:44:861 CPU/(8244:8245): Se conecto un cliente!
 [INFO] 00:39:44:861 CPU/(8244:8246): Se conecto un cliente!
 [INFO] 00:39:44:861 CPU/(8244:8246): Me llego el mensaje soy el interrupt
+[ERROR] 00:41:21:605 CPU/(8244:8246): el cliente se desconecto. Terminando servidor
+[INFO] 01:58:29:699 CPU/(9304:9306): Servidor listo para recibir al interrupt kernel
+[INFO] 01:58:29:699 CPU/(9304:9305): Servidor listo para recibir al dispatch kernel
+[INFO] 01:58:36:549 CPU/(9304:9306): Se conecto un cliente!
+[INFO] 01:58:36:549 CPU/(9304:9306): Me llego el mensaje soy el interrupt
+[INFO] 01:58:36:549 CPU/(9304:9305): Se conecto un cliente!
+[INFO] 04:17:13:151 CPU/(12086:12088): Servidor listo para recibir al interrupt kernel
+[INFO] 04:17:13:152 CPU/(12086:12087): Servidor listo para recibir al dispatch kernel
+[INFO] 04:17:41:626 CPU/(12086:12087): Se conecto un cliente!

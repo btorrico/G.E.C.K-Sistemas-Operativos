@@ -85,8 +85,11 @@ typedef struct
 {	
 	t_list* instrucciones;
 	uint32_t instrucciones_size;
+	t_list* longitudInst;
 	t_list* segmentos;
 	uint32_t segmentos_size;
+	t_list* longitudSegm;
+	
 } t_informacion;
 
 int size_char_array(char**) ;
@@ -99,15 +102,16 @@ typedef struct
 {
     uint32_t id;
 	//uint32_t tamanio;
-    char* instrucciones;
-	uint32_t ins_length;
+    //char* instrucciones;
+	//uint32_t ins_length;
     uint32_t program_counter;
     //uint8_t registro_CPU;
 	//uint32_t tablaPag; // definir con memoria
 	//double estimacion_actual;
 	//double real_anterior;
 	//double ejecutados_total;
-    //t_list segmentos;
+	
+    t_informacion informacion;
 
 } t_pcb;
 

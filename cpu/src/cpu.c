@@ -63,7 +63,8 @@ void iniciar_servidor_dispatch()
 
 	t_pcb* pcb=deserializoPCB(paquete->buffer);
 	printf("\n%d.\n",pcb->id);
-	printf("\n%s.\n",pcb->instrucciones);
+	printf("\n%s.\n",list_get(pcb->informacion.instrucciones,0));
+	printf("\n%s.\n",list_get(pcb->informacion.segmentos,1));
     printf("se recibio pcb\n");
 	
 }

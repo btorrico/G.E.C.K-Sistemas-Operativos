@@ -251,3 +251,7 @@ t_pcb *crear_pcb()
 	// TODO
 	
 }
+
+
+
+	
