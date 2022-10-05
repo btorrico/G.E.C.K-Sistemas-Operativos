@@ -328,7 +328,7 @@ void deserializar_paquete (int conexion)
 	recv(conexion, paquete->buffer->stream, paquete->buffer->size, 0);
 
 
-printf("estoy en seserializar_paquete");
+printf("Estoy en seserializar_paquete");
 	// Ahora en función del código recibido procedemos a deserializar el resto
 	switch (paquete->codigo_operacion)
 	{

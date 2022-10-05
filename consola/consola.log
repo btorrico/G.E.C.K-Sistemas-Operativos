@@ -7129,3 +7129,68 @@ instCode: 5, paramInt: -1, paramReg[0]: -1,paramReg[1] -1, dispositivoIO: -1
 [INFO] 22:22:22:175 CONSOLA/(32681:32681): 
  Iniciando consola...
 [INFO] 22:22:22:176 CONSOLA/(32681:32681): Se parsearon #Instrucciones: 8
+[INFO] 01:29:24:754 CONSOLA/(59047:59047): 
+ Iniciando consola...
+[INFO] 01:29:24:756 CONSOLA/(59047:59047): Se parsearon #Instrucciones: 8
+[INFO] 01:42:45:926 CONSOLA/(59815:59815): 
+ Iniciando consola...
+[INFO] 01:42:45:933 CONSOLA/(59815:59815): Se parsearon #Instrucciones: 8
+[INFO] 02:37:47:401 CONSOLA/(60439:60439): 
+ Iniciando consola...
+[INFO] 02:37:47:403 CONSOLA/(60439:60439): Se parsearon #Instrucciones: 8
+[INFO] 02:37:47:404 CONSOLA/(60439:60439): Todo enviado!
+
+[INFO] 02:38:22:959 CONSOLA/(60565:60565): 
+ Iniciando consola...
+[INFO] 02:38:22:961 CONSOLA/(60565:60565): Se parsearon #Instrucciones: 8
+[INFO] 02:39:21:540 CONSOLA/(61037:61037): 
+ Iniciando consola...
+[INFO] 02:39:21:542 CONSOLA/(61037:61037): Se parsearon #Instrucciones: 8
+[INFO] 02:39:21:542 CONSOLA/(61037:61037): Todo enviado!
+
+[INFO] 02:39:21:542 CONSOLA/(61037:61037): Resultado de mensaje: Quedate tranqui consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:15:35:610 CONSOLA/(62281:62281): 
+ Iniciando consola...
+[INFO] 03:15:35:610 CONSOLA/(62281:62281): Se parsearon #Instrucciones: 8
+[INFO] 03:15:35:611 CONSOLA/(62281:62281): Todo enviado!
+
+[INFO] 03:15:35:611 CONSOLA/(62281:62281): Resultado de mensaje: Quedate tranqui consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:19:00:400 CONSOLA/(62693:62693): 
+ Iniciando consola...
+[INFO] 03:19:00:402 CONSOLA/(62693:62693): Se parsearon #Instrucciones: 8
+[INFO] 03:19:37:607 CONSOLA/(62897:62897): 
+ Iniciando consola...
+[INFO] 03:19:37:609 CONSOLA/(62897:62897): Se parsearon #Instrucciones: 8
+[INFO] 03:19:37:609 CONSOLA/(62897:62897): Todo enviado!
+
+[INFO] 03:19:37:609 CONSOLA/(62897:62897): Resultado de mensaje: Quedate tranqui consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:21:43:863 CONSOLA/(63317:63317): 
+ Iniciando consola...
+[INFO] 03:21:43:866 CONSOLA/(63317:63317): Se parsearon #Instrucciones: 8
+[INFO] 03:21:43:866 CONSOLA/(63317:63317): Todo enviado!
+
+[INFO] 03:21:43:866 CONSOLA/(63317:63317): Resultado de mensaje: Quedate tranqui consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:29:54:874 CONSOLA/(63875:63875): 
+ Iniciando consola...
+[INFO] 03:29:54:875 CONSOLA/(63875:63875): Se parsearon #Instrucciones: 8
+[INFO] 03:29:54:876 CONSOLA/(63875:63875): Todo enviado!
+
+[INFO] 03:29:54:876 CONSOLA/(63875:63875): Resultado de mensaje: Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:40:59:482 CONSOLA/(64479:64479): 
+ Iniciando consola...
+[INFO] 03:40:59:483 CONSOLA/(64479:64479): Se parsearon #Instrucciones: 8
+[INFO] 03:40:59:483 CONSOLA/(64479:64479): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 03:40:59:483 CONSOLA/(64479:64479): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+

@@ -53,6 +53,8 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 					log_info(logger, "Llegaron las instrucciones y los segmentos"); 
 					
 					recibir_informacion(cliente_fd);
+
+					enviarResultado(cliente_fd, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
 						
 				break; 
 		case PROGRAMA:
@@ -261,3 +263,4 @@ t_pcb *crear_pcb()
 	// TODO
 	
 }
+

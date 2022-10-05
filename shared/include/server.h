@@ -10,6 +10,7 @@
 #include "../globals.h"
 
 
+
 void conectar_y_mostrar_mensajes_de_cliente(char*, char*, t_log*);
 void mostrar_mensajes_del_cliente(int);
 int crear_hilos(int );
@@ -22,6 +23,7 @@ void cambiaValor();
 void planifLargoPlazo(t_cod_planificador*);
 
 void recibir_informacion(int cliente_fd);
+
 
 // //t_cod_planificador* cod_planificador ;
 

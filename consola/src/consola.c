@@ -33,16 +33,25 @@ int main(int argc, char **argv)
 		enviar_mensaje("Hola", conexion);
 
 		// Armamos y enviamos el paquete
-		paquete(conexion);
+		//	paquete(conexion);
 
-		//--------
 		enviar_paquete(nuevoPaquete, conexion);
 		eliminar_paquete(nuevoPaquete);
 		liberar_programa(informacion);
 		//---
+		log_info(logger,"Se enviaron todas las instrucciones y los segmentos!\n");
+
+		char* mensaje = recibirMensaje(conexion);
+
+		log_info(logger,"Mensaje de confirmacion del Kernel : %s\n",mensaje);
+
+		//Falta dejar a la consola en espera de nuevos mensajes del kernel...
+		
 		terminar_programa(conexion, logger, config);
+
 	}
 }
+
 
 
 void leerConfig(char *rutaConfig)

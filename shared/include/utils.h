@@ -75,12 +75,6 @@ typedef struct
 } __attribute__((packed)) t_instruccion; 
 
 
-/* typedef struct 
-{
-	char** segmento;
-	uint32_t segmentos_size;
-} t_segmento; */
-
 typedef struct 
 {	
 	t_list* instrucciones;
@@ -110,33 +104,81 @@ typedef enum
 	ELIMINAR_PCB
 }t_cod_planificador;
 
+/*
+
+ ██████╗██╗     ██╗███████╗███╗   ██╗████████╗███████╗
+██╔════╝██║     ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝
+██║     ██║     ██║█████╗  ██╔██╗ ██║   ██║   █████╗  
+██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   ██╔══╝  
+╚██████╗███████╗██║███████╗██║ ╚████║   ██║   ███████╗
+ ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
+                                                      
+*/
 
 int crear_conexion(char* ip, char* puerto);
-void enviar_mensaje(char* mensaje, int socket_cliente);
-t_paquete* crear_paquete(void);
-t_paquete* crear_super_paquete(void);
-void agregar_a_paquete(t_paquete* paquete, void* valor, int tamanio);
-void enviar_paquete(t_paquete* paquete, int socket_cliente);
-void liberar_conexion(int socket_cliente);
-void eliminar_paquete(t_paquete* paquete);
-t_buffer* cargar_buffer_a_t_pcb(t_pcb t_pcb);
-void cargar_buffer_a_paquete(t_buffer* buffer, int conexion);
-t_pcb* deserializar_pcb(t_buffer* buffer); 
-void deserializar_paquete (int conexion);
-//Utils del servidor
 
+void enviar_mensaje(char* mensaje, int socket_cliente);
+
+t_paquete* crear_paquete(void);
+
+t_paquete* crear_super_paquete(void);
+
+void agregar_a_paquete(t_paquete* paquete, void* valor, int tamanio);
+
+void enviar_paquete(t_paquete* paquete, int socket_cliente);
+
+void liberar_conexion(int socket_cliente);
+
+void eliminar_paquete(t_paquete* paquete);
+
+t_buffer* cargar_buffer_a_t_pcb(t_pcb t_pcb);
+
+void cargar_buffer_a_paquete(t_buffer* buffer, int conexion);
+
+t_pcb* deserializar_pcb(t_buffer* buffer); 
+
+void deserializar_paquete (int conexion);
+
+
+/*
+███████╗███████╗██████╗ ██╗   ██╗██╗██████╗  ██████╗ ██████╗ 
+██╔════╝██╔════╝██╔══██╗██║   ██║██║██╔══██╗██╔═══██╗██╔══██╗
+███████╗█████╗  ██████╔╝██║   ██║██║██║  ██║██║   ██║██████╔╝
+╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██║██║  ██║██║   ██║██╔══██╗
+███████║███████╗██║  ██║ ╚████╔╝ ██║██████╔╝╚██████╔╝██║  ██║
+╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
+                                                             
+*/
+
+int iniciar_servidor(char* , char*);
+
+int esperar_cliente(int);
+
+t_list* recibir_paquete(int);
+
+void recibir_mensaje(int);
+
+int recibir_operacion(int);
+
+void* recibir_buffer(int*, int);
+
+
+
+/*
+
+██████╗ ██╗      █████╗ ███╗   ██╗██╗███████╗██╗ ██████╗ █████╗  ██████╗██╗ ██████╗ ███╗   ██╗
+██╔══██╗██║     ██╔══██╗████╗  ██║██║██╔════╝██║██╔════╝██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║
+██████╔╝██║     ███████║██╔██╗ ██║██║█████╗  ██║██║     ███████║██║     ██║██║   ██║██╔██╗ ██║
+██╔═══╝ ██║     ██╔══██║██║╚██╗██║██║██╔══╝  ██║██║     ██╔══██║██║     ██║██║   ██║██║╚██╗██║
+██║     ███████╗██║  ██║██║ ╚████║██║██║     ██║╚██████╗██║  ██║╚██████╗██║╚██████╔╝██║ ╚████║
+╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝
+                                                                                              
+
+*/
 
 extern t_log* logger;
 extern t_cod_planificador* cod_planificador;
 //extern t_log* loggerKernel;
-
-int iniciar_servidor(char* , char*);
-int esperar_cliente(int);
-t_list* recibir_paquete(int);
-void recibir_mensaje(int);
-int recibir_operacion(int);
-void* recibir_buffer(int*, int);
-
 
 t_pcb* crear_pcb();
 
