@@ -120,6 +120,61 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 	}
 }
 
+void recibir_informacion(cliente_fd){
+					int size;
+					void* buffer = recibir_buffer(&size, cliente_fd);
+					t_informacion programa;
+					int offset = 0;
+
+					memcpy(&(programa.instrucciones_size), buffer + offset, sizeof(uint32_t));
+					offset += sizeof(uint32_t);
+					memcpy(&(programa.segmentos_size), buffer + offset, sizeof(uint32_t));
+					offset += sizeof(uint32_t);
+
+					programa.instrucciones = list_create();
+					t_instruccion* instruccion;
+
+				    programa.segmentos = list_create(); 
+					char* segmento;
+					
+					int k = 0;
+					int l =0;
+
+					while (k < (programa.instrucciones_size)) {
+						instruccion = malloc(sizeof(t_instruccion));
+							memcpy(instruccion, buffer + offset, sizeof(t_instruccion));
+							offset += sizeof(t_instruccion);
+							list_add(programa.instrucciones, instruccion);
+								k++;
+
+					}
+
+						printf("Instrucciones:");
+					for (int i = 0; i < programa.instrucciones_size; ++i) {
+						t_instruccion* instruccion= list_get(programa.instrucciones, i);
+							
+						printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+						}
+
+					
+					while (l < (programa.segmentos_size)) {
+						segmento = malloc(sizeof(char*));
+							memcpy(segmento, buffer + offset, sizeof(char*));
+							offset += sizeof(char*);
+							list_add(programa.segmentos, segmento); 
+								l++;
+								
+							
+					}
+					printf("\n\nSegmentos:");
+
+					printf("\n[%s,%s,%s,%s]\n",list_get(programa.segmentos,0), list_get(programa.segmentos,1), list_get(programa.segmentos,2), list_get(programa.segmentos,3));
+							
+
+						free(buffer);
+}
+
 void iterator(char *value)
 {
 

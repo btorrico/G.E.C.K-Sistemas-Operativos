@@ -72,7 +72,7 @@ typedef struct
     uint32_t paramInt;
 	t_IO paramIO;
 	t_registro paramReg[2]; 
-} t_instruccion;  //__attribute__((packed)) 
+}  __attribute__((packed))  t_instruccion;
 
 
 typedef struct 
@@ -161,7 +161,7 @@ void deserializar_paquete (int conexion);
 void serializarPCB(int socket, t_pcb* pcb, t_tipoMensaje tipoMensaje);
 void crearPaquete(t_buffer* buffer, t_tipoMensaje op, int unSocket);
 t_paquete* recibirPaquete(int socket);
-t_pcb* deserializoPCB(t_buffer* buffer);
+t_pcb* deserializoPCB(t_buffer* buffer, int socket);
 
 extern t_log* logger;
 extern t_cod_planificador* cod_planificador;
