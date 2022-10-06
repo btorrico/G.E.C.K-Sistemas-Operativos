@@ -20,6 +20,7 @@ void iteratorInt(int value);
 
 void cambiaValor();
 void planifLargoPlazo(t_cod_planificador*);
+void planifCortoPlazo(t_cod_planificador* , int);
 
 
 

@@ -196,6 +196,11 @@ void planifLargoPlazo(t_cod_planificador *cod_planificador)
 		break;
 	}
 }
+
+void planifCortoPlazo(t_cod_planificador *cod_planificador, int quantum){
+
+}
+
 void pasar_a_new(t_pcb *pcb)
 {
 	pthread_mutex_lock(&mutex_lista_new);

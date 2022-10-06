@@ -8,25 +8,9 @@ int main(int argc, char **argv)
 	{
 		iniciar_kernel();
 
-		pthread_t thrConsola, thrCpu, thrMemoria, thrPlanificadorLargoPlazo;
+		crear_hilos_kernel();
 
-		pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
-		pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
-		pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
-		pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, &cod_planificador);
-
-		/*pthread_detach(&thrConsola);
-		pthread_detach(&thrCpu);
-		pthread_detach(&thrMemoria);
-		pthread_detach(&thrPlanificadorLargoPlazo);*/
-
-		pthread_join(thrConsola, NULL);
-		pthread_join(thrCpu, NULL);
-		pthread_join(thrMemoria, NULL);
-		pthread_join(thrPlanificadorLargoPlazo, NULL);
-
-		log_destroy(logger);
-		config_destroy(config);
+	
 	}
 }
 
@@ -51,6 +35,28 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 
 	return configKernel;
 }
+void crear_hilos_kernel(){
+	pthread_t thrConsola, thrCpu, thrMemoria, thrPlanificadorLargoPlazo , thrPlanificadorCortoPlazo;
+
+		pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
+		pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
+		pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
+		pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, &cod_planificador);
+		pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, (&cod_planificador, &quantum));//cargar el quantum
+
+		
+		pthread_detach(&thrCpu);
+		pthread_detach(&thrPlanificadorCortoPlazo);
+		pthread_detach(&thrMemoria);
+		pthread_detach(&thrPlanificadorLargoPlazo);
+
+
+		pthread_join(thrConsola, NULL);//falta que consola funcione con detach
+	
+
+		log_destroy(logger);
+		config_destroy(config);
+}
 
 void crear_hilo_consola()
 {
@@ -66,8 +72,8 @@ void crear_hilo_cpu()
 	pthread_create(&thrDispatch, NULL, (void *)conectar_dispatch, NULL);
 	pthread_create(&thrInterrupt, NULL, (void *)conectar_interrupt, NULL);
 
-	pthread_join(thrDispatch, NULL);
-	pthread_join(thrInterrupt, NULL);
+	pthread_detach(thrDispatch);
+	pthread_detach(thrInterrupt);
 }
 
 void conectar_dispatch()
@@ -122,3 +128,5 @@ void iniciar_kernel()
 
 	iniciar_listas_y_semaforos();
 }
+
+
