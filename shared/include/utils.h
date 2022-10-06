@@ -83,12 +83,12 @@ typedef struct
 
 typedef struct 
 {	
-	t_list* instrucciones;
+	char* instrucciones;
 	uint32_t instrucciones_size;
-	t_list* longitudInst;
-	t_list* segmentos;
+	
+	char* segmentos;
 	uint32_t segmentos_size;
-	t_list* longitudSegm;
+	
 	
 } t_informacion;
 
@@ -161,7 +161,7 @@ void deserializar_paquete (int conexion);
 void serializarPCB(int socket, t_pcb* pcb, t_tipoMensaje tipoMensaje);
 void crearPaquete(t_buffer* buffer, t_tipoMensaje op, int unSocket);
 t_paquete* recibirPaquete(int socket);
-t_pcb* deserializoPCB(t_buffer* buffer, int socket);
+t_pcb* deserializoPCB(t_buffer* buffer);
 
 extern t_log* logger;
 extern t_cod_planificador* cod_planificador;

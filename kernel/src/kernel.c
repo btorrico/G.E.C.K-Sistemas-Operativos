@@ -73,14 +73,19 @@ void crear_hilo_cpu()
 void conectar_dispatch()
 {
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
-	// enviar_mensaje("soy el dispatch", conexion);
+	
 
 	t_pcb *pcb = (t_pcb*) malloc(sizeof(t_pcb));
 	pcb->id = 10;
 	pcb->program_counter = 0;
-	//pcb->instrucciones = malloc(26 + 1);
+	pcb->informacion.instrucciones = malloc(26 + 1);
 
-	pcb->informacion.instrucciones = malloc(sizeof(t_list));
+	strcpy(pcb->informacion.instrucciones, "estas son las intrucciones");
+	pcb->informacion.instrucciones_size = strlen(pcb->informacion.instrucciones) + 1;
+
+	
+
+	/*pcb->informacion.instrucciones = malloc(sizeof(t_list));
 	list_add(pcb->informacion.instrucciones,"SET AX 1");
 	list_add(pcb->informacion.instrucciones,"EXIT");
 
@@ -90,20 +95,14 @@ void conectar_dispatch()
 	list_add(pcb->informacion.segmentos, 64);
 	list_add(pcb->informacion.segmentos, 256);
 
-	pcb->informacion.segmentos_size = list_size(pcb->informacion.segmentos);
-
-	/*strcpy(pcb->instrucciones, "estas son las intrucciones");
-	pcb->ins_length = strlen(pcb->instrucciones) + 1;*/
+	pcb->informacion.segmentos_size = list_size(pcb->informacion.segmentos);*/
 
 	serializarPCB(conexion, pcb, DISPATCH_PCB);
 
+	
+
 	printf("\nse envio paquete.\n");
 
-	/*free(pcb->id);
-	free(pcb->program_counter);
-	free(pcb->instrucciones);
-	free(pcb->ins_length);
-	free(pcb);*/
 }
 
 void conectar_interrupt()
