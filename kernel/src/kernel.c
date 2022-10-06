@@ -78,27 +78,16 @@ void conectar_dispatch()
 	t_pcb *pcb = (t_pcb*) malloc(sizeof(t_pcb));
 	pcb->id = 10;
 	pcb->program_counter = 0;
-	//pcb->informacion.instrucciones = (t_instruccion*) malloc( sizeof(t_instruccion));
 	pcb->informacion.instrucciones = list_create();
-	
-
-
-	//strcpy(pcb->informacion.instrucciones, "estas son las intrucciones");
-	//pcb->informacion.instrucciones_size = list_size(pcb->informacion.instrucciones)  * sizeof(t_instruccion);
+	pcb->informacion.segmentos = list_create();
 
     list_add(pcb->informacion.instrucciones,"SET AX 1");
-	//list_add(pcb->informacion.instrucciones,"EXIT");
-	/*pcb->informacion.instrucciones = malloc(sizeof(t_list));
+	list_add(pcb->informacion.instrucciones,"EXIT");
+
+	list_add(pcb->informacion.segmentos, "64");
+	list_add(pcb->informacion.segmentos, "256");
+
 	
-
-	pcb->informacion.instrucciones_size = list_size(pcb->informacion.instrucciones);
-
-	pcb->informacion.segmentos = malloc(sizeof(t_list));
-	list_add(pcb->informacion.segmentos, 64);
-	list_add(pcb->informacion.segmentos, 256);
-
-	pcb->informacion.segmentos_size = list_size(pcb->informacion.segmentos);*/
-
 	serializarPCB(conexion, pcb, DISPATCH_PCB);
 
 	
