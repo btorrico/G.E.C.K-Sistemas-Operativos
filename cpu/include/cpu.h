@@ -10,7 +10,9 @@
 
 t_config* config;
 int conexion;
-	
+int conexionMemoria;
+
+int contadorIdPCB;
 typedef struct {
 	int entradasTLB;
 	char* reemplazoTLB;

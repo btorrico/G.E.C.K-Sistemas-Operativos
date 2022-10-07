@@ -21,8 +21,7 @@ typedef enum
 {
 	MENSAJE,
 	PAQUETE,
-	NEW
-,
+	NEW,
 	PROGRAMA
 }op_code;
 
@@ -92,26 +91,34 @@ typedef struct
 	
 } t_informacion;
 
+typedef struct 
+
+{	uint32_t AX;
+    uint32_t BX;
+    uint32_t CX;
+    uint32_t DX;
+
+}  __attribute__((packed)) t_registros;
+
+
 int size_char_array(char**) ;
 
 
-
+extern int conexionMemoria;
 
 
 typedef struct
 {
     uint32_t id;
 	//uint32_t tamanio;
-    //char* instrucciones;
-	//uint32_t ins_length;
     uint32_t program_counter;
-    //uint8_t registro_CPU;
 	//uint32_t tablaPag; // definir con memoria
 	//double estimacion_actual;
 	//double real_anterior;
 	//double ejecutados_total;
-	
     t_informacion informacion;
+	t_registros registros;
+	int socket;
 
 } t_pcb;
 
@@ -125,7 +132,7 @@ typedef enum
 	ELIMINAR_PCB
 }t_cod_planificador;
 
-
+extern int contadorIdPCB;
 typedef enum {
 	INSTRUCCIONES,    				//entre consola-kernel
 	DISPATCH_PCB,     				//entre kernel-cpu

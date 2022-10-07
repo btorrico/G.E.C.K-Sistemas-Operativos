@@ -11,10 +11,11 @@
 
 t_config *config;
 int conexion;
+int contadorIdPCB;
+int conexionMemoria;
 
 typedef struct
 {
-
 	char *ipMemoria;
 	char *puertoMemoria;
 	char *ipCPU;

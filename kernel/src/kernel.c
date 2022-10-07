@@ -111,8 +111,9 @@ void conectar_interrupt()
 
 void conectar_memoria()
 {
-	conexion = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
-	enviar_mensaje("hola memoria, soy el kernel", conexion);
+	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
+	enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
+
 }
 
 void iniciar_kernel()
@@ -127,6 +128,8 @@ void iniciar_kernel()
 	extraerDatosConfig(config);
 
 	iniciar_listas_y_semaforos();
+
+	contadorIdPCB = 0;
 }
 
 

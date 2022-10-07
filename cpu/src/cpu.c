@@ -83,6 +83,13 @@ void iniciar_servidor_dispatch()
 
 		printf("\n%s\n", segmento);
 	}
+
+	printf("\n%d.\n", pcb->socket);
+
+	printf("\n%d.\n", pcb->registros.AX);
+
+
+
 }
 
 void iniciar_servidor_interrupt()

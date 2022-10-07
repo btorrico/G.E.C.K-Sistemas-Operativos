@@ -101,9 +101,10 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 						log_info(logger,"CUANDO FUNCIONE PODRIAMOS CREAR UNA FUNCION PARA ABSTRAER TODO EL CHOCLO(?");
 				break; 
 		case PROGRAMA:
-			t_pcb *pcb = crear_pcb();
+			//t_pcb *pcb = crear_pcb(,cliente_fd);
 
-			pasar_a_new(pcb);
+			//pasar_a_new(pcb);
+			
 
 			planifLargoPlazo(AGREGAR_PCB);
 		case -1:
@@ -285,7 +286,7 @@ void agregar_pcb()
 		pthread_mutex_unlock(&mutex_lista_new);
 
 		pasar_a_ready(pcb);
-		// enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
+		enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
 	}
 }
 
@@ -298,7 +299,7 @@ void eliminar_pcb(t_cod_planificador cod_planificador)
 
 	pasar_a_exit(pcb);
 
-	// enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
+	enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
 	sem_post(&contador_multiprogramacion);
 }
 
@@ -306,11 +307,27 @@ void iteratorInt(int value) {
 
 	log_info(logger,"Segmento = %d", value);
 }
-t_pcb *crear_pcb()
+t_pcb *crear_pcb(t_informacion informacion , int socket)
 {
-	// TODO
+	t_pcb* pcb = malloc(sizeof(t_pcb));
+
+	pcb->socket = socket;
+	pcb->program_counter = 0;
+	pcb->informacion = informacion;
+	pcb->registros.AX = 0;
+	pcb->registros.BX = 0;
+	pcb->registros.CX = 0;
+	pcb->registros.DX = 0;
+
+
+	pthread_mutex_lock(&mutex_creacion_ID);
+	pcb->id = contadorIdPCB;
+	contadorIdPCB ++;
+	pthread_mutex_unlock(&mutex_creacion_ID);
 	
+	return pcb;
 }
+
 
 
 
