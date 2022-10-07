@@ -23,6 +23,8 @@
 int conexion;
 
 
+int contadorIdPCB;
+int conexionMemoria;
 
 t_config *config;
 

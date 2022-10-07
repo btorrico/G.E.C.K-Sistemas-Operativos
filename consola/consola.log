@@ -7194,3 +7194,27 @@ instCode: 5, paramInt: -1, paramReg[0]: -1,paramReg[1] -1, dispositivoIO: -1
 [INFO] 03:40:59:483 CONSOLA/(64479:64479): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
 
 
+[INFO] 14:57:12:955 CONSOLA/(7592:7592): 
+ Iniciando consola...
+[INFO] 14:57:17:516 CONSOLA/(7617:7617): 
+ Iniciando consola...
+[INFO] 14:57:17:517 CONSOLA/(7617:7617): Se parsearon #Instrucciones: 8
+[INFO] 14:57:17:517 CONSOLA/(7617:7617): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 15:06:26:071 CONSOLA/(7617:7617): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 15:06:50:933 CONSOLA/(8227:8227): 
+ Iniciando consola...
+[INFO] 15:06:50:935 CONSOLA/(8227:8227): Se parsearon #Instrucciones: 8
+[INFO] 15:06:50:935 CONSOLA/(8227:8227): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 15:10:14:613 CONSOLA/(8227:8227): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 15:10:47:526 CONSOLA/(8882:8882): 
+ Iniciando consola...
+[INFO] 15:10:47:528 CONSOLA/(8882:8882): Se parsearon #Instrucciones: 8
+[INFO] 15:10:47:528 CONSOLA/(8882:8882): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 15:10:47:528 CONSOLA/(8882:8882): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+

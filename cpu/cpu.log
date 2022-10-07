@@ -1152,3 +1152,46 @@
 [INFO] 01:01:31:730 CPU/(42510:42512): Se conecto un cliente!
 [INFO] 01:01:31:730 CPU/(42510:42512): Me llego el mensaje soy el interrupt
 [INFO] 01:01:31:731 CPU/(42510:42511): Se conecto un cliente!
+[INFO] 14:19:39:802 CPU/(4733:4735): Servidor listo para recibir al interrupt kernel
+[INFO] 14:19:39:802 CPU/(4733:4734): Servidor listo para recibir al dispatch kernel
+[INFO] 14:19:53:785 CPU/(4733:4735): Se conecto un cliente!
+[INFO] 14:19:53:785 CPU/(4733:4735): Me llego el mensaje soy el interrupt
+[INFO] 14:19:53:785 CPU/(4733:4734): Se conecto un cliente!
+[INFO] 14:32:57:266 CPU/(5831:5833): Servidor listo para recibir al interrupt kernel
+[INFO] 14:32:57:266 CPU/(5831:5832): Servidor listo para recibir al dispatch kernel
+[INFO] 14:41:58:662 CPU/(5831:5833): Se conecto un cliente!
+[WARNING] 14:41:58:663 CPU/(5831:5833): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:41:58:664 CPU/(5831:5833): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:41:58:664 CPU/(5831:5833): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:41:58:664 CPU/(5831:5833): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:41:58:664 CPU/(5831:5833): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:41:58:664 CPU/(5831:5833): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:42:00:223 CPU/(5831:5833): Operacion desconocida. No quieras meter la pata
+[ERROR] 14:42:00:223 CPU/(5831:5833): el cliente se desconecto. Terminando servidor
+[INFO] 14:42:59:570 CPU/(6496:6498): Servidor listo para recibir al interrupt kernel
+[INFO] 14:42:59:570 CPU/(6496:6497): Servidor listo para recibir al dispatch kernel
+[INFO] 14:43:30:746 CPU/(6496:6498): Se conecto un cliente!
+[WARNING] 14:43:30:748 CPU/(6496:6498): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:43:30:748 CPU/(6496:6498): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:43:30:748 CPU/(6496:6498): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:43:30:748 CPU/(6496:6498): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:43:30:748 CPU/(6496:6498): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:43:30:748 CPU/(6496:6498): Operacion desconocida. No quieras meter la pata
+[WARNING] 14:43:32:449 CPU/(6496:6498): Operacion desconocida. No quieras meter la pata
+[ERROR] 14:43:32:449 CPU/(6496:6498): el cliente se desconecto. Terminando servidor
+[INFO] 14:52:05:050 CPU/(6990:6992): Servidor listo para recibir al interrupt kernel
+[INFO] 14:52:05:050 CPU/(6990:6991): Servidor listo para recibir al dispatch kernel
+[INFO] 14:52:15:731 CPU/(6990:6992): Se conecto un cliente!
+[INFO] 14:52:15:732 CPU/(6990:6992): Me llego el mensaje soy el interrupt
+[INFO] 14:52:15:732 CPU/(6990:6991): Se conecto un cliente!
+[INFO] 15:06:18:240 CPU/(8010:8012): Servidor listo para recibir al interrupt kernel
+[INFO] 15:06:18:240 CPU/(8010:8011): Servidor listo para recibir al dispatch kernel
+[INFO] 15:06:31:469 CPU/(8010:8012): Se conecto un cliente!
+[INFO] 15:06:31:469 CPU/(8010:8012): Me llego el mensaje soy el interrupt
+[INFO] 15:06:31:470 CPU/(8010:8011): Se conecto un cliente!
+[INFO] 15:10:03:342 CPU/(8553:8555): Servidor listo para recibir al interrupt kernel
+[INFO] 15:10:03:342 CPU/(8553:8554): Servidor listo para recibir al dispatch kernel
+[INFO] 15:10:26:992 CPU/(8553:8555): Se conecto un cliente!
+[INFO] 15:10:26:992 CPU/(8553:8555): Me llego el mensaje soy el interrupt
+[INFO] 15:10:26:993 CPU/(8553:8554): Se conecto un cliente!
+[ERROR] 15:12:25:977 CPU/(8553:8555): el cliente se desconecto. Terminando servidor

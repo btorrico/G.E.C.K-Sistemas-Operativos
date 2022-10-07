@@ -61,9 +61,11 @@ typedef struct
 
 typedef struct
 {
-	uint8_t codigo_operacion;
+	op_code codigo_operacion;
 	t_buffer* buffer;
 } t_paquete;
+
+
 
 typedef struct 
 {

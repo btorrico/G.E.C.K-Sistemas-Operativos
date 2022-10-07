@@ -55,7 +55,6 @@ void iniciar_servidor_dispatch()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
-	
 
 	t_paquete *paquete = recibirPaquete(cliente_fd);
 
@@ -75,9 +74,9 @@ void iniciar_servidor_dispatch()
 			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
 	}
 
-	// mostrar segmanetos
+	// mostrar segmentos
 	printf("\n\nSegmentos:");
-	for (int i = 0; i < pcb->informacion.instrucciones_size; ++i)
+	for (int i = 0; i < pcb->informacion.segmentos_size; ++i)
 	{
 		char *segmento = list_get(pcb->informacion.segmentos, i);
 

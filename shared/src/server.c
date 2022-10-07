@@ -58,9 +58,9 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 						
 				break; 
 		case PROGRAMA:
-			t_pcb *pcb = crear_pcb();
+			//t_pcb *pcb = crear_pcb(t_informacion, cliente_fd);
 
-			pasar_a_new(pcb);
+			//pasar_a_new(pcb);
 
 			planifLargoPlazo(AGREGAR_PCB);
 		case -1:
