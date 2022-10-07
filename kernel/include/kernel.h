@@ -11,10 +11,11 @@
 
 t_config *config;
 int conexion;
+int contadorIdPCB;
+int conexionMemoria;
 
 typedef struct
 {
-
 	char *ipMemoria;
 	char *puertoMemoria;
 	char *ipCPU;
@@ -40,8 +41,10 @@ void conectar_memoria();
 
 void conectar_dispatch();
 void conectar_interrupt();
+void crear_hilos_kernel();
 
 t_cod_planificador* cod_planificador ;
+int quantum;
 
 // LISTAS
 t_list *LISTA_NEW;
