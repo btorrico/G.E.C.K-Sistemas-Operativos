@@ -269,9 +269,10 @@ int size_char_array(char **array)
 void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 {
 	t_buffer *buffer = malloc(sizeof(t_buffer));
+
 	buffer->size = sizeof(uint32_t) * 4
-				   + list_size(pcb->informacion.instrucciones) * sizeof(t_instruccion) 
-				   + list_size(pcb->informacion.segmentos) * sizeof(char *)
+				   + list_size(pcb->informacion->instrucciones) * sizeof(t_instruccion) 
+				   + list_size(pcb->informacion->segmentos) * sizeof(char *)
 				   + sizeof(int)
 				   + sizeof(t_registros);
 	
@@ -285,33 +286,33 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 	memcpy(stream + offset, &pcb->program_counter, sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	memcpy(stream + offset, &pcb->socket , sizeof(int));
+	memcpy(stream + offset, &pcb->socket, sizeof(int));
 	offset += sizeof(int);
 
-	memcpy(stream + offset, &pcb->registros , sizeof(t_registros));
+	memcpy(stream + offset, &pcb->registros, sizeof(t_registros));
 	offset += sizeof(t_registros);
 
-	memcpy(stream + offset, &(pcb->informacion.instrucciones->elements_count), sizeof(uint32_t));
+	memcpy(stream + offset, &(pcb->informacion->instrucciones->elements_count), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
-	memcpy(stream + offset, &(pcb->informacion.segmentos->elements_count), sizeof(uint32_t));
+	memcpy(stream + offset, &(pcb->informacion->segmentos->elements_count), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
 
 
 	int i = 0, j = 0;
-	while (i < list_size(pcb->informacion.instrucciones))
+	while (i < list_size(pcb->informacion->instrucciones))
 	{
-		memcpy(stream + offset, list_get(pcb->informacion.instrucciones, i), sizeof(t_instruccion));
+		memcpy(stream + offset, list_get(pcb->informacion->instrucciones, i), sizeof(t_instruccion));
 		offset += sizeof(t_instruccion);
 		i++;
 		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 	
 
-	while (j < list_size(pcb->informacion.segmentos))
+	while (j < list_size(pcb->informacion->segmentos))
 	{
 
-		memcpy(stream + offset, list_get(pcb->informacion.segmentos, j), sizeof(char *));
+		memcpy(stream + offset, list_get(pcb->informacion->segmentos, j), sizeof(char *));
 		offset += sizeof(char *);
 		j++;
 		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
@@ -369,6 +370,7 @@ t_paquete *recibirPaquete(int socket)
 t_pcb *deserializoPCB(t_buffer *buffer)
 {
 	t_pcb *pcb = malloc(sizeof(t_pcb));
+	pcb->informacion=malloc(sizeof(t_informacion));
 
 	void *stream = buffer->stream;
 
@@ -385,35 +387,36 @@ t_pcb *deserializoPCB(t_buffer *buffer)
     memcpy(&(pcb->registros), stream, sizeof(t_registros));
     stream += sizeof(t_registros);
 
-	memcpy(&(pcb->informacion.instrucciones_size), stream, sizeof(uint32_t));
+	memcpy(&(pcb->informacion->instrucciones_size), stream, sizeof(uint32_t));
 	stream += sizeof(uint32_t);
 	
-    memcpy(&(pcb->informacion.segmentos_size), stream, sizeof(uint32_t));
+    memcpy(&(pcb->informacion->segmentos_size), stream, sizeof(uint32_t));
 	stream += sizeof(uint32_t);
 
-	pcb->informacion.instrucciones = list_create();
+
+	pcb->informacion->instrucciones = list_create();
 	t_instruccion *instruccion;
 
-	pcb->informacion.segmentos = list_create();
+	pcb->informacion->segmentos = list_create();
 	char *segmento;
 
 	int k = 0 , l = 0;
 
-	while (k < (pcb->informacion.instrucciones_size))
+	while (k < (pcb->informacion->instrucciones_size))
 	{
 		instruccion = malloc(sizeof(t_instruccion));
 		memcpy(instruccion, stream, sizeof(t_instruccion));
 		stream += sizeof(t_instruccion);
-		list_add(pcb->informacion.instrucciones, instruccion);
+		list_add(pcb->informacion->instrucciones, instruccion);
 		k++;
 	}
 
-	while (l < (pcb->informacion.segmentos_size))
+	while (l < (pcb->informacion->segmentos_size))
 	{
 		segmento = malloc(sizeof(char *));
 		memcpy(segmento, stream, sizeof(char *));
 		stream+= sizeof(char *);
-		list_add(pcb->informacion.segmentos, segmento);
+		list_add(pcb->informacion->segmentos, segmento);
 		l++;
 	}
 

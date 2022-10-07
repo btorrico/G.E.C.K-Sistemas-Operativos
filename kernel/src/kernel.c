@@ -9,8 +9,6 @@ int main(int argc, char **argv)
 		iniciar_kernel();
 
 		crear_hilos_kernel();
-
-	
 	}
 }
 
@@ -35,27 +33,25 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 
 	return configKernel;
 }
-void crear_hilos_kernel(){
-	pthread_t thrConsola, thrCpu, thrMemoria, thrPlanificadorLargoPlazo , thrPlanificadorCortoPlazo;
+void crear_hilos_kernel()
+{
+	pthread_t thrConsola, thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo;
 
-		pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
-		pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
-		pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
-		pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, &cod_planificador);
-		pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, (&cod_planificador, &quantum));//cargar el quantum
+	pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
+	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
+	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
+	// pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, &cod_planificador);
+	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, (&cod_planificador, &quantum)); // cargar el quantum
 
-		
-		pthread_detach(&thrCpu);
-		pthread_detach(&thrPlanificadorCortoPlazo);
-		pthread_detach(&thrMemoria);
-		pthread_detach(&thrPlanificadorLargoPlazo);
+	pthread_detach(&thrCpu);
+	pthread_detach(&thrPlanificadorCortoPlazo);
+	pthread_detach(&thrMemoria);
+	//	pthread_detach(&thrPlanificadorLargoPlazo);
 
+	pthread_join(thrConsola, NULL); // falta que consola funcione con detach
 
-		pthread_join(thrConsola, NULL);//falta que consola funcione con detach
-	
-
-		log_destroy(logger);
-		config_destroy(config);
+	log_destroy(logger);
+	config_destroy(config);
 }
 
 void crear_hilo_consola()
@@ -79,27 +75,32 @@ void crear_hilo_cpu()
 void conectar_dispatch()
 {
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
-	
-
-	t_pcb *pcb = (t_pcb*) malloc(sizeof(t_pcb));
-	pcb->id = 10;
-	pcb->program_counter = 0;
-	pcb->informacion.instrucciones = list_create();
-	pcb->informacion.segmentos = list_create();
-
-    list_add(pcb->informacion.instrucciones,"SET AX 1");
-	list_add(pcb->informacion.instrucciones,"EXIT");
-
-	list_add(pcb->informacion.segmentos, "64");
-	list_add(pcb->informacion.segmentos, "256");
 
 	
+		t_pcb *pcb = (t_pcb*) malloc(sizeof(t_pcb));
+		pcb->id = 10;
+		pcb->program_counter = 0;
+	
+
+		pcb->informacion = malloc(sizeof(t_informacion));
+		
+		pcb->informacion->instrucciones = list_create();
+		pcb->informacion->segmentos = list_create();
+		list_add(pcb->informacion->instrucciones,"SET AX 1");
+		list_add(pcb->informacion->instrucciones,"EXIT");
+
+		list_add(pcb->informacion->segmentos, "64");
+		list_add(pcb->informacion->segmentos, "256");
+	
+
+	// esto en realidad tendria que sacarlo de lista_ready, pero falta lo de planificador de corto plazo
+	/*pthread_mutex_lock(&mutex_lista_new);
+	t_pcb *pcb = (t_pcb *)list_get(LISTA_NEW, 0);
+	pthread_mutex_unlock(&mutex_lista_new);*/
+
 	serializarPCB(conexion, pcb, DISPATCH_PCB);
 
-	
-
 	printf("\nse envio paquete.\n");
-
 }
 
 void conectar_interrupt()
@@ -113,7 +114,6 @@ void conectar_memoria()
 {
 	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
 	enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
-
 }
 
 void iniciar_kernel()
@@ -131,5 +131,3 @@ void iniciar_kernel()
 
 	contadorIdPCB = 0;
 }
-
-

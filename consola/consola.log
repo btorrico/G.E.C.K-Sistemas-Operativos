@@ -7218,3 +7218,204 @@ instCode: 5, paramInt: -1, paramReg[0]: -1,paramReg[1] -1, dispositivoIO: -1
 [INFO] 15:10:47:528 CONSOLA/(8882:8882): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
 
 
+[INFO] 15:16:44:093 CONSOLA/(10261:10261): 
+ Iniciando consola...
+[INFO] 15:16:44:094 CONSOLA/(10261:10261): Se parsearon #Instrucciones: 8
+[INFO] 15:16:44:095 CONSOLA/(10261:10261): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 15:16:44:095 CONSOLA/(10261:10261): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 15:17:06:164 CONSOLA/(10396:10396): 
+ Iniciando consola...
+[INFO] 15:17:06:167 CONSOLA/(10396:10396): Se parsearon #Instrucciones: 8
+[INFO] 15:17:06:167 CONSOLA/(10396:10396): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 15:17:06:167 CONSOLA/(10396:10396): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 15:35:38:869 CONSOLA/(11289:11289): 
+ Iniciando consola...
+[INFO] 15:35:38:870 CONSOLA/(11289:11289): Se parsearon #Instrucciones: 8
+[INFO] 15:35:38:870 CONSOLA/(11289:11289): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 15:35:39:232 CONSOLA/(11289:11289): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 15:47:19:001 CONSOLA/(12878:12878): 
+ Iniciando consola...
+[INFO] 15:47:19:002 CONSOLA/(12878:12878): Se parsearon #Instrucciones: 8
+[INFO] 15:47:19:002 CONSOLA/(12878:12878): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 15:47:19:279 CONSOLA/(12878:12878): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 15:49:49:091 CONSOLA/(13541:13541): 
+ Iniciando consola...
+[INFO] 15:49:49:094 CONSOLA/(13541:13541): Se parsearon #Instrucciones: 8
+[INFO] 15:49:49:094 CONSOLA/(13541:13541): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 15:49:49:420 CONSOLA/(13541:13541): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 18:26:31:710 CONSOLA/(15392:15392): 
+ Iniciando consola...
+[INFO] 18:26:31:711 CONSOLA/(15392:15392): Se parsearon #Instrucciones: 8
+[INFO] 18:26:31:711 CONSOLA/(15392:15392): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 18:26:32:081 CONSOLA/(15392:15392): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 18:27:50:970 CONSOLA/(15693:15693): 
+ Iniciando consola...
+[INFO] 18:27:50:971 CONSOLA/(15693:15693): Se parsearon #Instrucciones: 8
+[INFO] 18:28:16:800 CONSOLA/(15875:15875): 
+ Iniciando consola...
+[INFO] 18:28:16:800 CONSOLA/(15875:15875): Se parsearon #Instrucciones: 8
+[INFO] 18:28:16:800 CONSOLA/(15875:15875): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 18:28:17:098 CONSOLA/(15875:15875): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 18:32:38:868 CONSOLA/(16967:16967): 
+ Iniciando consola...
+[INFO] 18:32:38:870 CONSOLA/(16967:16967): Se parsearon #Instrucciones: 8
+[INFO] 18:32:38:870 CONSOLA/(16967:16967): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 18:41:24:716 CONSOLA/(18664:18664): 
+ Iniciando consola...
+[INFO] 18:41:24:719 CONSOLA/(18664:18664): Se parsearon #Instrucciones: 8
+[INFO] 18:41:24:719 CONSOLA/(18664:18664): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 18:42:37:660 CONSOLA/(19171:19171): 
+ Iniciando consola...
+[INFO] 18:42:37:662 CONSOLA/(19171:19171): Se parsearon #Instrucciones: 8
+[INFO] 18:42:37:663 CONSOLA/(19171:19171): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 18:43:22:684 CONSOLA/(19748:19748): 
+ Iniciando consola...
+[INFO] 18:43:22:687 CONSOLA/(19748:19748): Se parsearon #Instrucciones: 8
+[INFO] 18:43:22:687 CONSOLA/(19748:19748): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 18:46:40:426 CONSOLA/(20435:20435): 
+ Iniciando consola...
+[INFO] 18:46:40:467 CONSOLA/(20435:20435): Se parsearon #Instrucciones: 8
+[INFO] 18:46:40:467 CONSOLA/(20435:20435): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 18:46:40:816 CONSOLA/(20435:20435): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 18:51:15:147 CONSOLA/(21194:21194): 
+ Iniciando consola...
+[INFO] 18:51:15:151 CONSOLA/(21194:21194): Se parsearon #Instrucciones: 8
+[INFO] 18:51:15:151 CONSOLA/(21194:21194): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 18:51:15:471 CONSOLA/(21194:21194): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 19:06:24:521 CONSOLA/(23982:23982): 
+ Iniciando consola...
+[INFO] 19:06:24:524 CONSOLA/(23982:23982): Se parsearon #Instrucciones: 8
+[INFO] 19:06:24:525 CONSOLA/(23982:23982): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:06:24:894 CONSOLA/(23982:23982): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 19:09:55:724 CONSOLA/(24592:24592): 
+ Iniciando consola...
+[INFO] 19:09:55:726 CONSOLA/(24592:24592): Se parsearon #Instrucciones: 8
+[INFO] 19:09:55:726 CONSOLA/(24592:24592): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:09:56:177 CONSOLA/(24592:24592): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 19:16:53:578 CONSOLA/(26705:26705): 
+ Iniciando consola...
+[INFO] 19:16:53:581 CONSOLA/(26705:26705): Se parsearon #Instrucciones: 8
+[INFO] 19:16:53:581 CONSOLA/(26705:26705): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:16:53:581 CONSOLA/(26705:26705): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 19:39:18:990 CONSOLA/(29361:29361): 
+ Iniciando consola...
+[INFO] 19:39:18:995 CONSOLA/(29361:29361): Se parsearon #Instrucciones: 8
+[INFO] 19:39:18:995 CONSOLA/(29361:29361): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:39:18:995 CONSOLA/(29361:29361): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 19:54:05:523 CONSOLA/(31088:31088): 
+ Iniciando consola...
+[INFO] 19:54:05:524 CONSOLA/(31088:31088): Se parsearon #Instrucciones: 8
+[INFO] 19:54:05:525 CONSOLA/(31088:31088): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:54:05:925 CONSOLA/(31088:31088): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 19:57:01:300 CONSOLA/(32409:32409): 
+ Iniciando consola...
+[INFO] 19:57:01:303 CONSOLA/(32409:32409): Se parsearon #Instrucciones: 8
+[INFO] 19:57:01:303 CONSOLA/(32409:32409): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:57:01:303 CONSOLA/(32409:32409): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 20:04:18:374 CONSOLA/(33283:33283): 
+ Iniciando consola...
+[INFO] 20:04:18:380 CONSOLA/(33283:33283): Se parsearon #Instrucciones: 8
+[INFO] 20:04:18:380 CONSOLA/(33283:33283): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 20:04:18:735 CONSOLA/(33283:33283): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 20:08:58:612 CONSOLA/(34866:34866): 
+ Iniciando consola...
+[INFO] 20:08:58:614 CONSOLA/(34866:34866): Se parsearon #Instrucciones: 8
+[INFO] 20:08:58:614 CONSOLA/(34866:34866): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 20:10:57:450 CONSOLA/(34866:34866): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 20:11:07:147 CONSOLA/(35849:35849): 
+ Iniciando consola...
+[INFO] 20:11:07:148 CONSOLA/(35849:35849): Se parsearon #Instrucciones: 8
+[INFO] 20:11:07:148 CONSOLA/(35849:35849): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 20:11:54:459 CONSOLA/(35849:35849): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 20:12:14:702 CONSOLA/(36591:36591): 
+ Iniciando consola...
+[INFO] 20:12:14:705 CONSOLA/(36591:36591): Se parsearon #Instrucciones: 8
+[INFO] 20:12:14:706 CONSOLA/(36591:36591): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 20:19:30:867 CONSOLA/(36591:36591): Mensaje de confirmacion del Kernel : (null)
+
+[INFO] 20:19:43:842 CONSOLA/(37321:37321): 
+ Iniciando consola...
+[INFO] 20:19:43:843 CONSOLA/(37321:37321): Se parsearon #Instrucciones: 8
+[INFO] 20:19:43:844 CONSOLA/(37321:37321): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 20:19:43:844 CONSOLA/(37321:37321): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 20:38:08:028 CONSOLA/(40572:40572): 
+ Iniciando consola...
+[INFO] 20:38:08:031 CONSOLA/(40572:40572): Se parsearon #Instrucciones: 8
+[INFO] 20:38:08:031 CONSOLA/(40572:40572): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 20:38:08:031 CONSOLA/(40572:40572): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 20:49:00:052 CONSOLA/(42196:42196): 
+ Iniciando consola...
+[INFO] 20:49:00:055 CONSOLA/(42196:42196): Se parsearon #Instrucciones: 8
+[INFO] 20:49:00:055 CONSOLA/(42196:42196): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 20:49:00:055 CONSOLA/(42196:42196): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 21:00:11:059 CONSOLA/(45329:45329): 
+ Iniciando consola...
+[INFO] 21:00:11:061 CONSOLA/(45329:45329): Se parsearon #Instrucciones: 8
+[INFO] 21:00:11:061 CONSOLA/(45329:45329): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 21:00:11:062 CONSOLA/(45329:45329): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 21:04:28:804 CONSOLA/(47047:47047): 
+ Iniciando consola...
+[INFO] 21:04:28:808 CONSOLA/(47047:47047): Se parsearon #Instrucciones: 8
+[INFO] 21:04:28:808 CONSOLA/(47047:47047): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 21:04:28:808 CONSOLA/(47047:47047): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+

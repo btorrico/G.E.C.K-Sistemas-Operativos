@@ -63,12 +63,15 @@ void iniciar_servidor_dispatch()
 
 	printf("\n%d.\n", pcb->id);
 	printf("\n%d.\n", pcb->program_counter);
+	
+
+	t_instruccion* instruccion = malloc(sizeof(t_instruccion));
 
 	// mostrar instrucciones
 	printf("Instrucciones:");
-	for (int i = 0; i < pcb->informacion.instrucciones_size; ++i)
+	for (int i = 0; i < pcb->informacion->instrucciones_size; ++i)
 	{
-		t_instruccion *instruccion = list_get(pcb->informacion.instrucciones, i);
+		instruccion = list_get(pcb->informacion->instrucciones, i);
 
 		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
 			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
@@ -76,9 +79,9 @@ void iniciar_servidor_dispatch()
 
 	// mostrar segmentos
 	printf("\n\nSegmentos:");
-	for (int i = 0; i < pcb->informacion.segmentos_size; ++i)
+	for (int i = 0; i < pcb->informacion->segmentos_size; ++i)
 	{
-		char *segmento = list_get(pcb->informacion.segmentos, i);
+		char *segmento = list_get(pcb->informacion->segmentos, i);
 
 		printf("\n%s\n", segmento);
 	}

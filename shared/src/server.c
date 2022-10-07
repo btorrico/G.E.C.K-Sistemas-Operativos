@@ -43,26 +43,52 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 		case MENSAJE:
 			recibir_mensaje(cliente_fd);
 			break;
+
 		case PAQUETE:
 			lista = recibir_paquete(cliente_fd);
 			log_info(logger, "Me llegaron los siguientes valores:");
 			list_iterate(lista, (void *)iterator);
-			break; 
-			    case NEW:
+			break;
 
-					log_info(logger, "Llegaron las instrucciones y los segmentos"); 
-					
-					recibir_informacion(cliente_fd);
+		case NEW:
+			log_info(logger, "Llegaron las instrucciones y los segmentos");
 
-					enviarResultado(cliente_fd, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
-						
-				break; 
-		case PROGRAMA:
-			//t_pcb *pcb = crear_pcb(t_informacion, cliente_fd);
+			t_informacion info = recibir_informacion(cliente_fd);
 
-			//pasar_a_new(pcb);
+			
+			t_pcb* pcb = crear_pcb(&info, cliente_fd);
+			
+			//esto es para mostrar que el crear_pcb funciona ok
 
-			planifLargoPlazo(AGREGAR_PCB);
+			printf("\n%d\n", pcb->id);
+			printf("%d\n", pcb->program_counter);
+			printf("%d\n", pcb->socket);
+			
+			printf("Instrucciones:");
+
+			t_instruccion* instruccion = malloc(sizeof(t_instruccion));
+
+			printf(" %d\n",pcb->informacion->instrucciones_size);
+
+			for (int i = 0; i < pcb->informacion->instrucciones_size; i++)
+			{
+				instruccion = list_get(pcb->informacion->instrucciones, i);
+
+				printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+					   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+			}
+
+
+			pasar_a_new(pcb);
+			//printf("Cant de elementos de NEW: %d\n", list_size(LISTA_NEW));
+
+			//printf("Iniciando planificador de largo plazo");
+			//planifLargoPlazo(AGREGAR_PCB);
+
+			enviarResultado(cliente_fd, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
+
+			break;
+
 		case -1:
 			/*while(cod_op_servidor =! -1){
 				close(socket_cliente);
@@ -77,59 +103,62 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 	}
 }
 
-		void recibir_informacion(cliente_fd){
-					int size;
-					void* buffer = recibir_buffer(&size, cliente_fd);
-					t_informacion programa;
-					int offset = 0;
+t_informacion recibir_informacion(cliente_fd)
+{
+	int size;
+	void *buffer = recibir_buffer(&size, cliente_fd);
+	t_informacion programa;
+	int offset = 0;
 
-					memcpy(&(programa.instrucciones_size), buffer + offset, sizeof(uint32_t));
-					offset += sizeof(uint32_t);
-					memcpy(&(programa.segmentos_size), buffer + offset, sizeof(uint32_t));
-					offset += sizeof(uint32_t);
+	memcpy(&(programa.instrucciones_size), buffer + offset, sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+	memcpy(&(programa.segmentos_size), buffer + offset, sizeof(uint32_t));
+	offset += sizeof(uint32_t);
 
-					programa.instrucciones = list_create();
-					t_instruccion* instruccion;
+	programa.instrucciones = list_create();
+	t_instruccion *instruccion;
 
-				    programa.segmentos = list_create(); 
-					char* segmento;
-					
-					int k = 0;
-					int l =0;
+	programa.segmentos = list_create();
+	char *segmento;
 
-					while (k < (programa.instrucciones_size)) {
-						instruccion = malloc(sizeof(t_instruccion));
-							memcpy(instruccion, buffer + offset, sizeof(t_instruccion));
-							offset += sizeof(t_instruccion);
-							list_add(programa.instrucciones, instruccion);
-								k++;
+	int k = 0;
+	int l = 0;
 
-					}
+	while (k < (programa.instrucciones_size))
+	{
 
-						printf("Instrucciones:");
-					for (int i = 0; i < programa.instrucciones_size; ++i) {
-						t_instruccion* instruccion= list_get(programa.instrucciones, i);
-							
-						printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+	
+		instruccion = malloc(sizeof(t_instruccion));
+		memcpy(instruccion, buffer + offset, sizeof(t_instruccion));
+		offset += sizeof(t_instruccion);
+		list_add(programa.instrucciones, instruccion);
+		k++;
+	}
+
+	printf("Instrucciones:");
+	for (int i = 0; i < programa.instrucciones_size; ++i)
+	{
+		t_instruccion *instruccion = list_get(programa.instrucciones, i);
+
+		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
 			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
-						}
+	}
 
-					
-					while (l < (programa.segmentos_size)) {
-						segmento = malloc(sizeof(char*));
-							memcpy(segmento, buffer + offset, sizeof(char*));
-							offset += sizeof(char*);
-							list_add(programa.segmentos, segmento); 
-								l++;
-								
-							
-					}
-					printf("\n\nSegmentos:");
+	while (l < (programa.segmentos_size))
+	{
+		segmento = malloc(sizeof(char *));
+		memcpy(segmento, buffer + offset, sizeof(char *));
+		offset += sizeof(char *);
+		list_add(programa.segmentos, segmento);
+		l++;
+	}
+	printf("\n\nSegmentos:");
 
-					printf("\n[%s,%s,%s,%s]\n",list_get(programa.segmentos,0), list_get(programa.segmentos,1), list_get(programa.segmentos,2), list_get(programa.segmentos,3));
-							
+	printf("\n[%s,%s,%s,%s]\n", list_get(programa.segmentos, 0), list_get(programa.segmentos, 1), list_get(programa.segmentos, 2), list_get(programa.segmentos, 3));
 
-						free(buffer);
+	free(buffer);
+
+	return programa;
 }
 
 void iterator(char *value)
@@ -154,8 +183,8 @@ void planifLargoPlazo(t_cod_planificador *cod_planificador)
 	}
 }
 
-void planifCortoPlazo(t_cod_planificador *cod_planificador, int quantum){
-
+void planifCortoPlazo(t_cod_planificador *cod_planificador, int quantum)
+{
 }
 
 void pasar_a_new(t_pcb *pcb)
@@ -239,10 +268,13 @@ void agregar_pcb()
 
 		pthread_mutex_lock(&mutex_lista_new);
 		t_pcb *pcb = (t_pcb *)list_remove(LISTA_NEW, 0);
+		printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 		pthread_mutex_unlock(&mutex_lista_new);
 
 		pasar_a_ready(pcb);
-		enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
+		
+		//printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
+		//enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
 	}
 }
 
@@ -259,13 +291,15 @@ void eliminar_pcb(t_cod_planificador cod_planificador)
 	sem_post(&contador_multiprogramacion);
 }
 
-void iteratorInt(int value) {
-
-	log_info(logger,"Segmento = %d", value);
-}
-t_pcb *crear_pcb(t_informacion informacion , int socket)
+void iteratorInt(int value)
 {
-	t_pcb* pcb = malloc(sizeof(t_pcb));
+
+	log_info(logger, "Segmento = %d", value);
+}
+
+t_pcb *crear_pcb(t_informacion* informacion, int socket)
+{
+	t_pcb *pcb = malloc(sizeof(t_pcb));
 
 	pcb->socket = socket;
 	pcb->program_counter = 0;
@@ -275,12 +309,10 @@ t_pcb *crear_pcb(t_informacion informacion , int socket)
 	pcb->registros.CX = 0;
 	pcb->registros.DX = 0;
 
-
 	pthread_mutex_lock(&mutex_creacion_ID);
 	pcb->id = contadorIdPCB;
-	contadorIdPCB ++;
+	contadorIdPCB++;
 	pthread_mutex_unlock(&mutex_creacion_ID);
-	
+
 	return pcb;
 }
-

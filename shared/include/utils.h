@@ -109,7 +109,7 @@ typedef struct
 	//double estimacion_actual;
 	//double real_anterior;
 	//double ejecutados_total;
-    t_informacion informacion;
+    t_informacion* informacion;
 	t_registros registros;
 	int socket;
 
