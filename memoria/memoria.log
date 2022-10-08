@@ -830,3 +830,27 @@
 [INFO] 21:04:19:260 MEMORIA/(46785:46787): Me llego el mensaje hola memoria, soy el cpu
 [INFO] 21:04:23:264 MEMORIA/(46785:46786): Se conecto un cliente!
 [INFO] 21:04:23:264 MEMORIA/(46785:46786): Me llego el mensaje hola memoria, soy el kernel
+[INFO] 22:23:18:931 MEMORIA/(2159:2161): Servidor listo para recibir al cpu
+[INFO] 22:23:18:931 MEMORIA/(2159:2160): Servidor listo para recibir al kernel
+[INFO] 22:23:30:890 MEMORIA/(2159:2161): Se conecto un cliente!
+[INFO] 22:23:30:890 MEMORIA/(2159:2161): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 22:23:59:718 MEMORIA/(2159:2160): Se conecto un cliente!
+[INFO] 22:23:59:718 MEMORIA/(2159:2160): Me llego el mensaje hola memoria, soy el kernel
+[INFO] 23:15:40:972 MEMORIA/(4984:4986): Servidor listo para recibir al cpu
+[INFO] 23:15:40:972 MEMORIA/(4984:4985): Servidor listo para recibir al kernel
+[INFO] 23:15:51:569 MEMORIA/(4984:4986): Se conecto un cliente!
+[INFO] 23:15:51:569 MEMORIA/(4984:4986): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 23:19:57:862 MEMORIA/(5727:5729): Servidor listo para recibir al cpu
+[INFO] 23:19:57:862 MEMORIA/(5727:5728): Servidor listo para recibir al kernel
+[INFO] 23:20:03:742 MEMORIA/(5727:5729): Se conecto un cliente!
+[INFO] 23:20:03:742 MEMORIA/(5727:5729): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 23:20:09:584 MEMORIA/(5727:5728): Se conecto un cliente!
+[INFO] 23:20:09:584 MEMORIA/(5727:5728): Me llego el mensaje hola memoria, soy el kernel
+[INFO] 23:27:58:123 MEMORIA/(6778:6780): Servidor listo para recibir al cpu
+[INFO] 23:27:58:123 MEMORIA/(6778:6779): Servidor listo para recibir al kernel
+[INFO] 23:28:10:036 MEMORIA/(6778:6780): Se conecto un cliente!
+[INFO] 23:28:10:036 MEMORIA/(6778:6780): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 23:28:19:800 MEMORIA/(6778:6779): Se conecto un cliente!
+[INFO] 23:28:19:800 MEMORIA/(6778:6779): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 23:34:06:951 MEMORIA/(6778:6779): el cliente se desconecto. Terminando servidor
+[ERROR] 23:34:06:958 MEMORIA/(6778:6780): el cliente se desconecto. Terminando servidor

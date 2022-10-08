@@ -43,27 +43,25 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 		case MENSAJE:
 			recibir_mensaje(cliente_fd);
 			break;
-
 		case PAQUETE:
 			lista = recibir_paquete(cliente_fd);
 			log_info(logger, "Me llegaron los siguientes valores:");
 			list_iterate(lista, (void *)iterator);
 			break;
-
 		case NEW:
 			log_info(logger, "Llegaron las instrucciones y los segmentos");
 
 			t_informacion info = recibir_informacion(cliente_fd);
 
-			
-			t_pcb* pcb = crear_pcb(&info, cliente_fd);
-			
-			//esto es para mostrar que el crear_pcb funciona ok
+			enviarResultado(cliente_fd, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
 
-			printf("\n%d\n", pcb->id);
+			t_pcb *pcb = crear_pcb(&info, cliente_fd);
+
+			// esto es para mostrar que el crear_pcb funciona ok
+			/*printf("\n%d\n", pcb->id);
 			printf("%d\n", pcb->program_counter);
 			printf("%d\n", pcb->socket);
-			
+
 			printf("Instrucciones:");
 
 			t_instruccion* instruccion = malloc(sizeof(t_instruccion));
@@ -77,15 +75,15 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 				printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
 					   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
 			}
-
+*/
 
 			pasar_a_new(pcb);
-			//printf("Cant de elementos de NEW: %d\n", list_size(LISTA_NEW));
 
-			//printf("Iniciando planificador de largo plazo");
-			//planifLargoPlazo(AGREGAR_PCB);
+			printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 
-			enviarResultado(cliente_fd, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
+			sem_post(&sem_hay_pcb_lista_new);
+			sem_post(&sem_planif_largo_plazo);
+			sem_post(&sem_agregar_pcb);
 
 			break;
 
@@ -126,8 +124,6 @@ t_informacion recibir_informacion(cliente_fd)
 
 	while (k < (programa.instrucciones_size))
 	{
-
-	
 		instruccion = malloc(sizeof(t_instruccion));
 		memcpy(instruccion, buffer + offset, sizeof(t_instruccion));
 		offset += sizeof(t_instruccion);
@@ -167,20 +163,16 @@ void iterator(char *value)
 	log_info(logger, "%s", value);
 }
 
-void planifLargoPlazo(t_cod_planificador *cod_planificador)
+void planifLargoPlazo()
 {
+	
+	sem_wait(&sem_planif_largo_plazo);
+	sem_wait(&sem_agregar_pcb);
+	printf("Entrando al planificador");
+	agregar_pcb();
+	
 
-	switch (*cod_planificador)
-	{
-	case AGREGAR_PCB:
-		agregar_pcb();
-		break;
-	case ELIMINAR_PCB:
-		eliminar_pcb(cod_planificador);
-		break;
-	default:
-		break;
-	}
+	// eliminar_pcb();
 }
 
 void planifCortoPlazo(t_cod_planificador *cod_planificador, int quantum)
@@ -253,32 +245,37 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_ready, 0, 0);
 	sem_init(&sem_bloqueo, 0, 0);
 	sem_init(&sem_planif_largo_plazo, 0, 0);
-	// ver como pasar el gradoDeMultiProgramacion
-	// sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
-	sem_init(&sem_procesador, 0, 1);
+
+	sem_init(&sem_hay_pcb_lista_new, 0, 0);
+	sem_init(&sem_hay_pcb_lista_ready, 0, 0);
+	sem_init(&sem_agregar_pcb, 0, 0);
+	
+	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
+	// sem_init(&sem_procesador, 0, 1);
 }
 
 void agregar_pcb()
 {
 
-	while (1)
-	{
-
+	while (1){
+		sem_wait(&sem_hay_pcb_lista_new);
 		sem_wait(&contador_multiprogramacion);
-
+		printf("Agregando un pcb a lista ready");
 		pthread_mutex_lock(&mutex_lista_new);
 		t_pcb *pcb = (t_pcb *)list_remove(LISTA_NEW, 0);
 		printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 		pthread_mutex_unlock(&mutex_lista_new);
 
+
 		pasar_a_ready(pcb);
+		printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
+		sem_post(&sem_hay_pcb_lista_ready);
 		
-		//printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
-		//enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
+		// enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
 	}
 }
 
-void eliminar_pcb(t_cod_planificador cod_planificador)
+void eliminar_pcb()
 {
 
 	pthread_mutex_lock(&mutex_lista_exec);
@@ -297,7 +294,7 @@ void iteratorInt(int value)
 	log_info(logger, "Segmento = %d", value);
 }
 
-t_pcb *crear_pcb(t_informacion* informacion, int socket)
+t_pcb *crear_pcb(t_informacion *informacion, int socket)
 {
 	t_pcb *pcb = malloc(sizeof(t_pcb));
 

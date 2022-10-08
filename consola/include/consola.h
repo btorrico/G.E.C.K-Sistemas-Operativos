@@ -42,6 +42,7 @@ typedef struct
 
 t_configConsola configConsola;
 
+t_configKernel configKernel;
 
 /*******Funcion que permite leer la configuracion del puerrto y la ip del kernel*******/
 t_configConsola extraerDatosConfig(t_config * ruta);
@@ -102,4 +103,7 @@ sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
 
+sem_t sem_agregar_pcb;
+sem_t sem_hay_pcb_lista_new;
+sem_t sem_hay_pcb_lista_ready;
 #endif

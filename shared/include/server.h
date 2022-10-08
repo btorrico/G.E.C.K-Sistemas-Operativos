@@ -19,7 +19,7 @@ t_pcb *crear_pcb(t_informacion* , int );
 #define IP_SERVER "0.0.0.0"
 
 void cambiaValor();
-void planifLargoPlazo(t_cod_planificador*);
+void planifLargoPlazo();
 void planifCortoPlazo(t_cod_planificador* , int);
 
 t_informacion recibir_informacion(int cliente_fd);

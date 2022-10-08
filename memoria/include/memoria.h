@@ -27,6 +27,7 @@ t_config* config;
 
 t_configMemoria configMemoria;
 
+t_configKernel configKernel;
 
 void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
@@ -59,4 +60,8 @@ sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
 
+
+sem_t sem_agregar_pcb;
+sem_t sem_hay_pcb_lista_new;
+sem_t sem_hay_pcb_lista_ready;
 #endif

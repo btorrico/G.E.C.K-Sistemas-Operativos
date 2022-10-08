@@ -219,6 +219,25 @@ void* recibir_buffer(int*, int);
 
 */
 
+typedef struct
+{
+	char *ipMemoria;
+	char *puertoMemoria;
+	char *ipCPU;
+	char *puertoCPUDispatch;
+	char *puertoCPUInterrupt;
+	char *ipKernel;
+	char *puertoEscucha;
+	char *algoritmo;
+
+	int gradoMultiprogramacion;
+	t_list *dispositivosIO;
+	t_list *tiemposIO;
+	int quantum;
+} t_configKernel;
+
+extern t_configKernel configKernel;
+
 extern t_log* logger;
 extern t_cod_planificador* cod_planificador;
 //extern t_log* loggerKernel;
@@ -249,5 +268,9 @@ extern sem_t contador_multiprogramacion;
 extern sem_t sem_ready;
 extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;
+
+extern sem_t sem_agregar_pcb;
+extern sem_t sem_hay_pcb_lista_new;
+extern sem_t sem_hay_pcb_lista_ready;
 
 #endif /* UTILS_H_ */

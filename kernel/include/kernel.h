@@ -14,23 +14,6 @@ int conexion;
 int contadorIdPCB;
 int conexionMemoria;
 
-typedef struct
-{
-	char *ipMemoria;
-	char *puertoMemoria;
-	char *ipCPU;
-	char *puertoCPUDispatch;
-	char *puertoCPUInterrupt;
-	char *ipKernel;
-	char *puertoEscucha;
-	char *algoritmo;
-
-	int gradoMultiprogramacion;
-	t_list *dispositivosIO;
-	t_list *tiemposIO;
-	int quantum;
-} t_configKernel;
-
 t_configKernel configKernel;
 
 t_configKernel extraerDatosConfig(t_config *);
@@ -68,4 +51,8 @@ sem_t contador_multiprogramacion;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
+
+sem_t sem_agregar_pcb;
+sem_t sem_hay_pcb_lista_new;
+sem_t sem_hay_pcb_lista_ready;
 #endif

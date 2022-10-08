@@ -28,8 +28,9 @@ typedef struct {
 
 t_configCPU configCPU;
 
+t_configKernel configKernel;
 
-	t_configCPU extraerDatosConfig(t_config* );
+t_configCPU extraerDatosConfig(t_config* );
 
 void iniciar_servidor_dispatch();
 void iniciar_servidor_interrupt();
@@ -60,5 +61,9 @@ sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
 
+
+sem_t sem_agregar_pcb;
+sem_t sem_hay_pcb_lista_new;
+sem_t sem_hay_pcb_lista_ready;
 
 #endif

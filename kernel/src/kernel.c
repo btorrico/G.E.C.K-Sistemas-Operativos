@@ -40,13 +40,13 @@ void crear_hilos_kernel()
 	pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
 	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
-	// pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, &cod_planificador);
+	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
 	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, (&cod_planificador, &quantum)); // cargar el quantum
 
 	pthread_detach(&thrCpu);
 	pthread_detach(&thrPlanificadorCortoPlazo);
 	pthread_detach(&thrMemoria);
-	//	pthread_detach(&thrPlanificadorLargoPlazo);
+	pthread_detach(&thrPlanificadorLargoPlazo);
 
 	pthread_join(thrConsola, NULL); // falta que consola funcione con detach
 
