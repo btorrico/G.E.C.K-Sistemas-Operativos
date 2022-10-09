@@ -26,8 +26,7 @@ void conectar_dispatch();
 void conectar_interrupt();
 void crear_hilos_kernel();
 
-t_cod_planificador* cod_planificador ;
-int quantum;
+
 
 // LISTAS
 t_list *LISTA_NEW;

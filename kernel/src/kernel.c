@@ -41,8 +41,8 @@ void crear_hilos_kernel()
 	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
-	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, (&cod_planificador, &quantum)); // cargar el quantum
-
+	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL); 
+	
 	pthread_detach(&thrCpu);
 	pthread_detach(&thrPlanificadorCortoPlazo);
 	pthread_detach(&thrMemoria);

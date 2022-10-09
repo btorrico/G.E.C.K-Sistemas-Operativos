@@ -1,7 +1,6 @@
 #include "instrucciones.h"
 
 
-
 void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instrucciones)
 {
 	if (instructionsFile == NULL)

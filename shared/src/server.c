@@ -165,18 +165,35 @@ void iterator(char *value)
 
 void planifLargoPlazo()
 {
-	
+
 	sem_wait(&sem_planif_largo_plazo);
 	sem_wait(&sem_agregar_pcb);
 	printf("Entrando al planificador");
 	agregar_pcb();
-	
 
 	// eliminar_pcb();
 }
 
-void planifCortoPlazo(t_cod_planificador *cod_planificador, int quantum)
+void planifCortoPlazo()
 {
+	//sem_wait de planicortoplazo
+
+	t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
+	switch (algoritmo)
+	{
+	case FIFO:
+		//implementar_fifo();
+		break;
+	case RR:
+		/* code */
+		break;
+	case FEEDBACK:
+		/* code */
+		break;
+
+	default:
+		break;
+	}
 }
 
 void pasar_a_new(t_pcb *pcb)
@@ -249,7 +266,7 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_hay_pcb_lista_new, 0, 0);
 	sem_init(&sem_hay_pcb_lista_ready, 0, 0);
 	sem_init(&sem_agregar_pcb, 0, 0);
-	
+
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	// sem_init(&sem_procesador, 0, 1);
 }
@@ -257,7 +274,8 @@ void iniciar_listas_y_semaforos()
 void agregar_pcb()
 {
 
-	while (1){
+	while (1)
+	{
 		sem_wait(&sem_hay_pcb_lista_new);
 		sem_wait(&contador_multiprogramacion);
 		printf("Agregando un pcb a lista ready");
@@ -266,11 +284,10 @@ void agregar_pcb()
 		printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 		pthread_mutex_unlock(&mutex_lista_new);
 
-
 		pasar_a_ready(pcb);
 		printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 		sem_post(&sem_hay_pcb_lista_ready);
-		
+
 		// enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
 	}
 }
@@ -312,4 +329,29 @@ t_pcb *crear_pcb(t_informacion *informacion, int socket)
 	pthread_mutex_unlock(&mutex_creacion_ID);
 
 	return pcb;
+}
+
+
+
+
+
+t_tipo_algoritmo obtenerAlgoritmo(){
+
+	char* algoritmo = configKernel.algoritmo;
+
+	t_tipo_algoritmo algoritmoResultado;
+
+	if(algoritmo == "FIFO"){
+		algoritmoResultado = FIFO;
+	}else if(algoritmo == "RR"){
+		algoritmoResultado = RR;
+	}else{
+		algoritmoResultado = FEEDBACK;
+	}
+
+	return algoritmoResultado;
+}
+
+void implementar_fifo(){
+	
 }

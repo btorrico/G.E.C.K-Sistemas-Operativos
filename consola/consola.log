@@ -7483,3 +7483,43 @@ instCode: 5, paramInt: -1, paramReg[0]: -1,paramReg[1] -1, dispositivoIO: -1
 [INFO] 23:32:22:045 CONSOLA/(7665:7665): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
 
 
+[INFO] 00:34:05:881 CONSOLA/(10863:10863): 
+ Iniciando consola...
+[INFO] 00:34:05:885 CONSOLA/(10863:10863): Se parsearon #Instrucciones: 8
+[INFO] 00:34:05:886 CONSOLA/(10863:10863): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:34:05:886 CONSOLA/(10863:10863): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:34:36:568 CONSOLA/(10927:10927): 
+ Iniciando consola...
+[INFO] 00:34:36:569 CONSOLA/(10927:10927): Se parsearon #Instrucciones: 8
+[INFO] 00:34:36:570 CONSOLA/(10927:10927): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:34:36:570 CONSOLA/(10927:10927): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:35:08:455 CONSOLA/(10985:10985): 
+ Iniciando consola...
+[INFO] 00:35:08:458 CONSOLA/(10985:10985): Se parsearon #Instrucciones: 8
+[INFO] 00:35:08:458 CONSOLA/(10985:10985): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:35:08:459 CONSOLA/(10985:10985): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:35:22:041 CONSOLA/(11050:11050): 
+ Iniciando consola...
+[INFO] 00:35:22:041 CONSOLA/(11050:11050): Se parsearon #Instrucciones: 8
+[INFO] 00:35:22:041 CONSOLA/(11050:11050): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:35:22:041 CONSOLA/(11050:11050): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:35:38:817 CONSOLA/(11108:11108): 
+ Iniciando consola...
+[INFO] 00:35:38:818 CONSOLA/(11108:11108): Se parsearon #Instrucciones: 8
+[INFO] 00:35:38:819 CONSOLA/(11108:11108): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:35:38:819 CONSOLA/(11108:11108): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+

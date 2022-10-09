@@ -77,8 +77,6 @@ void *recibirStream(int socket, size_t stream_size);
         
 */
 
-//planificador largo plazo
-t_cod_planificador* cod_planificador ;
 
 // LISTAS
 t_list *LISTA_NEW;
