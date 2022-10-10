@@ -89,8 +89,8 @@ void conectar_dispatch()
 		list_add(pcb->informacion->instrucciones,"SET AX 1");
 		list_add(pcb->informacion->instrucciones,"EXIT");
 
-		list_add(pcb->informacion->segmentos, "64");
-		list_add(pcb->informacion->segmentos, "256");
+		list_add(pcb->informacion->segmentos, 64);
+		list_add(pcb->informacion->segmentos, 256);
 	
 
 	// esto en realidad tendria que sacarlo de lista_ready, pero falta lo de planificador de corto plazo

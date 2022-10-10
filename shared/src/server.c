@@ -117,7 +117,7 @@ t_informacion recibir_informacion(cliente_fd)
 	t_instruccion *instruccion;
 
 	programa.segmentos = list_create();
-	char *segmento;
+	uint32_t segmento;
 
 	int k = 0;
 	int l = 0;
@@ -142,15 +142,16 @@ t_informacion recibir_informacion(cliente_fd)
 
 	while (l < (programa.segmentos_size))
 	{
-		segmento = malloc(sizeof(char *));
-		memcpy(segmento, buffer + offset, sizeof(char *));
-		offset += sizeof(char *);
+		//segmento = malloc(sizeof(uint32_t));
+		memcpy(&segmento, buffer + offset, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
 		list_add(programa.segmentos, segmento);
 		l++;
 	}
+	
 	printf("\n\nSegmentos:");
 
-	printf("\n[%s,%s,%s,%s]\n", list_get(programa.segmentos, 0), list_get(programa.segmentos, 1), list_get(programa.segmentos, 2), list_get(programa.segmentos, 3));
+	printf("\n[%d,%d,%d,%d]\n", list_get(programa.segmentos, 0), list_get(programa.segmentos, 1), list_get(programa.segmentos, 2), list_get(programa.segmentos, 3));
 
 	free(buffer);
 
@@ -353,5 +354,5 @@ t_tipo_algoritmo obtenerAlgoritmo(){
 }
 
 void implementar_fifo(){
-	
+
 }
