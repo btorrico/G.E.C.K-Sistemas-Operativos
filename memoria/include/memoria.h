@@ -27,10 +27,41 @@ t_config* config;
 
 t_configMemoria configMemoria;
 
+t_configKernel configKernel;
 
 void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
 
 t_configMemoria extraerDatosConfig(t_config* );
 
+int contadorIdPCB;
+
+int conexionMemoria;
+// LISTAS
+t_list *LISTA_NEW;
+t_list *LISTA_READY;
+t_list *LISTA_EXEC;
+t_list *LISTA_BLOCKED;
+t_list *LISTA_EXIT;
+t_list *LISTA_SOCKETS;
+
+// MUTEX
+pthread_mutex_t mutex_creacion_ID;
+pthread_mutex_t mutex_lista_new;
+pthread_mutex_t mutex_lista_ready;
+pthread_mutex_t mutex_lista_exec;
+pthread_mutex_t mutex_lista_blocked;
+pthread_mutex_t mutex_lista_exit;
+
+// SEMAFOROS
+sem_t sem_planif_largo_plazo;
+sem_t contador_multiprogramacion;
+sem_t sem_ready;
+sem_t sem_bloqueo;
+sem_t sem_procesador;
+
+
+sem_t sem_agregar_pcb;
+sem_t sem_hay_pcb_lista_new;
+sem_t sem_hay_pcb_lista_ready;
 #endif

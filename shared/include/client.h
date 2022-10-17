@@ -11,6 +11,7 @@
 #include "../globals.h"
 
 
+
 t_log* iniciar_logger(char*, char*, t_log_level);
 t_config* iniciar_config(char*);
 void leer_consola(t_log*);

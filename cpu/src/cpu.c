@@ -13,7 +13,6 @@ int main(char **argc, char **argv)
 
 		extraerDatosConfig(config);
 
-
 		pthread_t thrDispatchKernel, thrInterruptKernel, thrMemoria;
 
 		pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
@@ -56,9 +55,43 @@ void iniciar_servidor_dispatch()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
-	mostrar_mensajes_del_cliente(cliente_fd);
 
+	t_paquete *paquete = recibirPaquete(cliente_fd);
+
+	t_pcb *pcb = deserializoPCB(paquete->buffer);
+	printf("se recibio pcb\n");
+
+	printf("\n%d.\n", pcb->id);
+	printf("\n%d.\n", pcb->program_counter);
 	
+
+	t_instruccion* instruccion = malloc(sizeof(t_instruccion));
+
+	// mostrar instrucciones
+	printf("Instrucciones:");
+	for (int i = 0; i < pcb->informacion->instrucciones_size; ++i)
+	{
+		instruccion = list_get(pcb->informacion->instrucciones, i);
+
+		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+	}
+
+	// mostrar segmentos
+	printf("\n\nSegmentos:");
+	for (int i = 0; i < pcb->informacion->segmentos_size; ++i)
+	{
+		uint32_t segmento = list_get(pcb->informacion->segmentos, i);
+
+		printf("\n%d\n", segmento);
+	}
+
+	printf("\n%d.\n", pcb->socket);
+
+	printf("\n%d.\n", pcb->registros.AX);
+
+
+
 }
 
 void iniciar_servidor_interrupt()
@@ -70,9 +103,8 @@ void iniciar_servidor_interrupt()
 	mostrar_mensajes_del_cliente(cliente_fd);
 }
 
-void conectar_memoria(){
+void conectar_memoria()
+{
 	conexion = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
 	enviar_mensaje("hola memoria, soy el cpu", conexion);
-
-	
 }

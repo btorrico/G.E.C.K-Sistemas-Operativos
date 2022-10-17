@@ -2,6 +2,8 @@
     "files.associations": {
         "readline.h": "c",
         "utils.h": "c",
-        "server.h": "c"
+        "server.h": "c",
+        "stdio.h": "c",
+        "consola.h": "c"
     }
 }
