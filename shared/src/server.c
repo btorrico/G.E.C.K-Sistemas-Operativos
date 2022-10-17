@@ -281,7 +281,7 @@ void agregar_pcb()
 		sem_wait(&contador_multiprogramacion);
 		printf("Agregando un pcb a lista ready");
 		pthread_mutex_lock(&mutex_lista_new);
-		t_pcb *pcb = (t_pcb *)list_remove(LISTA_NEW, 0);
+		t_pcb *pcb = implementar_fifo(LISTA_NEW);
 		printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 		pthread_mutex_unlock(&mutex_lista_new);
 
@@ -353,6 +353,15 @@ t_tipo_algoritmo obtenerAlgoritmo(){
 	return algoritmoResultado;
 }
 
-void implementar_fifo(){
+t_pcb* implementar_fifo(t_list *lista){
+t_pcb *pcb = (t_pcb *)list_remove(lista, 0);
+return pcb;
+}
+
+void implementar_rr(){
+
+}
+
+void implementar_feedback(){
 
 }
