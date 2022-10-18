@@ -86,8 +86,23 @@ void conectar_dispatch()
 		
 		pcb->informacion->instrucciones = list_create();
 		pcb->informacion->segmentos = list_create();
-		list_add(pcb->informacion->instrucciones,"SET AX 1");
-		list_add(pcb->informacion->instrucciones,"EXIT");
+
+		t_instruccion *instr = malloc(sizeof(t_instruccion));
+		instr->instCode = 0;
+		instr->paramReg[0] = 0;
+		instr->paramInt = 1;
+		instr->paramReg[1] = -1;
+		instr->paramIO = -1;
+
+		t_instruccion *instr2 = malloc(sizeof(t_instruccion));
+		instr2->instCode = 5;
+		instr->paramReg[0] = -1;
+		instr->paramInt = -1;
+		instr->paramReg[1] = -1;
+		instr->paramIO = -1;
+		
+		list_add(pcb->informacion->instrucciones,instr);
+		list_add(pcb->informacion->instrucciones,instr2);
 
 		list_add(pcb->informacion->segmentos, "64");
 		list_add(pcb->informacion->segmentos, "256");

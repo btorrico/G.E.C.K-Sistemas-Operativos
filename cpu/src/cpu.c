@@ -27,6 +27,9 @@ int main(char **argc, char **argv)
 		config_destroy(config);
 	}
 }
+
+
+
 t_configCPU extraerDatosConfig(t_config *archivoConfig)
 {
 
