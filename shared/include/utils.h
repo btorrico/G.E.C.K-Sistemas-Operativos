@@ -121,9 +121,11 @@ enum tipo_mensaje{
 
 typedef enum
 {
-	AGREGAR_PCB,
-	ELIMINAR_PCB
-}t_cod_planificador;
+	FIFO,
+	RR,
+	FEEDBACK
+}t_tipo_algoritmo;
+ 
 
 extern int contadorIdPCB;
 typedef enum {
@@ -239,7 +241,7 @@ typedef struct
 extern t_configKernel configKernel;
 
 extern t_log* logger;
-extern t_cod_planificador* cod_planificador;
+
 //extern t_log* loggerKernel;
 
 t_pcb* crear_pcb();

@@ -41,8 +41,8 @@ void crear_hilos_kernel()
 	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
-	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, (&cod_planificador, &quantum)); // cargar el quantum
-
+	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL); 
+	
 	pthread_detach(&thrCpu);
 	pthread_detach(&thrPlanificadorCortoPlazo);
 	pthread_detach(&thrMemoria);
@@ -104,8 +104,8 @@ void conectar_dispatch()
 		list_add(pcb->informacion->instrucciones,instr);
 		list_add(pcb->informacion->instrucciones,instr2);
 
-		list_add(pcb->informacion->segmentos, "64");
-		list_add(pcb->informacion->segmentos, "256");
+		list_add(pcb->informacion->segmentos, 64);
+		list_add(pcb->informacion->segmentos, 256);
 	
 
 	// esto en realidad tendria que sacarlo de lista_ready, pero falta lo de planificador de corto plazo
@@ -144,5 +144,5 @@ void iniciar_kernel()
 
 	iniciar_listas_y_semaforos();
 
-	contadorIdPCB = 0;
+	contadorIdPCB =  0;
 }

@@ -1427,6 +1427,7 @@
 [INFO] 23:28:19:800 CPU/(6868:6870): Me llego el mensaje soy el interrupt
 [INFO] 23:28:19:800 CPU/(6868:6869): Se conecto un cliente!
 [ERROR] 23:34:06:951 CPU/(6868:6870): el cliente se desconecto. Terminando servidor
+<<<<<<< HEAD
 [INFO] 03:01:54:714 CPU/(6832:6834): Servidor listo para recibir al interrupt kernel
 [INFO] 03:01:54:715 CPU/(6832:6833): Servidor listo para recibir al dispatch kernel
 [INFO] 03:02:09:242 CPU/(6832:6834): Se conecto un cliente!
@@ -1470,3 +1471,48 @@
 [INFO] 23:52:59:242 CPU/(6206:6208): Se conecto un cliente!
 [INFO] 23:52:59:242 CPU/(6206:6208): Me llego el mensaje soy el interrupt
 [INFO] 23:52:59:242 CPU/(6206:6207): Se conecto un cliente!
+=======
+[INFO] 00:33:43:765 CPU/(10634:10636): Servidor listo para recibir al interrupt kernel
+[INFO] 00:33:43:765 CPU/(10634:10635): Servidor listo para recibir al dispatch kernel
+[INFO] 00:33:51:317 CPU/(10634:10636): Se conecto un cliente!
+[INFO] 00:33:51:317 CPU/(10634:10636): Me llego el mensaje soy el interrupt
+[INFO] 00:33:51:317 CPU/(10634:10635): Se conecto un cliente!
+[ERROR] 00:36:37:973 CPU/(10634:10636): el cliente se desconecto. Terminando servidor
+[INFO] 01:33:30:490 CPU/(17008:17010): Servidor listo para recibir al interrupt kernel
+[INFO] 01:33:30:490 CPU/(17008:17009): Servidor listo para recibir al dispatch kernel
+[INFO] 01:38:33:923 CPU/(18241:18243): Servidor listo para recibir al interrupt kernel
+[INFO] 01:38:33:924 CPU/(18241:18242): Servidor listo para recibir al dispatch kernel
+[INFO] 01:46:42:228 CPU/(21022:21024): Servidor listo para recibir al interrupt kernel
+[INFO] 01:46:42:228 CPU/(21022:21023): Servidor listo para recibir al dispatch kernel
+[INFO] 01:48:13:732 CPU/(21810:21812): Servidor listo para recibir al interrupt kernel
+[INFO] 01:48:13:732 CPU/(21810:21811): Servidor listo para recibir al dispatch kernel
+[INFO] 01:51:28:341 CPU/(22480:22482): Servidor listo para recibir al interrupt kernel
+[INFO] 01:51:28:341 CPU/(22480:22481): Servidor listo para recibir al dispatch kernel
+[INFO] 00:13:25:479 CPU/(24150:24152): Servidor listo para recibir al interrupt kernel
+[INFO] 00:13:25:480 CPU/(24150:24151): Servidor listo para recibir al dispatch kernel
+[INFO] 00:22:17:936 CPU/(25512:25514): Servidor listo para recibir al interrupt kernel
+[INFO] 00:22:17:936 CPU/(25512:25513): Servidor listo para recibir al dispatch kernel
+[INFO] 01:31:33:315 CPU/(33283:33285): Servidor listo para recibir al interrupt kernel
+[INFO] 01:31:33:315 CPU/(33283:33284): Servidor listo para recibir al dispatch kernel
+[INFO] 01:31:40:196 CPU/(33283:33284): Se conecto un cliente!
+[INFO] 01:31:40:196 CPU/(33283:33285): Se conecto un cliente!
+[INFO] 01:31:40:197 CPU/(33283:33285): Me llego el mensaje soy el interrupt
+[INFO] 17:06:31:900 CPU/(2399:2401): Servidor listo para recibir al interrupt kernel
+[INFO] 17:06:31:900 CPU/(2399:2400): Servidor listo para recibir al dispatch kernel
+[INFO] 17:06:39:011 CPU/(2399:2401): Se conecto un cliente!
+[INFO] 17:06:39:012 CPU/(2399:2401): Me llego el mensaje soy el interrupt
+[INFO] 17:06:39:011 CPU/(2399:2400): Se conecto un cliente!
+[INFO] 23:29:07:738 CPU/(3346:3348): Servidor listo para recibir al interrupt kernel
+[INFO] 23:29:07:740 CPU/(3346:3347): Servidor listo para recibir al dispatch kernel
+[INFO] 23:50:19:553 CPU/(4990:4992): Servidor listo para recibir al interrupt kernel
+[INFO] 23:50:19:553 CPU/(4990:4991): Servidor listo para recibir al dispatch kernel
+[INFO] 23:50:37:579 CPU/(4990:4991): Se conecto un cliente!
+[INFO] 23:50:37:579 CPU/(4990:4992): Se conecto un cliente!
+[INFO] 23:50:37:579 CPU/(4990:4992): Me llego el mensaje soy el interrupt
+[ERROR] 23:52:00:721 CPU/(4990:4992): el cliente se desconecto. Terminando servidor
+[INFO] 00:14:24:260 CPU/(8379:8381): Servidor listo para recibir al interrupt kernel
+[INFO] 00:14:24:260 CPU/(8379:8380): Servidor listo para recibir al dispatch kernel
+[INFO] 00:14:59:591 CPU/(8379:8381): Se conecto un cliente!
+[INFO] 00:14:59:591 CPU/(8379:8381): Me llego el mensaje soy el interrupt
+[INFO] 00:14:59:591 CPU/(8379:8380): Se conecto un cliente!
+>>>>>>> kernel

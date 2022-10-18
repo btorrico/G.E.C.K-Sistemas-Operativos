@@ -33,7 +33,7 @@ void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
 
 t_configMemoria extraerDatosConfig(t_config* );
-t_cod_planificador* cod_planificador ;
+
 int contadorIdPCB;
 
 int conexionMemoria;

@@ -20,8 +20,10 @@ t_pcb *crear_pcb(t_informacion* , int );
 
 void cambiaValor();
 void planifLargoPlazo();
-void planifCortoPlazo(t_cod_planificador* , int);
+void planifCortoPlazo();
 
+t_pcb* implementar_fifo(t_list *);
+t_tipo_algoritmo obtenerAlgoritmo();
 t_informacion recibir_informacion(int cliente_fd);
 
 

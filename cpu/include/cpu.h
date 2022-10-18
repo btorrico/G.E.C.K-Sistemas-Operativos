@@ -36,7 +36,7 @@ void iniciar_servidor_dispatch();
 void iniciar_servidor_interrupt();
 void conectar_memoria();
 
-t_cod_planificador* cod_planificador ;
+
 
 // LISTAS
 t_list *LISTA_NEW;

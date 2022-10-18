@@ -84,9 +84,9 @@ void iniciar_servidor_dispatch()
 	printf("\n\nSegmentos:");
 	for (int i = 0; i < pcb->informacion->segmentos_size; ++i)
 	{
-		char *segmento = list_get(pcb->informacion->segmentos, i);
+		uint32_t segmento = list_get(pcb->informacion->segmentos, i);
 
-		printf("\n%s\n", segmento);
+		printf("\n%d\n", segmento);
 	}
 
 	printf("\n%d.\n", pcb->socket);
