@@ -145,5 +145,5 @@ void iniciar_kernel()
 
 	iniciar_listas_y_semaforos();
 
-	contadorIdPCB =  0;
+	contadorIdPCB  =  0;
 }
