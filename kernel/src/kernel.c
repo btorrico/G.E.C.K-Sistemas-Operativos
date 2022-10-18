@@ -94,6 +94,7 @@ void conectar_dispatch()
 		instr->paramReg[1] = -1;
 		instr->paramIO = -1;
 
+
 		t_instruccion *instr2 = malloc(sizeof(t_instruccion));
 		instr2->instCode = 5;
 		instr->paramReg[0] = -1;
