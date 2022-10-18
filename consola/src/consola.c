@@ -193,6 +193,6 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	// lleno el paquete
 	t_paquete *paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = NEW;
-	paquete->buffer = buffer;
+	paquete->buffer =  buffer;
 	return paquete;
 }
