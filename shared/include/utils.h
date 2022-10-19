@@ -242,9 +242,12 @@ extern t_configKernel configKernel;
 
 extern t_log* logger;
 
+
+
 //extern t_log* loggerKernel;
 
 t_pcb* crear_pcb();
+
 
 // LISTAS
 extern t_list* LISTA_NEW;
@@ -264,9 +267,11 @@ extern pthread_mutex_t mutex_lista_blocked;
 extern pthread_mutex_t mutex_lista_exit;
 
 
+
 // SEMAFOROS
 extern sem_t sem_planif_largo_plazo;
 extern sem_t contador_multiprogramacion;
+extern sem_t contador_pcb_running;
 extern sem_t sem_ready;
 extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;
@@ -274,5 +279,7 @@ extern sem_t sem_procesador;
 extern sem_t sem_agregar_pcb;
 extern sem_t sem_hay_pcb_lista_new;
 extern sem_t sem_hay_pcb_lista_ready;
+extern sem_t sem_pasar_pcb_running;
+
 
 #endif /* UTILS_H_ */

@@ -74,49 +74,25 @@ void crear_hilo_cpu()
 
 void conectar_dispatch()
 {
+
+	//Enviar PCB
+
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 
-	
-		t_pcb *pcb = (t_pcb*) malloc(sizeof(t_pcb));
-		pcb->id = 10;
-		pcb->program_counter = 0;
-	
+	sem_wait(&sem_pasar_pcb_running);
+	printf("Llego UN pcb a dispatch");
+	serializarPCB(conexion, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
+	printf("\nse envio pcb a cpu\n");
 
-		pcb->informacion = malloc(sizeof(t_informacion));
-		
-		pcb->informacion->instrucciones = list_create();
-		pcb->informacion->segmentos = list_create();
+	/*
+	//Recibir PCB
+	t_paquete *paquete = recibirPaquete(conexion);
 
-		t_instruccion *instr = malloc(sizeof(t_instruccion));
-		instr->instCode = 0;
-		instr->paramReg[0] = 0;
-		instr->paramInt = 1;
-		instr->paramReg[1] = -1;
-		instr->paramIO = -1;
+	t_pcb *pcb = deserializoPCB(paquete->buffer);
 
-
-		t_instruccion *instr2 = malloc(sizeof(t_instruccion));
-		instr2->instCode = 5;
-		instr->paramReg[0] = -1;
-		instr->paramInt = -1;
-		instr->paramReg[1] = -1;
-		instr->paramIO = -1;
-		
-		list_add(pcb->informacion->instrucciones,instr);
-		list_add(pcb->informacion->instrucciones,instr2);
-
-		list_add(pcb->informacion->segmentos, 64);
-		list_add(pcb->informacion->segmentos, 256);
-	
-
-	// esto en realidad tendria que sacarlo de lista_ready, pero falta lo de planificador de corto plazo
-	/*pthread_mutex_lock(&mutex_lista_new);
-	t_pcb *pcb = (t_pcb *)list_get(LISTA_NEW, 0);
-	pthread_mutex_unlock(&mutex_lista_new);*/
-
-	serializarPCB(conexion, pcb, DISPATCH_PCB);
-
-	printf("\nse envio paquete.\n");
+	*/
+	//
+	//sem_post(&contador_pcb_running);
 }
 
 void conectar_interrupt()
@@ -146,4 +122,6 @@ void iniciar_kernel()
 	iniciar_listas_y_semaforos();
 
 	contadorIdPCB  =  0;
+
+
 }

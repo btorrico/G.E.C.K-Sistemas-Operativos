@@ -62,7 +62,9 @@ void iniciar_servidor_dispatch()
 	t_paquete *paquete = recibirPaquete(cliente_fd);
 
 	t_pcb *pcb = deserializoPCB(paquete->buffer);
-	printf("se recibio pcb\n");
+
+
+	printf("se recibio pcb de running de kernel\n");
 
 	printf("\n%d.\n", pcb->id);
 	printf("\n%d.\n", pcb->program_counter);
@@ -93,7 +95,15 @@ void iniciar_servidor_dispatch()
 
 	printf("\n%d.\n", pcb->registros.AX);
 
+//hacer cosas
+/*hacer_cosas_con_pcb(
 
+	sem_post(&sem_pasar_pcb_kernel);
+)*/
+
+
+	//sem_wait(&sem_pasar_pcb_kernel);
+	//serializarPCB(conexion, pcb, EXIT_PCB);
 
 }
 
@@ -111,3 +121,7 @@ void conectar_memoria()
 	conexion = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
 	enviar_mensaje("hola memoria, soy el cpu", conexion);
 }
+
+
+
+

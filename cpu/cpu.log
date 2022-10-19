@@ -1518,3 +1518,43 @@
 >>>>>>> kernel
 [INFO] 00:32:46:474 CPU/(11445:11447): Servidor listo para recibir al interrupt kernel
 [INFO] 00:32:46:475 CPU/(11445:11446): Servidor listo para recibir al dispatch kernel
+[INFO] 21:34:10:331 CPU/(3145:3147): Servidor listo para recibir al interrupt kernel
+[INFO] 21:34:10:331 CPU/(3145:3146): Servidor listo para recibir al dispatch kernel
+[INFO] 21:34:27:088 CPU/(3145:3147): Se conecto un cliente!
+[INFO] 21:34:27:088 CPU/(3145:3147): Me llego el mensaje soy el interrupt
+[INFO] 21:34:27:088 CPU/(3145:3146): Se conecto un cliente!
+[INFO] 23:07:59:006 CPU/(6340:6342): Servidor listo para recibir al interrupt kernel
+[INFO] 23:07:59:006 CPU/(6340:6341): Servidor listo para recibir al dispatch kernel
+[INFO] 23:08:09:323 CPU/(6340:6341): Se conecto un cliente!
+[INFO] 23:08:09:323 CPU/(6340:6342): Se conecto un cliente!
+[INFO] 23:08:09:323 CPU/(6340:6342): Me llego el mensaje soy el interrupt
+[INFO] 23:12:25:263 CPU/(7013:7015): Servidor listo para recibir al interrupt kernel
+[INFO] 23:12:25:263 CPU/(7013:7014): Servidor listo para recibir al dispatch kernel
+[INFO] 23:12:30:007 CPU/(7013:7015): Se conecto un cliente!
+[INFO] 23:12:30:007 CPU/(7013:7015): Me llego el mensaje soy el interrupt
+[INFO] 23:12:30:007 CPU/(7013:7014): Se conecto un cliente!
+[INFO] 23:14:50:384 CPU/(7798:7800): Servidor listo para recibir al interrupt kernel
+[INFO] 23:14:50:385 CPU/(7798:7799): Servidor listo para recibir al dispatch kernel
+[INFO] 23:14:57:482 CPU/(7798:7800): Se conecto un cliente!
+[INFO] 23:14:57:482 CPU/(7798:7800): Me llego el mensaje soy el interrupt
+[INFO] 23:14:57:482 CPU/(7798:7799): Se conecto un cliente!
+[INFO] 23:17:28:691 CPU/(8418:8420): Servidor listo para recibir al interrupt kernel
+[INFO] 23:17:28:691 CPU/(8418:8419): Servidor listo para recibir al dispatch kernel
+[INFO] 23:17:35:608 CPU/(8418:8420): Se conecto un cliente!
+[INFO] 23:17:35:608 CPU/(8418:8420): Me llego el mensaje soy el interrupt
+[INFO] 23:17:35:608 CPU/(8418:8419): Se conecto un cliente!
+[INFO] 23:20:28:632 CPU/(9322:9324): Servidor listo para recibir al interrupt kernel
+[INFO] 23:20:28:632 CPU/(9322:9323): Servidor listo para recibir al dispatch kernel
+[INFO] 23:20:35:313 CPU/(9322:9324): Se conecto un cliente!
+[INFO] 23:20:35:313 CPU/(9322:9324): Me llego el mensaje soy el interrupt
+[INFO] 23:20:35:313 CPU/(9322:9323): Se conecto un cliente!
+[INFO] 23:25:28:262 CPU/(10116:10118): Servidor listo para recibir al interrupt kernel
+[INFO] 23:25:28:263 CPU/(10116:10117): Servidor listo para recibir al dispatch kernel
+[INFO] 23:25:33:560 CPU/(10116:10118): Se conecto un cliente!
+[INFO] 23:25:33:560 CPU/(10116:10118): Me llego el mensaje soy el interrupt
+[INFO] 23:25:33:560 CPU/(10116:10117): Se conecto un cliente!
+[INFO] 00:19:58:299 CPU/(12334:12336): Servidor listo para recibir al interrupt kernel
+[INFO] 00:19:58:299 CPU/(12334:12335): Servidor listo para recibir al dispatch kernel
+[INFO] 00:20:23:391 CPU/(12334:12336): Se conecto un cliente!
+[INFO] 00:20:23:391 CPU/(12334:12335): Se conecto un cliente!
+[INFO] 00:20:23:391 CPU/(12334:12336): Me llego el mensaje soy el interrupt

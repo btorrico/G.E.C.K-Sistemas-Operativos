@@ -28,6 +28,8 @@ int conexionMemoria;
 
 t_config *config;
 
+
+
 char *rutaArchivoConfiguracion;
 
 char *rutaInstrucciones;
@@ -97,6 +99,7 @@ pthread_mutex_t mutex_lista_exit;
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;
 sem_t contador_multiprogramacion;
+sem_t contador_pcb_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
@@ -104,4 +107,5 @@ sem_t sem_procesador;
 sem_t sem_agregar_pcb;
 sem_t sem_hay_pcb_lista_new;
 sem_t sem_hay_pcb_lista_ready;
+sem_t sem_pasar_pcb_running;
 #endif

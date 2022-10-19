@@ -142,13 +142,13 @@ t_informacion recibir_informacion(cliente_fd)
 
 	while (l < (programa.segmentos_size))
 	{
-		//segmento = malloc(sizeof(uint32_t));
+		// segmento = malloc(sizeof(uint32_t));
 		memcpy(&segmento, buffer + offset, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 		list_add(programa.segmentos, segmento);
 		l++;
 	}
-	
+
 	printf("\n\nSegmentos:");
 
 	printf("\n[%d,%d,%d,%d]\n", list_get(programa.segmentos, 0), list_get(programa.segmentos, 1), list_get(programa.segmentos, 2), list_get(programa.segmentos, 3));
@@ -169,7 +169,7 @@ void planifLargoPlazo()
 
 	sem_wait(&sem_planif_largo_plazo);
 	sem_wait(&sem_agregar_pcb);
-	printf("Entrando al planificador");
+	printf("\nEntrando al planificador\n");
 	agregar_pcb();
 
 	// eliminar_pcb();
@@ -177,13 +177,16 @@ void planifLargoPlazo()
 
 void planifCortoPlazo()
 {
-	//sem_wait de planicortoplazo
-
+	sem_wait(&sem_hay_pcb_lista_ready);
+	printf("\nllego pcb a plani corto plazo\n");
 	t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
+	
+	sem_wait(&contador_pcb_running);
+	
 	switch (algoritmo)
 	{
 	case FIFO:
-		//implementar_fifo();
+		implementar_fifo();
 		break;
 	case RR:
 		/* code */
@@ -267,9 +270,11 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_hay_pcb_lista_new, 0, 0);
 	sem_init(&sem_hay_pcb_lista_ready, 0, 0);
 	sem_init(&sem_agregar_pcb, 0, 0);
+	sem_init(&sem_pasar_pcb_running,0,0);
 
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
-	// sem_init(&sem_procesador, 0, 1);
+	sem_init(&contador_pcb_running, 0, 1);
+	
 }
 
 void agregar_pcb()
@@ -279,14 +284,18 @@ void agregar_pcb()
 	{
 		sem_wait(&sem_hay_pcb_lista_new);
 		sem_wait(&contador_multiprogramacion);
+
 		printf("Agregando un pcb a lista ready");
+
 		pthread_mutex_lock(&mutex_lista_new);
-		t_pcb *pcb = implementar_fifo(LISTA_NEW);
+		t_pcb *pcb = algoritmo_fifo(LISTA_NEW);
 		printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 		pthread_mutex_unlock(&mutex_lista_new);
 
 		pasar_a_ready(pcb);
+
 		printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
+
 		sem_post(&sem_hay_pcb_lista_ready);
 
 		// enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
@@ -332,36 +341,56 @@ t_pcb *crear_pcb(t_informacion *informacion, int socket)
 	return pcb;
 }
 
+t_tipo_algoritmo obtenerAlgoritmo()
+{
 
+	char *algoritmo = configKernel.algoritmo;
 
-
-
-t_tipo_algoritmo obtenerAlgoritmo(){
-
-	char* algoritmo = configKernel.algoritmo;
-
+	
 	t_tipo_algoritmo algoritmoResultado;
 
-	if(algoritmo == "FIFO"){
+	if (!strcmp(algoritmo,"FIFO"))
+	{
 		algoritmoResultado = FIFO;
-	}else if(algoritmo == "RR"){
+	}
+	else if (!strcmp(algoritmo,"RR"))
+	{
 		algoritmoResultado = RR;
-	}else{
+	}
+	else
+	{
 		algoritmoResultado = FEEDBACK;
 	}
 
 	return algoritmoResultado;
 }
 
-t_pcb* implementar_fifo(t_list *lista){
-t_pcb *pcb = (t_pcb *)list_remove(lista, 0);
-return pcb;
+t_pcb *algoritmo_fifo(t_list *lista)
+{
+	t_pcb *pcb = (t_pcb *)list_remove(lista, 0);
+	return pcb;
 }
+
+void algoritmo_rr()
+{
+	//TODO
+}
+
+void algoritmo_feedback()
+{
+}
+
+void implementar_fifo()
+{
+
+	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
+	printf("\nAgregando UN pcb a lista exec");
+	pasar_a_exec(pcb);
+	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	sem_post(&sem_pasar_pcb_running);
+}
+
 
 void implementar_rr(){
-
-}
-
-void implementar_feedback(){
-
+	
 }
