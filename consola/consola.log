@@ -7929,3 +7929,43 @@ instCode: 5, paramInt: -1, paramReg[0]: -1,paramReg[1] -1, dispositivoIO: -1
 [INFO] 00:54:12:740 CONSOLA/(7943:7943): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
 
 
+[INFO] 03:37:06:251 CONSOLA/(25222:25222): 
+ Iniciando consola...
+[INFO] 03:37:06:263 CONSOLA/(25222:25222): Se parsearon #Instrucciones: 8
+[INFO] 03:37:06:265 CONSOLA/(25222:25222): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 03:37:06:269 CONSOLA/(25222:25222): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:37:19:411 CONSOLA/(25228:25228): 
+ Iniciando consola...
+[INFO] 03:37:19:414 CONSOLA/(25228:25228): Se parsearon #Instrucciones: 8
+[INFO] 03:37:19:416 CONSOLA/(25228:25228): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 03:37:19:417 CONSOLA/(25228:25228): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:41:58:623 CONSOLA/(2954:2954): 
+ Iniciando consola...
+[INFO] 03:41:58:627 CONSOLA/(2954:2954): Se parsearon #Instrucciones: 8
+[INFO] 03:41:58:630 CONSOLA/(2954:2954): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 03:41:58:630 CONSOLA/(2954:2954): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:43:44:279 CONSOLA/(3078:3078): 
+ Iniciando consola...
+[INFO] 03:43:44:282 CONSOLA/(3078:3078): Se parsearon #Instrucciones: 8
+[INFO] 03:43:44:285 CONSOLA/(3078:3078): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 03:43:44:285 CONSOLA/(3078:3078): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:50:23:529 CONSOLA/(3421:3421): 
+ Iniciando consola...
+[INFO] 03:50:23:531 CONSOLA/(3421:3421): Se parsearon #Instrucciones: 8
+[INFO] 03:50:23:534 CONSOLA/(3421:3421): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 03:50:23:534 CONSOLA/(3421:3421): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+

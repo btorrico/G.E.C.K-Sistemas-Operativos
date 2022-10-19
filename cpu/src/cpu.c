@@ -58,53 +58,61 @@ void iniciar_servidor_dispatch()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
+	
+	while(1){
+		t_paquete *paquete = recibirPaquete(cliente_fd);
+		if (paquete == NULL) {
+			continue;
+		}
+		t_pcb *pcb = deserializoPCB(paquete->buffer);
+		// free(paquete->buffer->stream);
+		// free(paquete->buffer);
+		// free(paquete);
 
-	t_paquete *paquete = recibirPaquete(cliente_fd);
+		printf("se recibio pcb de running de kernel\n");
 
-	t_pcb *pcb = deserializoPCB(paquete->buffer);
-
-
-	printf("se recibio pcb de running de kernel\n");
-
-	printf("\n%d.\n", pcb->id);
-	printf("\n%d.\n", pcb->program_counter);
+		printf("\n%d.\n", pcb->id);
+		printf("\n%d.\n", pcb->program_counter);
 	
 
-	t_instruccion* instruccion = malloc(sizeof(t_instruccion));
+		t_instruccion* instruccion = malloc(sizeof(t_instruccion));
 
-	// mostrar instrucciones
-	printf("Instrucciones:");
-	for (int i = 0; i < pcb->informacion->instrucciones_size; ++i)
-	{
-		instruccion = list_get(pcb->informacion->instrucciones, i);
+		// mostrar instrucciones
+		printf("Instrucciones:");
+		for (int i = 0; i < pcb->informacion->instrucciones_size; ++i)
+		{
+			instruccion = list_get(pcb->informacion->instrucciones, i);
 
-		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
-			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+			printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+			   	instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+		}
+
+		// mostrar segmentos
+		printf("\n\nSegmentos:");
+		for (int i = 0; i < pcb->informacion->segmentos_size; ++i)
+		{
+			uint32_t segmento = list_get(pcb->informacion->segmentos, i);
+
+			printf("\n%d\n", segmento);
+		}
+
+		printf("\n%d.\n", pcb->socket);
+
+		printf("\n%d.\n", pcb->registros.AX);
+
+		cicloInstruccion(pcb);
+
+	//hacer cosas
+	/*hacer_cosas_con_pcb(
+
+		sem_post(&sem_pasar_pcb_kernel);
+	)*/
+
+
+		//sem_wait(&sem_pasar_pcb_kernel);
+		//serializarPCB(conexion, pcb, EXIT_PCB);
+
 	}
-
-	// mostrar segmentos
-	printf("\n\nSegmentos:");
-	for (int i = 0; i < pcb->informacion->segmentos_size; ++i)
-	{
-		uint32_t segmento = list_get(pcb->informacion->segmentos, i);
-
-		printf("\n%d\n", segmento);
-	}
-
-	printf("\n%d.\n", pcb->socket);
-
-	printf("\n%d.\n", pcb->registros.AX);
-
-//hacer cosas
-/*hacer_cosas_con_pcb(
-
-	sem_post(&sem_pasar_pcb_kernel);
-)*/
-
-
-	//sem_wait(&sem_pasar_pcb_kernel);
-	//serializarPCB(conexion, pcb, EXIT_PCB);
-
 }
 
 void iniciar_servidor_interrupt()
@@ -122,6 +130,17 @@ void conectar_memoria()
 	enviar_mensaje("hola memoria, soy el cpu", conexion);
 }
 
+void cicloInstruccion(t_pcb* pcb) {
+	// fetch
+	uint32_t index = pcb->program_counter;
+	t_instruccion* insActual = list_get(pcb->informacion->instrucciones, index);
+	pcb->program_counter += 1;
+	log_info(logger,"insActual->identificador: %i", insActual->instCode);
+	log_info(logger,"insActual->pc: %i", index);
+
+
+	
+}
 
 
 
