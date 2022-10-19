@@ -910,3 +910,9 @@
 [INFO] 00:19:58:299 MEMORIA/(12223:12225): Me llego el mensaje hola memoria, soy el cpu
 [INFO] 00:20:23:390 MEMORIA/(12223:12224): Se conecto un cliente!
 [INFO] 00:20:23:391 MEMORIA/(12223:12224): Me llego el mensaje hola memoria, soy el kernel
+[INFO] 00:53:01:243 MEMORIA/(7491:7493): Servidor listo para recibir al cpu
+[INFO] 00:53:01:243 MEMORIA/(7491:7492): Servidor listo para recibir al kernel
+[INFO] 00:53:10:604 MEMORIA/(7491:7493): Se conecto un cliente!
+[INFO] 00:53:10:605 MEMORIA/(7491:7493): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:53:47:292 MEMORIA/(7491:7492): Se conecto un cliente!
+[INFO] 00:53:47:294 MEMORIA/(7491:7492): Me llego el mensaje hola memoria, soy el kernel
