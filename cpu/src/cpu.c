@@ -73,34 +73,14 @@ void iniciar_servidor_dispatch()
 
 		printf("\n%d.\n", pcb->id);
 		printf("\n%d.\n", pcb->program_counter);
+		imprimirInstruccionesYSegmentos(pcb->informacion);
 	
-
-		t_instruccion* instruccion = malloc(sizeof(t_instruccion));
-
-		// mostrar instrucciones
-		printf("Instrucciones:");
-		for (int i = 0; i < pcb->informacion->instrucciones_size; ++i)
-		{
-			instruccion = list_get(pcb->informacion->instrucciones, i);
-
-			printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
-			   	instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
-		}
-
-		// mostrar segmentos
-		printf("\n\nSegmentos:");
-		for (int i = 0; i < pcb->informacion->segmentos_size; ++i)
-		{
-			uint32_t segmento = list_get(pcb->informacion->segmentos, i);
-
-			printf("\n%d\n", segmento);
-		}
-
 		printf("\n%d.\n", pcb->socket);
 
 		printf("\n%d.\n", pcb->registros.AX);
 
 		cicloInstruccion(pcb);
+		
 
 	//hacer cosas
 	/*hacer_cosas_con_pcb(
@@ -135,12 +115,51 @@ void cicloInstruccion(t_pcb* pcb) {
 	uint32_t index = pcb->program_counter;
 	t_instruccion* insActual = list_get(pcb->informacion->instrucciones, index);
 	pcb->program_counter += 1;
-	log_info(logger,"insActual->identificador: %i", insActual->instCode);
+	log_info(logger,"insActual->instCode: %i", insActual->instCode);
 	log_info(logger,"insActual->pc: %i", index);
 
+	// decode
+	if(insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT) {
+		log_debug(logger, "Requiere acceso a Memoria");
+		//Hacer algo en proximo Checkpoint
+	}
 
+	//execute
+	log_debug(logger, "Ejecutando pcb->id %i", pcb->id);
+
+	//bool retornePCB = false;
+	switch(insActual->instCode){
+		case SET:
+			log_debug(logger,"SET");
+			usleep(configCPU.retardoInstruccion);
+			break;
+
+	}
 	
 }
 
+void imprimirInstruccionesYSegmentos(t_informacion* informacion){
+	t_instruccion* instruccion = malloc(sizeof(t_instruccion));
 
+		// mostrar instrucciones
+		printf("Instrucciones:");
+		for (int i = 0; i < informacion->instrucciones_size; ++i)
+		{
+			instruccion = list_get(informacion->instrucciones, i);
+
+			printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+			   	instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+		}
+
+		// mostrar segmentos
+		printf("\n\nSegmentos:");
+		for (int i = 0; i < informacion->segmentos_size; ++i)
+		{
+			uint32_t segmento = list_get(informacion->segmentos, i);
+
+			printf("\n%d\n", segmento);
+		}
+
+		
+}
 

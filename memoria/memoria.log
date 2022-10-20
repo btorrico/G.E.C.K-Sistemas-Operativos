@@ -956,3 +956,27 @@
 [INFO] 03:50:06:323 MEMORIA/(3303:3305): Me llego el mensaje hola memoria, soy el cpu
 [INFO] 03:50:15:780 MEMORIA/(3303:3304): Se conecto un cliente!
 [INFO] 03:50:15:781 MEMORIA/(3303:3304): Me llego el mensaje hola memoria, soy el kernel
+[INFO] 23:36:05:622 MEMORIA/(3237:3239): Servidor listo para recibir al cpu
+[INFO] 23:36:05:623 MEMORIA/(3237:3238): Servidor listo para recibir al kernel
+[INFO] 23:36:13:192 MEMORIA/(3237:3239): Se conecto un cliente!
+[INFO] 23:36:13:193 MEMORIA/(3237:3239): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 23:36:19:182 MEMORIA/(3237:3238): Se conecto un cliente!
+[INFO] 23:36:19:183 MEMORIA/(3237:3238): Me llego el mensaje hola memoria, soy el kernel
+[ERROR] 23:43:58:376 MEMORIA/(3237:3238): el cliente se desconecto. Terminando servidor
+[ERROR] 23:44:00:015 MEMORIA/(3237:3239): el cliente se desconecto. Terminando servidor
+[INFO] 23:44:09:465 MEMORIA/(3656:3658): Servidor listo para recibir al cpu
+[INFO] 23:44:09:470 MEMORIA/(3656:3657): Servidor listo para recibir al kernel
+[INFO] 23:44:20:394 MEMORIA/(3656:3658): Se conecto un cliente!
+[INFO] 23:44:20:395 MEMORIA/(3656:3658): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 23:44:26:675 MEMORIA/(3656:3657): Se conecto un cliente!
+[INFO] 23:44:26:675 MEMORIA/(3656:3657): Me llego el mensaje hola memoria, soy el kernel
+[INFO] 00:25:44:002 MEMORIA/(4993:4995): Servidor listo para recibir al cpu
+[INFO] 00:25:44:002 MEMORIA/(4993:4994): Servidor listo para recibir al kernel
+[INFO] 00:26:37:655 MEMORIA/(5078:5080): Servidor listo para recibir al cpu
+[INFO] 00:26:37:656 MEMORIA/(5078:5079): Servidor listo para recibir al kernel
+[INFO] 00:27:02:688 MEMORIA/(5144:5146): Servidor listo para recibir al cpu
+[INFO] 00:27:02:689 MEMORIA/(5144:5145): Servidor listo para recibir al kernel
+[INFO] 00:27:12:102 MEMORIA/(5144:5146): Se conecto un cliente!
+[INFO] 00:27:12:103 MEMORIA/(5144:5146): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:27:23:191 MEMORIA/(5144:5145): Se conecto un cliente!
+[INFO] 00:27:23:191 MEMORIA/(5144:5145): Me llego el mensaje hola memoria, soy el kernel
