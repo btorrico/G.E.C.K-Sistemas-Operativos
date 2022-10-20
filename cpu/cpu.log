@@ -1637,3 +1637,97 @@
 [INFO] 00:27:29:820 CPU/(5182:5183): insActual->pc: 0
 [DEBUG] 00:27:29:820 CPU/(5182:5183): Ejecutando pcb->id 0
 [DEBUG] 00:27:29:820 CPU/(5182:5183): SET
+[INFO] 05:37:30:081 CPU/(37046:37048): Servidor listo para recibir al interrupt kernel
+[INFO] 05:37:30:081 CPU/(37046:37047): Servidor listo para recibir al dispatch kernel
+[INFO] 05:37:35:500 CPU/(37046:37048): Se conecto un cliente!
+[INFO] 05:37:35:500 CPU/(37046:37048): Me llego el mensaje soy el interrupt
+[INFO] 05:37:35:500 CPU/(37046:37047): Se conecto un cliente!
+[INFO] 05:37:54:214 CPU/(37046:37047): insActual->instCode: 0
+[INFO] 05:37:54:214 CPU/(37046:37047): insActual->pc: 0
+[DEBUG] 05:37:54:214 CPU/(37046:37047): Ejecutando pcb->id 0
+[DEBUG] 05:37:54:214 CPU/(37046:37047): SET
+[ERROR] 05:53:22:825 CPU/(37046:37048): el cliente se desconecto. Terminando servidor
+[INFO] 05:56:04:574 CPU/(38033:38035): Servidor listo para recibir al interrupt kernel
+[INFO] 05:56:04:574 CPU/(38033:38034): Servidor listo para recibir al dispatch kernel
+[INFO] 05:56:12:847 CPU/(38033:38035): Se conecto un cliente!
+[INFO] 05:56:12:847 CPU/(38033:38035): Me llego el mensaje soy el interrupt
+[INFO] 05:56:12:847 CPU/(38033:38034): Se conecto un cliente!
+[INFO] 05:56:24:455 CPU/(38033:38034): insActual->instCode: 0
+[INFO] 05:56:24:455 CPU/(38033:38034): insActual->pc: 0
+[DEBUG] 05:56:24:455 CPU/(38033:38034): Ejecutando pcb->id 0
+[DEBUG] 05:56:24:455 CPU/(38033:38034): SET
+[INFO] 05:57:01:923 CPU/(38394:38396): Servidor listo para recibir al interrupt kernel
+[INFO] 05:57:01:923 CPU/(38394:38395): Servidor listo para recibir al dispatch kernel
+[INFO] 05:57:38:768 CPU/(38617:38619): Servidor listo para recibir al interrupt kernel
+[INFO] 05:57:38:768 CPU/(38617:38618): Servidor listo para recibir al dispatch kernel
+[INFO] 05:57:56:992 CPU/(38617:38619): Se conecto un cliente!
+[INFO] 05:57:56:992 CPU/(38617:38619): Me llego el mensaje soy el interrupt
+[INFO] 05:57:56:992 CPU/(38617:38618): Se conecto un cliente!
+[INFO] 05:58:08:974 CPU/(38617:38618): insActual->instCode: 0
+[INFO] 05:58:08:974 CPU/(38617:38618): insActual->pc: 0
+[DEBUG] 05:58:08:974 CPU/(38617:38618): Ejecutando pcb->id 0
+[DEBUG] 05:58:08:974 CPU/(38617:38618): SET
+[INFO] 06:00:00:478 CPU/(39302:39304): Servidor listo para recibir al interrupt kernel
+[INFO] 06:00:00:479 CPU/(39302:39303): Servidor listo para recibir al dispatch kernel
+[INFO] 06:00:14:519 CPU/(39302:39304): Se conecto un cliente!
+[INFO] 06:00:14:519 CPU/(39302:39304): Me llego el mensaje soy el interrupt
+[INFO] 06:00:14:519 CPU/(39302:39303): Se conecto un cliente!
+[INFO] 06:00:28:302 CPU/(39302:39303): insActual->instCode: 0
+[INFO] 06:00:28:302 CPU/(39302:39303): insActual->pc: 0
+[DEBUG] 06:00:28:302 CPU/(39302:39303): Ejecutando pcb->id 0
+[DEBUG] 06:00:28:302 CPU/(39302:39303): SET
+[INFO] 06:03:37:646 CPU/(39901:39903): Servidor listo para recibir al interrupt kernel
+[INFO] 06:03:37:646 CPU/(39901:39902): Servidor listo para recibir al dispatch kernel
+[INFO] 06:03:43:360 CPU/(39901:39903): Se conecto un cliente!
+[INFO] 06:03:43:360 CPU/(39901:39903): Me llego el mensaje soy el interrupt
+[INFO] 06:03:43:360 CPU/(39901:39902): Se conecto un cliente!
+[INFO] 06:03:48:032 CPU/(39901:39902): insActual->instCode: 0
+[INFO] 06:03:48:032 CPU/(39901:39902): insActual->pc: 0
+[DEBUG] 06:03:48:032 CPU/(39901:39902): Ejecutando pcb->id 0
+[DEBUG] 06:03:48:032 CPU/(39901:39902): SET
+[INFO] 06:15:58:765 CPU/(65413:65415): Servidor listo para recibir al interrupt kernel
+[INFO] 06:15:58:765 CPU/(65413:65414): Servidor listo para recibir al dispatch kernel
+[INFO] 06:16:10:173 CPU/(65413:65415): Se conecto un cliente!
+[INFO] 06:16:10:173 CPU/(65413:65415): Me llego el mensaje soy el interrupt
+[INFO] 06:16:10:173 CPU/(65413:65414): Se conecto un cliente!
+[INFO] 06:16:24:238 CPU/(65413:65414): insActual->instCode: 0
+[INFO] 06:16:24:238 CPU/(65413:65414): insActual->pc: 0
+[INFO] 06:16:24:238 CPU/(65413:65414):  Valor nuevo Program counter 1
+[DEBUG] 06:16:24:238 CPU/(65413:65414): Ejecutando pcb->id 0
+[DEBUG] 06:16:24:238 CPU/(65413:65414): SET
+[INFO] 06:36:00:660 CPU/(66265:66267): Servidor listo para recibir al interrupt kernel
+[INFO] 06:36:00:660 CPU/(66265:66266): Servidor listo para recibir al dispatch kernel
+[INFO] 06:36:26:397 CPU/(66265:66267): Se conecto un cliente!
+[INFO] 06:36:26:397 CPU/(66265:66267): Me llego el mensaje soy el interrupt
+[INFO] 06:36:26:397 CPU/(66265:66266): Se conecto un cliente!
+[INFO] 06:36:39:614 CPU/(66265:66266): insActual->instCode: 0
+[INFO] 06:36:39:614 CPU/(66265:66266): insActual->pc: 0
+[INFO] 06:36:39:614 CPU/(66265:66266):  Valor nuevo Program counter: 1
+[INFO] 06:42:05:028 CPU/(66918:66920): Servidor listo para recibir al interrupt kernel
+[INFO] 06:42:05:028 CPU/(66918:66919): Servidor listo para recibir al dispatch kernel
+[INFO] 06:42:13:596 CPU/(66918:66920): Se conecto un cliente!
+[INFO] 06:42:13:598 CPU/(66918:66920): Me llego el mensaje soy el interrupt
+[INFO] 06:42:13:598 CPU/(66918:66919): Se conecto un cliente!
+[INFO] 06:42:16:884 CPU/(66918:66919): insActual->instCode: 0
+[INFO] 06:42:16:884 CPU/(66918:66919): insActual->pc: 0
+[INFO] 06:42:16:884 CPU/(66918:66919):  Valor nuevo Program counter: 1
+[DEBUG] 06:42:16:884 CPU/(66918:66919): Ejecutando pcb->id 0
+[INFO] 07:02:43:458 CPU/(67730:67732): Servidor listo para recibir al interrupt kernel
+[INFO] 07:02:43:459 CPU/(67730:67731): Servidor listo para recibir al dispatch kernel
+[INFO] 07:02:58:412 CPU/(67730:67732): Se conecto un cliente!
+[INFO] 07:02:58:412 CPU/(67730:67732): Me llego el mensaje soy el interrupt
+[INFO] 07:02:58:412 CPU/(67730:67731): Se conecto un cliente!
+[INFO] 07:03:19:386 CPU/(67730:67731): insActual->instCode: 0
+[INFO] 07:03:19:386 CPU/(67730:67731): insActual->pc: 0
+[INFO] 07:03:19:386 CPU/(67730:67731):  Valor nuevo Program counter: 1
+[DEBUG] 07:03:19:386 CPU/(67730:67731): Ejecutando pcb->id 0
+[INFO] 07:12:49:221 CPU/(68402:68404): Servidor listo para recibir al interrupt kernel
+[INFO] 07:12:49:221 CPU/(68402:68403): Servidor listo para recibir al dispatch kernel
+[INFO] 07:13:03:013 CPU/(68402:68404): Se conecto un cliente!
+[INFO] 07:13:03:013 CPU/(68402:68404): Me llego el mensaje soy el interrupt
+[INFO] 07:13:03:013 CPU/(68402:68403): Se conecto un cliente!
+[INFO] 07:13:13:396 CPU/(68402:68403): insActual->instCode: 0
+[INFO] 07:13:13:396 CPU/(68402:68403): insActual->pc: 0
+[INFO] 07:13:13:396 CPU/(68402:68403):  Valor nuevo Program counter: 1
+[DEBUG] 07:13:13:396 CPU/(68402:68403): Ejecutando pcb->id 0
+[DEBUG] 07:13:13:396 CPU/(68402:68403): SET

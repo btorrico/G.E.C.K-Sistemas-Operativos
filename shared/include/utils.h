@@ -146,6 +146,8 @@ typedef enum {
 	HANDSHAKE_INICIAL,
 }t_tipoMensaje;
 
+void imprimirInstruccionesYSegmentos(t_informacion* );
+
 /*
 
  ██████╗██╗     ██╗███████╗███╗   ██╗████████╗███████╗

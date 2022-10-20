@@ -73,6 +73,7 @@ void iniciar_servidor_dispatch()
 
 		printf("\n%d.\n", pcb->id);
 		printf("\n%d.\n", pcb->program_counter);
+
 		imprimirInstruccionesYSegmentos(pcb->informacion);
 	
 		printf("\n%d.\n", pcb->socket);
@@ -111,13 +112,13 @@ void conectar_memoria()
 }
 
 void cicloInstruccion(t_pcb* pcb) {
-	// fetch
-	uint32_t index = pcb->program_counter;
-	t_instruccion* insActual = list_get(pcb->informacion->instrucciones, index);
-	pcb->program_counter += 1;
+	
+	t_instruccion* insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter); 
 	log_info(logger,"insActual->instCode: %i", insActual->instCode);
-	log_info(logger,"insActual->pc: %i", index);
-
+	
+	// fetch
+	fetch(pcb);
+	
 	// decode
 	if(insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT) {
 		log_debug(logger, "Requiere acceso a Memoria");
@@ -138,28 +139,15 @@ void cicloInstruccion(t_pcb* pcb) {
 	
 }
 
-void imprimirInstruccionesYSegmentos(t_informacion* informacion){
-	t_instruccion* instruccion = malloc(sizeof(t_instruccion));
+void fetch(t_pcb* pcb){
+	
+	uint32_t index = pcb->program_counter;
+	pcb->program_counter += 1;
 
-		// mostrar instrucciones
-		printf("Instrucciones:");
-		for (int i = 0; i < informacion->instrucciones_size; ++i)
-		{
-			instruccion = list_get(informacion->instrucciones, i);
+	log_info(logger,"insActual->pc: %i", index);
+	log_info(logger," Valor nuevo Program counter: %i", pcb->program_counter);
 
-			printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
-			   	instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
-		}
-
-		// mostrar segmentos
-		printf("\n\nSegmentos:");
-		for (int i = 0; i < informacion->segmentos_size; ++i)
-		{
-			uint32_t segmento = list_get(informacion->segmentos, i);
-
-			printf("\n%d\n", segmento);
-		}
-
-		
 }
+
+
 
