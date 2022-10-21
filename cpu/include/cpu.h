@@ -38,6 +38,7 @@ void iniciar_servidor_dispatch();
 void iniciar_servidor_interrupt();
 void conectar_memoria();
 char* devolverString(t_registro );
+char* imprimirInstruccion(t_instCode );
 
 
 

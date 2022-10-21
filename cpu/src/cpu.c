@@ -126,18 +126,27 @@ void cicloInstruccion(t_pcb* pcb) {
 	}
 
 	//execute
-	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %i %i %i'", 
-			pcb->id, insActual->instCode, insActual->paramReg[0], insActual->paramInt); //log minimo y obligatorio
-	
+	char* instruccion = string_new();
+	string_append(&instruccion, imprimirInstruccion(insActual->instCode));
+	char* registro = string_new();
+    string_append(&registro, devolverString(insActual->paramReg[0]));
+	char* registro2 = string_new();
+    string_append(&registro2, devolverString(insActual->paramReg[1]));
+
+	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %i'", 
+			pcb->id, instruccion, registro, registro2, insActual->paramInt); //log minimo y obligatorio
+	free(instruccion);
 	//bool retornePCB = false;
 	switch(insActual->instCode){
 		case SET:
-			log_debug(logger,"SET");
+			//log_debug(logger,"SET");
 			usleep(configCPU.retardoInstruccion);
 			switch (insActual->paramReg[0])
 			{
 			case AX:
 				pcb->registros.AX = insActual->paramInt;
+				log_debug(logger, "%s = %i",registro, insActual->paramInt);
+				free(registro);
 				break;
 			case BX:
 				pcb->registros.BX = insActual->paramInt;
@@ -148,11 +157,8 @@ void cicloInstruccion(t_pcb* pcb) {
 			default:
 				break;
 			}
-			char* string = string_new();
-        	string_append(&string, devolverString(insActual->paramReg[0]));
         	
-			log_debug(logger, "registro CPU %s valor a asignar  = %i",devolverString(insActual->paramReg[0]), insActual->paramInt);
-			free(string);
+			
 			break;
 
 	}
@@ -185,8 +191,44 @@ char* devolverString(t_registro registroCPU){
 		return "DX";
 		break;	
 	default:
+		return "";
 		break;
 	}
+}
+
+char* imprimirInstruccion(t_instCode codigoInstruccion){
+	char* string = string_new();
+		switch (codigoInstruccion)
+		{
+		case SET:
+			string_append(&string, "SET");
+			return string;
+			break;
+		case ADD:
+			string_append(&string, "ADD");
+			return string;
+			break;
+		case MOV_IN:
+			string_append(&string, "MOV_IN");
+			return string;
+			break;
+		case MOV_OUT:
+			string_append(&string, "MOV_OUT");
+			return string;
+			break;
+		case IO:
+			string_append(&string, "IO");
+			return string;
+			break;
+		case EXIT:
+			string_append(&string, "EXIT");
+			return string;
+			break;
+		
+		default:
+			break;
+		}
+
 }
 
 
