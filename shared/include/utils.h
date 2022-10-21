@@ -65,6 +65,12 @@ typedef struct
 	t_buffer* buffer;
 } t_paquete;
 
+typedef struct
+{
+	uint8_t codigo_operacion;
+	t_buffer* buffer;
+} t_paqueteActual;
+
 
 
 typedef struct 
@@ -183,7 +189,7 @@ void deserializar_paquete (int conexion);
 
 void serializarPCB(int socket, t_pcb* pcb, t_tipoMensaje tipoMensaje);
 void crearPaquete(t_buffer* buffer, t_tipoMensaje op, int unSocket);
-t_paquete* recibirPaquete(int socket);
+t_paqueteActual* recibirPaquete(int socket);
 t_pcb* deserializoPCB(t_buffer* buffer);
 /*
 ███████╗███████╗██████╗ ██╗   ██╗██╗██████╗  ██████╗ ██████╗ 

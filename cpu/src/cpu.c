@@ -59,10 +59,11 @@ void iniciar_servidor_dispatch()
 
 	int cliente_fd = esperar_cliente(server_fd);
 
-	t_paquete *paquete = recibirPaquete(cliente_fd);
+	t_paqueteActual *paquete = recibirPaquete(cliente_fd);
 
 	t_pcb *pcb = deserializoPCB(paquete->buffer);
 
+	printf("CODIGO DE OPERACION: %d", paquete->codigo_operacion);
 
 	printf("se recibio pcb de running de kernel\n");
 
@@ -113,7 +114,9 @@ void iniciar_servidor_interrupt()
 	log_info(logger, "Servidor listo para recibir al interrupt kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
+
 	mostrar_mensajes_del_cliente(cliente_fd);
+	
 }
 
 void conectar_memoria()

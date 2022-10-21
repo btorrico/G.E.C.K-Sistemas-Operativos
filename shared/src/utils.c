@@ -319,7 +319,7 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 
 void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket)
 {
-	t_paquete *paquete = malloc(sizeof(t_paquete));
+	t_paqueteActual *paquete = malloc(sizeof(t_paqueteActual));
 	paquete->codigo_operacion = (uint8_t)op;
 	paquete->buffer = buffer;
 
@@ -341,9 +341,9 @@ void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket)
 }
 
 // Deserializar
-t_paquete *recibirPaquete(int socket)
+t_paqueteActual *recibirPaquete(int socket)
 {
-	t_paquete *paquete = malloc(sizeof(t_paquete));
+	t_paqueteActual *paquete = malloc(sizeof(t_paqueteActual));
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	// Primero recibimos el codigo de operacion

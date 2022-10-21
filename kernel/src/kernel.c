@@ -86,7 +86,7 @@ void conectar_dispatch()
 
 	/*
 	//Recibir PCB
-	t_paquete *paquete = recibirPaquete(conexion);
+	t_paqueteActual *paquete = recibirPaquete(conexion);
 
 	t_pcb *pcb = deserializoPCB(paquete->buffer);
 
