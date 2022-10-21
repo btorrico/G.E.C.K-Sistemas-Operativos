@@ -30,7 +30,9 @@ t_configCPU configCPU;
 
 t_configKernel configKernel;
 
+bool interrupciones;
 
+int socketAceptadoDispatch;
 
 t_configCPU extraerDatosConfig(t_config* );
 
