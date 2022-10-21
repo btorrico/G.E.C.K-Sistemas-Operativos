@@ -90,6 +90,15 @@ void conectar_dispatch()
 
 	t_pcb *pcb = deserializoPCB(paquete->buffer);
 
+switch(paquete->codigo_operacion){
+	case EXIT_PCB:
+		sem_post(&sem_plani_largo_plazo);
+		sem_post(&sem_eliminar_pcb)
+	case PAGEFAULT:
+		sem()
+	CASE BLOCK_PCB
+
+}
 	*/
 	//
 	//sem_post(&contador_pcb_running);
