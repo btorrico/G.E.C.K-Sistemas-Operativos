@@ -37,6 +37,7 @@ t_configCPU extraerDatosConfig(t_config* );
 void iniciar_servidor_dispatch();
 void iniciar_servidor_interrupt();
 void conectar_memoria();
+char* devolverString(t_registro );
 
 
 

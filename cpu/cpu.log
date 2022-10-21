@@ -1731,3 +1731,127 @@
 [INFO] 07:13:13:396 CPU/(68402:68403):  Valor nuevo Program counter: 1
 [DEBUG] 07:13:13:396 CPU/(68402:68403): Ejecutando pcb->id 0
 [DEBUG] 07:13:13:396 CPU/(68402:68403): SET
+[INFO] 00:09:17:962 CPU/(3602:3604): Servidor listo para recibir al interrupt kernel
+[INFO] 00:09:17:962 CPU/(3602:3603): Servidor listo para recibir al dispatch kernel
+[INFO] 00:09:24:657 CPU/(3602:3604): Se conecto un cliente!
+[INFO] 00:09:24:657 CPU/(3602:3604): Me llego el mensaje soy el interrupt
+[INFO] 00:09:24:657 CPU/(3602:3603): Se conecto un cliente!
+[INFO] 00:09:29:885 CPU/(3602:3603): insActual->instCode: 0
+[INFO] 00:09:29:885 CPU/(3602:3603): insActual->pc: 0
+[INFO] 00:09:29:885 CPU/(3602:3603):  Valor nuevo Program counter: 1
+[DEBUG] 00:09:29:885 CPU/(3602:3603): Ejecutando pcb->id 0
+[DEBUG] 00:09:29:885 CPU/(3602:3603): SET
+[INFO] 01:03:37:574 CPU/(4144:4146): Servidor listo para recibir al interrupt kernel
+[INFO] 01:03:37:574 CPU/(4144:4145): Servidor listo para recibir al dispatch kernel
+[INFO] 01:03:45:809 CPU/(4144:4146): Se conecto un cliente!
+[INFO] 01:03:45:809 CPU/(4144:4146): Me llego el mensaje soy el interrupt
+[INFO] 01:03:45:809 CPU/(4144:4145): Se conecto un cliente!
+[INFO] 01:04:04:923 CPU/(4144:4145): insActual->instCode: 0
+[INFO] 01:04:04:923 CPU/(4144:4145): insActual->pc: 0
+[INFO] 01:04:04:923 CPU/(4144:4145):  Valor nuevo Program counter: 1
+[DEBUG] 01:04:04:923 CPU/(4144:4145): Ejecutando pcb->id 0
+[DEBUG] 01:04:04:923 CPU/(4144:4145): SET
+[DEBUG] 01:04:04:925 CPU/(4144:4145): valor a asignar a AX = 1
+[INFO] 01:21:41:953 CPU/(4926:4928): Servidor listo para recibir al interrupt kernel
+[INFO] 01:21:41:953 CPU/(4926:4927): Servidor listo para recibir al dispatch kernel
+[INFO] 01:21:58:006 CPU/(4926:4928): Se conecto un cliente!
+[INFO] 01:21:58:007 CPU/(4926:4928): Me llego el mensaje soy el interrupt
+[INFO] 01:21:58:007 CPU/(4926:4927): Se conecto un cliente!
+[INFO] 01:22:05:646 CPU/(4926:4927): insActual->instCode: 0
+[INFO] 01:22:05:646 CPU/(4926:4927): insActual->pc: 0
+[INFO] 01:22:05:646 CPU/(4926:4927):  Valor nuevo Program counter: 1
+[DEBUG] 01:22:05:646 CPU/(4926:4927): Ejecutando pcb->id 0
+[DEBUG] 01:22:05:646 CPU/(4926:4927): SET
+[DEBUG] 01:22:05:648 CPU/(4926:4927): valor a asignar a AX = 1
+[ERROR] 01:40:20:585 CPU/(4926:4928): el cliente se desconecto. Terminando servidor
+[INFO] 01:40:47:863 CPU/(5334:5336): Servidor listo para recibir al interrupt kernel
+[INFO] 01:40:47:863 CPU/(5334:5335): Servidor listo para recibir al dispatch kernel
+[INFO] 01:41:06:288 CPU/(5334:5336): Se conecto un cliente!
+[INFO] 01:41:06:288 CPU/(5334:5336): Me llego el mensaje soy el interrupt
+[INFO] 01:41:06:288 CPU/(5334:5335): Se conecto un cliente!
+[INFO] 01:41:12:875 CPU/(5334:5335): insActual->instCode: 0
+[INFO] 01:41:12:875 CPU/(5334:5335): insActual->pc: 0
+[INFO] 01:41:12:875 CPU/(5334:5335):  Valor nuevo Program counter: 1
+[DEBUG] 01:41:12:875 CPU/(5334:5335): Ejecutando pcb->id 0
+[DEBUG] 01:41:12:875 CPU/(5334:5335): SET
+[INFO] 01:41:27:018 CPU/(5508:5510): Servidor listo para recibir al interrupt kernel
+[INFO] 01:41:27:018 CPU/(5508:5509): Servidor listo para recibir al dispatch kernel
+[INFO] 01:41:54:555 CPU/(5560:5562): Servidor listo para recibir al interrupt kernel
+[INFO] 01:41:54:555 CPU/(5560:5561): Servidor listo para recibir al dispatch kernel
+[INFO] 01:42:03:695 CPU/(5560:5562): Se conecto un cliente!
+[INFO] 01:42:03:695 CPU/(5560:5562): Me llego el mensaje soy el interrupt
+[INFO] 01:42:03:695 CPU/(5560:5561): Se conecto un cliente!
+[INFO] 01:42:07:545 CPU/(5560:5561): insActual->instCode: 0
+[INFO] 01:42:07:545 CPU/(5560:5561): insActual->pc: 0
+[INFO] 01:42:07:545 CPU/(5560:5561):  Valor nuevo Program counter: 1
+[DEBUG] 01:42:07:545 CPU/(5560:5561): Ejecutando pcb->id 0
+[DEBUG] 01:42:07:545 CPU/(5560:5561): SET
+[INFO] 01:54:03:683 CPU/(6061:6063): Servidor listo para recibir al interrupt kernel
+[INFO] 01:54:03:684 CPU/(6061:6062): Servidor listo para recibir al dispatch kernel
+[INFO] 01:54:09:503 CPU/(6061:6063): Se conecto un cliente!
+[INFO] 01:54:09:503 CPU/(6061:6063): Me llego el mensaje soy el interrupt
+[INFO] 01:54:09:503 CPU/(6061:6062): Se conecto un cliente!
+[INFO] 01:54:15:267 CPU/(6061:6062): insActual->instCode: 0
+[INFO] 01:54:15:267 CPU/(6061:6062): insActual->pc: 0
+[INFO] 01:54:15:267 CPU/(6061:6062):  Valor nuevo Program counter: 1
+[DEBUG] 01:54:15:267 CPU/(6061:6062): Ejecutando pcb->id 0
+[DEBUG] 01:54:15:267 CPU/(6061:6062): SET
+[DEBUG] 01:54:15:269 CPU/(6061:6062): valor a asignar = 1
+[ERROR] 02:02:47:424 CPU/(6061:6063): el cliente se desconecto. Terminando servidor
+[INFO] 02:03:02:466 CPU/(6470:6472): Servidor listo para recibir al interrupt kernel
+[INFO] 02:03:02:467 CPU/(6470:6471): Servidor listo para recibir al dispatch kernel
+[INFO] 02:03:11:344 CPU/(6470:6472): Se conecto un cliente!
+[INFO] 02:03:11:344 CPU/(6470:6472): Me llego el mensaje soy el interrupt
+[INFO] 02:03:11:344 CPU/(6470:6471): Se conecto un cliente!
+[INFO] 02:03:14:495 CPU/(6470:6471): insActual->instCode: 0
+[INFO] 02:03:14:495 CPU/(6470:6471): insActual->pc: 0
+[INFO] 02:03:14:495 CPU/(6470:6471):  Valor nuevo Program counter: 1
+[DEBUG] 02:03:14:495 CPU/(6470:6471): Ejecutando pcb->id 0
+[DEBUG] 02:03:14:495 CPU/(6470:6471): SET
+[DEBUG] 02:03:14:496 CPU/(6470:6471): valor a asignar AX = 1
+[INFO] 02:24:36:763 CPU/(6867:6869): Servidor listo para recibir al interrupt kernel
+[INFO] 02:24:36:763 CPU/(6867:6868): Servidor listo para recibir al dispatch kernel
+[INFO] 02:24:50:270 CPU/(6867:6869): Se conecto un cliente!
+[INFO] 02:24:50:270 CPU/(6867:6869): Me llego el mensaje soy el interrupt
+[INFO] 02:24:50:270 CPU/(6867:6868): Se conecto un cliente!
+[INFO] 02:24:53:580 CPU/(6867:6868): insActual->instCode: 0
+[INFO] 02:24:53:580 CPU/(6867:6868): insActual->pc: 0
+[INFO] 02:24:53:580 CPU/(6867:6868):  Valor nuevo Program counter: 1
+[DEBUG] 02:24:53:580 CPU/(6867:6868): Ejecutando pcb->id 0
+[DEBUG] 02:24:53:580 CPU/(6867:6868): SET
+[DEBUG] 02:24:53:581 CPU/(6867:6868): registro CPU AX valor a asignar  = 1
+[ERROR] 02:35:30:144 CPU/(6867:6869): el cliente se desconecto. Terminando servidor
+[INFO] 02:37:00:081 CPU/(7389:7391): Servidor listo para recibir al interrupt kernel
+[INFO] 02:37:00:082 CPU/(7389:7390): Servidor listo para recibir al dispatch kernel
+[INFO] 02:37:05:766 CPU/(7389:7391): Se conecto un cliente!
+[INFO] 02:37:05:766 CPU/(7389:7391): Me llego el mensaje soy el interrupt
+[INFO] 02:37:05:767 CPU/(7389:7390): Se conecto un cliente!
+[INFO] 02:37:16:356 CPU/(7389:7390): insActual->instCode: 0
+[INFO] 02:37:16:356 CPU/(7389:7390): insActual->pc: 0
+[INFO] 02:37:16:356 CPU/(7389:7390):  Valor nuevo Program counter: 1
+[DEBUG] 02:37:16:356 CPU/(7389:7390): Instrucción Ejecutada: “PID:  0 - Ejecutando: 0 0 1
+[DEBUG] 02:37:16:356 CPU/(7389:7390): SET
+[DEBUG] 02:37:16:357 CPU/(7389:7390): registro CPU AX valor a asignar  = 1
+[ERROR] 02:40:19:529 CPU/(7389:7391): el cliente se desconecto. Terminando servidor
+[INFO] 02:40:34:132 CPU/(7716:7718): Servidor listo para recibir al interrupt kernel
+[INFO] 02:40:34:133 CPU/(7716:7717): Servidor listo para recibir al dispatch kernel
+[INFO] 02:40:40:294 CPU/(7716:7718): Se conecto un cliente!
+[INFO] 02:40:40:295 CPU/(7716:7718): Me llego el mensaje soy el interrupt
+[INFO] 02:40:40:295 CPU/(7716:7717): Se conecto un cliente!
+[INFO] 02:40:52:107 CPU/(7716:7717): insActual->instCode: 0
+[INFO] 02:40:52:107 CPU/(7716:7717): insActual->pc: 0
+[INFO] 02:40:52:107 CPU/(7716:7717):  Valor nuevo Program counter: 1
+[DEBUG] 02:40:52:107 CPU/(7716:7717): Instrucción Ejecutada: “PID:  0 - Ejecutando: 0 0 1
+[DEBUG] 02:40:52:107 CPU/(7716:7717): SET
+[DEBUG] 02:40:52:109 CPU/(7716:7717): registro CPU AX valor a asignar  = 1
+[INFO] 02:42:51:217 CPU/(7933:7935): Servidor listo para recibir al interrupt kernel
+[INFO] 02:42:51:218 CPU/(7933:7934): Servidor listo para recibir al dispatch kernel
+[INFO] 02:42:55:374 CPU/(7933:7935): Se conecto un cliente!
+[INFO] 02:42:55:374 CPU/(7933:7935): Me llego el mensaje soy el interrupt
+[INFO] 02:42:55:374 CPU/(7933:7934): Se conecto un cliente!
+[INFO] 02:42:59:342 CPU/(7933:7934): insActual->instCode: 0
+[INFO] 02:42:59:342 CPU/(7933:7934): insActual->pc: 0
+[INFO] 02:42:59:342 CPU/(7933:7934):  Valor nuevo Program counter: 1
+[DEBUG] 02:42:59:342 CPU/(7933:7934): Instrucción Ejecutada: 'PID:  0 - Ejecutando: 0 0 1'
+[DEBUG] 02:42:59:342 CPU/(7933:7934): SET
+[DEBUG] 02:42:59:344 CPU/(7933:7934): registro CPU AX valor a asignar  = 1

@@ -22,10 +22,12 @@
 			"cpu.h": "c",
 			"kernel.h": "c",
 			"memoria.h": "c",
-			"utils.h":"c",
-			"client.h":"c",
-			"server.h":"c",
-			"shared.h":"c"
+			"utils.h": "c",
+			"client.h": "c",
+			"server.h": "c",
+			"shared.h": "c",
+			"string": "c",
+			"cmath": "c"
 		}
 	}
 }

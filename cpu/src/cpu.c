@@ -126,13 +126,33 @@ void cicloInstruccion(t_pcb* pcb) {
 	}
 
 	//execute
-	log_debug(logger, "Ejecutando pcb->id %i", pcb->id);
-
+	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %i %i %i'", 
+			pcb->id, insActual->instCode, insActual->paramReg[0], insActual->paramInt); //log minimo y obligatorio
+	
 	//bool retornePCB = false;
 	switch(insActual->instCode){
 		case SET:
 			log_debug(logger,"SET");
 			usleep(configCPU.retardoInstruccion);
+			switch (insActual->paramReg[0])
+			{
+			case AX:
+				pcb->registros.AX = insActual->paramInt;
+				break;
+			case BX:
+				pcb->registros.BX = insActual->paramInt;
+			case CX:
+				pcb->registros.CX = insActual->paramInt;
+			case DX:
+				pcb->registros.DX = insActual->paramInt;
+			default:
+				break;
+			}
+			char* string = string_new();
+        	string_append(&string, devolverString(insActual->paramReg[0]));
+        	
+			log_debug(logger, "registro CPU %s valor a asignar  = %i",devolverString(insActual->paramReg[0]), insActual->paramInt);
+			free(string);
 			break;
 
 	}
@@ -147,6 +167,26 @@ void fetch(t_pcb* pcb){
 	log_info(logger,"insActual->pc: %i", index);
 	log_info(logger," Valor nuevo Program counter: %i", pcb->program_counter);
 
+}
+
+char* devolverString(t_registro registroCPU){
+	switch (registroCPU)
+	{
+	case AX:
+		return "AX";
+		break;
+	case BX:
+		return "BX";
+		break;
+	case CX:
+		return "CX";
+		break;
+	case DX:
+		return "DX";
+		break;	
+	default:
+		break;
+	}
 }
 
 
