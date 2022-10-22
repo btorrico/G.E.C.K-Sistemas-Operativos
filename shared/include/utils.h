@@ -112,8 +112,6 @@ typedef struct
 	//uint32_t tamanio;
     uint32_t program_counter;
 	//uint32_t tablaPag; // definir con memoria
-	//double estimacion_actual;
-	//double real_anterior;
 	//double ejecutados_total;
     t_informacion* informacion;
 	t_registros registros;

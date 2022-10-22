@@ -95,13 +95,13 @@ switch(paquete->codigo_operacion){
 		sem_post(&sem_plani_largo_plazo);
 		sem_post(&sem_eliminar_pcb)
 	case PAGEFAULT:
-		sem()
-	CASE BLOCK_PCB
-
+		//sem()?? TODO
+	CASE BLOCK_PCB:
+		//sem()?? TODO
 }
 	*/
 	//
-	//sem_post(&contador_pcb_running);
+	//sem_post(&contador_pcb_running);??
 }
 
 void conectar_interrupt()

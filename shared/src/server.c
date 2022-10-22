@@ -172,7 +172,8 @@ void planifLargoPlazo()
 	printf("\nEntrando al planificador\n");
 	agregar_pcb();
 
-	// eliminar_pcb();
+	//sem_wait(&sem_eliminar_pcb)
+	//eliminar_pcb();
 }
 
 void planifCortoPlazo()
@@ -306,7 +307,7 @@ void eliminar_pcb()
 {
 
 	pthread_mutex_lock(&mutex_lista_exec);
-	t_pcb *pcb = (t_pcb *)list_remove(LISTA_EXEC, 0);
+	t_pcb *pcb = algoritmo_fifo(LISTA_EXEC);
 	pthread_mutex_unlock(&mutex_lista_exec);
 
 	pasar_a_exit(pcb);
