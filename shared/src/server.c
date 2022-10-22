@@ -173,14 +173,14 @@ void planifLargoPlazo()
 	printf("\nEntrando al planificador\n");
     log_info(logger,"");
 	agregar_pcb();
-<<<<<<< HEAD
+
 
 	//sem_wait(&sem_eliminar_pcb)
 	//eliminar_pcb();
-=======
+
     /*sem_wait(&sem_eliminar_pcb);
 	eliminar_pcb();*/
->>>>>>> 1fd037934376e1ec1ca5a87d740e4b4543ef5fda
+
 }
 
 void planifCortoPlazo()

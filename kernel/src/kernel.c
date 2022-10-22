@@ -92,7 +92,7 @@ void conectar_dispatch()
 
 	t_pcb *pcb = deserializoPCB(paquete->buffer);
 
-switch(paquete->codigo_operacion){
+//switch(paquete->codigo_operacion){
 /*	case EXIT_PCB:
 		sem_post(&sem_planif_largo_plazo);
 		sem_post(&sem_eliminar_pcb);
@@ -105,9 +105,6 @@ switch(paquete->codigo_operacion){
 		sem()
 	CASE BLOCK_PCB*/
 
->>>>>>> 1fd037934376e1ec1ca5a87d740e4b4543ef5fda
-}
-	
 	//
 	//sem_post(&contador_pcb_running);??
 }
