@@ -23,6 +23,7 @@ void planifLargoPlazo();
 void planifCortoPlazo();
 
 t_pcb* algoritmo_fifo(t_list *);
+t_pcb *algoritmo_rr(t_list *);
 t_tipo_algoritmo obtenerAlgoritmo();
 t_informacion recibir_informacion(int cliente_fd);
 void implementar_fifo();
