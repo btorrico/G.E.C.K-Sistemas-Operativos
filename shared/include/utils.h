@@ -281,9 +281,10 @@ extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;
 
 extern sem_t sem_agregar_pcb;
+extern sem_t sem_eliminar_pcb;
 extern sem_t sem_hay_pcb_lista_new;
 extern sem_t sem_hay_pcb_lista_ready;
 extern sem_t sem_pasar_pcb_running;
-
+extern sem_t sem_timer;
 
 #endif /* UTILS_H_ */

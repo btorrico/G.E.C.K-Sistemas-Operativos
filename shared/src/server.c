@@ -78,6 +78,7 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 */
 
 			pasar_a_new(pcb);
+			log_debug(logger, "Estado Actual: NEW , proceso id: %d" ,pcb->id);
 
 			printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 
@@ -170,10 +171,16 @@ void planifLargoPlazo()
 	sem_wait(&sem_planif_largo_plazo);
 	sem_wait(&sem_agregar_pcb);
 	printf("\nEntrando al planificador\n");
+    log_info(logger,"");
 	agregar_pcb();
+<<<<<<< HEAD
 
 	//sem_wait(&sem_eliminar_pcb)
 	//eliminar_pcb();
+=======
+    /*sem_wait(&sem_eliminar_pcb);
+	eliminar_pcb();*/
+>>>>>>> 1fd037934376e1ec1ca5a87d740e4b4543ef5fda
 }
 
 void planifCortoPlazo()
@@ -190,7 +197,7 @@ void planifCortoPlazo()
 		implementar_fifo();
 		break;
 	case RR:
-		/* code */
+		implementar_rr();
 		break;
 	case FEEDBACK:
 		/* code */
@@ -208,6 +215,7 @@ void pasar_a_new(t_pcb *pcb)
 	pthread_mutex_unlock(&mutex_lista_new);
 
 	log_debug(logger, "Paso a NEW el proceso %d", pcb->id);
+	
 }
 
 void pasar_a_ready(t_pcb *pcb)
@@ -271,10 +279,13 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_hay_pcb_lista_new, 0, 0);
 	sem_init(&sem_hay_pcb_lista_ready, 0, 0);
 	sem_init(&sem_agregar_pcb, 0, 0);
+	sem_init(&sem_eliminar_pcb,0,0);
 	sem_init(&sem_pasar_pcb_running,0,0);
+	sem_init(&sem_timer,0,0);
 
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
+	
 	
 }
 
@@ -295,6 +306,9 @@ void agregar_pcb()
 
 		pasar_a_ready(pcb);
 
+        log_debug(logger, "Estado Anterior: NEW , proceso id: %d", pcb->id);
+	    log_debug(logger, "Estado Actual: READY , proceso id: %d", pcb->id);
+
 		printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
 		sem_post(&sem_hay_pcb_lista_ready);
@@ -311,6 +325,9 @@ void eliminar_pcb()
 	pthread_mutex_unlock(&mutex_lista_exec);
 
 	pasar_a_exit(pcb);
+	
+	log_debug(logger,"Estado Anterior: EXEC , proceso id%d", pcb->id);
+	log_debug(logger,"Estado Actual: EXIT , proceso id%d", pcb->id);
 
 	enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
 	sem_post(&contador_multiprogramacion);
@@ -372,9 +389,12 @@ t_pcb *algoritmo_fifo(t_list *lista)
 	return pcb;
 }
 
-void algoritmo_rr()
+t_pcb *algoritmo_rr(t_list *lista)
 {
-	//TODO
+	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
+	return pcb;
+
+
 }
 
 void algoritmo_feedback()
@@ -388,10 +408,28 @@ void implementar_fifo()
 	printf("\nAgregando UN pcb a lista exec");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+
+	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
+	log_debug(logger,"Estado Actual: EXEC , proceso id: %d", pcb->id);
+
 	sem_post(&sem_pasar_pcb_running);
 }
 
 
 void implementar_rr(){
+	t_pcb *pcb = algoritmo_rr(LISTA_READY);
+	sem_post(&sem_timer);
+	printf("\nAgregando UN pcb a lista exec");
+	pasar_a_exec(pcb);
+	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+
+	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
+	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
+
+}
+
+void hilo_timer(){
+	sem_wait(&sem_timer);
+
 	
 }

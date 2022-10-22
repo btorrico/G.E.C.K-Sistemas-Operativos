@@ -1,5 +1,6 @@
 #!/bin/bash
 FILE=cpu
+make clean
 make $FILE
 if test -f "./$FILE"; then
     ./$FILE
