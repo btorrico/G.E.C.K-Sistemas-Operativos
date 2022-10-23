@@ -28,8 +28,6 @@ int main(char **argc, char **argv)
 	}
 }
 
-
-
 t_configCPU extraerDatosConfig(t_config *archivoConfig)
 {
 
@@ -63,15 +61,14 @@ void iniciar_servidor_dispatch()
 
 	t_pcb *pcb = deserializoPCB(paquete->buffer);
 
-	printf("CODIGO DE OPERACION: %d", paquete->codigo_operacion);
+	printf("\nCODIGO DE OPERACION: %d\n", paquete->codigo_operacion);
 
 	printf("se recibio pcb de running de kernel\n");
 
 	printf("\n%d.\n", pcb->id);
 	printf("\n%d.\n", pcb->program_counter);
-	
 
-	t_instruccion* instruccion = malloc(sizeof(t_instruccion));
+	t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 
 	// mostrar instrucciones
 	printf("Instrucciones:");
@@ -96,16 +93,16 @@ void iniciar_servidor_dispatch()
 
 	printf("\n%d.\n", pcb->registros.AX);
 
-//hacer cosas
-/*hacer_cosas_con_pcb(
+	// hacer cosas
+	/*hacer_cosas_con_pcb(
 
-	sem_post(&sem_pasar_pcb_kernel);
-)*/
+		sem_post(&sem_pasar_pcb_kernel);
+	)*/
 
-
-	//sem_wait(&sem_pasar_pcb_kernel);
-	//serializarPCB(conexion, pcb, EXIT_PCB);
-
+	//serializarPCB(conexion, pcb, BLOCK_PCB);
+//printf("\nenvie pcb por bloqueado\n");
+	// sem_wait(&sem_pasar_pcb_kernel);
+	// serializarPCB(conexion, pcb, EXIT_PCB);
 }
 
 void iniciar_servidor_interrupt()
@@ -116,7 +113,6 @@ void iniciar_servidor_interrupt()
 	int cliente_fd = esperar_cliente(server_fd);
 
 	mostrar_mensajes_del_cliente(cliente_fd);
-	
 }
 
 void conectar_memoria()
@@ -124,7 +120,3 @@ void conectar_memoria()
 	conexion = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
 	enviar_mensaje("hola memoria, soy el cpu", conexion);
 }
-
-
-
-

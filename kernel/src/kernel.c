@@ -35,20 +35,18 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 }
 void crear_hilos_kernel()
 {
-	pthread_t thrConsola, thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo,thrTimer;
+	pthread_t thrConsola, thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo;
 
 	pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
 	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
-	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL); 
-	pthread_create(&thrTimer, NULL, (void *)hilo_timer,NULL); 
-	
+	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL);
+
 	pthread_detach(&thrCpu);
 	pthread_detach(&thrPlanificadorCortoPlazo);
 	pthread_detach(&thrMemoria);
 	pthread_detach(&thrPlanificadorLargoPlazo);
-	pthread_detach(&thrTimer);
 
 	pthread_join(thrConsola, NULL); // falta que consola funcione con detach
 
@@ -76,9 +74,7 @@ void crear_hilo_cpu()
 
 void conectar_dispatch()
 {
-
-	//Enviar PCB
-
+	// Enviar PCB
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 
 	sem_wait(&sem_pasar_pcb_running);
@@ -86,34 +82,36 @@ void conectar_dispatch()
 	serializarPCB(conexion, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
 	printf("\nse envio pcb a cpu\n");
 
-	
-	//Recibir PCB
+	/*
+	// Recibir PCB
+	printf("\nRecibi de nuevo el pcb\n");
 	t_paqueteActual *paquete = recibirPaquete(conexion);
 
 	t_pcb *pcb = deserializoPCB(paquete->buffer);
 
-//switch(paquete->codigo_operacion){
-/*	case EXIT_PCB:
+	switch (paquete->codigo_operacion)
+	{
+	case EXIT_PCB:
 		sem_post(&sem_planif_largo_plazo);
 		sem_post(&sem_eliminar_pcb);
-	case PAGEFAULT:
-<<<<<<< HEAD
-		//sem()?? TODO
-	CASE BLOCK_PCB:
-		//sem()?? TODO
-=======
-		sem()
-	CASE BLOCK_PCB*/
+		break;
 
-	//
-	//sem_post(&contador_pcb_running);??
+	case BLOCK_PCB:
+		sem_post(&sem_kill_trhread);
+		break;
+	default:
+		break;
+		//
+		// sem_post(&contador_pcb_running);??
+	}*/
 }
-
 void conectar_interrupt()
 {
-
+	sem_wait(&sem_desalojar_pcb);
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
-	enviar_mensaje("soy el interrupt", conexion);
+
+	printf("\n desalojo pcb\n");
+	enviar_mensaje("Se envio interrupcion", conexion);
 }
 
 void conectar_memoria()
@@ -135,7 +133,5 @@ void iniciar_kernel()
 
 	iniciar_listas_y_semaforos();
 
-	contadorIdPCB  =  0;
-
-
+	contadorIdPCB = 0;
 }

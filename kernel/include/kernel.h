@@ -25,7 +25,7 @@ void conectar_memoria();
 void conectar_dispatch();
 void conectar_interrupt();
 void crear_hilos_kernel();
-void hilo_timer();
+
 
 
 
@@ -60,4 +60,7 @@ sem_t sem_hay_pcb_lista_new;
 sem_t sem_hay_pcb_lista_ready;
 sem_t sem_pasar_pcb_running;
 sem_t sem_timer;
+sem_t sem_desalojar_pcb;
+sem_t sem_kill_trhread;
+
 #endif
