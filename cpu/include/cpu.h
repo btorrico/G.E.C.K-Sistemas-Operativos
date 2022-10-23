@@ -39,8 +39,9 @@ t_configCPU extraerDatosConfig(t_config* );
 void iniciar_servidor_dispatch();
 void iniciar_servidor_interrupt();
 void conectar_memoria();
-char* devolverString(t_registro );
-char* imprimirInstruccion(t_instCode );
+char* registroToString(t_registro );
+char* instruccionToString(t_instCode );
+uint32_t matchearRegistro(t_registros ,t_registro );
 
 
 

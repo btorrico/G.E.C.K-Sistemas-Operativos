@@ -128,11 +128,11 @@ void cicloInstruccion(t_pcb* pcb) {
 
 	//execute
 	char* instruccion = string_new();
-	string_append(&instruccion, imprimirInstruccion(insActual->instCode));
+	string_append(&instruccion, instruccionToString(insActual->instCode));
 	char* registro = string_new();
-    string_append(&registro, devolverString(insActual->paramReg[0]));
+    string_append(&registro, registroToString(insActual->paramReg[0]));
 	char* registro2 = string_new();
-    string_append(&registro2, devolverString(insActual->paramReg[1]));
+    string_append(&registro2, registroToString(insActual->paramReg[1]));
 
 	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %i'", 
 			pcb->id, instruccion, registro, registro2, insActual->paramInt); //log minimo y obligatorio
@@ -144,26 +144,28 @@ void cicloInstruccion(t_pcb* pcb) {
 			//log_debug(logger,"SET");
 			printf(PRINT_COLOR_RED"\nEjecutando instruccion SET - Etapa Execute \n"PRINT_COLOR_RESET);
 			usleep(configCPU.retardoInstruccion);
-			switch (insActual->paramReg[0])
-			{
-			case AX:
-				pcb->registros.AX = insActual->paramInt;
-				log_debug(logger, "%s = %i",registro, insActual->paramInt);
-				free(registro);
-				break;
-			case BX:
-				pcb->registros.BX = insActual->paramInt;
-			case CX:
-				pcb->registros.CX = insActual->paramInt;
-			case DX:
-				pcb->registros.DX = insActual->paramInt;
-			default:
-				break;
-			}
-        	
-			
+			uint32_t registroCPU = matchearRegistro(pcb->registros,insActual->paramReg[0]);
+			registroCPU = insActual->paramInt;
+			log_debug(logger, "%s = %i",registro, registroCPU);
+			free(registro);
 			break;
 
+		case ADD:
+			//log_debug(logger,"ADD");
+			printf(PRINT_COLOR_RED"\nEjecutando instruccion ADD - Etapa Execute \n"PRINT_COLOR_RESET);
+			usleep(configCPU.retardoInstruccion);
+			uint32_t registroDestino = matchearRegistro(pcb->registros,insActual->paramReg[0]);
+			uint32_t registroOrigen = matchearRegistro(pcb->registros,insActual->paramReg[1]);
+			
+			log_debug(logger, "Registro Destino -> %s = %i \n Registro Origen -> %s = %i \n Registro Destino = Registro Destino + Resgitro Origen ",
+			registro, registroDestino, registro2, registroOrigen);
+			registroDestino = registroDestino + registroOrigen;
+			
+			log_debug(logger, "Registro Destino %s =  %i",registro, registroDestino);
+			//free(registro);
+			//free(registro2);
+			break;
+        
 		case EXIT:
 			printf(PRINT_COLOR_RED"\nEjecutando instruccion EXIT - Etapa Execute\n"PRINT_COLOR_RESET);
 			serializarPCB(socketAceptadoDispatch, pcb, EXIT_PCB);
@@ -204,7 +206,7 @@ void checkInterrupt(t_pcb* pcb, bool retornePCB){
 
 
 
-char* devolverString(t_registro registroCPU){
+char* registroToString(t_registro registroCPU){
 	switch (registroCPU)
 	{
 	case AX:
@@ -225,7 +227,7 @@ char* devolverString(t_registro registroCPU){
 	}
 }
 
-char* imprimirInstruccion(t_instCode codigoInstruccion){
+char* instruccionToString(t_instCode codigoInstruccion){
 	char* string = string_new();
 		switch (codigoInstruccion)
 		{
@@ -257,6 +259,27 @@ char* imprimirInstruccion(t_instCode codigoInstruccion){
 		default:
 			break;
 		}
+}
+
+uint32_t matchearRegistro(t_registros registros,t_registro registro){
+	switch (registro)
+	{
+	case AX:
+		return registros.AX;
+		break;
+	case BX:
+		return registros.BX;
+		break;
+	case CX:
+		return registros.CX;
+		break;
+	case DX:
+		return registros.DX;
+		break;
+		
+	default:
+		break;
+	}
 
 }
 

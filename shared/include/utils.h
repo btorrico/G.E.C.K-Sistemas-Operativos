@@ -41,7 +41,6 @@ typedef enum
   BX,
   CX,
   DX,
-  DESCONOCIDO
 } t_registro;
 
 typedef enum
