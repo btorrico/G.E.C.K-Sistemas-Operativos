@@ -134,5 +134,5 @@ t_registro devolverRegistro(char *registro)
 	{
 		return DX;
 	}
-	return DESCONOCIDO;  // ver si hace falta
+	
 }

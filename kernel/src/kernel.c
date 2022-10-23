@@ -41,8 +41,8 @@ void crear_hilos_kernel()
 	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
-	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL); 
-	
+	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL);
+
 	pthread_detach(&thrCpu);
 	pthread_detach(&thrPlanificadorCortoPlazo);
 	pthread_detach(&thrMemoria);
@@ -74,9 +74,7 @@ void crear_hilo_cpu()
 
 void conectar_dispatch()
 {
-
-	//Enviar PCB
-
+	// Enviar PCB
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 
 	sem_wait(&sem_pasar_pcb_running);
@@ -85,21 +83,35 @@ void conectar_dispatch()
 	printf("\nse envio pcb a cpu\n");
 
 	/*
-	//Recibir PCB
-	t_paquete *paquete = recibirPaquete(conexion);
+	// Recibir PCB
+	printf("\nRecibi de nuevo el pcb\n");
+	t_paqueteActual *paquete = recibirPaquete(conexion);
 
 	t_pcb *pcb = deserializoPCB(paquete->buffer);
 
-	*/
-	//
-	//sem_post(&contador_pcb_running);
-}
+	switch (paquete->codigo_operacion)
+	{
+	case EXIT_PCB:
+		sem_post(&sem_planif_largo_plazo);
+		sem_post(&sem_eliminar_pcb);
+		break;
 
+	case BLOCK_PCB:
+		sem_post(&sem_kill_trhread);
+		break;
+	default:
+		break;
+		//
+		// sem_post(&contador_pcb_running);??
+	}*/
+}
 void conectar_interrupt()
 {
-
+	sem_wait(&sem_desalojar_pcb);
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
-	enviar_mensaje("soy el interrupt", conexion);
+
+	printf("\n desalojo pcb\n");
+	enviar_mensaje("Se envio interrupcion", conexion);
 }
 
 void conectar_memoria()
@@ -121,7 +133,5 @@ void iniciar_kernel()
 
 	iniciar_listas_y_semaforos();
 
-	contadorIdPCB  =  0;
-
-
+	contadorIdPCB = 0;
 }

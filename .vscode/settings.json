@@ -5,5 +5,6 @@
         "server.h": "c",
         "stdio.h": "c",
         "consola.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -64,6 +64,12 @@ typedef struct
 	t_buffer* buffer;
 } t_paquete;
 
+typedef struct
+{
+	uint8_t codigo_operacion;
+	t_buffer* buffer;
+} t_paqueteActual;
+
 
 
 typedef struct 
@@ -105,8 +111,6 @@ typedef struct
 	//uint32_t tamanio;
     uint32_t program_counter;
 	//uint32_t tablaPag; // definir con memoria
-	//double estimacion_actual;
-	//double real_anterior;
 	//double ejecutados_total;
     t_informacion* informacion;
 	t_registros registros;
@@ -184,7 +188,7 @@ void deserializar_paquete (int conexion);
 
 void serializarPCB(int socket, t_pcb* pcb, t_tipoMensaje tipoMensaje);
 void crearPaquete(t_buffer* buffer, t_tipoMensaje op, int unSocket);
-t_paquete* recibirPaquete(int socket);
+t_paqueteActual* recibirPaquete(int socket);
 t_pcb* deserializoPCB(t_buffer* buffer);
 /*
 ███████╗███████╗██████╗ ██╗   ██╗██╗██████╗  ██████╗ ██████╗ 
@@ -278,9 +282,12 @@ extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;
 
 extern sem_t sem_agregar_pcb;
+extern sem_t sem_eliminar_pcb;
 extern sem_t sem_hay_pcb_lista_new;
 extern sem_t sem_hay_pcb_lista_ready;
 extern sem_t sem_pasar_pcb_running;
-
+extern sem_t sem_timer;
+extern sem_t sem_desalojar_pcb;
+extern sem_t sem_kill_trhread;
 
 #endif /* UTILS_H_ */

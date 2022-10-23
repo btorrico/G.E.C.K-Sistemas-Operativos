@@ -72,6 +72,8 @@ void enviar_mensaje(char *mensaje, int socket_cliente)
 	eliminar_paquete(paquete);
 }
 
+
+
 void crear_buffer(t_paquete *paquete)
 {
 	paquete->buffer = malloc(sizeof(t_buffer));
@@ -319,13 +321,28 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 
 void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket)
 {
-	t_paquete *paquete = malloc(sizeof(t_paquete));
+	t_paqueteActual *paquete = malloc(sizeof(t_paqueteActual));
 	paquete->codigo_operacion = (uint8_t)op;
 	paquete->buffer = buffer;
 
-	void *a_enviar = malloc(buffer->size + sizeof(uint8_t) + sizeof(uint32_t));
-	int offset = 0;
 
+/*
+	if (buffer == NULL)
+	{
+		void *a_enviar = malloc(sizeof(uint8_t));
+		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(uint8_t));
+
+		send(unSocket, a_enviar, sizeof(uint8_t) , 0);
+	free(a_enviar);
+	free(paquete->buffer->stream);
+	free(paquete->buffer);
+	free(paquete);
+
+	}else{*/
+	
+	void *a_enviar = malloc(buffer->size + sizeof(uint8_t) + sizeof(uint32_t));
+	
+	int offset = 0;
 	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(uint8_t));
 	offset += sizeof(uint8_t);
 	memcpy(a_enviar + offset, &(paquete->buffer->size), sizeof(uint32_t));
@@ -333,17 +350,18 @@ void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket)
 	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
 
 	send(unSocket, a_enviar, buffer->size + sizeof(uint8_t) + sizeof(uint32_t), 0);
-
+	
 	free(a_enviar);
 	free(paquete->buffer->stream);
 	free(paquete->buffer);
 	free(paquete);
+	
 }
 
 // Deserializar
-t_paquete *recibirPaquete(int socket)
+t_paqueteActual *recibirPaquete(int socket)
 {
-	t_paquete *paquete = malloc(sizeof(t_paquete));
+	t_paqueteActual *paquete = malloc(sizeof(t_paqueteActual));
 	paquete->buffer = malloc(sizeof(t_buffer));
 
 	// Primero recibimos el codigo de operacion

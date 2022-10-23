@@ -28,8 +28,6 @@ int main(char **argc, char **argv)
 	}
 }
 
-
-
 t_configCPU extraerDatosConfig(t_config *archivoConfig)
 {
 
@@ -58,10 +56,12 @@ void iniciar_servidor_dispatch()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	socketAceptadoDispatch = esperar_cliente(server_fd);
-	
-	while(1){
-		t_paquete *paquete = recibirPaquete(socketAceptadoDispatch);
-		if (paquete == NULL) {
+
+	while (1)
+	{
+		t_paqueteActual *paquete = recibirPaquete(socketAceptadoDispatch);
+		if (paquete == NULL)
+		{
 			continue;
 		}
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
@@ -75,27 +75,25 @@ void iniciar_servidor_dispatch()
 		printf("\n%d.\n", pcb->program_counter);
 
 		imprimirInstruccionesYSegmentos(pcb->informacion);
-	
+
 		printf("\n%d.\n", pcb->socket);
 
 		printf("\n%d.\n", pcb->registros.AX);
 
 		cicloInstruccion(pcb);
-		
 
-	//hacer cosas
-	/*hacer_cosas_con_pcb(
+		// hacer cosas
+		/*hacer_cosas_con_pcb(
 
-		sem_post(&sem_pasar_pcb_kernel);
-	)*/
+			sem_post(&sem_pasar_pcb_kernel);
+		)*/
 
-
-		//sem_wait(&sem_pasar_pcb_kernel);
-		//serializarPCB(conexion, pcb, EXIT_PCB);
-
+		// serializarPCB(conexion, pcb, BLOCK_PCB);
+		// printf("\nenvie pcb por bloqueado\n");
+		//  sem_wait(&sem_pasar_pcb_kernel);
+		//  serializarPCB(conexion, pcb, EXIT_PCB);
 	}
 }
-
 void iniciar_servidor_interrupt()
 {
 	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaInterrupt);
@@ -112,101 +110,105 @@ void conectar_memoria()
 	enviar_mensaje("hola memoria, soy el cpu", conexion);
 }
 
-void cicloInstruccion(t_pcb* pcb) {
-	t_list* instrucciones = pcb->informacion->instrucciones;
-	t_instruccion* insActual = list_get(instrucciones, pcb->program_counter); 
-	log_info(logger,"insActual->instCode: %i", insActual->instCode);
-	
+void cicloInstruccion(t_pcb *pcb)
+{
+	t_list *instrucciones = pcb->informacion->instrucciones;
+	t_instruccion *insActual = list_get(instrucciones, pcb->program_counter);
+	log_info(logger, "insActual->instCode: %i", insActual->instCode);
+
 	// fetch
 	fetch(pcb);
-	
+
 	// decode
-	if(insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT) {
+	if (insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT)
+	{
 		log_debug(logger, "Requiere acceso a Memoria");
-		//Hacer algo en proximo Checkpoint
+		// Hacer algo en proximo Checkpoint
 	}
 
-	//execute
-	char* instruccion = string_new();
+	// execute
+	char *instruccion = string_new();
 	string_append(&instruccion, instruccionToString(insActual->instCode));
-	char* registro = string_new();
-    string_append(&registro, registroToString(insActual->paramReg[0]));
-	char* registro2 = string_new();
-    string_append(&registro2, registroToString(insActual->paramReg[1]));
+	char *registro = string_new();
+	string_append(&registro, registroToString(insActual->paramReg[0]));
+	char *registro2 = string_new();
+	string_append(&registro2, registroToString(insActual->paramReg[1]));
 
-	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %i'", 
-			pcb->id, instruccion, registro, registro2, insActual->paramInt); //log minimo y obligatorio
+	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %i'",
+			  pcb->id, instruccion, registro, registro2, insActual->paramInt); // log minimo y obligatorio
 	free(instruccion);
 
 	bool retornePCB = false;
-	switch(insActual->instCode){
-		case SET:
-			//log_debug(logger,"SET");
-			printf(PRINT_COLOR_RED"\nEjecutando instruccion SET - Etapa Execute \n"PRINT_COLOR_RESET);
-			usleep(configCPU.retardoInstruccion);
-			uint32_t registroCPU = matchearRegistro(pcb->registros,insActual->paramReg[0]);
-			registroCPU = insActual->paramInt;
-			log_debug(logger, "%s = %i",registro, registroCPU);
-			free(registro);
-			break;
+	switch (insActual->instCode)
+	{
+	case SET:
+		// log_debug(logger,"SET");
+		printf(PRINT_COLOR_RED "\nEjecutando instruccion SET - Etapa Execute \n" PRINT_COLOR_RESET);
+		usleep(configCPU.retardoInstruccion);
+		uint32_t registroCPU = matchearRegistro(pcb->registros, insActual->paramReg[0]);
+		registroCPU = insActual->paramInt;
+		log_debug(logger, "%s = %i", registro, registroCPU);
+		free(registro);
+		break;
 
-		case ADD:
-			//log_debug(logger,"ADD");
-			printf(PRINT_COLOR_RED"\nEjecutando instruccion ADD - Etapa Execute \n"PRINT_COLOR_RESET);
-			usleep(configCPU.retardoInstruccion);
-			uint32_t registroDestino = matchearRegistro(pcb->registros,insActual->paramReg[0]);
-			uint32_t registroOrigen = matchearRegistro(pcb->registros,insActual->paramReg[1]);
-			
-			log_debug(logger, "Registro Destino -> %s = %i \n Registro Origen -> %s = %i \n Registro Destino = Registro Destino + Resgitro Origen ",
-			registro, registroDestino, registro2, registroOrigen);
-			registroDestino = registroDestino + registroOrigen;
-			
-			log_debug(logger, "Registro Destino %s =  %i",registro, registroDestino);
-			//free(registro);
-			//free(registro2);
-			break;
-        
-		case EXIT:
-			printf(PRINT_COLOR_RED"\nEjecutando instruccion EXIT - Etapa Execute\n"PRINT_COLOR_RESET);
-			serializarPCB(socketAceptadoDispatch, pcb, EXIT_PCB);
-			log_debug(logger,"Envie EXIT al kernel");
-			retornePCB = true;
-			//limpiar_entradas_TLB();
-			break;
+	case ADD:
+		// log_debug(logger,"ADD");
+		printf(PRINT_COLOR_RED "\nEjecutando instruccion ADD - Etapa Execute \n" PRINT_COLOR_RESET);
+		usleep(configCPU.retardoInstruccion);
+		uint32_t registroDestino = matchearRegistro(pcb->registros, insActual->paramReg[0]);
+		uint32_t registroOrigen = matchearRegistro(pcb->registros, insActual->paramReg[1]);
+
+		log_debug(logger, "Registro Destino -> %s = %i \n Registro Origen -> %s = %i \n Registro Destino = Registro Destino + Resgitro Origen ",
+				  registro, registroDestino, registro2, registroOrigen);
+		registroDestino = registroDestino + registroOrigen;
+
+		log_debug(logger, "Registro Destino %s =  %i", registro, registroDestino);
+		// free(registro);
+		// free(registro2);
+		break;
+
+	case EXIT:
+		printf(PRINT_COLOR_RED "\nEjecutando instruccion EXIT - Etapa Execute\n" PRINT_COLOR_RESET);
+		serializarPCB(socketAceptadoDispatch, pcb, EXIT_PCB);
+		log_debug(logger, "Envie EXIT al kernel");
+		retornePCB = true;
+		// limpiar_entradas_TLB();
+		break;
 	}
 
-	//check interrupt
-	checkInterrupt(pcb,retornePCB);
-	
+	// check interrupt
+	checkInterrupt(pcb, retornePCB);
 }
 
-void fetch(t_pcb* pcb){
-	
+void fetch(t_pcb *pcb)
+{
+
 	uint32_t index = pcb->program_counter;
 	pcb->program_counter += 1;
 
-	log_info(logger,"insActual->pc: %i", index);
-	log_info(logger," Valor nuevo Program counter: %i", pcb->program_counter);
-
+	log_info(logger, "insActual->pc: %i", index);
+	log_info(logger, " Valor nuevo Program counter: %i", pcb->program_counter);
 }
 
-void checkInterrupt(t_pcb* pcb, bool retornePCB){
-		if(!interrupciones && !retornePCB) {
-		//ejecuto ciclo de instruccion en caso de no haber interrupciones
+void checkInterrupt(t_pcb *pcb, bool retornePCB)
+{
+	if (!interrupciones && !retornePCB)
+	{
+		// ejecuto ciclo de instruccion en caso de no haber interrupciones
 		cicloInstruccion(pcb);
-
-	} else if (interrupciones && !retornePCB) {
+	}
+	else if (interrupciones && !retornePCB)
+	{
 		// devuelvo pcb a kernel
-		log_debug(logger,"Devuelvo pcb por interrupcion");
+		log_debug(logger, "Devuelvo pcb por interrupcion");
 		serializarPCB(socketAceptadoDispatch, pcb, INTERRUPT_INTERRUPCION);
 		interrupciones = false;
-		//limpiar_entradas_TLB();
+		// limpiar_entradas_TLB();
 	}
 }
 
-
-
-char* registroToString(t_registro registroCPU){
+char *registroToString(t_registro registroCPU)
+{
 	switch (registroCPU)
 	{
 	case AX:
@@ -220,48 +222,50 @@ char* registroToString(t_registro registroCPU){
 		break;
 	case DX:
 		return "DX";
-		break;	
+		break;
 	default:
 		return "";
 		break;
 	}
 }
 
-char* instruccionToString(t_instCode codigoInstruccion){
-	char* string = string_new();
-		switch (codigoInstruccion)
-		{
-		case SET:
-			string_append(&string, "SET");
-			return string;
-			break;
-		case ADD:
-			string_append(&string, "ADD");
-			return string;
-			break;
-		case MOV_IN:
-			string_append(&string, "MOV_IN");
-			return string;
-			break;
-		case MOV_OUT:
-			string_append(&string, "MOV_OUT");
-			return string;
-			break;
-		case IO:
-			string_append(&string, "IO");
-			return string;
-			break;
-		case EXIT:
-			string_append(&string, "EXIT");
-			return string;
-			break;
-		
-		default:
-			break;
-		}
+char *instruccionToString(t_instCode codigoInstruccion)
+{
+	char *string = string_new();
+	switch (codigoInstruccion)
+	{
+	case SET:
+		string_append(&string, "SET");
+		return string;
+		break;
+	case ADD:
+		string_append(&string, "ADD");
+		return string;
+		break;
+	case MOV_IN:
+		string_append(&string, "MOV_IN");
+		return string;
+		break;
+	case MOV_OUT:
+		string_append(&string, "MOV_OUT");
+		return string;
+		break;
+	case IO:
+		string_append(&string, "IO");
+		return string;
+		break;
+	case EXIT:
+		string_append(&string, "EXIT");
+		return string;
+		break;
+
+	default:
+		break;
+	}
 }
 
-uint32_t matchearRegistro(t_registros registros,t_registro registro){
+uint32_t matchearRegistro(t_registros registros, t_registro registro)
+{
 	switch (registro)
 	{
 	case AX:
@@ -276,12 +280,8 @@ uint32_t matchearRegistro(t_registros registros,t_registro registro){
 	case DX:
 		return registros.DX;
 		break;
-		
+
 	default:
 		break;
 	}
-
 }
-
-
-

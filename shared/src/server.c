@@ -57,27 +57,8 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 
 			t_pcb *pcb = crear_pcb(&info, cliente_fd);
 
-			// esto es para mostrar que el crear_pcb funciona ok
-			/*printf("\n%d\n", pcb->id);
-			printf("%d\n", pcb->program_counter);
-			printf("%d\n", pcb->socket);
-
-			printf("Instrucciones:");
-
-			t_instruccion* instruccion = malloc(sizeof(t_instruccion));
-
-			printf(" %d\n",pcb->informacion->instrucciones_size);
-
-			for (int i = 0; i < pcb->informacion->instrucciones_size; i++)
-			{
-				instruccion = list_get(pcb->informacion->instrucciones, i);
-
-				printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
-					   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
-			}
-*/
-
 			pasar_a_new(pcb);
+			log_debug(logger, "Estado Actual: NEW , proceso id: %d" ,pcb->id);
 
 			printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 
@@ -170,9 +151,16 @@ void planifLargoPlazo()
 	sem_wait(&sem_planif_largo_plazo);
 	sem_wait(&sem_agregar_pcb);
 	printf("\nEntrando al planificador\n");
+    log_info(logger,"");
 	agregar_pcb();
 
-	// eliminar_pcb();
+
+	//sem_wait(&sem_eliminar_pcb)
+	//eliminar_pcb();
+
+    /*sem_wait(&sem_eliminar_pcb);
+	eliminar_pcb();*/
+
 }
 
 void planifCortoPlazo()
@@ -186,12 +174,15 @@ void planifCortoPlazo()
 	switch (algoritmo)
 	{
 	case FIFO:
+		log_debug(logger, "Implementando algoritmo FIFO");
 		implementar_fifo();
 		break;
 	case RR:
-		/* code */
+		log_debug(logger, "Implementando algoritmo RR");
+		implementar_rr();
 		break;
 	case FEEDBACK:
+		log_debug(logger, "Implementando algoritmo FEEDBACK");
 		/* code */
 		break;
 
@@ -207,6 +198,7 @@ void pasar_a_new(t_pcb *pcb)
 	pthread_mutex_unlock(&mutex_lista_new);
 
 	log_debug(logger, "Paso a NEW el proceso %d", pcb->id);
+	
 }
 
 void pasar_a_ready(t_pcb *pcb)
@@ -270,10 +262,14 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_hay_pcb_lista_new, 0, 0);
 	sem_init(&sem_hay_pcb_lista_ready, 0, 0);
 	sem_init(&sem_agregar_pcb, 0, 0);
+	sem_init(&sem_eliminar_pcb, 0, 0);
 	sem_init(&sem_pasar_pcb_running,0,0);
-
+	sem_init(&sem_timer,0,0);
+	sem_init(&sem_desalojar_pcb, 0, 0);
+	sem_init(&sem_kill_trhread, 0, 0);
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
+	
 	
 }
 
@@ -294,6 +290,9 @@ void agregar_pcb()
 
 		pasar_a_ready(pcb);
 
+        log_debug(logger, "Estado Anterior: NEW , proceso id: %d", pcb->id);
+	    log_debug(logger, "Estado Actual: READY , proceso id: %d", pcb->id);
+
 		printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
 		sem_post(&sem_hay_pcb_lista_ready);
@@ -306,10 +305,13 @@ void eliminar_pcb()
 {
 
 	pthread_mutex_lock(&mutex_lista_exec);
-	t_pcb *pcb = (t_pcb *)list_remove(LISTA_EXEC, 0);
+	t_pcb *pcb = algoritmo_fifo(LISTA_EXEC);
 	pthread_mutex_unlock(&mutex_lista_exec);
 
 	pasar_a_exit(pcb);
+	
+	log_debug(logger,"Estado Anterior: EXEC , proceso id%d", pcb->id);
+	log_debug(logger,"Estado Actual: EXIT , proceso id%d", pcb->id);
 
 	enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
 	sem_post(&contador_multiprogramacion);
@@ -371,10 +373,6 @@ t_pcb *algoritmo_fifo(t_list *lista)
 	return pcb;
 }
 
-void algoritmo_rr()
-{
-	//TODO
-}
 
 void algoritmo_feedback()
 {
@@ -387,10 +385,43 @@ void implementar_fifo()
 	printf("\nAgregando UN pcb a lista exec");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+
+	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
+	log_debug(logger,"Estado Actual: EXEC , proceso id: %d", pcb->id);
+
 	sem_post(&sem_pasar_pcb_running);
 }
 
 
 void implementar_rr(){
+	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
+	pthread_t thrTimer;
+
+	pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
+	printf("\nAgregando UN pcb a lista exec rr");
+	pasar_a_exec(pcb);
+	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+
+	sem_post(&sem_pasar_pcb_running);
 	
+	sem_post(&sem_timer);
+	
+	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
+	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
+
+	
+	pthread_detach(&thrTimer);
+	sem_wait(&sem_kill_trhread);
+	pthread_cancel(thrTimer);
+
+}
+
+void hilo_timer(){
+	sem_wait(&sem_timer);
+	printf("\nvoy a dormir, soy el timer\n");
+	usleep(configKernel.quantum);
+	printf("\nme desperte!\n");
+	sem_post(&sem_desalojar_pcb);
+
+	printf("\nenvie post desalojar pcb\n");
 }

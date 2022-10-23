@@ -1558,6 +1558,7 @@
 [INFO] 00:20:23:391 CPU/(12334:12336): Se conecto un cliente!
 [INFO] 00:20:23:391 CPU/(12334:12335): Se conecto un cliente!
 [INFO] 00:20:23:391 CPU/(12334:12336): Me llego el mensaje soy el interrupt
+<<<<<<< HEAD
 [INFO] 00:53:10:605 CPU/(7554:7556): Servidor listo para recibir al interrupt kernel
 [INFO] 00:53:10:605 CPU/(7554:7555): Servidor listo para recibir al dispatch kernel
 [INFO] 00:53:47:294 CPU/(7554:7556): Se conecto un cliente!
@@ -2748,3 +2749,193 @@
 [INFO] 21:29:10:581 CPU/(8137:8138):  Valor nuevo Program counter: 8
 [DEBUG] 21:29:10:581 CPU/(8137:8138): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: EXIT   -1'
 [DEBUG] 21:29:10:581 CPU/(8137:8138): Envie EXIT al kernel
+=======
+[INFO] 20:57:02:705 CPU/(7615:7617): Servidor listo para recibir al interrupt kernel
+[INFO] 20:57:02:705 CPU/(7615:7616): Servidor listo para recibir al dispatch kernel
+[INFO] 20:57:14:136 CPU/(7615:7617): Se conecto un cliente!
+[INFO] 20:57:14:136 CPU/(7615:7617): Me llego el mensaje soy el interrupt
+[INFO] 20:57:14:136 CPU/(7615:7616): Se conecto un cliente!
+[WARNING] 20:57:24:228 CPU/(7615:7617): Operacion desconocida. No quieras meter la pata
+[INFO] 20:57:24:228 CPU/(7615:7617): Me llego el mensaje ¿T∑r
+[WARNING] 20:57:24:228 CPU/(7615:7617): Operacion desconocida. No quieras meter la pata
+[INFO] 20:57:24:228 CPU/(7615:7617): Me llego el mensaje ¿T∑r
+[INFO] 20:57:24:228 CPU/(7615:7617): Me llego el mensaje ¿T∑r
+[WARNING] 20:57:24:228 CPU/(7615:7617): Operacion desconocida. No quieras meter la pata
+[WARNING] 20:57:24:228 CPU/(7615:7617): Operacion desconocida. No quieras meter la pata
+[INFO] 21:06:15:698 CPU/(8956:8958): Servidor listo para recibir al interrupt kernel
+[INFO] 21:06:15:698 CPU/(8956:8957): Servidor listo para recibir al dispatch kernel
+[INFO] 21:06:50:193 CPU/(8956:8958): Se conecto un cliente!
+[INFO] 21:06:50:193 CPU/(8956:8957): Se conecto un cliente!
+[INFO] 21:10:22:511 CPU/(9646:9648): Servidor listo para recibir al interrupt kernel
+[INFO] 21:10:22:511 CPU/(9646:9647): Servidor listo para recibir al dispatch kernel
+[INFO] 21:10:31:704 CPU/(9646:9648): Se conecto un cliente!
+[INFO] 21:10:31:704 CPU/(9646:9647): Se conecto un cliente!
+[INFO] 21:17:16:663 CPU/(10837:10839): Servidor listo para recibir al interrupt kernel
+[INFO] 21:17:16:663 CPU/(10837:10838): Servidor listo para recibir al dispatch kernel
+[INFO] 21:17:25:705 CPU/(10837:10839): Se conecto un cliente!
+[INFO] 21:17:25:705 CPU/(10837:10839): Me llego el mensaje soy el interrupt
+[INFO] 21:17:25:705 CPU/(10837:10838): Se conecto un cliente!
+[INFO] 21:20:01:522 CPU/(11802:11804): Servidor listo para recibir al interrupt kernel
+[INFO] 21:20:01:522 CPU/(11802:11803): Servidor listo para recibir al dispatch kernel
+[INFO] 21:20:14:928 CPU/(11802:11804): Se conecto un cliente!
+[INFO] 21:20:14:928 CPU/(11802:11804): Me llego el mensaje soy el interrupt
+[INFO] 21:20:14:928 CPU/(11802:11803): Se conecto un cliente!
+[ERROR] 21:26:22:397 CPU/(11802:11804): el cliente se desconecto. Terminando servidor
+[INFO] 22:28:47:495 CPU/(5012:5014): Servidor listo para recibir al interrupt kernel
+[INFO] 22:28:47:495 CPU/(5012:5013): Servidor listo para recibir al dispatch kernel
+[INFO] 22:29:07:729 CPU/(5012:5014): Se conecto un cliente!
+[INFO] 22:29:07:729 CPU/(5012:5014): Me llego el mensaje soy el interrupt
+[INFO] 22:29:07:729 CPU/(5012:5013): Se conecto un cliente!
+[INFO] 00:14:37:777 CPU/(6988:6990): Servidor listo para recibir al interrupt kernel
+[INFO] 00:14:37:777 CPU/(6988:6989): Servidor listo para recibir al dispatch kernel
+[INFO] 00:15:01:239 CPU/(6988:6990): Se conecto un cliente!
+[INFO] 00:15:01:240 CPU/(6988:6989): Se conecto un cliente!
+[INFO] 00:15:01:240 CPU/(6988:6990): Me llego el mensaje soy el interrupt
+[ERROR] 00:21:13:247 CPU/(6988:6990): el cliente se desconecto. Terminando servidor
+[INFO] 00:23:14:622 CPU/(8577:8579): Servidor listo para recibir al interrupt kernel
+[INFO] 00:23:44:784 CPU/(8820:8822): Servidor listo para recibir al interrupt kernel
+[INFO] 00:23:44:784 CPU/(8820:8821): Servidor listo para recibir al dispatch kernel
+[INFO] 00:23:58:668 CPU/(8820:8822): Se conecto un cliente!
+[INFO] 00:23:58:668 CPU/(8820:8822): Me llego el mensaje soy el interrupt
+[INFO] 00:23:58:668 CPU/(8820:8821): Se conecto un cliente!
+[ERROR] 00:27:46:480 CPU/(8820:8822): el cliente se desconecto. Terminando servidor
+[INFO] 00:28:14:255 CPU/(9554:9556): Servidor listo para recibir al interrupt kernel
+[INFO] 00:28:14:255 CPU/(9554:9555): Servidor listo para recibir al dispatch kernel
+[INFO] 00:28:27:354 CPU/(9554:9556): Se conecto un cliente!
+[INFO] 00:28:27:354 CPU/(9554:9556): Me llego el mensaje soy el interrupt
+[INFO] 00:28:27:355 CPU/(9554:9555): Se conecto un cliente!
+[ERROR] 00:29:02:389 CPU/(9554:9556): el cliente se desconecto. Terminando servidor
+[INFO] 00:39:54:845 CPU/(10263:10265): Servidor listo para recibir al interrupt kernel
+[INFO] 00:39:54:845 CPU/(10263:10264): Servidor listo para recibir al dispatch kernel
+[INFO] 00:40:07:459 CPU/(10263:10265): Se conecto un cliente!
+[INFO] 00:40:07:459 CPU/(10263:10265): Me llego el mensaje soy el interrupt
+[INFO] 00:40:07:460 CPU/(10263:10264): Se conecto un cliente!
+[ERROR] 00:42:19:195 CPU/(10263:10265): el cliente se desconecto. Terminando servidor
+[INFO] 00:42:41:880 CPU/(11080:11082): Servidor listo para recibir al interrupt kernel
+[INFO] 00:42:41:880 CPU/(11080:11081): Servidor listo para recibir al dispatch kernel
+[INFO] 00:43:07:286 CPU/(11080:11081): Se conecto un cliente!
+[INFO] 00:43:07:286 CPU/(11080:11082): Se conecto un cliente!
+[INFO] 00:43:07:286 CPU/(11080:11082): Me llego el mensaje soy el interrupt
+[ERROR] 00:55:34:795 CPU/(11080:11082): el cliente se desconecto. Terminando servidor
+[INFO] 00:56:07:685 CPU/(12631:12633): Servidor listo para recibir al interrupt kernel
+[INFO] 00:56:07:685 CPU/(12631:12632): Servidor listo para recibir al dispatch kernel
+[INFO] 00:56:23:195 CPU/(12631:12633): Se conecto un cliente!
+[INFO] 00:56:23:195 CPU/(12631:12633): Me llego el mensaje soy el interrupt
+[INFO] 00:56:23:195 CPU/(12631:12632): Se conecto un cliente!
+[INFO] 00:59:51:355 CPU/(13414:13416): Servidor listo para recibir al interrupt kernel
+[INFO] 00:59:51:356 CPU/(13414:13415): Servidor listo para recibir al dispatch kernel
+[INFO] 01:00:09:043 CPU/(13414:13416): Se conecto un cliente!
+[INFO] 01:00:09:044 CPU/(13414:13415): Se conecto un cliente!
+[INFO] 01:00:09:044 CPU/(13414:13416): Me llego el mensaje soy el interrupt
+[INFO] 22:34:42:257 CPU/(19522:19524): Servidor listo para recibir al interrupt kernel
+[INFO] 22:34:42:257 CPU/(19522:19523): Servidor listo para recibir al dispatch kernel
+[INFO] 22:34:47:276 CPU/(19522:19524): Se conecto un cliente!
+[INFO] 22:34:47:276 CPU/(19522:19523): Se conecto un cliente!
+[INFO] 23:09:05:989 CPU/(21472:21474): Servidor listo para recibir al interrupt kernel
+[INFO] 23:09:05:990 CPU/(21472:21473): Servidor listo para recibir al dispatch kernel
+[INFO] 23:09:28:629 CPU/(21472:21474): Se conecto un cliente!
+[INFO] 23:09:28:629 CPU/(21472:21473): Se conecto un cliente!
+[INFO] 23:10:12:503 CPU/(21962:21964): Servidor listo para recibir al interrupt kernel
+[INFO] 23:10:12:503 CPU/(21962:21963): Servidor listo para recibir al dispatch kernel
+[INFO] 23:10:20:879 CPU/(21962:21964): Se conecto un cliente!
+[INFO] 23:10:20:879 CPU/(21962:21963): Se conecto un cliente!
+[INFO] 23:14:14:065 CPU/(22995:22997): Servidor listo para recibir al interrupt kernel
+[INFO] 23:14:14:066 CPU/(22995:22996): Servidor listo para recibir al dispatch kernel
+[INFO] 23:14:17:941 CPU/(22995:22997): Se conecto un cliente!
+[INFO] 23:14:17:941 CPU/(22995:22996): Se conecto un cliente!
+[ERROR] 23:14:25:350 CPU/(22995:22997): el cliente se desconecto. Terminando servidor
+[INFO] 23:15:13:883 CPU/(23640:23642): Servidor listo para recibir al interrupt kernel
+[INFO] 23:15:13:883 CPU/(23640:23641): Servidor listo para recibir al dispatch kernel
+[INFO] 23:15:18:200 CPU/(23640:23642): Se conecto un cliente!
+[INFO] 23:15:18:200 CPU/(23640:23641): Se conecto un cliente!
+[INFO] 23:16:33:532 CPU/(24258:24260): Servidor listo para recibir al interrupt kernel
+[INFO] 23:16:33:532 CPU/(24258:24259): Servidor listo para recibir al dispatch kernel
+[INFO] 23:16:53:344 CPU/(24258:24260): Se conecto un cliente!
+[INFO] 23:16:53:344 CPU/(24258:24259): Se conecto un cliente!
+[INFO] 23:19:09:024 CPU/(25228:25230): Servidor listo para recibir al interrupt kernel
+[INFO] 23:19:09:024 CPU/(25228:25229): Servidor listo para recibir al dispatch kernel
+[INFO] 23:19:13:422 CPU/(25228:25230): Se conecto un cliente!
+[INFO] 23:19:13:422 CPU/(25228:25229): Se conecto un cliente!
+[INFO] 23:24:53:480 CPU/(26304:26307): Servidor listo para recibir al interrupt kernel
+[INFO] 23:24:53:480 CPU/(26304:26306): Servidor listo para recibir al dispatch kernel
+[INFO] 23:25:01:107 CPU/(26304:26307): Se conecto un cliente!
+[INFO] 23:25:01:108 CPU/(26304:26306): Se conecto un cliente!
+[INFO] 23:29:00:194 CPU/(27255:27257): Servidor listo para recibir al interrupt kernel
+[INFO] 23:29:00:194 CPU/(27255:27256): Servidor listo para recibir al dispatch kernel
+[INFO] 23:29:06:204 CPU/(27255:27257): Se conecto un cliente!
+[INFO] 23:29:06:204 CPU/(27255:27256): Se conecto un cliente!
+[INFO] 23:33:15:552 CPU/(28273:28275): Servidor listo para recibir al interrupt kernel
+[INFO] 23:33:15:552 CPU/(28273:28274): Servidor listo para recibir al dispatch kernel
+[INFO] 23:33:22:889 CPU/(28273:28275): Se conecto un cliente!
+[INFO] 23:33:22:889 CPU/(28273:28275): Me llego el mensaje Se envio interrupcion
+[INFO] 23:33:22:889 CPU/(28273:28274): Se conecto un cliente!
+[INFO] 23:44:21:927 CPU/(29639:29641): Servidor listo para recibir al interrupt kernel
+[INFO] 23:44:21:927 CPU/(29639:29640): Servidor listo para recibir al dispatch kernel
+[INFO] 23:44:49:010 CPU/(29639:29641): Se conecto un cliente!
+[INFO] 23:44:49:011 CPU/(29639:29640): Se conecto un cliente!
+[INFO] 23:51:20:371 CPU/(30890:30892): Servidor listo para recibir al interrupt kernel
+[INFO] 23:51:20:371 CPU/(30890:30891): Servidor listo para recibir al dispatch kernel
+[INFO] 23:51:35:310 CPU/(30890:30891): Se conecto un cliente!
+[INFO] 23:51:45:026 CPU/(30890:30892): Se conecto un cliente!
+[INFO] 23:51:45:026 CPU/(30890:30892): Me llego el mensaje Se envio interrupcion
+[INFO] 00:39:01:970 CPU/(34586:34588): Servidor listo para recibir al interrupt kernel
+[INFO] 00:39:01:970 CPU/(34586:34587): Servidor listo para recibir al dispatch kernel
+[INFO] 00:39:07:896 CPU/(34586:34587): Se conecto un cliente!
+[INFO] 00:39:17:617 CPU/(34586:34588): Se conecto un cliente!
+[INFO] 00:39:17:617 CPU/(34586:34588): Me llego el mensaje Se envio interrupcion
+[INFO] 00:40:21:847 CPU/(35041:35043): Servidor listo para recibir al interrupt kernel
+[INFO] 00:40:21:847 CPU/(35041:35042): Servidor listo para recibir al dispatch kernel
+[INFO] 00:40:36:185 CPU/(35041:35042): Se conecto un cliente!
+[INFO] 00:40:51:983 CPU/(35041:35043): Se conecto un cliente!
+[INFO] 00:40:51:983 CPU/(35041:35043): Me llego el mensaje Se envio interrupcion
+[INFO] 00:48:34:610 CPU/(35954:35956): Servidor listo para recibir al interrupt kernel
+[INFO] 00:48:34:610 CPU/(35954:35955): Servidor listo para recibir al dispatch kernel
+[INFO] 00:48:42:671 CPU/(35954:35955): Se conecto un cliente!
+[INFO] 00:49:05:462 CPU/(35954:35956): Se conecto un cliente!
+[INFO] 00:49:05:463 CPU/(35954:35956): Me llego el mensaje Se envio interrupcion
+>>>>>>> kernel
+[INFO] 23:42:27:413 CPU/(4412:4414): Servidor listo para recibir al interrupt kernel
+[INFO] 23:42:27:413 CPU/(4412:4413): Servidor listo para recibir al dispatch kernel
+[INFO] 23:42:38:781 CPU/(4412:4413): Se conecto un cliente!
+[INFO] 23:44:36:557 CPU/(4412:4414): Se conecto un cliente!
+[INFO] 23:44:36:557 CPU/(4412:4414): Me llego el mensaje Se envio interrupcion
+[INFO] 23:44:36:557 CPU/(4412:4413): insActual->instCode: 0
+[INFO] 23:44:36:557 CPU/(4412:4413): insActual->pc: 0
+[INFO] 23:44:36:557 CPU/(4412:4413):  Valor nuevo Program counter: 1
+[DEBUG] 23:44:36:557 CPU/(4412:4413): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: SET AX  1'
+[DEBUG] 23:44:36:559 CPU/(4412:4413): AX = 1
+[INFO] 23:44:36:559 CPU/(4412:4413): insActual->instCode: 1
+[INFO] 23:44:36:559 CPU/(4412:4413): insActual->pc: 1
+[INFO] 23:44:36:559 CPU/(4412:4413):  Valor nuevo Program counter: 2
+[DEBUG] 23:44:36:559 CPU/(4412:4413): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: ADD AX BX -1'
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Registro Destino -> AX = 0 
+ Registro Origen -> BX = 0 
+ Registro Destino = Registro Destino + Resgitro Origen 
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Registro Destino AX =  0
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->instCode: 2
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->pc: 2
+[INFO] 23:44:36:560 CPU/(4412:4413):  Valor nuevo Program counter: 3
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Requiere acceso a Memoria
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: MOV_IN CX  4'
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->instCode: 3
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->pc: 3
+[INFO] 23:44:36:560 CPU/(4412:4413):  Valor nuevo Program counter: 4
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Requiere acceso a Memoria
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT DX  8'
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->instCode: 4
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->pc: 4
+[INFO] 23:44:36:560 CPU/(4412:4413):  Valor nuevo Program counter: 5
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: IO   10'
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->instCode: 4
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->pc: 5
+[INFO] 23:44:36:560 CPU/(4412:4413):  Valor nuevo Program counter: 6
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: IO AX  -1'
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->instCode: 4
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->pc: 6
+[INFO] 23:44:36:560 CPU/(4412:4413):  Valor nuevo Program counter: 7
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: IO BX  -1'
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->instCode: 5
+[INFO] 23:44:36:560 CPU/(4412:4413): insActual->pc: 7
+[INFO] 23:44:36:560 CPU/(4412:4413):  Valor nuevo Program counter: 8
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Instrucci√≥n Ejecutada: 'PID:  0 - Ejecutando: EXIT   -1'
+[DEBUG] 23:44:36:560 CPU/(4412:4413): Envie EXIT al kernel

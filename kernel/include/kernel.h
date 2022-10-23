@@ -28,6 +28,7 @@ void crear_hilos_kernel();
 
 
 
+
 // LISTAS
 t_list *LISTA_NEW;
 t_list *LISTA_READY;
@@ -54,7 +55,12 @@ sem_t sem_bloqueo;
 sem_t sem_procesador;
 
 sem_t sem_agregar_pcb;
+sem_t sem_eliminar_pcb;
 sem_t sem_hay_pcb_lista_new;
 sem_t sem_hay_pcb_lista_ready;
 sem_t sem_pasar_pcb_running;
+sem_t sem_timer;
+sem_t sem_desalojar_pcb;
+sem_t sem_kill_trhread;
+
 #endif
