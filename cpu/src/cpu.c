@@ -63,6 +63,7 @@ void iniciar_servidor_dispatch()
 		if (paquete == NULL)
 		{
 			continue;
+			
 		}
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		// free(paquete->buffer->stream);
