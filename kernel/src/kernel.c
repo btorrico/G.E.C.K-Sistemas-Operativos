@@ -99,6 +99,12 @@ void conectar_dispatch()
 	case BLOCK_PCB:
 		sem_post(&sem_kill_trhread);
 		break;
+	
+	case FIN_QUANTUM:
+		if(obtenerAlgoritmo() == 2){
+		pasar_a_ready_auxiliar(pcb);
+		sem_post(&sem_llamar_feedback);
+
 	default:
 		break;
 		//
@@ -112,6 +118,8 @@ void conectar_interrupt()
 
 	printf("\n desalojo pcb\n");
 	enviar_mensaje("Se envio interrupcion", conexionInterrupt);
+
+	
 }
 
 void conectar_memoria()

@@ -385,7 +385,15 @@ t_pcb *algoritmo_fifo(t_list *lista)
 
 void algoritmo_feedback()
 {
-	
+	/*implementar_rr();
+
+	sem_wait(&sem_llamar_feedback);
+	t_pcb* pcb = algoritmo_fifo(LISTA_READY_AUXILIAR);*/
+
+
+
+//	pasar_a_ready(pcb);
+
 }
 
 void implementar_fifo()
