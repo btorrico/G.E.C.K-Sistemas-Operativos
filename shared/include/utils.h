@@ -47,7 +47,8 @@ typedef enum
 {
   DISCO,
   TECLADO,
-  PANTALLA
+  PANTALLA,
+  IMPRESORA
 } t_IO;
 
 

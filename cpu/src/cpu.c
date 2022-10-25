@@ -1,6 +1,6 @@
 #include "cpu.h"
 
-int main(char **argc, char **argv)
+int main(char argc, char **argv)
 {
 	if (argc > 1 && strcmp(argv[1], "-test") == 0)
 		return run_tests();
@@ -118,7 +118,7 @@ void cicloInstruccion(t_pcb *pcb)
 
 	// fetch
 	fetch(pcb);
-
+	
 	// decode
 	if (insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT)
 	{
@@ -129,42 +129,47 @@ void cicloInstruccion(t_pcb *pcb)
 	// execute
 	char *instruccion = string_new();
 	string_append(&instruccion, instruccionToString(insActual->instCode));
+	char *io = string_new();
+	string_append(&io, ioToString(insActual->paramIO));
 	char *registro = string_new();
 	string_append(&registro, registroToString(insActual->paramReg[0]));
 	char *registro2 = string_new();
 	string_append(&registro2, registroToString(insActual->paramReg[1]));
 
-	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %i'",
-			  pcb->id, instruccion, registro, registro2, insActual->paramInt); // log minimo y obligatorio
+	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %s %i'",
+			  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio
 	free(instruccion);
-
+	
 	bool retornePCB = false;
 	switch (insActual->instCode)
 	{
 	case SET:
-		// log_debug(logger,"SET");
-		printf(PRINT_COLOR_RED "\nEjecutando instruccion SET - Etapa Execute \n" PRINT_COLOR_RESET);
+		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion SET - Etapa Execute \n" PRINT_COLOR_CYAN);
 		usleep(configCPU.retardoInstruccion);
-		uint32_t registroCPU = matchearRegistro(pcb->registros, insActual->paramReg[0]);
-		registroCPU = insActual->paramInt;
-		log_debug(logger, "%s = %i", registro, registroCPU);
+		
+		asignarValorARegistro(pcb, insActual->paramReg[0], insActual->paramInt);
+		
+		log_debug(logger, "%s = %i",registro, insActual->paramInt);
 		free(registro);
+		free(registro2);
 		break;
 
 	case ADD:
-		// log_debug(logger,"ADD");
-		printf(PRINT_COLOR_RED "\nEjecutando instruccion ADD - Etapa Execute \n" PRINT_COLOR_RESET);
+		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion ADD - Etapa Execute \n" PRINT_COLOR_CYAN);
 		usleep(configCPU.retardoInstruccion);
+
 		uint32_t registroDestino = matchearRegistro(pcb->registros, insActual->paramReg[0]);
 		uint32_t registroOrigen = matchearRegistro(pcb->registros, insActual->paramReg[1]);
 
-		log_debug(logger, "Registro Destino -> %s = %i \n Registro Origen -> %s = %i \n Registro Destino = Registro Destino + Resgitro Origen ",
+		log_debug(logger, "Registro Destino -> %s = %i    &&    Registro Origen -> %s = %i \n Registro Destino = Registro Destino + Resgitro Origen ",
 				  registro, registroDestino, registro2, registroOrigen);
 		registroDestino = registroDestino + registroOrigen;
+		free(registro2);
 
-		log_debug(logger, "Registro Destino %s =  %i", registro, registroDestino);
-		// free(registro);
-		// free(registro2);
+		asignarValorARegistro(pcb, insActual->paramReg[0], registroDestino);
+	
+		log_debug(logger, "%s = %i", registro, registroDestino);
+		free(registro);
 		break;
 
 	case EXIT:
@@ -264,6 +269,28 @@ char *instruccionToString(t_instCode codigoInstruccion)
 	}
 }
 
+char *ioToString(t_IO io)
+{
+	switch (io)
+	{
+	case DISCO:
+		return "DISCO";
+		break;
+	case PANTALLA:
+		return "PANTALLA";
+		break;
+	case TECLADO:
+		return "TECLADO";
+		break;
+	case IMPRESORA:
+		return "IMPRESORA";
+		break;
+	default:
+		return "";
+		break;
+	}
+}
+
 uint32_t matchearRegistro(t_registros registros, t_registro registro)
 {
 	switch (registro)
@@ -281,6 +308,25 @@ uint32_t matchearRegistro(t_registros registros, t_registro registro)
 		return registros.DX;
 		break;
 
+	default:
+		break;
+	}
+}
+
+void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor){
+	switch (registro)
+			{
+	case AX:
+		pcb->registros.AX = valor;
+		break;
+	case BX:
+		pcb->registros.BX = valor;
+		break;
+	case CX:
+		pcb->registros.CX = valor;
+		break;
+	case DX:
+		pcb->registros.DX = valor;
 	default:
 		break;
 	}

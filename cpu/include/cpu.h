@@ -41,7 +41,9 @@ void iniciar_servidor_interrupt();
 void conectar_memoria();
 char* registroToString(t_registro );
 char* instruccionToString(t_instCode );
+char *ioToString(t_IO );
 uint32_t matchearRegistro(t_registros ,t_registro );
+void asignarValorARegistro(t_pcb *,t_registro ,uint32_t );
 
 
 
