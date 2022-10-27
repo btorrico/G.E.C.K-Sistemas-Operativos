@@ -201,15 +201,6 @@ void pasar_a_new(t_pcb *pcb)
 	
 }
 
-void pasar_a_ready(t_pcb *pcb) //Para 
-{
-	pthread_mutex_lock(&mutex_lista_ready);
-	list_add(LISTA_READY, pcb);
-	pthread_mutex_unlock(&mutex_lista_ready);
-
-	log_debug(logger, "Paso a READY el proceso %d", pcb->id);
-}
-
 void pasar_a_ready(t_pcb *pcb)
 {
 	pthread_mutex_lock(&mutex_lista_ready);

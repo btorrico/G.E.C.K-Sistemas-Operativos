@@ -75,11 +75,11 @@ void crear_hilo_cpu()
 void conectar_dispatch()
 {
 	// Enviar PCB
-	int conexionDispatch = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
+	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 
 	sem_wait(&sem_pasar_pcb_running);
 	printf("Llego UN pcb a dispatch");
-	serializarPCB(conexionDispatch, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
+	serializarPCB(conexion, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
 	printf("\nse envio pcb a cpu\n");
 
 	/*
@@ -114,7 +114,7 @@ void conectar_dispatch()
 void conectar_interrupt()
 {
 	sem_wait(&sem_desalojar_pcb);
-	int conexionInterrupt = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
+	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
 
 	printf("\n desalojo pcb\n");
 	enviar_mensaje("Se envio interrupcion", conexionInterrupt);
