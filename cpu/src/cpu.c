@@ -65,9 +65,9 @@ void iniciar_servidor_dispatch()
 			continue;
 		}
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
-		// free(paquete->buffer->stream);
-		// free(paquete->buffer);
-		// free(paquete);
+		free(paquete->buffer->stream);
+		free(paquete->buffer);
+		free(paquete);
 
 		printf("se recibio pcb de running de kernel\n");
 
@@ -171,9 +171,31 @@ void cicloInstruccion(t_pcb *pcb)
 		log_debug(logger, "%s = %i", registro, registroDestino);
 		free(registro);
 		break;
-
+	
+	case IO:
+		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
+		switch (insActual->paramIO)
+		{
+		case TECLADO:
+			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO_TECLADO);
+			log_debug(logger, "Envie BLOCK al kernel por IO_TECLADO");
+			retornePCB = true;
+			break;
+		case PANTALLA:
+			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO_PANTALLA);
+			log_debug(logger, "Envie BLOCK al kernel por IO_PANTALLA");
+			retornePCB = true;
+			break;
+		default:
+			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO);
+			log_debug(logger, "Envie BLOCK al kernel por IO");
+			retornePCB = true;
+			break;
+		}
+		break;
+		
 	case EXIT:
-		printf(PRINT_COLOR_RED "\nEjecutando instruccion EXIT - Etapa Execute\n" PRINT_COLOR_RESET);
+		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion EXIT - Etapa Execute\n" PRINT_COLOR_CYAN);
 		serializarPCB(socketAceptadoDispatch, pcb, EXIT_PCB);
 		log_debug(logger, "Envie EXIT al kernel");
 		retornePCB = true;

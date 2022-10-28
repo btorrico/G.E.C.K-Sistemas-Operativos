@@ -136,6 +136,9 @@ typedef enum {
 	INSTRUCCIONES,    				//entre consola-kernel
 	DISPATCH_PCB,     				//entre kernel-cpu
 	BLOCK_PCB,						//entre kernel-cpu
+	BLOCK_PCB_IO,					//entre kernel-cpu
+	BLOCK_PCB_IO_TECLADO,			//entre kernel-cpu
+	BLOCK_PCB_IO_PANTALLA,			//entre kernel-cpu	
 	INTERRUPT_INTERRUPCION,			//entre kernel-cpu
 	EXIT_PCB,						//entre kernel-cpu
 	PASAR_A_READY,					//entre kernel-memoria
