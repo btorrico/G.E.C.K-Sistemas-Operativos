@@ -28,7 +28,16 @@ t_tipo_algoritmo obtenerAlgoritmo();
 t_informacion recibir_informacion(int cliente_fd);
 void implementar_fifo();
 void implementar_rr();
+void implementar_feedback();
+void implementar_fifo_auxiliar();
 void hilo_timer();
+void pasar_a_new(t_pcb *);
+void pasar_a_ready(t_pcb *);
+void pasar_a_ready_auxiliar(t_pcb *);
+void pasar_a_exec(t_pcb *);
+void pasar_a_block(t_pcb *);
+void pasar_a_exit(t_pcb *);
+
 
 
 #endif /* SERVER_H_ */

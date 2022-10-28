@@ -46,6 +46,7 @@ t_list *LISTA_EXEC;
 t_list *LISTA_BLOCKED;
 t_list *LISTA_EXIT;
 t_list *LISTA_SOCKETS;
+t_list *LISTA_READY_AUXILIAR;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -71,4 +72,7 @@ sem_t sem_pasar_pcb_running;
 sem_t sem_timer;
 sem_t sem_desalojar_pcb;
 sem_t sem_kill_trhread;
+
+pthread_mutex_t mutex_lista_ready_auxiliar;
+sem_t sem_llamar_feedback;
 #endif

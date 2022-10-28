@@ -147,24 +147,23 @@ void iterator(char *value)
 
 void planifLargoPlazo()
 {
-
+while(1){
 	sem_wait(&sem_planif_largo_plazo);
 	sem_wait(&sem_agregar_pcb);
 	printf("\nEntrando al planificador\n");
     log_info(logger,"");
 	agregar_pcb();
+	printf("\nme quedo esperando el wait\n");
 
-
-	//sem_wait(&sem_eliminar_pcb)
-	//eliminar_pcb();
-
-    /*sem_wait(&sem_eliminar_pcb);
-	eliminar_pcb();*/
-
+	sem_wait(&sem_eliminar_pcb);
+	printf("\nentrando a eliminar pcb");
+	eliminar_pcb();
+}
 }
 
 void planifCortoPlazo()
 {
+	while(1){
 	sem_wait(&sem_hay_pcb_lista_ready);
 	printf("\nllego pcb a plani corto plazo\n");
 	t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
@@ -183,11 +182,12 @@ void planifCortoPlazo()
 		break;
 	case FEEDBACK:
 		log_debug(logger, "Implementando algoritmo FEEDBACK");
-		/* code */
+		implementar_feedback();
 		break;
 
 	default:
 		break;
+	}
 	}
 }
 
@@ -206,6 +206,14 @@ void pasar_a_ready(t_pcb *pcb)
 	pthread_mutex_lock(&mutex_lista_ready);
 	list_add(LISTA_READY, pcb);
 	pthread_mutex_unlock(&mutex_lista_ready);
+
+	log_debug(logger, "Paso a READY el proceso %d", pcb->id);
+}
+
+void pasar_a_ready_auxiliar(t_pcb *pcb){
+	pthread_mutex_lock(&mutex_lista_ready_auxiliar);
+	list_add(LISTA_READY_AUXILIAR, pcb);
+	pthread_mutex_unlock(&mutex_lista_ready_auxiliar);
 
 	log_debug(logger, "Paso a READY el proceso %d", pcb->id);
 }
@@ -246,6 +254,7 @@ void iniciar_listas_y_semaforos()
 	LISTA_BLOCKED = list_create();
 	LISTA_SOCKETS = list_create();
 	LISTA_EXIT = list_create();
+	LISTA_READY_AUXILIAR = list_create();
 
 	// mutex
 	pthread_mutex_init(&mutex_creacion_ID, NULL);
@@ -253,6 +262,7 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_ready, NULL);
 	pthread_mutex_init(&mutex_lista_exec, NULL);
 	pthread_mutex_init(&mutex_lista_blocked, NULL);
+	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
 
 	// semaforos
 	sem_init(&sem_ready, 0, 0);
@@ -269,15 +279,12 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_kill_trhread, 0, 0);
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
-	
+	sem_init(&sem_llamar_feedback, 0, 0);
 	
 }
 
 void agregar_pcb()
 {
-
-	while (1)
-	{
 		sem_wait(&sem_hay_pcb_lista_new);
 		sem_wait(&contador_multiprogramacion);
 
@@ -298,22 +305,21 @@ void agregar_pcb()
 		sem_post(&sem_hay_pcb_lista_ready);
 
 		// enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
-	}
+	
 }
 
 void eliminar_pcb()
 {
-
 	pthread_mutex_lock(&mutex_lista_exec);
 	t_pcb *pcb = algoritmo_fifo(LISTA_EXEC);
 	pthread_mutex_unlock(&mutex_lista_exec);
-
+	sem_post(&contador_pcb_running);
 	pasar_a_exit(pcb);
 	
 	log_debug(logger,"Estado Anterior: EXEC , proceso id%d", pcb->id);
-	log_debug(logger,"Estado Actual: EXIT , proceso id%d", pcb->id);
+	log_debug(logger,"Estado, proceso Actual: EXIT  id%d", pcb->id);
 
-	enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
+	//enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
 	sem_post(&contador_multiprogramacion);
 }
 
@@ -374,16 +380,18 @@ t_pcb *algoritmo_fifo(t_list *lista)
 }
 
 
-void algoritmo_feedback()
+void implementar_feedback()
 {
-	/*implementar_rr();
+	implementar_rr();
 
 	sem_wait(&sem_llamar_feedback);
-	t_pcb* pcb = algoritmo_fifo(LISTA_READY_AUXILIAR);*/
-
-
-
-//	pasar_a_ready(pcb);
+	if(list_is_empty(LISTA_READY)){
+		implementar_fifo_auxiliar();
+	}else{
+		implementar_rr();
+	}
+	
+	//TODO
 
 }
 
@@ -391,6 +399,20 @@ void implementar_fifo()
 {
 
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
+	printf("\nAgregando UN pcb a lista exec");
+	pasar_a_exec(pcb);
+	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+
+	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
+	log_debug(logger,"Estado Actual: EXEC , proceso id: %d", pcb->id);
+
+	sem_post(&sem_pasar_pcb_running);
+}
+
+void implementar_fifo_auxiliar()
+{
+
+	t_pcb *pcb = algoritmo_fifo(LISTA_READY_AUXILIAR);
 	printf("\nAgregando UN pcb a lista exec");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
@@ -420,8 +442,10 @@ void implementar_rr(){
 
 	
 	pthread_detach(&thrTimer);
+
 	sem_wait(&sem_kill_trhread);
-	pthread_cancel(thrTimer);
+	pthread_kill(&thrTimer, SIGKILL);
+	
 
 }
 
@@ -433,4 +457,5 @@ void hilo_timer(){
 	sem_post(&sem_desalojar_pcb);
 
 	printf("\nenvie post desalojar pcb\n");
+	
 }

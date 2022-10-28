@@ -81,7 +81,7 @@ void iniciar_servidor_dispatch()
 
 		printf("\n%d.\n", pcb->registros.AX);
 
-		cicloInstruccion(pcb);
+		//cicloInstruccion(pcb);
 
 		// hacer cosas
 		/*hacer_cosas_con_pcb(
@@ -89,7 +89,7 @@ void iniciar_servidor_dispatch()
 			sem_post(&sem_pasar_pcb_kernel);
 		)*/
 
-		// serializarPCB(conexion, pcb, BLOCK_PCB);
+		serializarPCB(socketAceptadoDispatch, pcb, FIN_QUANTUM);
 		// printf("\nenvie pcb por bloqueado\n");
 		//  sem_wait(&sem_pasar_pcb_kernel);
 		//  serializarPCB(conexion, pcb, EXIT_PCB);
