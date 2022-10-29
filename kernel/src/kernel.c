@@ -2,6 +2,7 @@
 
 int main(int argc, char **argv)
 {
+	
 	if (argc > 1 && strcmp(argv[1], "-test") == 0)
 		return run_tests();
 	else
@@ -135,8 +136,9 @@ void conectar_dispatch()
 				break;
 			}
 
+
 			// Serializamos valor registro y se envia a la consola
-			printf("\nserializo valor para consola: %d", valorRegistro);
+			printf("\nSerializo valor para consola: %d", valorRegistro);
 			serializarValor(valorRegistro, pcb->socket);
 
 			/// esto va para cuando discriminemos que tipo de dispositivo es, y si se encuentra en el configKernel, si si no esta ver si lo mandamos a error
