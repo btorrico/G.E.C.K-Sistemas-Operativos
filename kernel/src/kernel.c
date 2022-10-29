@@ -136,7 +136,7 @@ void conectar_dispatch()
 			}
 
 			// Serializamos valor registro y se envia a la consola
-			printf("\nserializo valor para consola \n%d", valorRegistro);
+			printf("\nserializo valor para consola: %d", valorRegistro);
 			serializarValor(valorRegistro, pcb->socket);
 
 			/// esto va para cuando discriminemos que tipo de dispositivo es, y si se encuentra en el configKernel, si si no esta ver si lo mandamos a error
@@ -149,6 +149,7 @@ void conectar_dispatch()
 			// deserializar lo que me manda consola
 			// valorRegistro = deserializarValor(paquete->buffer,pcb->socket);
 			valorRegistro = 0;
+			
 
 			switch (insActual->paramReg[1])
 			{
@@ -166,7 +167,7 @@ void conectar_dispatch()
 				break;
 			}
 			pasar_a_ready(pcb);
-			printf("\nse envio el pcb a redy\n");
+			printf("\nse envio el pcb a ready\n");
 			sem_post(&sem_hay_pcb_lista_ready);
 
 			break;

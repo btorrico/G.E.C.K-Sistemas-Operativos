@@ -89,7 +89,7 @@ void iniciar_servidor_dispatch()
 			sem_post(&sem_pasar_pcb_kernel);
 		)*/
 
-		serializarPCB(socketAceptadoDispatch, pcb,BLOCK_PCB_IO_TECLADO);
+		serializarPCB(socketAceptadoDispatch, pcb,BLOCK_PCB_IO_PANTALLA);
 
 		// printf("\nenvie pcb por bloqueado\n");
 		//  sem_wait(&sem_pasar_pcb_kernel);
