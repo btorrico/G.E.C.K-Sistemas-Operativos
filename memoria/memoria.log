@@ -1758,3 +1758,9 @@
 [INFO] 18:35:42:654 MEMORIA/(3754:3756): Me llego el mensaje hola memoria, soy el cpu
 [INFO] 18:35:47:124 MEMORIA/(3754:3755): Se conecto un cliente!
 [INFO] 18:35:47:124 MEMORIA/(3754:3755): Me llego el mensaje hola memoria, soy el kernel
+[INFO] 19:34:29:805 MEMORIA/(7800:7802): Servidor listo para recibir al cpu
+[INFO] 19:34:29:805 MEMORIA/(7800:7801): Servidor listo para recibir al kernel
+[INFO] 19:34:44:684 MEMORIA/(7800:7802): Se conecto un cliente!
+[INFO] 19:34:44:684 MEMORIA/(7800:7802): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 19:34:55:955 MEMORIA/(7800:7801): Se conecto un cliente!
+[INFO] 19:34:55:955 MEMORIA/(7800:7801): Me llego el mensaje hola memoria, soy el kernel

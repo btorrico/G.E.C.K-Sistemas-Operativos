@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
 		enviar_mensaje("Hola", conexion);
-
+		
 		// Armamos y enviamos el paquete
 		//	paquete(conexion);
 
@@ -108,6 +108,7 @@ t_configConsola extraerDatosConfig(t_config *archivoConfig)
 	configConsola.ipKernel = config_get_string_value(archivoConfig, "IP_KERNEL");
 	configConsola.puertoKernel = config_get_string_value(archivoConfig, "PUERTO_KERNEL");
 	configConsola.segmentos = config_get_array_value(archivoConfig, "SEGMENTOS");
+	configConsola.tiempoPantalla = config_get_int_value(archivoConfig, "TIEMPO_PANTALLA");
 
 	return configConsola;
 }

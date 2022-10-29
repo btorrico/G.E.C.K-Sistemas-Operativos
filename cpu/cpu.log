@@ -3255,3 +3255,6 @@
 [INFO] 18:35:42:655 CPU/(3821:3823): Servidor listo para recibir al interrupt kernel
 [INFO] 18:35:42:655 CPU/(3821:3822): Servidor listo para recibir al dispatch kernel
 [INFO] 18:35:47:124 CPU/(3821:3822): Se conecto un cliente!
+[INFO] 19:34:44:684 CPU/(7921:7923): Servidor listo para recibir al interrupt kernel
+[INFO] 19:34:44:684 CPU/(7921:7922): Servidor listo para recibir al dispatch kernel
+[INFO] 19:34:55:955 CPU/(7921:7922): Se conecto un cliente!

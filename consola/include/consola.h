@@ -39,7 +39,7 @@ typedef struct
 	char *ipKernel;
 	char *puertoKernel;
 	char **segmentos;
-	
+	int tiempoPantalla;
 } t_configConsola;
 
 t_configConsola configConsola;
@@ -96,6 +96,7 @@ pthread_mutex_t mutex_lista_ready;
 pthread_mutex_t mutex_lista_exec;
 pthread_mutex_t mutex_lista_blocked;
 pthread_mutex_t mutex_lista_exit;
+pthread_mutex_t mutex_lista_ready_auxiliar;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;
@@ -104,7 +105,6 @@ sem_t contador_pcb_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
-
 sem_t sem_agregar_pcb;
 sem_t sem_eliminar_pcb;
 sem_t sem_hay_pcb_lista_new;
@@ -113,6 +113,5 @@ sem_t sem_pasar_pcb_running;
 sem_t sem_timer;
 sem_t sem_desalojar_pcb;
 sem_t sem_kill_trhread;
-pthread_mutex_t mutex_lista_ready_auxiliar;
 sem_t sem_llamar_feedback;
 #endif
