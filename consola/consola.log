@@ -9122,3 +9122,43 @@ instCode: 5, paramInt: -1, paramReg[0]: -1,paramReg[1] -1, dispositivoIO: -1
 [INFO] 19:35:08:340 CONSOLA/(8236:8236): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
 
 
+[INFO] 19:44:26:333 CONSOLA/(9100:9100): 
+ Iniciando consola...
+[INFO] 19:44:26:468 CONSOLA/(9100:9100): Se parsearon #Instrucciones: 8
+[INFO] 19:44:26:511 CONSOLA/(9100:9100): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:44:26:549 CONSOLA/(9100:9100): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 19:47:34:492 CONSOLA/(9477:9477): 
+ Iniciando consola...
+[INFO] 19:47:34:598 CONSOLA/(9477:9477): Se parsearon #Instrucciones: 8
+[INFO] 19:47:34:630 CONSOLA/(9477:9477): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:47:34:685 CONSOLA/(9477:9477): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 19:48:15:067 CONSOLA/(9602:9602): 
+ Iniciando consola...
+[INFO] 19:48:15:175 CONSOLA/(9602:9602): Se parsearon #Instrucciones: 8
+[INFO] 19:48:15:211 CONSOLA/(9602:9602): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:48:15:249 CONSOLA/(9602:9602): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 19:49:22:934 CONSOLA/(9689:9689): 
+ Iniciando consola...
+[INFO] 19:49:23:000 CONSOLA/(9689:9689): Se parsearon #Instrucciones: 8
+[INFO] 19:49:23:019 CONSOLA/(9689:9689): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:49:23:057 CONSOLA/(9689:9689): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 19:50:15:059 CONSOLA/(9775:9775): 
+ Iniciando consola...
+[INFO] 19:50:15:156 CONSOLA/(9775:9775): Se parsearon #Instrucciones: 8
+[INFO] 19:50:15:187 CONSOLA/(9775:9775): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 19:50:15:223 CONSOLA/(9775:9775): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
