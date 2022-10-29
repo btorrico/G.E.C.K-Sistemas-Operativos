@@ -426,25 +426,26 @@ void implementar_fifo_auxiliar()
 
 void implementar_rr(){
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
-	pthread_t thrTimer;
+	//pthread_t thrTimer;
 
-	pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
+	//pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
 	printf("\nAgregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
-	sem_post(&sem_pasar_pcb_running);
 	
-	sem_post(&sem_timer);
+	
+	//sem_post(&sem_timer);
 	
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
-	
-	pthread_detach(&thrTimer);
+	sem_post(&sem_pasar_pcb_running);
+
+	/*pthread_detach(&thrTimer);
 
 	sem_wait(&sem_kill_trhread);
-	pthread_kill(&thrTimer, SIGKILL);
+	pthread_kill(&thrTimer, SIGKILL);*/
 	
 
 }
@@ -458,4 +459,30 @@ void hilo_timer(){
 
 	printf("\nenvie post desalojar pcb\n");
 	
+}
+
+void serializarValor(uint32_t valorRegistro , int socket){
+	
+	t_buffer *buffer = malloc(sizeof(t_buffer));
+
+	buffer->size = sizeof(uint32_t) * 2;
+	void *stream = malloc(buffer->size);
+	int offset = 0;
+
+	memcpy(stream + offset, &(valorRegistro), sizeof(uint32_t));
+	offset += sizeof(uint32_t);
+
+	buffer->stream = stream;
+	crearPaquete(buffer, BLOCK_PCB_IO, socket);
+}
+
+uint32_t* deserializarValor(t_buffer *buffer, int socket){
+	uint32_t*  valorRegistro = malloc(sizeof(uint32_t));
+	void *stream = buffer->stream;
+
+	memcpy(&(valorRegistro), stream, sizeof(uint32_t));
+	stream += sizeof(uint32_t);
+
+	return valorRegistro;
+
 }

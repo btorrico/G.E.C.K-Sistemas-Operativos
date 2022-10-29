@@ -242,8 +242,8 @@ typedef struct
 	char *algoritmo;
 
 	int gradoMultiprogramacion;
-	t_list *dispositivosIO;
-	t_list *tiemposIO;
+	char **dispositivosIO;
+	char **tiemposIO;
 	int quantum;
 } t_configKernel;
 

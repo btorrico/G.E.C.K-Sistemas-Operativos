@@ -37,7 +37,8 @@ void pasar_a_ready_auxiliar(t_pcb *);
 void pasar_a_exec(t_pcb *);
 void pasar_a_block(t_pcb *);
 void pasar_a_exit(t_pcb *);
-
+uint32_t* deserializarValor(t_buffer*, int);
+void serializarValor(uint32_t , int );
 
 
 #endif /* SERVER_H_ */
