@@ -3264,3 +3264,27 @@
 [INFO] 19:47:17:671 CPU/(9297:9306): Servidor listo para recibir al interrupt kernel
 [INFO] 19:47:17:644 CPU/(9297:9305): Servidor listo para recibir al dispatch kernel
 [INFO] 19:47:23:178 CPU/(9297:9305): Se conecto un cliente!
+[INFO] 20:09:53:629 CPU/(11449:11451): Servidor listo para recibir al interrupt kernel
+[INFO] 20:09:53:629 CPU/(11449:11450): Servidor listo para recibir al dispatch kernel
+[INFO] 20:10:01:393 CPU/(11449:11450): Se conecto un cliente!
+[INFO] 20:44:29:479 CPU/(12589:12591): Servidor listo para recibir al interrupt kernel
+[INFO] 20:44:29:479 CPU/(12589:12590): Servidor listo para recibir al dispatch kernel
+[INFO] 20:44:38:086 CPU/(12589:12590): Se conecto un cliente!
+[INFO] 20:53:28:068 CPU/(13324:13326): Servidor listo para recibir al interrupt kernel
+[INFO] 20:53:28:068 CPU/(13324:13325): Servidor listo para recibir al dispatch kernel
+[INFO] 20:53:32:551 CPU/(13324:13325): Se conecto un cliente!
+[INFO] 21:06:21:250 CPU/(14470:14472): Servidor listo para recibir al interrupt kernel
+[INFO] 21:06:21:250 CPU/(14470:14471): Servidor listo para recibir al dispatch kernel
+[INFO] 21:06:27:694 CPU/(14470:14471): Se conecto un cliente!
+[INFO] 21:14:25:705 CPU/(15352:15354): Servidor listo para recibir al interrupt kernel
+[INFO] 21:14:25:705 CPU/(15352:15353): Servidor listo para recibir al dispatch kernel
+[INFO] 21:14:38:709 CPU/(15352:15353): Se conecto un cliente!
+[INFO] 21:16:10:960 CPU/(15900:15902): Servidor listo para recibir al interrupt kernel
+[INFO] 21:16:10:960 CPU/(15900:15901): Servidor listo para recibir al dispatch kernel
+[INFO] 21:16:16:557 CPU/(15900:15901): Se conecto un cliente!
+[INFO] 21:21:27:876 CPU/(16836:16838): Servidor listo para recibir al interrupt kernel
+[INFO] 21:21:27:876 CPU/(16836:16837): Servidor listo para recibir al dispatch kernel
+[INFO] 21:21:33:718 CPU/(16836:16837): Se conecto un cliente!
+[INFO] 21:27:32:398 CPU/(18091:18093): Servidor listo para recibir al interrupt kernel
+[INFO] 21:27:32:398 CPU/(18091:18092): Servidor listo para recibir al dispatch kernel
+[INFO] 21:27:42:292 CPU/(18091:18092): Se conecto un cliente!

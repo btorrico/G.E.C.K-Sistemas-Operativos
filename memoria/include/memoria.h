@@ -7,6 +7,7 @@
 #include<string.h>
 #include "client.h"
 #include "server.h"
+#include "comunicacion.h"
 #include "tests.h"
 
 t_config* config;

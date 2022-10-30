@@ -67,7 +67,7 @@ t_list* listaSegmentos();
 
 char *recibirMensaje(int socket);
 void *recibirStream(int socket, size_t stream_size);
-
+void conectar_kernel();
 /*
 
 ██████╗ 

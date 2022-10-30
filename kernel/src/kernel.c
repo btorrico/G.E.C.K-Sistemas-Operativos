@@ -1,5 +1,6 @@
 #include "kernel.h"
 
+
 int main(int argc, char **argv)
 {
 	
@@ -59,7 +60,6 @@ void crear_hilos_kernel()
 
 void crear_hilo_consola()
 {
-
 	conectar_y_mostrar_mensajes_de_cliente(IP_SERVER, configKernel.puertoEscucha, logger);
 }
 
@@ -209,7 +209,8 @@ void conectar_interrupt()
 void conectar_memoria()
 {
 	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
-	enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
+	//enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
+	enviarResultado(conexionMemoria, "Hola memoria soy el kernel");
 }
 
 void iniciar_kernel()
