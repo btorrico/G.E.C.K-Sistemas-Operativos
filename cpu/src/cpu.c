@@ -154,6 +154,7 @@ void cicloInstruccion(t_pcb *pcb)
 		free(registro2);
 		break;
 
+
 	case ADD:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion ADD - Etapa Execute \n" PRINT_COLOR_CYAN);
 		usleep(configCPU.retardoInstruccion);
