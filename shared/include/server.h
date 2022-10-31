@@ -12,7 +12,7 @@
 
 void conectar_y_mostrar_mensajes_de_cliente(char*, char*, t_log*);
 void mostrar_mensajes_del_cliente(int);
-int crear_hilos(int );
+void crear_hilos(int );
 void iterator(char* );
 void iteratorInt(int );
 t_pcb *crear_pcb(t_informacion* , int );
@@ -38,7 +38,7 @@ void pasar_a_exec(t_pcb *);
 void pasar_a_block(t_pcb *);
 void pasar_a_exit(t_pcb *);
 uint32_t* deserializarValor(t_buffer*, int);
-void serializarValor(uint32_t , int );
+void serializarValor(uint32_t , int ,t_tipoMensaje);
 
 
 #endif /* SERVER_H_ */

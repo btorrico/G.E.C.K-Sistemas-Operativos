@@ -296,4 +296,5 @@ extern sem_t sem_kill_trhread;
 
 extern sem_t sem_llamar_feedback;
 
+void *serializar_paquete_dos(t_paqueteActual *paquete, int bytes);
 #endif /* UTILS_H_ */

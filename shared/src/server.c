@@ -9,7 +9,7 @@ void conectar_y_mostrar_mensajes_de_cliente(char *IP, char *PUERTO, t_log *logge
 	crear_hilos(server_fd);
 }
 
-int crear_hilos(int server_fd)
+void crear_hilos(int server_fd)
 {
 	while (1)
 	{
@@ -148,16 +148,33 @@ void planifLargoPlazo()
 {
 	while (1)
 	{
-		sem_wait(&sem_planif_largo_plazo);
+		//sem_wait(&sem_planif_largo_plazo);
 		sem_wait(&sem_agregar_pcb);
-		printf("\nEntrando al planificador\n");
-		log_info(logger, "");
 		agregar_pcb();
+	/*	printf("\nEntrando al planificador\n");
+		log_info(logger, "");
+		
 		printf("\nme quedo esperando el wait\n");
 
 		sem_wait(&sem_eliminar_pcb);
 		printf("\nentrando a eliminar pcb");
-		eliminar_pcb();
+		eliminar_pcb();*/
+
+/*
+switch (expression)
+{
+case AGREGAR_PCB:
+sem_wait(&sem_agregar_pcb);
+	agregar_pcb();
+	break;
+case ELIMINAR_PCB:
+	sem_wait(&sem_eliminar_pcb);
+	eliminar_pcb();
+	break;
+default:
+	break;
+}
+*/
 	}
 }
 
@@ -284,7 +301,7 @@ void iniciar_listas_y_semaforos()
 
 void agregar_pcb()
 {
-	sem_wait(&sem_hay_pcb_lista_new);
+	//sem_wait(&sem_hay_pcb_lista_new);
 	sem_wait(&contador_multiprogramacion);
 
 	printf("Agregando un pcb a lista ready");
@@ -311,11 +328,11 @@ void eliminar_pcb()
 	pthread_mutex_lock(&mutex_lista_exec);
 	t_pcb *pcb = algoritmo_fifo(LISTA_EXEC);
 	pthread_mutex_unlock(&mutex_lista_exec);
-	sem_post(&contador_pcb_running);
+	
 	pasar_a_exit(pcb);
-
-	log_debug(logger, "Estado Anterior: EXEC , proceso id%d", pcb->id);
-	log_debug(logger, "Estado, proceso Actual: EXIT  id%d", pcb->id);
+	sem_post(&contador_pcb_running);
+	log_debug(logger, "Estado Anterior: EXEC , proceso id: %d", pcb->id);
+	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
 
 	// enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
 	sem_post(&contador_multiprogramacion);
@@ -455,7 +472,7 @@ void hilo_timer()
 	printf("\nenvie post desalojar pcb\n");
 }
 
-void serializarValor(uint32_t valorRegistro, int socket)
+void serializarValor(uint32_t valorRegistro, int socket, t_tipoMensaje tipoMensaje)
 {
 
 	t_buffer *buffer = malloc(sizeof(t_buffer));
@@ -468,7 +485,7 @@ void serializarValor(uint32_t valorRegistro, int socket)
 	offset += sizeof(uint32_t);
 
 	buffer->stream = stream;
-	crearPaquete(buffer, BLOCK_PCB_IO, socket);
+	crearPaquete(buffer, tipoMensaje, socket);
 }
 
 uint32_t *deserializarValor(t_buffer *buffer, int socket)

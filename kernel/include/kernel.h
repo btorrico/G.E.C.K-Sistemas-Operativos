@@ -26,7 +26,13 @@ void conectar_memoria();
 void conectar_dispatch();
 void conectar_interrupt();
 void crear_hilos_kernel();
+void crear_pcb2(void* );
 
+typedef struct
+{
+    int socketCliente;
+    t_informacion informacion;
+}t_args_pcb;
 
 
 

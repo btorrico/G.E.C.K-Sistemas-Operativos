@@ -1,9 +1,8 @@
 #include "kernel.h"
 
-
 int main(int argc, char **argv)
 {
-	
+
 	if (argc > 1 && strcmp(argv[1], "-test") == 0)
 		return run_tests();
 	else
@@ -39,9 +38,9 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 }
 void crear_hilos_kernel()
 {
-	pthread_t thrConsola, thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo;
+	pthread_t thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo;
 
-	pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
+	// pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
 	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
@@ -51,8 +50,8 @@ void crear_hilos_kernel()
 	pthread_detach(&thrPlanificadorCortoPlazo);
 	pthread_detach(&thrMemoria);
 	pthread_detach(&thrPlanificadorLargoPlazo);
-
-	pthread_join(thrConsola, NULL); // falta que consola funcione con detach
+	crear_hilo_consola();
+	// pthread_join(thrConsola, NULL); // falta que consola funcione con detach
 
 	log_destroy(logger);
 	config_destroy(config);
@@ -60,7 +59,32 @@ void crear_hilos_kernel()
 
 void crear_hilo_consola()
 {
-	conectar_y_mostrar_mensajes_de_cliente(IP_SERVER, configKernel.puertoEscucha, logger);
+	// conectar_y_mostrar_mensajes_de_cliente(IP_SERVER, configKernel.puertoEscucha, logger);
+	int server_fd = iniciar_servidor(IP_SERVER, configKernel.puertoEscucha); // socket(), bind() listen()
+	log_info(logger, "Servidor listo para recibir al cliente");
+
+	while (1)
+	{
+		pthread_t hilo_atender_consola;
+		t_args_pcb argumentos;
+		// esto se podria cambiar como int* cliente_fd= malloc(sizeof(int)); si lo ponemos, va antes del while
+		argumentos.socketCliente = esperar_cliente(server_fd);
+		// aca hay un log que dice que se conecto un cliente
+		// log_info(logger, "Consola conectada, paso a crear el hilo");
+
+		int cod_op = recibir_operacion(argumentos.socketCliente);
+
+		log_info(logger, "Llegaron las instrucciones y los segmentos");
+		argumentos.informacion = recibir_informacion(argumentos.socketCliente);
+		printf("\ncreo el hilo consola\n");
+
+		enviarResultado(argumentos.socketCliente, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
+
+		pthread_create(&hilo_atender_consola, NULL, (void *)crear_pcb2, (void *)&argumentos);
+		pthread_detach(hilo_atender_consola);
+	}
+
+	log_error(logger, "Muere hilo multiconsolas");
 }
 
 void crear_hilo_cpu()
@@ -83,7 +107,7 @@ void conectar_dispatch()
 	while (1)
 	{
 		sem_wait(&sem_pasar_pcb_running);
-		printf("Llego UN pcb a dispatch");
+		printf("Llego un pcb a dispatch");
 		serializarPCB(conexion, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
 		printf("\nse envio pcb a cpu\n");
 		void *pcbAEliminar = list_remove(LISTA_EXEC, 0);
@@ -107,18 +131,18 @@ void conectar_dispatch()
 		case EXIT_PCB:
 			printf("\nestoy en %d: ", paquete->codigo_operacion);
 			pasar_a_exec(pcb);
-
-			sem_post(&sem_eliminar_pcb);
-
+			eliminar_pcb();
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:
+			sem_post(&contador_pcb_running);
+			//pasar_a_block(pcb);
 			t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 			instruccion->instCode = 4;
 			instruccion->paramInt = -1;
 			instruccion->paramIO = PANTALLA;
-			instruccion->paramReg[0] = 1;
-			instruccion->paramReg[1] = -1;
+			instruccion->paramReg[0] = 1; 
+			//instruccion->paramReg[1] = -1;
 			// switch (insActual->paramReg[0])
 			switch (instruccion->paramReg[0])
 			{
@@ -136,22 +160,25 @@ void conectar_dispatch()
 				break;
 			}
 
-
+			valorRegistro = 82;
 			// Serializamos valor registro y se envia a la consola
-			printf("\nSerializo valor para consola: %d", valorRegistro);
-			serializarValor(valorRegistro, pcb->socket);
+			serializarValor(valorRegistro, pcb->socket, BLOCK_PCB_IO_PANTALLA);
+			char *mensaje = recibirMensaje(pcb->socket);
+			log_info(logger, "Me llego el mensaje: %s\n", mensaje);
 
+
+			pasar_a_ready(pcb);
+			sem_post(&sem_hay_pcb_lista_ready);
 			/// esto va para cuando discriminemos que tipo de dispositivo es, y si se encuentra en el configKernel, si si no esta ver si lo mandamos a error
 			// sem_post(&sem_kill_trhread); //no se si funca, probar
 
 			break;
 
 		case BLOCK_PCB_IO_TECLADO:
-
+			//enviarResultado(conexion, "se mostro el valor por pantalla\n");
 			// deserializar lo que me manda consola
 			// valorRegistro = deserializarValor(paquete->buffer,pcb->socket);
 			valorRegistro = 0;
-			
 
 			switch (insActual->paramReg[1])
 			{
@@ -173,6 +200,9 @@ void conectar_dispatch()
 			sem_post(&sem_hay_pcb_lista_ready);
 
 			break;
+
+		case BLOCK_PCB_IO:
+		break;
 
 		case BLOCK_PCB_PAGE_FAULT:
 			// TODO
@@ -209,7 +239,7 @@ void conectar_interrupt()
 void conectar_memoria()
 {
 	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
-	//enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
+	// enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
 	enviarResultado(conexionMemoria, "Hola memoria soy el kernel");
 }
 
@@ -227,4 +257,53 @@ void iniciar_kernel()
 	iniciar_listas_y_semaforos();
 
 	contadorIdPCB = 0;
+}
+
+void crear_pcb2(void *argumentos)
+{
+	log_info(logger, "Consola conectada, paso a crear el hilo");
+	t_args_pcb *args = (t_args_pcb *)argumentos;
+	// t_args_pcb args;
+	t_pcb *pcb = malloc(sizeof(t_pcb));
+
+	pcb->socket = args->socketCliente;
+	pcb->program_counter = 0;
+	pcb->informacion = &(args->informacion);
+	pcb->registros.AX = 0;
+	pcb->registros.BX = 0;
+	pcb->registros.CX = 0;
+	pcb->registros.DX = 0;
+
+	printf("\nsocket del pcb: %d", pcb->socket);
+
+	/*
+		printf("Instrucciones:");
+		for (int i = 0; i < pcb->informacion->instrucciones_size; ++i)
+		{
+			t_instruccion *instruccion = list_get(pcb->informacion->instrucciones, i);
+
+			printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+				   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+		}
+
+		// enviarResultado(pcb->socket, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
+		printf("\n\nSegmentos:");
+
+		printf("\n[%d,%d,%d,%d]\n", list_get(pcb->informacion->segmentos, 0), list_get(pcb->informacion->segmentos, 1), list_get(pcb->informacion->segmentos, 2), list_get(pcb->informacion->segmentos, 3));
+	*/
+	pthread_mutex_lock(&mutex_creacion_ID);
+	pcb->id = contadorIdPCB;
+	contadorIdPCB++;
+	pthread_mutex_unlock(&mutex_creacion_ID);
+
+	pasar_a_new(pcb);
+	log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
+
+	printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
+
+	sem_post(&sem_agregar_pcb);
+	//sem_p//ost(&sem_hay_pcb_lista_new);
+	//sem_t semaforo[1];
+	//sem_post(&sem_planif_largo_plazo);//podemos sacarlo
+	
 }
