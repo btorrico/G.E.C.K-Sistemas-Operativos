@@ -28,6 +28,13 @@
 			"shared.h": "c",
 			"string": "c",
 			"cmath": "c"
-		}
+		},
+		"makefile.launchConfigurations": [
+			{
+				"cwd": "/home/utnso/tp-2022-2c-Cobra-Kai/consola",
+				"binaryPath": "/home/utnso/tp-2022-2c-Cobra-Kai/consola/consola",
+				"binaryArgs": []
+			}
+		]
 	}
 }
