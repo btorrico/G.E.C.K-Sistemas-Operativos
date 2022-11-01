@@ -46,7 +46,7 @@ uint32_t matchearRegistro(t_registros ,t_registro );
 void asignarValorARegistro(t_pcb *,t_registro ,uint32_t );
 
 
-
+ 
 // LISTAS
 t_list *LISTA_NEW;
 t_list *LISTA_READY;
