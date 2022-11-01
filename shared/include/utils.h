@@ -134,11 +134,13 @@ typedef enum
 extern int contadorIdPCB;
 typedef enum {
 	INSTRUCCIONES,    				//entre consola-kernel
+	TERMINAR_CONSOLA,				//entre consola-kernel
 	DISPATCH_PCB,     				//entre kernel-cpu
-	BLOCK_PCB,						//entre kernel-cpu
-	BLOCK_PCB_IO,					//entre kernel-cpu
+	FIN_QUANTUM,     				//entre kernel-cpu
 	BLOCK_PCB_IO_TECLADO,			//entre kernel-cpu
-	BLOCK_PCB_IO_PANTALLA,			//entre kernel-cpu	
+	BLOCK_PCB_IO_PANTALLA,			//entre kernel-cpu
+	BLOCK_PCB_IO,					//entre kernel-cpu
+	BLOCK_PCB_PAGE_FAULT,			//entre kernel-cpu
 	INTERRUPT_INTERRUPCION,			//entre kernel-cpu
 	EXIT_PCB,						//entre kernel-cpu
 	PASAR_A_READY,					//entre kernel-memoria
@@ -242,8 +244,8 @@ typedef struct
 	char *algoritmo;
 
 	int gradoMultiprogramacion;
-	t_list *dispositivosIO;
-	t_list *tiemposIO;
+	char **dispositivosIO;
+	char **tiemposIO;
 	int quantum;
 } t_configKernel;
 
@@ -265,7 +267,9 @@ extern t_list* LISTA_EXEC;
 extern t_list* LISTA_BLOCKED;
 extern t_list* LISTA_EXIT;
 extern t_list* LISTA_SOCKETS;
-
+extern t_list *LISTA_READY_AUXILIAR;
+extern t_list *LISTA_BLOCKED_PANTALLA;
+extern t_list *LISTA_BLOCKED_TECLADO;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;
@@ -273,8 +277,10 @@ extern pthread_mutex_t mutex_lista_new;
 extern pthread_mutex_t mutex_lista_ready;
 extern pthread_mutex_t mutex_lista_exec;
 extern pthread_mutex_t mutex_lista_blocked;
+extern pthread_mutex_t mutex_lista_blocked_pantalla;
+extern pthread_mutex_t mutex_lista_blocked_teclado;
 extern pthread_mutex_t mutex_lista_exit;
-
+extern pthread_mutex_t mutex_lista_ready_auxiliar;
 
 
 // SEMAFOROS
@@ -294,4 +300,7 @@ extern sem_t sem_timer;
 extern sem_t sem_desalojar_pcb;
 extern sem_t sem_kill_trhread;
 
+extern sem_t sem_llamar_feedback;
+
+void *serializar_paquete_dos(t_paqueteActual *paquete, int bytes);
 #endif /* UTILS_H_ */

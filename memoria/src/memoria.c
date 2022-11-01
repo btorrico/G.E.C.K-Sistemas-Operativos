@@ -1,5 +1,6 @@
 #include "memoria.h"
 
+
 int main(int argc, char **argv)
 {
 	if (argc > 1 && strcmp(argv[1], "-test") == 0)
@@ -57,7 +58,11 @@ void iniciar_servidor_hacia_kernel()
 	log_info(logger, "Servidor listo para recibir al kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
-	mostrar_mensajes_del_cliente(cliente_fd);
+	char *mensaje = recibirMensaje(cliente_fd);
+
+	log_info(logger, "Me llego el mensaje: %s\n", mensaje);
+
+	//mostrar_mensajes_del_cliente(cliente_fd);
 }
 
 void iniciar_servidor_hacia_cpu()

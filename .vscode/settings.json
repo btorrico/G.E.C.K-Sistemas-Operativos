@@ -3,9 +3,12 @@
         "readline.h": "c",
         "utils.h": "c",
         "server.h": "c",
+        "client.h": "c",
         "stdio.h": "c",
         "consola.h": "c",
-        "cpu.h": "c"
+        "cpu.h": "c",
+        "kernel.h": "c",
+        "memoria.h": "c"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Enabled"
 }

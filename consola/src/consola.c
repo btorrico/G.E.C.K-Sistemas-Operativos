@@ -28,24 +28,59 @@ int main(int argc, char **argv)
 
 		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
-		enviar_mensaje("Hola", conexion);
+		printf("\nconexion consola %d\n", conexion);
 
 		// Armamos y enviamos el paquete
-		//	paquete(conexion);
-
 		enviar_paquete(nuevoPaquete, conexion);
 		eliminar_paquete(nuevoPaquete);
 		liberar_programa(informacion);
-		//---
+
 		log_info(logger, "Se enviaron todas las instrucciones y los segmentos!\n");
 
 		char *mensaje = recibirMensaje(conexion);
-
 		log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
+		log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
+		
 
-		// Falta dejar a la consola en espera de nuevos mensajes del kernel...
+		while (1)
+		{
 
-		terminar_programa(conexion, logger, config);
+			t_paqueteActual *paquete = recibirPaquete(conexion);
+			uint32_t valor;
+			switch (paquete->codigo_operacion)
+			{
+			case BLOCK_PCB_IO_PANTALLA:
+				
+				valor = deserializarValor(paquete->buffer, conexion);
+				printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
+				usleep(configConsola.tiempoPantalla);
+				enviarResultado(conexion, "se mostro el valor por pantalla\n");
+				break;
+			case BLOCK_PCB_IO_TECLADO:
+				
+				char *mensaje = recibirMensaje(conexion);
+				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
+
+				char *valorConsola;
+				printf("\nIngresa un valor por consola: \n");
+				valorConsola = readline("> ");
+
+				valor = atoi(valorConsola);
+
+				serializarValor(valor, conexion, BLOCK_PCB_IO_TECLADO);
+
+				free(valorConsola);
+				break;
+			case TERMINAR_CONSOLA:
+				liberar_conexion(conexion);
+			break;
+			default:
+				break;
+			}
+
+
+			// terminar_programa(conexion, logger, config);
+		}
 	}
 }
 
@@ -54,7 +89,7 @@ void leerConfig(char *rutaConfig)
 	config = iniciar_config(rutaConfig);
 	extraerDatosConfig(config);
 
-	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s \n SEGMENTOS: [", configConsola.ipKernel, configConsola.puertoKernel);
+	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s \n TIEMPO PANTALLA: %d \n SEGMENTOS: [", configConsola.ipKernel, configConsola.puertoKernel, configConsola.tiempoPantalla);
 
 	for (int i = 0; i < size_char_array(configConsola.segmentos); i++)
 	{
@@ -108,6 +143,7 @@ t_configConsola extraerDatosConfig(t_config *archivoConfig)
 	configConsola.ipKernel = config_get_string_value(archivoConfig, "IP_KERNEL");
 	configConsola.puertoKernel = config_get_string_value(archivoConfig, "PUERTO_KERNEL");
 	configConsola.segmentos = config_get_array_value(archivoConfig, "SEGMENTOS");
+	configConsola.tiempoPantalla = config_get_int_value(archivoConfig, "TIEMPO_PANTALLA");
 
 	return configConsola;
 }
@@ -118,15 +154,13 @@ t_list *listaSegmentos()
 
 	for (int i = 0; i < size_char_array(configConsola.segmentos); i++)
 	{
-		// printf("%d", segmento);
 		char *segmento = string_new();
 		string_append(&segmento, configConsola.segmentos[i]);
-		
+
 		uint32_t segmentoResultado = atoi(segmento);
 
 		list_add(listaDeSegmentos, segmentoResultado);
 	}
-
 
 	return listaDeSegmentos;
 }
@@ -149,9 +183,8 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 {
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
-	buffer->size = sizeof(uint32_t)	* 2																  // instrucciones_size
-				   + list_size(informacion->instrucciones) * sizeof(t_instruccion)  // segmentos_size
-				  + list_size(informacion->segmentos) * sizeof(uint32_t);
+	buffer->size = sizeof(uint32_t) * 2 + list_size(informacion->instrucciones) * sizeof(t_instruccion) // instrucciones_size
+				   + list_size(informacion->segmentos) * sizeof(uint32_t);								// segmentos_size
 
 	void *stream = malloc(buffer->size);
 
@@ -173,13 +206,11 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
-
-
 	while (j < list_size(informacion->segmentos))
 	{
 		uint32_t segmento = list_get(informacion->segmentos, j);
 		memcpy(stream + offset, &segmento, sizeof(uint32_t));
-		
+
 		offset += sizeof(uint32_t);
 		j++;
 		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
@@ -193,6 +224,6 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	// lleno el paquete
 	t_paquete *paquete = malloc(sizeof(t_paquete));
 	paquete->codigo_operacion = NEW;
-	paquete->buffer =  buffer;
+	paquete->buffer = buffer;
 	return paquete;
 }

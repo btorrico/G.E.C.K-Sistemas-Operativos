@@ -72,8 +72,6 @@ void enviar_mensaje(char *mensaje, int socket_cliente)
 	eliminar_paquete(paquete);
 }
 
-
-
 void crear_buffer(t_paquete *paquete)
 {
 	paquete->buffer = malloc(sizeof(t_buffer));
@@ -124,7 +122,7 @@ void liberar_conexion(int socket_cliente)
 // Esto es del servidor
 
 t_log *logger;
-// t_log* loggerKernel;
+
 
 int iniciar_servidor(char *IP, char *PUERTO)
 {
@@ -209,7 +207,7 @@ int recibir_operacion(int socket_cliente)
 		return cod_op;
 	else
 	{
-		close(socket_cliente);
+		
 		return -1;
 	}
 }
@@ -325,23 +323,8 @@ void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket)
 	paquete->codigo_operacion = (uint8_t)op;
 	paquete->buffer = buffer;
 
-
-/*
-	if (buffer == NULL)
-	{
-		void *a_enviar = malloc(sizeof(uint8_t));
-		memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(uint8_t));
-
-		send(unSocket, a_enviar, sizeof(uint8_t) , 0);
-	free(a_enviar);
-	free(paquete->buffer->stream);
-	free(paquete->buffer);
-	free(paquete);
-
-	}else{*/
-	
 	void *a_enviar = malloc(buffer->size + sizeof(uint8_t) + sizeof(uint32_t));
-	
+
 	int offset = 0;
 	memcpy(a_enviar + offset, &(paquete->codigo_operacion), sizeof(uint8_t));
 	offset += sizeof(uint8_t);
@@ -350,12 +333,11 @@ void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket)
 	memcpy(a_enviar + offset, paquete->buffer->stream, paquete->buffer->size);
 
 	send(unSocket, a_enviar, buffer->size + sizeof(uint8_t) + sizeof(uint32_t), 0);
-	
+
 	free(a_enviar);
 	free(paquete->buffer->stream);
 	free(paquete->buffer);
 	free(paquete);
-	
 }
 
 // Deserializar
@@ -424,7 +406,7 @@ t_pcb *deserializoPCB(t_buffer *buffer)
 
 	while (l < (pcb->informacion->segmentos_size))
 	{
-		
+
 		memcpy(&segmento, stream, sizeof(uint32_t));
 		stream += sizeof(uint32_t);
 		list_add(pcb->informacion->segmentos, segmento);
@@ -434,30 +416,27 @@ t_pcb *deserializoPCB(t_buffer *buffer)
 	return pcb;
 }
 
+// Imprimir instrucciones y segmentos
+void imprimirInstruccionesYSegmentos(t_informacion *informacion)
+{
+	t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 
+	// mostrar instrucciones
+	printf("Instrucciones:");
+	for (int i = 0; i < informacion->instrucciones_size; ++i)
+	{
+		instruccion = list_get(informacion->instrucciones, i);
 
+		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
+	}
 
-void imprimirInstruccionesYSegmentos(t_informacion* informacion){
-	t_instruccion* instruccion = malloc(sizeof(t_instruccion));
+	// mostrar segmentos
+	printf("\n\nSegmentos:");
+	for (int i = 0; i < informacion->segmentos_size; ++i)
+	{
+		uint32_t segmento = list_get(informacion->segmentos, i);
 
-		// mostrar instrucciones
-		printf("Instrucciones:");
-		for (int i = 0; i < informacion->instrucciones_size; ++i)
-		{
-			instruccion = list_get(informacion->instrucciones, i);
-
-			printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
-			   	instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
-		}
-
-		// mostrar segmentos
-		printf("\n\nSegmentos:");
-		for (int i = 0; i < informacion->segmentos_size; ++i)
-		{
-			uint32_t segmento = list_get(informacion->segmentos, i);
-
-			printf("\n%d\n", segmento);
-		}
-
-		
+		printf("\n%d\n", segmento);
+	}
 }
