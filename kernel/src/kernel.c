@@ -38,18 +38,20 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 }
 void crear_hilos_kernel()
 {
-	pthread_t thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo;
+	pthread_t thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo,thrBloqueo;
 
 	// pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
 	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
 	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL);
+	pthread_create(&thrBloqueo, NULL, (void *)controlBloqueo, NULL);
 
 	pthread_detach(&thrCpu);
 	pthread_detach(&thrPlanificadorCortoPlazo);
 	pthread_detach(&thrMemoria);
 	pthread_detach(&thrPlanificadorLargoPlazo);
+	pthread_detach(&thrBloqueo);
 	crear_hilo_consola();
 	// pthread_join(thrConsola, NULL); // falta que consola funcione con detach
 
@@ -124,26 +126,28 @@ void conectar_dispatch()
 		printf("\n Id proceso nuevo que llego de cpu: %d", pcb->id);
 		printf("\nestoy en %d: ", paquete->codigo_operacion);
 
-		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
+		//t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
 		uint32_t valorRegistro;
+		t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 		switch (paquete->codigo_operacion)
 		{
 		case EXIT_PCB:
 			printf("\nestoy en %d: ", paquete->codigo_operacion);
 			pasar_a_exec(pcb);
 			eliminar_pcb();
+			serializarValor(valorRegistro, pcb->socket, TERMINAR_CONSOLA);
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:
 			sem_post(&contador_pcb_running);
-			//pasar_a_block(pcb);
-			t_instruccion *instruccion = malloc(sizeof(t_instruccion));
+			// pasar_a_block(pcb);
+			
 			instruccion->instCode = 4;
 			instruccion->paramInt = -1;
 			instruccion->paramIO = PANTALLA;
-			instruccion->paramReg[0] = 1; 
-			//instruccion->paramReg[1] = -1;
-			// switch (insActual->paramReg[0])
+			instruccion->paramReg[0] = 1;
+			// instruccion->paramReg[1] = -1;
+			//  switch (insActual->paramReg[0])
 			switch (instruccion->paramReg[0])
 			{
 			case AX:
@@ -166,7 +170,6 @@ void conectar_dispatch()
 			char *mensaje = recibirMensaje(pcb->socket);
 			log_info(logger, "Me llego el mensaje: %s\n", mensaje);
 
-
 			pasar_a_ready(pcb);
 			sem_post(&sem_hay_pcb_lista_ready);
 			/// esto va para cuando discriminemos que tipo de dispositivo es, y si se encuentra en el configKernel, si si no esta ver si lo mandamos a error
@@ -175,12 +178,20 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO_TECLADO:
-			//enviarResultado(conexion, "se mostro el valor por pantalla\n");
-			// deserializar lo que me manda consola
-			// valorRegistro = deserializarValor(paquete->buffer,pcb->socket);
-			valorRegistro = 0;
+			sem_post(&contador_pcb_running);
+			serializarValor(1, pcb->socket, BLOCK_PCB_IO_TECLADO);
+			enviarResultado(pcb->socket, "solicito el ingreso de un valor por teclado");
 
-			switch (insActual->paramReg[1])
+			paquete = recibirPaquete(pcb->socket);
+
+			uint32_t valorRegistro = deserializarValor(paquete->buffer, pcb->socket);
+
+			instruccion->instCode = 4;
+			instruccion->paramInt = -1;
+			instruccion->paramIO = TECLADO;
+			instruccion->paramReg[0] = 0;
+
+			switch (instruccion->paramReg[0])
 			{
 			case AX:
 				pcb->registros.AX = valorRegistro;
@@ -195,14 +206,58 @@ void conectar_dispatch()
 				pcb->registros.DX = valorRegistro;
 				break;
 			}
+
+			printf("\nEl valor del registro es: %d", pcb->registros.AX);
+
 			pasar_a_ready(pcb);
-			printf("\nse envio el pcb a ready\n");
+
 			sem_post(&sem_hay_pcb_lista_ready);
 
 			break;
 
 		case BLOCK_PCB_IO:
-		break;
+		/*
+			sem_post(&contador_pcb_running);
+
+			switch (instruccion->paramIO)
+			{
+			case DISCO:
+				for (size_t i = 0; i < count; i++)
+				{
+					/* code 
+				}
+				
+
+				pasar_a_block(pcb);
+				sem_post(&sem_bloqueo);
+				break;
+			case IMPRESORA:
+				/* code 
+				break;
+			default:
+				break;
+			}
+
+
+
+
+
+			int tamanio = string_length(configKernel.dispositivosIO);
+			
+			for (int i = 0; i < tamanio; i++)
+			{
+				if(configKernel.dispositivosIO[i] == instruccion->paramIO){
+					
+					pasar_a_block(pcb);
+					sem_post(&sem_bloqueo);
+
+				}else{
+					break;
+				}		
+			}
+			
+*/
+			break;
 
 		case BLOCK_PCB_PAGE_FAULT:
 			// TODO
@@ -302,8 +357,7 @@ void crear_pcb2(void *argumentos)
 	printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 
 	sem_post(&sem_agregar_pcb);
-	//sem_p//ost(&sem_hay_pcb_lista_new);
-	//sem_t semaforo[1];
-	//sem_post(&sem_planif_largo_plazo);//podemos sacarlo
-	
+	// sem_p//ost(&sem_hay_pcb_lista_new);
+	// sem_t semaforo[1];
+	// sem_post(&sem_planif_largo_plazo);//podemos sacarlo
 }

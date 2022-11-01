@@ -47,7 +47,8 @@ typedef enum
 {
   DISCO,
   TECLADO,
-  PANTALLA
+  PANTALLA,
+  IMPRESORA
 } t_IO;
 
 
@@ -133,6 +134,7 @@ typedef enum
 extern int contadorIdPCB;
 typedef enum {
 	INSTRUCCIONES,    				//entre consola-kernel
+	TERMINAR_CONSOLA,				//entre consola-kernel
 	DISPATCH_PCB,     				//entre kernel-cpu
 	FIN_QUANTUM,     				//entre kernel-cpu
 	BLOCK_PCB_IO_TECLADO,			//entre kernel-cpu

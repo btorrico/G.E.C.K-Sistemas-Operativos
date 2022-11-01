@@ -25,7 +25,7 @@ void crear_hilos(int server_fd)
 
 		pthread_detach(&thr1);
 	}
-	//return EXIT_SUCCESS;
+	// return EXIT_SUCCESS;
 }
 
 void mostrar_mensajes_del_cliente(int cliente_fd)
@@ -53,7 +53,7 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 
 			enviarResultado(cliente_fd, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
 
-			//aca deberia hacer que la consola se quede esperando
+			// aca deberia hacer que la consola se quede esperando
 
 			t_pcb *pcb = crear_pcb(&info, cliente_fd);
 
@@ -69,9 +69,9 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 			break;
 
 		case -1:
-			
-			//liberar_conexion(cliente_fd); //esto lo va a mandar kernel cuando lo necesite
-			//log_error(logger, "el cliente se desconecto. Terminando servidor");
+
+			// liberar_conexion(cliente_fd); //esto lo va a mandar kernel cuando lo necesite
+			// log_error(logger, "el cliente se desconecto. Terminando servidor");
 			y = 1;
 			break;
 		default:
@@ -148,33 +148,33 @@ void planifLargoPlazo()
 {
 	while (1)
 	{
-		//sem_wait(&sem_planif_largo_plazo);
+		// sem_wait(&sem_planif_largo_plazo);
 		sem_wait(&sem_agregar_pcb);
 		agregar_pcb();
-	/*	printf("\nEntrando al planificador\n");
-		log_info(logger, "");
-		
-		printf("\nme quedo esperando el wait\n");
+		/*	printf("\nEntrando al planificador\n");
+			log_info(logger, "");
 
-		sem_wait(&sem_eliminar_pcb);
-		printf("\nentrando a eliminar pcb");
-		eliminar_pcb();*/
+			printf("\nme quedo esperando el wait\n");
 
-/*
-switch (expression)
-{
-case AGREGAR_PCB:
-sem_wait(&sem_agregar_pcb);
-	agregar_pcb();
-	break;
-case ELIMINAR_PCB:
-	sem_wait(&sem_eliminar_pcb);
-	eliminar_pcb();
-	break;
-default:
-	break;
-}
-*/
+			sem_wait(&sem_eliminar_pcb);
+			printf("\nentrando a eliminar pcb");
+			eliminar_pcb();*/
+
+		/*
+		switch (expression)
+		{
+		case AGREGAR_PCB:
+		sem_wait(&sem_agregar_pcb);
+			agregar_pcb();
+			break;
+		case ELIMINAR_PCB:
+			sem_wait(&sem_eliminar_pcb);
+			eliminar_pcb();
+			break;
+		default:
+			break;
+		}
+		*/
 	}
 }
 
@@ -301,7 +301,7 @@ void iniciar_listas_y_semaforos()
 
 void agregar_pcb()
 {
-	//sem_wait(&sem_hay_pcb_lista_new);
+	// sem_wait(&sem_hay_pcb_lista_new);
 	sem_wait(&contador_multiprogramacion);
 
 	printf("Agregando un pcb a lista ready");
@@ -328,13 +328,14 @@ void eliminar_pcb()
 	pthread_mutex_lock(&mutex_lista_exec);
 	t_pcb *pcb = algoritmo_fifo(LISTA_EXEC);
 	pthread_mutex_unlock(&mutex_lista_exec);
-	
+
 	pasar_a_exit(pcb);
 	sem_post(&contador_pcb_running);
 	log_debug(logger, "Estado Anterior: EXEC , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
 
 	// enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
+	// podriamos poner un semaforo que envie memoria, que diga que ya libero las estructuras para seguir
 	sem_post(&contador_multiprogramacion);
 }
 
@@ -386,6 +387,8 @@ t_tipo_algoritmo obtenerAlgoritmo()
 
 	return algoritmoResultado;
 }
+
+
 
 t_pcb *algoritmo_fifo(t_list *lista)
 {
@@ -497,4 +500,22 @@ uint32_t *deserializarValor(t_buffer *buffer, int socket)
 	stream += sizeof(uint32_t);
 
 	return valorRegistro;
+}
+
+void controlBloqueo()
+{
+
+	//TODO
+	/*sem_wait(&sem_bloqueo);
+	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED);
+
+	t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
+
+	
+	int tamanio = string_length(configKernel.dispositivosIO);
+	//int tamanio = string_length(configKernel.dispositivosIO);
+	for (int i = 0; i < tamanio; i++)
+	{
+		
+	}*/
 }

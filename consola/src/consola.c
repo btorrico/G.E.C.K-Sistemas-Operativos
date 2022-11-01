@@ -26,15 +26,9 @@ int main(int argc, char **argv)
 
 		t_paquete *nuevoPaquete = crear_paquete_programa(informacion);
 
-		// pthread_t thrKernel;
-		// pthread_create(&thrKernel, NULL, (void *)conectar_kernel, nuevoPaquete);
-
-		// pthread_join(thrKernel, NULL);
-
 		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
 		printf("\nconexion consola %d\n", conexion);
-		// enviar_mensaje("Hola", conexion);
 
 		// Armamos y enviamos el paquete
 		enviar_paquete(nuevoPaquete, conexion);
@@ -46,34 +40,44 @@ int main(int argc, char **argv)
 		char *mensaje = recibirMensaje(conexion);
 		log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
 		log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
-		//	char *mensaje2 = recibirMensaje(conexion);
+		
 
 		while (1)
 		{
 
 			t_paqueteActual *paquete = recibirPaquete(conexion);
-
-			uint32_t valor = deserializarValor(paquete->buffer, conexion);
-
+			uint32_t valor;
 			switch (paquete->codigo_operacion)
 			{
 			case BLOCK_PCB_IO_PANTALLA:
-
+				
+				valor = deserializarValor(paquete->buffer, conexion);
 				printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
 				usleep(configConsola.tiempoPantalla);
 				enviarResultado(conexion, "se mostro el valor por pantalla\n");
 				break;
 			case BLOCK_PCB_IO_TECLADO:
-				//char *mensaje = recibirMensaje(pcb->socket);
+				
+				char *mensaje = recibirMensaje(conexion);
+				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
+
+				char *valorConsola;
+				printf("\nIngresa un valor por consola: \n");
+				valorConsola = readline("> ");
+
+				valor = atoi(valorConsola);
+
+				serializarValor(valor, conexion, BLOCK_PCB_IO_TECLADO);
+
+				free(valorConsola);
 				break;
+			case TERMINAR_CONSOLA:
+				liberar_conexion(conexion);
+			break;
 			default:
 				break;
 			}
 
-			//
-			// log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
-
-			// Falta dejar a la consola en espera de nuevos mensajes del kernel...
 
 			// terminar_programa(conexion, logger, config);
 		}
@@ -222,27 +226,4 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	paquete->codigo_operacion = NEW;
 	paquete->buffer = buffer;
 	return paquete;
-}
-
-void conectar_kernel(t_paquete *nuevoPaquete)
-{
-	conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
-
-	enviar_mensaje("hola Kernel, soy la consola", conexion);
-
-	// Armamos y enviamos el paquete
-	enviar_paquete(nuevoPaquete, conexion);
-	eliminar_paquete(nuevoPaquete);
-	// liberar_programa(informacion);
-	//---
-
-	log_info(logger, "Se enviaron todas las instrucciones y los segmentos!\n");
-
-	char *mensaje = recibirMensaje(conexion);
-
-	log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
-
-	log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
-
-	// terminar_programa(conexion, logger, config);
 }

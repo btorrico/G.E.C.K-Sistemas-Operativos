@@ -21,6 +21,7 @@ t_pcb *crear_pcb(t_informacion* , int );
 void cambiaValor();
 void planifLargoPlazo();
 void planifCortoPlazo();
+void controlBloqueo();
 
 t_pcb* algoritmo_fifo(t_list *);
 t_pcb *algoritmo_rr(t_list *);
