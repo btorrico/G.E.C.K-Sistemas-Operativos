@@ -27,7 +27,7 @@ void conectar_dispatch();
 void conectar_interrupt();
 void crear_hilos_kernel();
 void crear_pcb2(void* );
-
+char *dispositivoToString(t_IO );
 typedef struct
 {
     int socketCliente;
@@ -41,6 +41,8 @@ t_list *LISTA_NEW;
 t_list *LISTA_READY;
 t_list *LISTA_EXEC;
 t_list *LISTA_BLOCKED;
+t_list *LISTA_BLOCKED_PANTALLA;
+t_list *LISTA_BLOCKED_TECLADO;
 t_list *LISTA_EXIT;
 t_list *LISTA_SOCKETS;
 t_list *LISTA_READY_AUXILIAR;
@@ -51,6 +53,8 @@ pthread_mutex_t mutex_lista_new;
 pthread_mutex_t mutex_lista_ready;
 pthread_mutex_t mutex_lista_exec;
 pthread_mutex_t mutex_lista_blocked;
+pthread_mutex_t mutex_lista_blocked_pantalla;
+pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
 
 

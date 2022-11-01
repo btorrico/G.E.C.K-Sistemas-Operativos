@@ -253,6 +253,22 @@ void pasar_a_block(t_pcb *pcb)
 
 	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
 }
+void pasar_a_block_pantalla(t_pcb *pcb)
+{
+	pthread_mutex_lock(&mutex_lista_blocked_pantalla);
+	list_add(LISTA_BLOCKED_PANTALLA, pcb);
+	pthread_mutex_unlock(&mutex_lista_blocked_pantalla);
+
+	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
+}
+void pasar_a_block_teclado(t_pcb *pcb)
+{
+	pthread_mutex_lock(&mutex_lista_blocked_teclado);
+	list_add(LISTA_BLOCKED_TECLADO, pcb);
+	pthread_mutex_unlock(&mutex_lista_blocked_teclado);
+
+	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
+}
 
 void pasar_a_exit(t_pcb *pcb)
 {
@@ -270,6 +286,8 @@ void iniciar_listas_y_semaforos()
 	LISTA_READY = list_create();
 	LISTA_EXEC = list_create();
 	LISTA_BLOCKED = list_create();
+	LISTA_BLOCKED_PANTALLA = list_create();
+	LISTA_BLOCKED_TECLADO = list_create();
 	LISTA_SOCKETS = list_create();
 	LISTA_EXIT = list_create();
 	LISTA_READY_AUXILIAR = list_create();
@@ -280,6 +298,8 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_ready, NULL);
 	pthread_mutex_init(&mutex_lista_exec, NULL);
 	pthread_mutex_init(&mutex_lista_blocked, NULL);
+	pthread_mutex_init(&mutex_lista_blocked_pantalla, NULL);
+	pthread_mutex_init(&mutex_lista_blocked_teclado, NULL);
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
 
 	// semaforos
@@ -506,7 +526,7 @@ void controlBloqueo()
 {
 
 	//TODO
-	/*sem_wait(&sem_bloqueo);
+	sem_wait(&sem_bloqueo);
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED);
 
 	t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
@@ -517,5 +537,5 @@ void controlBloqueo()
 	for (int i = 0; i < tamanio; i++)
 	{
 		
-	}*/
+	}
 }

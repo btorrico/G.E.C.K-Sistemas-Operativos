@@ -268,6 +268,8 @@ extern t_list* LISTA_BLOCKED;
 extern t_list* LISTA_EXIT;
 extern t_list* LISTA_SOCKETS;
 extern t_list *LISTA_READY_AUXILIAR;
+extern t_list *LISTA_BLOCKED_PANTALLA;
+extern t_list *LISTA_BLOCKED_TECLADO;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;
@@ -275,9 +277,11 @@ extern pthread_mutex_t mutex_lista_new;
 extern pthread_mutex_t mutex_lista_ready;
 extern pthread_mutex_t mutex_lista_exec;
 extern pthread_mutex_t mutex_lista_blocked;
+extern pthread_mutex_t mutex_lista_blocked_pantalla;
+extern pthread_mutex_t mutex_lista_blocked_teclado;
 extern pthread_mutex_t mutex_lista_exit;
 extern pthread_mutex_t mutex_lista_ready_auxiliar;
-extern pthread_mutex_t mutex_lista_ready_auxiliar;
+
 
 // SEMAFOROS
 extern sem_t sem_planif_largo_plazo;
