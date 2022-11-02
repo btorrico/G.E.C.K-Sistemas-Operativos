@@ -5358,3 +5358,326 @@
 [INFO] 01:52:11:217 CPU/(32992:32993):  Valor nuevo Program counter: 6
 [DEBUG] 01:52:11:217 CPU/(32992:32993): Instrucción Ejecutada: 'PID:  0 - Ejecutando: IO DISCO   10'
 [DEBUG] 01:52:11:217 CPU/(32992:32993): Envie BLOCK al kernel por IO
+[INFO] 14:24:37:082 CPU/(15710:15712): Servidor listo para recibir al interrupt kernel
+[INFO] 14:24:37:086 CPU/(15710:15711): Servidor listo para recibir al dispatch kernel
+[INFO] 14:24:54:289 CPU/(15710:15711): Se conecto un cliente!
+[INFO] 14:25:11:633 CPU/(15710:15711): insActual->instCode: 0
+[INFO] 14:25:11:633 CPU/(15710:15711): insActual->pc: 0
+[INFO] 14:25:11:633 CPU/(15710:15711):  Valor nuevo Program counter: 1
+[DEBUG] 14:25:11:633 CPU/(15710:15711): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 14:25:11:635 CPU/(15710:15711): AX = 1
+[INFO] 14:25:11:635 CPU/(15710:15711): insActual->instCode: 0
+[INFO] 14:25:11:635 CPU/(15710:15711): insActual->pc: 1
+[INFO] 14:25:11:635 CPU/(15710:15711):  Valor nuevo Program counter: 2
+[DEBUG] 14:25:11:635 CPU/(15710:15711): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 14:25:11:636 CPU/(15710:15711): BX = 7
+[INFO] 14:25:11:637 CPU/(15710:15711): insActual->instCode: 1
+[INFO] 14:25:11:637 CPU/(15710:15711): insActual->pc: 2
+[INFO] 14:25:11:637 CPU/(15710:15711):  Valor nuevo Program counter: 3
+[DEBUG] 14:25:11:637 CPU/(15710:15711): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 14:25:11:641 CPU/(15710:15711): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 14:25:11:642 CPU/(15710:15711): AX = 8
+[INFO] 14:25:11:642 CPU/(15710:15711): insActual->instCode: 2
+[INFO] 14:25:11:642 CPU/(15710:15711): insActual->pc: 3
+[INFO] 14:25:11:642 CPU/(15710:15711):  Valor nuevo Program counter: 4
+[DEBUG] 14:25:11:642 CPU/(15710:15711): Requiere acceso a Memoria
+[DEBUG] 14:25:11:642 CPU/(15710:15711): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 14:25:11:642 CPU/(15710:15711): insActual->instCode: 3
+[INFO] 14:25:11:642 CPU/(15710:15711): insActual->pc: 4
+[INFO] 14:25:11:642 CPU/(15710:15711):  Valor nuevo Program counter: 5
+[DEBUG] 14:25:11:642 CPU/(15710:15711): Requiere acceso a Memoria
+[DEBUG] 14:25:11:642 CPU/(15710:15711): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 14:25:11:642 CPU/(15710:15711): insActual->instCode: -1169175328
+[INFO] 14:25:11:642 CPU/(15710:15711): insActual->pc: 5
+[INFO] 14:25:11:643 CPU/(15710:15711):  Valor nuevo Program counter: 6
+[DEBUG] 14:25:11:643 CPU/(15710:15711): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32675'
+[INFO] 14:25:11:643 CPU/(15710:15711): insActual->instCode: -1169175328
+[INFO] 14:25:11:643 CPU/(15710:15711): insActual->pc: 6
+[INFO] 14:25:11:643 CPU/(15710:15711):  Valor nuevo Program counter: 7
+[DEBUG] 14:25:11:643 CPU/(15710:15711): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32675'
+[INFO] 14:28:16:721 CPU/(16371:16373): Servidor listo para recibir al interrupt kernel
+[INFO] 14:28:16:724 CPU/(16371:16372): Servidor listo para recibir al dispatch kernel
+[INFO] 14:28:22:011 CPU/(16371:16372): Se conecto un cliente!
+[INFO] 14:28:29:601 CPU/(16371:16372): insActual->instCode: 0
+[INFO] 14:28:29:601 CPU/(16371:16372): insActual->pc: 0
+[INFO] 14:28:29:601 CPU/(16371:16372):  Valor nuevo Program counter: 1
+[DEBUG] 14:28:29:601 CPU/(16371:16372): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 14:28:29:603 CPU/(16371:16372): AX = 1
+[INFO] 14:28:29:603 CPU/(16371:16372): insActual->instCode: 0
+[INFO] 14:28:29:603 CPU/(16371:16372): insActual->pc: 1
+[INFO] 14:28:29:603 CPU/(16371:16372):  Valor nuevo Program counter: 2
+[DEBUG] 14:28:29:603 CPU/(16371:16372): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 14:28:29:604 CPU/(16371:16372): BX = 7
+[INFO] 14:28:29:604 CPU/(16371:16372): insActual->instCode: 1
+[INFO] 14:28:29:605 CPU/(16371:16372): insActual->pc: 2
+[INFO] 14:28:29:605 CPU/(16371:16372):  Valor nuevo Program counter: 3
+[DEBUG] 14:28:29:605 CPU/(16371:16372): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 14:28:29:607 CPU/(16371:16372): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 14:28:29:607 CPU/(16371:16372): AX = 8
+[INFO] 14:28:29:607 CPU/(16371:16372): insActual->instCode: 2
+[INFO] 14:28:29:607 CPU/(16371:16372): insActual->pc: 3
+[INFO] 14:28:29:607 CPU/(16371:16372):  Valor nuevo Program counter: 4
+[DEBUG] 14:28:29:607 CPU/(16371:16372): Requiere acceso a Memoria
+[DEBUG] 14:28:29:607 CPU/(16371:16372): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 14:28:29:607 CPU/(16371:16372): insActual->instCode: 3
+[INFO] 14:28:29:607 CPU/(16371:16372): insActual->pc: 4
+[INFO] 14:28:29:607 CPU/(16371:16372):  Valor nuevo Program counter: 5
+[DEBUG] 14:28:29:607 CPU/(16371:16372): Requiere acceso a Memoria
+[DEBUG] 14:28:29:607 CPU/(16371:16372): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 14:28:29:607 CPU/(16371:16372): insActual->instCode: 2092895456
+[INFO] 14:28:29:608 CPU/(16371:16372): insActual->pc: 5
+[INFO] 14:28:29:608 CPU/(16371:16372):  Valor nuevo Program counter: 6
+[DEBUG] 14:28:29:608 CPU/(16371:16372): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32698'
+[INFO] 14:28:29:608 CPU/(16371:16372): insActual->instCode: 2092895456
+[INFO] 14:28:29:608 CPU/(16371:16372): insActual->pc: 6
+[INFO] 14:28:29:608 CPU/(16371:16372):  Valor nuevo Program counter: 7
+[DEBUG] 14:28:29:608 CPU/(16371:16372): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32698'
+[INFO] 14:31:22:997 CPU/(16916:16918): Servidor listo para recibir al interrupt kernel
+[INFO] 14:31:23:000 CPU/(16916:16917): Servidor listo para recibir al dispatch kernel
+[INFO] 14:31:32:101 CPU/(16916:16917): Se conecto un cliente!
+[INFO] 14:31:41:298 CPU/(16916:16917): insActual->instCode: 0
+[INFO] 14:31:41:298 CPU/(16916:16917): insActual->pc: 0
+[INFO] 14:31:41:298 CPU/(16916:16917):  Valor nuevo Program counter: 1
+[DEBUG] 14:31:41:299 CPU/(16916:16917): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 14:31:41:300 CPU/(16916:16917): AX = 1
+[INFO] 14:31:41:300 CPU/(16916:16917): insActual->instCode: 0
+[INFO] 14:31:41:300 CPU/(16916:16917): insActual->pc: 1
+[INFO] 14:31:41:300 CPU/(16916:16917):  Valor nuevo Program counter: 2
+[DEBUG] 14:31:41:300 CPU/(16916:16917): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 14:31:41:302 CPU/(16916:16917): BX = 7
+[INFO] 14:31:41:302 CPU/(16916:16917): insActual->instCode: 1
+[INFO] 14:31:41:302 CPU/(16916:16917): insActual->pc: 2
+[INFO] 14:31:41:302 CPU/(16916:16917):  Valor nuevo Program counter: 3
+[DEBUG] 14:31:41:302 CPU/(16916:16917): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 14:31:41:304 CPU/(16916:16917): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 14:31:41:304 CPU/(16916:16917): AX = 8
+[INFO] 14:31:41:304 CPU/(16916:16917): insActual->instCode: 2
+[INFO] 14:31:41:304 CPU/(16916:16917): insActual->pc: 3
+[INFO] 14:31:41:304 CPU/(16916:16917):  Valor nuevo Program counter: 4
+[DEBUG] 14:31:41:304 CPU/(16916:16917): Requiere acceso a Memoria
+[DEBUG] 14:31:41:304 CPU/(16916:16917): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 14:31:41:304 CPU/(16916:16917): insActual->instCode: 3
+[INFO] 14:31:41:305 CPU/(16916:16917): insActual->pc: 4
+[INFO] 14:31:41:305 CPU/(16916:16917):  Valor nuevo Program counter: 5
+[DEBUG] 14:31:41:305 CPU/(16916:16917): Requiere acceso a Memoria
+[DEBUG] 14:31:41:305 CPU/(16916:16917): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 14:31:41:305 CPU/(16916:16917): insActual->instCode: -1655497504
+[INFO] 14:31:41:305 CPU/(16916:16917): insActual->pc: 5
+[INFO] 14:31:41:305 CPU/(16916:16917):  Valor nuevo Program counter: 6
+[DEBUG] 14:31:41:305 CPU/(16916:16917): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32616'
+[INFO] 14:31:41:305 CPU/(16916:16917): insActual->instCode: -1655497504
+[INFO] 14:31:41:306 CPU/(16916:16917): insActual->pc: 6
+[INFO] 14:31:41:306 CPU/(16916:16917):  Valor nuevo Program counter: 7
+[DEBUG] 14:31:41:306 CPU/(16916:16917): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32616'
+[INFO] 14:33:35:903 CPU/(17575:17577): Servidor listo para recibir al interrupt kernel
+[INFO] 14:33:35:905 CPU/(17575:17576): Servidor listo para recibir al dispatch kernel
+[INFO] 14:33:43:633 CPU/(17575:17576): Se conecto un cliente!
+[INFO] 14:33:53:732 CPU/(17575:17576): insActual->instCode: 0
+[INFO] 14:33:53:732 CPU/(17575:17576): insActual->pc: 0
+[INFO] 14:33:53:732 CPU/(17575:17576):  Valor nuevo Program counter: 1
+[DEBUG] 14:33:53:732 CPU/(17575:17576): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 14:33:53:734 CPU/(17575:17576): AX = 1
+[INFO] 14:33:53:734 CPU/(17575:17576): insActual->instCode: 0
+[INFO] 14:33:53:734 CPU/(17575:17576): insActual->pc: 1
+[INFO] 14:33:53:734 CPU/(17575:17576):  Valor nuevo Program counter: 2
+[DEBUG] 14:33:53:734 CPU/(17575:17576): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 14:33:53:735 CPU/(17575:17576): BX = 7
+[INFO] 14:33:53:735 CPU/(17575:17576): insActual->instCode: 1
+[INFO] 14:33:53:735 CPU/(17575:17576): insActual->pc: 2
+[INFO] 14:33:53:735 CPU/(17575:17576):  Valor nuevo Program counter: 3
+[DEBUG] 14:33:53:735 CPU/(17575:17576): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 14:33:53:737 CPU/(17575:17576): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 14:33:53:737 CPU/(17575:17576): AX = 8
+[INFO] 14:33:53:737 CPU/(17575:17576): insActual->instCode: 2
+[INFO] 14:33:53:737 CPU/(17575:17576): insActual->pc: 3
+[INFO] 14:33:53:737 CPU/(17575:17576):  Valor nuevo Program counter: 4
+[DEBUG] 14:33:53:737 CPU/(17575:17576): Requiere acceso a Memoria
+[DEBUG] 14:33:53:737 CPU/(17575:17576): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 14:33:53:737 CPU/(17575:17576): insActual->instCode: 3
+[INFO] 14:33:53:737 CPU/(17575:17576): insActual->pc: 4
+[INFO] 14:33:53:737 CPU/(17575:17576):  Valor nuevo Program counter: 5
+[DEBUG] 14:33:53:737 CPU/(17575:17576): Requiere acceso a Memoria
+[DEBUG] 14:33:53:738 CPU/(17575:17576): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 14:33:53:738 CPU/(17575:17576): insActual->instCode: -728367904
+[INFO] 14:33:53:738 CPU/(17575:17576): insActual->pc: 5
+[INFO] 14:33:53:738 CPU/(17575:17576):  Valor nuevo Program counter: 6
+[DEBUG] 14:33:53:738 CPU/(17575:17576): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32553'
+[INFO] 14:33:53:738 CPU/(17575:17576): insActual->instCode: -728367904
+[INFO] 14:33:53:738 CPU/(17575:17576): insActual->pc: 6
+[INFO] 14:33:53:738 CPU/(17575:17576):  Valor nuevo Program counter: 7
+[DEBUG] 14:33:53:738 CPU/(17575:17576): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32553'
+[INFO] 14:35:50:193 CPU/(18135:18137): Servidor listo para recibir al interrupt kernel
+[INFO] 14:35:50:196 CPU/(18135:18136): Servidor listo para recibir al dispatch kernel
+[INFO] 14:35:54:592 CPU/(18135:18136): Se conecto un cliente!
+[INFO] 14:36:06:020 CPU/(18135:18136): insActual->instCode: 0
+[INFO] 14:36:06:020 CPU/(18135:18136): insActual->pc: 0
+[INFO] 14:36:06:020 CPU/(18135:18136):  Valor nuevo Program counter: 1
+[DEBUG] 14:36:06:020 CPU/(18135:18136): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 14:36:06:022 CPU/(18135:18136): AX = 1
+[INFO] 14:36:06:022 CPU/(18135:18136): insActual->instCode: 0
+[INFO] 14:36:06:023 CPU/(18135:18136): insActual->pc: 1
+[INFO] 14:36:06:023 CPU/(18135:18136):  Valor nuevo Program counter: 2
+[DEBUG] 14:36:06:023 CPU/(18135:18136): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 14:36:06:024 CPU/(18135:18136): BX = 7
+[INFO] 14:36:06:024 CPU/(18135:18136): insActual->instCode: 1
+[INFO] 14:36:06:024 CPU/(18135:18136): insActual->pc: 2
+[INFO] 14:36:06:024 CPU/(18135:18136):  Valor nuevo Program counter: 3
+[DEBUG] 14:36:06:025 CPU/(18135:18136): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 14:36:06:026 CPU/(18135:18136): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 14:36:06:026 CPU/(18135:18136): AX = 8
+[INFO] 14:36:06:026 CPU/(18135:18136): insActual->instCode: 2
+[INFO] 14:36:06:026 CPU/(18135:18136): insActual->pc: 3
+[INFO] 14:36:06:027 CPU/(18135:18136):  Valor nuevo Program counter: 4
+[DEBUG] 14:36:06:027 CPU/(18135:18136): Requiere acceso a Memoria
+[DEBUG] 14:36:06:027 CPU/(18135:18136): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 14:36:06:027 CPU/(18135:18136): insActual->instCode: 3
+[INFO] 14:36:06:027 CPU/(18135:18136): insActual->pc: 4
+[INFO] 14:36:06:027 CPU/(18135:18136):  Valor nuevo Program counter: 5
+[DEBUG] 14:36:06:027 CPU/(18135:18136): Requiere acceso a Memoria
+[DEBUG] 14:36:06:027 CPU/(18135:18136): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 14:36:06:027 CPU/(18135:18136): insActual->instCode: 765111520
+[INFO] 14:36:06:027 CPU/(18135:18136): insActual->pc: 5
+[INFO] 14:36:06:027 CPU/(18135:18136):  Valor nuevo Program counter: 6
+[DEBUG] 14:36:06:027 CPU/(18135:18136): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32521'
+[INFO] 14:36:06:027 CPU/(18135:18136): insActual->instCode: 765111520
+[INFO] 14:36:06:027 CPU/(18135:18136): insActual->pc: 6
+[INFO] 14:36:06:028 CPU/(18135:18136):  Valor nuevo Program counter: 7
+[DEBUG] 14:36:06:028 CPU/(18135:18136): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32521'
+[INFO] 15:08:39:642 CPU/(18917:18919): Servidor listo para recibir al interrupt kernel
+[INFO] 15:08:39:644 CPU/(18917:18918): Servidor listo para recibir al dispatch kernel
+[INFO] 15:08:47:836 CPU/(18917:18918): Se conecto un cliente!
+[INFO] 15:09:00:210 CPU/(18917:18918): insActual->instCode: 0
+[INFO] 15:09:00:210 CPU/(18917:18918): insActual->pc: 0
+[INFO] 15:09:00:210 CPU/(18917:18918):  Valor nuevo Program counter: 1
+[DEBUG] 15:09:00:210 CPU/(18917:18918): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 15:09:00:211 CPU/(18917:18918): AX = 1
+[INFO] 15:09:00:211 CPU/(18917:18918): insActual->instCode: 0
+[INFO] 15:09:00:211 CPU/(18917:18918): insActual->pc: 1
+[INFO] 15:09:00:212 CPU/(18917:18918):  Valor nuevo Program counter: 2
+[DEBUG] 15:09:00:212 CPU/(18917:18918): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 15:09:00:213 CPU/(18917:18918): BX = 7
+[INFO] 15:09:00:213 CPU/(18917:18918): insActual->instCode: 1
+[INFO] 15:09:00:213 CPU/(18917:18918): insActual->pc: 2
+[INFO] 15:09:00:213 CPU/(18917:18918):  Valor nuevo Program counter: 3
+[DEBUG] 15:09:00:213 CPU/(18917:18918): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 15:09:00:215 CPU/(18917:18918): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 15:09:00:215 CPU/(18917:18918): AX = 8
+[INFO] 15:09:00:215 CPU/(18917:18918): insActual->instCode: 2
+[INFO] 15:09:00:215 CPU/(18917:18918): insActual->pc: 3
+[INFO] 15:09:00:215 CPU/(18917:18918):  Valor nuevo Program counter: 4
+[DEBUG] 15:09:00:215 CPU/(18917:18918): Requiere acceso a Memoria
+[DEBUG] 15:09:00:215 CPU/(18917:18918): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 15:09:00:215 CPU/(18917:18918): insActual->instCode: 3
+[INFO] 15:09:00:215 CPU/(18917:18918): insActual->pc: 4
+[INFO] 15:09:00:215 CPU/(18917:18918):  Valor nuevo Program counter: 5
+[DEBUG] 15:09:00:215 CPU/(18917:18918): Requiere acceso a Memoria
+[DEBUG] 15:09:00:215 CPU/(18917:18918): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 15:09:00:215 CPU/(18917:18918): insActual->instCode: -9835296
+[INFO] 15:09:00:215 CPU/(18917:18918): insActual->pc: 5
+[INFO] 15:09:00:216 CPU/(18917:18918):  Valor nuevo Program counter: 6
+[DEBUG] 15:09:00:216 CPU/(18917:18918): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32545'
+[INFO] 15:09:00:216 CPU/(18917:18918): insActual->instCode: -9835296
+[INFO] 15:09:00:216 CPU/(18917:18918): insActual->pc: 6
+[INFO] 15:09:00:216 CPU/(18917:18918):  Valor nuevo Program counter: 7
+[DEBUG] 15:09:00:216 CPU/(18917:18918): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32545'
+[INFO] 15:18:16:887 CPU/(19663:19665): Servidor listo para recibir al interrupt kernel
+[INFO] 15:18:16:889 CPU/(19663:19664): Servidor listo para recibir al dispatch kernel
+[INFO] 15:18:25:039 CPU/(19663:19664): Se conecto un cliente!
+[INFO] 15:18:33:644 CPU/(19663:19664): insActual->instCode: 0
+[INFO] 15:18:33:644 CPU/(19663:19664): insActual->pc: 0
+[INFO] 15:18:33:644 CPU/(19663:19664):  Valor nuevo Program counter: 1
+[DEBUG] 15:18:33:644 CPU/(19663:19664): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 15:18:33:646 CPU/(19663:19664): AX = 1
+[INFO] 15:18:33:646 CPU/(19663:19664): insActual->instCode: 0
+[INFO] 15:18:33:646 CPU/(19663:19664): insActual->pc: 1
+[INFO] 15:18:33:646 CPU/(19663:19664):  Valor nuevo Program counter: 2
+[DEBUG] 15:18:33:646 CPU/(19663:19664): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 15:18:33:647 CPU/(19663:19664): BX = 7
+[INFO] 15:18:33:648 CPU/(19663:19664): insActual->instCode: 1
+[INFO] 15:18:33:648 CPU/(19663:19664): insActual->pc: 2
+[INFO] 15:18:33:648 CPU/(19663:19664):  Valor nuevo Program counter: 3
+[DEBUG] 15:18:33:648 CPU/(19663:19664): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 15:18:33:649 CPU/(19663:19664): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 15:18:33:650 CPU/(19663:19664): AX = 8
+[INFO] 15:18:33:650 CPU/(19663:19664): insActual->instCode: 2
+[INFO] 15:18:33:650 CPU/(19663:19664): insActual->pc: 3
+[INFO] 15:18:33:650 CPU/(19663:19664):  Valor nuevo Program counter: 4
+[DEBUG] 15:18:33:650 CPU/(19663:19664): Requiere acceso a Memoria
+[DEBUG] 15:18:33:650 CPU/(19663:19664): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 15:18:33:650 CPU/(19663:19664): insActual->instCode: 3
+[INFO] 15:18:33:650 CPU/(19663:19664): insActual->pc: 4
+[INFO] 15:18:33:650 CPU/(19663:19664):  Valor nuevo Program counter: 5
+[DEBUG] 15:18:33:650 CPU/(19663:19664): Requiere acceso a Memoria
+[DEBUG] 15:18:33:650 CPU/(19663:19664): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 15:18:33:650 CPU/(19663:19664): insActual->instCode: 817708256
+[INFO] 15:18:33:650 CPU/(19663:19664): insActual->pc: 5
+[INFO] 15:18:33:650 CPU/(19663:19664):  Valor nuevo Program counter: 6
+[DEBUG] 15:18:33:650 CPU/(19663:19664): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32713'
+[INFO] 15:18:33:650 CPU/(19663:19664): insActual->instCode: 817708256
+[INFO] 15:18:33:651 CPU/(19663:19664): insActual->pc: 6
+[INFO] 15:18:33:651 CPU/(19663:19664):  Valor nuevo Program counter: 7
+[DEBUG] 15:18:33:651 CPU/(19663:19664): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32713'
+[INFO] 15:26:17:071 CPU/(20405:20407): Servidor listo para recibir al interrupt kernel
+[INFO] 15:26:17:076 CPU/(20405:20406): Servidor listo para recibir al dispatch kernel
+[INFO] 15:26:25:606 CPU/(20405:20406): Se conecto un cliente!
+[INFO] 15:35:16:685 CPU/(2299:2301): Servidor listo para recibir al interrupt kernel
+[INFO] 15:35:16:686 CPU/(2299:2300): Servidor listo para recibir al dispatch kernel
+[INFO] 15:35:37:587 CPU/(2299:2300): Se conecto un cliente!
+[INFO] 15:43:58:990 CPU/(2354:2356): Servidor listo para recibir al interrupt kernel
+[INFO] 15:43:58:994 CPU/(2354:2355): Servidor listo para recibir al dispatch kernel
+[INFO] 15:44:26:865 CPU/(2354:2355): Se conecto un cliente!
+[INFO] 15:48:23:450 CPU/(3148:3150): Servidor listo para recibir al interrupt kernel
+[INFO] 15:48:23:455 CPU/(3148:3149): Servidor listo para recibir al dispatch kernel
+[INFO] 15:48:33:782 CPU/(3148:3149): Se conecto un cliente!
+[INFO] 15:58:06:694 CPU/(2426:2428): Servidor listo para recibir al interrupt kernel
+[INFO] 15:58:06:698 CPU/(2426:2427): Servidor listo para recibir al dispatch kernel
+[INFO] 15:58:55:785 CPU/(2426:2427): Se conecto un cliente!
+[INFO] 16:22:13:630 CPU/(2473:2475): Servidor listo para recibir al interrupt kernel
+[INFO] 16:22:13:637 CPU/(2473:2474): Servidor listo para recibir al dispatch kernel
+[INFO] 16:22:31:130 CPU/(2473:2474): Se conecto un cliente!
+[INFO] 16:24:03:624 CPU/(3168:3170): Servidor listo para recibir al interrupt kernel
+[INFO] 16:24:03:629 CPU/(3168:3169): Servidor listo para recibir al dispatch kernel
+[INFO] 16:24:12:382 CPU/(3168:3169): Se conecto un cliente!
+[INFO] 16:26:14:404 CPU/(3714:3716): Servidor listo para recibir al interrupt kernel
+[INFO] 16:26:14:406 CPU/(3714:3715): Servidor listo para recibir al dispatch kernel
+[INFO] 16:26:26:301 CPU/(3714:3715): Se conecto un cliente!
+[INFO] 16:26:47:092 CPU/(3714:3715): insActual->instCode: 0
+[INFO] 16:26:47:092 CPU/(3714:3715): insActual->pc: 0
+[INFO] 16:26:47:092 CPU/(3714:3715):  Valor nuevo Program counter: 1
+[DEBUG] 16:26:47:093 CPU/(3714:3715): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 16:26:47:094 CPU/(3714:3715): AX = 1
+[INFO] 16:26:47:094 CPU/(3714:3715): insActual->instCode: 0
+[INFO] 16:26:47:094 CPU/(3714:3715): insActual->pc: 1
+[INFO] 16:26:47:094 CPU/(3714:3715):  Valor nuevo Program counter: 2
+[DEBUG] 16:26:47:094 CPU/(3714:3715): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 16:26:47:095 CPU/(3714:3715): BX = 7
+[INFO] 16:26:47:096 CPU/(3714:3715): insActual->instCode: 1
+[INFO] 16:26:47:096 CPU/(3714:3715): insActual->pc: 2
+[INFO] 16:26:47:096 CPU/(3714:3715):  Valor nuevo Program counter: 3
+[DEBUG] 16:26:47:096 CPU/(3714:3715): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 16:26:47:098 CPU/(3714:3715): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 16:26:47:098 CPU/(3714:3715): AX = 8
+[INFO] 16:26:47:098 CPU/(3714:3715): insActual->instCode: 2
+[INFO] 16:26:47:098 CPU/(3714:3715): insActual->pc: 3
+[INFO] 16:26:47:098 CPU/(3714:3715):  Valor nuevo Program counter: 4
+[DEBUG] 16:26:47:099 CPU/(3714:3715): Requiere acceso a Memoria
+[DEBUG] 16:26:47:099 CPU/(3714:3715): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 16:26:47:099 CPU/(3714:3715): insActual->instCode: 3
+[INFO] 16:26:47:099 CPU/(3714:3715): insActual->pc: 4
+[INFO] 16:26:47:099 CPU/(3714:3715):  Valor nuevo Program counter: 5
+[DEBUG] 16:26:47:099 CPU/(3714:3715): Requiere acceso a Memoria
+[DEBUG] 16:26:47:099 CPU/(3714:3715): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 16:26:47:099 CPU/(3714:3715): insActual->instCode: 681274592
+[INFO] 16:26:47:099 CPU/(3714:3715): insActual->pc: 5
+[INFO] 16:26:47:099 CPU/(3714:3715):  Valor nuevo Program counter: 6
+[DEBUG] 16:26:47:099 CPU/(3714:3715): Instrucción Ejecutada: 'PID:  0 - Ejecutando:    AX 32560'
+[INFO] 19:24:37:177 CPU/(4473:4475): Servidor listo para recibir al interrupt kernel
+[INFO] 19:24:37:178 CPU/(4473:4474): Servidor listo para recibir al dispatch kernel

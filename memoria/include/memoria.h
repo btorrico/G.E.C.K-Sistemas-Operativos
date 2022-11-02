@@ -38,7 +38,8 @@ t_configMemoria extraerDatosConfig(t_config* );
 int contadorIdPCB;
 
 int conexionMemoria;
-
+int conexionDispatch;
+int conexionConsola;
 
 // LISTAS
 t_list *LISTA_NEW;

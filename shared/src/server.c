@@ -357,7 +357,7 @@ void eliminar_pcb()
 	log_debug(logger, "Estado Anterior: EXEC , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
 
-	// enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
+	 //enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
 	// podriamos poner un semaforo que envie memoria, que diga que ya libero las estructuras para seguir
 	sem_post(&contador_multiprogramacion);
 }
@@ -467,24 +467,24 @@ void implementar_fifo_auxiliar()
 void implementar_rr()
 {
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
-	// pthread_t thrTimer;
+	pthread_t thrTimer;
 
 	// pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
 	printf("\nAgregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
-	// sem_post(&sem_timer);
+	 sem_post(&sem_timer);
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
 	sem_post(&sem_pasar_pcb_running);
 
-	/*pthread_detach(&thrTimer);
+	pthread_detach(&thrTimer);
 
 	sem_wait(&sem_kill_trhread);
-	pthread_kill(&thrTimer, SIGKILL);*/
+	pthread_cancel(&thrTimer);
 }
 
 void hilo_timer()

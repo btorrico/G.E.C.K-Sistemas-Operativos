@@ -34,7 +34,8 @@ typedef struct
     t_informacion informacion;
 }t_args_pcb;
 
-
+int conexionDispatch;
+int conexionConsola;
 
 // LISTAS
 t_list *LISTA_NEW;

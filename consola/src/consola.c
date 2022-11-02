@@ -26,18 +26,18 @@ int main(int argc, char **argv)
 
 		t_paquete *nuevoPaquete = crear_paquete_programa(informacion);
 
-		conexion = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
+		conexionConsola = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
-		printf("\nconexion consola %d\n", conexion);
+		printf("\nconexion consola %d\n", conexionConsola);
 
 		// Armamos y enviamos el paquete
-		enviar_paquete(nuevoPaquete, conexion);
+		enviar_paquete(nuevoPaquete, conexionConsola);
 		eliminar_paquete(nuevoPaquete);
 		liberar_programa(informacion);
 
 		log_info(logger, "Se enviaron todas las instrucciones y los segmentos!\n");
 
-		char *mensaje = recibirMensaje(conexion);
+		char *mensaje = recibirMensaje(conexionConsola);
 		log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
 		log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
 		
@@ -45,20 +45,20 @@ int main(int argc, char **argv)
 		while (1)
 		{
 
-			t_paqueteActual *paquete = recibirPaquete(conexion);
+			t_paqueteActual *paquete = recibirPaquete(conexionConsola);
 			uint32_t valor;
 			switch (paquete->codigo_operacion)
 			{
 			case BLOCK_PCB_IO_PANTALLA:
 				
-				valor = deserializarValor(paquete->buffer, conexion);
+				valor = deserializarValor(paquete->buffer, conexionConsola);
 				printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
 				usleep(configConsola.tiempoPantalla);
-				enviarResultado(conexion, "se mostro el valor por pantalla\n");
+				enviarResultado(conexionConsola, "se mostro el valor por pantalla\n");
 				break;
 			case BLOCK_PCB_IO_TECLADO:
 				
-				char *mensaje = recibirMensaje(conexion);
+				char *mensaje = recibirMensaje(conexionConsola);
 				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
 
 				char *valorConsola;
@@ -67,12 +67,12 @@ int main(int argc, char **argv)
 
 				valor = atoi(valorConsola);
 
-				serializarValor(valor, conexion, BLOCK_PCB_IO_TECLADO);
+				serializarValor(valor, conexionConsola, BLOCK_PCB_IO_TECLADO);
 
 				free(valorConsola);
 				break;
 			case TERMINAR_CONSOLA:
-				liberar_conexion(conexion);
+				liberar_conexion(conexionConsola);
 			break;
 			default:
 				break;

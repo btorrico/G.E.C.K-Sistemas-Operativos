@@ -38,9 +38,9 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 }
 void crear_hilos_kernel()
 {
-	pthread_t thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo, thrBloqueo;
+	pthread_t thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo, thrBloqueo, thrConsola;
 
-	// pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
+	pthread_create(&thrConsola, NULL, (void *)crear_hilo_consola, NULL);
 	pthread_create(&thrCpu, NULL, (void *)crear_hilo_cpu, NULL);
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
@@ -52,8 +52,8 @@ void crear_hilos_kernel()
 	pthread_detach(&thrMemoria);
 	pthread_detach(&thrPlanificadorLargoPlazo);
 	pthread_detach(&thrBloqueo);
-	crear_hilo_consola();
-	// pthread_join(thrConsola, NULL); // falta que consola funcione con detach
+	// crear_hilo_consola();
+	pthread_join(thrConsola, NULL);
 
 	log_destroy(logger);
 	config_destroy(config);
@@ -72,16 +72,14 @@ void crear_hilo_consola()
 		// esto se podria cambiar como int* cliente_fd= malloc(sizeof(int)); si lo ponemos, va antes del while
 		argumentos.socketCliente = esperar_cliente(server_fd);
 		// aca hay un log que dice que se conecto un cliente
-		// log_info(logger, "Consola conectada, paso a crear el hilo");
+		 //log_info(logger, "Consola conectada, paso a crear el hilo");
 
 		int cod_op = recibir_operacion(argumentos.socketCliente);
 
 		log_info(logger, "Llegaron las instrucciones y los segmentos");
 		argumentos.informacion = recibir_informacion(argumentos.socketCliente);
 		printf("\ncreo el hilo consola\n");
-
 		enviarResultado(argumentos.socketCliente, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
-
 		pthread_create(&hilo_atender_consola, NULL, (void *)crear_pcb2, (void *)&argumentos);
 		pthread_detach(hilo_atender_consola);
 	}
@@ -104,13 +102,13 @@ void crear_hilo_cpu()
 void conectar_dispatch()
 {
 	// Enviar PCB
-	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
+	conexionDispatch = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 
 	while (1)
 	{
 		sem_wait(&sem_pasar_pcb_running);
 		printf("Llego un pcb a dispatch");
-		serializarPCB(conexion, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
+		serializarPCB(conexionDispatch, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
 		printf("\nse envio pcb a cpu\n");
 		void *pcbAEliminar = list_remove(LISTA_EXEC, 0);
 		free(pcbAEliminar);
@@ -120,16 +118,15 @@ void conectar_dispatch()
 
 		// Recibir PCB
 		printf("\nRecibi de nuevo el pcb\n");
-		t_paqueteActual *paquete = recibirPaquete(conexion);
+		t_paqueteActual *paquete = recibirPaquete(conexionDispatch);
 		printf("\nestoy en %d: ", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		printf("\n Id proceso nuevo que llego de cpu: %d", pcb->id);
 		printf("\nestoy en %d: ", paquete->codigo_operacion);
 
 		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
-		
-		
-		//t_instruccion *instruccion = malloc(sizeof(t_instruccion));
+
+		// t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 		switch (paquete->codigo_operacion)
 		{
 		case EXIT_PCB:
@@ -146,37 +143,35 @@ void conectar_dispatch()
 				sem_post(&contador_pcb_running);
 				pasar_a_block_pantalla(pcb);
 				pcb = algoritmo_fifo(LISTA_BLOCKED_PANTALLA);
-				
-				printf("%d",insActual->paramReg[0]);
+
+				printf("%d", insActual->paramReg[0]);
 
 				switch (insActual->paramReg[0])
 				{
 				case AX:
 					valorRegistro = pcb->registros.AX;
-					
+
 					break;
 				case BX:
 					valorRegistro = pcb->registros.BX;
-					
+
 					break;
 				case CX:
 					valorRegistro = pcb->registros.CX;
-					
+
 					break;
 				case DX:
 					valorRegistro = pcb->registros.DX;
-					
+
 					break;
 				}
 
-				//valorRegistro = 82;
-				// Serializamos valor registro y se envia a la consola
+				// valorRegistro = 82;
+				//  Serializamos valor registro y se envia a la consola
 				printf("el valor del registro desde kernel por pantalla: %d", valorRegistro);
 				serializarValor(valorRegistro, pcb->socket, BLOCK_PCB_IO_PANTALLA);
 				char *mensaje = recibirMensaje(pcb->socket);
 				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
-
-
 
 				pasar_a_ready(pcb);
 				sem_post(&sem_hay_pcb_lista_ready);
@@ -188,9 +183,10 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO_TECLADO:
-			
-		do{
-			uint32_t valorRegistroTeclado;
+
+			do
+			{
+				uint32_t valorRegistroTeclado;
 				sem_post(&contador_pcb_running);
 				pasar_a_block_teclado(pcb);
 				pcb = algoritmo_fifo(LISTA_BLOCKED_TECLADO);
@@ -200,7 +196,6 @@ void conectar_dispatch()
 				paquete = recibirPaquete(pcb->socket);
 
 				valorRegistroTeclado = deserializarValor(paquete->buffer, pcb->socket);
-
 
 				switch (insActual->paramReg[0])
 				{
@@ -222,8 +217,6 @@ void conectar_dispatch()
 					break;
 				}
 
-				
-
 				pasar_a_ready(pcb);
 
 				sem_post(&sem_hay_pcb_lista_ready);
@@ -232,45 +225,42 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO:
-			
-		do{
-			sem_post(&contador_pcb_running);
-			//instruccion->paramIO = 4;
-			char *dispositivoCpu = dispositivoToString(insActual->paramIO);
-			
 
-			int tamanio = string_length(configKernel.dispositivosIO);
-			int tiempoIO;
-			int duracionUnidadDeTrabajo;
-			for (int i = 0; i < tamanio; i++)
+			do
 			{
-				if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
+				sem_post(&contador_pcb_running);
+				// instruccion->paramIO = 4;
+				char *dispositivoCpu = dispositivoToString(insActual->paramIO);
+
+				int tamanio = string_length(configKernel.dispositivosIO);
+				int tiempoIO;
+				int duracionUnidadDeTrabajo;
+				for (int i = 0; i < tamanio; i++)
 				{
+					if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
+					{
 
-					tiempoIO = atoi(configKernel.tiemposIO[i]) ;
-					duracionUnidadDeTrabajo= (tiempoIO/1000) * insActual->paramInt;
+						tiempoIO = atoi(configKernel.tiemposIO[i]);
+						duracionUnidadDeTrabajo = (tiempoIO / 1000) * insActual->paramInt;
 
-					pasar_a_block(pcb);
-					
-					sleep(duracionUnidadDeTrabajo);
+						pasar_a_block(pcb);
 
-					pcb = algoritmo_fifo(LISTA_BLOCKED);
+						sleep(duracionUnidadDeTrabajo);
 
-					pasar_a_ready(pcb);
-					sem_post(&sem_hay_pcb_lista_ready);
-					break;
+						pcb = algoritmo_fifo(LISTA_BLOCKED);
+
+						pasar_a_ready(pcb);
+						sem_post(&sem_hay_pcb_lista_ready);
+						break;
+					}
+					else
+					{
+						log_error(logger, "No existe este dispositivo de IO en config Kernel: %s", dispositivoCpu);
+					}
 				}
-				else
-				{
-					log_error(logger, "No existe este dispositivo de IO en config Kernel: %s", dispositivoCpu);
 
-				}
-				
-			}
-
-			free(dispositivoCpu);
-		} while (!list_is_empty(LISTA_BLOCKED_TECLADO));
-		
+				free(dispositivoCpu);
+			} while (!list_is_empty(LISTA_BLOCKED_TECLADO));
 
 			break;
 
@@ -313,7 +303,7 @@ void conectar_memoria()
 	// enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
 	enviarResultado(conexionMemoria, "Hola memoria soy el kernel");
 
-	//sem_wait(&sem_enviar_mensaje_memoria);
+	// sem_wait(&sem_enviar_mensaje_memoria);
 	enviarResultado(conexionMemoria, "hola  memoria, inicializa las estructuras");
 }
 
