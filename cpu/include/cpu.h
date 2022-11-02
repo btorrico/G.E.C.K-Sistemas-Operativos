@@ -31,6 +31,7 @@ t_configCPU configCPU;
 t_configKernel configKernel;
 
 bool interrupciones;
+bool retornePCB;
 
 int socketAceptadoDispatch;
 
@@ -44,6 +45,7 @@ char* instruccionToString(t_instCode );
 char *ioToString(t_IO );
 uint32_t matchearRegistro(t_registros ,t_registro );
 void asignarValorARegistro(t_pcb *,t_registro ,uint32_t );
+bool cicloInstruccion(t_pcb *);
 
 
  int conexionDispatch;

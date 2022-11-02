@@ -117,12 +117,14 @@ void conectar_dispatch()
 		// o este void list_replace_and_destroy_element(t_list*, int index, void* element, void(*element_destroyer)(void*));
 
 		// Recibir PCB
-		printf("\nRecibi de nuevo el pcb\n");
+	
 		t_paqueteActual *paquete = recibirPaquete(conexionDispatch);
+		printf("\nRecibi de nuevo el pcb\n");
 		printf("\nestoy en %d: ", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
-		printf("\n Id proceso nuevo que llego de cpu: %d", pcb->id);
 		printf("\nestoy en %d: ", paquete->codigo_operacion);
+		printf("\n Id proceso nuevo que llego de cpu: %d", pcb->id);
+		//printf("\nestoy en %d: ", paquete->codigo_operacion);
 
 		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
 
@@ -285,6 +287,12 @@ void conectar_dispatch()
 		default:
 			break;
 		}
+	
+	
+	free(paquete->buffer->stream);
+	free(paquete->buffer);
+	free(paquete);
+	
 	}
 }
 

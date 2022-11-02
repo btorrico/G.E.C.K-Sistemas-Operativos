@@ -56,15 +56,17 @@ void iniciar_servidor_dispatch()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	socketAceptadoDispatch = esperar_cliente(server_fd);
-
+	printf("\nMe quedo esperando..\n");
 	while (1)
 	{
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoDispatch);
-		if (paquete == NULL)
+		printf("\nMe quedo esperando6..\n");
+		/*if (paquete == NULL)
 		{
 			continue;
-			
-		}
+		}*/
+
+		retornePCB = false;
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		free(paquete->buffer->stream);
 		free(paquete->buffer);
@@ -80,20 +82,15 @@ void iniciar_servidor_dispatch()
 		printf("\n%d.\n", pcb->socket);
 
 		printf("\n%d.\n", pcb->registros.AX);
+		
 
-		cicloInstruccion(pcb);
-
-		// hacer cosas
-		/*hacer_cosas_con_pcb(
-
-			sem_post(&sem_pasar_pcb_kernel);
-		)*/
-
-		//serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO);
-
-		// printf("\nenvie pcb por bloqueado\n");
-		//  sem_wait(&sem_pasar_pcb_kernel);
-		//  serializarPCB(conexion, pcb, EXIT_PCB);
+		while (!interrupciones && !retornePCB)
+		{
+			 retornePCB = cicloInstruccion(pcb);
+			// check interrupt
+		}
+		printf("\nSAli del while infinito\n");
+		
 	}
 }
 void iniciar_servidor_interrupt()
@@ -112,15 +109,15 @@ void conectar_memoria()
 	enviar_mensaje("hola memoria, soy el cpu", conexion);
 }
 
-void cicloInstruccion(t_pcb *pcb)
+bool cicloInstruccion(t_pcb *pcb)
 {
 	t_list *instrucciones = pcb->informacion->instrucciones;
 	t_instruccion *insActual = list_get(instrucciones, pcb->program_counter);
 	log_info(logger, "insActual->instCode: %i", insActual->instCode);
-
+	printf("pc al inicio: %d", pcb->program_counter);
 	// fetch
 	fetch(pcb);
-	
+	printf("pc despues del fetch: %d", pcb->program_counter);
 	// decode
 	if (insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT)
 	{
@@ -141,21 +138,21 @@ void cicloInstruccion(t_pcb *pcb)
 	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %s %i'",
 			  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio
 	free(instruccion);
-	
-	bool retornePCB = false;
+
+	interrupciones = false;
+	//bool retornePCB = false;
 	switch (insActual->instCode)
 	{
 	case SET:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion SET - Etapa Execute \n" PRINT_COLOR_CYAN);
 		usleep(configCPU.retardoInstruccion);
-		
+
 		asignarValorARegistro(pcb, insActual->paramReg[0], insActual->paramInt);
-		
-		log_debug(logger, "%s = %i",registro, insActual->paramInt);
+
+		log_debug(logger, "%s = %i", registro, insActual->paramInt);
 		free(registro);
 		free(registro2);
 		break;
-
 
 	case ADD:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion ADD - Etapa Execute \n" PRINT_COLOR_CYAN);
@@ -170,11 +167,11 @@ void cicloInstruccion(t_pcb *pcb)
 		free(registro2);
 
 		asignarValorARegistro(pcb, insActual->paramReg[0], registroDestino);
-	
+
 		log_debug(logger, "%s = %i", registro, registroDestino);
 		free(registro);
 		break;
-	
+
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
 		switch (insActual->paramIO)
@@ -196,18 +193,23 @@ void cicloInstruccion(t_pcb *pcb)
 			break;
 		}
 		break;
-		
+
 	case EXIT:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion EXIT - Etapa Execute\n" PRINT_COLOR_CYAN);
 		serializarPCB(socketAceptadoDispatch, pcb, EXIT_PCB);
 		log_debug(logger, "Envie EXIT al kernel");
 		retornePCB = true;
+		free(pcb);
+		printf("\nLlegue al retorno: %d\n", retornePCB);
 		// limpiar_entradas_TLB();
 		break;
+	default:
+		break;
 	}
-
-	// check interrupt
+printf("\nentro al interrupt\n");
 	checkInterrupt(pcb, retornePCB);
+printf("\nsalgo del interrupt\n");
+	return retornePCB;
 }
 
 void fetch(t_pcb *pcb)
@@ -222,18 +224,17 @@ void fetch(t_pcb *pcb)
 
 void checkInterrupt(t_pcb *pcb, bool retornePCB)
 {
-	if (!interrupciones && !retornePCB)
-	{
-		// ejecuto ciclo de instruccion en caso de no haber interrupciones
-		cicloInstruccion(pcb);
-	}
-	else if (interrupciones && !retornePCB)
+	if (interrupciones && !retornePCB)
 	{
 		// devuelvo pcb a kernel
 		log_debug(logger, "Devuelvo pcb por interrupcion");
 		serializarPCB(socketAceptadoDispatch, pcb, INTERRUPT_INTERRUPCION);
 		interrupciones = false;
 		// limpiar_entradas_TLB();
+	}
+	else
+	{
+		printf("\nNo hay interrupcion, sigo el ciclo\n");
 	}
 }
 
@@ -338,9 +339,10 @@ uint32_t matchearRegistro(t_registros registros, t_registro registro)
 	}
 }
 
-void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor){
+void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
+{
 	switch (registro)
-			{
+	{
 	case AX:
 		pcb->registros.AX = valor;
 		break;
