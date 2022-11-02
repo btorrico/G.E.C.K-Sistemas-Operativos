@@ -127,7 +127,8 @@ void conectar_dispatch()
 		printf("\nestoy en %d: ", paquete->codigo_operacion);
 
 		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
-		uint32_t valorRegistro;
+		
+		
 		//t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 		switch (paquete->codigo_operacion)
 		{
@@ -135,42 +136,47 @@ void conectar_dispatch()
 			printf("\nestoy en %d: ", paquete->codigo_operacion);
 			pasar_a_exec(pcb);
 			eliminar_pcb();
-			serializarValor(valorRegistro, pcb->socket, TERMINAR_CONSOLA);
+			serializarValor(0, pcb->socket, TERMINAR_CONSOLA);
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:
 			do
 			{
+				uint32_t valorRegistro;
 				sem_post(&contador_pcb_running);
 				pasar_a_block_pantalla(pcb);
 				pcb = algoritmo_fifo(LISTA_BLOCKED_PANTALLA);
-				// instruccion->instCode = 4;
-				// instruccion->paramInt = -1;
-				// instruccion->paramIO = PANTALLA;
-				// instruccion->paramReg[0] = 1;
-				// instruccion->paramReg[1] = -1;
-				//  switch (insActual->paramReg[0])
+				
+				printf("%d",insActual->paramReg[0]);
+
 				switch (insActual->paramReg[0])
 				{
 				case AX:
 					valorRegistro = pcb->registros.AX;
+					
 					break;
 				case BX:
 					valorRegistro = pcb->registros.BX;
+					
 					break;
 				case CX:
 					valorRegistro = pcb->registros.CX;
+					
 					break;
 				case DX:
 					valorRegistro = pcb->registros.DX;
+					
 					break;
 				}
 
 				//valorRegistro = 82;
 				// Serializamos valor registro y se envia a la consola
+				printf("el valor del registro desde kernel por pantalla: %d", valorRegistro);
 				serializarValor(valorRegistro, pcb->socket, BLOCK_PCB_IO_PANTALLA);
 				char *mensaje = recibirMensaje(pcb->socket);
 				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
+
+
 
 				pasar_a_ready(pcb);
 				sem_post(&sem_hay_pcb_lista_ready);
@@ -184,38 +190,39 @@ void conectar_dispatch()
 		case BLOCK_PCB_IO_TECLADO:
 			
 		do{
+			uint32_t valorRegistroTeclado;
 				sem_post(&contador_pcb_running);
 				pasar_a_block_teclado(pcb);
-				pcb = algoritmo_fifo(BLOCK_PCB_IO_TECLADO);
+				pcb = algoritmo_fifo(LISTA_BLOCKED_TECLADO);
 				serializarValor(1, pcb->socket, BLOCK_PCB_IO_TECLADO);
 				enviarResultado(pcb->socket, "solicito el ingreso de un valor por teclado");
 
 				paquete = recibirPaquete(pcb->socket);
 
-				uint32_t valorRegistro = deserializarValor(paquete->buffer, pcb->socket);
+				valorRegistroTeclado = deserializarValor(paquete->buffer, pcb->socket);
 
-				// instruccion->instCode = 4;
-				// instruccion->paramInt = -1;
-				// instruccion->paramIO = TECLADO;
-				// instruccion->paramReg[0] = 0;
 
 				switch (insActual->paramReg[0])
 				{
 				case AX:
-					pcb->registros.AX = valorRegistro;
+					pcb->registros.AX = valorRegistroTeclado;
+					printf("\nEl valor del registro es: %d", pcb->registros.AX);
 					break;
 				case BX:
-					pcb->registros.BX = valorRegistro;
+					pcb->registros.BX = valorRegistroTeclado;
+					printf("\nEl valor del registro es: %d", pcb->registros.BX);
 					break;
 				case CX:
-					pcb->registros.CX = valorRegistro;
+					pcb->registros.CX = valorRegistroTeclado;
+					printf("\nEl valor del registro es: %d", pcb->registros.CX);
 					break;
 				case DX:
-					pcb->registros.DX = valorRegistro;
+					pcb->registros.DX = valorRegistroTeclado;
+					printf("\nEl valor del registro es: %d", pcb->registros.DX);
 					break;
 				}
 
-				printf("\nEl valor del registro es: %d", pcb->registros.AX);
+				
 
 				pasar_a_ready(pcb);
 

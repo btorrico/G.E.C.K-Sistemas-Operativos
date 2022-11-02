@@ -2554,3 +2554,129 @@ Hola memoria soy el kernel
 [INFO] 00:11:09:957 MEMORIA/(17648:17649): Se conecto un cliente!
 [INFO] 00:11:09:957 MEMORIA/(17648:17649): Me llego el mensaje: Hola memoria soy el kernel
 
+[INFO] 00:20:33:930 MEMORIA/(19301:19303): Servidor listo para recibir al cpu
+[INFO] 00:20:33:930 MEMORIA/(19301:19302): Servidor listo para recibir al kernel
+[INFO] 00:20:37:901 MEMORIA/(19301:19303): Se conecto un cliente!
+[INFO] 00:20:37:901 MEMORIA/(19301:19303): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:20:42:014 MEMORIA/(19301:19302): Se conecto un cliente!
+[INFO] 00:20:42:014 MEMORIA/(19301:19302): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:22:46:339 MEMORIA/(19738:19740): Servidor listo para recibir al cpu
+[INFO] 00:22:46:339 MEMORIA/(19738:19739): Servidor listo para recibir al kernel
+[INFO] 00:22:54:373 MEMORIA/(19738:19740): Se conecto un cliente!
+[INFO] 00:22:54:373 MEMORIA/(19738:19740): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:22:58:054 MEMORIA/(19738:19739): Se conecto un cliente!
+[INFO] 00:22:58:054 MEMORIA/(19738:19739): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:25:56:994 MEMORIA/(20413:20415): Servidor listo para recibir al cpu
+[INFO] 00:25:56:994 MEMORIA/(20413:20414): Servidor listo para recibir al kernel
+[INFO] 00:26:08:182 MEMORIA/(20413:20415): Se conecto un cliente!
+[INFO] 00:26:08:182 MEMORIA/(20413:20415): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:26:15:759 MEMORIA/(20413:20414): Se conecto un cliente!
+[INFO] 00:26:15:759 MEMORIA/(20413:20414): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:31:34:896 MEMORIA/(21125:21127): Servidor listo para recibir al cpu
+[INFO] 00:31:34:896 MEMORIA/(21125:21126): Servidor listo para recibir al kernel
+[INFO] 00:31:38:959 MEMORIA/(21125:21127): Se conecto un cliente!
+[INFO] 00:31:38:961 MEMORIA/(21125:21127): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:31:47:000 MEMORIA/(21125:21126): Se conecto un cliente!
+[INFO] 00:31:47:000 MEMORIA/(21125:21126): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:35:02:475 MEMORIA/(21845:21847): Servidor listo para recibir al cpu
+[INFO] 00:35:02:475 MEMORIA/(21845:21846): Servidor listo para recibir al kernel
+[INFO] 00:35:06:896 MEMORIA/(21845:21847): Se conecto un cliente!
+[INFO] 00:35:06:896 MEMORIA/(21845:21847): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:35:13:676 MEMORIA/(21845:21846): Se conecto un cliente!
+[INFO] 00:35:13:680 MEMORIA/(21845:21846): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:42:46:627 MEMORIA/(22691:22693): Servidor listo para recibir al cpu
+[INFO] 00:42:46:627 MEMORIA/(22691:22692): Servidor listo para recibir al kernel
+[INFO] 00:42:49:848 MEMORIA/(22691:22693): Se conecto un cliente!
+[INFO] 00:42:49:848 MEMORIA/(22691:22693): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:42:55:788 MEMORIA/(22691:22692): Se conecto un cliente!
+[INFO] 00:42:55:788 MEMORIA/(22691:22692): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:47:26:986 MEMORIA/(23665:23667): Servidor listo para recibir al cpu
+[INFO] 00:47:26:986 MEMORIA/(23665:23666): Servidor listo para recibir al kernel
+[INFO] 00:47:31:368 MEMORIA/(23665:23667): Se conecto un cliente!
+[INFO] 00:47:31:368 MEMORIA/(23665:23667): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:47:36:902 MEMORIA/(23665:23666): Se conecto un cliente!
+[INFO] 00:47:36:903 MEMORIA/(23665:23666): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:52:56:814 MEMORIA/(24432:24434): Servidor listo para recibir al cpu
+[INFO] 00:52:56:814 MEMORIA/(24432:24433): Servidor listo para recibir al kernel
+[INFO] 00:53:01:190 MEMORIA/(24432:24434): Se conecto un cliente!
+[INFO] 00:53:01:190 MEMORIA/(24432:24434): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:53:07:659 MEMORIA/(24432:24433): Se conecto un cliente!
+[INFO] 00:53:07:659 MEMORIA/(24432:24433): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:54:36:148 MEMORIA/(24865:24867): Servidor listo para recibir al cpu
+[INFO] 00:54:36:148 MEMORIA/(24865:24866): Servidor listo para recibir al kernel
+[INFO] 00:54:41:595 MEMORIA/(24865:24867): Se conecto un cliente!
+[INFO] 00:54:41:596 MEMORIA/(24865:24867): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:54:45:154 MEMORIA/(24865:24866): Se conecto un cliente!
+[INFO] 00:54:45:154 MEMORIA/(24865:24866): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:06:00:394 MEMORIA/(26286:26288): Servidor listo para recibir al cpu
+[INFO] 01:06:00:394 MEMORIA/(26286:26287): Servidor listo para recibir al kernel
+[INFO] 01:06:03:847 MEMORIA/(26286:26288): Se conecto un cliente!
+[INFO] 01:06:03:847 MEMORIA/(26286:26288): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:06:11:983 MEMORIA/(26286:26287): Se conecto un cliente!
+[INFO] 01:06:11:983 MEMORIA/(26286:26287): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:11:47:600 MEMORIA/(27213:27215): Servidor listo para recibir al cpu
+[INFO] 01:11:47:600 MEMORIA/(27213:27214): Servidor listo para recibir al kernel
+[INFO] 01:11:51:424 MEMORIA/(27213:27215): Se conecto un cliente!
+[INFO] 01:11:51:424 MEMORIA/(27213:27215): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:11:58:931 MEMORIA/(27213:27214): Se conecto un cliente!
+[INFO] 01:11:58:931 MEMORIA/(27213:27214): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:18:40:490 MEMORIA/(28192:28194): Servidor listo para recibir al cpu
+[INFO] 01:18:40:490 MEMORIA/(28192:28193): Servidor listo para recibir al kernel
+[INFO] 01:18:43:778 MEMORIA/(28192:28194): Se conecto un cliente!
+[INFO] 01:18:43:779 MEMORIA/(28192:28194): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:19:39:550 MEMORIA/(28192:28193): Se conecto un cliente!
+[INFO] 01:19:39:551 MEMORIA/(28192:28193): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:23:29:939 MEMORIA/(29366:29368): Servidor listo para recibir al cpu
+[INFO] 01:23:29:939 MEMORIA/(29366:29367): Servidor listo para recibir al kernel
+[INFO] 01:23:33:706 MEMORIA/(29366:29368): Se conecto un cliente!
+[INFO] 01:23:33:706 MEMORIA/(29366:29368): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:23:38:863 MEMORIA/(29366:29367): Se conecto un cliente!
+[INFO] 01:23:38:864 MEMORIA/(29366:29367): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:28:15:175 MEMORIA/(29992:29994): Servidor listo para recibir al cpu
+[INFO] 01:28:15:175 MEMORIA/(29992:29993): Servidor listo para recibir al kernel
+[INFO] 01:28:19:321 MEMORIA/(29992:29994): Se conecto un cliente!
+[INFO] 01:28:19:321 MEMORIA/(29992:29994): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:28:27:415 MEMORIA/(29992:29993): Se conecto un cliente!
+[INFO] 01:28:27:416 MEMORIA/(29992:29993): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:33:29:313 MEMORIA/(30741:30743): Servidor listo para recibir al cpu
+[INFO] 01:33:29:313 MEMORIA/(30741:30742): Servidor listo para recibir al kernel
+[INFO] 01:33:33:708 MEMORIA/(30741:30743): Se conecto un cliente!
+[INFO] 01:33:33:708 MEMORIA/(30741:30743): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:33:41:166 MEMORIA/(30741:30742): Se conecto un cliente!
+[INFO] 01:33:41:166 MEMORIA/(30741:30742): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:41:55:062 MEMORIA/(31792:31801): Servidor listo para recibir al cpu
+[INFO] 01:41:55:045 MEMORIA/(31792:31800): Servidor listo para recibir al kernel
+[INFO] 01:42:04:471 MEMORIA/(31792:31801): Se conecto un cliente!
+[INFO] 01:42:04:474 MEMORIA/(31792:31801): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:42:11:404 MEMORIA/(31792:31800): Se conecto un cliente!
+[INFO] 01:42:11:509 MEMORIA/(31792:31800): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:50:35:865 MEMORIA/(32555:32557): Servidor listo para recibir al cpu
+[INFO] 01:50:35:858 MEMORIA/(32555:32556): Servidor listo para recibir al kernel
+[INFO] 01:50:40:525 MEMORIA/(32555:32557): Se conecto un cliente!
+[INFO] 01:50:40:529 MEMORIA/(32555:32557): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:50:44:882 MEMORIA/(32555:32556): Se conecto un cliente!
+[INFO] 01:50:44:981 MEMORIA/(32555:32556): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 01:51:47:231 MEMORIA/(32918:32920): Servidor listo para recibir al cpu
+[INFO] 01:51:47:231 MEMORIA/(32918:32919): Servidor listo para recibir al kernel
+[INFO] 01:51:53:249 MEMORIA/(32918:32920): Se conecto un cliente!
+[INFO] 01:51:53:250 MEMORIA/(32918:32920): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 01:52:06:186 MEMORIA/(32918:32919): Se conecto un cliente!
+[INFO] 01:52:06:186 MEMORIA/(32918:32919): Me llego el mensaje: Hola memoria soy el kernel
+

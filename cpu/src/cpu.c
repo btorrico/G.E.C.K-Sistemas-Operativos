@@ -164,7 +164,7 @@ void cicloInstruccion(t_pcb *pcb)
 		uint32_t registroDestino = matchearRegistro(pcb->registros, insActual->paramReg[0]);
 		uint32_t registroOrigen = matchearRegistro(pcb->registros, insActual->paramReg[1]);
 
-		log_debug(logger, "Registro Destino -> %s = %i    &&    Registro Origen -> %s = %i \n Registro Destino = Registro Destino + Resgitro Origen ",
+		log_debug(logger, "Registro Destino -> %s = %i    &&    Registro Origen -> %s = %i \n Registro Destino = Registro Destino + Registro Origen ",
 				  registro, registroDestino, registro2, registroOrigen);
 		registroDestino = registroDestino + registroOrigen;
 		free(registro2);
