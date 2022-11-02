@@ -338,9 +338,12 @@ void agregar_pcb()
 
 	printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
+
+	//sem_post(&sem_enviar_mensaje_memoria);
 	sem_post(&sem_hay_pcb_lista_ready);
 
-	// enviar_mensaje("hola  memoria, inicializa las estructuras", conexionMemoria);
+	
+	
 }
 
 void eliminar_pcb()

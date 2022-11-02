@@ -126,9 +126,9 @@ void conectar_dispatch()
 		printf("\n Id proceso nuevo que llego de cpu: %d", pcb->id);
 		printf("\nestoy en %d: ", paquete->codigo_operacion);
 
-		// t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
+		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
 		uint32_t valorRegistro;
-		t_instruccion *instruccion = malloc(sizeof(t_instruccion));
+		//t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 		switch (paquete->codigo_operacion)
 		{
 		case EXIT_PCB:
@@ -144,13 +144,13 @@ void conectar_dispatch()
 				sem_post(&contador_pcb_running);
 				pasar_a_block_pantalla(pcb);
 				pcb = algoritmo_fifo(LISTA_BLOCKED_PANTALLA);
-				instruccion->instCode = 4;
-				instruccion->paramInt = -1;
-				instruccion->paramIO = PANTALLA;
-				instruccion->paramReg[0] = 1;
+				// instruccion->instCode = 4;
+				// instruccion->paramInt = -1;
+				// instruccion->paramIO = PANTALLA;
+				// instruccion->paramReg[0] = 1;
 				// instruccion->paramReg[1] = -1;
 				//  switch (insActual->paramReg[0])
-				switch (instruccion->paramReg[0])
+				switch (insActual->paramReg[0])
 				{
 				case AX:
 					valorRegistro = pcb->registros.AX;
@@ -166,7 +166,7 @@ void conectar_dispatch()
 					break;
 				}
 
-				valorRegistro = 82;
+				//valorRegistro = 82;
 				// Serializamos valor registro y se envia a la consola
 				serializarValor(valorRegistro, pcb->socket, BLOCK_PCB_IO_PANTALLA);
 				char *mensaje = recibirMensaje(pcb->socket);
@@ -194,12 +194,12 @@ void conectar_dispatch()
 
 				uint32_t valorRegistro = deserializarValor(paquete->buffer, pcb->socket);
 
-				instruccion->instCode = 4;
-				instruccion->paramInt = -1;
-				instruccion->paramIO = TECLADO;
-				instruccion->paramReg[0] = 0;
+				// instruccion->instCode = 4;
+				// instruccion->paramInt = -1;
+				// instruccion->paramIO = TECLADO;
+				// instruccion->paramReg[0] = 0;
 
-				switch (instruccion->paramReg[0])
+				switch (insActual->paramReg[0])
 				{
 				case AX:
 					pcb->registros.AX = valorRegistro;
@@ -228,8 +228,8 @@ void conectar_dispatch()
 			
 		do{
 			sem_post(&contador_pcb_running);
-			instruccion->paramIO = 4;
-			char *dispositivoCpu = dispositivoToString(instruccion->paramIO);
+			//instruccion->paramIO = 4;
+			char *dispositivoCpu = dispositivoToString(insActual->paramIO);
 			
 
 			int tamanio = string_length(configKernel.dispositivosIO);
@@ -241,7 +241,7 @@ void conectar_dispatch()
 				{
 
 					tiempoIO = atoi(configKernel.tiemposIO[i]) ;
-					duracionUnidadDeTrabajo= (tiempoIO/1000) * instruccion->paramInt;
+					duracionUnidadDeTrabajo= (tiempoIO/1000) * insActual->paramInt;
 
 					pasar_a_block(pcb);
 					
@@ -255,7 +255,8 @@ void conectar_dispatch()
 				}
 				else
 				{
-					log_error(logger, "No existe este dispositivo de IO: %s", dispositivoCpu);
+					log_error(logger, "No existe este dispositivo de IO en config Kernel: %s", dispositivoCpu);
+
 				}
 				
 			}
@@ -304,6 +305,9 @@ void conectar_memoria()
 	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
 	// enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
 	enviarResultado(conexionMemoria, "Hola memoria soy el kernel");
+
+	//sem_wait(&sem_enviar_mensaje_memoria);
+	enviarResultado(conexionMemoria, "hola  memoria, inicializa las estructuras");
 }
 
 void iniciar_kernel()
