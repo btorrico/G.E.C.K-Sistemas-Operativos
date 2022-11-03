@@ -44,7 +44,6 @@ int main(int argc, char **argv)
 
 		while (1)
 		{
-
 			t_paqueteActual *paquete = recibirPaquete(conexionConsola);
 			uint32_t valor;
 			switch (paquete->codigo_operacion)
@@ -75,9 +74,10 @@ int main(int argc, char **argv)
 				printf("\nTermino la consola\n");
 				liberar_conexion(conexionConsola);
 			break;
-			default:
-				break;
+
 			}
+
+			
 
 
 			// terminar_programa(conexion, logger, config);
