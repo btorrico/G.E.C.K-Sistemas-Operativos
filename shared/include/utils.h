@@ -105,6 +105,7 @@ int size_char_array(char**) ;
 
 extern int conexionMemoria;
 extern int conexionDispatch;
+extern int conexionInterrupt;
 extern int conexionConsola;
 
 typedef struct

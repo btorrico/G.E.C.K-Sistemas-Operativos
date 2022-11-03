@@ -36,6 +36,7 @@ typedef struct
 
 int conexionDispatch;
 int conexionConsola;
+int conexionInterrupt;
 
 // LISTAS
 t_list *LISTA_NEW;

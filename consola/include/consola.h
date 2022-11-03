@@ -81,6 +81,7 @@ void conectar_kernel();
 
 int conexionDispatch;
 int conexionConsola;
+int conexionInterrupt;
 // LISTAS
 t_list *LISTA_NEW;
 t_list *LISTA_READY;

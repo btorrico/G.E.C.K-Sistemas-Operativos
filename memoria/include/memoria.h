@@ -40,7 +40,7 @@ int contadorIdPCB;
 int conexionMemoria;
 int conexionDispatch;
 int conexionConsola;
-
+int conexionInterrupt;
 // LISTAS
 t_list *LISTA_NEW;
 t_list *LISTA_READY;

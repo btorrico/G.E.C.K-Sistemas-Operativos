@@ -296,11 +296,13 @@ void conectar_dispatch()
 
 void conectar_interrupt()
 {
+	
+	conexionInterrupt= crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
+while(1){
 	sem_wait(&sem_desalojar_pcb);
-	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
-
 	printf("\n desalojo pcb\n");
-	enviar_mensaje("interrupción de la instrucción", conexion);
+	enviar_mensaje("interrupcion de la instruccion", conexionInterrupt);
+}
 }
 
 void conectar_memoria()

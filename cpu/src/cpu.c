@@ -97,8 +97,10 @@ void iniciar_servidor_interrupt()
 	log_info(logger, "Servidor listo para recibir al interrupt kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
+	while(1){
 	mostrar_mensajes_del_cliente(cliente_fd);
 	interrupciones = true;
+}
 }
 
 void conectar_memoria()
