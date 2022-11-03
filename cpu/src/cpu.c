@@ -123,7 +123,8 @@ bool cicloInstruccion(t_pcb *pcb)
 		log_debug(logger, "Requiere acceso a Memoria");
 		// Hacer algo en proximo Checkpoint
 	}
-
+// fetch
+	fetch(pcb);
 	// execute
 	char *instruccion = string_new();
 	string_append(&instruccion, instruccionToString(insActual->instCode));
@@ -192,6 +193,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			retornePCB = true;
 			break;
 		}
+		free(pcb);
 		break;
 
 	case EXIT:
@@ -199,7 +201,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		serializarPCB(socketAceptadoDispatch, pcb, EXIT_PCB);
 		log_debug(logger, "Envie EXIT al kernel");
 		retornePCB = true;
-		//free(pcb);
+		free(pcb);
 		printf("\nLlegue al retorno: %d\n", retornePCB);
 		// limpiar_entradas_TLB();
 		break;
@@ -226,14 +228,14 @@ void fetch(t_pcb *pcb)
 
 void checkInterrupt(t_pcb *pcb, bool retornePCB)
 {
-	// fetch
-	fetch(pcb);
+	
 	if (interrupciones && !retornePCB)
 	{
 		// devuelvo pcb a kernel
 		log_debug(logger, "Devuelvo pcb por interrupcion");
 		serializarPCB(socketAceptadoDispatch, pcb, INTERRUPT_INTERRUPCION);
 		interrupciones = false;
+		free(pcb);
 		// limpiar_entradas_TLB();
 	}
 	else

@@ -3003,3 +3003,31 @@ Hola memoria soy el kernel
 [INFO] 00:08:00:425 MEMORIA/(25784:25785): Se conecto un cliente!
 [INFO] 00:08:00:425 MEMORIA/(25784:25785): Me llego el mensaje: Hola memoria soy el kernel
 
+[INFO] 00:17:33:264 MEMORIA/(26746:26748): Servidor listo para recibir al cpu
+[INFO] 00:17:33:264 MEMORIA/(26746:26747): Servidor listo para recibir al kernel
+[INFO] 00:17:37:755 MEMORIA/(26746:26748): Se conecto un cliente!
+[INFO] 00:17:37:755 MEMORIA/(26746:26748): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:17:42:355 MEMORIA/(26746:26747): Se conecto un cliente!
+[INFO] 00:17:42:355 MEMORIA/(26746:26747): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:19:20:816 MEMORIA/(27327:27329): Servidor listo para recibir al cpu
+[INFO] 00:19:20:816 MEMORIA/(27327:27328): Servidor listo para recibir al kernel
+[INFO] 00:19:24:260 MEMORIA/(27327:27329): Se conecto un cliente!
+[INFO] 00:19:24:260 MEMORIA/(27327:27329): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:19:28:421 MEMORIA/(27327:27328): Se conecto un cliente!
+[INFO] 00:19:28:421 MEMORIA/(27327:27328): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:20:33:901 MEMORIA/(27903:27905): Servidor listo para recibir al cpu
+[INFO] 00:20:33:901 MEMORIA/(27903:27904): Servidor listo para recibir al kernel
+[INFO] 00:20:38:333 MEMORIA/(27903:27905): Se conecto un cliente!
+[INFO] 00:20:38:333 MEMORIA/(27903:27905): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:20:41:982 MEMORIA/(27903:27904): Se conecto un cliente!
+[INFO] 00:20:41:982 MEMORIA/(27903:27904): Me llego el mensaje: Hola memoria soy el kernel
+
+[INFO] 00:29:49:920 MEMORIA/(29530:29532): Servidor listo para recibir al cpu
+[INFO] 00:29:49:920 MEMORIA/(29530:29531): Servidor listo para recibir al kernel
+[INFO] 00:29:57:423 MEMORIA/(29530:29532): Se conecto un cliente!
+[INFO] 00:29:57:423 MEMORIA/(29530:29532): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:30:01:717 MEMORIA/(29530:29531): Se conecto un cliente!
+[INFO] 00:30:01:718 MEMORIA/(29530:29531): Me llego el mensaje: Hola memoria soy el kernel
+

@@ -6704,3 +6704,304 @@
 [DEBUG] 00:08:15:155 CPU/(25870:25871): Envie EXIT al kernel
 [INFO] 00:08:15:155 CPU/(25870:25871): insActual->pc: 6
 [INFO] 00:08:15:155 CPU/(25870:25871):  Valor nuevo Program counter: 7
+[INFO] 00:17:37:755 CPU/(26813:26815): Servidor listo para recibir al interrupt kernel
+[INFO] 00:17:37:755 CPU/(26813:26814): Servidor listo para recibir al dispatch kernel
+[INFO] 00:17:42:356 CPU/(26813:26814): Se conecto un cliente!
+[INFO] 00:17:45:689 CPU/(26813:26814): insActual->instCode: 0
+[INFO] 00:17:45:689 CPU/(26813:26814): insActual->pc: 0
+[INFO] 00:17:45:689 CPU/(26813:26814):  Valor nuevo Program counter: 1
+[DEBUG] 00:17:45:689 CPU/(26813:26814): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 00:17:45:690 CPU/(26813:26814): AX = 1
+[INFO] 00:17:45:690 CPU/(26813:26814): insActual->instCode: 0
+[INFO] 00:17:45:690 CPU/(26813:26814): insActual->pc: 1
+[INFO] 00:17:45:690 CPU/(26813:26814):  Valor nuevo Program counter: 2
+[DEBUG] 00:17:45:690 CPU/(26813:26814): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 00:17:45:691 CPU/(26813:26814): BX = 7
+[INFO] 00:17:45:692 CPU/(26813:26814): insActual->instCode: 1
+[INFO] 00:17:45:692 CPU/(26813:26814): insActual->pc: 2
+[INFO] 00:17:45:692 CPU/(26813:26814):  Valor nuevo Program counter: 3
+[DEBUG] 00:17:45:692 CPU/(26813:26814): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:17:45:693 CPU/(26813:26814): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:17:45:693 CPU/(26813:26814): AX = 8
+[INFO] 00:17:45:693 CPU/(26813:26814): insActual->instCode: 2
+[DEBUG] 00:17:45:693 CPU/(26813:26814): Requiere acceso a Memoria
+[INFO] 00:17:45:693 CPU/(26813:26814): insActual->pc: 3
+[INFO] 00:17:45:693 CPU/(26813:26814):  Valor nuevo Program counter: 4
+[DEBUG] 00:17:45:693 CPU/(26813:26814): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 00:17:45:693 CPU/(26813:26814): insActual->instCode: 3
+[DEBUG] 00:17:45:693 CPU/(26813:26814): Requiere acceso a Memoria
+[INFO] 00:17:45:693 CPU/(26813:26814): insActual->pc: 4
+[INFO] 00:17:45:693 CPU/(26813:26814):  Valor nuevo Program counter: 5
+[DEBUG] 00:17:45:693 CPU/(26813:26814): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 00:17:45:693 CPU/(26813:26814): insActual->instCode: 4
+[INFO] 00:17:45:693 CPU/(26813:26814): insActual->pc: 5
+[INFO] 00:17:45:693 CPU/(26813:26814):  Valor nuevo Program counter: 6
+[DEBUG] 00:17:45:693 CPU/(26813:26814): Instrucción Ejecutada: 'PID:  0 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:17:45:693 CPU/(26813:26814): Envie BLOCK al kernel por IO_TECLADO
+[INFO] 00:17:58:931 CPU/(26813:26814): insActual->instCode: 5
+[INFO] 00:17:58:931 CPU/(26813:26814): insActual->pc: 6
+[INFO] 00:17:58:931 CPU/(26813:26814):  Valor nuevo Program counter: 7
+[DEBUG] 00:17:58:931 CPU/(26813:26814): Instrucción Ejecutada: 'PID:  0 - Ejecutando: EXIT    -1'
+[DEBUG] 00:17:58:931 CPU/(26813:26814): Envie EXIT al kernel
+[INFO] 00:19:24:261 CPU/(27406:27408): Servidor listo para recibir al interrupt kernel
+[INFO] 00:19:24:261 CPU/(27406:27407): Servidor listo para recibir al dispatch kernel
+[INFO] 00:19:28:421 CPU/(27406:27407): Se conecto un cliente!
+[INFO] 00:19:32:491 CPU/(27406:27407): insActual->instCode: 0
+[INFO] 00:19:32:491 CPU/(27406:27407): insActual->pc: 0
+[INFO] 00:19:32:491 CPU/(27406:27407):  Valor nuevo Program counter: 1
+[DEBUG] 00:19:32:491 CPU/(27406:27407): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 00:19:32:493 CPU/(27406:27407): AX = 1
+[INFO] 00:19:32:493 CPU/(27406:27407): insActual->instCode: 0
+[INFO] 00:19:32:493 CPU/(27406:27407): insActual->pc: 1
+[INFO] 00:19:32:493 CPU/(27406:27407):  Valor nuevo Program counter: 2
+[DEBUG] 00:19:32:493 CPU/(27406:27407): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 00:19:32:495 CPU/(27406:27407): BX = 7
+[INFO] 00:19:32:495 CPU/(27406:27407): insActual->instCode: 1
+[INFO] 00:19:32:495 CPU/(27406:27407): insActual->pc: 2
+[INFO] 00:19:32:495 CPU/(27406:27407):  Valor nuevo Program counter: 3
+[DEBUG] 00:19:32:495 CPU/(27406:27407): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:19:32:497 CPU/(27406:27407): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:19:32:497 CPU/(27406:27407): AX = 8
+[INFO] 00:19:32:497 CPU/(27406:27407): insActual->instCode: 2
+[DEBUG] 00:19:32:497 CPU/(27406:27407): Requiere acceso a Memoria
+[INFO] 00:19:32:497 CPU/(27406:27407): insActual->pc: 3
+[INFO] 00:19:32:497 CPU/(27406:27407):  Valor nuevo Program counter: 4
+[DEBUG] 00:19:32:497 CPU/(27406:27407): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 00:19:32:497 CPU/(27406:27407): insActual->instCode: 3
+[DEBUG] 00:19:32:497 CPU/(27406:27407): Requiere acceso a Memoria
+[INFO] 00:19:32:497 CPU/(27406:27407): insActual->pc: 4
+[INFO] 00:19:32:497 CPU/(27406:27407):  Valor nuevo Program counter: 5
+[DEBUG] 00:19:32:497 CPU/(27406:27407): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 00:19:32:497 CPU/(27406:27407): insActual->instCode: 4
+[INFO] 00:19:32:497 CPU/(27406:27407): insActual->pc: 5
+[INFO] 00:19:32:497 CPU/(27406:27407):  Valor nuevo Program counter: 6
+[DEBUG] 00:19:32:497 CPU/(27406:27407): Instrucción Ejecutada: 'PID:  0 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:19:32:497 CPU/(27406:27407): Envie BLOCK al kernel por IO_TECLADO
+[INFO] 00:19:42:773 CPU/(27406:27407): insActual->instCode: 5
+[INFO] 00:19:42:773 CPU/(27406:27407): insActual->pc: 6
+[INFO] 00:19:42:773 CPU/(27406:27407):  Valor nuevo Program counter: 7
+[DEBUG] 00:19:42:773 CPU/(27406:27407): Instrucción Ejecutada: 'PID:  0 - Ejecutando: EXIT    -1'
+[DEBUG] 00:19:42:773 CPU/(27406:27407): Envie EXIT al kernel
+[INFO] 00:20:38:333 CPU/(27977:27979): Servidor listo para recibir al interrupt kernel
+[INFO] 00:20:38:333 CPU/(27977:27978): Servidor listo para recibir al dispatch kernel
+[INFO] 00:20:41:982 CPU/(27977:27978): Se conecto un cliente!
+[INFO] 00:20:45:720 CPU/(27977:27978): insActual->instCode: 0
+[INFO] 00:20:45:720 CPU/(27977:27978): insActual->pc: 0
+[INFO] 00:20:45:720 CPU/(27977:27978):  Valor nuevo Program counter: 1
+[DEBUG] 00:20:45:720 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 00:20:45:721 CPU/(27977:27978): AX = 1
+[INFO] 00:20:45:721 CPU/(27977:27978): insActual->instCode: 0
+[INFO] 00:20:45:721 CPU/(27977:27978): insActual->pc: 1
+[INFO] 00:20:45:721 CPU/(27977:27978):  Valor nuevo Program counter: 2
+[DEBUG] 00:20:45:721 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 00:20:45:723 CPU/(27977:27978): BX = 7
+[INFO] 00:20:45:723 CPU/(27977:27978): insActual->instCode: 1
+[INFO] 00:20:45:723 CPU/(27977:27978): insActual->pc: 2
+[INFO] 00:20:45:723 CPU/(27977:27978):  Valor nuevo Program counter: 3
+[DEBUG] 00:20:45:723 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:20:45:725 CPU/(27977:27978): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:20:45:725 CPU/(27977:27978): AX = 8
+[INFO] 00:20:45:725 CPU/(27977:27978): insActual->instCode: 2
+[DEBUG] 00:20:45:725 CPU/(27977:27978): Requiere acceso a Memoria
+[INFO] 00:20:45:725 CPU/(27977:27978): insActual->pc: 3
+[INFO] 00:20:45:726 CPU/(27977:27978):  Valor nuevo Program counter: 4
+[DEBUG] 00:20:45:726 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 00:20:45:726 CPU/(27977:27978): insActual->instCode: 3
+[DEBUG] 00:20:45:726 CPU/(27977:27978): Requiere acceso a Memoria
+[INFO] 00:20:45:726 CPU/(27977:27978): insActual->pc: 4
+[INFO] 00:20:45:726 CPU/(27977:27978):  Valor nuevo Program counter: 5
+[DEBUG] 00:20:45:726 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 00:20:45:726 CPU/(27977:27978): insActual->instCode: 4
+[INFO] 00:20:45:726 CPU/(27977:27978): insActual->pc: 5
+[INFO] 00:20:45:726 CPU/(27977:27978):  Valor nuevo Program counter: 6
+[DEBUG] 00:20:45:726 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  0 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:20:45:726 CPU/(27977:27978): Envie BLOCK al kernel por IO_TECLADO
+[INFO] 00:20:49:210 CPU/(27977:27978): insActual->instCode: 4
+[INFO] 00:20:49:210 CPU/(27977:27978): insActual->pc: 6
+[INFO] 00:20:49:210 CPU/(27977:27978):  Valor nuevo Program counter: 7
+[DEBUG] 00:20:49:210 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  0 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 00:20:49:210 CPU/(27977:27978): Envie BLOCK al kernel por IO_PANTALLA
+[INFO] 00:20:49:213 CPU/(27977:27978): insActual->instCode: 5
+[INFO] 00:20:49:213 CPU/(27977:27978): insActual->pc: 7
+[INFO] 00:20:49:213 CPU/(27977:27978):  Valor nuevo Program counter: 8
+[DEBUG] 00:20:49:213 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  0 - Ejecutando: EXIT    -1'
+[DEBUG] 00:20:49:213 CPU/(27977:27978): Envie EXIT al kernel
+[INFO] 00:21:24:035 CPU/(27977:27978): insActual->instCode: 0
+[INFO] 00:21:24:036 CPU/(27977:27978): insActual->pc: 0
+[INFO] 00:21:24:036 CPU/(27977:27978):  Valor nuevo Program counter: 1
+[DEBUG] 00:21:24:036 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 00:21:24:037 CPU/(27977:27978): AX = 1
+[INFO] 00:21:24:037 CPU/(27977:27978): insActual->instCode: 0
+[INFO] 00:21:24:037 CPU/(27977:27978): insActual->pc: 1
+[INFO] 00:21:24:037 CPU/(27977:27978):  Valor nuevo Program counter: 2
+[DEBUG] 00:21:24:037 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[DEBUG] 00:21:24:039 CPU/(27977:27978): BX = 7
+[INFO] 00:21:24:039 CPU/(27977:27978): insActual->instCode: 1
+[INFO] 00:21:24:039 CPU/(27977:27978): insActual->pc: 2
+[INFO] 00:21:24:039 CPU/(27977:27978):  Valor nuevo Program counter: 3
+[DEBUG] 00:21:24:039 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:21:24:041 CPU/(27977:27978): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:21:24:041 CPU/(27977:27978): AX = 8
+[INFO] 00:21:24:041 CPU/(27977:27978): insActual->instCode: 2
+[DEBUG] 00:21:24:041 CPU/(27977:27978): Requiere acceso a Memoria
+[INFO] 00:21:24:041 CPU/(27977:27978): insActual->pc: 3
+[INFO] 00:21:24:041 CPU/(27977:27978):  Valor nuevo Program counter: 4
+[DEBUG] 00:21:24:041 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[INFO] 00:21:24:041 CPU/(27977:27978): insActual->instCode: 3
+[DEBUG] 00:21:24:041 CPU/(27977:27978): Requiere acceso a Memoria
+[INFO] 00:21:24:041 CPU/(27977:27978): insActual->pc: 4
+[INFO] 00:21:24:041 CPU/(27977:27978):  Valor nuevo Program counter: 5
+[DEBUG] 00:21:24:041 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 00:21:24:041 CPU/(27977:27978): insActual->instCode: 4
+[INFO] 00:21:24:041 CPU/(27977:27978): insActual->pc: 5
+[INFO] 00:21:24:041 CPU/(27977:27978):  Valor nuevo Program counter: 6
+[DEBUG] 00:21:24:041 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:21:24:041 CPU/(27977:27978): Envie BLOCK al kernel por IO_TECLADO
+[INFO] 00:21:30:668 CPU/(27977:27978): insActual->instCode: 4
+[INFO] 00:21:30:668 CPU/(27977:27978): insActual->pc: 6
+[INFO] 00:21:30:668 CPU/(27977:27978):  Valor nuevo Program counter: 7
+[DEBUG] 00:21:30:668 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 00:21:30:668 CPU/(27977:27978): Envie BLOCK al kernel por IO_PANTALLA
+[INFO] 00:21:30:670 CPU/(27977:27978): insActual->instCode: 5
+[INFO] 00:21:30:670 CPU/(27977:27978): insActual->pc: 7
+[INFO] 00:21:30:670 CPU/(27977:27978):  Valor nuevo Program counter: 8
+[DEBUG] 00:21:30:670 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
+[DEBUG] 00:21:30:670 CPU/(27977:27978): Envie EXIT al kernel
+[INFO] 00:22:00:667 CPU/(27977:27978): insActual->instCode: 0
+[INFO] 00:22:00:667 CPU/(27977:27978): insActual->pc: 0
+[INFO] 00:22:00:667 CPU/(27977:27978):  Valor nuevo Program counter: 1
+[DEBUG] 00:22:00:667 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  2 - Ejecutando: SET  AX  1'
+[DEBUG] 00:22:00:668 CPU/(27977:27978): AX = 1
+[INFO] 00:22:00:668 CPU/(27977:27978): insActual->instCode: 0
+[INFO] 00:22:00:668 CPU/(27977:27978): insActual->pc: 1
+[INFO] 00:22:00:668 CPU/(27977:27978):  Valor nuevo Program counter: 2
+[DEBUG] 00:22:00:668 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  2 - Ejecutando: SET  BX  7'
+[DEBUG] 00:22:00:669 CPU/(27977:27978): BX = 7
+[INFO] 00:22:00:669 CPU/(27977:27978): insActual->instCode: 1
+[INFO] 00:22:00:669 CPU/(27977:27978): insActual->pc: 2
+[INFO] 00:22:00:669 CPU/(27977:27978):  Valor nuevo Program counter: 3
+[DEBUG] 00:22:00:669 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  2 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:22:00:671 CPU/(27977:27978): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:22:00:671 CPU/(27977:27978): AX = 8
+[INFO] 00:22:00:671 CPU/(27977:27978): insActual->instCode: 2
+[DEBUG] 00:22:00:671 CPU/(27977:27978): Requiere acceso a Memoria
+[INFO] 00:22:00:671 CPU/(27977:27978): insActual->pc: 3
+[INFO] 00:22:00:671 CPU/(27977:27978):  Valor nuevo Program counter: 4
+[DEBUG] 00:22:00:671 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  2 - Ejecutando: MOV_IN  CX  4'
+[INFO] 00:22:00:671 CPU/(27977:27978): insActual->instCode: 3
+[DEBUG] 00:22:00:671 CPU/(27977:27978): Requiere acceso a Memoria
+[INFO] 00:22:00:671 CPU/(27977:27978): insActual->pc: 4
+[INFO] 00:22:00:671 CPU/(27977:27978):  Valor nuevo Program counter: 5
+[DEBUG] 00:22:00:671 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  2 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 00:22:00:671 CPU/(27977:27978): insActual->instCode: 4
+[INFO] 00:22:00:671 CPU/(27977:27978): insActual->pc: 5
+[INFO] 00:22:00:671 CPU/(27977:27978):  Valor nuevo Program counter: 6
+[DEBUG] 00:22:00:671 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  2 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:22:00:671 CPU/(27977:27978): Envie BLOCK al kernel por IO_TECLADO
+[INFO] 00:23:48:843 CPU/(27977:27978): insActual->instCode: 0
+[INFO] 00:23:48:844 CPU/(27977:27978): insActual->pc: 0
+[INFO] 00:23:48:844 CPU/(27977:27978):  Valor nuevo Program counter: 1
+[DEBUG] 00:23:48:844 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  3 - Ejecutando: SET  AX  1'
+[DEBUG] 00:23:48:845 CPU/(27977:27978): AX = 1
+[INFO] 00:23:48:845 CPU/(27977:27978): insActual->instCode: 0
+[INFO] 00:23:48:845 CPU/(27977:27978): insActual->pc: 1
+[INFO] 00:23:48:845 CPU/(27977:27978):  Valor nuevo Program counter: 2
+[DEBUG] 00:23:48:845 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  3 - Ejecutando: SET  BX  7'
+[DEBUG] 00:23:48:846 CPU/(27977:27978): BX = 7
+[INFO] 00:23:48:846 CPU/(27977:27978): insActual->instCode: 1
+[INFO] 00:23:48:846 CPU/(27977:27978): insActual->pc: 2
+[INFO] 00:23:48:846 CPU/(27977:27978):  Valor nuevo Program counter: 3
+[DEBUG] 00:23:48:846 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  3 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:23:48:847 CPU/(27977:27978): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:23:48:847 CPU/(27977:27978): AX = 8
+[INFO] 00:23:48:847 CPU/(27977:27978): insActual->instCode: 2
+[DEBUG] 00:23:48:848 CPU/(27977:27978): Requiere acceso a Memoria
+[INFO] 00:23:48:848 CPU/(27977:27978): insActual->pc: 3
+[INFO] 00:23:48:848 CPU/(27977:27978):  Valor nuevo Program counter: 4
+[DEBUG] 00:23:48:848 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  3 - Ejecutando: MOV_IN  CX  4'
+[INFO] 00:23:48:848 CPU/(27977:27978): insActual->instCode: 3
+[DEBUG] 00:23:48:848 CPU/(27977:27978): Requiere acceso a Memoria
+[INFO] 00:23:48:848 CPU/(27977:27978): insActual->pc: 4
+[INFO] 00:23:48:848 CPU/(27977:27978):  Valor nuevo Program counter: 5
+[DEBUG] 00:23:48:848 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  3 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 00:23:48:848 CPU/(27977:27978): insActual->instCode: 4
+[INFO] 00:23:48:848 CPU/(27977:27978): insActual->pc: 5
+[INFO] 00:23:48:848 CPU/(27977:27978):  Valor nuevo Program counter: 6
+[DEBUG] 00:23:48:848 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  3 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:23:48:848 CPU/(27977:27978): Envie BLOCK al kernel por IO_TECLADO
+[INFO] 00:25:21:134 CPU/(27977:27978): insActual->instCode: 4
+[INFO] 00:25:21:136 CPU/(27977:27978): insActual->pc: 6
+[INFO] 00:25:21:136 CPU/(27977:27978):  Valor nuevo Program counter: 7
+[DEBUG] 00:25:21:136 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  2 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 00:25:21:137 CPU/(27977:27978): Envie BLOCK al kernel por IO_PANTALLA
+[INFO] 00:25:21:141 CPU/(27977:27978): insActual->instCode: 4
+[INFO] 00:25:21:141 CPU/(27977:27978): insActual->pc: 6
+[INFO] 00:25:21:141 CPU/(27977:27978):  Valor nuevo Program counter: 7
+[DEBUG] 00:25:21:141 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  3 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 00:25:21:141 CPU/(27977:27978): Envie BLOCK al kernel por IO_PANTALLA
+[INFO] 00:25:21:143 CPU/(27977:27978): insActual->instCode: 5
+[INFO] 00:25:21:143 CPU/(27977:27978): insActual->pc: 7
+[INFO] 00:25:21:143 CPU/(27977:27978):  Valor nuevo Program counter: 8
+[DEBUG] 00:25:21:143 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  2 - Ejecutando: EXIT    -1'
+[DEBUG] 00:25:21:143 CPU/(27977:27978): Envie EXIT al kernel
+[INFO] 00:25:21:143 CPU/(27977:27978): insActual->instCode: 5
+[INFO] 00:25:21:143 CPU/(27977:27978): insActual->pc: 7
+[INFO] 00:25:21:143 CPU/(27977:27978):  Valor nuevo Program counter: 8
+[DEBUG] 00:25:21:143 CPU/(27977:27978): Instrucción Ejecutada: 'PID:  3 - Ejecutando: EXIT    -1'
+[DEBUG] 00:25:21:143 CPU/(27977:27978): Envie EXIT al kernel
+[INFO] 00:29:57:423 CPU/(29629:29631): Servidor listo para recibir al interrupt kernel
+[INFO] 00:29:57:424 CPU/(29629:29630): Servidor listo para recibir al dispatch kernel
+[INFO] 00:30:01:718 CPU/(29629:29630): Se conecto un cliente!
+[INFO] 00:30:12:053 CPU/(29629:29630): insActual->instCode: 0
+[INFO] 00:30:12:053 CPU/(29629:29630): insActual->pc: 0
+[INFO] 00:30:12:053 CPU/(29629:29630):  Valor nuevo Program counter: 1
+[DEBUG] 00:30:12:053 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  AX  1'
+[DEBUG] 00:30:12:054 CPU/(29629:29630): AX = 1
+[INFO] 00:30:12:054 CPU/(29629:29630): insActual->instCode: 0
+[INFO] 00:30:12:054 CPU/(29629:29630): insActual->pc: 1
+[INFO] 00:30:12:054 CPU/(29629:29630):  Valor nuevo Program counter: 2
+[DEBUG] 00:30:12:054 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: SET  BX  7'
+[DEBUG] 00:30:12:055 CPU/(29629:29630): BX = 7
+[INFO] 00:30:12:055 CPU/(29629:29630): insActual->instCode: 1
+[INFO] 00:30:12:055 CPU/(29629:29630): insActual->pc: 2
+[INFO] 00:30:12:056 CPU/(29629:29630):  Valor nuevo Program counter: 3
+[DEBUG] 00:30:12:056 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:30:12:057 CPU/(29629:29630): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:30:12:057 CPU/(29629:29630): AX = 8
+[INFO] 00:30:12:057 CPU/(29629:29630): insActual->instCode: 2
+[DEBUG] 00:30:12:057 CPU/(29629:29630): Requiere acceso a Memoria
+[INFO] 00:30:12:057 CPU/(29629:29630): insActual->pc: 3
+[INFO] 00:30:12:057 CPU/(29629:29630):  Valor nuevo Program counter: 4
+[DEBUG] 00:30:12:057 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_IN  CX  4'
+[INFO] 00:30:12:057 CPU/(29629:29630): insActual->instCode: 3
+[DEBUG] 00:30:12:057 CPU/(29629:29630): Requiere acceso a Memoria
+[INFO] 00:30:12:057 CPU/(29629:29630): insActual->pc: 4
+[INFO] 00:30:12:057 CPU/(29629:29630):  Valor nuevo Program counter: 5
+[DEBUG] 00:30:12:057 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: MOV_OUT  DX  8'
+[INFO] 00:30:12:057 CPU/(29629:29630): insActual->instCode: 4
+[INFO] 00:30:12:057 CPU/(29629:29630): insActual->pc: 5
+[INFO] 00:30:12:057 CPU/(29629:29630):  Valor nuevo Program counter: 6
+[DEBUG] 00:30:12:057 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: IO DISCO   10'
+[DEBUG] 00:30:12:057 CPU/(29629:29630): Envie BLOCK al kernel por IO
+[INFO] 00:30:12:058 CPU/(29629:29630): insActual->instCode: 4
+[INFO] 00:30:12:058 CPU/(29629:29630): insActual->pc: 6
+[INFO] 00:30:12:058 CPU/(29629:29630):  Valor nuevo Program counter: 7
+[DEBUG] 00:30:12:058 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:30:12:058 CPU/(29629:29630): Envie BLOCK al kernel por IO_TECLADO
+[INFO] 00:30:15:618 CPU/(29629:29630): insActual->instCode: 4
+[INFO] 00:30:15:618 CPU/(29629:29630): insActual->pc: 7
+[INFO] 00:30:15:618 CPU/(29629:29630):  Valor nuevo Program counter: 8
+[DEBUG] 00:30:15:618 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 00:30:15:618 CPU/(29629:29630): Envie BLOCK al kernel por IO_PANTALLA
+[INFO] 00:30:15:621 CPU/(29629:29630): insActual->instCode: 5
+[INFO] 00:30:15:621 CPU/(29629:29630): insActual->pc: 8
+[INFO] 00:30:15:621 CPU/(29629:29630):  Valor nuevo Program counter: 9
+[DEBUG] 00:30:15:621 CPU/(29629:29630): Instrucción Ejecutada: 'PID:  0 - Ejecutando: EXIT    -1'
+[DEBUG] 00:30:15:621 CPU/(29629:29630): Envie EXIT al kernel

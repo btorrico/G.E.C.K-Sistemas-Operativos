@@ -125,8 +125,8 @@ void conectar_dispatch()
 		printf("\nestoy en %d: ", paquete->codigo_operacion);
 		printf("\n Id proceso nuevo que llego de cpu: %d", pcb->id);
 		//printf("\nestoy en %d: ", paquete->codigo_operacion);
-
-		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
+		//pcb->program_counter -=1;
+		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter-1);
 
 		// t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 		switch (paquete->codigo_operacion)
@@ -219,7 +219,7 @@ void conectar_dispatch()
 				}
 
 				pasar_a_ready(pcb);
-				pcb->program_counter +=1;
+				
 				sem_post(&sem_hay_pcb_lista_ready);
 
 			break;
