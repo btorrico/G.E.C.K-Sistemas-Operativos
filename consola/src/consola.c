@@ -40,7 +40,6 @@ int main(int argc, char **argv)
 		char *mensaje = recibirMensaje(conexionConsola);
 		log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
 		log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
-		
 
 		while (1)
 		{
@@ -49,14 +48,14 @@ int main(int argc, char **argv)
 			switch (paquete->codigo_operacion)
 			{
 			case BLOCK_PCB_IO_PANTALLA:
-				
+
 				valor = deserializarValor(paquete->buffer, conexionConsola);
 				printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
 				usleep(configConsola.tiempoPantalla);
 				enviarResultado(conexionConsola, "se mostro el valor por pantalla\n");
 				break;
 			case BLOCK_PCB_IO_TECLADO:
-				
+
 				char *mensaje = recibirMensaje(conexionConsola);
 				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
 
@@ -73,14 +72,10 @@ int main(int argc, char **argv)
 			case TERMINAR_CONSOLA:
 				printf("\nTermino la consola\n");
 				liberar_conexion(conexionConsola);
-			break;
-
+				return EXIT_SUCCESS;
 			}
 
-			
-
-
-			// terminar_programa(conexion, logger, config);
+			 //terminar_programa(conexion, logger, config);
 		}
 	}
 }

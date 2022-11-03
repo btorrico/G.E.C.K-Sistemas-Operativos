@@ -9460,3 +9460,36 @@ instCode: 5, paramInt: -1, paramReg[0]: -1,paramReg[1] -1, dispositivoIO: -1
 [INFO] 00:30:12:053 CONSOLA/(29873:29873): Consola en espera de nuevos mensajes del kernel..
 [INFO] 00:30:12:058 CONSOLA/(29873:29873): Me llego el mensaje: solicito el ingreso de un valor por teclado
 
+[INFO] 00:42:54:886 CONSOLA/(22118:22118): 
+ Iniciando consola...
+[INFO] 00:43:02:326 CONSOLA/(22118:22118): Se parsearon #Instrucciones: 9
+[INFO] 00:43:02:330 CONSOLA/(22118:22118): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:43:02:332 CONSOLA/(22118:22118): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:43:02:334 CONSOLA/(22118:22118): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:43:02:368 CONSOLA/(22118:22118): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 00:45:36:964 CONSOLA/(22768:22768): 
+ Iniciando consola...
+[INFO] 00:45:39:321 CONSOLA/(22768:22768): Se parsearon #Instrucciones: 9
+[INFO] 00:45:39:326 CONSOLA/(22768:22768): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:45:39:326 CONSOLA/(22768:22768): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:45:39:328 CONSOLA/(22768:22768): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:45:44:384 CONSOLA/(22768:22768): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 00:47:00:239 CONSOLA/(23454:23454): 
+ Iniciando consola...
+[INFO] 00:47:00:252 CONSOLA/(23454:23454): Se parsearon #Instrucciones: 9
+[INFO] 00:47:00:257 CONSOLA/(23454:23454): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:47:00:258 CONSOLA/(23454:23454): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:47:00:258 CONSOLA/(23454:23454): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:47:00:278 CONSOLA/(23454:23454): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
