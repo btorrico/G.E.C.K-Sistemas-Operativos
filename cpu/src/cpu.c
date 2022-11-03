@@ -115,8 +115,7 @@ bool cicloInstruccion(t_pcb *pcb)
 	t_instruccion *insActual = list_get(instrucciones, pcb->program_counter);
 	log_info(logger, "insActual->instCode: %i", insActual->instCode);
 	printf("pc al inicio: %d", pcb->program_counter);
-	// fetch
-	fetch(pcb);
+	
 	printf("pc despues del fetch: %d", pcb->program_counter);
 	// decode
 	if (insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT)
@@ -174,6 +173,7 @@ bool cicloInstruccion(t_pcb *pcb)
 
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
+		//pcb->program_counter += 1;
 		switch (insActual->paramIO)
 		{
 		case TECLADO:
@@ -199,13 +199,15 @@ bool cicloInstruccion(t_pcb *pcb)
 		serializarPCB(socketAceptadoDispatch, pcb, EXIT_PCB);
 		log_debug(logger, "Envie EXIT al kernel");
 		retornePCB = true;
-		free(pcb);
+		//free(pcb);
 		printf("\nLlegue al retorno: %d\n", retornePCB);
 		// limpiar_entradas_TLB();
 		break;
 	default:
 		break;
 	}
+
+	
 printf("\nentro al interrupt\n");
 	checkInterrupt(pcb, retornePCB);
 printf("\nsalgo del interrupt\n");
@@ -224,6 +226,8 @@ void fetch(t_pcb *pcb)
 
 void checkInterrupt(t_pcb *pcb, bool retornePCB)
 {
+	// fetch
+	fetch(pcb);
 	if (interrupciones && !retornePCB)
 	{
 		// devuelvo pcb a kernel

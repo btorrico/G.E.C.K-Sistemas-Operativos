@@ -186,8 +186,7 @@ void conectar_dispatch()
 
 		case BLOCK_PCB_IO_TECLADO:
 
-			do
-			{
+			
 				uint32_t valorRegistroTeclado;
 				sem_post(&contador_pcb_running);
 				pasar_a_block_teclado(pcb);
@@ -220,9 +219,8 @@ void conectar_dispatch()
 				}
 
 				pasar_a_ready(pcb);
-
+				pcb->program_counter +=1;
 				sem_post(&sem_hay_pcb_lista_ready);
-			} while (!list_is_empty(LISTA_BLOCKED_TECLADO));
 
 			break;
 

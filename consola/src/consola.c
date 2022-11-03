@@ -72,6 +72,7 @@ int main(int argc, char **argv)
 				free(valorConsola);
 				break;
 			case TERMINAR_CONSOLA:
+				printf("\nTermino la consola\n");
 				liberar_conexion(conexionConsola);
 			break;
 			default:
