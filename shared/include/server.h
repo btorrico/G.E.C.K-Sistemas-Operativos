@@ -15,7 +15,7 @@ void mostrar_mensajes_del_cliente(int);
 void crear_hilos(int );
 void iterator(char* );
 void iteratorInt(int );
-t_pcb *crear_pcb(t_informacion* , int );
+//t_pcb *crear_pcb(t_informacion* , int );
 #define IP_SERVER "0.0.0.0"
 
 void cambiaValor();

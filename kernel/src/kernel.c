@@ -61,7 +61,6 @@ void crear_hilos_kernel()
 
 void crear_hilo_consola()
 {
-	// conectar_y_mostrar_mensajes_de_cliente(IP_SERVER, configKernel.puertoEscucha, logger);
 	int server_fd = iniciar_servidor(IP_SERVER, configKernel.puertoEscucha); // socket(), bind() listen()
 	log_info(logger, "Servidor listo para recibir al cliente");
 
@@ -71,16 +70,14 @@ void crear_hilo_consola()
 		t_args_pcb argumentos;
 		// esto se podria cambiar como int* cliente_fd= malloc(sizeof(int)); si lo ponemos, va antes del while
 		argumentos.socketCliente = esperar_cliente(server_fd);
-		// aca hay un log que dice que se conecto un cliente
-		 //log_info(logger, "Consola conectada, paso a crear el hilo");
-
+	
 		int cod_op = recibir_operacion(argumentos.socketCliente);
 
 		log_info(logger, "Llegaron las instrucciones y los segmentos");
 		argumentos.informacion = recibir_informacion(argumentos.socketCliente);
-		printf("\ncreo el hilo consola\n");
+		
 		enviarResultado(argumentos.socketCliente, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
-		pthread_create(&hilo_atender_consola, NULL, (void *)crear_pcb2, (void *)&argumentos);
+		pthread_create(&hilo_atender_consola, NULL, (void *)crear_pcb, (void *)&argumentos);
 		pthread_detach(hilo_atender_consola);
 	}
 
@@ -139,8 +136,8 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:
-			do
-			{
+			do{
+				sem_post(&sem_kill_trhread);
 				uint32_t valorRegistro;
 				sem_post(&contador_pcb_running);
 				pasar_a_block_pantalla(pcb);
@@ -168,9 +165,9 @@ void conectar_dispatch()
 					break;
 				}
 
-				// valorRegistro = 82;
 				//  Serializamos valor registro y se envia a la consola
-				printf("el valor del registro desde kernel por pantalla: %d", valorRegistro);
+				log_info(logger, "El valor del registro que se muestra por pantalla es: %d", valorRegistro);
+				;
 				serializarValor(valorRegistro, pcb->socket, BLOCK_PCB_IO_PANTALLA);
 				char *mensaje = recibirMensaje(pcb->socket);
 				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
@@ -180,13 +177,14 @@ void conectar_dispatch()
 			} while (!list_is_empty(LISTA_BLOCKED_PANTALLA));
 
 			/// esto va para cuando discriminemos que tipo de dispositivo es, y si se encuentra en el configKernel, si si no esta ver si lo mandamos a error
-			// sem_post(&sem_kill_trhread); //no se si funca, probar
+			 //no se si funca, probar
 
 			break;
 
 		case BLOCK_PCB_IO_TECLADO:
 
-			
+			do{
+				sem_post(&sem_kill_trhread);
 				uint32_t valorRegistroTeclado;
 				sem_post(&contador_pcb_running);
 				pasar_a_block_teclado(pcb);
@@ -202,34 +200,35 @@ void conectar_dispatch()
 				{
 				case AX:
 					pcb->registros.AX = valorRegistroTeclado;
-					printf("\nEl valor del registro es: %d", pcb->registros.AX);
+					log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.DX);
 					break;
 				case BX:
 					pcb->registros.BX = valorRegistroTeclado;
-					printf("\nEl valor del registro es: %d", pcb->registros.BX);
+					log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.DX);
 					break;
 				case CX:
 					pcb->registros.CX = valorRegistroTeclado;
-					printf("\nEl valor del registro es: %d", pcb->registros.CX);
+					log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.DX);
 					break;
 				case DX:
 					pcb->registros.DX = valorRegistroTeclado;
-					printf("\nEl valor del registro es: %d", pcb->registros.DX);
+					log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.DX);
 					break;
 				}
-
+				
 				pasar_a_ready(pcb);
 				
 				sem_post(&sem_hay_pcb_lista_ready);
+				} while (!list_is_empty(BLOCK_PCB_IO_TECLADO));
 
 			break;
 
 		case BLOCK_PCB_IO:
-
 			do
 			{
+				sem_post(&sem_kill_trhread);
 				sem_post(&contador_pcb_running);
-				// instruccion->paramIO = 4;
+				
 				char *dispositivoCpu = dispositivoToString(insActual->paramIO);
 
 				int tamanio = string_length(configKernel.dispositivosIO);
@@ -245,6 +244,7 @@ void conectar_dispatch()
 
 						pasar_a_block(pcb);
 
+						log_info(logger, "Ejecutando el dispositivo disco por un tiempo de: %d", duracionUnidadDeTrabajo);
 						sleep(duracionUnidadDeTrabajo);
 
 						pcb = algoritmo_fifo(LISTA_BLOCKED);
@@ -300,7 +300,7 @@ void conectar_interrupt()
 	conexion = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUInterrupt);
 
 	printf("\n desalojo pcb\n");
-	enviar_mensaje("Se envio interrupcion", conexion);
+	enviar_mensaje("interrupción de la instrucción", conexion);
 }
 
 void conectar_memoria()
@@ -329,11 +329,10 @@ void iniciar_kernel()
 	contadorIdPCB = 0;
 }
 
-void crear_pcb2(void *argumentos)
+void crear_pcb(void *argumentos)
 {
 	log_info(logger, "Consola conectada, paso a crear el hilo");
 	t_args_pcb *args = (t_args_pcb *)argumentos;
-	// t_args_pcb args;
 	t_pcb *pcb = malloc(sizeof(t_pcb));
 
 	pcb->socket = args->socketCliente;
@@ -346,21 +345,6 @@ void crear_pcb2(void *argumentos)
 
 	printf("\nsocket del pcb: %d", pcb->socket);
 
-	/*
-		printf("Instrucciones:");
-		for (int i = 0; i < pcb->informacion->instrucciones_size; ++i)
-		{
-			t_instruccion *instruccion = list_get(pcb->informacion->instrucciones, i);
-
-			printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
-				   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
-		}
-
-		// enviarResultado(pcb->socket, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
-		printf("\n\nSegmentos:");
-
-		printf("\n[%d,%d,%d,%d]\n", list_get(pcb->informacion->segmentos, 0), list_get(pcb->informacion->segmentos, 1), list_get(pcb->informacion->segmentos, 2), list_get(pcb->informacion->segmentos, 3));
-	*/
 	pthread_mutex_lock(&mutex_creacion_ID);
 	pcb->id = contadorIdPCB;
 	contadorIdPCB++;
@@ -372,9 +356,7 @@ void crear_pcb2(void *argumentos)
 	printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 
 	sem_post(&sem_agregar_pcb);
-	// sem_p//ost(&sem_hay_pcb_lista_new);
-	// sem_t semaforo[1];
-	// sem_post(&sem_planif_largo_plazo);//podemos sacarlo
+
 }
 
 char *dispositivoToString(t_IO dispositivo)

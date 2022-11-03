@@ -26,7 +26,7 @@ void conectar_memoria();
 void conectar_dispatch();
 void conectar_interrupt();
 void crear_hilos_kernel();
-void crear_pcb2(void* );
+void crear_pcb(void* );
 char *dispositivoToString(t_IO );
 typedef struct
 {

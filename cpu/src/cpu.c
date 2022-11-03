@@ -82,15 +82,13 @@ void iniciar_servidor_dispatch()
 		printf("\n%d.\n", pcb->socket);
 
 		printf("\n%d.\n", pcb->registros.AX);
-		
 
 		while (!interrupciones && !retornePCB)
 		{
-			 retornePCB = cicloInstruccion(pcb);
+			retornePCB = cicloInstruccion(pcb);
 			// check interrupt
 		}
 		printf("\nSAli del while infinito\n");
-		
 	}
 }
 void iniciar_servidor_interrupt()
@@ -115,7 +113,7 @@ bool cicloInstruccion(t_pcb *pcb)
 	t_instruccion *insActual = list_get(instrucciones, pcb->program_counter);
 	log_info(logger, "insActual->instCode: %i", insActual->instCode);
 	printf("pc al inicio: %d", pcb->program_counter);
-	
+
 	printf("pc despues del fetch: %d", pcb->program_counter);
 	// decode
 	if (insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT)
@@ -123,7 +121,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		log_debug(logger, "Requiere acceso a Memoria");
 		// Hacer algo en proximo Checkpoint
 	}
-// fetch
+	// fetch
 	fetch(pcb);
 	// execute
 	char *instruccion = string_new();
@@ -139,8 +137,8 @@ bool cicloInstruccion(t_pcb *pcb)
 			  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio
 	free(instruccion);
 
-	interrupciones = false;
-	//bool retornePCB = false;
+	//interrupciones = false;
+	// bool retornePCB = false;
 	switch (insActual->instCode)
 	{
 	case SET:
@@ -152,6 +150,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		log_debug(logger, "%s = %i", registro, insActual->paramInt);
 		free(registro);
 		free(registro2);
+		printf("estado de la interrupcion: %d", interrupciones);
 		break;
 
 	case ADD:
@@ -174,7 +173,7 @@ bool cicloInstruccion(t_pcb *pcb)
 
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
-		//pcb->program_counter += 1;
+		// pcb->program_counter += 1;
 		switch (insActual->paramIO)
 		{
 		case TECLADO:
@@ -209,10 +208,8 @@ bool cicloInstruccion(t_pcb *pcb)
 		break;
 	}
 
-	
-printf("\nentro al interrupt\n");
 	checkInterrupt(pcb, retornePCB);
-printf("\nsalgo del interrupt\n");
+
 	return retornePCB;
 }
 
@@ -228,7 +225,7 @@ void fetch(t_pcb *pcb)
 
 void checkInterrupt(t_pcb *pcb, bool retornePCB)
 {
-	
+
 	if (interrupciones && !retornePCB)
 	{
 		// devuelvo pcb a kernel
@@ -240,7 +237,7 @@ void checkInterrupt(t_pcb *pcb, bool retornePCB)
 	}
 	else
 	{
-		printf("\nNo hay interrupcion, sigo el ciclo\n");
+		log_debug(logger, "No hay interrupcion, sigo el ciclo");
 	}
 }
 

@@ -55,10 +55,10 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 
 			// aca deberia hacer que la consola se quede esperando
 
-			t_pcb *pcb = crear_pcb(&info, cliente_fd);
+			//t_pcb *pcb = crear_pcb(&info, cliente_fd);
 
-			pasar_a_new(pcb);
-			log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
+			//pasar_a_new(pcb);
+			//log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
 
 			printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 
@@ -148,33 +148,9 @@ void planifLargoPlazo()
 {
 	while (1)
 	{
-		// sem_wait(&sem_planif_largo_plazo);
 		sem_wait(&sem_agregar_pcb);
 		agregar_pcb();
-		/*	printf("\nEntrando al planificador\n");
-			log_info(logger, "");
 
-			printf("\nme quedo esperando el wait\n");
-
-			sem_wait(&sem_eliminar_pcb);
-			printf("\nentrando a eliminar pcb");
-			eliminar_pcb();*/
-
-		/*
-		switch (expression)
-		{
-		case AGREGAR_PCB:
-		sem_wait(&sem_agregar_pcb);
-			agregar_pcb();
-			break;
-		case ELIMINAR_PCB:
-			sem_wait(&sem_eliminar_pcb);
-			eliminar_pcb();
-			break;
-		default:
-			break;
-		}
-		*/
 	}
 }
 
@@ -321,7 +297,6 @@ void iniciar_listas_y_semaforos()
 
 void agregar_pcb()
 {
-	// sem_wait(&sem_hay_pcb_lista_new);
 	sem_wait(&contador_multiprogramacion);
 
 	printf("Agregando un pcb a lista ready");
@@ -368,7 +343,7 @@ void iteratorInt(int value)
 	log_info(logger, "Segmento = %d", value);
 }
 
-t_pcb *crear_pcb(t_informacion *informacion, int socket)
+/*t_pcb *crear_pcb(t_informacion *informacion, int socket)
 {
 	t_pcb *pcb = malloc(sizeof(t_pcb));
 
@@ -386,7 +361,7 @@ t_pcb *crear_pcb(t_informacion *informacion, int socket)
 	pthread_mutex_unlock(&mutex_creacion_ID);
 
 	return pcb;
-}
+}*/
 
 t_tipo_algoritmo obtenerAlgoritmo()
 {
@@ -469,22 +444,20 @@ void implementar_rr()
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
 	pthread_t thrTimer;
 
-	// pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
+	pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
 	printf("\nAgregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
-
-	 sem_post(&sem_timer);
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
 	sem_post(&sem_pasar_pcb_running);
-
-	pthread_detach(&thrTimer);
+	sem_post(&sem_timer);
 
 	sem_wait(&sem_kill_trhread);
 	pthread_cancel(&thrTimer);
+	pthread_detach(&thrTimer);
 }
 
 void hilo_timer()

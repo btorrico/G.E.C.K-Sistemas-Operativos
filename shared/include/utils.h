@@ -258,7 +258,7 @@ extern t_log* logger;
 
 //extern t_log* loggerKernel;
 
-t_pcb* crear_pcb();
+//t_pcb* crear_pcb();
 
 
 // LISTAS
