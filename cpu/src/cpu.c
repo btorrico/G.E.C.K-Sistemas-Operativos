@@ -65,7 +65,7 @@ void iniciar_servidor_dispatch()
 		{
 			continue;
 		}*/
-
+		interrupciones = false;
 		retornePCB = false;
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		free(paquete->buffer->stream);
@@ -82,13 +82,16 @@ void iniciar_servidor_dispatch()
 		printf("\n%d.\n", pcb->socket);
 
 		printf("\n%d.\n", pcb->registros.AX);
-
+		printf("estado de la interrupcion: %d", interrupciones);
 		while (!interrupciones && !retornePCB)
 		{
+			printf("estado de la interrupcion antes del ciclo: %d", interrupciones);
 			retornePCB = cicloInstruccion(pcb);
-			// check interrupt
+			printf("estado de la interrupcion despues del ciclo: %d", interrupciones);
+			checkInterrupt(pcb, retornePCB);
+			
 		}
-		printf("\nSAli del while infinito\n");
+		printf("\nSali del while infinito\n");
 	}
 }
 void iniciar_servidor_interrupt()
@@ -96,11 +99,19 @@ void iniciar_servidor_interrupt()
 	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaInterrupt);
 	log_info(logger, "Servidor listo para recibir al interrupt kernel");
 
+	printf("interrupciones hilo interrupt%d", interrupciones);
+
 	int cliente_fd = esperar_cliente(server_fd);
 	while(1){
-	mostrar_mensajes_del_cliente(cliente_fd);
+	//mostrar_mensajes_del_cliente(cliente_fd);
+	char *mensaje = recibirMensaje(cliente_fd);
+
+	log_info(logger, "Me llego el mensaje: %s\n", mensaje);
+	printf("interrupciones hilo interrupt%d", interrupciones);
 	interrupciones = true;
 }
+printf("interrupciones hilo interrupt%d", interrupciones);
+
 }
 
 void conectar_memoria()
@@ -114,17 +125,17 @@ bool cicloInstruccion(t_pcb *pcb)
 	t_list *instrucciones = pcb->informacion->instrucciones;
 	t_instruccion *insActual = list_get(instrucciones, pcb->program_counter);
 	log_info(logger, "insActual->instCode: %i", insActual->instCode);
-	printf("pc al inicio: %d", pcb->program_counter);
 
-	printf("pc despues del fetch: %d", pcb->program_counter);
 	// decode
 	if (insActual->instCode == MOV_IN || insActual->instCode == MOV_OUT)
 	{
 		log_debug(logger, "Requiere acceso a Memoria");
 		// Hacer algo en proximo Checkpoint
 	}
+
 	// fetch
 	fetch(pcb);
+
 	// execute
 	char *instruccion = string_new();
 	string_append(&instruccion, instruccionToString(insActual->instCode));
@@ -210,8 +221,6 @@ bool cicloInstruccion(t_pcb *pcb)
 		break;
 	}
 
-	checkInterrupt(pcb, retornePCB);
-
 	return retornePCB;
 }
 
@@ -233,7 +242,8 @@ void checkInterrupt(t_pcb *pcb, bool retornePCB)
 		// devuelvo pcb a kernel
 		log_debug(logger, "Devuelvo pcb por interrupcion");
 		serializarPCB(socketAceptadoDispatch, pcb, INTERRUPT_INTERRUPCION);
-		interrupciones = false;
+		retornePCB = true;
+		//interrupciones = false;
 		free(pcb);
 		// limpiar_entradas_TLB();
 	}

@@ -69,7 +69,6 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 			break;
 
 		case -1:
-
 			// liberar_conexion(cliente_fd); //esto lo va a mandar kernel cuando lo necesite
 			// log_error(logger, "el cliente se desconecto. Terminando servidor");
 			y = 1;

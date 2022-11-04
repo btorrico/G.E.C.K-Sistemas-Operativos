@@ -232,20 +232,22 @@ void conectar_dispatch()
 				char *dispositivoCpu = dispositivoToString(insActual->paramIO);
 
 				int tamanio = string_length(configKernel.dispositivosIO);
-				int tiempoIO;
-				int duracionUnidadDeTrabajo;
+				uint32_t tiempoIO;
+				uint32_t duracionUnidadDeTrabajo;
 				for (int i = 0; i < tamanio; i++)
 				{
 					if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
 					{
 
 						tiempoIO = atoi(configKernel.tiemposIO[i]);
-						duracionUnidadDeTrabajo = (tiempoIO / 1000) * insActual->paramInt;
+						
+						duracionUnidadDeTrabajo = tiempoIO * insActual->paramInt;
 
 						pasar_a_block(pcb);
 
 						log_info(logger, "Ejecutando el dispositivo disco por un tiempo de: %d", duracionUnidadDeTrabajo);
-						sleep(duracionUnidadDeTrabajo);
+						
+						usleep(duracionUnidadDeTrabajo);
 
 						pcb = algoritmo_fifo(LISTA_BLOCKED);
 
@@ -267,7 +269,7 @@ void conectar_dispatch()
 		case BLOCK_PCB_PAGE_FAULT:
 			// TODO
 			break;
-		case FIN_QUANTUM:
+		case INTERRUPT_INTERRUPCION:
 			sem_post(&contador_pcb_running);
 			if (obtenerAlgoritmo() == FEEDBACK)
 			{
@@ -301,14 +303,14 @@ void conectar_interrupt()
 while(1){
 	sem_wait(&sem_desalojar_pcb);
 	printf("\n desalojo pcb\n");
-	enviar_mensaje("interrupcion de la instruccion", conexionInterrupt);
+	enviarResultado(conexionInterrupt, "interrupcion de la instruccion");
+	//enviar_mensaje("interrupcion de la instruccion", conexionInterrupt);
 }
 }
 
 void conectar_memoria()
 {
 	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
-	// enviar_mensaje("hola memoria, soy el kernel", conexionMemoria);
 	enviarResultado(conexionMemoria, "Hola memoria soy el kernel");
 
 	// sem_wait(&sem_enviar_mensaje_memoria);
