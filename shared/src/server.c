@@ -208,7 +208,7 @@ void pasar_a_ready_auxiliar(t_pcb *pcb)
 	list_add(LISTA_READY_AUXILIAR, pcb);
 	pthread_mutex_unlock(&mutex_lista_ready_auxiliar);
 
-	log_debug(logger, "Paso a READY el proceso %d", pcb->id);
+	log_debug(logger, "Paso a READY aux el proceso %d", pcb->id);
 }
 
 void pasar_a_exec(t_pcb *pcb)
@@ -376,9 +376,9 @@ t_pcb *algoritmo_fifo(t_list *lista)
 
 void implementar_feedback()
 {
-	implementar_rr();
+	//implementar_rr();
 
-	sem_wait(&sem_llamar_feedback);
+	
 	if (list_is_empty(LISTA_READY))
 	{
 		implementar_fifo_auxiliar();

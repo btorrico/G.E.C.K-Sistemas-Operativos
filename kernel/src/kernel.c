@@ -277,7 +277,7 @@ void conectar_dispatch()
 			if (obtenerAlgoritmo() == FEEDBACK)
 			{
 				pasar_a_ready_auxiliar(pcb);
-				sem_post(&sem_llamar_feedback);
+				sem_post(&sem_hay_pcb_lista_ready);
 			}
 			else if (obtenerAlgoritmo() == RR)
 			{
