@@ -52,7 +52,7 @@ t_configCPU extraerDatosConfig(t_config *archivoConfig)
 
 void iniciar_servidor_dispatch()
 {
-	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaDispatch); // socket(), bind()listen()
+	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaDispatch); // socket(), bind(), listen()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	socketAceptadoDispatch = esperar_cliente(server_fd);
@@ -82,12 +82,12 @@ void iniciar_servidor_dispatch()
 		printf("\n%d.\n", pcb->socket);
 
 		printf("\n%d.\n", pcb->registros.AX);
-		printf("estado de la interrupcion: %d", interrupciones);
+		
 		while (!interrupciones && !retornePCB)
 		{
-			printf("estado de la interrupcion antes del ciclo: %d", interrupciones);
+			
 			retornePCB = cicloInstruccion(pcb);
-			printf("estado de la interrupcion despues del ciclo: %d", interrupciones);
+			
 			checkInterrupt(pcb, retornePCB);
 			
 		}

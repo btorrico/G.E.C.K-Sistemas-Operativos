@@ -342,29 +342,10 @@ void iteratorInt(int value)
 	log_info(logger, "Segmento = %d", value);
 }
 
-/*t_pcb *crear_pcb(t_informacion *informacion, int socket)
-{
-	t_pcb *pcb = malloc(sizeof(t_pcb));
-
-	pcb->socket = socket;
-	pcb->program_counter = 0;
-	pcb->informacion = informacion;
-	pcb->registros.AX = 0;
-	pcb->registros.BX = 0;
-	pcb->registros.CX = 0;
-	pcb->registros.DX = 0;
-
-	pthread_mutex_lock(&mutex_creacion_ID);
-	pcb->id = contadorIdPCB;
-	contadorIdPCB++;
-	pthread_mutex_unlock(&mutex_creacion_ID);
-
-	return pcb;
-}*/
 
 t_tipo_algoritmo obtenerAlgoritmo()
 {
-
+	
 	char *algoritmo = configKernel.algoritmo;
 
 	t_tipo_algoritmo algoritmoResultado;
@@ -407,7 +388,6 @@ void implementar_feedback()
 		implementar_rr();
 	}
 
-	// TODO
 }
 
 void implementar_fifo()
@@ -444,6 +424,7 @@ void implementar_rr()
 	pthread_t thrTimer;
 
 	pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
+	pthread_detach(&thrTimer);
 	printf("\nAgregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
@@ -455,8 +436,19 @@ void implementar_rr()
 	sem_post(&sem_timer);
 
 	sem_wait(&sem_kill_trhread);
-	pthread_cancel(&thrTimer);
-	pthread_detach(&thrTimer);
+	
+	pthread_cancel(thrTimer);
+	
+	if (pthread_cancel(thrTimer)==0)
+	{
+		printf("Hilo cancelado con exito");
+	}else{
+		printf("No mate el hilo");
+	}
+	
+	
+	
+	
 }
 
 void hilo_timer()
@@ -464,6 +456,9 @@ void hilo_timer()
 	sem_wait(&sem_timer);
 	printf("\nvoy a dormir, soy el timer\n");
 	usleep(configKernel.quantum);
+
+	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,NULL);
+
 	printf("\nme desperte!\n");
 	sem_post(&sem_desalojar_pcb);
 
