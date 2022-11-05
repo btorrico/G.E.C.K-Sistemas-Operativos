@@ -53,7 +53,7 @@ void crear_hilos_kernel()
 	pthread_detach(&thrPlanificadorLargoPlazo);
 	pthread_detach(&thrBloqueo);
 	// crear_hilo_consola();
-	pthread_join(thrConsola,NULL);
+	pthread_join(thrConsola, NULL);
 
 	log_destroy(logger);
 	config_destroy(config);
@@ -233,7 +233,7 @@ void conectar_dispatch()
 
 				char *dispositivoCpu = dispositivoToString(insActual->paramIO);
 
-				int tamanio = string_length(configKernel.dispositivosIO);
+				int tamanio = size_char_array(configKernel.dispositivosIO);
 				uint32_t tiempoIO;
 				uint32_t duracionUnidadDeTrabajo;
 				for (int i = 0; i < tamanio; i++)
@@ -247,7 +247,8 @@ void conectar_dispatch()
 
 						pasar_a_block(pcb);
 
-						log_info(logger, "Ejecutando el dispositivo disco por un tiempo de: %d", duracionUnidadDeTrabajo);
+						log_info(logger, "Ejecutando el dispositivo %s",dispositivoCpu);
+						log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
 
 						usleep(duracionUnidadDeTrabajo);
 
@@ -257,10 +258,11 @@ void conectar_dispatch()
 						sem_post(&sem_hay_pcb_lista_ready);
 						break;
 					}
-					else
+					/*else
 					{
+						printf("\n%s",configKernel.dispositivosIO[i]);
 						log_error(logger, "No existe este dispositivo de IO en config Kernel: %s", dispositivoCpu);
-					}
+					}*/
 				}
 
 				free(dispositivoCpu);
@@ -275,12 +277,12 @@ void conectar_dispatch()
 			sem_post(&contador_pcb_running);
 			pthread_t thrInterrupt;
 
-			pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion,(void *)pcb);
+			pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion, (void *)pcb);
 
 			pthread_detach(&thrInterrupt);
 
 			break;
-	
+
 		default:
 			break;
 		}
