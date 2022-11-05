@@ -331,6 +331,10 @@ void eliminar_pcb()
 	log_debug(logger, "Estado Anterior: EXEC , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
 
+    for(int i = 0 ; i < list_size(LISTA_EXIT); i++){
+	t_pcb* pcb = list_get(LISTA_EXIT,i);
+    log_debug(logger,"Procesos finalizados: %d",pcb->id);
+	}
 	 //enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
 	// podriamos poner un semaforo que envie memoria, que diga que ya libero las estructuras para seguir
 	sem_post(&contador_multiprogramacion);

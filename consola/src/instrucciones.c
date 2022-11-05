@@ -73,6 +73,16 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 				free(palabra[1]);
 				free(palabra[2]);
 			}
+			else if (strcmp(palabra[1], "IMPRESORA") == 0)
+			{
+				instr->paramIO = IMPRESORA;
+				instr->paramInt = atoi(palabra[2]);
+				instr->paramReg[0] = -1;
+				instr->paramReg[1] = -1;
+				free(palabra[0]);
+				free(palabra[1]);
+				free(palabra[2]);
+			}
 			else if (strcmp(palabra[1], "TECLADO") == 0)
 			{
 				instr->paramIO = TECLADO;

@@ -53,7 +53,7 @@ void crear_hilos_kernel()
 	pthread_detach(&thrPlanificadorLargoPlazo);
 	pthread_detach(&thrBloqueo);
 	// crear_hilo_consola();
-	pthread_join(thrConsola, NULL);
+	pthread_join(thrConsola,NULL);
 
 	log_destroy(logger);
 	config_destroy(config);
@@ -273,30 +273,40 @@ void conectar_dispatch()
 			break;
 		case INTERRUPT_INTERRUPCION:
 			sem_post(&contador_pcb_running);
-			printf("\nEstoy en interrupcion\n");
-			if (obtenerAlgoritmo() == FEEDBACK)
-			{
-				pasar_a_ready_auxiliar(pcb);
-				sem_post(&sem_hay_pcb_lista_ready);
-			}
-			else if (obtenerAlgoritmo() == RR)
-			{
-				printf("\nEl algoritmo obtenido es: %d\n", obtenerAlgoritmo());
-				printf("\ncantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
+			pthread_t thrInterrupt;
 
-				pasar_a_ready(pcb);
-				printf("\ncantidad de elementos en ready: %d\n", list_size(LISTA_READY));
-				sem_post(&sem_hay_pcb_lista_ready);
-				printf("\ncantidad de elementos en ready: %d\n", list_size(LISTA_READY));
+			pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion,(void *)pcb);
 
-				break;
-			}
+			pthread_detach(&thrInterrupt);
+
+			break;
+	
 		default:
 			break;
 		}
 		free(paquete->buffer->stream);
 		free(paquete->buffer);
 		free(paquete);
+	}
+}
+
+void manejar_interrupcion(void *pcbElegida)
+{
+	t_pcb *pcb = (t_pcb *)pcbElegida;
+	if (obtenerAlgoritmo() == FEEDBACK)
+	{
+		pasar_a_ready_auxiliar(pcb);
+		sem_post(&sem_hay_pcb_lista_ready);
+	}
+	else if (obtenerAlgoritmo() == RR)
+	{
+		printf("\nEl algoritmo obtenido es: %d\n", obtenerAlgoritmo());
+		printf("\ncantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
+
+		pasar_a_ready(pcb);
+		printf("\ncantidad de elementos en ready: %d\n", list_size(LISTA_READY));
+		sem_post(&sem_hay_pcb_lista_ready);
+		printf("\ncantidad de elementos en ready: %d\n", list_size(LISTA_READY));
 	}
 }
 

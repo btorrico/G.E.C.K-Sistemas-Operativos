@@ -28,6 +28,7 @@ void conectar_interrupt();
 void crear_hilos_kernel();
 void crear_pcb(void* );
 char *dispositivoToString(t_IO );
+void manejar_interrupcion(void *pcbElegida);
 typedef struct
 {
     int socketCliente;

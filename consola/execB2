@@ -1,0 +1,9 @@
+#!/bin/bash
+FILE=consola
+CONFIG=consola.config
+BASE_2=BASE/BASE_2
+make clean 
+make $FILE
+if test -f "./$FILE"; then
+    ./$FILE $CONFIG $BASE_2
+fi
