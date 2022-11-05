@@ -144,6 +144,7 @@ void conectar_dispatch()
 				pasar_a_block_pantalla(pcb);
 				pcb = algoritmo_fifo(LISTA_BLOCKED_PANTALLA);
 
+
 				printf("%d", insActual->paramReg[0]);
 
 				switch (insActual->paramReg[0])
