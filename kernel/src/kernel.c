@@ -183,45 +183,15 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO_TECLADO:
-
-			// do
-			//{
-
-			uint32_t valorRegistroTeclado;
 			sem_post(&contador_pcb_running);
+			pthread_t thrBloqueoTeclado;
+
 			pasar_a_block_teclado(pcb);
-			pcb = algoritmo_fifo(LISTA_BLOCKED_TECLADO);
-			serializarValor(1, pcb->socket, BLOCK_PCB_IO_TECLADO);
-			enviarResultado(pcb->socket, "solicito el ingreso de un valor por teclado");
 
-			paquete = recibirPaquete(pcb->socket);
+			sem_wait(&contador_bloqueo_teclado_running);
+			pthread_create(&thrBloqueoTeclado, NULL, (void *)manejar_interrupcion_teclado, (void *)insActual);
 
-			valorRegistroTeclado = deserializarValor(paquete->buffer, pcb->socket);
-
-			switch (insActual->paramReg[0])
-			{
-			case AX:
-				pcb->registros.AX = valorRegistroTeclado;
-				log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.AX);
-				break;
-			case BX:
-				pcb->registros.BX = valorRegistroTeclado;
-				log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.BX);
-				break;
-			case CX:
-				pcb->registros.CX = valorRegistroTeclado;
-				log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.CX);
-				break;
-			case DX:
-				pcb->registros.DX = valorRegistroTeclado;
-				log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.DX);
-				break;
-			}
-
-			pasar_a_ready(pcb);
-
-			sem_post(&sem_hay_pcb_lista_ready);
-			//} while (!list_is_empty(BLOCK_PCB_IO_TECLADO));
+			pthread_detach(&thrBloqueoTeclado);
 
 			break;
 
@@ -247,7 +217,7 @@ void conectar_dispatch()
 
 						pasar_a_block(pcb);
 
-						log_info(logger, "Ejecutando el dispositivo %s",dispositivoCpu);
+						log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
 						log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
 
 						usleep(duracionUnidadDeTrabajo);
@@ -290,6 +260,43 @@ void conectar_dispatch()
 		free(paquete->buffer);
 		free(paquete);
 	}
+}
+void manejar_interrupcion_teclado(void *insActual)
+{
+	t_instruccion *instActualConsola = (t_instruccion *)insActual;
+	uint32_t valorRegistroTeclado;
+	
+	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_TECLADO);
+	serializarValor(1, pcb->socket, BLOCK_PCB_IO_TECLADO);
+	enviarResultado(pcb->socket, "solicito el ingreso de un valor por teclado");
+
+	t_paqueteActual *paquete = recibirPaquete(pcb->socket);
+
+	valorRegistroTeclado = deserializarValor(paquete->buffer, pcb->socket);
+
+	switch (instActualConsola->paramReg[0])
+	{
+	case AX:
+		pcb->registros.AX = valorRegistroTeclado;
+		log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.AX);
+		break;
+	case BX:
+		pcb->registros.BX = valorRegistroTeclado;
+		log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.BX);
+		break;
+	case CX:
+		pcb->registros.CX = valorRegistroTeclado;
+		log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.CX);
+		break;
+	case DX:
+		pcb->registros.DX = valorRegistroTeclado;
+		log_info(logger, "El valor del registro ingresado por consola es: %d", pcb->registros.DX);
+		break;
+	}
+
+	pasar_a_ready(pcb);
+	sem_post(&contador_bloqueo_teclado_running);
+	sem_post(&sem_hay_pcb_lista_ready);
 }
 
 void manejar_interrupcion(void *pcbElegida)
@@ -346,7 +353,7 @@ void iniciar_kernel()
 
 	iniciar_listas_y_semaforos();
 
-	contadorIdPCB = 0;
+	contadorIdPCB = 1;
 }
 
 void crear_pcb(void *argumentos)

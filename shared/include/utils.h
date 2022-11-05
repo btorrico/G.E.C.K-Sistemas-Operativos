@@ -288,6 +288,7 @@ extern pthread_mutex_t mutex_lista_ready_auxiliar;
 extern sem_t sem_planif_largo_plazo;
 extern sem_t contador_multiprogramacion;
 extern sem_t contador_pcb_running;
+extern sem_t contador_bloqueo_teclado_running;
 extern sem_t sem_ready;
 extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;
@@ -297,6 +298,7 @@ extern sem_t sem_eliminar_pcb;
 extern sem_t sem_hay_pcb_lista_new;
 extern sem_t sem_hay_pcb_lista_ready;
 extern sem_t sem_pasar_pcb_running;
+
 extern sem_t sem_timer;
 extern sem_t sem_desalojar_pcb;
 extern sem_t sem_kill_trhread;

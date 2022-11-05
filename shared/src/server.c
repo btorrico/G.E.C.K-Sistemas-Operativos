@@ -291,6 +291,7 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_kill_trhread, 0, 0);
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
+	sem_init(&contador_bloqueo_teclado_running, 0 ,1);
 	sem_init(&sem_llamar_feedback, 0, 0);
 }
 

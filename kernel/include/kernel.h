@@ -28,7 +28,8 @@ void conectar_interrupt();
 void crear_hilos_kernel();
 void crear_pcb(void* );
 char *dispositivoToString(t_IO );
-void manejar_interrupcion(void *pcbElegida);
+void manejar_interrupcion(void *);
+void manejar_interrupcion_teclado(void *);
 typedef struct
 {
     int socketCliente;
@@ -65,6 +66,7 @@ pthread_mutex_t mutex_lista_exit;
 sem_t sem_planif_largo_plazo;
 sem_t contador_multiprogramacion;
 sem_t contador_pcb_running;
+sem_t contador_bloqueo_teclado_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
