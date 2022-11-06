@@ -67,6 +67,8 @@ sem_t sem_planif_largo_plazo;
 sem_t contador_multiprogramacion;
 sem_t contador_pcb_running;
 sem_t contador_bloqueo_teclado_running;
+sem_t contador_bloqueo_pantalla_running;
+sem_t contador_bloqueo_general_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;

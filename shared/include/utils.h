@@ -289,6 +289,8 @@ extern sem_t sem_planif_largo_plazo;
 extern sem_t contador_multiprogramacion;
 extern sem_t contador_pcb_running;
 extern sem_t contador_bloqueo_teclado_running;
+extern sem_t contador_bloqueo_pantalla_running;
+extern sem_t contador_bloqueo_general_running;
 extern sem_t sem_ready;
 extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;

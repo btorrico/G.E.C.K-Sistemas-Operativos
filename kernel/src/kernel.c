@@ -137,48 +137,15 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:
-			do
-			{
-				uint32_t valorRegistro;
-				sem_post(&contador_pcb_running);
-				pasar_a_block_pantalla(pcb);
-				pcb = algoritmo_fifo(LISTA_BLOCKED_PANTALLA);
+			sem_post(&contador_pcb_running);
+			pthread_t thrBloqueoPantalla;
 
-				printf("%d", insActual->paramReg[0]);
+			pasar_a_block_pantalla(pcb);
 
-				switch (insActual->paramReg[0])
-				{
-				case AX:
-					valorRegistro = pcb->registros.AX;
+			sem_wait(&contador_bloqueo_pantalla_running);
+			pthread_create(&thrBloqueoPantalla, NULL, (void *)manejar_interrupcion_pantalla, (void *)insActual);
 
-					break;
-				case BX:
-					valorRegistro = pcb->registros.BX;
-
-					break;
-				case CX:
-					valorRegistro = pcb->registros.CX;
-
-					break;
-				case DX:
-					valorRegistro = pcb->registros.DX;
-
-					break;
-				}
-
-				//  Serializamos valor registro y se envia a la consola
-				log_info(logger, "El valor del registro que se muestra por pantalla es: %d", valorRegistro);
-				;
-				serializarValor(valorRegistro, pcb->socket, BLOCK_PCB_IO_PANTALLA);
-				char *mensaje = recibirMensaje(pcb->socket);
-				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
-
-				pasar_a_ready(pcb);
-				sem_post(&sem_hay_pcb_lista_ready);
-			} while (!list_is_empty(LISTA_BLOCKED_PANTALLA));
-
-			/// esto va para cuando discriminemos que tipo de dispositivo es, y si se encuentra en el configKernel, si si no esta ver si lo mandamos a error
-			// no se si funca, probar
+			pthread_detach(&thrBloqueoPantalla);
 
 			break;
 
@@ -196,47 +163,16 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO:
-			do
-			{
 
-				sem_post(&contador_pcb_running);
+			sem_post(&contador_pcb_running);
+			pthread_t thrBloqueoGeneral;
 
-				char *dispositivoCpu = dispositivoToString(insActual->paramIO);
+			pasar_a_block(pcb);
 
-				int tamanio = size_char_array(configKernel.dispositivosIO);
-				uint32_t tiempoIO;
-				uint32_t duracionUnidadDeTrabajo;
-				for (int i = 0; i < tamanio; i++)
-				{
-					if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
-					{
+			sem_wait(&contador_bloqueo_general_running);
+			pthread_create(&thrBloqueoGeneral, NULL, (void *)manejar_interrupcion_bloqueo_general, (void *)insActual);
 
-						tiempoIO = atoi(configKernel.tiemposIO[i]);
-
-						duracionUnidadDeTrabajo = tiempoIO * insActual->paramInt;
-
-						pasar_a_block(pcb);
-
-						log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
-						log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
-
-						usleep(duracionUnidadDeTrabajo);
-
-						pcb = algoritmo_fifo(LISTA_BLOCKED);
-
-						pasar_a_ready(pcb);
-						sem_post(&sem_hay_pcb_lista_ready);
-						break;
-					}
-					/*else
-					{
-						printf("\n%s",configKernel.dispositivosIO[i]);
-						log_error(logger, "No existe este dispositivo de IO en config Kernel: %s", dispositivoCpu);
-					}*/
-				}
-
-				free(dispositivoCpu);
-			} while (!list_is_empty(LISTA_BLOCKED_TECLADO));
+			pthread_detach(&thrBloqueoGeneral);
 
 			break;
 
@@ -265,7 +201,7 @@ void manejar_interrupcion_teclado(void *insActual)
 {
 	t_instruccion *instActualConsola = (t_instruccion *)insActual;
 	uint32_t valorRegistroTeclado;
-	
+
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_TECLADO);
 	serializarValor(1, pcb->socket, BLOCK_PCB_IO_TECLADO);
 	enviarResultado(pcb->socket, "solicito el ingreso de un valor por teclado");
@@ -297,6 +233,87 @@ void manejar_interrupcion_teclado(void *insActual)
 	pasar_a_ready(pcb);
 	sem_post(&contador_bloqueo_teclado_running);
 	sem_post(&sem_hay_pcb_lista_ready);
+}
+
+void manejar_interrupcion_pantalla(void *insActual)
+{
+	t_instruccion *instActualPantalla = (t_instruccion *)insActual;
+
+	uint32_t valorRegistro;
+
+	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_PANTALLA);
+
+	printf("%d", instActualPantalla->paramReg[0]);
+
+	switch (instActualPantalla->paramReg[0])
+	{
+	case AX:
+		valorRegistro = pcb->registros.AX;
+
+		break;
+	case BX:
+		valorRegistro = pcb->registros.BX;
+
+		break;
+	case CX:
+		valorRegistro = pcb->registros.CX;
+
+		break;
+	case DX:
+		valorRegistro = pcb->registros.DX;
+
+		break;
+	}
+
+	//  Serializamos valor registro y se envia a la consola
+	log_info(logger, "El valor del registro que se muestra por pantalla es: %d", valorRegistro);
+	;
+	serializarValor(valorRegistro, pcb->socket, BLOCK_PCB_IO_PANTALLA);
+	char *mensaje = recibirMensaje(pcb->socket);
+	log_info(logger, "Me llego el mensaje: %s\n", mensaje);
+
+	pasar_a_ready(pcb);
+	sem_post(&contador_bloqueo_pantalla_running);
+	sem_post(&sem_hay_pcb_lista_ready);
+}
+
+
+void manejar_interrupcion_bloqueo_general(void *insActual)
+{
+	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
+
+	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+
+	int tamanio = size_char_array(configKernel.dispositivosIO);
+	uint32_t tiempoIO;
+	uint32_t duracionUnidadDeTrabajo;
+	for (int i = 0; i < tamanio; i++)
+	{
+		if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
+		{
+
+			tiempoIO = atoi(configKernel.tiemposIO[i]);
+
+			duracionUnidadDeTrabajo = tiempoIO * instActualBloqueoGeneral->paramInt;
+
+			log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
+			log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
+
+			t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED);
+			usleep(duracionUnidadDeTrabajo * 1000);
+			pasar_a_ready(pcb);
+			sem_post(&sem_hay_pcb_lista_ready);
+			break;
+		}
+		/*else
+		{
+			printf("\n%s",configKernel.dispositivosIO[i]);
+			log_error(logger, "No existe este dispositivo de IO en config Kernel: %s", dispositivoCpu);
+		}*/
+	}
+
+	free(dispositivoCpu);
+	sem_post(&contador_bloqueo_general_running);
 }
 
 void manejar_interrupcion(void *pcbElegida)

@@ -30,6 +30,8 @@ void crear_pcb(void* );
 char *dispositivoToString(t_IO );
 void manejar_interrupcion(void *);
 void manejar_interrupcion_teclado(void *);
+void manejar_interrupcion_pantalla(void *);
+void manejar_interrupcion_bloqueo_general(void *);
 typedef struct
 {
     int socketCliente;
@@ -67,6 +69,8 @@ sem_t sem_planif_largo_plazo;
 sem_t contador_multiprogramacion;
 sem_t contador_pcb_running;
 sem_t contador_bloqueo_teclado_running;
+sem_t contador_bloqueo_pantalla_running;
+sem_t contador_bloqueo_general_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;

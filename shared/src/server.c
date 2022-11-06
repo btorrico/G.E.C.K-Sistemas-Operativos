@@ -292,6 +292,8 @@ void iniciar_listas_y_semaforos()
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
 	sem_init(&contador_bloqueo_teclado_running, 0 ,1);
+	sem_init(&contador_bloqueo_pantalla_running,0,1);
+	sem_init(&contador_bloqueo_general_running,0,1);
 	sem_init(&sem_llamar_feedback, 0, 0);
 }
 
@@ -460,7 +462,7 @@ void hilo_timer()
 {
 	sem_wait(&sem_timer);
 	printf("\nvoy a dormir, soy el timer\n");
-	usleep(configKernel.quantum);
+	usleep(configKernel.quantum*1000);
 
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,NULL);
 

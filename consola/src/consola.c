@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 
 				valor = deserializarValor(paquete->buffer, conexionConsola);
 				printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
-				usleep(configConsola.tiempoPantalla);
+				usleep(configConsola.tiempoPantalla*1000);
 				enviarResultado(conexionConsola, "se mostro el valor por pantalla\n");
 				break;
 			case BLOCK_PCB_IO_TECLADO:
