@@ -51,7 +51,7 @@ int main(int argc, char **argv)
 
 				valor = deserializarValor(paquete->buffer, conexionConsola);
 				printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
-				usleep(configConsola.tiempoPantalla*1000);
+				usleep(configConsola.tiempoPantalla * 1000);
 				enviarResultado(conexionConsola, "se mostro el valor por pantalla\n");
 				break;
 			case BLOCK_PCB_IO_TECLADO:
@@ -199,7 +199,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		memcpy(stream + offset, list_get(informacion->instrucciones, i), sizeof(t_instruccion));
 		offset += sizeof(t_instruccion);
 		i++;
-		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
+		//printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
 	while (j < list_size(informacion->segmentos))
@@ -209,7 +209,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 
 		offset += sizeof(uint32_t);
 		j++;
-		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
+		//printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
 	}
 
 	buffer->stream = stream; // Payload
