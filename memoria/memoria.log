@@ -3779,3 +3779,10 @@ Hola memoria soy el kernel
 [INFO] 17:57:54:993 MEMORIA/(12911:12912): Se conecto un cliente!
 [INFO] 17:57:54:993 MEMORIA/(12911:12912): Me llego el mensaje: Hola memoria soy el kernel
 
+[INFO] 00:25:34:193 MEMORIA/(2678:2681): Servidor listo para recibir al cpu
+[INFO] 00:25:34:194 MEMORIA/(2678:2680): Servidor listo para recibir al kernel
+[INFO] 00:25:42:860 MEMORIA/(2678:2681): Se conecto un cliente!
+[INFO] 00:25:42:863 MEMORIA/(2678:2681): Me llego el mensaje hola memoria, soy el cpu
+[INFO] 00:25:52:305 MEMORIA/(2678:2680): Se conecto un cliente!
+[INFO] 00:25:52:306 MEMORIA/(2678:2680): Me llego el mensaje: Hola memoria soy el kernel
+

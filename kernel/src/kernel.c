@@ -221,7 +221,7 @@ void conectar_dispatch()
 						log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
 						log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
 
-						usleep(duracionUnidadDeTrabajo);
+						usleep(duracionUnidadDeTrabajo * 1000);
 
 						pcb = algoritmo_fifo(LISTA_BLOCKED);
 

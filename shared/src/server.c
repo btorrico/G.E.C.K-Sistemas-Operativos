@@ -460,7 +460,7 @@ void hilo_timer()
 {
 	sem_wait(&sem_timer);
 	printf("\nvoy a dormir, soy el timer\n");
-	usleep(configKernel.quantum);
+	usleep(configKernel.quantum * 1000);
 
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,NULL);
 

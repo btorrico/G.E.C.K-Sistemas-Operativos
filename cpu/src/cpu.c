@@ -157,7 +157,7 @@ bool cicloInstruccion(t_pcb *pcb)
 	{
 	case SET:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion SET - Etapa Execute \n" PRINT_COLOR_CYAN);
-		usleep(configCPU.retardoInstruccion);
+		usleep(configCPU.retardoInstruccion * 1000);
 
 		asignarValorARegistro(pcb, insActual->paramReg[0], insActual->paramInt);
 
@@ -169,7 +169,7 @@ bool cicloInstruccion(t_pcb *pcb)
 
 	case ADD:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion ADD - Etapa Execute \n" PRINT_COLOR_CYAN);
-		usleep(configCPU.retardoInstruccion);
+		usleep(configCPU.retardoInstruccion * 1000);
 
 		uint32_t registroDestino = matchearRegistro(pcb->registros, insActual->paramReg[0]);
 		uint32_t registroOrigen = matchearRegistro(pcb->registros, insActual->paramReg[1]);
