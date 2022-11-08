@@ -298,7 +298,7 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 		memcpy(stream + offset, list_get(pcb->informacion->instrucciones, i), sizeof(t_instruccion));
 		offset += sizeof(t_instruccion);
 		i++;
-		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
+		//printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
 	while (j < list_size(pcb->informacion->segmentos))
@@ -309,7 +309,7 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 		offset += sizeof(uint32_t);
 
 		j++;
-		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
+		//printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
 	}
 
 	buffer->stream = stream;

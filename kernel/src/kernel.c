@@ -36,6 +36,7 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 
 	return configKernel;
 }
+
 void crear_hilos_kernel()
 {
 	pthread_t thrCpu, thrMemoria, thrPlanificadorLargoPlazo, thrPlanificadorCortoPlazo, thrBloqueo, thrConsola;
@@ -45,13 +46,11 @@ void crear_hilos_kernel()
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
 	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL);
-	pthread_create(&thrBloqueo, NULL, (void *)controlBloqueo, NULL);
 
-	pthread_detach(&thrCpu);
-	pthread_detach(&thrPlanificadorCortoPlazo);
-	pthread_detach(&thrMemoria);
-	pthread_detach(&thrPlanificadorLargoPlazo);
-	pthread_detach(&thrBloqueo);
+	pthread_detach(thrCpu);
+	pthread_detach(thrPlanificadorCortoPlazo);
+	pthread_detach(thrMemoria);
+	pthread_detach(thrPlanificadorLargoPlazo);
 	// crear_hilo_consola();
 	pthread_join(thrConsola, NULL);
 
@@ -86,7 +85,6 @@ void crear_hilo_consola()
 
 void crear_hilo_cpu()
 {
-
 	pthread_t thrDispatch, thrInterrupt;
 
 	pthread_create(&thrDispatch, NULL, (void *)conectar_dispatch, NULL);
@@ -143,9 +141,9 @@ void conectar_dispatch()
 			pasar_a_block_pantalla(pcb);
 
 			sem_wait(&contador_bloqueo_pantalla_running);
-			pthread_create(&thrBloqueoPantalla, NULL, (void *)manejar_interrupcion_pantalla, (void *)insActual);
+			pthread_create(&thrBloqueoPantalla, NULL, (void *)manejar_bloqueo_pantalla, (void *)insActual);
 
-			pthread_detach(&thrBloqueoPantalla);
+			pthread_detach(thrBloqueoPantalla);
 
 			break;
 
@@ -156,9 +154,9 @@ void conectar_dispatch()
 			pasar_a_block_teclado(pcb);
 
 			sem_wait(&contador_bloqueo_teclado_running);
-			pthread_create(&thrBloqueoTeclado, NULL, (void *)manejar_interrupcion_teclado, (void *)insActual);
+			pthread_create(&thrBloqueoTeclado, NULL, (void *)manejar_bloqueo_teclado, (void *)insActual);
 
-			pthread_detach(&thrBloqueoTeclado);
+			pthread_detach(thrBloqueoTeclado);
 
 			break;
 
@@ -170,9 +168,9 @@ void conectar_dispatch()
 			pasar_a_block(pcb);
 
 			sem_wait(&contador_bloqueo_general_running);
-			pthread_create(&thrBloqueoGeneral, NULL, (void *)manejar_interrupcion_bloqueo_general, (void *)insActual);
+			pthread_create(&thrBloqueoGeneral, NULL, (void *)manejar_bloqueo_general, (void *)insActual);
 
-			pthread_detach(&thrBloqueoGeneral);
+			pthread_detach(thrBloqueoGeneral);
 
 			break;
 
@@ -185,7 +183,7 @@ void conectar_dispatch()
 
 			pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion, (void *)pcb);
 
-			pthread_detach(&thrInterrupt);
+			pthread_detach(thrInterrupt);
 
 			break;
 
@@ -197,7 +195,8 @@ void conectar_dispatch()
 		free(paquete);
 	}
 }
-void manejar_interrupcion_teclado(void *insActual)
+
+void manejar_bloqueo_teclado(void *insActual)
 {
 	t_instruccion *instActualConsola = (t_instruccion *)insActual;
 	uint32_t valorRegistroTeclado;
@@ -235,7 +234,7 @@ void manejar_interrupcion_teclado(void *insActual)
 	sem_post(&sem_hay_pcb_lista_ready);
 }
 
-void manejar_interrupcion_pantalla(void *insActual)
+void manejar_bloqueo_pantalla(void *insActual)
 {
 	t_instruccion *instActualPantalla = (t_instruccion *)insActual;
 
@@ -277,8 +276,7 @@ void manejar_interrupcion_pantalla(void *insActual)
 	sem_post(&sem_hay_pcb_lista_ready);
 }
 
-
-void manejar_interrupcion_bloqueo_general(void *insActual)
+void manejar_bloqueo_general(void *insActual)
 {
 	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
 
@@ -351,10 +349,8 @@ void conectar_interrupt()
 void conectar_memoria()
 {
 	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
-	enviarResultado(conexionMemoria, "Hola memoria soy el kernel");
+	enviarResultado(conexionMemoria, "hola memoria soy el kernel");
 
-	// sem_wait(&sem_enviar_mensaje_memoria);
-	enviarResultado(conexionMemoria, "hola  memoria, inicializa las estructuras");
 }
 
 void iniciar_kernel()
@@ -427,4 +423,103 @@ char *dispositivoToString(t_IO dispositivo)
 		log_error(logger, "No existe el dispositivo");
 		break;
 	}
+}
+
+void planifLargoPlazo()
+{
+	while (1)
+	{
+		sem_wait(&sem_agregar_pcb);
+		agregar_pcb();
+
+	}
+}
+
+void planifCortoPlazo()
+{
+	while (1)
+	{
+		sem_wait(&sem_hay_pcb_lista_ready);
+		printf("\nllego pcb a plani corto plazo\n");
+		t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
+
+		sem_wait(&contador_pcb_running);
+
+		switch (algoritmo)
+		{
+		case FIFO:
+			log_debug(logger, "Implementando algoritmo FIFO");
+			implementar_fifo();
+			break;
+		case RR:
+			log_debug(logger, "Implementando algoritmo RR");
+			implementar_rr();
+			break;
+		case FEEDBACK:
+			log_debug(logger, "Implementando algoritmo FEEDBACK");
+			implementar_feedback();
+			break;
+
+		default:
+			break;
+		}
+	}
+}
+
+void agregar_pcb()
+{
+	sem_wait(&contador_multiprogramacion);
+
+	printf("Agregando un pcb a lista ready");
+
+	pthread_mutex_lock(&mutex_lista_new);
+	t_pcb *pcb = algoritmo_fifo(LISTA_NEW);
+	printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
+	pthread_mutex_unlock(&mutex_lista_new);
+
+	//solicito que memoria inicialice sus estructuras
+	//serializarPCB(conexionMemoria, pcb, PASAR_A_READY);
+
+	//memoria me devuelve el pcb modificado
+	//t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
+	
+	//pcb = deserializoPCB(paquete->buffer);
+
+	pasar_a_ready(pcb);
+
+	log_debug(logger, "Estado Anterior: NEW , proceso id: %d", pcb->id);
+	log_debug(logger, "Estado Actual: READY , proceso id: %d", pcb->id);
+
+	printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
+
+	sem_post(&sem_hay_pcb_lista_ready);
+	
+}
+
+void eliminar_pcb()
+{
+	pthread_mutex_lock(&mutex_lista_exec);
+	t_pcb *pcb = algoritmo_fifo(LISTA_EXEC);
+	pthread_mutex_unlock(&mutex_lista_exec);
+
+	//solicito que memoria libere sus estructuras
+	//serializarPCB(conexionMemoria, pcb, PASAR_A_EXIT);
+
+	//memoria me devuelve el pcb modificado
+	//t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
+	
+	//pcb = deserializoPCB(paquete->buffer);
+
+	pasar_a_exit(pcb);
+
+	sem_post(&contador_pcb_running);
+	log_debug(logger, "Estado Anterior: EXEC , proceso id: %d", pcb->id);
+	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
+
+    for(int i = 0 ; i < list_size(LISTA_EXIT); i++){
+	t_pcb* pcb = list_get(LISTA_EXIT,i);
+    log_debug(logger,"Procesos finalizados: %d",pcb->id);
+	}
+
+	sem_post(&contador_multiprogramacion);
 }

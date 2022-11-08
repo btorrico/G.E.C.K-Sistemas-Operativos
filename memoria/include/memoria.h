@@ -36,6 +36,7 @@ void iniciar_servidor_hacia_cpu();
 t_configMemoria extraerDatosConfig(t_config* );
 
 int contadorIdPCB;
+int socketAceptadoKernel;
 
 int conexionMemoria;
 int conexionDispatch;
@@ -81,6 +82,7 @@ sem_t sem_pasar_pcb_running;
 sem_t sem_timer;
 sem_t sem_desalojar_pcb;
 sem_t sem_kill_trhread;
+
 
 pthread_mutex_t mutex_lista_ready_auxiliar;
 sem_t sem_llamar_feedback;

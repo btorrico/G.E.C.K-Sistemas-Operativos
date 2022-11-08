@@ -29,9 +29,14 @@ void crear_hilos_kernel();
 void crear_pcb(void* );
 char *dispositivoToString(t_IO );
 void manejar_interrupcion(void *);
-void manejar_interrupcion_teclado(void *);
-void manejar_interrupcion_pantalla(void *);
-void manejar_interrupcion_bloqueo_general(void *);
+void manejar_bloqueo_teclado(void *);
+void manejar_bloqueo_pantalla(void *);
+void manejar_bloqueo_general(void *);
+
+void planifLargoPlazo();
+void planifCortoPlazo();
+void agregar_pcb();
+void eliminar_pcb();
 typedef struct
 {
     int socketCliente;
@@ -74,6 +79,7 @@ sem_t contador_bloqueo_general_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
+
 
 sem_t sem_agregar_pcb;
 sem_t sem_eliminar_pcb;

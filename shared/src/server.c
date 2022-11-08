@@ -143,46 +143,8 @@ void iterator(char *value)
 	log_info(logger, "%s", value);
 }
 
-void planifLargoPlazo()
-{
-	while (1)
-	{
-		sem_wait(&sem_agregar_pcb);
-		agregar_pcb();
 
-	}
-}
 
-void planifCortoPlazo()
-{
-	while (1)
-	{
-		sem_wait(&sem_hay_pcb_lista_ready);
-		printf("\nllego pcb a plani corto plazo\n");
-		t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
-
-		sem_wait(&contador_pcb_running);
-
-		switch (algoritmo)
-		{
-		case FIFO:
-			log_debug(logger, "Implementando algoritmo FIFO");
-			implementar_fifo();
-			break;
-		case RR:
-			log_debug(logger, "Implementando algoritmo RR");
-			implementar_rr();
-			break;
-		case FEEDBACK:
-			log_debug(logger, "Implementando algoritmo FEEDBACK");
-			implementar_feedback();
-			break;
-
-		default:
-			break;
-		}
-	}
-}
 
 void pasar_a_new(t_pcb *pcb)
 {
@@ -228,6 +190,7 @@ void pasar_a_block(t_pcb *pcb)
 
 	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
 }
+
 void pasar_a_block_pantalla(t_pcb *pcb)
 {
 	pthread_mutex_lock(&mutex_lista_blocked_pantalla);
@@ -236,6 +199,7 @@ void pasar_a_block_pantalla(t_pcb *pcb)
 
 	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
 }
+
 void pasar_a_block_teclado(t_pcb *pcb)
 {
 	pthread_mutex_lock(&mutex_lista_blocked_teclado);
@@ -297,51 +261,6 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_llamar_feedback, 0, 0);
 }
 
-void agregar_pcb()
-{
-	sem_wait(&contador_multiprogramacion);
-
-	printf("Agregando un pcb a lista ready");
-
-	pthread_mutex_lock(&mutex_lista_new);
-	t_pcb *pcb = algoritmo_fifo(LISTA_NEW);
-	printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
-	pthread_mutex_unlock(&mutex_lista_new);
-
-	pasar_a_ready(pcb);
-
-	log_debug(logger, "Estado Anterior: NEW , proceso id: %d", pcb->id);
-	log_debug(logger, "Estado Actual: READY , proceso id: %d", pcb->id);
-
-	printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
-
-
-	//sem_post(&sem_enviar_mensaje_memoria);
-	sem_post(&sem_hay_pcb_lista_ready);
-
-	
-	
-}
-
-void eliminar_pcb()
-{
-	pthread_mutex_lock(&mutex_lista_exec);
-	t_pcb *pcb = algoritmo_fifo(LISTA_EXEC);
-	pthread_mutex_unlock(&mutex_lista_exec);
-
-	pasar_a_exit(pcb);
-	sem_post(&contador_pcb_running);
-	log_debug(logger, "Estado Anterior: EXEC , proceso id: %d", pcb->id);
-	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
-
-    for(int i = 0 ; i < list_size(LISTA_EXIT); i++){
-	t_pcb* pcb = list_get(LISTA_EXIT,i);
-    log_debug(logger,"Procesos finalizados: %d",pcb->id);
-	}
-	 //enviar_mensaje("hola  memoria, libera las estructuras", conexionMemoria);
-	// podriamos poner un semaforo que envie memoria, que diga que ya libero las estructuras para seguir
-	sem_post(&contador_multiprogramacion);
-}
 
 void iteratorInt(int value)
 {
@@ -372,7 +291,6 @@ t_tipo_algoritmo obtenerAlgoritmo()
 
 	return algoritmoResultado;
 }
-
 
 
 t_pcb *algoritmo_fifo(t_list *lista)
@@ -444,7 +362,7 @@ void implementar_rr()
 
 	sem_wait(&sem_kill_trhread);
 	
-	pthread_cancel(thrTimer);
+	//pthread_cancel(thrTimer);
 	
 	if (pthread_cancel(thrTimer)==0)
 	{
@@ -452,8 +370,6 @@ void implementar_rr()
 	}else{
 		printf("No mate el hilo");
 	}
-	
-	
 	
 	
 }
@@ -499,20 +415,3 @@ uint32_t *deserializarValor(t_buffer *buffer, int socket)
 	return valorRegistro;
 }
 
-void controlBloqueo()
-{
-
-	//TODO
-	sem_wait(&sem_bloqueo);
-	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED);
-
-	t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter);
-
-	
-	int tamanio = string_length(configKernel.dispositivosIO);
-	//int tamanio = string_length(configKernel.dispositivosIO);
-	for (int i = 0; i < tamanio; i++)
-	{
-		
-	}
-}
