@@ -269,7 +269,10 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 {
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
-	buffer->size = sizeof(uint32_t) * 4 + list_size(pcb->informacion->instrucciones) * sizeof(t_instruccion) + list_size(pcb->informacion->segmentos) * sizeof(uint32_t) + sizeof(int) + sizeof(t_registros);
+	buffer->size = sizeof(uint32_t) * 4 + list_size(pcb->informacion->instrucciones) * sizeof(t_instruccion) 
+	+ list_size(pcb->informacion->segmentos) * sizeof(uint32_t) 
+	+ sizeof(t_tabla_segmantos)
+	+ sizeof(int) + sizeof(t_registros);
 
 	void *stream = malloc(buffer->size);
 	int offset = 0;
@@ -291,6 +294,9 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 
 	memcpy(stream + offset, &(pcb->informacion->segmentos->elements_count), sizeof(uint32_t));
 	offset += sizeof(uint32_t);
+
+	memcpy(stream + offset, &pcb->tablaSegmentos, sizeof(t_tabla_segmantos));
+	offset += sizeof(t_tabla_segmantos);
 
 	int i = 0, j = 0;
 	while (i < list_size(pcb->informacion->instrucciones))
@@ -386,6 +392,9 @@ t_pcb *deserializoPCB(t_buffer *buffer)
 
 	memcpy(&(pcb->informacion->segmentos_size), stream, sizeof(uint32_t));
 	stream += sizeof(uint32_t);
+
+	memcpy(&(pcb->registros), stream, sizeof(t_tabla_segmantos));
+	stream += sizeof(t_tabla_segmantos);
 
 	pcb->informacion->instrucciones = list_create();
 	t_instruccion *instruccion;

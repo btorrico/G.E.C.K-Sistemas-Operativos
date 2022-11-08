@@ -367,6 +367,7 @@ void iniciar_kernel()
 	iniciar_listas_y_semaforos();
 
 	contadorIdPCB = 1;
+	contadorIdSegmento = 1;
 }
 
 void crear_pcb(void *argumentos)
@@ -382,6 +383,8 @@ void crear_pcb(void *argumentos)
 	pcb->registros.BX = 0;
 	pcb->registros.CX = 0;
 	pcb->registros.DX = 0;
+	pcb->tablaSegmentos.tamanio = 0;
+	pcb->tablaSegmentos.indiceTablaPaginas = 0;
 
 	printf("\nsocket del pcb: %d", pcb->socket);
 
@@ -389,6 +392,11 @@ void crear_pcb(void *argumentos)
 	pcb->id = contadorIdPCB;
 	contadorIdPCB++;
 	pthread_mutex_unlock(&mutex_creacion_ID);
+
+	pthread_mutex_lock(&mutex_ID_Segmnento);
+	pcb->tablaSegmentos.id = contadorIdSegmento;
+	contadorIdSegmento++;
+	pthread_mutex_unlock(&mutex_ID_Segmnento);
 
 	pasar_a_new(pcb);
 	log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);

@@ -99,6 +99,14 @@ typedef struct
 
 }  __attribute__((packed)) t_registros;
 
+typedef struct
+{
+	uint8_t id;
+	uint32_t tamanio;
+	uint32_t indiceTablaPaginas;
+
+} __attribute__((packed)) t_tabla_segmantos;
+
 
 int size_char_array(char**) ;
 
@@ -116,6 +124,7 @@ typedef struct
 	//uint32_t tablaPag; // definir con memoria
 	//double ejecutados_total;
     t_informacion* informacion;
+	t_tabla_segmantos tablaSegmentos;
 	t_registros registros;
 	int socket;
 
@@ -274,6 +283,7 @@ extern t_list *LISTA_BLOCKED_TECLADO;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;
+extern pthread_mutex_t mutex_ID_Segmnento;
 extern pthread_mutex_t mutex_lista_new;
 extern pthread_mutex_t mutex_lista_ready;
 extern pthread_mutex_t mutex_lista_exec;

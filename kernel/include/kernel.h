@@ -13,7 +13,8 @@
 t_config *config;
 int conexion;
 int contadorIdPCB;
-int conexionMemoria;
+int contadorIdSegmento;
+
 
 t_configKernel configKernel;
 
@@ -46,6 +47,7 @@ typedef struct
 int conexionDispatch;
 int conexionConsola;
 int conexionInterrupt;
+int conexionMemoria;
 
 // LISTAS
 t_list *LISTA_NEW;
@@ -60,6 +62,7 @@ t_list *LISTA_READY_AUXILIAR;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
+pthread_mutex_t mutex_ID_Segmnento;
 pthread_mutex_t mutex_lista_new;
 pthread_mutex_t mutex_lista_ready;
 pthread_mutex_t mutex_lista_exec;

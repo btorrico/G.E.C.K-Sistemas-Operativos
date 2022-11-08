@@ -233,6 +233,7 @@ void iniciar_listas_y_semaforos()
 
 	// mutex
 	pthread_mutex_init(&mutex_creacion_ID, NULL);
+	pthread_mutex_init(&mutex_ID_Segmnento, NULL);
 	pthread_mutex_init(&mutex_lista_new, NULL);
 	pthread_mutex_init(&mutex_lista_ready, NULL);
 	pthread_mutex_init(&mutex_lista_exec, NULL);
@@ -240,6 +241,7 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_blocked_pantalla, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_teclado, NULL);
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
+
 
 	// semaforos
 	sem_init(&sem_ready, 0, 0);
