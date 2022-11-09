@@ -38,6 +38,7 @@ void planifLargoPlazo();
 void planifCortoPlazo();
 void agregar_pcb();
 void eliminar_pcb();
+void cargarListaReadyIdPCB(t_list*);
 typedef struct
 {
     int socketCliente;
