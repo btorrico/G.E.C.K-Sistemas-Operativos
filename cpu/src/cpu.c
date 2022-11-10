@@ -183,6 +183,11 @@ bool cicloInstruccion(t_pcb *pcb)
 		free(registro);
 		break;
 
+	case MOV_IN:
+		log_debug(logger, "Leyendo valor de memoria del segmento de Datos correspondiente a la DL %i", insActual->paramInt);
+		//traducir valor paramint para asignarlo despues a registroCPU
+		asignarValorARegistro(pcb, insActual->paramReg[0], insActual->paramInt);
+
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
 		// pcb->program_counter += 1;

@@ -51,6 +51,29 @@ typedef enum
   IMPRESORA
 } t_IO;
 
+typedef struct
+{
+	uint32_t nroSegmento;
+	uint32_t nroPagina;
+	int desplazamiento;
+} t_direccion_logica;
+typedef struct 
+{
+	uint32_t nroSegmento;
+	int base; //inicio
+} t_seg_base;  //tabla auxilia DL
+
+typedef struct 
+{
+	uint32_t nroPagina;
+	int marco; //frame
+} t_pag_segmento; //tabla auxiliar DL
+
+typedef struct {
+	uint32_t nroMarco;
+	int desplazamiento;
+} t_direccionFisica;
+
 
 //Utils del cliente
 typedef struct
@@ -105,7 +128,7 @@ typedef struct
 	uint32_t tamanio;
 	uint32_t indiceTablaPaginas;
 
-} __attribute__((packed)) t_tabla_segmantos;
+} __attribute__((packed)) t_tabla_segmentos;
 
 
 int size_char_array(char**) ;
