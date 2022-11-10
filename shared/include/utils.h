@@ -124,8 +124,8 @@ typedef struct
 	//uint32_t tablaPag; // definir con memoria
 	//double ejecutados_total;
     t_informacion* informacion;
-	//t_list* tablaSegmentos;
-	//uint32_t segmentos_size;
+	t_list* tablaSegmentos;
+	uint32_t segmentos_size;
 	t_registros registros;
 	int socket;
 

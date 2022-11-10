@@ -394,10 +394,10 @@ void crear_pcb(void *argumentos)
 	pcb->registros.BX = 0;
 	pcb->registros.CX = 0;
 	pcb->registros.DX = 0;
-	//pcb->tablaSegmentos = list_create();
+	pcb->tablaSegmentos = list_create();
 
 
-	/*for (int i = 0; i < list_size(pcb->informacion->segmentos); i++)
+	for (int i = 0; i < list_size(pcb->informacion->segmentos); i++)
 	{
 		t_tabla_segmantos *tablaSegmento = malloc(sizeof(t_tabla_segmantos));
 		uint32_t segmento = list_get(pcb->informacion->segmentos, i);
@@ -410,7 +410,7 @@ void crear_pcb(void *argumentos)
 		pthread_mutex_unlock(&mutex_ID_Segmnento);
 		
 		list_add(pcb->tablaSegmentos, tablaSegmento);
-	}*/
+	}
 
 	printf("\nsocket del pcb: %d", pcb->socket);
 
