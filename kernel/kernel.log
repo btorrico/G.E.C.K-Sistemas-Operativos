@@ -520,3 +520,467 @@
 [DEBUG] 00:42:45:633 KERNEL/(23416:23422): Estado Anterior: EXEC , proceso id: 1
 [DEBUG] 00:42:45:633 KERNEL/(23416:23422): Estado, proceso Actual: EXIT  id: 1
 [DEBUG] 00:42:45:633 KERNEL/(23416:23422): Procesos finalizados: 1
+[INFO] 23:03:40:780 KERNEL/(27295:27296): Servidor listo para recibir al cliente
+[INFO] 23:03:47:117 KERNEL/(27295:27296): Se conecto un cliente!
+[INFO] 23:03:47:119 KERNEL/(27295:27296): Llegaron las instrucciones y los segmentos
+[INFO] 23:03:47:124 KERNEL/(27295:27438): Consola conectada, paso a crear el hilo
+[DEBUG] 23:03:47:125 KERNEL/(27295:27438): Paso a NEW el proceso 1
+[DEBUG] 23:03:47:126 KERNEL/(27295:27438): Estado Actual: NEW , proceso id: 1
+[DEBUG] 23:03:47:126 KERNEL/(27295:27299): Paso a READY el proceso 1
+[DEBUG] 23:03:47:126 KERNEL/(27295:27299): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 23:03:47:126 KERNEL/(27295:27299): Estado Actual: READY , proceso id: 1
+[DEBUG] 23:03:47:126 KERNEL/(27295:27300): Implementando algoritmo RR
+[DEBUG] 23:03:47:126 KERNEL/(27295:27300):  Cola Ready RR:
+[DEBUG] 23:03:47:126 KERNEL/(27295:27300):  '[ 1 ] '
+[DEBUG] 23:03:47:127 KERNEL/(27295:27300): Paso a EXEC el proceso 1
+[DEBUG] 23:03:47:127 KERNEL/(27295:27300): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:03:47:127 KERNEL/(27295:27300): Estado Actual: EXEC , proceso id: 1
+[INFO] 23:32:36:273 KERNEL/(28321:28322): Servidor listo para recibir al cliente
+[INFO] 23:32:46:783 KERNEL/(28321:28322): Se conecto un cliente!
+[INFO] 23:32:46:784 KERNEL/(28321:28322): Llegaron las instrucciones y los segmentos
+[INFO] 23:32:46:787 KERNEL/(28321:28486): Consola conectada, paso a crear el hilo
+[INFO] 23:45:07:488 KERNEL/(28985:28986): Servidor listo para recibir al cliente
+[INFO] 23:45:17:215 KERNEL/(28985:28986): Se conecto un cliente!
+[INFO] 23:45:17:216 KERNEL/(28985:28986): Llegaron las instrucciones y los segmentos
+[INFO] 23:45:17:219 KERNEL/(28985:29125): Consola conectada, paso a crear el hilo
+[INFO] 23:52:35:429 KERNEL/(29631:29632): Servidor listo para recibir al cliente
+[INFO] 23:52:44:815 KERNEL/(29631:29632): Se conecto un cliente!
+[INFO] 23:52:44:823 KERNEL/(29631:29632): Llegaron las instrucciones y los segmentos
+[INFO] 23:52:44:826 KERNEL/(29631:29796): Consola conectada, paso a crear el hilo
+[INFO] 23:57:58:758 KERNEL/(30391:30392): Servidor listo para recibir al cliente
+[INFO] 23:58:11:992 KERNEL/(30391:30392): Se conecto un cliente!
+[INFO] 23:58:11:992 KERNEL/(30391:30392): Llegaron las instrucciones y los segmentos
+[INFO] 23:58:11:996 KERNEL/(30391:30539): Consola conectada, paso a crear el hilo
+[INFO] 00:04:02:757 KERNEL/(31830:31858): Servidor listo para recibir al cliente
+[INFO] 00:04:30:143 KERNEL/(31830:31858): Se conecto un cliente!
+[INFO] 00:04:30:143 KERNEL/(31830:31858): Llegaron las instrucciones y los segmentos
+[INFO] 00:04:30:150 KERNEL/(31830:32047): Consola conectada, paso a crear el hilo
+[INFO] 00:06:21:424 KERNEL/(32438:32448): Servidor listo para recibir al cliente
+[INFO] 00:06:35:766 KERNEL/(32438:32448): Se conecto un cliente!
+[INFO] 00:06:35:768 KERNEL/(32438:32448): Llegaron las instrucciones y los segmentos
+[INFO] 00:06:35:782 KERNEL/(32438:32598): Consola conectada, paso a crear el hilo
+[INFO] 00:11:41:770 KERNEL/(33197:33206): Servidor listo para recibir al cliente
+[INFO] 00:12:13:480 KERNEL/(33197:33206): Se conecto un cliente!
+[INFO] 00:12:13:481 KERNEL/(33197:33206): Llegaron las instrucciones y los segmentos
+[INFO] 00:12:21:640 KERNEL/(33197:33422): Consola conectada, paso a crear el hilo
+[INFO] 00:16:15:007 KERNEL/(33873:33882): Servidor listo para recibir al cliente
+[INFO] 00:16:27:478 KERNEL/(33873:33882): Se conecto un cliente!
+[INFO] 00:16:27:483 KERNEL/(33873:33882): Llegaron las instrucciones y los segmentos
+[INFO] 00:17:47:399 KERNEL/(33873:34163): Consola conectada, paso a crear el hilo
+[INFO] 00:23:57:040 KERNEL/(34575:34596): Servidor listo para recibir al cliente
+[INFO] 00:24:07:790 KERNEL/(34575:34596): Se conecto un cliente!
+[INFO] 00:24:07:791 KERNEL/(34575:34596): Llegaron las instrucciones y los segmentos
+[INFO] 00:24:21:857 KERNEL/(34575:34812): Consola conectada, paso a crear el hilo
+[DEBUG] 00:25:44:548 KERNEL/(34575:34812): Paso a NEW el proceso 1
+[DEBUG] 00:25:44:549 KERNEL/(34575:34812): Estado Actual: NEW , proceso id: 1
+[DEBUG] 00:25:44:549 KERNEL/(34575:34602): Paso a READY el proceso 1
+[DEBUG] 00:25:44:549 KERNEL/(34575:34602): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 00:25:44:549 KERNEL/(34575:34602): Estado Actual: READY , proceso id: 1
+[DEBUG] 00:25:44:549 KERNEL/(34575:34625): Implementando algoritmo RR
+[DEBUG] 00:25:44:549 KERNEL/(34575:34625):  Cola Ready RR:
+[DEBUG] 00:25:44:549 KERNEL/(34575:34625):  '[ 1 ] '
+[DEBUG] 00:25:44:559 KERNEL/(34575:34625): Paso a EXEC el proceso 1
+[DEBUG] 00:25:44:560 KERNEL/(34575:34625): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:25:44:560 KERNEL/(34575:34625): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 00:27:14:903 KERNEL/(34575:34600): Paso a BLOCK el proceso 1
+[DEBUG] 00:27:14:903 KERNEL/(34575:34600): Ejecutada: 'PID:  1 - Bloqueado por: DISCO '
+[INFO] 00:27:14:917 KERNEL/(34575:35073): Ejecutando el dispositivo DISCO
+[INFO] 00:27:14:918 KERNEL/(34575:35073): Por un tiempo de: 10000
+[DEBUG] 00:27:24:918 KERNEL/(34575:35073): Paso a READY el proceso 1
+[DEBUG] 00:27:24:919 KERNEL/(34575:34625): Implementando algoritmo RR
+[DEBUG] 00:27:24:920 KERNEL/(34575:34625):  Cola Ready RR:
+[DEBUG] 00:27:24:920 KERNEL/(34575:34625):  '[ 1 ] '
+[DEBUG] 00:27:24:923 KERNEL/(34575:34625): Paso a EXEC el proceso 1
+[DEBUG] 00:27:24:924 KERNEL/(34575:34625): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:27:24:926 KERNEL/(34575:34625): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 00:28:01:934 KERNEL/(34575:34600): Paso a BLOCK el proceso 1
+[DEBUG] 00:28:01:934 KERNEL/(34575:34600): Ejecutada: 'PID:  1 - Bloqueado por: TECLADO '
+[INFO] 00:28:13:371 KERNEL/(34575:35209): El valor del registro ingresado por consola es: 50
+[DEBUG] 00:28:13:371 KERNEL/(34575:35209): Paso a READY el proceso 1
+[DEBUG] 00:28:13:371 KERNEL/(34575:34625): Implementando algoritmo RR
+[DEBUG] 00:28:13:371 KERNEL/(34575:34625):  Cola Ready RR:
+[DEBUG] 00:28:13:371 KERNEL/(34575:34625):  '[ 1 ] '
+[DEBUG] 00:28:13:377 KERNEL/(34575:34625): Paso a EXEC el proceso 1
+[DEBUG] 00:28:13:378 KERNEL/(34575:34625): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:28:13:378 KERNEL/(34575:34625): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 00:28:31:660 KERNEL/(34575:34600): Paso a BLOCK el proceso 1
+[DEBUG] 00:28:31:660 KERNEL/(34575:34600): Ejecutada: 'PID:  1 - Bloqueado por: PANTALLA '
+[INFO] 00:28:31:674 KERNEL/(34575:35413): El valor del registro que se muestra por pantalla es: 7
+[INFO] 00:28:36:791 KERNEL/(34575:35413): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 00:28:36:792 KERNEL/(34575:35413): Paso a READY el proceso 1
+[DEBUG] 00:28:36:797 KERNEL/(34575:34625): Implementando algoritmo RR
+[DEBUG] 00:28:36:798 KERNEL/(34575:34625):  Cola Ready RR:
+[DEBUG] 00:28:36:798 KERNEL/(34575:34625):  '[ 1 ] '
+[DEBUG] 00:28:36:814 KERNEL/(34575:34625): Paso a EXEC el proceso 1
+[DEBUG] 00:28:36:816 KERNEL/(34575:34625): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:28:36:816 KERNEL/(34575:34625): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 00:29:06:289 KERNEL/(34575:34600): Paso a BLOCK el proceso 1
+[DEBUG] 00:29:06:289 KERNEL/(34575:34600): Ejecutada: 'PID:  1 - Bloqueado por: IMPRESORA '
+[INFO] 00:29:06:297 KERNEL/(34575:35614): Ejecutando el dispositivo IMPRESORA
+[INFO] 00:29:06:297 KERNEL/(34575:35614): Por un tiempo de: 10000
+[DEBUG] 00:29:16:298 KERNEL/(34575:35614): Paso a READY el proceso 1
+[DEBUG] 00:29:16:299 KERNEL/(34575:34625): Implementando algoritmo RR
+[DEBUG] 00:29:16:299 KERNEL/(34575:34625):  Cola Ready RR:
+[DEBUG] 00:29:16:300 KERNEL/(34575:34625):  '[ 1 ] '
+[DEBUG] 00:29:16:301 KERNEL/(34575:34625): Paso a EXEC el proceso 1
+[DEBUG] 00:29:16:302 KERNEL/(34575:34625): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:29:16:302 KERNEL/(34575:34625): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 00:29:53:147 KERNEL/(34575:34600): Paso a EXEC el proceso 1
+[DEBUG] 00:29:53:147 KERNEL/(34575:34600): Paso a EXIT el proceso 1
+[DEBUG] 00:29:53:148 KERNEL/(34575:34600): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 00:29:53:148 KERNEL/(34575:34600): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 00:29:53:148 KERNEL/(34575:34600): Procesos finalizados: 1
+[INFO] 00:35:04:222 KERNEL/(36770:36771): Servidor listo para recibir al cliente
+[INFO] 00:35:13:607 KERNEL/(36770:36771): Se conecto un cliente!
+[INFO] 00:35:13:607 KERNEL/(36770:36771): Llegaron las instrucciones y los segmentos
+[INFO] 00:35:13:614 KERNEL/(36770:36938): Consola conectada, paso a crear el hilo
+[DEBUG] 00:35:13:616 KERNEL/(36770:36938): Paso a NEW el proceso 1
+[DEBUG] 00:35:13:616 KERNEL/(36770:36938): Estado Actual: NEW , proceso id: 1
+[INFO] 00:35:13:616 KERNEL/(36770:36938): Cant de elementos de new: 1
+[DEBUG] 00:35:13:623 KERNEL/(36770:36774): Paso a READY el proceso 1
+[DEBUG] 00:35:13:623 KERNEL/(36770:36774): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 00:35:13:623 KERNEL/(36770:36774): Estado Actual: READY , proceso id: 1
+[DEBUG] 00:35:13:623 KERNEL/(36770:36775): Implementando algoritmo RR
+[DEBUG] 00:35:13:623 KERNEL/(36770:36775):  Cola Ready RR:
+[DEBUG] 00:35:13:623 KERNEL/(36770:36775):  '[ 1 ] '
+[DEBUG] 00:35:13:623 KERNEL/(36770:36775): Paso a EXEC el proceso 1
+[DEBUG] 00:35:13:623 KERNEL/(36770:36775): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:35:13:623 KERNEL/(36770:36775): Estado Actual: EXEC , proceso id: 1
+[INFO] 00:37:23:605 KERNEL/(37344:37345): Servidor listo para recibir al cliente
+[INFO] 00:37:31:758 KERNEL/(37344:37345): Se conecto un cliente!
+[INFO] 00:37:31:760 KERNEL/(37344:37345): Llegaron las instrucciones y los segmentos
+[INFO] 00:37:31:767 KERNEL/(37344:37485): Consola conectada, paso a crear el hilo
+[DEBUG] 00:37:31:768 KERNEL/(37344:37485): Paso a NEW el proceso 1
+[DEBUG] 00:37:31:768 KERNEL/(37344:37485): Estado Actual: NEW , proceso id: 1
+[DEBUG] 00:37:31:768 KERNEL/(37344:37348): Paso a READY el proceso 1
+[DEBUG] 00:37:31:768 KERNEL/(37344:37348): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 00:37:31:768 KERNEL/(37344:37348): Estado Actual: READY , proceso id: 1
+[DEBUG] 00:37:31:768 KERNEL/(37344:37349): Implementando algoritmo RR
+[DEBUG] 00:37:31:768 KERNEL/(37344:37349):  Cola Ready RR:
+[DEBUG] 00:37:31:768 KERNEL/(37344:37349):  '[ 1 ] '
+[DEBUG] 00:37:31:769 KERNEL/(37344:37349): Paso a EXEC el proceso 1
+[DEBUG] 00:37:31:769 KERNEL/(37344:37349): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:37:31:769 KERNEL/(37344:37349): Estado Actual: EXEC , proceso id: 1
+[INFO] 00:42:08:100 KERNEL/(38350:38362): Servidor listo para recibir al cliente
+[INFO] 00:42:25:001 KERNEL/(38350:38362): Se conecto un cliente!
+[INFO] 00:42:25:004 KERNEL/(38350:38362): Llegaron las instrucciones y los segmentos
+[INFO] 00:42:32:057 KERNEL/(38350:38572): Consola conectada, paso a crear el hilo
+[DEBUG] 00:42:45:640 KERNEL/(38350:38572): Paso a NEW el proceso 1
+[DEBUG] 00:42:45:642 KERNEL/(38350:38572): Estado Actual: NEW , proceso id: 1
+[DEBUG] 00:42:45:643 KERNEL/(38350:38366): Paso a READY el proceso 1
+[DEBUG] 00:42:45:643 KERNEL/(38350:38366): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 00:42:45:643 KERNEL/(38350:38366): Estado Actual: READY , proceso id: 1
+[DEBUG] 00:42:45:643 KERNEL/(38350:38396): Implementando algoritmo RR
+[DEBUG] 00:42:45:643 KERNEL/(38350:38396):  Cola Ready RR:
+[DEBUG] 00:42:45:643 KERNEL/(38350:38396):  '[ 1 ] '
+[DEBUG] 00:42:45:654 KERNEL/(38350:38396): Paso a EXEC el proceso 1
+[DEBUG] 00:42:45:654 KERNEL/(38350:38396): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:42:45:654 KERNEL/(38350:38396): Estado Actual: EXEC , proceso id: 1
+[INFO] 00:45:53:670 KERNEL/(39367:39375): Servidor listo para recibir al cliente
+[INFO] 00:46:14:432 KERNEL/(39367:39375): Se conecto un cliente!
+[INFO] 00:46:14:433 KERNEL/(39367:39375): Llegaron las instrucciones y los segmentos
+[INFO] 00:47:15:124 KERNEL/(39367:39629): Consola conectada, paso a crear el hilo
+[DEBUG] 00:47:40:147 KERNEL/(39367:39629): Paso a NEW el proceso 1
+[DEBUG] 00:47:40:147 KERNEL/(39367:39629): Estado Actual: NEW , proceso id: 1
+[DEBUG] 00:47:40:152 KERNEL/(39367:39379): Paso a READY el proceso 1
+[DEBUG] 00:47:40:152 KERNEL/(39367:39379): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 00:47:40:152 KERNEL/(39367:39379): Estado Actual: READY , proceso id: 1
+[DEBUG] 00:47:40:152 KERNEL/(39367:39381): Implementando algoritmo RR
+[DEBUG] 00:47:45:715 KERNEL/(39367:39381):  Cola Ready RR:
+[DEBUG] 00:47:46:983 KERNEL/(39367:39381):  '[ 1 ] '
+[DEBUG] 00:48:08:042 KERNEL/(39367:39381): Paso a EXEC el proceso 1
+[DEBUG] 00:48:16:335 KERNEL/(39367:39381): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:48:17:973 KERNEL/(39367:39381): Estado Actual: EXEC , proceso id: 1
+[INFO] 00:51:49:091 KERNEL/(40228:40229): Servidor listo para recibir al cliente
+[INFO] 00:51:59:801 KERNEL/(40228:40229): Se conecto un cliente!
+[INFO] 00:51:59:801 KERNEL/(40228:40229): Llegaron las instrucciones y los segmentos
+[INFO] 00:51:59:805 KERNEL/(40228:40398): Consola conectada, paso a crear el hilo
+[DEBUG] 00:51:59:806 KERNEL/(40228:40398): Paso a NEW el proceso 1
+[DEBUG] 00:51:59:806 KERNEL/(40228:40398): Estado Actual: NEW , proceso id: 1
+[DEBUG] 00:51:59:807 KERNEL/(40228:40232): Paso a READY el proceso 1
+[DEBUG] 00:51:59:807 KERNEL/(40228:40232): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 00:51:59:807 KERNEL/(40228:40232): Estado Actual: READY , proceso id: 1
+[DEBUG] 00:51:59:807 KERNEL/(40228:40233): Implementando algoritmo RR
+[DEBUG] 00:51:59:807 KERNEL/(40228:40233):  Cola Ready RR:
+[DEBUG] 00:51:59:807 KERNEL/(40228:40233):  '[ 1 ] '
+[DEBUG] 00:51:59:807 KERNEL/(40228:40233): Paso a EXEC el proceso 1
+[DEBUG] 00:51:59:807 KERNEL/(40228:40233): Estado Anterior: READY , proceso id: 1
+[DEBUG] 00:51:59:807 KERNEL/(40228:40233): Estado Actual: EXEC , proceso id: 1
+[INFO] 00:58:09:569 KERNEL/(41306:41315): Servidor listo para recibir al cliente
+[INFO] 00:58:25:173 KERNEL/(41306:41315): Se conecto un cliente!
+[INFO] 00:58:25:175 KERNEL/(41306:41315): Llegaron las instrucciones y los segmentos
+[INFO] 00:58:45:915 KERNEL/(41306:41541): Consola conectada, paso a crear el hilo
+[DEBUG] 01:00:47:671 KERNEL/(41306:41541): Paso a NEW el proceso 1
+[DEBUG] 01:00:50:257 KERNEL/(41306:41541): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:00:59:055 KERNEL/(41306:41319): Paso a READY el proceso 1
+[DEBUG] 01:00:59:056 KERNEL/(41306:41319): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:00:59:056 KERNEL/(41306:41319): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:00:59:056 KERNEL/(41306:41321): Implementando algoritmo RR
+[DEBUG] 01:01:11:773 KERNEL/(41306:41321):  Cola Ready RR:
+[DEBUG] 01:01:21:514 KERNEL/(41306:41321):  '[ 1 ] '
+[DEBUG] 01:02:34:813 KERNEL/(41306:41321): Paso a EXEC el proceso 1
+[DEBUG] 01:02:46:322 KERNEL/(41306:41321): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:02:49:209 KERNEL/(41306:41321): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:05:31:597 KERNEL/(42163:42164): Servidor listo para recibir al cliente
+[INFO] 01:05:41:158 KERNEL/(42163:42164): Se conecto un cliente!
+[INFO] 01:05:41:160 KERNEL/(42163:42164): Llegaron las instrucciones y los segmentos
+[INFO] 01:05:41:164 KERNEL/(42163:42332): Consola conectada, paso a crear el hilo
+[DEBUG] 01:05:41:165 KERNEL/(42163:42332): Paso a NEW el proceso 1
+[DEBUG] 01:05:41:165 KERNEL/(42163:42332): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:05:41:166 KERNEL/(42163:42167): Paso a READY el proceso 1
+[DEBUG] 01:05:41:167 KERNEL/(42163:42167): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:05:41:167 KERNEL/(42163:42167): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:05:41:167 KERNEL/(42163:42168): Implementando algoritmo FIFO
+[DEBUG] 01:05:41:167 KERNEL/(42163:42168):  Cola Ready FIFO:
+[DEBUG] 01:05:41:167 KERNEL/(42163:42168):  '[ 1 ] '
+[DEBUG] 01:05:41:167 KERNEL/(42163:42168): Paso a EXEC el proceso 1
+[DEBUG] 01:05:41:167 KERNEL/(42163:42168): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:05:41:167 KERNEL/(42163:42168): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:11:34:065 KERNEL/(43168:43191): Servidor listo para recibir al cliente
+[INFO] 01:11:47:973 KERNEL/(43168:43191): Se conecto un cliente!
+[INFO] 01:11:47:974 KERNEL/(43168:43191): Llegaron las instrucciones y los segmentos
+[INFO] 01:11:54:670 KERNEL/(43168:43380): Consola conectada, paso a crear el hilo
+[DEBUG] 01:13:35:382 KERNEL/(43168:43380): Paso a NEW el proceso 1
+[DEBUG] 01:13:35:382 KERNEL/(43168:43380): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:13:35:383 KERNEL/(43168:43195): Paso a READY el proceso 1
+[DEBUG] 01:13:35:383 KERNEL/(43168:43195): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:13:35:383 KERNEL/(43168:43195): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:13:35:383 KERNEL/(43168:43217): Implementando algoritmo FIFO
+[DEBUG] 01:13:35:383 KERNEL/(43168:43217):  Cola Ready FIFO:
+[DEBUG] 01:13:35:383 KERNEL/(43168:43217):  '[ 1 ] '
+[DEBUG] 01:13:35:383 KERNEL/(43168:43217): Paso a EXEC el proceso 1
+[DEBUG] 01:13:35:383 KERNEL/(43168:43217): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:13:35:383 KERNEL/(43168:43217): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:21:40:566 KERNEL/(44011:44019): Servidor listo para recibir al cliente
+[INFO] 01:21:59:436 KERNEL/(44011:44019): Se conecto un cliente!
+[INFO] 01:21:59:436 KERNEL/(44011:44019): Llegaron las instrucciones y los segmentos
+[INFO] 01:22:20:109 KERNEL/(44011:44251): Consola conectada, paso a crear el hilo
+[DEBUG] 01:22:22:053 KERNEL/(44011:44251): Paso a NEW el proceso 1
+[DEBUG] 01:22:22:054 KERNEL/(44011:44251): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:22:22:054 KERNEL/(44011:44023): Paso a READY el proceso 1
+[DEBUG] 01:22:22:054 KERNEL/(44011:44023): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:22:22:054 KERNEL/(44011:44023): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:22:22:054 KERNEL/(44011:44045): Implementando algoritmo FIFO
+[DEBUG] 01:22:22:055 KERNEL/(44011:44045):  Cola Ready FIFO:
+[DEBUG] 01:22:22:055 KERNEL/(44011:44045):  '[ 1 ] '
+[DEBUG] 01:22:22:055 KERNEL/(44011:44045): Paso a EXEC el proceso 1
+[DEBUG] 01:22:22:056 KERNEL/(44011:44045): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:22:22:056 KERNEL/(44011:44045): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:35:36:580 KERNEL/(45501:45502): Servidor listo para recibir al cliente
+[INFO] 01:35:54:039 KERNEL/(45501:45502): Se conecto un cliente!
+[INFO] 01:35:54:040 KERNEL/(45501:45502): Llegaron las instrucciones y los segmentos
+[INFO] 01:35:54:047 KERNEL/(45501:45728): Consola conectada, paso a crear el hilo
+[DEBUG] 01:35:54:048 KERNEL/(45501:45728): Paso a NEW el proceso 1
+[DEBUG] 01:35:54:048 KERNEL/(45501:45728): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:35:54:048 KERNEL/(45501:45505): Paso a READY el proceso 1
+[DEBUG] 01:35:54:049 KERNEL/(45501:45505): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:35:54:049 KERNEL/(45501:45505): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:35:54:049 KERNEL/(45501:45506): Implementando algoritmo FIFO
+[DEBUG] 01:35:54:049 KERNEL/(45501:45506):  Cola Ready FIFO:
+[DEBUG] 01:35:54:049 KERNEL/(45501:45506):  '[ 1 ] '
+[DEBUG] 01:35:54:049 KERNEL/(45501:45506): Paso a EXEC el proceso 1
+[DEBUG] 01:35:54:049 KERNEL/(45501:45506): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:35:54:049 KERNEL/(45501:45506): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:37:57:983 KERNEL/(46168:46169): Servidor listo para recibir al cliente
+[INFO] 01:38:08:510 KERNEL/(46168:46169): Se conecto un cliente!
+[INFO] 01:38:08:511 KERNEL/(46168:46169): Llegaron las instrucciones y los segmentos
+[INFO] 01:38:08:527 KERNEL/(46168:46348): Consola conectada, paso a crear el hilo
+[DEBUG] 01:38:08:527 KERNEL/(46168:46348): Paso a NEW el proceso 1
+[DEBUG] 01:38:08:527 KERNEL/(46168:46348): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:38:08:527 KERNEL/(46168:46172): Paso a READY el proceso 1
+[DEBUG] 01:38:08:527 KERNEL/(46168:46172): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:38:08:527 KERNEL/(46168:46172): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:38:08:528 KERNEL/(46168:46173): Implementando algoritmo FIFO
+[DEBUG] 01:38:08:528 KERNEL/(46168:46173):  Cola Ready FIFO:
+[DEBUG] 01:38:08:528 KERNEL/(46168:46173):  '[ 1 ] '
+[DEBUG] 01:38:08:528 KERNEL/(46168:46173): Paso a EXEC el proceso 1
+[DEBUG] 01:38:08:528 KERNEL/(46168:46173): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:38:08:528 KERNEL/(46168:46173): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:45:13:099 KERNEL/(46672:46711): Servidor listo para recibir al cliente
+[INFO] 01:46:04:660 KERNEL/(46919:46938): Servidor listo para recibir al cliente
+[INFO] 01:49:54:831 KERNEL/(47459:47460): Servidor listo para recibir al cliente
+[INFO] 01:50:04:961 KERNEL/(47459:47460): Se conecto un cliente!
+[INFO] 01:50:04:964 KERNEL/(47459:47460): Llegaron las instrucciones y los segmentos
+[INFO] 01:50:04:966 KERNEL/(47459:47631): Consola conectada, paso a crear el hilo
+[DEBUG] 01:50:04:967 KERNEL/(47459:47631): Paso a NEW el proceso 1
+[DEBUG] 01:50:04:967 KERNEL/(47459:47631): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:50:04:967 KERNEL/(47459:47463): Paso a READY el proceso 1
+[DEBUG] 01:50:04:967 KERNEL/(47459:47463): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:50:04:968 KERNEL/(47459:47463): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:50:04:968 KERNEL/(47459:47464): Implementando algoritmo FIFO
+[DEBUG] 01:50:04:968 KERNEL/(47459:47464):  Cola Ready FIFO:
+[DEBUG] 01:50:04:968 KERNEL/(47459:47464):  '[ 1 ] '
+[DEBUG] 01:50:04:968 KERNEL/(47459:47464): Paso a EXEC el proceso 1
+[DEBUG] 01:50:04:968 KERNEL/(47459:47464): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:50:04:968 KERNEL/(47459:47464): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:54:19:300 KERNEL/(48290:48291): Servidor listo para recibir al cliente
+[INFO] 01:54:30:256 KERNEL/(48290:48291): Se conecto un cliente!
+[INFO] 01:54:30:256 KERNEL/(48290:48291): Llegaron las instrucciones y los segmentos
+[INFO] 01:54:30:259 KERNEL/(48290:48447): Consola conectada, paso a crear el hilo
+[DEBUG] 01:54:30:260 KERNEL/(48290:48447): Paso a NEW el proceso 1
+[DEBUG] 01:54:30:262 KERNEL/(48290:48447): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:54:30:263 KERNEL/(48290:48294): Paso a READY el proceso 1
+[DEBUG] 01:54:30:263 KERNEL/(48290:48294): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:54:30:263 KERNEL/(48290:48294): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:54:30:263 KERNEL/(48290:48295): Implementando algoritmo FIFO
+[DEBUG] 01:54:30:264 KERNEL/(48290:48295):  Cola Ready FIFO:
+[DEBUG] 01:54:30:264 KERNEL/(48290:48295):  '[ 1 ] '
+[DEBUG] 01:54:30:264 KERNEL/(48290:48295): Paso a EXEC el proceso 1
+[DEBUG] 01:54:30:264 KERNEL/(48290:48295): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:54:30:264 KERNEL/(48290:48295): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:55:31:220 KERNEL/(48912:48913): Servidor listo para recibir al cliente
+[INFO] 01:55:40:739 KERNEL/(48912:48913): Se conecto un cliente!
+[INFO] 01:55:40:740 KERNEL/(48912:48913): Llegaron las instrucciones y los segmentos
+[INFO] 01:55:40:742 KERNEL/(48912:49091): Consola conectada, paso a crear el hilo
+[DEBUG] 01:55:40:751 KERNEL/(48912:49091): Paso a NEW el proceso 1
+[DEBUG] 01:55:40:751 KERNEL/(48912:49091): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:55:40:752 KERNEL/(48912:48916): Paso a READY el proceso 1
+[DEBUG] 01:55:40:752 KERNEL/(48912:48916): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:55:40:752 KERNEL/(48912:48916): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:55:40:752 KERNEL/(48912:48917): Implementando algoritmo FIFO
+[DEBUG] 01:55:40:752 KERNEL/(48912:48917):  Cola Ready FIFO:
+[DEBUG] 01:55:40:752 KERNEL/(48912:48917):  '[ 1 ] '
+[DEBUG] 01:55:40:752 KERNEL/(48912:48917): Paso a EXEC el proceso 1
+[DEBUG] 01:55:40:752 KERNEL/(48912:48917): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:55:40:753 KERNEL/(48912:48917): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:55:43:762 KERNEL/(48912:48918): Paso a BLOCK el proceso 1
+[DEBUG] 01:55:43:762 KERNEL/(48912:48918): Ejecutada: 'PID:  1 - Bloqueado por: DISCO '
+[INFO] 01:55:43:774 KERNEL/(48912:49149): Ejecutando el dispositivo DISCO
+[INFO] 01:55:43:776 KERNEL/(48912:49149): Por un tiempo de: 10000
+[DEBUG] 01:55:53:778 KERNEL/(48912:49149): Paso a READY el proceso 1
+[DEBUG] 01:55:53:779 KERNEL/(48912:48917): Implementando algoritmo FIFO
+[DEBUG] 01:55:53:779 KERNEL/(48912:48917):  Cola Ready FIFO:
+[DEBUG] 01:55:53:779 KERNEL/(48912:48917):  '[ 1 ] '
+[DEBUG] 01:55:53:779 KERNEL/(48912:48917): Paso a EXEC el proceso 1
+[DEBUG] 01:55:53:779 KERNEL/(48912:48917): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:55:53:779 KERNEL/(48912:48917): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:55:53:780 KERNEL/(48912:48918): Paso a BLOCK el proceso 1
+[DEBUG] 01:55:53:780 KERNEL/(48912:48918): Ejecutada: 'PID:  1 - Bloqueado por: TECLADO '
+[INFO] 01:56:02:748 KERNEL/(48912:49193): El valor del registro ingresado por consola es: 50
+[DEBUG] 01:56:02:748 KERNEL/(48912:49193): Paso a READY el proceso 1
+[DEBUG] 01:56:02:748 KERNEL/(48912:48917): Implementando algoritmo FIFO
+[DEBUG] 01:56:02:748 KERNEL/(48912:48917):  Cola Ready FIFO:
+[DEBUG] 01:56:02:748 KERNEL/(48912:48917):  '[ 1 ] '
+[DEBUG] 01:56:02:748 KERNEL/(48912:48917): Paso a EXEC el proceso 1
+[DEBUG] 01:56:02:748 KERNEL/(48912:48917): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:56:02:748 KERNEL/(48912:48917): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:56:02:749 KERNEL/(48912:48918): Paso a BLOCK el proceso 1
+[DEBUG] 01:56:02:749 KERNEL/(48912:48918): Ejecutada: 'PID:  1 - Bloqueado por: PANTALLA '
+[INFO] 01:56:02:757 KERNEL/(48912:49255): El valor del registro que se muestra por pantalla es: 7
+[INFO] 01:56:03:510 KERNEL/(48912:49255): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 01:56:03:511 KERNEL/(48912:49255): Paso a READY el proceso 1
+[DEBUG] 01:56:03:511 KERNEL/(48912:48917): Implementando algoritmo FIFO
+[DEBUG] 01:56:03:511 KERNEL/(48912:48917):  Cola Ready FIFO:
+[DEBUG] 01:56:03:511 KERNEL/(48912:48917):  '[ 1 ] '
+[DEBUG] 01:56:03:511 KERNEL/(48912:48917): Paso a EXEC el proceso 1
+[DEBUG] 01:56:03:511 KERNEL/(48912:48917): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:56:03:511 KERNEL/(48912:48917): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:56:03:513 KERNEL/(48912:48918): Paso a BLOCK el proceso 1
+[DEBUG] 01:56:03:513 KERNEL/(48912:48918): Ejecutada: 'PID:  1 - Bloqueado por: IMPRESORA '
+[INFO] 01:56:03:517 KERNEL/(48912:49256): Ejecutando el dispositivo IMPRESORA
+[INFO] 01:56:03:520 KERNEL/(48912:49256): Por un tiempo de: 10000
+[DEBUG] 01:56:13:523 KERNEL/(48912:49256): Paso a READY el proceso 1
+[DEBUG] 01:56:13:523 KERNEL/(48912:48917): Implementando algoritmo FIFO
+[DEBUG] 01:56:13:523 KERNEL/(48912:48917):  Cola Ready FIFO:
+[DEBUG] 01:56:13:523 KERNEL/(48912:48917):  '[ 1 ] '
+[DEBUG] 01:56:13:523 KERNEL/(48912:48917): Paso a EXEC el proceso 1
+[DEBUG] 01:56:13:523 KERNEL/(48912:48917): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:56:13:523 KERNEL/(48912:48917): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:56:13:524 KERNEL/(48912:48918): Paso a EXEC el proceso 1
+[DEBUG] 01:56:13:524 KERNEL/(48912:48918): Paso a EXIT el proceso 1
+[DEBUG] 01:56:13:524 KERNEL/(48912:48918): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 01:56:13:524 KERNEL/(48912:48918): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 01:56:13:524 KERNEL/(48912:48918): Procesos finalizados: 1
+[INFO] 01:57:53:027 KERNEL/(49837:49838): Servidor listo para recibir al cliente
+[INFO] 01:58:03:860 KERNEL/(49837:49838): Se conecto un cliente!
+[INFO] 01:58:03:860 KERNEL/(49837:49838): Llegaron las instrucciones y los segmentos
+[INFO] 01:58:03:865 KERNEL/(49837:50019): Consola conectada, paso a crear el hilo
+[DEBUG] 01:58:03:866 KERNEL/(49837:50019): Paso a NEW el proceso 1
+[DEBUG] 01:58:03:867 KERNEL/(49837:50019): Estado Actual: NEW , proceso id: 1
+[DEBUG] 01:58:03:868 KERNEL/(49837:49841): Paso a READY el proceso 1
+[DEBUG] 01:58:03:868 KERNEL/(49837:49841): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:58:03:868 KERNEL/(49837:49841): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:58:03:868 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:03:868 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:03:868 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:03:868 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:03:869 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:03:869 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:04:870 KERNEL/(49837:49843): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 01:58:04:875 KERNEL/(49837:50022): Paso a READY el proceso 1
+[DEBUG] 01:58:04:877 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:04:877 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:04:877 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:04:877 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:04:877 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:04:877 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:05:880 KERNEL/(49837:49843): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 01:58:05:892 KERNEL/(49837:50056): Paso a READY el proceso 1
+[DEBUG] 01:58:05:896 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:05:896 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:05:896 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:05:896 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:05:896 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:05:897 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:06:899 KERNEL/(49837:49843): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 01:58:06:908 KERNEL/(49837:50079): Paso a READY el proceso 1
+[DEBUG] 01:58:06:910 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:06:910 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:06:910 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:06:910 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:06:910 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:06:911 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:06:912 KERNEL/(49837:49843): Paso a BLOCK el proceso 1
+[DEBUG] 01:58:06:912 KERNEL/(49837:49843): Ejecutada: 'PID:  1 - Bloqueado por: DISCO '
+[INFO] 01:58:06:916 KERNEL/(49837:50081): Ejecutando el dispositivo DISCO
+[INFO] 01:58:06:917 KERNEL/(49837:50081): Por un tiempo de: 10000
+[DEBUG] 01:58:16:918 KERNEL/(49837:50081): Paso a READY el proceso 1
+[DEBUG] 01:58:16:919 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:16:919 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:16:919 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:16:919 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:16:919 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:16:919 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:16:920 KERNEL/(49837:49843): Paso a BLOCK el proceso 1
+[DEBUG] 01:58:16:920 KERNEL/(49837:49843): Ejecutada: 'PID:  1 - Bloqueado por: TECLADO '
+[INFO] 01:58:21:100 KERNEL/(49837:50133): El valor del registro ingresado por consola es: 20
+[DEBUG] 01:58:21:100 KERNEL/(49837:50133): Paso a READY el proceso 1
+[DEBUG] 01:58:21:101 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:21:101 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:21:101 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:21:101 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:21:101 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:21:101 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:21:101 KERNEL/(49837:49843): Paso a BLOCK el proceso 1
+[DEBUG] 01:58:21:102 KERNEL/(49837:49843): Ejecutada: 'PID:  1 - Bloqueado por: PANTALLA '
+[INFO] 01:58:21:111 KERNEL/(49837:50196): El valor del registro que se muestra por pantalla es: 7
+[INFO] 01:58:21:870 KERNEL/(49837:50196): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 01:58:21:870 KERNEL/(49837:50196): Paso a READY el proceso 1
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:21:871 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:21:872 KERNEL/(49837:49843): Paso a BLOCK el proceso 1
+[DEBUG] 01:58:21:872 KERNEL/(49837:49843): Ejecutada: 'PID:  1 - Bloqueado por: IMPRESORA '
+[INFO] 01:58:21:874 KERNEL/(49837:50198): Ejecutando el dispositivo IMPRESORA
+[INFO] 01:58:21:877 KERNEL/(49837:50198): Por un tiempo de: 10000
+[DEBUG] 01:58:31:880 KERNEL/(49837:50198): Paso a READY el proceso 1
+[DEBUG] 01:58:31:880 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:31:880 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:31:880 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:31:881 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:31:881 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:31:881 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Paso a EXEC el proceso 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Paso a EXIT el proceso 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Procesos finalizados: 1

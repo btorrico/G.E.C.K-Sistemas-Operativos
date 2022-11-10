@@ -268,15 +268,15 @@ void manejar_bloqueo_pantalla(void *insActual)
 		break;
 	case BX:
 		valorRegistro = pcb->registros.BX;
-printf("valor registro %d", valorRegistro);
+		printf("valor registro %d", valorRegistro);
 		break;
 	case CX:
 		valorRegistro = pcb->registros.CX;
-printf("valor registro %d", valorRegistro);
+		printf("valor registro %d", valorRegistro);
 		break;
 	case DX:
 		valorRegistro = pcb->registros.DX;
-printf("valor registro %d", valorRegistro);
+		printf("valor registro %d", valorRegistro);
 		break;
 	}
 
@@ -377,7 +377,7 @@ void iniciar_kernel()
 	iniciar_listas_y_semaforos();
 
 	contadorIdPCB = 1;
-	contadorIdSegmento = 1;
+	contadorIdSegmento = 0;
 }
 
 void crear_pcb(void *argumentos)
@@ -385,6 +385,7 @@ void crear_pcb(void *argumentos)
 	log_info(logger, "Consola conectada, paso a crear el hilo");
 	t_args_pcb *args = (t_args_pcb *)argumentos;
 	t_pcb *pcb = malloc(sizeof(t_pcb));
+	
 
 	pcb->socket = args->socketCliente;
 	pcb->program_counter = 0;
@@ -393,8 +394,23 @@ void crear_pcb(void *argumentos)
 	pcb->registros.BX = 0;
 	pcb->registros.CX = 0;
 	pcb->registros.DX = 0;
-	/*pcb->tablaSegmentos.tamanio = 0;
-	pcb->tablaSegmentos.indiceTablaPaginas = 0;*/
+	//pcb->tablaSegmentos = list_create();
+
+
+	/*for (int i = 0; i < list_size(pcb->informacion->segmentos); i++)
+	{
+		t_tabla_segmantos *tablaSegmento = malloc(sizeof(t_tabla_segmantos));
+		uint32_t segmento = list_get(pcb->informacion->segmentos, i);
+
+		tablaSegmento->tamanio = segmento;
+
+		pthread_mutex_lock(&mutex_ID_Segmnento);
+		tablaSegmento->id = contadorIdSegmento;
+		contadorIdSegmento++;
+		pthread_mutex_unlock(&mutex_ID_Segmnento);
+		
+		list_add(pcb->tablaSegmentos, tablaSegmento);
+	}*/
 
 	printf("\nsocket del pcb: %d", pcb->socket);
 
@@ -402,11 +418,6 @@ void crear_pcb(void *argumentos)
 	pcb->id = contadorIdPCB;
 	contadorIdPCB++;
 	pthread_mutex_unlock(&mutex_creacion_ID);
-
-	/*pthread_mutex_lock(&mutex_ID_Segmnento);
-	pcb->tablaSegmentos.id = contadorIdSegmento;
-	contadorIdSegmento++;
-	pthread_mutex_unlock(&mutex_ID_Segmnento);*/
 
 	pasar_a_new(pcb);
 	log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);

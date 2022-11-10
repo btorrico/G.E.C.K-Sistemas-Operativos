@@ -682,3 +682,1386 @@
 [DEBUG] 00:42:45:633 CPU/(23276:23277): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
 [DEBUG] 00:42:45:633 CPU/(23276:23277): Envie EXIT al kernel
 [DEBUG] 00:42:45:636 CPU/(23276:23277): No hay interrupcion, sigo el ciclo
+[INFO] 23:03:31:912 CPU/(27178:27180): Servidor listo para recibir al interrupt kernel
+[INFO] 23:03:31:916 CPU/(27178:27179): Servidor listo para recibir al dispatch kernel
+[INFO] 23:03:40:783 CPU/(27178:27179): Se conecto un cliente!
+[INFO] 23:03:40:784 CPU/(27178:27180): Se conecto un cliente!
+[INFO] 23:03:47:702 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:703 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:704 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:704 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:704 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:705 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:711 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:711 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:711 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:711 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:711 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:711 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:712 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:713 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:713 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:03:47:713 CPU/(27178:27180): Me llego el mensaje: (null)
+
+[INFO] 23:32:30:529 CPU/(28227:28229): Servidor listo para recibir al interrupt kernel
+[INFO] 23:32:30:533 CPU/(28227:28228): Servidor listo para recibir al dispatch kernel
+[INFO] 23:32:36:273 CPU/(28227:28229): Se conecto un cliente!
+[INFO] 23:32:36:277 CPU/(28227:28228): Se conecto un cliente!
+[INFO] 23:32:47:347 CPU/(28227:28229): Me llego el mensaje: (null)
+
+[INFO] 23:44:58:896 CPU/(28864:28866): Servidor listo para recibir al interrupt kernel
+[INFO] 23:44:58:899 CPU/(28864:28865): Servidor listo para recibir al dispatch kernel
+[INFO] 23:45:07:492 CPU/(28864:28866): Se conecto un cliente!
+[INFO] 23:45:07:494 CPU/(28864:28865): Se conecto un cliente!
+[INFO] 23:45:17:811 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:811 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:812 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:814 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:815 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:815 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:819 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:819 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:819 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:820 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:821 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:823 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:45:17:827 CPU/(28864:28866): Me llego el mensaje: (null)
+
+[INFO] 23:52:25:948 CPU/(29537:29538): Servidor listo para recibir al dispatch kernel
+[INFO] 23:52:25:949 CPU/(29537:29539): Servidor listo para recibir al interrupt kernel
+[INFO] 23:52:35:435 CPU/(29537:29538): Se conecto un cliente!
+[INFO] 23:52:35:436 CPU/(29537:29539): Se conecto un cliente!
+[INFO] 23:52:45:420 CPU/(29537:29539): Me llego el mensaje: (null)
+
+[INFO] 23:57:49:558 CPU/(30274:30275): Servidor listo para recibir al dispatch kernel
+[INFO] 23:57:49:558 CPU/(30274:30276): Servidor listo para recibir al interrupt kernel
+[INFO] 23:57:58:761 CPU/(30274:30276): Se conecto un cliente!
+[INFO] 23:57:58:762 CPU/(30274:30275): Se conecto un cliente!
+[INFO] 23:58:12:591 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:593 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:594 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:595 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:595 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:595 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:595 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:599 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:599 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:599 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:599 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:599 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:600 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:600 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 23:58:12:600 CPU/(30274:30276): Me llego el mensaje: (null)
+
+[INFO] 00:01:46:719 CPU/(31477:31479): Servidor listo para recibir al interrupt kernel
+[INFO] 00:01:46:721 CPU/(31477:31478): Servidor listo para recibir al dispatch kernel
+[INFO] 00:04:02:814 CPU/(31477:31479): Se conecto un cliente!
+[INFO] 00:04:06:277 CPU/(31477:31478): Se conecto un cliente!
+[INFO] 00:05:46:780 CPU/(32297:32299): Servidor listo para recibir al interrupt kernel
+[INFO] 00:05:46:784 CPU/(32297:32298): Servidor listo para recibir al dispatch kernel
+[INFO] 00:06:24:379 CPU/(32297:32299): Se conecto un cliente!
+[INFO] 00:06:24:392 CPU/(32297:32298): Se conecto un cliente!
+[INFO] 00:10:12:059 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:061 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:061 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:063 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:064 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:065 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:065 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:065 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:068 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:069 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:10:12:073 CPU/(32297:32299): Me llego el mensaje: (null)
+
+[INFO] 00:11:12:864 CPU/(33021:33022): Servidor listo para recibir al dispatch kernel
+[INFO] 00:11:12:864 CPU/(33021:33023): Servidor listo para recibir al interrupt kernel
+[INFO] 00:11:59:050 CPU/(33021:33023): Se conecto un cliente!
+[INFO] 00:11:59:054 CPU/(33021:33022): Se conecto un cliente!
+[INFO] 00:14:08:468 CPU/(33021:33023): Me llego el mensaje: (null)
+
+[INFO] 00:14:08:470 CPU/(33021:33023): Me llego el mensaje: (null)
+
+[INFO] 00:14:25:611 CPU/(33699:33700): Servidor listo para recibir al dispatch kernel
+[INFO] 00:14:25:611 CPU/(33699:33701): Servidor listo para recibir al interrupt kernel
+[INFO] 00:16:17:020 CPU/(33699:33701): Se conecto un cliente!
+[INFO] 00:16:17:028 CPU/(33699:33700): Se conecto un cliente!
+[INFO] 00:20:15:109 CPU/(33699:33701): Me llego el mensaje: (null)
+
+[INFO] 00:20:15:110 CPU/(33699:33701): Me llego el mensaje: (null)
+
+[INFO] 00:20:15:115 CPU/(33699:33701): Me llego el mensaje: (null)
+
+[INFO] 00:20:15:119 CPU/(33699:33701): Me llego el mensaje: (null)
+
+[INFO] 00:20:15:119 CPU/(33699:33701): Me llego el mensaje: (null)
+
+[INFO] 00:20:15:121 CPU/(33699:33701): Me llego el mensaje: (null)
+
+[INFO] 00:20:38:942 CPU/(34440:34442): Servidor listo para recibir al interrupt kernel
+[INFO] 00:20:38:942 CPU/(34440:34441): Servidor listo para recibir al dispatch kernel
+[INFO] 00:23:58:904 CPU/(34440:34442): Se conecto un cliente!
+[INFO] 00:23:58:913 CPU/(34440:34441): Se conecto un cliente!
+[INFO] 00:25:44:579 CPU/(34440:34442): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 00:27:07:327 CPU/(34440:34441): insActual->instCode: 0
+[INFO] 00:27:07:328 CPU/(34440:34441): insActual->pc: 0
+[INFO] 00:27:07:328 CPU/(34440:34441):  Valor nuevo Program counter: 1
+[DEBUG] 00:27:07:328 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 00:27:08:329 CPU/(34440:34441): AX = 1
+[DEBUG] 00:27:08:329 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:27:08:329 CPU/(34440:34441): insActual->instCode: 0
+[INFO] 00:27:08:329 CPU/(34440:34441): insActual->pc: 1
+[INFO] 00:27:08:329 CPU/(34440:34441):  Valor nuevo Program counter: 2
+[DEBUG] 00:27:08:329 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[DEBUG] 00:27:09:330 CPU/(34440:34441): BX = 7
+[DEBUG] 00:27:09:332 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:27:09:332 CPU/(34440:34441): insActual->instCode: 1
+[INFO] 00:27:09:332 CPU/(34440:34441): insActual->pc: 2
+[INFO] 00:27:09:333 CPU/(34440:34441):  Valor nuevo Program counter: 3
+[DEBUG] 00:27:09:333 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:27:10:333 CPU/(34440:34441): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:27:10:335 CPU/(34440:34441): AX = 8
+[DEBUG] 00:27:10:335 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:27:10:335 CPU/(34440:34441): insActual->instCode: 2
+[DEBUG] 00:27:10:335 CPU/(34440:34441): Requiere acceso a Memoria
+[INFO] 00:27:10:335 CPU/(34440:34441): insActual->pc: 3
+[INFO] 00:27:10:335 CPU/(34440:34441):  Valor nuevo Program counter: 4
+[DEBUG] 00:27:10:336 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 00:27:10:336 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:27:10:337 CPU/(34440:34441): insActual->instCode: 3
+[DEBUG] 00:27:10:337 CPU/(34440:34441): Requiere acceso a Memoria
+[INFO] 00:27:10:338 CPU/(34440:34441): insActual->pc: 4
+[INFO] 00:27:10:338 CPU/(34440:34441):  Valor nuevo Program counter: 5
+[DEBUG] 00:27:10:338 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  8'
+[DEBUG] 00:27:10:338 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:27:10:338 CPU/(34440:34441): insActual->instCode: 4
+[INFO] 00:27:10:338 CPU/(34440:34441): insActual->pc: 5
+[INFO] 00:27:10:338 CPU/(34440:34441):  Valor nuevo Program counter: 6
+[DEBUG] 00:27:10:338 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO DISCO   10'
+[DEBUG] 00:27:10:339 CPU/(34440:34441): Envie BLOCK al kernel por IO
+[DEBUG] 00:27:10:339 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:27:33:092 CPU/(34440:34442): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 00:27:53:191 CPU/(34440:34441): insActual->instCode: 4
+[INFO] 00:27:53:192 CPU/(34440:34441): insActual->pc: 6
+[INFO] 00:27:53:192 CPU/(34440:34441):  Valor nuevo Program counter: 7
+[DEBUG] 00:27:53:192 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:27:53:192 CPU/(34440:34441): Envie BLOCK al kernel por IO_TECLADO
+[DEBUG] 00:27:53:193 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:28:16:323 CPU/(34440:34442): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 00:28:24:953 CPU/(34440:34441): insActual->instCode: 4
+[INFO] 00:28:24:954 CPU/(34440:34441): insActual->pc: 7
+[INFO] 00:28:24:954 CPU/(34440:34441):  Valor nuevo Program counter: 8
+[DEBUG] 00:28:24:954 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 00:28:24:954 CPU/(34440:34441): Envie BLOCK al kernel por IO_PANTALLA
+[DEBUG] 00:28:24:955 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:28:39:859 CPU/(34440:34442): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 00:28:58:403 CPU/(34440:34441): insActual->instCode: 4
+[INFO] 00:28:58:403 CPU/(34440:34441): insActual->pc: 8
+[INFO] 00:28:58:403 CPU/(34440:34441):  Valor nuevo Program counter: 9
+[DEBUG] 00:28:58:403 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO IMPRESORA   5'
+[DEBUG] 00:28:58:404 CPU/(34440:34441): Envie BLOCK al kernel por IO
+[DEBUG] 00:28:58:404 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:29:29:571 CPU/(34440:34442): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 00:29:45:451 CPU/(34440:34441): insActual->instCode: 5
+[INFO] 00:29:45:451 CPU/(34440:34441): insActual->pc: 9
+[INFO] 00:29:45:451 CPU/(34440:34441):  Valor nuevo Program counter: 10
+[DEBUG] 00:29:45:451 CPU/(34440:34441): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
+[DEBUG] 00:29:45:452 CPU/(34440:34441): Envie EXIT al kernel
+[DEBUG] 00:29:45:453 CPU/(34440:34441): No hay interrupcion, sigo el ciclo
+[INFO] 00:30:17:282 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:283 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:283 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:284 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:285 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:286 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:287 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:288 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:288 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:288 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:288 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:30:17:288 CPU/(34440:34442): Me llego el mensaje: (null)
+
+[INFO] 00:34:52:613 CPU/(36591:36592): Servidor listo para recibir al dispatch kernel
+[INFO] 00:34:52:614 CPU/(36591:36593): Servidor listo para recibir al interrupt kernel
+[INFO] 00:35:04:227 CPU/(36591:36592): Se conecto un cliente!
+[INFO] 00:35:04:227 CPU/(36591:36593): Se conecto un cliente!
+[INFO] 00:37:15:062 CPU/(37224:37225): Servidor listo para recibir al dispatch kernel
+[INFO] 00:37:15:064 CPU/(37224:37226): Servidor listo para recibir al interrupt kernel
+[INFO] 00:37:23:608 CPU/(37224:37225): Se conecto un cliente!
+[INFO] 00:37:23:609 CPU/(37224:37226): Se conecto un cliente!
+[INFO] 00:37:32:369 CPU/(37224:37226): Me llego el mensaje: (null)
+
+[INFO] 00:41:14:978 CPU/(38119:38121): Servidor listo para recibir al interrupt kernel
+[INFO] 00:41:14:981 CPU/(38119:38120): Servidor listo para recibir al dispatch kernel
+[INFO] 00:42:11:248 CPU/(38119:38121): Se conecto un cliente!
+[INFO] 00:42:11:260 CPU/(38119:38120): Se conecto un cliente!
+[INFO] 00:42:47:963 CPU/(38119:38121): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 00:43:31:291 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:292 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:293 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:293 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:294 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:294 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:294 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:295 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:295 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:295 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:297 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:299 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:299 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:299 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:299 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:299 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:299 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:43:31:299 CPU/(38119:38121): Me llego el mensaje: (null)
+
+[INFO] 00:44:17:675 CPU/(38945:38947): Servidor listo para recibir al interrupt kernel
+[INFO] 00:44:17:679 CPU/(38945:38946): Servidor listo para recibir al dispatch kernel
+[INFO] 00:45:09:035 CPU/(39213:39214): Servidor listo para recibir al dispatch kernel
+[INFO] 00:45:09:035 CPU/(39213:39215): Servidor listo para recibir al interrupt kernel
+[INFO] 00:45:55:723 CPU/(39213:39215): Se conecto un cliente!
+[INFO] 00:45:55:729 CPU/(39213:39214): Se conecto un cliente!
+[INFO] 00:48:33:405 CPU/(39213:39215): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 00:49:43:877 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:880 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:891 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:892 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:892 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:892 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:892 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:895 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:895 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:895 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:895 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:896 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:896 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:896 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:49:43:899 CPU/(39213:39215): Me llego el mensaje: (null)
+
+[INFO] 00:51:33:611 CPU/(40144:40145): Servidor listo para recibir al dispatch kernel
+[INFO] 00:51:33:611 CPU/(40144:40146): Servidor listo para recibir al interrupt kernel
+[INFO] 00:51:49:093 CPU/(40144:40146): Se conecto un cliente!
+[INFO] 00:51:49:094 CPU/(40144:40145): Se conecto un cliente!
+[INFO] 00:52:00:431 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:431 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:433 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:433 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:433 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:433 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:433 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:434 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:434 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:434 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:434 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:439 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:439 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:440 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:440 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:52:00:441 CPU/(40144:40146): Me llego el mensaje: (null)
+
+[INFO] 00:57:28:315 CPU/(41150:41151): Servidor listo para recibir al dispatch kernel
+[INFO] 00:57:28:315 CPU/(41150:41152): Servidor listo para recibir al interrupt kernel
+[INFO] 00:58:09:609 CPU/(41150:41152): Se conecto un cliente!
+[INFO] 00:58:12:036 CPU/(41150:41151): Se conecto un cliente!
+[INFO] 01:03:08:822 CPU/(41150:41152): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 01:04:19:736 CPU/(41150:41152): Me llego el mensaje: (null)
+
+[INFO] 01:05:31:260 CPU/(42159:42161): Servidor listo para recibir al interrupt kernel
+[INFO] 01:05:31:263 CPU/(42159:42160): Servidor listo para recibir al dispatch kernel
+[INFO] 01:05:31:603 CPU/(42159:42160): Se conecto un cliente!
+[INFO] 01:05:31:604 CPU/(42159:42161): Se conecto un cliente!
+[INFO] 01:05:41:748 CPU/(42159:42161): Me llego el mensaje: (null)
+
+[INFO] 01:09:25:952 CPU/(42595:42597): Servidor listo para recibir al interrupt kernel
+[INFO] 01:09:38:660 CPU/(42756:42758): Servidor listo para recibir al interrupt kernel
+[INFO] 01:09:38:664 CPU/(42756:42757): Servidor listo para recibir al dispatch kernel
+[INFO] 01:11:09:693 CPU/(43018:43020): Servidor listo para recibir al interrupt kernel
+[INFO] 01:11:09:696 CPU/(43018:43019): Servidor listo para recibir al dispatch kernel
+[INFO] 01:11:35:932 CPU/(43018:43020): Se conecto un cliente!
+[INFO] 01:11:35:945 CPU/(43018:43019): Se conecto un cliente!
+[INFO] 01:18:39:816 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:819 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:823 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:824 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:825 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:825 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:831 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:831 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:831 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:831 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:834 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:839 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:18:39:839 CPU/(43018:43020): Me llego el mensaje: (null)
+
+[INFO] 01:20:49:347 CPU/(43826:43827): Servidor listo para recibir al dispatch kernel
+[INFO] 01:20:49:349 CPU/(43826:43828): Servidor listo para recibir al interrupt kernel
+[INFO] 01:21:42:437 CPU/(43826:43828): Se conecto un cliente!
+[INFO] 01:21:47:313 CPU/(43826:43827): Se conecto un cliente!
+[INFO] 01:25:47:142 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:159 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:161 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:167 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:167 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:168 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:169 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:169 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:169 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:169 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:25:47:169 CPU/(43826:43828): Me llego el mensaje: (null)
+
+[INFO] 01:35:18:002 CPU/(45319:45321): Servidor listo para recibir al interrupt kernel
+[INFO] 01:35:18:003 CPU/(45319:45320): Servidor listo para recibir al dispatch kernel
+[INFO] 01:35:36:584 CPU/(45319:45321): Se conecto un cliente!
+[INFO] 01:35:36:585 CPU/(45319:45320): Se conecto un cliente!
+[INFO] 01:35:54:697 CPU/(45319:45321): Me llego el mensaje: (null)
+
+[INFO] 01:35:54:700 CPU/(45319:45321): Me llego el mensaje: (null)
+
+[INFO] 01:35:54:701 CPU/(45319:45321): Me llego el mensaje: (null)
+
+[INFO] 01:35:54:701 CPU/(45319:45321): Me llego el mensaje: (null)
+
+[INFO] 01:35:54:703 CPU/(45319:45321): Me llego el mensaje: (null)
+
+[INFO] 01:35:54:704 CPU/(45319:45321): Me llego el mensaje: (null)
+
+[INFO] 01:37:46:777 CPU/(46038:46040): Servidor listo para recibir al interrupt kernel
+[INFO] 01:37:46:779 CPU/(46038:46039): Servidor listo para recibir al dispatch kernel
+[INFO] 01:37:57:987 CPU/(46038:46040): Se conecto un cliente!
+[INFO] 01:37:57:988 CPU/(46038:46039): Se conecto un cliente!
+[INFO] 01:38:09:095 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:096 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:096 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:096 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:097 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:097 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:097 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:097 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:097 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:097 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:097 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:097 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:098 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:098 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:098 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:099 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:099 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:102 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:102 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:38:09:102 CPU/(46038:46040): Me llego el mensaje: (null)
+
+[INFO] 01:49:41:985 CPU/(47307:47309): Servidor listo para recibir al interrupt kernel
+[INFO] 01:49:41:989 CPU/(47307:47308): Servidor listo para recibir al dispatch kernel
+[INFO] 01:49:54:834 CPU/(47307:47308): Se conecto un cliente!
+[INFO] 01:49:54:835 CPU/(47307:47309): Se conecto un cliente!
+[INFO] 01:50:05:593 CPU/(47307:47309): Me llego el mensaje: (null)
+
+[INFO] 01:54:05:595 CPU/(48172:48174): Servidor listo para recibir al interrupt kernel
+[INFO] 01:54:05:596 CPU/(48172:48173): Servidor listo para recibir al dispatch kernel
+[INFO] 01:54:19:304 CPU/(48172:48173): Se conecto un cliente!
+[INFO] 01:54:19:305 CPU/(48172:48174): Se conecto un cliente!
+[INFO] 01:54:30:264 CPU/(48172:48173): insActual->instCode: 0
+[INFO] 01:54:30:265 CPU/(48172:48173): insActual->pc: 0
+[INFO] 01:54:30:265 CPU/(48172:48173):  Valor nuevo Program counter: 1
+[DEBUG] 01:54:30:265 CPU/(48172:48173): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[INFO] 01:54:30:821 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:821 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:822 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:828 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:828 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:828 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:829 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:835 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:847 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:847 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:853 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:854 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:854 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:854 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:854 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:854 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:854 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:854 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:855 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:855 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:855 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:855 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:855 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:855 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:859 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:859 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:859 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:859 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:859 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:860 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:860 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:860 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:861 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:862 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:862 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:862 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:862 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:862 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:862 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:862 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:867 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:867 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:867 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:867 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:868 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:868 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:868 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:869 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:869 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:878 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:878 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:878 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:878 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:878 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:878 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:887 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:887 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:887 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:887 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:887 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:888 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:888 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:888 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:891 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:892 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:895 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:896 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:896 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:896 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:896 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:896 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:896 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:896 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:907 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:907 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:908 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:908 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:908 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:911 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:911 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:911 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:911 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:912 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:915 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:915 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:915 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:919 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:924 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:924 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:924 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:927 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:939 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:947 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:947 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:947 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:947 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:947 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:947 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:947 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:948 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:948 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:955 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:955 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:955 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:955 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:955 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:955 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:963 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:963 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:964 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:964 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:964 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:964 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:964 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:971 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:972 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:972 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:973 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:973 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:973 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:975 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:975 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:975 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:982 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:983 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:983 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:983 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:983 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:983 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:984 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:985 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:999 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:999 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:999 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:999 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:999 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:999 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:30:999 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:000 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:000 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:001 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:003 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:003 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:003 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:003 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:003 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:004 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:007 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:009 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:015 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:015 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:015 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:023 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:025 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:026 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:026 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:026 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:026 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:026 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:026 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:028 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:028 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:028 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:028 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:030 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:031 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:031 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:031 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:031 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:032 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:032 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:033 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:035 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:035 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:035 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:043 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:050 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:051 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:052 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:059 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:059 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:059 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:059 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:060 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:060 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:060 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:060 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:071 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:071 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:071 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:071 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:087 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:087 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:087 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:091 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:091 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:091 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:091 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:091 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:091 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:091 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:092 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:092 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:095 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:095 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:099 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:100 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:100 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:101 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:111 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:112 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:113 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:113 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:113 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:113 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:113 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:113 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:114 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:120 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:120 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:122 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:122 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:123 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:123 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:123 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:124 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:124 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:128 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:128 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:129 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:129 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:129 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:129 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:129 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:129 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:129 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:135 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:137 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:137 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:137 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:138 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:139 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:139 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:139 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:140 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:143 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:143 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:143 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:144 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:144 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:144 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:145 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:145 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:145 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:147 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:147 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:147 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:164 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:164 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:164 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:171 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:171 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:171 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:171 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:171 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:171 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:172 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:172 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:174 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:177 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:178 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:178 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:178 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:178 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:178 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:178 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:179 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:179 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:179 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:183 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:188 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:191 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:191 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:191 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:191 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:199 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:199 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:199 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:199 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:200 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:200 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:200 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:208 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:208 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:208 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:209 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:209 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:209 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:209 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:209 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:210 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:210 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:210 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:215 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:215 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:215 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:217 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:219 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:227 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:228 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:228 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:228 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:228 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:228 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:228 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:229 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:235 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:235 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:235 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:235 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:235 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:236 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:236 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:236 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:236 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:237 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:237 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:237 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:239 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:239 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:239 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:239 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:247 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:255 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:255 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:255 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:256 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:256 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:265 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:265 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[INFO] 01:54:31:265 CPU/(48172:48174): Me llego el mensaje: (null)
+
+[DEBUG] 01:54:31:266 CPU/(48172:48173): AX = 1
+[DEBUG] 01:54:31:283 CPU/(48172:48173): Devuelvo pcb por interrupcion
+[INFO] 01:55:21:425 CPU/(48803:48805): Servidor listo para recibir al interrupt kernel
+[INFO] 01:55:21:427 CPU/(48803:48804): Servidor listo para recibir al dispatch kernel
+[INFO] 01:55:31:234 CPU/(48803:48805): Se conecto un cliente!
+[INFO] 01:55:31:234 CPU/(48803:48804): Se conecto un cliente!
+[INFO] 01:55:40:753 CPU/(48803:48804): insActual->instCode: 0
+[INFO] 01:55:40:753 CPU/(48803:48804): insActual->pc: 0
+[INFO] 01:55:40:753 CPU/(48803:48804):  Valor nuevo Program counter: 1
+[DEBUG] 01:55:40:753 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 01:55:41:753 CPU/(48803:48804): AX = 1
+[DEBUG] 01:55:41:754 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:55:41:754 CPU/(48803:48804): insActual->instCode: 0
+[INFO] 01:55:41:755 CPU/(48803:48804): insActual->pc: 1
+[INFO] 01:55:41:755 CPU/(48803:48804):  Valor nuevo Program counter: 2
+[DEBUG] 01:55:41:755 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[DEBUG] 01:55:42:756 CPU/(48803:48804): BX = 7
+[DEBUG] 01:55:42:757 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:55:42:757 CPU/(48803:48804): insActual->instCode: 1
+[INFO] 01:55:42:757 CPU/(48803:48804): insActual->pc: 2
+[INFO] 01:55:42:757 CPU/(48803:48804):  Valor nuevo Program counter: 3
+[DEBUG] 01:55:42:757 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 01:55:43:758 CPU/(48803:48804): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 01:55:43:759 CPU/(48803:48804): AX = 8
+[DEBUG] 01:55:43:759 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:55:43:759 CPU/(48803:48804): insActual->instCode: 2
+[DEBUG] 01:55:43:760 CPU/(48803:48804): Requiere acceso a Memoria
+[INFO] 01:55:43:760 CPU/(48803:48804): insActual->pc: 3
+[INFO] 01:55:43:760 CPU/(48803:48804):  Valor nuevo Program counter: 4
+[DEBUG] 01:55:43:760 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 01:55:43:760 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:55:43:760 CPU/(48803:48804): insActual->instCode: 3
+[DEBUG] 01:55:43:760 CPU/(48803:48804): Requiere acceso a Memoria
+[INFO] 01:55:43:761 CPU/(48803:48804): insActual->pc: 4
+[INFO] 01:55:43:761 CPU/(48803:48804):  Valor nuevo Program counter: 5
+[DEBUG] 01:55:43:761 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  8'
+[DEBUG] 01:55:43:761 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:55:43:761 CPU/(48803:48804): insActual->instCode: 4
+[INFO] 01:55:43:762 CPU/(48803:48804): insActual->pc: 5
+[INFO] 01:55:43:762 CPU/(48803:48804):  Valor nuevo Program counter: 6
+[DEBUG] 01:55:43:762 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO DISCO   10'
+[DEBUG] 01:55:43:762 CPU/(48803:48804): Envie BLOCK al kernel por IO
+[DEBUG] 01:55:43:764 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:55:53:779 CPU/(48803:48804): insActual->instCode: 4
+[INFO] 01:55:53:780 CPU/(48803:48804): insActual->pc: 6
+[INFO] 01:55:53:780 CPU/(48803:48804):  Valor nuevo Program counter: 7
+[DEBUG] 01:55:53:780 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 01:55:53:780 CPU/(48803:48804): Envie BLOCK al kernel por IO_TECLADO
+[DEBUG] 01:55:53:780 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:56:02:749 CPU/(48803:48804): insActual->instCode: 4
+[INFO] 01:56:02:749 CPU/(48803:48804): insActual->pc: 7
+[INFO] 01:56:02:749 CPU/(48803:48804):  Valor nuevo Program counter: 8
+[DEBUG] 01:56:02:749 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 01:56:02:749 CPU/(48803:48804): Envie BLOCK al kernel por IO_PANTALLA
+[DEBUG] 01:56:02:749 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:56:03:511 CPU/(48803:48804): insActual->instCode: 4
+[INFO] 01:56:03:512 CPU/(48803:48804): insActual->pc: 8
+[INFO] 01:56:03:512 CPU/(48803:48804):  Valor nuevo Program counter: 9
+[DEBUG] 01:56:03:512 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO IMPRESORA   5'
+[DEBUG] 01:56:03:513 CPU/(48803:48804): Envie BLOCK al kernel por IO
+[DEBUG] 01:56:03:513 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:56:13:524 CPU/(48803:48804): insActual->instCode: 5
+[INFO] 01:56:13:524 CPU/(48803:48804): insActual->pc: 9
+[INFO] 01:56:13:524 CPU/(48803:48804):  Valor nuevo Program counter: 10
+[DEBUG] 01:56:13:524 CPU/(48803:48804): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
+[DEBUG] 01:56:13:524 CPU/(48803:48804): Envie EXIT al kernel
+[DEBUG] 01:56:13:527 CPU/(48803:48804): No hay interrupcion, sigo el ciclo
+[INFO] 01:57:38:665 CPU/(49688:49689): Servidor listo para recibir al dispatch kernel
+[INFO] 01:57:38:665 CPU/(49688:49690): Servidor listo para recibir al interrupt kernel
+[INFO] 01:57:53:033 CPU/(49688:49689): Se conecto un cliente!
+[INFO] 01:57:53:034 CPU/(49688:49690): Se conecto un cliente!
+[INFO] 01:58:03:869 CPU/(49688:49689): insActual->instCode: 0
+[INFO] 01:58:03:869 CPU/(49688:49689): insActual->pc: 0
+[INFO] 01:58:03:869 CPU/(49688:49689):  Valor nuevo Program counter: 1
+[DEBUG] 01:58:03:869 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[INFO] 01:58:03:876 CPU/(49688:49690): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 01:58:04:869 CPU/(49688:49689): AX = 1
+[DEBUG] 01:58:04:869 CPU/(49688:49689): Devuelvo pcb por interrupcion
+[INFO] 01:58:04:878 CPU/(49688:49689): insActual->instCode: 0
+[INFO] 01:58:04:878 CPU/(49688:49689): insActual->pc: 1
+[INFO] 01:58:04:878 CPU/(49688:49689):  Valor nuevo Program counter: 2
+[DEBUG] 01:58:04:878 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 01:58:04:880 CPU/(49688:49690): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 01:58:05:878 CPU/(49688:49689): BX = 7
+[DEBUG] 01:58:05:879 CPU/(49688:49689): Devuelvo pcb por interrupcion
+[INFO] 01:58:05:897 CPU/(49688:49689): insActual->instCode: 1
+[INFO] 01:58:05:897 CPU/(49688:49689): insActual->pc: 2
+[INFO] 01:58:05:897 CPU/(49688:49689):  Valor nuevo Program counter: 3
+[DEBUG] 01:58:05:897 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[INFO] 01:58:05:902 CPU/(49688:49690): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 01:58:06:897 CPU/(49688:49689): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 01:58:06:899 CPU/(49688:49689): AX = 8
+[DEBUG] 01:58:06:899 CPU/(49688:49689): Devuelvo pcb por interrupcion
+[INFO] 01:58:06:911 CPU/(49688:49689): insActual->instCode: 2
+[DEBUG] 01:58:06:911 CPU/(49688:49689): Requiere acceso a Memoria
+[INFO] 01:58:06:911 CPU/(49688:49689): insActual->pc: 3
+[INFO] 01:58:06:911 CPU/(49688:49689):  Valor nuevo Program counter: 4
+[DEBUG] 01:58:06:911 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 01:58:06:911 CPU/(49688:49689): No hay interrupcion, sigo el ciclo
+[INFO] 01:58:06:911 CPU/(49688:49689): insActual->instCode: 3
+[DEBUG] 01:58:06:911 CPU/(49688:49689): Requiere acceso a Memoria
+[INFO] 01:58:06:911 CPU/(49688:49689): insActual->pc: 4
+[INFO] 01:58:06:911 CPU/(49688:49689):  Valor nuevo Program counter: 5
+[DEBUG] 01:58:06:911 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  8'
+[DEBUG] 01:58:06:911 CPU/(49688:49689): No hay interrupcion, sigo el ciclo
+[INFO] 01:58:06:911 CPU/(49688:49689): insActual->instCode: 4
+[INFO] 01:58:06:912 CPU/(49688:49689): insActual->pc: 5
+[INFO] 01:58:06:912 CPU/(49688:49689):  Valor nuevo Program counter: 6
+[DEBUG] 01:58:06:912 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO DISCO   10'
+[DEBUG] 01:58:06:912 CPU/(49688:49689): Envie BLOCK al kernel por IO
+[DEBUG] 01:58:06:912 CPU/(49688:49689): No hay interrupcion, sigo el ciclo
+[INFO] 01:58:16:919 CPU/(49688:49689): insActual->instCode: 4
+[INFO] 01:58:16:919 CPU/(49688:49689): insActual->pc: 6
+[INFO] 01:58:16:920 CPU/(49688:49689):  Valor nuevo Program counter: 7
+[DEBUG] 01:58:16:920 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 01:58:16:920 CPU/(49688:49689): Envie BLOCK al kernel por IO_TECLADO
+[DEBUG] 01:58:16:920 CPU/(49688:49689): No hay interrupcion, sigo el ciclo
+[INFO] 01:58:21:101 CPU/(49688:49689): insActual->instCode: 4
+[INFO] 01:58:21:101 CPU/(49688:49689): insActual->pc: 7
+[INFO] 01:58:21:101 CPU/(49688:49689):  Valor nuevo Program counter: 8
+[DEBUG] 01:58:21:101 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 01:58:21:101 CPU/(49688:49689): Envie BLOCK al kernel por IO_PANTALLA
+[DEBUG] 01:58:21:102 CPU/(49688:49689): No hay interrupcion, sigo el ciclo
+[INFO] 01:58:21:871 CPU/(49688:49689): insActual->instCode: 4
+[INFO] 01:58:21:871 CPU/(49688:49689): insActual->pc: 8
+[INFO] 01:58:21:871 CPU/(49688:49689):  Valor nuevo Program counter: 9
+[DEBUG] 01:58:21:871 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO IMPRESORA   5'
+[DEBUG] 01:58:21:872 CPU/(49688:49689): Envie BLOCK al kernel por IO
+[DEBUG] 01:58:21:872 CPU/(49688:49689): No hay interrupcion, sigo el ciclo
+[INFO] 01:58:31:881 CPU/(49688:49689): insActual->instCode: 5
+[INFO] 01:58:31:881 CPU/(49688:49689): insActual->pc: 9
+[INFO] 01:58:31:881 CPU/(49688:49689):  Valor nuevo Program counter: 10
+[DEBUG] 01:58:31:881 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
+[DEBUG] 01:58:31:881 CPU/(49688:49689): Envie EXIT al kernel
+[DEBUG] 01:58:31:883 CPU/(49688:49689): No hay interrupcion, sigo el ciclo
