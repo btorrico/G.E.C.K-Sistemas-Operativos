@@ -269,8 +269,8 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 {
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
-	buffer->size = sizeof(uint32_t) * 4 + list_size(pcb->informacion->instrucciones) * sizeof(t_instruccion) 
-	+ list_size(pcb->informacion->segmentos) * sizeof(uint32_t) 
+	buffer->size = sizeof(uint32_t) * 5 + list_size(pcb->informacion->instrucciones) * sizeof(t_instruccion) 
+	+ list_size(pcb->informacion->segmentos) * sizeof(uint32_t)
 	+ list_size(pcb->tablaSegmentos) * sizeof(t_tabla_segmantos) 
 	+ sizeof(int) + sizeof(t_registros);
 
@@ -385,7 +385,7 @@ t_pcb *deserializoPCB(t_buffer *buffer)
 {
 	t_pcb *pcb = malloc(sizeof(t_pcb));
 	pcb->informacion = malloc(sizeof(t_informacion));
-	//pcb->tablaSegmentos = malloc(sizeof(t_tabla_segmantos));
+	pcb->tablaSegmentos = malloc(sizeof(t_tabla_segmantos));
 
 	void *stream = buffer->stream;
 

@@ -84,13 +84,13 @@ void iniciar_servidor_dispatch()
 
 		printf("\n%d.\n", pcb->registros.AX);
 
-		while (!interrupciones && !retornePCB)
+		do
 		{
 
 			retornePCB = cicloInstruccion(pcb);
 
 			checkInterrupt(pcb, retornePCB);
-		}
+		} while (!interrupciones && !retornePCB);
 		printf("\nSali del while infinito\n");
 	}
 }

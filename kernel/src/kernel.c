@@ -99,8 +99,11 @@ void conectar_dispatch()
 	// Enviar PCB
 	conexionDispatch = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 
+	//printf("\n ME QUEDO ESPERANDOOOO1\n");
 	while (1)
 	{
+
+		//printf("\n ME QUEDO ESPERANDOOOO2\n");
 		sem_wait(&sem_pasar_pcb_running);
 		printf("Llego un pcb a dispatch");
 		serializarPCB(conexionDispatch, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
@@ -191,10 +194,10 @@ void conectar_dispatch()
 		case INTERRUPT_INTERRUPCION:
 			sem_post(&contador_pcb_running);
 			pthread_t thrInterrupt;
-
+log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->id);
 			pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion, (void *)pcb);
 
-			log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->id);
+			
 
 			pthread_detach(thrInterrupt);
 
@@ -206,7 +209,7 @@ void conectar_dispatch()
 		free(paquete->buffer->stream);
 		free(paquete->buffer);
 		free(paquete);
-		free(dispositivoIO);
+		//free(dispositivoIO);
 	}
 }
 
