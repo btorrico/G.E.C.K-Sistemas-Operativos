@@ -99,11 +99,9 @@ void conectar_dispatch()
 	// Enviar PCB
 	conexionDispatch = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 
-	//printf("\n ME QUEDO ESPERANDOOOO1\n");
 	while (1)
 	{
 
-		//printf("\n ME QUEDO ESPERANDOOOO2\n");
 		sem_wait(&sem_pasar_pcb_running);
 		printf("Llego un pcb a dispatch");
 		serializarPCB(conexionDispatch, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
@@ -147,7 +145,6 @@ void conectar_dispatch()
 
 			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 
-			sem_wait(&contador_bloqueo_pantalla_running);
 			pthread_create(&thrBloqueoPantalla, NULL, (void *)manejar_bloqueo_pantalla, (void *)insActual);
 
 			pthread_detach(thrBloqueoPantalla);
@@ -163,7 +160,6 @@ void conectar_dispatch()
 
 			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 
-			sem_wait(&contador_bloqueo_teclado_running);
 			pthread_create(&thrBloqueoTeclado, NULL, (void *)manejar_bloqueo_teclado, (void *)insActual);
 
 			pthread_detach(thrBloqueoTeclado);
@@ -180,7 +176,6 @@ void conectar_dispatch()
 
 			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 
-			sem_wait(&contador_bloqueo_general_running);
 			pthread_create(&thrBloqueoGeneral, NULL, (void *)manejar_bloqueo_general, (void *)insActual);
 
 			pthread_detach(thrBloqueoGeneral);
@@ -194,10 +189,8 @@ void conectar_dispatch()
 		case INTERRUPT_INTERRUPCION:
 			sem_post(&contador_pcb_running);
 			pthread_t thrInterrupt;
-log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->id);
+			log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->id);
 			pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion, (void *)pcb);
-
-			
 
 			pthread_detach(thrInterrupt);
 
@@ -209,13 +202,13 @@ log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->
 		free(paquete->buffer->stream);
 		free(paquete->buffer);
 		free(paquete);
-		//free(dispositivoIO);
+		// free(dispositivoIO);
 	}
 }
 
 void manejar_bloqueo_teclado(void *insActual)
 {
-
+	sem_wait(&contador_bloqueo_teclado_running);
 	t_instruccion *instActualConsola = (t_instruccion *)insActual;
 	uint32_t valorRegistroTeclado;
 
@@ -254,6 +247,7 @@ void manejar_bloqueo_teclado(void *insActual)
 
 void manejar_bloqueo_pantalla(void *insActual)
 {
+	sem_wait(&contador_bloqueo_pantalla_running);
 	t_instruccion *instActualPantalla = (t_instruccion *)insActual;
 
 	uint32_t valorRegistro;
@@ -297,6 +291,7 @@ void manejar_bloqueo_pantalla(void *insActual)
 
 void manejar_bloqueo_general(void *insActual)
 {
+	sem_wait(&contador_bloqueo_general_running);
 	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
 
 	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
@@ -388,7 +383,6 @@ void crear_pcb(void *argumentos)
 	log_info(logger, "Consola conectada, paso a crear el hilo");
 	t_args_pcb *args = (t_args_pcb *)argumentos;
 	t_pcb *pcb = malloc(sizeof(t_pcb));
-	
 
 	pcb->socket = args->socketCliente;
 	pcb->program_counter = 0;
@@ -398,7 +392,6 @@ void crear_pcb(void *argumentos)
 	pcb->registros.CX = 0;
 	pcb->registros.DX = 0;
 	pcb->tablaSegmentos = list_create();
-
 
 	for (int i = 0; i < list_size(pcb->informacion->segmentos); i++)
 	{
@@ -411,11 +404,11 @@ void crear_pcb(void *argumentos)
 		tablaSegmento->id = contadorIdSegmento;
 		contadorIdSegmento++;
 		pthread_mutex_unlock(&mutex_ID_Segmnento);
-		
+
 		list_add(pcb->tablaSegmentos, tablaSegmento);
 	}
 
-	printf("\nsocket del pcb: %d", pcb->socket);
+	// printf("\nsocket del pcb: %d", pcb->socket);
 
 	pthread_mutex_lock(&mutex_creacion_ID);
 	pcb->id = contadorIdPCB;
@@ -424,8 +417,7 @@ void crear_pcb(void *argumentos)
 
 	pasar_a_new(pcb);
 	log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
-
-	printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
+	log_info(logger, "Cant de elementos de new: %d", list_size(LISTA_NEW));
 
 	sem_post(&sem_agregar_pcb);
 }
@@ -471,7 +463,7 @@ void planifCortoPlazo()
 	while (1)
 	{
 		sem_wait(&sem_hay_pcb_lista_ready);
-		printf("\nllego pcb a plani corto plazo\n");
+		log_info(logger,"Llego pcb a plani corto plazo");
 		t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
 
 		sem_wait(&contador_pcb_running);
@@ -518,7 +510,7 @@ void agregar_pcb()
 {
 	sem_wait(&contador_multiprogramacion);
 
-	printf("Agregando un pcb a lista ready");
+	log_info(logger, "Agregando un pcb a lista ready");
 
 	pthread_mutex_lock(&mutex_lista_new);
 	t_pcb *pcb = algoritmo_fifo(LISTA_NEW);

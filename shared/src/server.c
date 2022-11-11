@@ -379,15 +379,15 @@ void implementar_rr()
 void hilo_timer()
 {
 	sem_wait(&sem_timer);
-	printf("\nvoy a dormir, soy el timer\n");
+	//printf("\nvoy a dormir, soy el timer\n");
 	usleep(configKernel.quantum*1000);
 
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,NULL);
 
-	printf("\nme desperte!\n");
+	//printf("\nme desperte!\n");
 	sem_post(&sem_desalojar_pcb);
 
-	printf("\nenvie post desalojar pcb\n");
+	//printf("\nenvie post desalojar pcb\n");
 }
 
 void serializarValor(uint32_t valorRegistro, int socket, t_tipoMensaje tipoMensaje)

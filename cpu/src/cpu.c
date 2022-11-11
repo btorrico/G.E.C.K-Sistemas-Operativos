@@ -56,16 +56,10 @@ void iniciar_servidor_dispatch()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
 
 	socketAceptadoDispatch = esperar_cliente(server_fd);
-	printf("\nMe quedo esperando..\n");
 
 	while (1)
 	{
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoDispatch);
-		printf("\nMe quedo esperando6..\n");
-		/*if (paquete == NULL)
-		{
-			continue;
-		}*/
 		interrupciones = false;
 		retornePCB = false;
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
@@ -74,15 +68,6 @@ void iniciar_servidor_dispatch()
 		free(paquete);
 
 		printf("se recibio pcb de running de kernel\n");
-
-		printf("\n%d.\n", pcb->id);
-		printf("\n%d.\n", pcb->program_counter);
-
-		// imprimirInstruccionesYSegmentos(pcb->informacion);
-
-		printf("\n%d.\n", pcb->socket);
-
-		printf("\n%d.\n", pcb->registros.AX);
 
 		do
 		{
@@ -103,7 +88,6 @@ void iniciar_servidor_interrupt()
 	int cliente_fd = esperar_cliente(server_fd);
 	while (1)
 	{
-		// mostrar_mensajes_del_cliente(cliente_fd);
 		char *mensaje = recibirMensaje(cliente_fd);
 
 		log_info(logger, "Me llego el mensaje: %s\n", mensaje);
