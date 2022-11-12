@@ -55,10 +55,10 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 
 			// aca deberia hacer que la consola se quede esperando
 
-			//t_pcb *pcb = crear_pcb(&info, cliente_fd);
+			// t_pcb *pcb = crear_pcb(&info, cliente_fd);
 
-			//pasar_a_new(pcb);
-			//log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
+			// pasar_a_new(pcb);
+			// log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
 
 			printf("Cant de elementos de new: %d\n", list_size(LISTA_NEW));
 
@@ -142,9 +142,6 @@ void iterator(char *value)
 
 	log_info(logger, "%s", value);
 }
-
-
-
 
 void pasar_a_new(t_pcb *pcb)
 {
@@ -242,7 +239,6 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_blocked_teclado, NULL);
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
 
-
 	// semaforos
 	sem_init(&sem_ready, 0, 0);
 	sem_init(&sem_bloqueo, 0, 0);
@@ -257,12 +253,11 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_kill_trhread, 0, 0);
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
-	sem_init(&contador_bloqueo_teclado_running, 0 ,1);
-	sem_init(&contador_bloqueo_pantalla_running,0,1);
-	sem_init(&contador_bloqueo_general_running,0,1);
+	sem_init(&contador_bloqueo_teclado_running, 0, 1);
+	sem_init(&contador_bloqueo_pantalla_running, 0, 1);
+	sem_init(&contador_bloqueo_general_running, 0, 1);
 	sem_init(&sem_llamar_feedback, 0, 0);
 }
-
 
 void iteratorInt(int value)
 {
@@ -270,10 +265,9 @@ void iteratorInt(int value)
 	log_info(logger, "Segmento = %d", value);
 }
 
-
 t_tipo_algoritmo obtenerAlgoritmo()
 {
-	
+
 	char *algoritmo = configKernel.algoritmo;
 
 	t_tipo_algoritmo algoritmoResultado;
@@ -294,7 +288,6 @@ t_tipo_algoritmo obtenerAlgoritmo()
 	return algoritmoResultado;
 }
 
-
 t_pcb *algoritmo_fifo(t_list *lista)
 {
 	t_pcb *pcb = (t_pcb *)list_remove(lista, 0);
@@ -303,18 +296,23 @@ t_pcb *algoritmo_fifo(t_list *lista)
 
 void implementar_feedback()
 {
-	//implementar_rr();
+	// implementar_rr();
 
-	
-	if (list_is_empty(LISTA_READY))
+	pthread_mutex_lock(&mutex_lista_ready);
+	if (list_size(LISTA_READY) == 0)
 	{
+
+		pthread_mutex_unlock(&mutex_lista_ready);
 		implementar_fifo_auxiliar();
+		esFifo = true;
 	}
 	else
 	{
-		implementar_rr();
-	}
+		pthread_mutex_unlock(&mutex_lista_ready);
 
+		implementar_rr();
+		esFifo = false;
+	}
 }
 
 void implementar_fifo()
@@ -348,10 +346,14 @@ void implementar_fifo_auxiliar()
 void implementar_rr()
 {
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
+
 	pthread_t thrTimer;
 
-	pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
-	pthread_detach(&thrTimer);
+	int hiloTimerCreado = pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
+
+	int detach = pthread_detach(thrTimer);
+	printf("\nse creo el hilo timer correctamente?: %d, %d\n ", hiloTimerCreado, detach);
+
 	printf("\nAgregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
@@ -359,35 +361,36 @@ void implementar_rr()
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
-	sem_post(&sem_pasar_pcb_running);
 	sem_post(&sem_timer);
+	sem_post(&sem_pasar_pcb_running);
+
 
 	sem_wait(&sem_kill_trhread);
-	
-	//pthread_cancel(thrTimer);
-	
-	if (pthread_cancel(thrTimer)==0)
+
+	// pthread_cancel(thrTimer);
+
+	if (pthread_cancel(thrTimer) == 0)
 	{
 		printf("Hilo cancelado con exito");
-	}else{
+	}
+	else
+	{
 		printf("No mate el hilo");
 	}
-	
-	
 }
 
 void hilo_timer()
 {
 	sem_wait(&sem_timer);
-	//printf("\nvoy a dormir, soy el timer\n");
-	usleep(configKernel.quantum*1000);
+	 printf("\nvoy a dormir, soy el timer\n");
+	usleep(configKernel.quantum * 1000);
 
-	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,NULL);
+	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
-	//printf("\nme desperte!\n");
+	 printf("\nme desperte!\n");
 	sem_post(&sem_desalojar_pcb);
 
-	//printf("\nenvie post desalojar pcb\n");
+	 printf("\nenvie post desalojar pcb\n");
 }
 
 void serializarValor(uint32_t valorRegistro, int socket, t_tipoMensaje tipoMensaje)
@@ -416,4 +419,3 @@ uint32_t *deserializarValor(t_buffer *buffer, int socket)
 
 	return valorRegistro;
 }
-

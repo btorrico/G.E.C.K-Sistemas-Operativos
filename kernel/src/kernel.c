@@ -122,7 +122,9 @@ void conectar_dispatch()
 		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter - 1);
 		char *dispositivoIO;
 
-		if (obtenerAlgoritmo() == RR || obtenerAlgoritmo() == FEEDBACK)
+
+		//ACA ESTA EL PROBLEMA
+		if (obtenerAlgoritmo() == RR || (obtenerAlgoritmo() == FEEDBACK && !esFifo))
 		{
 			sem_post(&sem_kill_trhread);
 		}
@@ -376,6 +378,7 @@ void iniciar_kernel()
 
 	contadorIdPCB = 1;
 	contadorIdSegmento = 0;
+	esFifo = false;
 }
 
 void crear_pcb(void *argumentos)
