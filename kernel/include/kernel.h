@@ -12,7 +12,8 @@
 t_config *config;
 int conexion;
 int contadorIdPCB;
-int conexionMemoria;
+int contadorIdSegmento;
+
 
 t_configKernel configKernel;
 
@@ -28,7 +29,16 @@ void crear_hilos_kernel();
 void crear_pcb(void* );
 char *dispositivoToString(t_IO );
 void manejar_interrupcion(void *);
-void manejar_interrupcion_teclado(void *);
+void manejar_bloqueo_teclado(void *);
+void manejar_bloqueo_pantalla(void *);
+void manejar_bloqueo_general_disco(void *);
+void manejar_bloqueo_general_impresora(void *);
+
+void planifLargoPlazo();
+void planifCortoPlazo();
+void agregar_pcb();
+void eliminar_pcb();
+void cargarListaReadyIdPCB(t_list*);
 typedef struct
 {
     int socketCliente;
@@ -38,6 +48,7 @@ typedef struct
 int conexionDispatch;
 int conexionConsola;
 int conexionInterrupt;
+int conexionMemoria;
 
 // LISTAS
 t_list *LISTA_NEW;
@@ -49,13 +60,17 @@ t_list *LISTA_BLOCKED_TECLADO;
 t_list *LISTA_EXIT;
 t_list *LISTA_SOCKETS;
 t_list *LISTA_READY_AUXILIAR;
+t_list *LISTA_BLOCKED_DISCO;
+t_list *LISTA_BLOCKED_IMPRESORA;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
+pthread_mutex_t mutex_ID_Segmnento;
 pthread_mutex_t mutex_lista_new;
 pthread_mutex_t mutex_lista_ready;
 pthread_mutex_t mutex_lista_exec;
-pthread_mutex_t mutex_lista_blocked;
+pthread_mutex_t mutex_lista_blocked_disco;
+pthread_mutex_t mutex_lista_blocked_impresora;
 pthread_mutex_t mutex_lista_blocked_pantalla;
 pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
@@ -66,9 +81,13 @@ sem_t sem_planif_largo_plazo;
 sem_t contador_multiprogramacion;
 sem_t contador_pcb_running;
 sem_t contador_bloqueo_teclado_running;
+sem_t contador_bloqueo_pantalla_running;
+sem_t contador_bloqueo_disco_running;
+sem_t contador_bloqueo_impresora_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
+
 
 sem_t sem_agregar_pcb;
 sem_t sem_eliminar_pcb;
@@ -82,4 +101,6 @@ sem_t sem_kill_trhread;
 
 pthread_mutex_t mutex_lista_ready_auxiliar;
 sem_t sem_llamar_feedback;
+
+bool esFifo;
 #endif

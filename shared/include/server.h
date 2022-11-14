@@ -10,6 +10,7 @@
 #include "../globals.h"
 
 
+
 void conectar_y_mostrar_mensajes_de_cliente(char*, char*, t_log*);
 void mostrar_mensajes_del_cliente(int);
 void crear_hilos(int );
@@ -19,9 +20,8 @@ void iteratorInt(int );
 #define IP_SERVER "0.0.0.0"
 
 void cambiaValor();
-void planifLargoPlazo();
-void planifCortoPlazo();
-void controlBloqueo();
+
+
 
 t_pcb* algoritmo_fifo(t_list *);
 t_pcb *algoritmo_rr(t_list *);
@@ -36,7 +36,8 @@ void pasar_a_new(t_pcb *);
 void pasar_a_ready(t_pcb *);
 void pasar_a_ready_auxiliar(t_pcb *);
 void pasar_a_exec(t_pcb *);
-void pasar_a_block(t_pcb *);
+void pasar_a_block_impresora(t_pcb *);
+void pasar_a_block_disco(t_pcb *);
 void pasar_a_block_pantalla(t_pcb *);
 void pasar_a_block_teclado(t_pcb *);
 void pasar_a_exit(t_pcb *);

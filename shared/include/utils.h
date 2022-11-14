@@ -99,6 +99,14 @@ typedef struct
 
 }  __attribute__((packed)) t_registros;
 
+typedef struct
+{
+	uint8_t id;
+	uint32_t tamanio;
+	uint32_t indiceTablaPaginas;
+
+} __attribute__((packed)) t_tabla_segmantos;
+
 
 int size_char_array(char**) ;
 
@@ -116,6 +124,8 @@ typedef struct
 	//uint32_t tablaPag; // definir con memoria
 	//double ejecutados_total;
     t_informacion* informacion;
+	t_list* tablaSegmentos;
+	uint32_t segmentos_size;
 	t_registros registros;
 	int socket;
 
@@ -271,13 +281,18 @@ extern t_list* LISTA_SOCKETS;
 extern t_list *LISTA_READY_AUXILIAR;
 extern t_list *LISTA_BLOCKED_PANTALLA;
 extern t_list *LISTA_BLOCKED_TECLADO;
+extern t_list *LISTA_BLOCKED_DISCO;
+extern t_list *LISTA_BLOCKED_IMPRESORA;
+
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;
+extern pthread_mutex_t mutex_ID_Segmnento;
 extern pthread_mutex_t mutex_lista_new;
 extern pthread_mutex_t mutex_lista_ready;
 extern pthread_mutex_t mutex_lista_exec;
-extern pthread_mutex_t mutex_lista_blocked;
+extern pthread_mutex_t mutex_lista_blocked_disco;
+extern pthread_mutex_t mutex_lista_blocked_impresora;
 extern pthread_mutex_t mutex_lista_blocked_pantalla;
 extern pthread_mutex_t mutex_lista_blocked_teclado;
 extern pthread_mutex_t mutex_lista_exit;
@@ -289,6 +304,9 @@ extern sem_t sem_planif_largo_plazo;
 extern sem_t contador_multiprogramacion;
 extern sem_t contador_pcb_running;
 extern sem_t contador_bloqueo_teclado_running;
+extern sem_t contador_bloqueo_pantalla_running;
+extern sem_t contador_bloqueo_disco_running;
+extern sem_t contador_bloqueo_impresora_running;
 extern sem_t sem_ready;
 extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;
@@ -306,4 +324,7 @@ extern sem_t sem_kill_trhread;
 extern sem_t sem_llamar_feedback;
 
 void *serializar_paquete_dos(t_paqueteActual *paquete, int bytes);
+
+
+extern bool esFifo;
 #endif /* UTILS_H_ */
