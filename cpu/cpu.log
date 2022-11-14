@@ -2065,3 +2065,41 @@
 [DEBUG] 01:58:31:881 CPU/(49688:49689): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
 [DEBUG] 01:58:31:881 CPU/(49688:49689): Envie EXIT al kernel
 [DEBUG] 01:58:31:883 CPU/(49688:49689): No hay interrupcion, sigo el ciclo
+[INFO] 05:25:12:812 CPU/(8298:8299): Servidor listo para recibir al dispatch kernel
+[INFO] 05:25:12:812 CPU/(8298:8300): Servidor listo para recibir al interrupt kernel
+[INFO] 05:25:58:346 CPU/(8298:8299): Se conecto un cliente!
+[INFO] 05:25:58:347 CPU/(8298:8300): Se conecto un cliente!
+[INFO] 05:26:11:847 CPU/(8298:8299): insActual->instCode: 0
+[INFO] 05:26:11:847 CPU/(8298:8299): insActual->pc: 0
+[INFO] 05:26:11:847 CPU/(8298:8299):  Valor nuevo Program counter: 1
+[DEBUG] 05:26:11:847 CPU/(8298:8299): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[INFO] 05:26:11:848 CPU/(8298:8300): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 05:26:12:848 CPU/(8298:8299): AX = 1
+[DEBUG] 05:26:12:848 CPU/(8298:8299): Devuelvo pcb por interrupcion
+[INFO] 05:26:12:849 CPU/(8298:8299): insActual->instCode: 0
+[INFO] 05:26:12:849 CPU/(8298:8299): insActual->pc: 1
+[INFO] 05:26:12:849 CPU/(8298:8299):  Valor nuevo Program counter: 2
+[DEBUG] 05:26:12:849 CPU/(8298:8299): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 05:26:12:852 CPU/(8298:8300): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 05:26:13:849 CPU/(8298:8299): BX = 7
+[DEBUG] 05:26:13:849 CPU/(8298:8299): Devuelvo pcb por interrupcion
+[INFO] 05:26:13:868 CPU/(8298:8299): insActual->instCode: 1
+[INFO] 05:26:13:868 CPU/(8298:8299): insActual->pc: 2
+[INFO] 05:26:13:868 CPU/(8298:8299):  Valor nuevo Program counter: 3
+[DEBUG] 05:26:13:868 CPU/(8298:8299): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[INFO] 05:26:13:875 CPU/(8298:8300): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 05:26:14:868 CPU/(8298:8299): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 05:26:14:872 CPU/(8298:8299): AX = 8
+[DEBUG] 05:26:14:872 CPU/(8298:8299): Devuelvo pcb por interrupcion
+[INFO] 05:26:14:890 CPU/(8298:8299): insActual->instCode: 2
+[DEBUG] 05:26:14:890 CPU/(8298:8299): Requiere acceso a Memoria
+[INFO] 05:26:14:890 CPU/(8298:8299): insActual->pc: 3
+[INFO] 05:26:14:890 CPU/(8298:8299):  Valor nuevo Program counter: 4
+[DEBUG] 05:26:14:890 CPU/(8298:8299): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 05:26:14:890 CPU/(8298:8299): Leyendo valor de memoria del segmento de Datos correspondiente a la DL 4
+[DEBUG] 05:26:14:890 CPU/(8298:8299): Envie direccion fisica a memoria swap: MARCO: -1777336752, OFFSET: 32582
+

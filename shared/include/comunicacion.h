@@ -43,6 +43,10 @@ int enviarNumero(int socket,uint32_t num);
 */
 int enviarMensaje(int, char *);
 
+void enviarMsje(int socket, t_enviadoPor unModulo, void* mensaje, int tamanioMensaje, t_tipoMensaje tipoMensaje);
+
+void enviarPaquete(int socket, t_paqt* paquete);
+
 void enviarResultado(int socket, char* mensaje);
 
 
@@ -79,6 +83,12 @@ char *recibirMensaje(int);
 / @brief Recibe un numero por una conexion
 / @return El numero, o NULL si falla.
 */
+
+void recibirMsje(int socket, t_paqt * paquete);
+
+int recibirDatos(void* paquete, int socket, uint32_t cantARecibir);
+
+
 uint32_t recibirNumero(int socket);
 
 #endif

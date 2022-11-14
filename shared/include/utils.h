@@ -60,20 +60,33 @@ typedef struct
 typedef struct 
 {
 	uint32_t nroSegmento;
-	int base; //inicio
-} t_seg_base;  //tabla auxilia DL
+	int indiceTP; //inicio
+} t_tab_segmentos;  //tabla auxilia DL
 
 typedef struct 
 {
 	uint32_t nroPagina;
 	int marco; //frame
-} t_pag_segmento; //tabla auxiliar DL
+} t_tabla_paginas_segmento; //tabla auxiliar DL
 
 typedef struct {
 	uint32_t nroMarco;
 	int desplazamiento;
 } t_direccionFisica;
 
+typedef struct {
+	int nroMarco;
+	int desplazamiento;
+	int pid;
+}MSJ_MEMORIA_CPU_LEER;
+
+typedef struct {
+	int numero;
+}MSJ_INT;
+
+typedef struct {
+	char* cadena;
+}MSJ_STRING;
 
 //Utils del cliente
 typedef struct
@@ -93,9 +106,6 @@ typedef struct
 	uint8_t codigo_operacion;
 	t_buffer* buffer;
 } t_paqueteActual;
-
-
-
 typedef struct 
 {
     t_instCode instCode;
@@ -188,6 +198,26 @@ typedef enum {
 	ACCESO_MEMORIA_COPY,			//entre cpu-memoria
 	HANDSHAKE_INICIAL,
 }t_tipoMensaje;
+
+typedef enum {
+	CONSOLA,
+	KERNEL,
+	CPU,
+	MEMORIA_SWAP
+}t_enviadoPor;
+
+typedef struct 
+{
+	t_tipoMensaje tipoMensaje;
+	int tamanioMensaje;
+	t_enviadoPor cliente;
+} t_infoMensaje;
+
+typedef struct 
+{
+	t_infoMensaje header;
+	void* mensaje;
+} t_paqt;
 
 void imprimirInstruccionesYSegmentos(t_informacion* );
 
