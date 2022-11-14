@@ -51,6 +51,42 @@ typedef enum
   IMPRESORA
 } t_IO;
 
+typedef struct
+{
+	uint32_t nroSegmento;
+	uint32_t nroPagina;
+	int desplazamiento;
+} t_direccion_logica;
+typedef struct 
+{
+	uint32_t nroSegmento;
+	int indiceTP; //inicio
+} t_tab_segmentos;  //tabla auxilia DL
+
+typedef struct 
+{
+	uint32_t nroPagina;
+	int marco; //frame
+} t_tabla_paginas_segmento; //tabla auxiliar DL
+
+typedef struct {
+	uint32_t nroMarco;
+	int desplazamiento;
+} t_direccionFisica;
+
+typedef struct {
+	int nroMarco;
+	int desplazamiento;
+	int pid;
+}MSJ_MEMORIA_CPU_LEER;
+
+typedef struct {
+	int numero;
+}MSJ_INT;
+
+typedef struct {
+	char* cadena;
+}MSJ_STRING;
 
 //Utils del cliente
 typedef struct
@@ -70,9 +106,6 @@ typedef struct
 	uint8_t codigo_operacion;
 	t_buffer* buffer;
 } t_paqueteActual;
-
-
-
 typedef struct 
 {
     t_instCode instCode;
@@ -105,7 +138,7 @@ typedef struct
 	uint32_t tamanio;
 	uint32_t indiceTablaPaginas;
 
-} __attribute__((packed)) t_tabla_segmantos;
+} __attribute__((packed)) t_tabla_segmentos;
 
 
 int size_char_array(char**) ;
@@ -165,6 +198,26 @@ typedef enum {
 	ACCESO_MEMORIA_COPY,			//entre cpu-memoria
 	HANDSHAKE_INICIAL,
 }t_tipoMensaje;
+
+typedef enum {
+	CONSOLA,
+	KERNEL,
+	CPU,
+	MEMORIA_SWAP
+}t_enviadoPor;
+
+typedef struct 
+{
+	t_tipoMensaje tipoMensaje;
+	int tamanioMensaje;
+	t_enviadoPor cliente;
+} t_infoMensaje;
+
+typedef struct 
+{
+	t_infoMensaje header;
+	void* mensaje;
+} t_paqt;
 
 void imprimirInstruccionesYSegmentos(t_informacion* );
 

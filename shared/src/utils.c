@@ -324,8 +324,8 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 	while (n < list_size(pcb->tablaSegmentos))
 	{
 
-		memcpy(stream + offset, list_get(pcb->tablaSegmentos, n), sizeof(t_tabla_segmantos));
-		offset += sizeof(t_tabla_segmantos);
+		memcpy(stream + offset, list_get(pcb->tablaSegmentos, n), sizeof(t_tabla_segmentos));
+		offset += sizeof(t_tabla_segmentos);
 		n++;
 		//printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", n);
 	}
@@ -441,9 +441,9 @@ t_pcb *deserializoPCB(t_buffer *buffer)
 
 	while (m < (pcb->segmentos_size))
 	{
-		tableSegmentos = malloc(sizeof(t_tabla_segmantos));
-		memcpy(tableSegmentos, stream, sizeof(t_tabla_segmantos));
-		stream += sizeof(t_tabla_segmantos);
+		tableSegmentos = malloc(sizeof(t_tabla_segmentos));
+		memcpy(tableSegmentos, stream, sizeof(t_tabla_segmentos));
+		stream += sizeof(t_tabla_segmentos);
 		list_add(pcb->tablaSegmentos, tableSegmentos);
 		m++;
 	}

@@ -171,6 +171,39 @@ bool cicloInstruccion(t_pcb *pcb)
 		free(registro);
 		break;
 
+	case MOV_IN:
+		log_debug(logger, "Leyendo valor de memoria del segmento de Datos correspondiente a la DL %i", insActual->paramInt);
+		//traducir valor paramint para asignarlo despues a registroCPU
+	
+		t_direccionFisica* dirFisicaMoveIn = malloc(sizeof(t_direccionFisica));
+			//para probar
+			int indiceSeg=0; //en realidad hay que ir a buscar a la tabla de segmentos
+			dirFisicaMoveIn = calcularDireccionFisica(indiceSeg, insActual->paramInt);
+
+			MSJ_MEMORIA_CPU_LEER* mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
+
+			mensajeAMemoriaLeer->desplazamiento = dirFisicaMoveIn->desplazamiento;
+			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
+			mensajeAMemoriaLeer->pid = pcb->id;
+			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_READ);
+			log_debug(logger, "Envie direccion fisica a memoria swap: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
+
+			t_paqt paqueteMemoriaSwap;
+			recibirMsje(conexionMemoria, &paqueteMemoriaSwap);
+			MSJ_INT* mensajeValorLeido = malloc(sizeof(MSJ_INT));
+			mensajeValorLeido = paqueteMemoriaSwap.mensaje;
+			
+			asignarValorARegistro(pcb, insActual->paramReg[0], mensajeValorLeido->numero);
+			
+			log_debug(logger, "Mensaje leido: %d", mensajeValorLeido->numero);
+			log_debug(logger, "Registro %s = %i", registro, insActual->paramReg[0]);
+
+
+			free(dirFisicaMoveIn);
+			free(mensajeAMemoriaLeer);
+			free(mensajeValorLeido);
+			break;
+
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
 		// pcb->program_counter += 1;
@@ -359,4 +392,10 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 	default:
 		break;
 	}
+}
+
+
+t_direccionFisica *calcularDireccionFisica(int indiceSeg, uint32_t paramInt){
+t_direccionFisica *df;
+return df;
 }

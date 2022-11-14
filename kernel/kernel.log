@@ -3317,6 +3317,7 @@
 [INFO] 23:27:37:770 KERNEL/(2533:3555): Me llego el mensaje: se mostro el valor por pantalla
 
 
+<<<<<<< HEAD
 [DEBUG] 23:27:37:770 KERNEL/(2533:3555): Paso a READY el proceso 1
 [INFO] 23:27:37:770 KERNEL/(2533:2538): Llego pcb a plani corto plazo
 [DEBUG] 23:27:37:770 KERNEL/(2533:2538): Implementando algoritmo RR
@@ -6660,3 +6661,67 @@
 [DEBUG] 02:57:39:549 KERNEL/(14194:14203): Procesos finalizados: 1
 [DEBUG] 02:57:39:549 KERNEL/(14194:14203): Procesos finalizados: 3
 [DEBUG] 02:57:39:549 KERNEL/(14194:14203): Procesos finalizados: 4
+=======
+[DEBUG] 01:58:21:870 KERNEL/(49837:50196): Paso a READY el proceso 1
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:21:870 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:21:871 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:21:872 KERNEL/(49837:49843): Paso a BLOCK el proceso 1
+[DEBUG] 01:58:21:872 KERNEL/(49837:49843): Ejecutada: 'PID:  1 - Bloqueado por: IMPRESORA '
+[INFO] 01:58:21:874 KERNEL/(49837:50198): Ejecutando el dispositivo IMPRESORA
+[INFO] 01:58:21:877 KERNEL/(49837:50198): Por un tiempo de: 10000
+[DEBUG] 01:58:31:880 KERNEL/(49837:50198): Paso a READY el proceso 1
+[DEBUG] 01:58:31:880 KERNEL/(49837:49842): Implementando algoritmo RR
+[DEBUG] 01:58:31:880 KERNEL/(49837:49842):  Cola Ready RR:
+[DEBUG] 01:58:31:880 KERNEL/(49837:49842):  '[ 1 ] '
+[DEBUG] 01:58:31:881 KERNEL/(49837:49842): Paso a EXEC el proceso 1
+[DEBUG] 01:58:31:881 KERNEL/(49837:49842): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:58:31:881 KERNEL/(49837:49842): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Paso a EXEC el proceso 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Paso a EXIT el proceso 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 01:58:31:882 KERNEL/(49837:49843): Procesos finalizados: 1
+[INFO] 05:25:58:348 KERNEL/(8452:8453): Servidor listo para recibir al cliente
+[INFO] 05:26:11:841 KERNEL/(8452:8453): Se conecto un cliente!
+[INFO] 05:26:11:841 KERNEL/(8452:8453): Llegaron las instrucciones y los segmentos
+[INFO] 05:26:11:844 KERNEL/(8452:8655): Consola conectada, paso a crear el hilo
+[DEBUG] 05:26:11:845 KERNEL/(8452:8655): Paso a NEW el proceso 1
+[DEBUG] 05:26:11:846 KERNEL/(8452:8655): Estado Actual: NEW , proceso id: 1
+[DEBUG] 05:26:11:846 KERNEL/(8452:8456): Paso a READY el proceso 1
+[DEBUG] 05:26:11:846 KERNEL/(8452:8456): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 05:26:11:846 KERNEL/(8452:8456): Estado Actual: READY , proceso id: 1
+[DEBUG] 05:26:11:846 KERNEL/(8452:8457): Implementando algoritmo RR
+[DEBUG] 05:26:11:846 KERNEL/(8452:8457):  Cola Ready RR:
+[DEBUG] 05:26:11:846 KERNEL/(8452:8457):  '[ 1 ] '
+[DEBUG] 05:26:11:846 KERNEL/(8452:8457): Paso a EXEC el proceso 1
+[DEBUG] 05:26:11:846 KERNEL/(8452:8457): Estado Anterior: READY , proceso id: 1
+[DEBUG] 05:26:11:846 KERNEL/(8452:8457): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 05:26:12:848 KERNEL/(8452:8458): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 05:26:12:848 KERNEL/(8452:8660): Paso a READY el proceso 1
+[DEBUG] 05:26:12:848 KERNEL/(8452:8457): Implementando algoritmo RR
+[DEBUG] 05:26:12:848 KERNEL/(8452:8457):  Cola Ready RR:
+[DEBUG] 05:26:12:848 KERNEL/(8452:8457):  '[ 1 ] '
+[DEBUG] 05:26:12:848 KERNEL/(8452:8457): Paso a EXEC el proceso 1
+[DEBUG] 05:26:12:848 KERNEL/(8452:8457): Estado Anterior: READY , proceso id: 1
+[DEBUG] 05:26:12:848 KERNEL/(8452:8457): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 05:26:13:849 KERNEL/(8452:8458): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 05:26:13:863 KERNEL/(8452:8703): Paso a READY el proceso 1
+[DEBUG] 05:26:13:867 KERNEL/(8452:8457): Implementando algoritmo RR
+[DEBUG] 05:26:13:867 KERNEL/(8452:8457):  Cola Ready RR:
+[DEBUG] 05:26:13:867 KERNEL/(8452:8457):  '[ 1 ] '
+[DEBUG] 05:26:13:867 KERNEL/(8452:8457): Paso a EXEC el proceso 1
+[DEBUG] 05:26:13:867 KERNEL/(8452:8457): Estado Anterior: READY , proceso id: 1
+[DEBUG] 05:26:13:867 KERNEL/(8452:8457): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 05:26:14:872 KERNEL/(8452:8458): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 05:26:14:888 KERNEL/(8452:8732): Paso a READY el proceso 1
+[DEBUG] 05:26:14:889 KERNEL/(8452:8457): Implementando algoritmo RR
+[DEBUG] 05:26:14:889 KERNEL/(8452:8457):  Cola Ready RR:
+[DEBUG] 05:26:14:890 KERNEL/(8452:8457):  '[ 1 ] '
+[DEBUG] 05:26:14:890 KERNEL/(8452:8457): Paso a EXEC el proceso 1
+[DEBUG] 05:26:14:890 KERNEL/(8452:8457): Estado Anterior: READY , proceso id: 1
+[DEBUG] 05:26:14:890 KERNEL/(8452:8457): Estado Actual: EXEC , proceso id: 1
+>>>>>>> de079c1affe2190a4e63ac2c51848b1a3cdd7884

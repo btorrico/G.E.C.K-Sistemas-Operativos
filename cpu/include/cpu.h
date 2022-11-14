@@ -48,6 +48,7 @@ char *ioToString(t_IO );
 uint32_t matchearRegistro(t_registros ,t_registro );
 void asignarValorARegistro(t_pcb *,t_registro ,uint32_t );
 bool cicloInstruccion(t_pcb *);
+t_direccionFisica *calcularDireccionFisica(int indiceSeg , uint32_t);
 
 
  int conexionDispatch;

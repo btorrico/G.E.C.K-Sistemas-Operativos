@@ -425,7 +425,7 @@ void crear_pcb(void *argumentos)
 
 	for (int i = 0; i < list_size(pcb->informacion->segmentos); i++)
 	{
-		t_tabla_segmantos *tablaSegmento = malloc(sizeof(t_tabla_segmantos));
+		t_tabla_segmentos *tablaSegmento = malloc(sizeof(t_tabla_segmentos));
 		uint32_t segmento = list_get(pcb->informacion->segmentos, i);
 
 		tablaSegmento->tamanio = segmento;

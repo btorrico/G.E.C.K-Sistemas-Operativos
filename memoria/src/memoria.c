@@ -97,4 +97,10 @@ void iniciar_servidor_hacia_cpu()
 	//char *mensaje = recibirMensaje(socketAceptadoKernel);
 	log_info(logger, "Mensaje de confirmacion del CPU: %s\n", mensaje);
 	mostrar_mensajes_del_cliente(cliente_fd);
+
+	t_paqt paqueteCPU;
+	recibirMsje(cliente_fd, &paqueteCPU);
+	if(paqueteCPU.header.cliente == CPU){
+		log_debug(logger,"[HANSHAKE] se conecto CPU");
+	}
 }
