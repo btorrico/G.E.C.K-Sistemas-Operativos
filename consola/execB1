@@ -2,8 +2,7 @@
 FILE=consola
 CONFIG=consola.config
 BASE_1=BASE/BASE_1
-make clean 
-make $FILE
+
 if test -f "./$FILE"; then
     ./$FILE $CONFIG $BASE_1
 fi

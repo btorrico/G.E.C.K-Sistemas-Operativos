@@ -125,5 +125,5 @@ sem_t sem_desalojar_pcb;
 sem_t sem_kill_trhread;
 sem_t sem_llamar_feedback;
 
-bool esFifo;
+bool hayTimer;
 #endif

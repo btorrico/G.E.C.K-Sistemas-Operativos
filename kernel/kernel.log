@@ -5344,3 +5344,1319 @@
 [DEBUG] 02:08:04:160 KERNEL/(20161:20166): Estado Anterior: READY , proceso id: 3
 [DEBUG] 02:08:04:160 KERNEL/(20161:20166): Estado Actual: EXEC , proceso id: 3
 [DEBUG] 02:08:05:160 KERNEL/(20161:20167): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 02:10:35:926 KERNEL/(4423:4424): Servidor listo para recibir al cliente
+[INFO] 02:13:28:995 KERNEL/(4423:4424): Se conecto un cliente!
+[INFO] 02:13:28:995 KERNEL/(4423:4424): Llegaron las instrucciones y los segmentos
+[INFO] 02:13:28:995 KERNEL/(4423:4645): Consola conectada, paso a crear el hilo
+[DEBUG] 02:13:28:995 KERNEL/(4423:4645): Paso a NEW el proceso 1
+[DEBUG] 02:13:28:995 KERNEL/(4423:4645): Estado Actual: NEW , proceso id: 1
+[INFO] 02:13:28:995 KERNEL/(4423:4645): Cant de elementos de new: 1
+[INFO] 02:13:28:995 KERNEL/(4423:4427): Agregando un pcb a lista ready
+[DEBUG] 02:13:28:995 KERNEL/(4423:4427): Paso a READY el proceso 1
+[DEBUG] 02:13:28:995 KERNEL/(4423:4427): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 02:13:28:995 KERNEL/(4423:4427): Estado Actual: READY , proceso id: 1
+[INFO] 02:13:28:995 KERNEL/(4423:4428): Llego pcb a plani corto plazo
+[DEBUG] 02:13:28:995 KERNEL/(4423:4428): Implementando algoritmo FEEDBACK
+[DEBUG] 02:13:28:995 KERNEL/(4423:4428): Paso a EXEC el proceso 1
+[DEBUG] 02:13:28:995 KERNEL/(4423:4428): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:13:28:995 KERNEL/(4423:4428): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 02:13:29:996 KERNEL/(4423:4429): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 02:13:30:023 KERNEL/(4423:4660): Paso a READY aux el proceso 1
+[INFO] 02:28:07:169 KERNEL/(5208:5209): Servidor listo para recibir al cliente
+[INFO] 02:28:26:204 KERNEL/(5208:5209): Se conecto un cliente!
+[INFO] 02:28:26:205 KERNEL/(5208:5209): Llegaron las instrucciones y los segmentos
+[INFO] 02:28:26:205 KERNEL/(5208:5362): Consola conectada, paso a crear el hilo
+[DEBUG] 02:28:26:205 KERNEL/(5208:5362): Paso a NEW el proceso 1
+[DEBUG] 02:28:26:205 KERNEL/(5208:5362): Estado Actual: NEW , proceso id: 1
+[INFO] 02:28:26:205 KERNEL/(5208:5362): Cant de elementos de new: 1
+[INFO] 02:28:26:205 KERNEL/(5208:5212): Agregando un pcb a lista ready
+[DEBUG] 02:28:26:205 KERNEL/(5208:5212): Paso a READY el proceso 1
+[DEBUG] 02:28:26:205 KERNEL/(5208:5212): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 02:28:26:205 KERNEL/(5208:5212): Estado Actual: READY , proceso id: 1
+[INFO] 02:28:26:205 KERNEL/(5208:5213): Llego pcb a plani corto plazo
+[DEBUG] 02:28:26:205 KERNEL/(5208:5213): Implementando algoritmo FEEDBACK
+[DEBUG] 02:28:26:205 KERNEL/(5208:5213): Paso a EXEC el proceso 1
+[DEBUG] 02:28:26:205 KERNEL/(5208:5213): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:28:26:205 KERNEL/(5208:5213): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 02:28:27:206 KERNEL/(5208:5214): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 02:28:27:206 KERNEL/(5208:5364): Paso a READY aux el proceso 1
+[INFO] 02:58:44:290 KERNEL/(6166:6171): Llego pcb a plani corto plazo
+[INFO] 02:58:44:293 KERNEL/(6166:6167): Servidor listo para recibir al cliente
+[INFO] 02:59:16:327 KERNEL/(6166:6167): Se conecto un cliente!
+[INFO] 02:59:16:327 KERNEL/(6166:6167): Llegaron las instrucciones y los segmentos
+[INFO] 02:59:16:327 KERNEL/(6166:6393): Consola conectada, paso a crear el hilo
+[DEBUG] 02:59:16:328 KERNEL/(6166:6393): Paso a NEW el proceso 1
+[DEBUG] 02:59:16:328 KERNEL/(6166:6393): Estado Actual: NEW , proceso id: 1
+[INFO] 02:59:16:328 KERNEL/(6166:6393): Cant de elementos de new: 1
+[INFO] 02:59:16:328 KERNEL/(6166:6170): Agregando un pcb a lista ready
+[DEBUG] 02:59:16:328 KERNEL/(6166:6170): Paso a READY el proceso 1
+[DEBUG] 02:59:16:328 KERNEL/(6166:6170): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 02:59:16:328 KERNEL/(6166:6170): Estado Actual: READY , proceso id: 1
+[DEBUG] 02:59:16:328 KERNEL/(6166:6171): Implementando algoritmo FEEDBACK
+[DEBUG] 02:59:16:328 KERNEL/(6166:6171): Paso a EXEC el proceso 1
+[DEBUG] 02:59:16:328 KERNEL/(6166:6171): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:59:16:328 KERNEL/(6166:6171): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:59:17:329 KERNEL/(6166:6171): Llego pcb a plani corto plazo
+[DEBUG] 02:59:17:329 KERNEL/(6166:6172): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 02:59:17:329 KERNEL/(6166:6397): Paso a READY aux el proceso 1
+[DEBUG] 02:59:17:329 KERNEL/(6166:6171): Implementando algoritmo FEEDBACK
+[DEBUG] 02:59:17:329 KERNEL/(6166:6171): Paso a EXEC el proceso 1
+[DEBUG] 02:59:17:329 KERNEL/(6166:6171): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:59:17:329 KERNEL/(6166:6171): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:59:17:329 KERNEL/(6166:6171): Llego pcb a plani corto plazo
+[DEBUG] 02:59:19:331 KERNEL/(6166:6172): Paso a BLOCK el proceso 1
+[DEBUG] 02:59:19:331 KERNEL/(6166:6172): Ejecutada: 'PID:  1 - Bloqueado por: DISCO '
+[INFO] 02:59:19:331 KERNEL/(6166:6398): Ejecutando el dispositivo DISCO
+[INFO] 02:59:19:331 KERNEL/(6166:6398): Por un tiempo de: 10000
+[DEBUG] 02:59:29:332 KERNEL/(6166:6398): Paso a READY el proceso 1
+[DEBUG] 02:59:29:332 KERNEL/(6166:6171): Implementando algoritmo FEEDBACK
+[DEBUG] 02:59:29:332 KERNEL/(6166:6171): Paso a EXEC el proceso 1
+[DEBUG] 02:59:29:332 KERNEL/(6166:6171): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:59:29:332 KERNEL/(6166:6171): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 02:59:29:332 KERNEL/(6166:6172): Paso a BLOCK el proceso 1
+[DEBUG] 02:59:29:332 KERNEL/(6166:6172): Ejecutada: 'PID:  1 - Bloqueado por: TECLADO '
+[INFO] 02:59:29:333 KERNEL/(6166:6171): Llego pcb a plani corto plazo
+[INFO] 03:02:33:737 KERNEL/(6166:6484): El valor del registro ingresado por consola es: 32
+[DEBUG] 03:02:33:897 KERNEL/(6166:6484): Paso a READY el proceso 1
+[DEBUG] 03:02:33:897 KERNEL/(6166:6171): Implementando algoritmo FEEDBACK
+[DEBUG] 03:02:33:897 KERNEL/(6166:6171): Paso a EXEC el proceso 1
+[DEBUG] 03:02:33:897 KERNEL/(6166:6171): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:02:33:897 KERNEL/(6166:6171): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:02:33:903 KERNEL/(6166:6172): Paso a BLOCK el proceso 1
+[DEBUG] 03:02:33:903 KERNEL/(6166:6172): Ejecutada: 'PID:  1 - Bloqueado por: PANTALLA '
+[INFO] 03:02:33:903 KERNEL/(6166:6171): Llego pcb a plani corto plazo
+[INFO] 04:12:59:636 KERNEL/(7813:7820): Llego pcb a plani corto plazo
+[INFO] 04:12:59:637 KERNEL/(7813:7816): Servidor listo para recibir al cliente
+[INFO] 04:13:10:039 KERNEL/(7813:7816): Se conecto un cliente!
+[INFO] 04:13:10:040 KERNEL/(7813:7816): Llegaron las instrucciones y los segmentos
+[INFO] 04:13:10:040 KERNEL/(7813:7963): Consola conectada, paso a crear el hilo
+[DEBUG] 04:13:10:040 KERNEL/(7813:7963): Paso a NEW el proceso 1
+[DEBUG] 04:13:10:040 KERNEL/(7813:7963): Estado Actual: NEW , proceso id: 1
+[INFO] 04:13:10:040 KERNEL/(7813:7963): Cant de elementos de new: 1
+[INFO] 04:13:10:040 KERNEL/(7813:7819): Agregando un pcb a lista ready
+[DEBUG] 04:13:10:040 KERNEL/(7813:7819): Paso a READY el proceso 1
+[DEBUG] 04:13:10:040 KERNEL/(7813:7819): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 04:13:10:040 KERNEL/(7813:7819): Estado Actual: READY , proceso id: 1
+[DEBUG] 04:13:10:040 KERNEL/(7813:7820): Implementando algoritmo FEEDBACK
+[DEBUG] 04:13:10:040 KERNEL/(7813:7820): Paso a EXEC el proceso 1
+[DEBUG] 04:13:10:040 KERNEL/(7813:7820): Estado Anterior: READY , proceso id: 1
+[DEBUG] 04:13:10:040 KERNEL/(7813:7820): Estado Actual: EXEC , proceso id: 1
+[INFO] 04:13:11:040 KERNEL/(7813:7820): Llego pcb a plani corto plazo
+[DEBUG] 04:13:11:041 KERNEL/(7813:7821): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 04:13:11:041 KERNEL/(7813:7965): Paso a READY aux el proceso 1
+[DEBUG] 04:13:11:041 KERNEL/(7813:7820): Implementando algoritmo FEEDBACK
+[DEBUG] 04:13:11:041 KERNEL/(7813:7820): Paso a EXEC el proceso 1
+[DEBUG] 04:13:11:041 KERNEL/(7813:7820): Estado Anterior: READY , proceso id: 1
+[DEBUG] 04:13:11:041 KERNEL/(7813:7820): Estado Actual: EXEC , proceso id: 1
+[INFO] 04:13:11:041 KERNEL/(7813:7820): Llego pcb a plani corto plazo
+[DEBUG] 04:13:13:042 KERNEL/(7813:7821): Paso a BLOCK el proceso 1
+[DEBUG] 04:13:13:042 KERNEL/(7813:7821): Ejecutada: 'PID:  1 - Bloqueado por: DISCO '
+[INFO] 04:13:13:042 KERNEL/(7813:8020): Ejecutando el dispositivo DISCO
+[INFO] 04:13:13:042 KERNEL/(7813:8020): Por un tiempo de: 10000
+[DEBUG] 04:13:23:042 KERNEL/(7813:8020): Paso a READY el proceso 1
+[DEBUG] 04:13:23:042 KERNEL/(7813:7820): Implementando algoritmo FEEDBACK
+[DEBUG] 04:13:23:042 KERNEL/(7813:7820): Paso a EXEC el proceso 1
+[DEBUG] 04:13:23:042 KERNEL/(7813:7820): Estado Anterior: READY , proceso id: 1
+[DEBUG] 04:13:23:042 KERNEL/(7813:7820): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 04:13:23:043 KERNEL/(7813:7821): Paso a BLOCK el proceso 1
+[DEBUG] 04:13:23:043 KERNEL/(7813:7821): Ejecutada: 'PID:  1 - Bloqueado por: TECLADO '
+[INFO] 04:13:23:043 KERNEL/(7813:7820): Llego pcb a plani corto plazo
+[INFO] 04:13:32:154 KERNEL/(7813:8064): El valor del registro ingresado por consola es: 32
+[DEBUG] 04:13:32:154 KERNEL/(7813:8064): Paso a READY el proceso 1
+[DEBUG] 04:13:32:154 KERNEL/(7813:7820): Implementando algoritmo FEEDBACK
+[DEBUG] 04:13:32:154 KERNEL/(7813:7820): Paso a EXEC el proceso 1
+[DEBUG] 04:13:32:154 KERNEL/(7813:7820): Estado Anterior: READY , proceso id: 1
+[DEBUG] 04:13:32:154 KERNEL/(7813:7820): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 04:13:32:155 KERNEL/(7813:7821): Paso a BLOCK el proceso 1
+[DEBUG] 04:13:32:155 KERNEL/(7813:7821): Ejecutada: 'PID:  1 - Bloqueado por: PANTALLA '
+[INFO] 04:13:32:155 KERNEL/(7813:7820): Llego pcb a plani corto plazo
+[INFO] 04:13:32:155 KERNEL/(7813:8130): El valor del registro que se muestra por pantalla es: 7
+[INFO] 04:13:32:905 KERNEL/(7813:8130): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 04:13:32:905 KERNEL/(7813:8130): Paso a READY el proceso 1
+[DEBUG] 04:13:32:905 KERNEL/(7813:7820): Implementando algoritmo FEEDBACK
+[DEBUG] 04:13:32:905 KERNEL/(7813:7820): Paso a EXEC el proceso 1
+[DEBUG] 04:13:32:905 KERNEL/(7813:7820): Estado Anterior: READY , proceso id: 1
+[DEBUG] 04:13:32:905 KERNEL/(7813:7820): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 04:13:32:905 KERNEL/(7813:7821): Paso a BLOCK el proceso 1
+[DEBUG] 04:13:32:905 KERNEL/(7813:7821): Ejecutada: 'PID:  1 - Bloqueado por: IMPRESORA '
+[INFO] 04:13:32:905 KERNEL/(7813:7820): Llego pcb a plani corto plazo
+[INFO] 04:13:32:906 KERNEL/(7813:8139): Ejecutando el dispositivo IMPRESORA
+[INFO] 04:13:32:906 KERNEL/(7813:8139): Por un tiempo de: 10000
+[DEBUG] 04:13:42:906 KERNEL/(7813:8139): Paso a READY el proceso 1
+[DEBUG] 04:13:42:906 KERNEL/(7813:7820): Implementando algoritmo FEEDBACK
+[DEBUG] 04:13:42:906 KERNEL/(7813:7820): Paso a EXEC el proceso 1
+[DEBUG] 04:13:42:906 KERNEL/(7813:7820): Estado Anterior: READY , proceso id: 1
+[DEBUG] 04:13:42:906 KERNEL/(7813:7820): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 04:13:42:907 KERNEL/(7813:7821): Paso a EXEC el proceso 1
+[DEBUG] 04:13:42:907 KERNEL/(7813:7821): Paso a EXIT el proceso 1
+[DEBUG] 04:13:42:907 KERNEL/(7813:7821): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 04:13:42:907 KERNEL/(7813:7821): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 04:13:42:907 KERNEL/(7813:7821): Procesos finalizados: 1
+[INFO] 04:13:42:907 KERNEL/(7813:7820): Llego pcb a plani corto plazo
+[INFO] 23:05:37:428 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[INFO] 23:05:37:428 KERNEL/(3770:3771): Servidor listo para recibir al cliente
+[INFO] 23:07:42:356 KERNEL/(3770:3771): Se conecto un cliente!
+[INFO] 23:07:42:356 KERNEL/(3770:3771): Llegaron las instrucciones y los segmentos
+[INFO] 23:07:42:356 KERNEL/(3770:3946): Consola conectada, paso a crear el hilo
+[DEBUG] 23:07:42:356 KERNEL/(3770:3946): Paso a NEW el proceso 1
+[DEBUG] 23:07:42:356 KERNEL/(3770:3946): Estado Actual: NEW , proceso id: 1
+[INFO] 23:07:42:356 KERNEL/(3770:3946): Cant de elementos de new: 1
+[INFO] 23:07:42:356 KERNEL/(3770:3774): Agregando un pcb a lista ready
+[DEBUG] 23:07:42:356 KERNEL/(3770:3774): Paso a READY el proceso 1
+[DEBUG] 23:07:42:356 KERNEL/(3770:3774): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 23:07:42:356 KERNEL/(3770:3774): Estado Actual: READY , proceso id: 1
+[DEBUG] 23:07:42:356 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:07:42:356 KERNEL/(3770:3775): Paso a EXEC el proceso 1
+[DEBUG] 23:07:42:356 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:07:42:356 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 1
+[INFO] 23:07:43:386 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[DEBUG] 23:07:43:386 KERNEL/(3770:3776): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 23:07:43:386 KERNEL/(3770:3959): Paso a READY aux el proceso 1
+[DEBUG] 23:07:43:386 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:07:43:386 KERNEL/(3770:3775): Paso a EXEC el proceso 1
+[DEBUG] 23:07:43:386 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:07:43:386 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 1
+[INFO] 23:07:43:386 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[DEBUG] 23:07:45:388 KERNEL/(3770:3776): Paso a BLOCK el proceso 1
+[DEBUG] 23:07:45:388 KERNEL/(3770:3776): Ejecutada: 'PID:  1 - Bloqueado por: DISCO '
+[INFO] 23:07:45:388 KERNEL/(3770:3993): Ejecutando el dispositivo DISCO
+[INFO] 23:07:45:388 KERNEL/(3770:3993): Por un tiempo de: 10000
+[DEBUG] 23:07:55:388 KERNEL/(3770:3993): Paso a READY el proceso 1
+[DEBUG] 23:07:55:388 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:07:55:388 KERNEL/(3770:3775): Paso a EXEC el proceso 1
+[DEBUG] 23:07:55:388 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:07:55:388 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 23:07:55:389 KERNEL/(3770:3776): Paso a BLOCK el proceso 1
+[DEBUG] 23:07:55:389 KERNEL/(3770:3776): Ejecutada: 'PID:  1 - Bloqueado por: TECLADO '
+[INFO] 23:07:55:389 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[INFO] 23:08:08:179 KERNEL/(3770:4055): El valor del registro ingresado por consola es: 21
+[DEBUG] 23:08:08:179 KERNEL/(3770:4055): Paso a READY el proceso 1
+[DEBUG] 23:08:08:179 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:08:08:179 KERNEL/(3770:3775): Paso a EXEC el proceso 1
+[DEBUG] 23:08:08:179 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:08:08:179 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 23:08:08:179 KERNEL/(3770:3776): Paso a BLOCK el proceso 1
+[DEBUG] 23:08:08:179 KERNEL/(3770:3776): Ejecutada: 'PID:  1 - Bloqueado por: PANTALLA '
+[INFO] 23:08:08:179 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[INFO] 23:08:08:179 KERNEL/(3770:4128): El valor del registro que se muestra por pantalla es: 7
+[INFO] 23:08:08:930 KERNEL/(3770:4128): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 23:08:08:930 KERNEL/(3770:4128): Paso a READY el proceso 1
+[DEBUG] 23:08:08:930 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:08:08:930 KERNEL/(3770:3775): Paso a EXEC el proceso 1
+[DEBUG] 23:08:08:930 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:08:08:930 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 23:08:08:931 KERNEL/(3770:3776): Paso a BLOCK el proceso 1
+[DEBUG] 23:08:08:931 KERNEL/(3770:3776): Ejecutada: 'PID:  1 - Bloqueado por: IMPRESORA '
+[INFO] 23:08:08:931 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[INFO] 23:08:08:931 KERNEL/(3770:4137): Ejecutando el dispositivo IMPRESORA
+[INFO] 23:08:08:931 KERNEL/(3770:4137): Por un tiempo de: 10000
+[DEBUG] 23:08:18:931 KERNEL/(3770:4137): Paso a READY el proceso 1
+[DEBUG] 23:08:18:931 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:08:18:931 KERNEL/(3770:3775): Paso a EXEC el proceso 1
+[DEBUG] 23:08:18:931 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:08:18:931 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 23:08:18:932 KERNEL/(3770:3776): Paso a EXEC el proceso 1
+[DEBUG] 23:08:18:932 KERNEL/(3770:3776): Paso a EXIT el proceso 1
+[DEBUG] 23:08:18:932 KERNEL/(3770:3776): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 23:08:18:932 KERNEL/(3770:3776): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 23:08:18:932 KERNEL/(3770:3776): Procesos finalizados: 1
+[INFO] 23:08:18:932 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[INFO] 23:14:59:904 KERNEL/(3770:3771): Se conecto un cliente!
+[INFO] 23:15:00:003 KERNEL/(3770:3771): Llegaron las instrucciones y los segmentos
+[INFO] 23:15:00:101 KERNEL/(3770:3771): Se conecto un cliente!
+[INFO] 23:15:00:101 KERNEL/(3770:3771): Llegaron las instrucciones y los segmentos
+[INFO] 23:15:00:112 KERNEL/(3770:4779): Consola conectada, paso a crear el hilo
+[DEBUG] 23:15:00:112 KERNEL/(3770:4779): Paso a NEW el proceso 2
+[DEBUG] 23:15:00:112 KERNEL/(3770:4779): Estado Actual: NEW , proceso id: 2
+[INFO] 23:15:00:112 KERNEL/(3770:4779): Cant de elementos de new: 1
+[INFO] 23:15:00:129 KERNEL/(3770:4778): Consola conectada, paso a crear el hilo
+[DEBUG] 23:15:00:129 KERNEL/(3770:4778): Paso a NEW el proceso 3
+[DEBUG] 23:15:00:129 KERNEL/(3770:4778): Estado Actual: NEW , proceso id: 3
+[INFO] 23:15:00:129 KERNEL/(3770:4778): Cant de elementos de new: 2
+[INFO] 23:15:00:146 KERNEL/(3770:3774): Agregando un pcb a lista ready
+[DEBUG] 23:15:00:147 KERNEL/(3770:3774): Paso a READY el proceso 2
+[DEBUG] 23:15:00:147 KERNEL/(3770:3774): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 23:15:00:147 KERNEL/(3770:3774): Estado Actual: READY , proceso id: 2
+[INFO] 23:15:00:147 KERNEL/(3770:3774): Agregando un pcb a lista ready
+[DEBUG] 23:15:00:147 KERNEL/(3770:3774): Paso a READY el proceso 3
+[DEBUG] 23:15:00:147 KERNEL/(3770:3774): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 23:15:00:147 KERNEL/(3770:3774): Estado Actual: READY , proceso id: 3
+[DEBUG] 23:15:00:271 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:15:00:271 KERNEL/(3770:3775): Paso a EXEC el proceso 2
+[DEBUG] 23:15:00:271 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 2
+[DEBUG] 23:15:00:271 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 23:15:01:619 KERNEL/(3770:3776): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[INFO] 23:15:01:619 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[DEBUG] 23:15:01:619 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:15:01:619 KERNEL/(3770:3775): Paso a EXEC el proceso 3
+[DEBUG] 23:15:01:619 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 3
+[DEBUG] 23:15:01:619 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 23:15:01:619 KERNEL/(3770:4794): Paso a READY aux el proceso 2
+[DEBUG] 23:15:02:620 KERNEL/(3770:3776): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 23:15:02:620 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[DEBUG] 23:15:02:620 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:15:02:620 KERNEL/(3770:3775): Paso a EXEC el proceso 2
+[DEBUG] 23:15:02:620 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 2
+[DEBUG] 23:15:02:620 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 2
+[INFO] 23:15:02:620 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[DEBUG] 23:15:02:620 KERNEL/(3770:4823): Paso a READY aux el proceso 3
+[INFO] 23:15:04:284 KERNEL/(3770:3771): Se conecto un cliente!
+[INFO] 23:15:04:284 KERNEL/(3770:3771): Llegaron las instrucciones y los segmentos
+[INFO] 23:15:04:284 KERNEL/(3770:4893): Consola conectada, paso a crear el hilo
+[DEBUG] 23:15:04:284 KERNEL/(3770:4893): Paso a NEW el proceso 4
+[DEBUG] 23:15:04:284 KERNEL/(3770:4893): Estado Actual: NEW , proceso id: 4
+[INFO] 23:15:04:284 KERNEL/(3770:4893): Cant de elementos de new: 1
+[INFO] 23:15:04:284 KERNEL/(3770:3774): Agregando un pcb a lista ready
+[DEBUG] 23:15:04:284 KERNEL/(3770:3774): Paso a READY el proceso 4
+[DEBUG] 23:15:04:284 KERNEL/(3770:3774): Estado Anterior: NEW , proceso id: 4
+[DEBUG] 23:15:04:284 KERNEL/(3770:3774): Estado Actual: READY , proceso id: 4
+[DEBUG] 23:15:14:794 KERNEL/(3770:3776): Paso a EXEC el proceso 2
+[DEBUG] 23:15:14:794 KERNEL/(3770:3776): Paso a EXIT el proceso 2
+[DEBUG] 23:15:14:794 KERNEL/(3770:3776): Estado Anterior: EXEC , proceso id: 2
+[DEBUG] 23:15:14:794 KERNEL/(3770:3776): Estado, proceso Actual: EXIT  id: 2
+[DEBUG] 23:15:14:794 KERNEL/(3770:3776): Procesos finalizados: 1
+[DEBUG] 23:15:14:794 KERNEL/(3770:3776): Procesos finalizados: 2
+[DEBUG] 23:15:14:794 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 23:15:14:794 KERNEL/(3770:3775): Paso a EXEC el proceso 4
+[DEBUG] 23:15:14:794 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 4
+[DEBUG] 23:15:14:794 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 4
+[DEBUG] 23:15:27:803 KERNEL/(3770:3776): Paso a EXEC el proceso 4
+[DEBUG] 23:15:27:803 KERNEL/(3770:3776): Paso a EXIT el proceso 4
+[DEBUG] 23:15:27:803 KERNEL/(3770:3776): Estado Anterior: EXEC , proceso id: 4
+[DEBUG] 23:15:27:803 KERNEL/(3770:3776): Estado, proceso Actual: EXIT  id: 4
+[DEBUG] 23:15:27:803 KERNEL/(3770:3776): Procesos finalizados: 1
+[DEBUG] 23:15:27:803 KERNEL/(3770:3776): Procesos finalizados: 2
+[DEBUG] 23:15:27:803 KERNEL/(3770:3776): Procesos finalizados: 4
+[INFO] 23:15:27:803 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[INFO] 00:00:16:396 KERNEL/(3770:3771): Se conecto un cliente!
+[INFO] 00:00:16:458 KERNEL/(3770:3771): Llegaron las instrucciones y los segmentos
+[INFO] 00:00:16:759 KERNEL/(3770:5561): Consola conectada, paso a crear el hilo
+[DEBUG] 00:00:16:759 KERNEL/(3770:5561): Paso a NEW el proceso 5
+[DEBUG] 00:00:16:759 KERNEL/(3770:5561): Estado Actual: NEW , proceso id: 5
+[INFO] 00:00:16:759 KERNEL/(3770:5561): Cant de elementos de new: 1
+[INFO] 00:00:16:759 KERNEL/(3770:3774): Agregando un pcb a lista ready
+[DEBUG] 00:00:16:759 KERNEL/(3770:3774): Paso a READY el proceso 5
+[DEBUG] 00:00:16:759 KERNEL/(3770:3774): Estado Anterior: NEW , proceso id: 5
+[DEBUG] 00:00:16:759 KERNEL/(3770:3774): Estado Actual: READY , proceso id: 5
+[DEBUG] 00:00:16:801 KERNEL/(3770:3775): Implementando algoritmo FEEDBACK
+[DEBUG] 00:00:16:801 KERNEL/(3770:3775): Paso a EXEC el proceso 5
+[DEBUG] 00:00:16:801 KERNEL/(3770:3775): Estado Anterior: READY , proceso id: 5
+[DEBUG] 00:00:16:801 KERNEL/(3770:3775): Estado Actual: EXEC , proceso id: 5
+[DEBUG] 00:00:18:648 KERNEL/(3770:3776): Ejecutada: 'PID:  5 - Desalojado por fin de Quantum'
+[INFO] 00:00:18:648 KERNEL/(3770:3775): Llego pcb a plani corto plazo
+[INFO] 00:25:16:092 KERNEL/(5913:5929): Servidor listo para recibir al cliente
+[INFO] 00:25:16:146 KERNEL/(5913:5929): Se conecto un cliente!
+[INFO] 00:25:16:146 KERNEL/(5913:5929): Llegaron las instrucciones y los segmentos
+[INFO] 00:25:16:094 KERNEL/(5913:5935): Llego pcb a plani corto plazo
+[INFO] 01:08:58:113 KERNEL/(2894:2899): Llego pcb a plani corto plazo
+[INFO] 01:08:58:113 KERNEL/(2894:2895): Servidor listo para recibir al cliente
+[INFO] 01:10:20:927 KERNEL/(2894:2895): Se conecto un cliente!
+[INFO] 01:10:20:958 KERNEL/(2894:2895): Llegaron las instrucciones y los segmentos
+[INFO] 01:10:20:958 KERNEL/(2894:2895): Se conecto un cliente!
+[INFO] 01:10:20:958 KERNEL/(2894:2895): Llegaron las instrucciones y los segmentos
+[INFO] 01:10:20:959 KERNEL/(2894:3410): Consola conectada, paso a crear el hilo
+[DEBUG] 01:10:20:959 KERNEL/(2894:3410): Paso a NEW el proceso 1
+[DEBUG] 01:10:20:959 KERNEL/(2894:3410): Estado Actual: NEW , proceso id: 1
+[INFO] 01:10:20:959 KERNEL/(2894:3410): Cant de elementos de new: 1
+[INFO] 01:10:20:959 KERNEL/(2894:2898): Agregando un pcb a lista ready
+[DEBUG] 01:10:20:959 KERNEL/(2894:2898): Paso a READY el proceso 1
+[DEBUG] 01:10:20:959 KERNEL/(2894:2898): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:10:20:959 KERNEL/(2894:2898): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:10:20:959 KERNEL/(2894:2899): Implementando algoritmo FEEDBACK
+[DEBUG] 01:10:20:959 KERNEL/(2894:2899): Paso a EXEC el proceso 1
+[DEBUG] 01:10:20:959 KERNEL/(2894:2899): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:10:20:959 KERNEL/(2894:2899): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:10:20:959 KERNEL/(2894:3409): Consola conectada, paso a crear el hilo
+[DEBUG] 01:10:20:959 KERNEL/(2894:3409): Paso a NEW el proceso 2
+[DEBUG] 01:10:20:959 KERNEL/(2894:3409): Estado Actual: NEW , proceso id: 2
+[INFO] 01:10:20:959 KERNEL/(2894:3409): Cant de elementos de new: 1
+[INFO] 01:10:20:959 KERNEL/(2894:2898): Agregando un pcb a lista ready
+[DEBUG] 01:10:20:959 KERNEL/(2894:2898): Paso a READY el proceso 2
+[DEBUG] 01:10:20:959 KERNEL/(2894:2898): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 01:10:20:959 KERNEL/(2894:2898): Estado Actual: READY , proceso id: 2
+[INFO] 01:10:21:022 KERNEL/(2894:2895): Se conecto un cliente!
+[INFO] 01:10:21:022 KERNEL/(2894:2895): Llegaron las instrucciones y los segmentos
+[INFO] 01:10:21:022 KERNEL/(2894:3412): Consola conectada, paso a crear el hilo
+[DEBUG] 01:10:21:022 KERNEL/(2894:3412): Paso a NEW el proceso 3
+[DEBUG] 01:10:21:022 KERNEL/(2894:3412): Estado Actual: NEW , proceso id: 3
+[INFO] 01:10:21:022 KERNEL/(2894:3412): Cant de elementos de new: 1
+[INFO] 01:10:21:022 KERNEL/(2894:2898): Agregando un pcb a lista ready
+[DEBUG] 01:10:21:022 KERNEL/(2894:2898): Paso a READY el proceso 3
+[DEBUG] 01:10:21:022 KERNEL/(2894:2898): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 01:10:21:022 KERNEL/(2894:2898): Estado Actual: READY , proceso id: 3
+[DEBUG] 01:10:22:046 KERNEL/(2894:2900): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[INFO] 01:10:22:046 KERNEL/(2894:2899): Llego pcb a plani corto plazo
+[DEBUG] 01:10:22:046 KERNEL/(2894:2899): Implementando algoritmo FEEDBACK
+[DEBUG] 01:10:22:046 KERNEL/(2894:2899): Paso a EXEC el proceso 2
+[DEBUG] 01:10:22:046 KERNEL/(2894:2899): Estado Anterior: READY , proceso id: 2
+[DEBUG] 01:10:22:046 KERNEL/(2894:2899): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 01:10:22:046 KERNEL/(2894:3424): Paso a READY aux el proceso 1
+[DEBUG] 01:10:23:047 KERNEL/(2894:2900): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[INFO] 01:10:23:047 KERNEL/(2894:2899): Llego pcb a plani corto plazo
+[DEBUG] 01:10:23:047 KERNEL/(2894:2899): Implementando algoritmo FEEDBACK
+[DEBUG] 01:10:23:047 KERNEL/(2894:2899): Paso a EXEC el proceso 3
+[DEBUG] 01:10:23:047 KERNEL/(2894:2899): Estado Anterior: READY , proceso id: 3
+[DEBUG] 01:10:23:047 KERNEL/(2894:2899): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 01:10:23:047 KERNEL/(2894:3446): Paso a READY aux el proceso 2
+[DEBUG] 01:10:24:047 KERNEL/(2894:2900): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 01:10:24:048 KERNEL/(2894:2899): Llego pcb a plani corto plazo
+[INFO] 01:13:42:925 KERNEL/(4055:4060): Llego pcb a plani corto plazo
+[INFO] 01:13:42:925 KERNEL/(4055:4056): Servidor listo para recibir al cliente
+[INFO] 01:14:05:990 KERNEL/(4055:4056): Se conecto un cliente!
+[INFO] 01:14:05:990 KERNEL/(4055:4056): Llegaron las instrucciones y los segmentos
+[INFO] 01:14:05:990 KERNEL/(4055:4250): Consola conectada, paso a crear el hilo
+[DEBUG] 01:14:05:990 KERNEL/(4055:4250): Paso a NEW el proceso 1
+[DEBUG] 01:14:05:990 KERNEL/(4055:4250): Estado Actual: NEW , proceso id: 1
+[INFO] 01:14:05:990 KERNEL/(4055:4250): Cant de elementos de new: 1
+[INFO] 01:14:05:990 KERNEL/(4055:4059): Agregando un pcb a lista ready
+[DEBUG] 01:14:05:990 KERNEL/(4055:4059): Paso a READY el proceso 1
+[DEBUG] 01:14:05:990 KERNEL/(4055:4059): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:14:05:990 KERNEL/(4055:4059): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:14:05:990 KERNEL/(4055:4060): Implementando algoritmo FEEDBACK
+[DEBUG] 01:14:05:990 KERNEL/(4055:4060): Paso a EXEC el proceso 1
+[DEBUG] 01:14:05:990 KERNEL/(4055:4060): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:14:05:990 KERNEL/(4055:4060): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:14:06:991 KERNEL/(4055:4060): Llego pcb a plani corto plazo
+[DEBUG] 01:14:06:991 KERNEL/(4055:4061): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 01:14:06:991 KERNEL/(4055:4258): Paso a READY aux el proceso 1
+[DEBUG] 01:14:06:991 KERNEL/(4055:4060): Implementando algoritmo FEEDBACK
+[DEBUG] 01:14:06:991 KERNEL/(4055:4060): Paso a EXEC el proceso 1
+[DEBUG] 01:14:06:991 KERNEL/(4055:4060): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:14:06:991 KERNEL/(4055:4060): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:14:06:991 KERNEL/(4055:4060): Llego pcb a plani corto plazo
+[DEBUG] 01:14:18:997 KERNEL/(4055:4061): Paso a EXEC el proceso 1
+[DEBUG] 01:14:18:997 KERNEL/(4055:4061): Paso a EXIT el proceso 1
+[DEBUG] 01:14:18:997 KERNEL/(4055:4061): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 01:14:18:997 KERNEL/(4055:4061): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 01:14:18:997 KERNEL/(4055:4061): Procesos finalizados: 1
+[INFO] 01:15:03:029 KERNEL/(4055:4056): Se conecto un cliente!
+[INFO] 01:15:03:029 KERNEL/(4055:4056): Llegaron las instrucciones y los segmentos
+[INFO] 01:15:03:029 KERNEL/(4055:4586): Consola conectada, paso a crear el hilo
+[DEBUG] 01:15:03:029 KERNEL/(4055:4586): Paso a NEW el proceso 2
+[DEBUG] 01:15:03:029 KERNEL/(4055:4586): Estado Actual: NEW , proceso id: 2
+[INFO] 01:15:03:029 KERNEL/(4055:4586): Cant de elementos de new: 1
+[INFO] 01:15:03:029 KERNEL/(4055:4059): Agregando un pcb a lista ready
+[DEBUG] 01:15:03:029 KERNEL/(4055:4059): Paso a READY el proceso 2
+[DEBUG] 01:15:03:029 KERNEL/(4055:4059): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 01:15:03:029 KERNEL/(4055:4059): Estado Actual: READY , proceso id: 2
+[DEBUG] 01:15:03:029 KERNEL/(4055:4060): Implementando algoritmo FEEDBACK
+[DEBUG] 01:15:03:029 KERNEL/(4055:4060): Paso a EXEC el proceso 2
+[DEBUG] 01:15:03:029 KERNEL/(4055:4060): Estado Anterior: READY , proceso id: 2
+[DEBUG] 01:15:03:029 KERNEL/(4055:4060): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 01:15:04:030 KERNEL/(4055:4061): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[INFO] 01:15:04:030 KERNEL/(4055:4060): Llego pcb a plani corto plazo
+[DEBUG] 01:15:04:030 KERNEL/(4055:4603): Paso a READY aux el proceso 2
+[INFO] 01:18:55:073 KERNEL/(4055:4056): Se conecto un cliente!
+[INFO] 01:18:55:073 KERNEL/(4055:4056): Llegaron las instrucciones y los segmentos
+[INFO] 01:18:55:073 KERNEL/(4055:4822): Consola conectada, paso a crear el hilo
+[DEBUG] 01:18:55:073 KERNEL/(4055:4822): Paso a NEW el proceso 3
+[DEBUG] 01:18:55:073 KERNEL/(4055:4822): Estado Actual: NEW , proceso id: 3
+[INFO] 01:18:55:073 KERNEL/(4055:4822): Cant de elementos de new: 1
+[INFO] 01:18:55:073 KERNEL/(4055:4059): Agregando un pcb a lista ready
+[DEBUG] 01:18:55:073 KERNEL/(4055:4059): Paso a READY el proceso 3
+[DEBUG] 01:18:55:073 KERNEL/(4055:4059): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 01:18:55:073 KERNEL/(4055:4059): Estado Actual: READY , proceso id: 3
+[DEBUG] 01:18:55:073 KERNEL/(4055:4060): Implementando algoritmo FEEDBACK
+[DEBUG] 01:18:55:073 KERNEL/(4055:4060): Paso a EXEC el proceso 3
+[DEBUG] 01:18:55:073 KERNEL/(4055:4060): Estado Anterior: READY , proceso id: 3
+[DEBUG] 01:18:55:073 KERNEL/(4055:4060): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 01:18:56:075 KERNEL/(4055:4061): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 01:18:56:075 KERNEL/(4055:4060): Llego pcb a plani corto plazo
+[DEBUG] 01:18:56:075 KERNEL/(4055:4838): Paso a READY aux el proceso 3
+[INFO] 01:25:14:743 KERNEL/(4055:4056): Se conecto un cliente!
+[INFO] 01:25:14:743 KERNEL/(4055:4056): Llegaron las instrucciones y los segmentos
+[INFO] 01:25:14:743 KERNEL/(4055:5059): Consola conectada, paso a crear el hilo
+[DEBUG] 01:25:14:743 KERNEL/(4055:5059): Paso a NEW el proceso 4
+[DEBUG] 01:25:14:744 KERNEL/(4055:5059): Estado Actual: NEW , proceso id: 4
+[INFO] 01:25:14:744 KERNEL/(4055:5059): Cant de elementos de new: 1
+[INFO] 01:25:14:744 KERNEL/(4055:4059): Agregando un pcb a lista ready
+[DEBUG] 01:25:14:744 KERNEL/(4055:4059): Paso a READY el proceso 4
+[DEBUG] 01:25:14:744 KERNEL/(4055:4059): Estado Anterior: NEW , proceso id: 4
+[DEBUG] 01:25:14:744 KERNEL/(4055:4059): Estado Actual: READY , proceso id: 4
+[DEBUG] 01:25:14:744 KERNEL/(4055:4060): Implementando algoritmo FEEDBACK
+[DEBUG] 01:25:14:744 KERNEL/(4055:4060): Paso a EXEC el proceso 4
+[DEBUG] 01:25:14:744 KERNEL/(4055:4060): Estado Anterior: READY , proceso id: 4
+[DEBUG] 01:25:14:744 KERNEL/(4055:4060): Estado Actual: EXEC , proceso id: 4
+[DEBUG] 01:25:15:821 KERNEL/(4055:4061): Ejecutada: 'PID:  4 - Desalojado por fin de Quantum'
+[INFO] 01:25:15:821 KERNEL/(4055:4060): Llego pcb a plani corto plazo
+[DEBUG] 01:25:15:821 KERNEL/(4055:5079): Paso a READY aux el proceso 4
+[INFO] 01:28:25:831 KERNEL/(4055:4056): Se conecto un cliente!
+[INFO] 01:28:25:831 KERNEL/(4055:4056): Llegaron las instrucciones y los segmentos
+[INFO] 01:28:25:831 KERNEL/(4055:5287): Consola conectada, paso a crear el hilo
+[DEBUG] 01:28:25:831 KERNEL/(4055:5287): Paso a NEW el proceso 5
+[DEBUG] 01:28:25:831 KERNEL/(4055:5287): Estado Actual: NEW , proceso id: 5
+[INFO] 01:28:25:831 KERNEL/(4055:5287): Cant de elementos de new: 1
+[INFO] 01:28:25:831 KERNEL/(4055:4059): Agregando un pcb a lista ready
+[DEBUG] 01:28:25:831 KERNEL/(4055:4059): Paso a READY el proceso 5
+[DEBUG] 01:28:25:831 KERNEL/(4055:4059): Estado Anterior: NEW , proceso id: 5
+[DEBUG] 01:28:25:831 KERNEL/(4055:4059): Estado Actual: READY , proceso id: 5
+[DEBUG] 01:28:25:832 KERNEL/(4055:4060): Implementando algoritmo FEEDBACK
+[DEBUG] 01:28:25:832 KERNEL/(4055:4060): Paso a EXEC el proceso 5
+[DEBUG] 01:28:25:832 KERNEL/(4055:4060): Estado Anterior: READY , proceso id: 5
+[DEBUG] 01:28:25:832 KERNEL/(4055:4060): Estado Actual: EXEC , proceso id: 5
+[DEBUG] 01:28:26:832 KERNEL/(4055:4061): Ejecutada: 'PID:  5 - Desalojado por fin de Quantum'
+[INFO] 01:28:26:832 KERNEL/(4055:4060): Llego pcb a plani corto plazo
+[INFO] 01:30:41:689 KERNEL/(5696:5701): Llego pcb a plani corto plazo
+[INFO] 01:30:41:690 KERNEL/(5696:5697): Servidor listo para recibir al cliente
+[INFO] 01:30:51:611 KERNEL/(5696:5697): Se conecto un cliente!
+[INFO] 01:30:51:611 KERNEL/(5696:5697): Llegaron las instrucciones y los segmentos
+[INFO] 01:30:51:611 KERNEL/(5696:5828): Consola conectada, paso a crear el hilo
+[DEBUG] 01:30:51:612 KERNEL/(5696:5828): Paso a NEW el proceso 1
+[DEBUG] 01:30:51:612 KERNEL/(5696:5828): Estado Actual: NEW , proceso id: 1
+[INFO] 01:30:51:612 KERNEL/(5696:5828): Cant de elementos de new: 1
+[INFO] 01:30:51:612 KERNEL/(5696:5700): Agregando un pcb a lista ready
+[DEBUG] 01:30:51:612 KERNEL/(5696:5700): Paso a READY el proceso 1
+[DEBUG] 01:30:51:612 KERNEL/(5696:5700): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:30:51:612 KERNEL/(5696:5700): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:30:51:612 KERNEL/(5696:5701): Implementando algoritmo FEEDBACK
+[DEBUG] 01:30:51:612 KERNEL/(5696:5701): Paso a EXEC el proceso 1
+[DEBUG] 01:30:51:612 KERNEL/(5696:5701): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:30:51:612 KERNEL/(5696:5701): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:30:54:615 KERNEL/(5696:5701): Llego pcb a plani corto plazo
+[DEBUG] 01:30:54:615 KERNEL/(5696:5702): Paso a EXEC el proceso 1
+[DEBUG] 01:30:54:615 KERNEL/(5696:5702): Paso a EXIT el proceso 1
+[DEBUG] 01:30:54:615 KERNEL/(5696:5702): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 01:30:54:615 KERNEL/(5696:5702): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 01:30:54:615 KERNEL/(5696:5702): Procesos finalizados: 1
+[INFO] 01:31:17:741 KERNEL/(5696:5697): Se conecto un cliente!
+[INFO] 01:31:17:741 KERNEL/(5696:5697): Llegaron las instrucciones y los segmentos
+[INFO] 01:31:17:741 KERNEL/(5696:6016): Consola conectada, paso a crear el hilo
+[DEBUG] 01:31:17:741 KERNEL/(5696:6016): Paso a NEW el proceso 2
+[DEBUG] 01:31:17:741 KERNEL/(5696:6016): Estado Actual: NEW , proceso id: 2
+[INFO] 01:31:17:741 KERNEL/(5696:6016): Cant de elementos de new: 1
+[INFO] 01:31:17:741 KERNEL/(5696:5700): Agregando un pcb a lista ready
+[DEBUG] 01:31:17:741 KERNEL/(5696:5700): Paso a READY el proceso 2
+[DEBUG] 01:31:17:741 KERNEL/(5696:5700): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 01:31:17:741 KERNEL/(5696:5700): Estado Actual: READY , proceso id: 2
+[DEBUG] 01:31:17:741 KERNEL/(5696:5701): Implementando algoritmo FEEDBACK
+[DEBUG] 01:31:17:741 KERNEL/(5696:5701): Paso a EXEC el proceso 2
+[DEBUG] 01:31:17:741 KERNEL/(5696:5701): Estado Anterior: READY , proceso id: 2
+[DEBUG] 01:31:17:741 KERNEL/(5696:5701): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 01:31:18:742 KERNEL/(5696:5702): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[INFO] 01:31:18:743 KERNEL/(5696:5701): Llego pcb a plani corto plazo
+[INFO] 01:31:21:219 KERNEL/(5696:5697): Se conecto un cliente!
+[INFO] 01:31:21:219 KERNEL/(5696:5697): Llegaron las instrucciones y los segmentos
+[INFO] 01:31:21:219 KERNEL/(5696:6111): Consola conectada, paso a crear el hilo
+[DEBUG] 01:31:21:219 KERNEL/(5696:6111): Paso a NEW el proceso 3
+[DEBUG] 01:31:21:219 KERNEL/(5696:6111): Estado Actual: NEW , proceso id: 3
+[INFO] 01:31:21:219 KERNEL/(5696:6111): Cant de elementos de new: 1
+[INFO] 01:31:21:219 KERNEL/(5696:5700): Agregando un pcb a lista ready
+[DEBUG] 01:31:21:219 KERNEL/(5696:5700): Paso a READY el proceso 3
+[DEBUG] 01:31:21:219 KERNEL/(5696:5700): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 01:31:21:219 KERNEL/(5696:5700): Estado Actual: READY , proceso id: 3
+[DEBUG] 01:31:21:219 KERNEL/(5696:5701): Implementando algoritmo FEEDBACK
+[DEBUG] 01:31:21:219 KERNEL/(5696:5701): Paso a EXEC el proceso 3
+[DEBUG] 01:31:21:219 KERNEL/(5696:5701): Estado Anterior: READY , proceso id: 3
+[DEBUG] 01:31:21:219 KERNEL/(5696:5701): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 01:31:22:220 KERNEL/(5696:5702): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 01:31:22:220 KERNEL/(5696:5701): Llego pcb a plani corto plazo
+[INFO] 01:31:25:045 KERNEL/(5696:5697): Se conecto un cliente!
+[INFO] 01:31:25:045 KERNEL/(5696:5697): Llegaron las instrucciones y los segmentos
+[INFO] 01:31:25:045 KERNEL/(5696:6213): Consola conectada, paso a crear el hilo
+[DEBUG] 01:31:25:045 KERNEL/(5696:6213): Paso a NEW el proceso 4
+[DEBUG] 01:31:25:045 KERNEL/(5696:6213): Estado Actual: NEW , proceso id: 4
+[INFO] 01:31:25:045 KERNEL/(5696:6213): Cant de elementos de new: 1
+[INFO] 01:31:25:045 KERNEL/(5696:5700): Agregando un pcb a lista ready
+[DEBUG] 01:31:25:046 KERNEL/(5696:5700): Paso a READY el proceso 4
+[DEBUG] 01:31:25:046 KERNEL/(5696:5700): Estado Anterior: NEW , proceso id: 4
+[DEBUG] 01:31:25:046 KERNEL/(5696:5700): Estado Actual: READY , proceso id: 4
+[DEBUG] 01:31:25:046 KERNEL/(5696:5701): Implementando algoritmo FEEDBACK
+[DEBUG] 01:31:25:046 KERNEL/(5696:5701): Paso a EXEC el proceso 4
+[DEBUG] 01:31:25:046 KERNEL/(5696:5701): Estado Anterior: READY , proceso id: 4
+[DEBUG] 01:31:25:046 KERNEL/(5696:5701): Estado Actual: EXEC , proceso id: 4
+[DEBUG] 01:31:26:046 KERNEL/(5696:5702): Ejecutada: 'PID:  4 - Desalojado por fin de Quantum'
+[INFO] 01:31:26:046 KERNEL/(5696:5701): Llego pcb a plani corto plazo
+[INFO] 01:33:48:655 KERNEL/(6639:6644): Llego pcb a plani corto plazo
+[INFO] 01:33:48:655 KERNEL/(6639:6640): Servidor listo para recibir al cliente
+[INFO] 01:34:06:010 KERNEL/(6639:6640): Se conecto un cliente!
+[INFO] 01:34:06:010 KERNEL/(6639:6640): Llegaron las instrucciones y los segmentos
+[INFO] 01:34:06:010 KERNEL/(6639:6820): Consola conectada, paso a crear el hilo
+[DEBUG] 01:34:06:010 KERNEL/(6639:6820): Paso a NEW el proceso 1
+[DEBUG] 01:34:06:010 KERNEL/(6639:6820): Estado Actual: NEW , proceso id: 1
+[INFO] 01:34:06:010 KERNEL/(6639:6820): Cant de elementos de new: 1
+[INFO] 01:34:06:010 KERNEL/(6639:6643): Agregando un pcb a lista ready
+[DEBUG] 01:34:06:010 KERNEL/(6639:6643): Paso a READY el proceso 1
+[DEBUG] 01:34:06:010 KERNEL/(6639:6643): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:34:06:010 KERNEL/(6639:6643): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:34:06:010 KERNEL/(6639:6644): Implementando algoritmo FEEDBACK
+[DEBUG] 01:34:06:010 KERNEL/(6639:6644): Paso a EXEC el proceso 1
+[DEBUG] 01:34:06:010 KERNEL/(6639:6644): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:34:06:010 KERNEL/(6639:6644): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 01:34:07:011 KERNEL/(6639:6645): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[INFO] 01:34:07:012 KERNEL/(6639:6644): Llego pcb a plani corto plazo
+[INFO] 01:34:08:655 KERNEL/(6639:6640): Se conecto un cliente!
+[INFO] 01:34:08:655 KERNEL/(6639:6640): Llegaron las instrucciones y los segmentos
+[INFO] 01:34:08:655 KERNEL/(6639:6909): Consola conectada, paso a crear el hilo
+[DEBUG] 01:34:08:655 KERNEL/(6639:6909): Paso a NEW el proceso 2
+[DEBUG] 01:34:08:655 KERNEL/(6639:6909): Estado Actual: NEW , proceso id: 2
+[INFO] 01:34:08:655 KERNEL/(6639:6909): Cant de elementos de new: 1
+[INFO] 01:34:08:655 KERNEL/(6639:6643): Agregando un pcb a lista ready
+[DEBUG] 01:34:08:655 KERNEL/(6639:6643): Paso a READY el proceso 2
+[DEBUG] 01:34:08:655 KERNEL/(6639:6643): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 01:34:08:655 KERNEL/(6639:6643): Estado Actual: READY , proceso id: 2
+[DEBUG] 01:34:08:655 KERNEL/(6639:6644): Implementando algoritmo FEEDBACK
+[DEBUG] 01:34:08:655 KERNEL/(6639:6644): Paso a EXEC el proceso 2
+[DEBUG] 01:34:08:655 KERNEL/(6639:6644): Estado Anterior: READY , proceso id: 2
+[DEBUG] 01:34:08:655 KERNEL/(6639:6644): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 01:34:09:656 KERNEL/(6639:6645): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[INFO] 01:34:09:656 KERNEL/(6639:6644): Llego pcb a plani corto plazo
+[INFO] 01:34:12:399 KERNEL/(6639:6640): Se conecto un cliente!
+[INFO] 01:34:12:399 KERNEL/(6639:6640): Llegaron las instrucciones y los segmentos
+[INFO] 01:34:12:400 KERNEL/(6639:7008): Consola conectada, paso a crear el hilo
+[DEBUG] 01:34:12:400 KERNEL/(6639:7008): Paso a NEW el proceso 3
+[DEBUG] 01:34:12:400 KERNEL/(6639:7008): Estado Actual: NEW , proceso id: 3
+[INFO] 01:34:12:400 KERNEL/(6639:7008): Cant de elementos de new: 1
+[INFO] 01:34:12:400 KERNEL/(6639:6643): Agregando un pcb a lista ready
+[DEBUG] 01:34:12:400 KERNEL/(6639:6643): Paso a READY el proceso 3
+[DEBUG] 01:34:12:400 KERNEL/(6639:6643): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 01:34:12:400 KERNEL/(6639:6643): Estado Actual: READY , proceso id: 3
+[DEBUG] 01:34:12:400 KERNEL/(6639:6644): Implementando algoritmo FEEDBACK
+[DEBUG] 01:34:12:400 KERNEL/(6639:6644): Paso a EXEC el proceso 3
+[DEBUG] 01:34:12:400 KERNEL/(6639:6644): Estado Anterior: READY , proceso id: 3
+[DEBUG] 01:34:12:400 KERNEL/(6639:6644): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 01:34:13:401 KERNEL/(6639:6645): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 01:34:13:401 KERNEL/(6639:6644): Llego pcb a plani corto plazo
+[INFO] 01:41:39:602 KERNEL/(7513:7518): Llego pcb a plani corto plazo
+[INFO] 01:41:39:603 KERNEL/(7513:7514): Servidor listo para recibir al cliente
+[INFO] 01:41:50:843 KERNEL/(7513:7514): Se conecto un cliente!
+[INFO] 01:41:50:843 KERNEL/(7513:7514): Llegaron las instrucciones y los segmentos
+[INFO] 01:41:50:843 KERNEL/(7513:7668): Consola conectada, paso a crear el hilo
+[DEBUG] 01:41:50:843 KERNEL/(7513:7668): Paso a NEW el proceso 1
+[DEBUG] 01:41:50:843 KERNEL/(7513:7668): Estado Actual: NEW , proceso id: 1
+[INFO] 01:41:50:843 KERNEL/(7513:7668): Cant de elementos de new: 1
+[INFO] 01:41:50:843 KERNEL/(7513:7517): Agregando un pcb a lista ready
+[DEBUG] 01:41:50:843 KERNEL/(7513:7517): Paso a READY el proceso 1
+[DEBUG] 01:41:50:843 KERNEL/(7513:7517): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:41:50:843 KERNEL/(7513:7517): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:41:50:843 KERNEL/(7513:7518): Implementando algoritmo FEEDBACK
+[DEBUG] 01:41:50:843 KERNEL/(7513:7518): Paso a EXEC el proceso 1
+[DEBUG] 01:41:50:843 KERNEL/(7513:7518): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:41:50:843 KERNEL/(7513:7518): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:41:51:844 KERNEL/(7513:7518): Llego pcb a plani corto plazo
+[DEBUG] 01:41:51:844 KERNEL/(7513:7519): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 01:41:51:844 KERNEL/(7513:7674): Paso a READY aux el proceso 1
+[DEBUG] 01:41:51:844 KERNEL/(7513:7518): Implementando algoritmo FEEDBACK
+[DEBUG] 01:41:51:844 KERNEL/(7513:7518): Paso a EXEC el proceso 1
+[DEBUG] 01:41:51:844 KERNEL/(7513:7518): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:41:51:844 KERNEL/(7513:7518): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:41:51:844 KERNEL/(7513:7518): Llego pcb a plani corto plazo
+[DEBUG] 01:42:03:850 KERNEL/(7513:7519): Paso a EXEC el proceso 1
+[DEBUG] 01:42:03:851 KERNEL/(7513:7519): Paso a EXIT el proceso 1
+[DEBUG] 01:42:03:851 KERNEL/(7513:7519): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 01:42:03:851 KERNEL/(7513:7519): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 01:42:03:851 KERNEL/(7513:7519): Procesos finalizados: 1
+[INFO] 01:44:41:581 KERNEL/(7513:7514): Se conecto un cliente!
+[INFO] 01:44:41:581 KERNEL/(7513:7514): Llegaron las instrucciones y los segmentos
+[INFO] 01:44:41:581 KERNEL/(7513:7950): Consola conectada, paso a crear el hilo
+[DEBUG] 01:44:41:581 KERNEL/(7513:7950): Paso a NEW el proceso 2
+[DEBUG] 01:44:41:581 KERNEL/(7513:7950): Estado Actual: NEW , proceso id: 2
+[INFO] 01:44:41:581 KERNEL/(7513:7950): Cant de elementos de new: 1
+[INFO] 01:44:41:581 KERNEL/(7513:7517): Agregando un pcb a lista ready
+[DEBUG] 01:44:41:581 KERNEL/(7513:7517): Paso a READY el proceso 2
+[DEBUG] 01:44:41:581 KERNEL/(7513:7517): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 01:44:41:581 KERNEL/(7513:7517): Estado Actual: READY , proceso id: 2
+[DEBUG] 01:44:41:581 KERNEL/(7513:7518): Implementando algoritmo FEEDBACK
+[DEBUG] 01:44:41:581 KERNEL/(7513:7518): Paso a EXEC el proceso 2
+[DEBUG] 01:44:41:581 KERNEL/(7513:7518): Estado Anterior: READY , proceso id: 2
+[DEBUG] 01:44:41:581 KERNEL/(7513:7518): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 01:44:42:581 KERNEL/(7513:7519): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[INFO] 01:44:42:582 KERNEL/(7513:7518): Llego pcb a plani corto plazo
+[INFO] 01:44:45:530 KERNEL/(7513:7514): Se conecto un cliente!
+[INFO] 01:44:45:530 KERNEL/(7513:7514): Llegaron las instrucciones y los segmentos
+[INFO] 01:44:45:530 KERNEL/(7513:8049): Consola conectada, paso a crear el hilo
+[DEBUG] 01:44:45:530 KERNEL/(7513:8049): Paso a NEW el proceso 3
+[DEBUG] 01:44:45:530 KERNEL/(7513:8049): Estado Actual: NEW , proceso id: 3
+[INFO] 01:44:45:530 KERNEL/(7513:8049): Cant de elementos de new: 1
+[INFO] 01:44:45:530 KERNEL/(7513:7517): Agregando un pcb a lista ready
+[DEBUG] 01:44:45:530 KERNEL/(7513:7517): Paso a READY el proceso 3
+[DEBUG] 01:44:45:530 KERNEL/(7513:7517): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 01:44:45:530 KERNEL/(7513:7517): Estado Actual: READY , proceso id: 3
+[DEBUG] 01:44:45:530 KERNEL/(7513:7518): Implementando algoritmo FEEDBACK
+[DEBUG] 01:44:45:530 KERNEL/(7513:7518): Paso a EXEC el proceso 3
+[DEBUG] 01:44:45:530 KERNEL/(7513:7518): Estado Anterior: READY , proceso id: 3
+[DEBUG] 01:44:45:530 KERNEL/(7513:7518): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 01:44:46:531 KERNEL/(7513:7519): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 01:44:46:531 KERNEL/(7513:7518): Llego pcb a plani corto plazo
+[INFO] 01:44:48:537 KERNEL/(7513:7514): Se conecto un cliente!
+[INFO] 01:44:48:537 KERNEL/(7513:7514): Llegaron las instrucciones y los segmentos
+[INFO] 01:44:48:537 KERNEL/(7513:8144): Consola conectada, paso a crear el hilo
+[DEBUG] 01:44:48:537 KERNEL/(7513:8144): Paso a NEW el proceso 4
+[DEBUG] 01:44:48:537 KERNEL/(7513:8144): Estado Actual: NEW , proceso id: 4
+[INFO] 01:44:48:537 KERNEL/(7513:8144): Cant de elementos de new: 1
+[INFO] 01:44:48:537 KERNEL/(7513:7517): Agregando un pcb a lista ready
+[DEBUG] 01:44:48:537 KERNEL/(7513:7517): Paso a READY el proceso 4
+[DEBUG] 01:44:48:537 KERNEL/(7513:7517): Estado Anterior: NEW , proceso id: 4
+[DEBUG] 01:44:48:537 KERNEL/(7513:7517): Estado Actual: READY , proceso id: 4
+[DEBUG] 01:44:48:537 KERNEL/(7513:7518): Implementando algoritmo FEEDBACK
+[DEBUG] 01:44:48:537 KERNEL/(7513:7518): Paso a EXEC el proceso 4
+[DEBUG] 01:44:48:537 KERNEL/(7513:7518): Estado Anterior: READY , proceso id: 4
+[DEBUG] 01:44:48:537 KERNEL/(7513:7518): Estado Actual: EXEC , proceso id: 4
+[DEBUG] 01:44:49:538 KERNEL/(7513:7519): Ejecutada: 'PID:  4 - Desalojado por fin de Quantum'
+[INFO] 01:44:49:538 KERNEL/(7513:7518): Llego pcb a plani corto plazo
+[INFO] 01:52:06:835 KERNEL/(8679:8684): Llego pcb a plani corto plazo
+[INFO] 01:52:06:837 KERNEL/(8679:8680): Servidor listo para recibir al cliente
+[INFO] 01:52:21:321 KERNEL/(8679:8680): Se conecto un cliente!
+[INFO] 01:52:21:321 KERNEL/(8679:8680): Llegaron las instrucciones y los segmentos
+[INFO] 01:52:21:321 KERNEL/(8679:8847): Consola conectada, paso a crear el hilo
+[DEBUG] 01:52:21:321 KERNEL/(8679:8847): Paso a NEW el proceso 1
+[DEBUG] 01:52:21:321 KERNEL/(8679:8847): Estado Actual: NEW , proceso id: 1
+[INFO] 01:52:21:321 KERNEL/(8679:8847): Cant de elementos de new: 1
+[INFO] 01:52:21:321 KERNEL/(8679:8683): Agregando un pcb a lista ready
+[DEBUG] 01:52:21:321 KERNEL/(8679:8683): Paso a READY el proceso 1
+[DEBUG] 01:52:21:321 KERNEL/(8679:8683): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 01:52:21:321 KERNEL/(8679:8683): Estado Actual: READY , proceso id: 1
+[DEBUG] 01:52:21:321 KERNEL/(8679:8684): Implementando algoritmo FEEDBACK
+[DEBUG] 01:52:21:321 KERNEL/(8679:8684): Paso a EXEC el proceso 1
+[DEBUG] 01:52:21:321 KERNEL/(8679:8684): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:52:21:321 KERNEL/(8679:8684): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:52:22:322 KERNEL/(8679:8684): Llego pcb a plani corto plazo
+[DEBUG] 01:52:22:322 KERNEL/(8679:8685): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 01:52:22:322 KERNEL/(8679:8853): Paso a READY aux el proceso 1
+[DEBUG] 01:52:22:322 KERNEL/(8679:8684): Implementando algoritmo FEEDBACK
+[DEBUG] 01:52:22:322 KERNEL/(8679:8684): Paso a EXEC el proceso 1
+[DEBUG] 01:52:22:322 KERNEL/(8679:8684): Estado Anterior: READY , proceso id: 1
+[DEBUG] 01:52:22:322 KERNEL/(8679:8684): Estado Actual: EXEC , proceso id: 1
+[INFO] 01:52:22:322 KERNEL/(8679:8684): Llego pcb a plani corto plazo
+[INFO] 01:52:23:945 KERNEL/(8679:8680): Se conecto un cliente!
+[INFO] 01:52:23:945 KERNEL/(8679:8680): Llegaron las instrucciones y los segmentos
+[INFO] 01:52:23:945 KERNEL/(8679:8940): Consola conectada, paso a crear el hilo
+[DEBUG] 01:52:23:945 KERNEL/(8679:8940): Paso a NEW el proceso 2
+[DEBUG] 01:52:23:945 KERNEL/(8679:8940): Estado Actual: NEW , proceso id: 2
+[INFO] 01:52:23:945 KERNEL/(8679:8940): Cant de elementos de new: 1
+[INFO] 01:52:23:945 KERNEL/(8679:8683): Agregando un pcb a lista ready
+[DEBUG] 01:52:23:945 KERNEL/(8679:8683): Paso a READY el proceso 2
+[DEBUG] 01:52:23:945 KERNEL/(8679:8683): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 01:52:23:945 KERNEL/(8679:8683): Estado Actual: READY , proceso id: 2
+[INFO] 01:52:25:494 KERNEL/(8679:8680): Se conecto un cliente!
+[INFO] 01:52:25:494 KERNEL/(8679:8680): Llegaron las instrucciones y los segmentos
+[INFO] 01:52:25:494 KERNEL/(8679:8996): Consola conectada, paso a crear el hilo
+[DEBUG] 01:52:25:494 KERNEL/(8679:8996): Paso a NEW el proceso 3
+[DEBUG] 01:52:25:494 KERNEL/(8679:8996): Estado Actual: NEW , proceso id: 3
+[INFO] 01:52:25:494 KERNEL/(8679:8996): Cant de elementos de new: 1
+[INFO] 01:52:25:494 KERNEL/(8679:8683): Agregando un pcb a lista ready
+[DEBUG] 01:52:25:494 KERNEL/(8679:8683): Paso a READY el proceso 3
+[DEBUG] 01:52:25:494 KERNEL/(8679:8683): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 01:52:25:494 KERNEL/(8679:8683): Estado Actual: READY , proceso id: 3
+[DEBUG] 01:52:34:327 KERNEL/(8679:8685): Paso a EXEC el proceso 1
+[DEBUG] 01:52:34:327 KERNEL/(8679:8685): Paso a EXIT el proceso 1
+[DEBUG] 01:52:34:327 KERNEL/(8679:8685): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 01:52:34:327 KERNEL/(8679:8685): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 01:52:34:327 KERNEL/(8679:8685): Procesos finalizados: 1
+[DEBUG] 01:52:34:327 KERNEL/(8679:8684): Implementando algoritmo FEEDBACK
+[DEBUG] 01:52:34:327 KERNEL/(8679:8684): Paso a EXEC el proceso 2
+[DEBUG] 01:52:34:327 KERNEL/(8679:8684): Estado Anterior: READY , proceso id: 2
+[DEBUG] 01:52:34:327 KERNEL/(8679:8684): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 01:52:35:328 KERNEL/(8679:8685): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[INFO] 01:52:35:328 KERNEL/(8679:8684): Llego pcb a plani corto plazo
+[DEBUG] 01:52:35:328 KERNEL/(8679:8684): Implementando algoritmo FEEDBACK
+[DEBUG] 01:52:35:328 KERNEL/(8679:8684): Paso a EXEC el proceso 3
+[DEBUG] 01:52:35:329 KERNEL/(8679:8684): Estado Anterior: READY , proceso id: 3
+[DEBUG] 01:52:35:329 KERNEL/(8679:8684): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 01:52:36:329 KERNEL/(8679:8685): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 01:52:36:329 KERNEL/(8679:8684): Llego pcb a plani corto plazo
+[INFO] 02:30:45:798 KERNEL/(9808:9813): Llego pcb a plani corto plazo
+[INFO] 02:30:45:798 KERNEL/(9808:9809): Servidor listo para recibir al cliente
+[INFO] 02:31:00:629 KERNEL/(9808:9809): Se conecto un cliente!
+[INFO] 02:31:00:629 KERNEL/(9808:9809): Llegaron las instrucciones y los segmentos
+[INFO] 02:31:00:629 KERNEL/(9808:9969): Consola conectada, paso a crear el hilo
+[DEBUG] 02:31:00:629 KERNEL/(9808:9969): Paso a NEW el proceso 1
+[DEBUG] 02:31:00:629 KERNEL/(9808:9969): Estado Actual: NEW , proceso id: 1
+[INFO] 02:31:00:629 KERNEL/(9808:9969): Cant de elementos de new: 1
+[INFO] 02:31:00:629 KERNEL/(9808:9812): Agregando un pcb a lista ready
+[DEBUG] 02:31:00:629 KERNEL/(9808:9812): Paso a READY el proceso 1
+[DEBUG] 02:31:00:629 KERNEL/(9808:9812): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 02:31:00:629 KERNEL/(9808:9812): Estado Actual: READY , proceso id: 1
+[DEBUG] 02:31:00:629 KERNEL/(9808:9813): Implementando algoritmo FEEDBACK
+[DEBUG] 02:31:00:629 KERNEL/(9808:9813): Paso a EXEC el proceso 1
+[DEBUG] 02:31:00:629 KERNEL/(9808:9813): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:31:00:629 KERNEL/(9808:9813): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:31:01:630 KERNEL/(9808:9813): Llego pcb a plani corto plazo
+[DEBUG] 02:31:01:630 KERNEL/(9808:9814): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 02:31:01:630 KERNEL/(9808:9997): Paso a READY aux el proceso 1
+[DEBUG] 02:31:01:630 KERNEL/(9808:9813): Implementando algoritmo FEEDBACK
+[DEBUG] 02:31:01:630 KERNEL/(9808:9813): Paso a EXEC el proceso 1
+[DEBUG] 02:31:01:630 KERNEL/(9808:9813): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:31:01:630 KERNEL/(9808:9813): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:31:01:630 KERNEL/(9808:9813): Llego pcb a plani corto plazo
+[INFO] 02:31:02:391 KERNEL/(9808:9809): Se conecto un cliente!
+[INFO] 02:31:02:391 KERNEL/(9808:9809): Llegaron las instrucciones y los segmentos
+[INFO] 02:31:02:391 KERNEL/(9808:10053): Consola conectada, paso a crear el hilo
+[DEBUG] 02:31:02:391 KERNEL/(9808:10053): Paso a NEW el proceso 2
+[DEBUG] 02:31:02:391 KERNEL/(9808:10053): Estado Actual: NEW , proceso id: 2
+[INFO] 02:31:02:391 KERNEL/(9808:10053): Cant de elementos de new: 1
+[INFO] 02:31:02:391 KERNEL/(9808:9812): Agregando un pcb a lista ready
+[DEBUG] 02:31:02:391 KERNEL/(9808:9812): Paso a READY el proceso 2
+[DEBUG] 02:31:02:391 KERNEL/(9808:9812): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 02:31:02:391 KERNEL/(9808:9812): Estado Actual: READY , proceso id: 2
+[INFO] 02:31:06:069 KERNEL/(9808:9809): Se conecto un cliente!
+[INFO] 02:31:06:069 KERNEL/(9808:9809): Llegaron las instrucciones y los segmentos
+[INFO] 02:31:06:069 KERNEL/(9808:10133): Consola conectada, paso a crear el hilo
+[DEBUG] 02:31:06:069 KERNEL/(9808:10133): Paso a NEW el proceso 3
+[DEBUG] 02:31:06:069 KERNEL/(9808:10133): Estado Actual: NEW , proceso id: 3
+[INFO] 02:31:06:069 KERNEL/(9808:10133): Cant de elementos de new: 1
+[INFO] 02:31:06:070 KERNEL/(9808:9812): Agregando un pcb a lista ready
+[DEBUG] 02:31:06:070 KERNEL/(9808:9812): Paso a READY el proceso 3
+[DEBUG] 02:31:06:070 KERNEL/(9808:9812): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 02:31:06:070 KERNEL/(9808:9812): Estado Actual: READY , proceso id: 3
+[DEBUG] 02:31:13:634 KERNEL/(9808:9814): Paso a EXEC el proceso 1
+[DEBUG] 02:31:13:634 KERNEL/(9808:9814): Paso a EXIT el proceso 1
+[DEBUG] 02:31:13:634 KERNEL/(9808:9814): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 02:31:13:634 KERNEL/(9808:9814): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 02:31:13:634 KERNEL/(9808:9814): Procesos finalizados: 1
+[DEBUG] 02:31:13:634 KERNEL/(9808:9813): Implementando algoritmo FEEDBACK
+[DEBUG] 02:31:13:634 KERNEL/(9808:9813): Paso a EXEC el proceso 2
+[DEBUG] 02:31:13:634 KERNEL/(9808:9813): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:31:13:634 KERNEL/(9808:9813): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 02:31:14:635 KERNEL/(9808:9814): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[INFO] 02:31:14:636 KERNEL/(9808:9813): Llego pcb a plani corto plazo
+[DEBUG] 02:31:14:636 KERNEL/(9808:9813): Implementando algoritmo FEEDBACK
+[DEBUG] 02:31:14:636 KERNEL/(9808:9813): Paso a EXEC el proceso 3
+[DEBUG] 02:31:14:636 KERNEL/(9808:9813): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:31:14:636 KERNEL/(9808:9813): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 02:31:15:637 KERNEL/(9808:9814): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[INFO] 02:31:15:637 KERNEL/(9808:9813): Llego pcb a plani corto plazo
+[INFO] 02:32:27:224 KERNEL/(10701:10708): Llego pcb a plani corto plazo
+[INFO] 02:32:27:225 KERNEL/(10701:10704): Servidor listo para recibir al cliente
+[INFO] 02:34:32:209 KERNEL/(11496:11501): Llego pcb a plani corto plazo
+[INFO] 02:36:17:279 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[INFO] 02:36:17:280 KERNEL/(11828:11829): Servidor listo para recibir al cliente
+[INFO] 02:36:34:076 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:36:34:076 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:36:34:076 KERNEL/(11828:12002): Consola conectada, paso a crear el hilo
+[DEBUG] 02:36:34:076 KERNEL/(11828:12002): Paso a NEW el proceso 1
+[DEBUG] 02:36:34:076 KERNEL/(11828:12002): Estado Actual: NEW , proceso id: 1
+[INFO] 02:36:34:076 KERNEL/(11828:12002): Cant de elementos de new: 1
+[INFO] 02:36:34:076 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:36:34:076 KERNEL/(11828:11832): Paso a READY el proceso 1
+[DEBUG] 02:36:34:076 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 02:36:34:076 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 1
+[DEBUG] 02:36:34:076 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:36:34:076 KERNEL/(11828:11833): Paso a EXEC el proceso 1
+[DEBUG] 02:36:34:076 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:36:34:076 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:36:35:076 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:36:35:077 KERNEL/(11828:11834): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 02:36:35:077 KERNEL/(11828:11834): Paso a READY aux el proceso 1
+[DEBUG] 02:36:35:077 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:36:35:077 KERNEL/(11828:11833): Paso a EXEC el proceso 1
+[DEBUG] 02:36:35:077 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:36:35:077 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:36:35:077 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[INFO] 02:36:36:508 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:36:36:508 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:36:36:509 KERNEL/(11828:12079): Consola conectada, paso a crear el hilo
+[DEBUG] 02:36:36:509 KERNEL/(11828:12079): Paso a NEW el proceso 2
+[DEBUG] 02:36:36:509 KERNEL/(11828:12079): Estado Actual: NEW , proceso id: 2
+[INFO] 02:36:36:509 KERNEL/(11828:12079): Cant de elementos de new: 1
+[INFO] 02:36:36:509 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:36:36:509 KERNEL/(11828:11832): Paso a READY el proceso 2
+[DEBUG] 02:36:36:509 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 02:36:36:509 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 2
+[INFO] 02:36:39:319 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:36:39:319 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:36:39:319 KERNEL/(11828:12159): Consola conectada, paso a crear el hilo
+[DEBUG] 02:36:39:320 KERNEL/(11828:12159): Paso a NEW el proceso 3
+[DEBUG] 02:36:39:320 KERNEL/(11828:12159): Estado Actual: NEW , proceso id: 3
+[INFO] 02:36:39:320 KERNEL/(11828:12159): Cant de elementos de new: 1
+[INFO] 02:36:39:320 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:36:39:320 KERNEL/(11828:11832): Paso a READY el proceso 3
+[DEBUG] 02:36:39:320 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 02:36:39:320 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 3
+[DEBUG] 02:36:47:083 KERNEL/(11828:11834): Paso a EXEC el proceso 1
+[DEBUG] 02:36:47:083 KERNEL/(11828:11834): Paso a EXIT el proceso 1
+[DEBUG] 02:36:47:083 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 02:36:47:083 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 02:36:47:083 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:36:47:083 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:36:47:083 KERNEL/(11828:11833): Paso a EXEC el proceso 2
+[DEBUG] 02:36:47:083 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:36:47:083 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 02:36:48:085 KERNEL/(11828:11834): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[DEBUG] 02:36:48:085 KERNEL/(11828:11834): Paso a READY aux el proceso 2
+[INFO] 02:36:48:085 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:36:48:085 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:36:48:085 KERNEL/(11828:11833): Paso a EXEC el proceso 3
+[DEBUG] 02:36:48:085 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:36:48:085 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 02:36:49:086 KERNEL/(11828:11834): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[DEBUG] 02:36:49:086 KERNEL/(11828:11834): Paso a READY aux el proceso 3
+[INFO] 02:36:49:086 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:36:49:086 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:36:49:086 KERNEL/(11828:11833): Paso a EXEC el proceso 2
+[DEBUG] 02:36:49:086 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:36:49:086 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 2
+[INFO] 02:36:49:086 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:37:01:092 KERNEL/(11828:11834): Paso a EXEC el proceso 2
+[DEBUG] 02:37:01:092 KERNEL/(11828:11834): Paso a EXIT el proceso 2
+[DEBUG] 02:37:01:092 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 2
+[DEBUG] 02:37:01:092 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 2
+[DEBUG] 02:37:01:092 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:37:01:092 KERNEL/(11828:11834): Procesos finalizados: 2
+[DEBUG] 02:37:01:092 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:37:01:092 KERNEL/(11828:11833): Paso a EXEC el proceso 3
+[DEBUG] 02:37:01:092 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:37:01:092 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 3
+[INFO] 02:37:01:092 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:37:13:098 KERNEL/(11828:11834): Paso a EXEC el proceso 3
+[DEBUG] 02:37:13:098 KERNEL/(11828:11834): Paso a EXIT el proceso 3
+[DEBUG] 02:37:13:098 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 3
+[DEBUG] 02:37:13:098 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 3
+[DEBUG] 02:37:13:098 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:37:13:098 KERNEL/(11828:11834): Procesos finalizados: 2
+[DEBUG] 02:37:13:098 KERNEL/(11828:11834): Procesos finalizados: 3
+[INFO] 02:41:07:641 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:41:07:641 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:41:07:642 KERNEL/(11828:12636): Consola conectada, paso a crear el hilo
+[DEBUG] 02:41:07:642 KERNEL/(11828:12636): Paso a NEW el proceso 4
+[DEBUG] 02:41:07:642 KERNEL/(11828:12636): Estado Actual: NEW , proceso id: 4
+[INFO] 02:41:07:642 KERNEL/(11828:12636): Cant de elementos de new: 1
+[INFO] 02:41:07:642 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:41:07:642 KERNEL/(11828:11832): Paso a READY el proceso 4
+[DEBUG] 02:41:07:642 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 4
+[DEBUG] 02:41:07:642 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 4
+[DEBUG] 02:41:07:642 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:41:07:642 KERNEL/(11828:11833): Paso a EXEC el proceso 4
+[DEBUG] 02:41:07:642 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 4
+[DEBUG] 02:41:07:642 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 4
+[DEBUG] 02:41:08:643 KERNEL/(11828:11834): Ejecutada: 'PID:  4 - Desalojado por fin de Quantum'
+[DEBUG] 02:41:08:643 KERNEL/(11828:11834): Paso a READY aux el proceso 4
+[INFO] 02:41:08:643 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:41:08:643 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:41:08:643 KERNEL/(11828:11833): Paso a EXEC el proceso 4
+[DEBUG] 02:41:08:643 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 4
+[DEBUG] 02:41:08:643 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 4
+[INFO] 02:41:08:643 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[INFO] 02:41:09:349 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:41:09:349 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:41:09:349 KERNEL/(11828:12699): Consola conectada, paso a crear el hilo
+[DEBUG] 02:41:09:349 KERNEL/(11828:12699): Paso a NEW el proceso 5
+[DEBUG] 02:41:09:349 KERNEL/(11828:12699): Estado Actual: NEW , proceso id: 5
+[INFO] 02:41:09:349 KERNEL/(11828:12699): Cant de elementos de new: 1
+[INFO] 02:41:09:349 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:41:09:349 KERNEL/(11828:11832): Paso a READY el proceso 5
+[DEBUG] 02:41:09:349 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 5
+[DEBUG] 02:41:09:349 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 5
+[INFO] 02:41:11:542 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:41:11:542 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:41:11:542 KERNEL/(11828:12781): Consola conectada, paso a crear el hilo
+[DEBUG] 02:41:11:542 KERNEL/(11828:12781): Paso a NEW el proceso 6
+[DEBUG] 02:41:11:542 KERNEL/(11828:12781): Estado Actual: NEW , proceso id: 6
+[INFO] 02:41:11:542 KERNEL/(11828:12781): Cant de elementos de new: 1
+[INFO] 02:41:11:542 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:41:11:542 KERNEL/(11828:11832): Paso a READY el proceso 6
+[DEBUG] 02:41:11:542 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 6
+[DEBUG] 02:41:11:542 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 6
+[DEBUG] 02:41:20:650 KERNEL/(11828:11834): Paso a EXEC el proceso 4
+[DEBUG] 02:41:20:650 KERNEL/(11828:11834): Paso a EXIT el proceso 4
+[DEBUG] 02:41:20:650 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 4
+[DEBUG] 02:41:20:650 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 4
+[DEBUG] 02:41:20:650 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:41:20:650 KERNEL/(11828:11834): Procesos finalizados: 2
+[DEBUG] 02:41:20:650 KERNEL/(11828:11834): Procesos finalizados: 3
+[DEBUG] 02:41:20:650 KERNEL/(11828:11834): Procesos finalizados: 4
+[DEBUG] 02:41:20:650 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:41:20:651 KERNEL/(11828:11833): Paso a EXEC el proceso 5
+[DEBUG] 02:41:20:651 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 5
+[DEBUG] 02:41:20:651 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 5
+[DEBUG] 02:41:21:653 KERNEL/(11828:11834): Ejecutada: 'PID:  5 - Desalojado por fin de Quantum'
+[DEBUG] 02:41:21:653 KERNEL/(11828:11834): Paso a READY aux el proceso 5
+[INFO] 02:41:21:653 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:41:21:653 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:41:21:653 KERNEL/(11828:11833): Paso a EXEC el proceso 6
+[DEBUG] 02:41:21:653 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 6
+[DEBUG] 02:41:21:653 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 6
+[DEBUG] 02:41:22:653 KERNEL/(11828:11834): Ejecutada: 'PID:  6 - Desalojado por fin de Quantum'
+[DEBUG] 02:41:22:653 KERNEL/(11828:11834): Paso a READY aux el proceso 6
+[INFO] 02:41:22:653 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:41:22:653 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:41:22:654 KERNEL/(11828:11833): Paso a EXEC el proceso 5
+[DEBUG] 02:41:22:654 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 5
+[DEBUG] 02:41:22:654 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 5
+[INFO] 02:41:22:654 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Paso a EXEC el proceso 5
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Paso a EXIT el proceso 5
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 5
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 5
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Procesos finalizados: 2
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Procesos finalizados: 3
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Procesos finalizados: 4
+[DEBUG] 02:41:34:659 KERNEL/(11828:11834): Procesos finalizados: 5
+[DEBUG] 02:41:34:659 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:41:34:659 KERNEL/(11828:11833): Paso a EXEC el proceso 6
+[DEBUG] 02:41:34:659 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 6
+[DEBUG] 02:41:34:659 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 6
+[INFO] 02:41:34:659 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Paso a EXEC el proceso 6
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Paso a EXIT el proceso 6
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 6
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 6
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Procesos finalizados: 2
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Procesos finalizados: 3
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Procesos finalizados: 4
+[DEBUG] 02:41:46:667 KERNEL/(11828:11834): Procesos finalizados: 5
+[DEBUG] 02:41:46:668 KERNEL/(11828:11834): Procesos finalizados: 6
+[INFO] 02:45:27:190 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:45:27:190 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:45:27:190 KERNEL/(11828:13278): Consola conectada, paso a crear el hilo
+[DEBUG] 02:45:27:190 KERNEL/(11828:13278): Paso a NEW el proceso 7
+[DEBUG] 02:45:27:191 KERNEL/(11828:13278): Estado Actual: NEW , proceso id: 7
+[INFO] 02:45:27:191 KERNEL/(11828:13278): Cant de elementos de new: 1
+[INFO] 02:45:27:191 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:45:27:191 KERNEL/(11828:11832): Paso a READY el proceso 7
+[DEBUG] 02:45:27:191 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 7
+[DEBUG] 02:45:27:191 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 7
+[DEBUG] 02:45:27:191 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:45:27:191 KERNEL/(11828:11833): Paso a EXEC el proceso 7
+[DEBUG] 02:45:27:191 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 7
+[DEBUG] 02:45:27:191 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 7
+[INFO] 02:45:27:871 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:45:27:871 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:45:27:871 KERNEL/(11828:13285): Consola conectada, paso a crear el hilo
+[DEBUG] 02:45:27:871 KERNEL/(11828:13285): Paso a NEW el proceso 8
+[DEBUG] 02:45:27:871 KERNEL/(11828:13285): Estado Actual: NEW , proceso id: 8
+[INFO] 02:45:27:871 KERNEL/(11828:13285): Cant de elementos de new: 1
+[INFO] 02:45:27:871 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:45:27:871 KERNEL/(11828:11832): Paso a READY el proceso 8
+[DEBUG] 02:45:27:871 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 8
+[DEBUG] 02:45:27:871 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 8
+[DEBUG] 02:45:28:191 KERNEL/(11828:11834): Ejecutada: 'PID:  7 - Desalojado por fin de Quantum'
+[DEBUG] 02:45:28:191 KERNEL/(11828:11834): Paso a READY aux el proceso 7
+[INFO] 02:45:28:191 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:45:28:191 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:45:28:192 KERNEL/(11828:11833): Paso a EXEC el proceso 8
+[DEBUG] 02:45:28:192 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 8
+[DEBUG] 02:45:28:192 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 8
+[INFO] 02:45:29:098 KERNEL/(11828:11829): Se conecto un cliente!
+[INFO] 02:45:29:098 KERNEL/(11828:11829): Llegaron las instrucciones y los segmentos
+[INFO] 02:45:29:098 KERNEL/(11828:13342): Consola conectada, paso a crear el hilo
+[DEBUG] 02:45:29:098 KERNEL/(11828:13342): Paso a NEW el proceso 9
+[DEBUG] 02:45:29:098 KERNEL/(11828:13342): Estado Actual: NEW , proceso id: 9
+[INFO] 02:45:29:098 KERNEL/(11828:13342): Cant de elementos de new: 1
+[INFO] 02:45:29:098 KERNEL/(11828:11832): Agregando un pcb a lista ready
+[DEBUG] 02:45:29:098 KERNEL/(11828:11832): Paso a READY el proceso 9
+[DEBUG] 02:45:29:098 KERNEL/(11828:11832): Estado Anterior: NEW , proceso id: 9
+[DEBUG] 02:45:29:098 KERNEL/(11828:11832): Estado Actual: READY , proceso id: 9
+[DEBUG] 02:45:29:193 KERNEL/(11828:11834): Ejecutada: 'PID:  8 - Desalojado por fin de Quantum'
+[DEBUG] 02:45:29:193 KERNEL/(11828:11834): Paso a READY aux el proceso 8
+[INFO] 02:45:29:193 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:45:29:193 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:45:29:193 KERNEL/(11828:11833): Paso a EXEC el proceso 9
+[DEBUG] 02:45:29:193 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 9
+[DEBUG] 02:45:29:193 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 9
+[DEBUG] 02:45:30:194 KERNEL/(11828:11834): Ejecutada: 'PID:  9 - Desalojado por fin de Quantum'
+[DEBUG] 02:45:30:194 KERNEL/(11828:11834): Paso a READY aux el proceso 9
+[INFO] 02:45:30:194 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:45:30:194 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:45:30:194 KERNEL/(11828:11833): Paso a EXEC el proceso 7
+[DEBUG] 02:45:30:194 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 7
+[DEBUG] 02:45:30:194 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 7
+[INFO] 02:45:30:194 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Paso a EXEC el proceso 7
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Paso a EXIT el proceso 7
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 7
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 7
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Procesos finalizados: 2
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Procesos finalizados: 3
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Procesos finalizados: 4
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Procesos finalizados: 5
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Procesos finalizados: 6
+[DEBUG] 02:45:42:201 KERNEL/(11828:11834): Procesos finalizados: 7
+[DEBUG] 02:45:42:201 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:45:42:201 KERNEL/(11828:11833): Paso a EXEC el proceso 8
+[DEBUG] 02:45:42:201 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 8
+[DEBUG] 02:45:42:201 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 8
+[INFO] 02:45:42:201 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Paso a EXEC el proceso 8
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Paso a EXIT el proceso 8
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 8
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 8
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Procesos finalizados: 2
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Procesos finalizados: 3
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Procesos finalizados: 4
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Procesos finalizados: 5
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Procesos finalizados: 6
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Procesos finalizados: 7
+[DEBUG] 02:45:44:204 KERNEL/(11828:11834): Procesos finalizados: 8
+[DEBUG] 02:45:44:204 KERNEL/(11828:11833): Implementando algoritmo FEEDBACK
+[DEBUG] 02:45:44:204 KERNEL/(11828:11833): Paso a EXEC el proceso 9
+[DEBUG] 02:45:44:204 KERNEL/(11828:11833): Estado Anterior: READY , proceso id: 9
+[DEBUG] 02:45:44:204 KERNEL/(11828:11833): Estado Actual: EXEC , proceso id: 9
+[INFO] 02:45:44:204 KERNEL/(11828:11833): Llego pcb a plani corto plazo
+[DEBUG] 02:45:56:211 KERNEL/(11828:11834): Paso a EXEC el proceso 9
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Paso a EXIT el proceso 9
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Estado Anterior: EXEC , proceso id: 9
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Estado, proceso Actual: EXIT  id: 9
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 1
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 2
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 3
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 4
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 5
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 6
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 7
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 8
+[DEBUG] 02:45:56:212 KERNEL/(11828:11834): Procesos finalizados: 9
+[INFO] 02:54:23:651 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[INFO] 02:54:23:652 KERNEL/(14194:14198): Servidor listo para recibir al cliente
+[INFO] 02:57:07:533 KERNEL/(14194:14198): Se conecto un cliente!
+[INFO] 02:57:07:533 KERNEL/(14194:14198): Llegaron las instrucciones y los segmentos
+[INFO] 02:57:07:533 KERNEL/(14194:14588): Consola conectada, paso a crear el hilo
+[DEBUG] 02:57:07:533 KERNEL/(14194:14588): Paso a NEW el proceso 1
+[DEBUG] 02:57:07:533 KERNEL/(14194:14588): Estado Actual: NEW , proceso id: 1
+[INFO] 02:57:07:533 KERNEL/(14194:14588): Cant de elementos de new: 1
+[INFO] 02:57:07:534 KERNEL/(14194:14201): Agregando un pcb a lista ready
+[DEBUG] 02:57:07:534 KERNEL/(14194:14201): Paso a READY el proceso 1
+[DEBUG] 02:57:07:534 KERNEL/(14194:14201): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 02:57:07:534 KERNEL/(14194:14201): Estado Actual: READY , proceso id: 1
+[DEBUG] 02:57:07:534 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:07:534 KERNEL/(14194:14202): Paso a EXEC el proceso 1
+[DEBUG] 02:57:07:534 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:57:07:534 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:57:07:721 KERNEL/(14194:14198): Se conecto un cliente!
+[INFO] 02:57:07:721 KERNEL/(14194:14198): Llegaron las instrucciones y los segmentos
+[INFO] 02:57:07:722 KERNEL/(14194:14595): Consola conectada, paso a crear el hilo
+[DEBUG] 02:57:07:722 KERNEL/(14194:14595): Paso a NEW el proceso 2
+[DEBUG] 02:57:07:722 KERNEL/(14194:14595): Estado Actual: NEW , proceso id: 2
+[INFO] 02:57:07:722 KERNEL/(14194:14595): Cant de elementos de new: 1
+[INFO] 02:57:07:722 KERNEL/(14194:14201): Agregando un pcb a lista ready
+[DEBUG] 02:57:07:722 KERNEL/(14194:14201): Paso a READY el proceso 2
+[DEBUG] 02:57:07:722 KERNEL/(14194:14201): Estado Anterior: NEW , proceso id: 2
+[DEBUG] 02:57:07:722 KERNEL/(14194:14201): Estado Actual: READY , proceso id: 2
+[DEBUG] 02:57:08:534 KERNEL/(14194:14203): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:08:535 KERNEL/(14194:14203): Paso a READY aux el proceso 1
+[INFO] 02:57:08:535 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:08:535 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:08:535 KERNEL/(14194:14202): Paso a EXEC el proceso 2
+[DEBUG] 02:57:08:535 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:57:08:535 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 2
+[INFO] 02:57:09:142 KERNEL/(14194:14198): Se conecto un cliente!
+[INFO] 02:57:09:142 KERNEL/(14194:14198): Llegaron las instrucciones y los segmentos
+[INFO] 02:57:09:142 KERNEL/(14194:14643): Consola conectada, paso a crear el hilo
+[DEBUG] 02:57:09:142 KERNEL/(14194:14643): Paso a NEW el proceso 3
+[DEBUG] 02:57:09:142 KERNEL/(14194:14643): Estado Actual: NEW , proceso id: 3
+[INFO] 02:57:09:142 KERNEL/(14194:14643): Cant de elementos de new: 1
+[INFO] 02:57:09:142 KERNEL/(14194:14201): Agregando un pcb a lista ready
+[DEBUG] 02:57:09:142 KERNEL/(14194:14201): Paso a READY el proceso 3
+[DEBUG] 02:57:09:142 KERNEL/(14194:14201): Estado Anterior: NEW , proceso id: 3
+[DEBUG] 02:57:09:142 KERNEL/(14194:14201): Estado Actual: READY , proceso id: 3
+[DEBUG] 02:57:09:535 KERNEL/(14194:14203): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:09:535 KERNEL/(14194:14203): Paso a READY aux el proceso 2
+[INFO] 02:57:09:535 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:09:535 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:09:535 KERNEL/(14194:14202): Paso a EXEC el proceso 3
+[DEBUG] 02:57:09:535 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:57:09:535 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 3
+[INFO] 02:57:10:313 KERNEL/(14194:14198): Se conecto un cliente!
+[INFO] 02:57:10:313 KERNEL/(14194:14198): Llegaron las instrucciones y los segmentos
+[INFO] 02:57:10:313 KERNEL/(14194:14703): Consola conectada, paso a crear el hilo
+[DEBUG] 02:57:10:313 KERNEL/(14194:14703): Paso a NEW el proceso 4
+[DEBUG] 02:57:10:313 KERNEL/(14194:14703): Estado Actual: NEW , proceso id: 4
+[INFO] 02:57:10:313 KERNEL/(14194:14703): Cant de elementos de new: 1
+[INFO] 02:57:10:313 KERNEL/(14194:14201): Agregando un pcb a lista ready
+[DEBUG] 02:57:10:313 KERNEL/(14194:14201): Paso a READY el proceso 4
+[DEBUG] 02:57:10:313 KERNEL/(14194:14201): Estado Anterior: NEW , proceso id: 4
+[DEBUG] 02:57:10:313 KERNEL/(14194:14201): Estado Actual: READY , proceso id: 4
+[DEBUG] 02:57:10:536 KERNEL/(14194:14203): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:10:536 KERNEL/(14194:14203): Paso a READY aux el proceso 3
+[INFO] 02:57:10:536 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:10:536 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:10:536 KERNEL/(14194:14202): Paso a EXEC el proceso 4
+[DEBUG] 02:57:10:536 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 4
+[DEBUG] 02:57:10:536 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 4
+[DEBUG] 02:57:11:537 KERNEL/(14194:14203): Ejecutada: 'PID:  4 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:11:537 KERNEL/(14194:14203): Paso a READY aux el proceso 4
+[INFO] 02:57:11:537 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:11:537 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:11:537 KERNEL/(14194:14202): Paso a EXEC el proceso 1
+[DEBUG] 02:57:11:537 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:57:11:537 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:57:11:537 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:11:537 KERNEL/(14194:14203): Paso a BLOCK el proceso 1
+[DEBUG] 02:57:11:537 KERNEL/(14194:14203): Ejecutada: 'PID:  1 - Bloqueado por: TECLADO '
+[DEBUG] 02:57:11:537 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:11:537 KERNEL/(14194:14202): Paso a EXEC el proceso 2
+[DEBUG] 02:57:11:537 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:57:11:537 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 2
+[INFO] 02:57:11:537 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:16:541 KERNEL/(14194:14203): Paso a BLOCK el proceso 2
+[DEBUG] 02:57:16:541 KERNEL/(14194:14203): Ejecutada: 'PID:  2 - Bloqueado por: PANTALLA '
+[DEBUG] 02:57:16:541 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:16:541 KERNEL/(14194:14202): Paso a EXEC el proceso 3
+[DEBUG] 02:57:16:541 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:57:16:541 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 3
+[INFO] 02:57:16:541 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[INFO] 02:57:16:541 KERNEL/(14194:14845): El valor del registro que se muestra por pantalla es: 3
+[INFO] 02:57:17:291 KERNEL/(14194:14845): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 02:57:17:291 KERNEL/(14194:14845): Paso a READY el proceso 2
+[DEBUG] 02:57:17:541 KERNEL/(14194:14203): Paso a BLOCK el proceso 3
+[DEBUG] 02:57:17:541 KERNEL/(14194:14203): Ejecutada: 'PID:  3 - Bloqueado por: DISCO '
+[DEBUG] 02:57:17:542 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:17:542 KERNEL/(14194:14202): Paso a EXEC el proceso 2
+[DEBUG] 02:57:17:542 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:57:17:542 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 2
+[INFO] 02:57:17:542 KERNEL/(14194:14859): Ejecutando el dispositivo DISCO
+[INFO] 02:57:17:542 KERNEL/(14194:14859): Por un tiempo de: 7000
+[DEBUG] 02:57:18:543 KERNEL/(14194:14203): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:18:543 KERNEL/(14194:14203): Paso a READY aux el proceso 2
+[INFO] 02:57:18:543 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:18:543 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:18:543 KERNEL/(14194:14202): Paso a EXEC el proceso 4
+[DEBUG] 02:57:18:543 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 4
+[DEBUG] 02:57:18:543 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 4
+[INFO] 02:57:18:543 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:18:543 KERNEL/(14194:14203): Paso a BLOCK el proceso 4
+[DEBUG] 02:57:18:543 KERNEL/(14194:14203): Ejecutada: 'PID:  4 - Bloqueado por: DISCO '
+[DEBUG] 02:57:18:543 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:18:543 KERNEL/(14194:14202): Paso a EXEC el proceso 2
+[DEBUG] 02:57:18:543 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:57:18:543 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 2
+[INFO] 02:57:18:544 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:18:544 KERNEL/(14194:14203): Paso a BLOCK el proceso 2
+[DEBUG] 02:57:18:544 KERNEL/(14194:14203): Ejecutada: 'PID:  2 - Bloqueado por: PANTALLA '
+[INFO] 02:57:18:544 KERNEL/(14194:14863): El valor del registro que se muestra por pantalla es: 1
+[INFO] 02:57:19:294 KERNEL/(14194:14863): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 02:57:19:295 KERNEL/(14194:14863): Paso a READY el proceso 2
+[DEBUG] 02:57:19:295 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:19:295 KERNEL/(14194:14202): Paso a EXEC el proceso 2
+[DEBUG] 02:57:19:295 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:57:19:295 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 2
+[DEBUG] 02:57:20:296 KERNEL/(14194:14203): Ejecutada: 'PID:  2 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:20:296 KERNEL/(14194:14203): Paso a READY aux el proceso 2
+[INFO] 02:57:20:296 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:20:296 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:20:296 KERNEL/(14194:14202): Paso a EXEC el proceso 2
+[DEBUG] 02:57:20:296 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 2
+[DEBUG] 02:57:20:296 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 2
+[INFO] 02:57:20:296 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:20:297 KERNEL/(14194:14203): Paso a EXEC el proceso 2
+[DEBUG] 02:57:20:297 KERNEL/(14194:14203): Paso a EXIT el proceso 2
+[DEBUG] 02:57:20:297 KERNEL/(14194:14203): Estado Anterior: EXEC , proceso id: 2
+[DEBUG] 02:57:20:297 KERNEL/(14194:14203): Estado, proceso Actual: EXIT  id: 2
+[DEBUG] 02:57:20:297 KERNEL/(14194:14203): Procesos finalizados: 2
+[INFO] 02:57:22:074 KERNEL/(14194:14730): El valor del registro ingresado por consola es: 21
+[DEBUG] 02:57:22:074 KERNEL/(14194:14730): Paso a READY el proceso 1
+[DEBUG] 02:57:22:074 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:22:074 KERNEL/(14194:14202): Paso a EXEC el proceso 1
+[DEBUG] 02:57:22:074 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:57:22:074 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 02:57:23:075 KERNEL/(14194:14203): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:23:076 KERNEL/(14194:14203): Paso a READY aux el proceso 1
+[INFO] 02:57:23:076 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:23:076 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:23:076 KERNEL/(14194:14202): Paso a EXEC el proceso 1
+[DEBUG] 02:57:23:076 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:57:23:076 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:57:23:076 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:23:077 KERNEL/(14194:14203): Paso a BLOCK el proceso 1
+[DEBUG] 02:57:23:077 KERNEL/(14194:14203): Ejecutada: 'PID:  1 - Bloqueado por: PANTALLA '
+[INFO] 02:57:23:077 KERNEL/(14194:14925): El valor del registro que se muestra por pantalla es: 22
+[INFO] 02:57:23:828 KERNEL/(14194:14925): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 02:57:23:828 KERNEL/(14194:14925): Paso a READY el proceso 1
+[DEBUG] 02:57:23:828 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:23:828 KERNEL/(14194:14202): Paso a EXEC el proceso 1
+[DEBUG] 02:57:23:828 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:57:23:828 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 02:57:24:543 KERNEL/(14194:14859): Paso a READY el proceso 3
+[INFO] 02:57:24:543 KERNEL/(14194:14862): Ejecutando el dispositivo DISCO
+[INFO] 02:57:24:543 KERNEL/(14194:14862): Por un tiempo de: 3000
+[DEBUG] 02:57:24:829 KERNEL/(14194:14203): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:24:829 KERNEL/(14194:14203): Paso a READY aux el proceso 1
+[INFO] 02:57:24:829 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:24:829 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:24:829 KERNEL/(14194:14202): Paso a EXEC el proceso 3
+[DEBUG] 02:57:24:829 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:57:24:829 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 3
+[DEBUG] 02:57:25:830 KERNEL/(14194:14203): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:25:830 KERNEL/(14194:14203): Paso a READY aux el proceso 3
+[INFO] 02:57:25:830 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:25:830 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:25:830 KERNEL/(14194:14202): Paso a EXEC el proceso 1
+[DEBUG] 02:57:25:830 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 1
+[DEBUG] 02:57:25:830 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 1
+[INFO] 02:57:25:830 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:25:831 KERNEL/(14194:14203): Paso a EXEC el proceso 1
+[DEBUG] 02:57:25:831 KERNEL/(14194:14203): Paso a EXIT el proceso 1
+[DEBUG] 02:57:25:831 KERNEL/(14194:14203): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 02:57:25:831 KERNEL/(14194:14203): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 02:57:25:831 KERNEL/(14194:14203): Procesos finalizados: 2
+[DEBUG] 02:57:25:831 KERNEL/(14194:14203): Procesos finalizados: 1
+[DEBUG] 02:57:25:831 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:25:831 KERNEL/(14194:14202): Paso a EXEC el proceso 3
+[DEBUG] 02:57:25:831 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:57:25:831 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 3
+[INFO] 02:57:25:831 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:26:832 KERNEL/(14194:14203): Paso a BLOCK el proceso 3
+[DEBUG] 02:57:26:832 KERNEL/(14194:14203): Ejecutada: 'PID:  3 - Bloqueado por: IMPRESORA '
+[DEBUG] 02:57:27:543 KERNEL/(14194:14862): Paso a READY el proceso 4
+[DEBUG] 02:57:27:543 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:27:543 KERNEL/(14194:14202): Paso a EXEC el proceso 4
+[DEBUG] 02:57:27:543 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 4
+[DEBUG] 02:57:27:543 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 4
+[INFO] 02:57:27:543 KERNEL/(14194:14994): Ejecutando el dispositivo IMPRESORA
+[INFO] 02:57:27:543 KERNEL/(14194:14994): Por un tiempo de: 4000
+[DEBUG] 02:57:28:544 KERNEL/(14194:14203): Ejecutada: 'PID:  4 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:28:544 KERNEL/(14194:14203): Paso a READY aux el proceso 4
+[INFO] 02:57:28:544 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:28:544 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:28:544 KERNEL/(14194:14202): Paso a EXEC el proceso 4
+[DEBUG] 02:57:28:544 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 4
+[DEBUG] 02:57:28:544 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 4
+[INFO] 02:57:28:544 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:28:544 KERNEL/(14194:14203): Paso a BLOCK el proceso 4
+[DEBUG] 02:57:28:544 KERNEL/(14194:14203): Ejecutada: 'PID:  4 - Bloqueado por: IMPRESORA '
+[DEBUG] 02:57:31:544 KERNEL/(14194:14994): Paso a READY el proceso 3
+[DEBUG] 02:57:31:544 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:31:544 KERNEL/(14194:14202): Paso a EXEC el proceso 3
+[DEBUG] 02:57:31:544 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:57:31:544 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 3
+[INFO] 02:57:31:544 KERNEL/(14194:15011): Ejecutando el dispositivo IMPRESORA
+[INFO] 02:57:31:544 KERNEL/(14194:15011): Por un tiempo de: 6000
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Ejecutada: 'PID:  3 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Paso a READY aux el proceso 3
+[INFO] 02:57:32:545 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:32:545 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:32:545 KERNEL/(14194:14202): Paso a EXEC el proceso 3
+[DEBUG] 02:57:32:545 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 3
+[DEBUG] 02:57:32:545 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 3
+[INFO] 02:57:32:545 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Paso a EXEC el proceso 3
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Paso a EXIT el proceso 3
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Estado Anterior: EXEC , proceso id: 3
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Estado, proceso Actual: EXIT  id: 3
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Procesos finalizados: 2
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Procesos finalizados: 1
+[DEBUG] 02:57:32:545 KERNEL/(14194:14203): Procesos finalizados: 3
+[DEBUG] 02:57:37:545 KERNEL/(14194:15011): Paso a READY el proceso 4
+[DEBUG] 02:57:37:545 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:37:545 KERNEL/(14194:14202): Paso a EXEC el proceso 4
+[DEBUG] 02:57:37:545 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 4
+[DEBUG] 02:57:37:545 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 4
+[DEBUG] 02:57:38:546 KERNEL/(14194:14203): Ejecutada: 'PID:  4 - Desalojado por fin de Quantum'
+[DEBUG] 02:57:38:547 KERNEL/(14194:14203): Paso a READY aux el proceso 4
+[INFO] 02:57:38:547 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:38:547 KERNEL/(14194:14202): Implementando algoritmo FEEDBACK
+[DEBUG] 02:57:38:547 KERNEL/(14194:14202): Paso a EXEC el proceso 4
+[DEBUG] 02:57:38:547 KERNEL/(14194:14202): Estado Anterior: READY , proceso id: 4
+[DEBUG] 02:57:38:547 KERNEL/(14194:14202): Estado Actual: EXEC , proceso id: 4
+[INFO] 02:57:38:547 KERNEL/(14194:14202): Llego pcb a plani corto plazo
+[DEBUG] 02:57:39:549 KERNEL/(14194:14203): Paso a EXEC el proceso 4
+[DEBUG] 02:57:39:549 KERNEL/(14194:14203): Paso a EXIT el proceso 4
+[DEBUG] 02:57:39:549 KERNEL/(14194:14203): Estado Anterior: EXEC , proceso id: 4
+[DEBUG] 02:57:39:549 KERNEL/(14194:14203): Estado, proceso Actual: EXIT  id: 4
+[DEBUG] 02:57:39:549 KERNEL/(14194:14203): Procesos finalizados: 2
+[DEBUG] 02:57:39:549 KERNEL/(14194:14203): Procesos finalizados: 1
+[DEBUG] 02:57:39:549 KERNEL/(14194:14203): Procesos finalizados: 3
+[DEBUG] 02:57:39:549 KERNEL/(14194:14203): Procesos finalizados: 4

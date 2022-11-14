@@ -39,10 +39,11 @@ int main(int argc, char **argv)
 
 		char *mensaje = recibirMensaje(conexionConsola);
 		log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
-		log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
+		
 
 		while (1)
 		{
+			log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
 			t_paqueteActual *paquete = recibirPaquete(conexionConsola);
 			uint32_t valor;
 			switch (paquete->codigo_operacion)

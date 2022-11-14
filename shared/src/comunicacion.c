@@ -52,7 +52,7 @@ char *recibirMensaje(int socket)
 
 	tamanio_mensaje = recibirStream(socket, sizeof(*tamanio_mensaje));
 
-	if (tamanio_mensaje)
+	if (tamanio_mensaje )
 	{
 
 		if ((msj = recibirStream(socket, *tamanio_mensaje)))

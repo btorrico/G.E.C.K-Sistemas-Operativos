@@ -82,18 +82,22 @@ void iniciar_servidor_dispatch()
 
 void iniciar_servidor_interrupt()
 {
-	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaInterrupt);
+	int server_fd = iniciar_servidor(NULL, configCPU.puertoEscuchaInterrupt);
 	log_info(logger, "Servidor listo para recibir al interrupt kernel");
 
 	int cliente_fd = esperar_cliente(server_fd);
 	while (1)
 	{
 		char *mensaje = recibirMensaje(cliente_fd);
-
+		if(mensaje == NULL){
+			break;
+		}
 		log_info(logger, "Me llego el mensaje: %s\n", mensaje);
 
 		interrupciones = true;
+		free(mensaje);
 	}
+	printf("\nse desconecto interrupt\n");
 }
 
 void conectar_memoria()

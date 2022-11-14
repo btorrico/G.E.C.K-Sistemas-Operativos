@@ -2,8 +2,7 @@
 FILE=consola
 CONFIG=consola.config
 PLANI_BASE_3=PLANI_BASE/PLANI_BASE_3
-make clean 
-make $FILE
+
 if test -f "./$FILE"; then
     ./$FILE $CONFIG $PLANI_BASE_3
 fi

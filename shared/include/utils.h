@@ -321,5 +321,5 @@ extern sem_t sem_llamar_feedback;
 void *serializar_paquete_dos(t_paqueteActual *paquete, int bytes);
 
 
-extern bool esFifo;
+extern bool hayTimer;
 #endif /* UTILS_H_ */

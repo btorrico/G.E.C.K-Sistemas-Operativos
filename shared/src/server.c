@@ -303,15 +303,16 @@ void implementar_feedback()
 	{
 
 		pthread_mutex_unlock(&mutex_lista_ready);
+		printf("\nentrando fifo auxiliar");
 		implementar_fifo_auxiliar();
-		esFifo = true;
+		
 	}
 	else
 	{
 		pthread_mutex_unlock(&mutex_lista_ready);
-
+		printf("\nentrando round robin");
 		implementar_rr();
-		esFifo = false;
+		
 	}
 }
 
@@ -353,7 +354,7 @@ void implementar_rr()
 
 	int detach = pthread_detach(thrTimer);
 	printf("\nse creo el hilo timer correctamente?: %d, %d\n ", hiloTimerCreado, detach);
-
+	hayTimer = true;
 	printf("\nAgregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
@@ -364,7 +365,7 @@ void implementar_rr()
 	sem_post(&sem_timer);
 	sem_post(&sem_pasar_pcb_running);
 
-
+	printf("\nesperando matar el timer\n");
 	sem_wait(&sem_kill_trhread);
 
 	// pthread_cancel(thrTimer);
@@ -377,6 +378,7 @@ void implementar_rr()
 	{
 		printf("No mate el hilo");
 	}
+	printf("\n saliendo de RR\n");
 }
 
 void hilo_timer()
@@ -384,7 +386,6 @@ void hilo_timer()
 	sem_wait(&sem_timer);
 	 printf("\nvoy a dormir, soy el timer\n");
 	usleep(configKernel.quantum * 1000);
-
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
 	 printf("\nme desperte!\n");

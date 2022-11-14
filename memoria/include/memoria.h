@@ -89,5 +89,5 @@ pthread_mutex_t mutex_lista_ready_auxiliar;
 sem_t sem_llamar_feedback;
 
 
-bool esFifo;
+bool hayTimer;
 #endif

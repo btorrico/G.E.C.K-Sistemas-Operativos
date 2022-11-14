@@ -124,9 +124,11 @@ void conectar_dispatch()
 
 
 		//ACA ESTA EL PROBLEMA
-		if (obtenerAlgoritmo() == RR || (obtenerAlgoritmo() == FEEDBACK && !esFifo))
+		if (hayTimer == true)
 		{
+			printf("\nsempostkilltrhread\n");
 			sem_post(&sem_kill_trhread);
+			hayTimer = false;
 		}
 
 		switch (paquete->codigo_operacion)
@@ -139,7 +141,7 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:
-			sem_post(&contador_pcb_running);
+			
 			pthread_t thrBloqueoPantalla;
 			dispositivoIO = dispositivoToString(insActual->paramIO);
 
@@ -148,13 +150,14 @@ void conectar_dispatch()
 			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 
 			pthread_create(&thrBloqueoPantalla, NULL, (void *)manejar_bloqueo_pantalla, (void *)insActual);
-
 			pthread_detach(thrBloqueoPantalla);
+
+			sem_post(&contador_pcb_running);
 
 			break;
 
 		case BLOCK_PCB_IO_TECLADO:
-			sem_post(&contador_pcb_running);
+			
 			pthread_t thrBloqueoTeclado;
 			dispositivoIO = dispositivoToString(insActual->paramIO);
 
@@ -163,14 +166,12 @@ void conectar_dispatch()
 			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 
 			pthread_create(&thrBloqueoTeclado, NULL, (void *)manejar_bloqueo_teclado, (void *)insActual);
-
 			pthread_detach(thrBloqueoTeclado);
-
+			sem_post(&contador_pcb_running);
 			break;
 
 		case BLOCK_PCB_IO:
-
-			sem_post(&contador_pcb_running);
+			
 			pthread_t thrBloqueoGeneral;
 			dispositivoIO = dispositivoToString(insActual->paramIO);
 
@@ -179,9 +180,8 @@ void conectar_dispatch()
 			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 
 			pthread_create(&thrBloqueoGeneral, NULL, (void *)manejar_bloqueo_general, (void *)insActual);
-
 			pthread_detach(thrBloqueoGeneral);
-
+			sem_post(&contador_pcb_running);
 			break;
 
 		case BLOCK_PCB_PAGE_FAULT:
@@ -189,13 +189,35 @@ void conectar_dispatch()
 			// log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 			break;
 		case INTERRUPT_INTERRUPCION:
-			sem_post(&contador_pcb_running);
+			
 			pthread_t thrInterrupt;
 			log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->id);
-			pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion, (void *)pcb);
+			//int i,j;
+			printf("\nentrando a manejar interrupcion\n");
+			t_tipo_algoritmo algoritmo = obtenerAlgoritmo(); 
+			printf("\n%d\n", algoritmo);
+			//t_pcb *pcb = (t_pcb *)pcbElegida;
+			if (algoritmo == FEEDBACK)
+			{
+			printf("\npasar a ready aux");
+			pasar_a_ready_auxiliar(pcb);
+			sem_post(&sem_hay_pcb_lista_ready);
+			}
+			else if (algoritmo == RR)
+			{
+			printf("\nEl algoritmo obtenido es: %d\n", obtenerAlgoritmo());
+			printf("\ncantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
 
-			pthread_detach(thrInterrupt);
-
+			pasar_a_ready(pcb);
+			printf("\ncantidad de elementos en ready: %d\n", list_size(LISTA_READY));
+			sem_post(&sem_hay_pcb_lista_ready);
+			printf("\ncantidad de elementos en ready: %d\n", list_size(LISTA_READY));
+			}
+			printf("\ntermine de manejar la interrupcion");
+			//i=pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion, (void *)pcb);
+			//j=pthread_detach(thrInterrupt);
+			//printf("\nse creo manejar interrupcion:%d,%d\n",i,j);	
+			sem_post(&contador_pcb_running);
 			break;
 
 		default:
@@ -221,7 +243,7 @@ void manejar_bloqueo_teclado(void *insActual)
 	t_paqueteActual *paquete = recibirPaquete(pcb->socket);
 
 	valorRegistroTeclado = deserializarValor(paquete->buffer, pcb->socket);
-
+	printf("\n el valor de teclado es:%d\n",valorRegistroTeclado);
 	switch (instActualConsola->paramReg[0])
 	{
 	case AX:
@@ -327,13 +349,17 @@ void manejar_bloqueo_general(void *insActual)
 
 void manejar_interrupcion(void *pcbElegida)
 {
+	printf("\nentrando a manejar interrupcion\n");
+	t_tipo_algoritmo algoritmo = obtenerAlgoritmo(); 
+	printf("\n%d\n", algoritmo);
 	t_pcb *pcb = (t_pcb *)pcbElegida;
-	if (obtenerAlgoritmo() == FEEDBACK)
+	if (algoritmo == FEEDBACK)
 	{
+		printf("\npasar a ready aux");
 		pasar_a_ready_auxiliar(pcb);
 		sem_post(&sem_hay_pcb_lista_ready);
 	}
-	else if (obtenerAlgoritmo() == RR)
+	else if (algoritmo == RR)
 	{
 		printf("\nEl algoritmo obtenido es: %d\n", obtenerAlgoritmo());
 		printf("\ncantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
@@ -343,6 +369,7 @@ void manejar_interrupcion(void *pcbElegida)
 		sem_post(&sem_hay_pcb_lista_ready);
 		printf("\ncantidad de elementos en ready: %d\n", list_size(LISTA_READY));
 	}
+	printf("\ntermine de manejar la interrupcion");
 }
 
 void conectar_interrupt()
@@ -378,7 +405,7 @@ void iniciar_kernel()
 
 	contadorIdPCB = 1;
 	contadorIdSegmento = 0;
-	esFifo = false;
+	hayTimer = false;
 }
 
 void crear_pcb(void *argumentos)
@@ -465,8 +492,9 @@ void planifCortoPlazo()
 {
 	while (1)
 	{
-		sem_wait(&sem_hay_pcb_lista_ready);
 		log_info(logger,"Llego pcb a plani corto plazo");
+		sem_wait(&sem_hay_pcb_lista_ready);
+		
 		t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
 
 		sem_wait(&contador_pcb_running);
