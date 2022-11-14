@@ -115,8 +115,8 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			free(palabra[0]);
 		}
 		list_add(instrucciones, instr);
-		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d\n",
-			   instr->instCode, instr->paramInt, instr->paramReg[0], instr->paramReg[1], instr->paramIO);
+		//printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d\n",
+		//	   instr->instCode, instr->paramInt, instr->paramReg[0], instr->paramReg[1], instr->paramIO);
 
 		free(palabra);
 	}

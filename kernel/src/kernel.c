@@ -3,14 +3,10 @@
 int main(int argc, char **argv)
 {
 
-	if (argc > 1 && strcmp(argv[1], "-test") == 0)
-		return run_tests();
-	else
-	{
 		iniciar_kernel();
 
 		crear_hilos_kernel();
-	}
+	
 }
 
 t_configKernel extraerDatosConfig(t_config *archivoConfig)

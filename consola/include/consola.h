@@ -13,7 +13,6 @@
 #include <assert.h>
 #include "client.h"
 #include "server.h"
-#include "tests.h"
 #include "instrucciones.h"
 
 	// rutaArchivoConfiguracion = ;

@@ -2,10 +2,7 @@
 
 int main(int argc, char **argv)
 {
-	if (argc > 1 && strcmp(argv[1], "-test") == 0)
-		return run_tests();
-	else
-	{
+	
 		/* ---------------- LOGGING ---------------- */
 
 		logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_DEBUG);
@@ -77,7 +74,7 @@ int main(int argc, char **argv)
 
 			 //terminar_programa(conexion, logger, config);
 		}
-	}
+	
 }
 
 void leerConfig(char *rutaConfig)
@@ -87,7 +84,7 @@ void leerConfig(char *rutaConfig)
 
 	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s \n TIEMPO PANTALLA: %d \n SEGMENTOS: [", configConsola.ipKernel, configConsola.puertoKernel, configConsola.tiempoPantalla);
 
-	for (int i = 0; i < size_char_array(configConsola.segmentos); i++)
+	/*for (int i = 0; i < size_char_array(configConsola.segmentos); i++)
 	{
 		printf("%s", configConsola.segmentos[i]);
 
@@ -95,7 +92,7 @@ void leerConfig(char *rutaConfig)
 		{
 			printf(", ");
 		}
-	}
+	}*/
 	printf("]" PRINT_COLOR_RESET);
 }
 
@@ -199,7 +196,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		memcpy(stream + offset, list_get(informacion->instrucciones, i), sizeof(t_instruccion));
 		offset += sizeof(t_instruccion);
 		i++;
-		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
+		//printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
 	while (j < list_size(informacion->segmentos))
@@ -209,7 +206,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 
 		offset += sizeof(uint32_t);
 		j++;
-		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
+		//printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
 	}
 
 	buffer->stream = stream; // Payload
