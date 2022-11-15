@@ -137,7 +137,6 @@ int iniciar_servidor(char *IP, char *PUERTO)
 	hints.ai_flags = AI_PASSIVE;	 /*ai_flags= Input flags.  */
 
 	// char* ip = config_get_string_value(archivoConfig, "IP");
-
 	// char* puerto = config_get_string_value(archivoConfig, "PUERTO");
 
 	getaddrinfo(IP, PUERTO, &hints, &servinfo);
