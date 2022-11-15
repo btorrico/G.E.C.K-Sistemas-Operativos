@@ -2,10 +2,6 @@
 
 int main(char argc, char **argv)
 {
-	if (argc > 1 && strcmp(argv[1], "-test") == 0)
-		return run_tests();
-	else
-	{
 
 		logger = iniciar_logger("cpu.log", "CPU", LOG_LEVEL_DEBUG);
 
@@ -25,7 +21,6 @@ int main(char argc, char **argv)
 
 		log_destroy(logger);
 		config_destroy(config);
-	}
 }
 
 t_configCPU extraerDatosConfig(t_config *archivoConfig)
@@ -69,6 +64,8 @@ void iniciar_servidor_dispatch()
 
 		printf("se recibio pcb de running de kernel\n");
 
+		//imprimirInstruccionesYSegmentos(pcb->informacion);
+		
 		do
 		{
 

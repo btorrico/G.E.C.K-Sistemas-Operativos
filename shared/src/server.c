@@ -179,11 +179,20 @@ void pasar_a_exec(t_pcb *pcb)
 	log_debug(logger, "Paso a EXEC el proceso %d", pcb->id);
 }
 
-void pasar_a_block(t_pcb *pcb)
+void pasar_a_block_disco(t_pcb *pcb)
 {
-	pthread_mutex_lock(&mutex_lista_blocked);
-	list_add(LISTA_BLOCKED, pcb);
-	pthread_mutex_unlock(&mutex_lista_blocked);
+	pthread_mutex_lock(&mutex_lista_blocked_disco);
+	list_add(LISTA_BLOCKED_DISCO, pcb);
+	pthread_mutex_unlock(&mutex_lista_blocked_disco);
+
+	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
+}
+
+void pasar_a_block_impresora(t_pcb *pcb)
+{
+	pthread_mutex_lock(&mutex_lista_blocked_impresora);
+	list_add(LISTA_BLOCKED_IMPRESORA, pcb);
+	pthread_mutex_unlock(&mutex_lista_blocked_impresora);
 
 	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
 }
@@ -227,6 +236,9 @@ void iniciar_listas_y_semaforos()
 	LISTA_SOCKETS = list_create();
 	LISTA_EXIT = list_create();
 	LISTA_READY_AUXILIAR = list_create();
+	LISTA_BLOCKED_IMPRESORA = list_create();
+	LISTA_BLOCKED_DISCO = list_create();
+	
 
 	// mutex
 	pthread_mutex_init(&mutex_creacion_ID, NULL);
@@ -234,7 +246,8 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_new, NULL);
 	pthread_mutex_init(&mutex_lista_ready, NULL);
 	pthread_mutex_init(&mutex_lista_exec, NULL);
-	pthread_mutex_init(&mutex_lista_blocked, NULL);
+	pthread_mutex_init(&mutex_lista_blocked_impresora, NULL);
+	pthread_mutex_init(&mutex_lista_blocked_disco, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_pantalla, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_teclado, NULL);
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
@@ -253,9 +266,10 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_kill_trhread, 0, 0);
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
-	sem_init(&contador_bloqueo_teclado_running, 0, 1);
-	sem_init(&contador_bloqueo_pantalla_running, 0, 1);
-	sem_init(&contador_bloqueo_general_running, 0, 1);
+	//sem_init(&contador_bloqueo_teclado_running, 0, 1);
+	//sem_init(&contador_bloqueo_pantalla_running, 0, 1);
+	sem_init(&contador_bloqueo_disco_running, 0, 1);
+	sem_init(&contador_bloqueo_impresora_running, 0, 1);
 	sem_init(&sem_llamar_feedback, 0, 0);
 }
 
@@ -296,7 +310,7 @@ t_pcb *algoritmo_fifo(t_list *lista)
 
 void implementar_feedback()
 {
-	// implementar_rr();
+	//  implementar_rr();
 
 	pthread_mutex_lock(&mutex_lista_ready);
 	if (list_size(LISTA_READY) == 0)

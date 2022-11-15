@@ -2,10 +2,7 @@
 
 int main(int argc, char **argv)
 {
-	if (argc > 1 && strcmp(argv[1], "-test") == 0)
-		return run_tests();
-	else
-	{
+	
 		// Parte Server
 		logger = iniciar_logger("memoria.log", "MEMORIA", LOG_LEVEL_DEBUG);
 
@@ -21,7 +18,7 @@ int main(int argc, char **argv)
 
 		pthread_join(thrKernel, NULL);
 		pthread_join(thrCpu, NULL);
-	}
+
 
 	log_destroy(logger);
 	config_destroy(config);

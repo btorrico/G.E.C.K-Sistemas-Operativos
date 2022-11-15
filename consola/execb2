@@ -1,8 +1,7 @@
 #!/bin/bash
 FILE=consola
 CONFIG=consola.config
-BASE_3=BASE/BASE_3
-
+BASE_2=BASE/BASE_2
 if test -f "./$FILE"; then
-    ./$FILE $CONFIG $BASE_3
+    ./$FILE $CONFIG $BASE_2
 fi

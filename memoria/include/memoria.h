@@ -8,7 +8,6 @@
 #include "client.h"
 #include "server.h"
 #include "comunicacion.h"
-#include "tests.h"
 
 t_config* config;
 	typedef struct {
@@ -52,6 +51,8 @@ t_list *LISTA_BLOCKED_TECLADO;
 t_list *LISTA_EXIT;
 t_list *LISTA_SOCKETS;
 t_list *LISTA_READY_AUXILIAR;
+t_list *LISTA_BLOCKED_DISCO;
+t_list *LISTA_BLOCKED_IMPRESORA;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -59,7 +60,8 @@ pthread_mutex_t mutex_ID_Segmnento;
 pthread_mutex_t mutex_lista_new;
 pthread_mutex_t mutex_lista_ready;
 pthread_mutex_t mutex_lista_exec;
-pthread_mutex_t mutex_lista_blocked;
+pthread_mutex_t mutex_lista_blocked_disco;
+pthread_mutex_t mutex_lista_blocked_impresora;
 pthread_mutex_t mutex_lista_blocked_pantalla;
 pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
@@ -70,7 +72,8 @@ sem_t contador_multiprogramacion;
 sem_t contador_pcb_running;
 sem_t contador_bloqueo_teclado_running;
 sem_t contador_bloqueo_pantalla_running;
-sem_t contador_bloqueo_general_running;
+sem_t contador_bloqueo_disco_running;
+sem_t contador_bloqueo_impresora_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;

@@ -2,10 +2,7 @@
 
 int main(int argc, char **argv)
 {
-	if (argc > 1 && strcmp(argv[1], "-test") == 0)
-		return run_tests();
-	else
-	{
+	
 		/* ---------------- LOGGING ---------------- */
 
 		logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_DEBUG);
@@ -78,7 +75,7 @@ int main(int argc, char **argv)
 
 			 //terminar_programa(conexion, logger, config);
 		}
-	}
+	
 }
 
 void leerConfig(char *rutaConfig)
@@ -88,7 +85,7 @@ void leerConfig(char *rutaConfig)
 
 	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s \n TIEMPO PANTALLA: %d \n SEGMENTOS: [", configConsola.ipKernel, configConsola.puertoKernel, configConsola.tiempoPantalla);
 
-	for (int i = 0; i < size_char_array(configConsola.segmentos); i++)
+	/*for (int i = 0; i < size_char_array(configConsola.segmentos); i++)
 	{
 		printf("%s", configConsola.segmentos[i]);
 
@@ -96,7 +93,7 @@ void leerConfig(char *rutaConfig)
 		{
 			printf(", ");
 		}
-	}
+	}*/
 	printf("]" PRINT_COLOR_RESET);
 }
 

@@ -281,6 +281,9 @@ extern t_list* LISTA_SOCKETS;
 extern t_list *LISTA_READY_AUXILIAR;
 extern t_list *LISTA_BLOCKED_PANTALLA;
 extern t_list *LISTA_BLOCKED_TECLADO;
+extern t_list *LISTA_BLOCKED_DISCO;
+extern t_list *LISTA_BLOCKED_IMPRESORA;
+
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;
@@ -288,7 +291,8 @@ extern pthread_mutex_t mutex_ID_Segmnento;
 extern pthread_mutex_t mutex_lista_new;
 extern pthread_mutex_t mutex_lista_ready;
 extern pthread_mutex_t mutex_lista_exec;
-extern pthread_mutex_t mutex_lista_blocked;
+extern pthread_mutex_t mutex_lista_blocked_disco;
+extern pthread_mutex_t mutex_lista_blocked_impresora;
 extern pthread_mutex_t mutex_lista_blocked_pantalla;
 extern pthread_mutex_t mutex_lista_blocked_teclado;
 extern pthread_mutex_t mutex_lista_exit;
@@ -301,7 +305,8 @@ extern sem_t contador_multiprogramacion;
 extern sem_t contador_pcb_running;
 extern sem_t contador_bloqueo_teclado_running;
 extern sem_t contador_bloqueo_pantalla_running;
-extern sem_t contador_bloqueo_general_running;
+extern sem_t contador_bloqueo_disco_running;
+extern sem_t contador_bloqueo_impresora_running;
 extern sem_t sem_ready;
 extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;
