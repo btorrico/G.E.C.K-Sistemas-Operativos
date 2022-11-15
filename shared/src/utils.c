@@ -165,7 +165,6 @@ int iniciar_servidor(char *IP, char *PUERTO)
 		}
 		break;
 	}
-
 	// Escuchamos las conexiones entrantes
 
 	// listen() : toma el socket del servidor creado y lo marca en el sistema como un socket cuya unica responsabilidad es notificar cuando
