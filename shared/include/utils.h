@@ -17,6 +17,7 @@
 #include "../globals.h"
 
 
+
 typedef enum
 {
 	MENSAJE,
@@ -218,6 +219,11 @@ typedef struct
 	t_infoMensaje header;
 	void* mensaje;
 } t_paqt;
+
+typedef struct {
+	int cantEntradasPorTabla;
+	int tamanioPagina;
+}MSJ_MEMORIA_CPU_INIT;
 
 void imprimirInstruccionesYSegmentos(t_informacion* );
 

@@ -17,7 +17,10 @@ int main(char argc, char **argv)
 
 		pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
 		pthread_create(&thrInterruptKernel, NULL, (void *)iniciar_servidor_interrupt, NULL);
+		printf(PRINT_COLOR_BLUE "Conectando con mododulo Memoria..."PRINT_COLOR_RESET "\n" );
 		pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
+		//pthread_create(&thrMemoria, NULL, (void *)recibir_config_memoria, NULL);
+		//recibir_config_memoria();
 
 		pthread_join(thrDispatchKernel,NULL);
 		pthread_join(thrInterruptKernel, NULL);
@@ -106,6 +109,37 @@ void conectar_memoria()
 	// enviar_mensaje("hola memoria, soy el cpu", conexion);
 	enviarResultado(conexion, "hola memoria soy el cpu");
 }
+
+
+void recibir_config_memoria(){
+	log_debug(logger,"Buscando configuracion inicial de memoria");
+	socketMemoria = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
+
+	enviarMsje(socketMemoria, CPU, NULL, 0, HANDSHAKE_INICIAL);
+	log_debug(logger,"SE ENVIO HANDSHAKE A MEMORIA");
+
+
+	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
+	mensaje->numero = 1;
+
+	enviarMsje(socketMemoria, CPU, mensaje, sizeof(MSJ_INT), CONFIG_DIR_LOG_A_FISICA);
+	free(mensaje);
+	log_debug(logger,"Esperando mensaje de memoria para config inicial");
+
+	t_paqt paquete;
+	recibirMsje(socketMemoria, &paquete);
+	//Reservo espacio para recibir las ENTRADAS_POR_TABLA y TAM_PAGINA
+	MSJ_MEMORIA_CPU_INIT* infoDeMemoria = malloc(sizeof(MSJ_MEMORIA_CPU_INIT));
+	infoDeMemoria = paquete.mensaje;
+
+	log_debug(logger,"Recibida informacion de memoria tamanio pagina=%i cantidadEntradasPorTabla=%i", infoDeMemoria->tamanioPagina, infoDeMemoria->cantEntradasPorTabla);
+
+	configCPU.cantidadEntradasPorTabla = infoDeMemoria->cantEntradasPorTabla;
+	configCPU.tamanioPagina = infoDeMemoria->tamanioPagina;
+
+	free(infoDeMemoria);
+}
+
 
 bool cicloInstruccion(t_pcb *pcb)
 {

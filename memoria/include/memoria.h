@@ -17,7 +17,7 @@ t_config* config;
 	int tamMemoria;
 	int tamPagina;
 	int entradasPorTabla;
-	char* retardoMemoria;
+	int retardoMemoria;
 	char* algoritmoReemplazo;
 	int marcosPorProceso;
     int retardoSwap;
@@ -29,7 +29,7 @@ t_config* config;
 t_configMemoria configMemoria;
 
 t_configKernel configKernel;
-
+void conexionCPU(void* socketAceptadoVoid);
 void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
 

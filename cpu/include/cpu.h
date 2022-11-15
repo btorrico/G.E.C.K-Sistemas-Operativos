@@ -10,6 +10,7 @@
 #include "tests.h"
 
 
+
 t_config* config;
 int conexion;
 int conexionMemoria;
@@ -23,12 +24,15 @@ typedef struct {
 	char* puertoMemoria;
 	char* puertoEscuchaDispatch;
 	char* puertoEscuchaInterrupt;
-
+	int cantidadEntradasPorTabla;
+	int tamanioPagina;
 	char* ipCPU;
 
 }t_configCPU;
 
 t_configCPU configCPU;
+
+int socketMemoria;
 
 t_configKernel configKernel;
 
@@ -38,7 +42,7 @@ bool retornePCB;
 int socketAceptadoDispatch;
 
 t_configCPU extraerDatosConfig(t_config* );
-
+void recibir_config_memoria();
 void iniciar_servidor_dispatch();
 void iniciar_servidor_interrupt();
 void conectar_memoria();

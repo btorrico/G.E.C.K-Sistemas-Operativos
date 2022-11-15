@@ -88,7 +88,11 @@ void iniciar_servidor_hacia_kernel()
 
 void iniciar_servidor_hacia_cpu()
 {
+		//pthread_t hiloConexionCPU;
+
 	int server_fd = iniciar_servidor(IP_SERVER, configMemoria.puertoEscuchaDos); // socket(), bind()listen()
+	struct sockaddr_in dir_cliente;
+	socklen_t tam_direccion = sizeof(struct sockaddr_in);
 	log_info(logger, "Servidor listo para recibir al cpu");
 
 	int cliente_fd = esperar_cliente(server_fd);
@@ -98,9 +102,76 @@ void iniciar_servidor_hacia_cpu()
 	log_info(logger, "Mensaje de confirmacion del CPU: %s\n", mensaje);
 	mostrar_mensajes_del_cliente(cliente_fd);
 
+
+	int socketAceptadoCPU = 0;
+	socketAceptadoCPU = accept(server_fd, (void*)&dir_cliente, &tam_direccion);
+
 	t_paqt paqueteCPU;
-	recibirMsje(cliente_fd, &paqueteCPU);
+	recibirMsje(socketAceptadoCPU, &paqueteCPU);
 	if(paqueteCPU.header.cliente == CPU){
-		log_debug(logger,"[HANSHAKE] se conecto CPU");
+		log_debug(logger,"HANSHAKE se conecto CPU");
+		//pthread_create(&hiloConexionCPU, NULL, (void*) conexionCPU, (void*)socketAceptadoCPU);
+			conexionCPU(socketAceptadoCPU);
 	}
+
+/*
+conexion = iniciarServidor(configMemoriaSwap.puertoEscucha);
+	struct sockaddr_in dir_cliente;
+	socklen_t tam_direccion = sizeof(struct sockaddr_in);
+	pthread_t hiloConexionCPU;
+	pthread_t hiloConexionKernel;
+
+	//se conecta cpu
+	int socketAceptadoCPU = 0;
+	socketAceptadoCPU = accept(conexion, (void*)&dir_cliente, &tam_direccion);
+
+	t_paquete paqueteCPU;
+	recibirMensaje(socketAceptadoCPU, &paqueteCPU);
+	if(paqueteCPU.header.cliente == CPU){
+		log_debug(loggerMemoria,"[HANSHAKE] se conecto CPU");
+		pthread_create(&hiloConexionCPU, NULL, (void*) conexionCPU, (void*)socketAceptadoCPU);
+	}
+*/
+}
+
+void conexionCPU(void* socketAceptadoVoid){
+	int socketAceptado = (int)socketAceptadoVoid;
+	t_paqt paquete;
+
+	int pid;
+	int pagina;
+
+
+	while(1){
+
+
+		recibirMsje(socketAceptado, &paquete);
+
+		switch(paquete.header.tipoMensaje) {
+			case CONFIG_DIR_LOG_A_FISICA:
+				configurarDireccionesCPU(socketAceptado);
+				break;
+		
+			default:
+				log_error(logger, "[TIPO DE MENSAJE] NO SE RECONOCE");
+				break;
+		}
+
+
+		}
+}
+
+void configurarDireccionesCPU(int socketAceptado){
+	//SE ENVIAN LAS ENTRADAS_POR_TABLA y TAM_PAGINA AL CPU PARA PODER HACER LA TRADUCCION EN EL MMU
+	log_debug(logger,"[INIT - CONFIG_DIR_LOG_A_FISICA]");
+
+	MSJ_MEMORIA_CPU_INIT* infoAcpu = malloc(sizeof(MSJ_MEMORIA_CPU_INIT));
+	infoAcpu->cantEntradasPorTabla = configMemoria.entradasPorTabla;
+	infoAcpu->tamanioPagina = configMemoria.tamPagina;
+
+	usleep(configMemoria.retardoMemoria * 1000);
+	enviarMsje(socketAceptado, MEMORIA_SWAP, infoAcpu, sizeof(MSJ_MEMORIA_CPU_INIT), CONFIG_DIR_LOG_A_FISICA);
+	free(infoAcpu);
+
+	log_debug(logger,"[FIN - CONFIG_DIR_LOG_A_FISICA] INFO DE CANT ENTRADAS POR TABLA Y TAMANIO PAGINA ENVIADO A CPU");
 }
