@@ -161,26 +161,29 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO:
-
-			sem_post(&contador_pcb_running);
+		    sem_post(&contador_pcb_running);
 			pthread_t thrBloqueoGeneralImpresora, thrBloqueoGeneralDisco;
 			dispositivoIO = dispositivoToString(insActual->paramIO);
 
-			if (dispositivoIO == "DISCO")
+			if (!strcmp("DISCO", dispositivoIO))
 			{
+				printf("\nentre a ejecutar disco");
 				pasar_a_block_disco(pcb);
 				pthread_create(&thrBloqueoGeneralDisco, NULL, (void *)manejar_bloqueo_general_disco, (void *)insActual);
 				pthread_detach(thrBloqueoGeneralDisco);
+			
 			}
-			else if (dispositivoIO == "IMPRESORA")
+			else if (!strcmp("IMPRESORA", dispositivoIO))
 			{
+				printf("\nentre a ejecutar impresora");
 				pasar_a_block_impresora(pcb);
 				pthread_create(&thrBloqueoGeneralImpresora, NULL, (void *)manejar_bloqueo_general_impresora, (void *)insActual);
 				pthread_detach(thrBloqueoGeneralImpresora);
+				
 			}
 			else
 			{
-				log_error("No exisate el dispositivo", dispositivoIO);
+				log_info("No exisate el dispositivo", dispositivoIO);
 			}
 
 			// pasar_a_block(pcb);
@@ -310,7 +313,6 @@ void manejar_bloqueo_general_impresora(void *insActual)
 	{
 		if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
 		{
-
 			tiempoIO = atoi(configKernel.tiemposIO[i]);
 
 			duracionUnidadDeTrabajo = tiempoIO * instActualBloqueoGeneral->paramInt;
