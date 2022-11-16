@@ -107,7 +107,7 @@ char *recibirMensaje(int socket)
 	return NULL;
 }
 
-void recibirMsje(int socket, t_paqt * paquete) {
+void recibirMsje(int socket, t_paqt* paquete) {
 
 	paquete->mensaje = NULL;
 	int resul = recibirDatos(&(paquete->header), socket, sizeof(t_infoMensaje));

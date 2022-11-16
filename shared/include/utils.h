@@ -204,7 +204,7 @@ typedef enum {
 	CONSOLA,
 	KERNEL,
 	CPU,
-	MEMORIA_SWAP
+	MEMORIA
 }t_enviadoPor;
 
 typedef struct 

@@ -40,6 +40,7 @@ void mostrar_mensajes_del_cliente(int cliente_fd)
 		{
 		case MENSAJE:
 			recibir_mensaje(cliente_fd);
+
 			break;
 		case PAQUETE:
 			lista = recibir_paquete(cliente_fd);
