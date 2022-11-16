@@ -251,6 +251,8 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_blocked_pantalla, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_teclado, NULL);
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
+	pthread_mutex_init(&mutex_creacion_ID_tabla, NULL);
+
 
 	// semaforos
 	sem_init(&sem_ready, 0, 0);

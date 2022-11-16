@@ -602,6 +602,9 @@ void agregar_pcb()
 	printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
 	sem_post(&sem_hay_pcb_lista_ready);
+
+	serializarPCB(conexionMemoria,pcb,ASIGNAR_RECURSOS);
+	log_info(logger,"Envie a memoria los recursos para asignar");
 }
 
 void eliminar_pcb()

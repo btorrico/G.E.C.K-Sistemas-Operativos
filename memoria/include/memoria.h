@@ -28,6 +28,7 @@ t_config* config;
 t_configMemoria configMemoria;
 
 t_configKernel configKernel;
+int contadorIdTablaPag;
 
 void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
@@ -41,6 +42,21 @@ int conexionMemoria;
 int conexionDispatch;
 int conexionConsola;
 int conexionInterrupt;
+
+void* espacioContiguiMem; // espacio donde el user va a guardar en memoria principal 
+typedef struct {
+	uint16_t idTablaPag;
+	int nroPagina;
+	int nroMarco;
+	uint8_t presencia;// 0 v 1
+	uint8_t modificacion;// 0 v 1 
+	uint8_t uso; // 0 v 1
+	uint32_t posicionSwap;
+} __attribute__((packed)) t_tabla_paginas;
+
+//el segmento esta en utils
+
+
 // LISTAS
 t_list *LISTA_NEW;
 t_list *LISTA_READY;
@@ -65,6 +81,7 @@ pthread_mutex_t mutex_lista_blocked_impresora;
 pthread_mutex_t mutex_lista_blocked_pantalla;
 pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
+pthread_mutex_t mutex_creacion_ID_tabla;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;

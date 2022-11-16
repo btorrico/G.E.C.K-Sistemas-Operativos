@@ -49,6 +49,7 @@ int conexionDispatch;
 int conexionConsola;
 int conexionInterrupt;
 int conexionMemoria;
+int contadorIdTablaPag;
 
 // LISTAS
 t_list *LISTA_NEW;
@@ -74,6 +75,7 @@ pthread_mutex_t mutex_lista_blocked_impresora;
 pthread_mutex_t mutex_lista_blocked_pantalla;
 pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
+pthread_mutex_t mutex_creacion_ID_tabla;
 
 
 // SEMAFOROS

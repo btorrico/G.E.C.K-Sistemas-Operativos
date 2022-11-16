@@ -27,7 +27,7 @@ int conexionMemoria;
 
 t_config *config;
 
-
+int contadorIdTablaPag;
 
 char *rutaArchivoConfiguracion;
 
@@ -106,6 +106,7 @@ pthread_mutex_t mutex_lista_blocked_pantalla;
 pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_lista_ready_auxiliar;
+pthread_mutex_t mutex_creacion_ID_tabla;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;
