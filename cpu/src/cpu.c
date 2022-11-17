@@ -110,22 +110,22 @@ void conectar_memoria()
 	enviarResultado(conexion, "hola memoria soy el cpu");
 
 	log_debug(logger,"Buscando configuracion inicial de memoria");
-	socketMemoria = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
+	//socketMemoria = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
 
-	enviarMsje(socketMemoria, CPU, NULL, 0, HANDSHAKE_INICIAL);
+	enviarMsje(conexion, CPU, NULL, 0, HANDSHAKE_INICIAL);
 	log_debug(logger,"Se envio Handshake a MEMORIA");
 
 
 	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
 	mensaje->numero = 1;
 
-	enviarMsje(socketMemoria, CPU, mensaje, sizeof(MSJ_INT), CONFIG_DIR_LOG_A_FISICA);
+	enviarMsje(conexion, CPU, mensaje, sizeof(MSJ_INT), CONFIG_DIR_LOG_A_FISICA);
 	free(mensaje);
 	log_debug(logger,"Esperando mensaje de memoria para config inicial");
 
 	t_paqt paquete;
 
-	recibirMsje(socketMemoria, &paquete);
+	recibirMsje(conexion, &paquete);
 
 	//Reservo espacio para recibir las ENTRADAS_POR_TABLA y TAM_PAGINA
 	MSJ_MEMORIA_CPU_INIT* infoDeMemoria = malloc(sizeof(MSJ_MEMORIA_CPU_INIT));
@@ -225,7 +225,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_READ);
 			log_debug(logger, "Envie direccion fisica a memoria swap: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
-			t_paqt paqueteMemoriaSwap;
+		/* 	t_paqt paqueteMemoriaSwap;
 			recibirMsje(conexionMemoria, &paqueteMemoriaSwap);
 			MSJ_INT* mensajeValorLeido = malloc(sizeof(MSJ_INT));
 			mensajeValorLeido = paqueteMemoriaSwap.mensaje;
@@ -233,12 +233,12 @@ bool cicloInstruccion(t_pcb *pcb)
 			asignarValorARegistro(pcb, insActual->paramReg[0], mensajeValorLeido->numero);
 			
 			log_debug(logger, "Mensaje leido: %d", mensajeValorLeido->numero);
-			log_debug(logger, "Registro %s = %i", registro, insActual->paramReg[0]);
+			log_debug(logger, "Registro %s = %i", registro, insActual->paramReg[0]); */
 
 
-			free(dirFisicaMoveIn);
-			free(mensajeAMemoriaLeer);
-			free(mensajeValorLeido);
+		//  free(dirFisicaMoveIn);
+		//  free(mensajeAMemoriaLeer);
+		//	free(mensajeValorLeido);
 			break;
 
 	case IO:

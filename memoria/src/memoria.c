@@ -89,38 +89,30 @@ void iniciar_servidor_hacia_kernel()
 void iniciar_servidor_hacia_cpu()
 {
 
-
 	int server_fd = iniciar_servidor(IP_SERVER, configMemoria.puertoEscuchaDos); // socket(), bind()listen()
-	struct sockaddr_in dir_cliente;
-	socklen_t tam_direccion = sizeof(struct sockaddr_in);
+	
 	log_info(logger, "Servidor listo para recibir al cpu");
 
-	int cliente_fd = esperar_cliente(server_fd);
+	int socketAceptadoCPU = esperar_cliente(server_fd);
+	char *mensaje = recibirMensaje(socketAceptadoCPU);
 
-	char *mensaje = recibirMensaje(cliente_fd);
-	//char *mensaje = recibirMensaje(socketAceptadoKernel);
 	log_info(logger, "Mensaje de confirmacion del CPU: %s\n", mensaje);
-	
-
-
-	int socketAceptadoCPU = 0;
-	socketAceptadoCPU = accept(server_fd, (void*)&dir_cliente, &tam_direccion);
 
 	t_paqt paqueteCPU;
 	recibirMsje(socketAceptadoCPU, &paqueteCPU);
 
-
 	if(paqueteCPU.header.cliente == CPU){
+		
 		log_debug(logger,"HANSHAKE se conecto CPU");
 
-			conexionCPU(socketAceptadoCPU);
+		conexionCPU(socketAceptadoCPU);
 	}
-    mostrar_mensajes_del_cliente(cliente_fd);
+    mostrar_mensajes_del_cliente(socketAceptadoCPU);
 
 }
 
-void conexionCPU(int socketAceptadoVoid){ // void*
-	int socketAceptado = socketAceptadoVoid;
+void conexionCPU(int socketAceptado){ // void*
+
 	t_paqt paquete;
 
 	int pid;
@@ -129,24 +121,18 @@ void conexionCPU(int socketAceptadoVoid){ // void*
 	int y = 1;
 	while(y){
 
-
 		recibirMsje(socketAceptado, &paquete);
 
 		switch(paquete.header.tipoMensaje) {
 			case CONFIG_DIR_LOG_A_FISICA:
 				configurarDireccionesCPU(socketAceptado);
 				break;
-		case -1:
-			
-			y = 1;
-			break;
 			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
 				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
 				break;
 		}
 
-
-		}
+	}
 }
 
 void configurarDireccionesCPU(int socketAceptado){
@@ -161,7 +147,6 @@ void configurarDireccionesCPU(int socketAceptado){
 
 
 	//usleep(configMemoria.retardoMemoria * 1000); // CHEQUEAR, SI LO DESCOMENTAS NO PASA POR LAS OTRAS LINEAS
-
 
 	enviarMsje(socketAceptado, MEMORIA, infoAcpu, sizeof(MSJ_MEMORIA_CPU_INIT), CONFIG_DIR_LOG_A_FISICA);
 
