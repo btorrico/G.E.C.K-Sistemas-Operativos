@@ -25,27 +25,6 @@ t_config* config;
 
 }t_configMemoria;
 
-t_configMemoria configMemoria;
-
-t_configKernel configKernel;
-int contadorIdTablaPag;
-
-void iniciar_servidor_hacia_kernel();
-void iniciar_servidor_hacia_cpu();
-
-t_configMemoria extraerDatosConfig(t_config* );
-void crearTablasPaginas(void *pcb);
-void eliminarTablasPaginas(void *pcb);
-
-int contadorIdPCB;
-int socketAceptadoKernel;
-
-int conexionMemoria;
-int conexionDispatch;
-int conexionConsola;
-int conexionInterrupt;
-
-void* espacioContiguiMem; // espacio donde el user va a guardar en memoria principal 
 typedef struct {
 	uint16_t idTablaPag;
 	t_list* paginas;
@@ -60,6 +39,31 @@ typedef struct {
 	uint32_t posicionSwap;
 } __attribute__((packed)) t_pagina;
 
+
+
+t_configMemoria configMemoria;
+
+t_configKernel configKernel;
+int contadorIdTablaPag;
+
+void iniciar_servidor_hacia_kernel();
+void iniciar_servidor_hacia_cpu();
+void agregar_tabla_paginas(t_tabla_paginas* );
+
+t_configMemoria extraerDatosConfig(t_config* );
+void crearTablasPaginas(void *pcb);
+void eliminarTablasPaginas(void *pcb);
+FILE *abrirArchivo(char *filename);
+
+int contadorIdPCB;
+int socketAceptadoKernel;
+
+int conexionMemoria;
+int conexionDispatch;
+int conexionConsola;
+int conexionInterrupt;
+
+void* espacioContiguiMem; // espacio donde el user va a guardar en memoria principal 
 
 //el segmento esta en utils
 
@@ -76,6 +80,8 @@ t_list *LISTA_SOCKETS;
 t_list *LISTA_READY_AUXILIAR;
 t_list *LISTA_BLOCKED_DISCO;
 t_list *LISTA_BLOCKED_IMPRESORA;
+t_list *LISTA_TABLA_PAGINAS;
+t_list *LISTA_BLOCK_PAGE_FAULT;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -89,6 +95,8 @@ pthread_mutex_t mutex_lista_blocked_pantalla;
 pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_creacion_ID_tabla;
+pthread_mutex_t mutex_lista_tabla_paginas;
+pthread_mutex_t mutex_lista_block_page_fault; 
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;

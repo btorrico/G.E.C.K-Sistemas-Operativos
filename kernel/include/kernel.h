@@ -33,6 +33,7 @@ void manejar_bloqueo_teclado(void *);
 void manejar_bloqueo_pantalla(void *);
 void manejar_bloqueo_general_disco(void *);
 void manejar_bloqueo_general_impresora(void *);
+void manejar_bloqueo_page_fault(void *);
 
 void planifLargoPlazo();
 void planifCortoPlazo();
@@ -63,6 +64,8 @@ t_list *LISTA_SOCKETS;
 t_list *LISTA_READY_AUXILIAR;
 t_list *LISTA_BLOCKED_DISCO;
 t_list *LISTA_BLOCKED_IMPRESORA;
+t_list *LISTA_TABLA_PAGINAS;
+t_list *LISTA_BLOCK_PAGE_FAULT;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -76,6 +79,8 @@ pthread_mutex_t mutex_lista_blocked_pantalla;
 pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_creacion_ID_tabla;
+pthread_mutex_t mutex_lista_tabla_paginas;
+pthread_mutex_t mutex_lista_block_page_fault; 
 
 
 // SEMAFOROS

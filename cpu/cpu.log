@@ -11112,3 +11112,7 @@
 [DEBUG] 01:22:39:348 CPU/(11766:11767): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
 [DEBUG] 01:22:39:348 CPU/(11766:11767): Envie EXIT al kernel
 [DEBUG] 01:22:39:348 CPU/(11766:11767): No hay interrupcion, sigo el ciclo
+[INFO] 20:00:31:443 CPU/(5546:5548): Servidor listo para recibir al interrupt kernel
+[INFO] 20:00:31:452 CPU/(5546:5547): Servidor listo para recibir al dispatch kernel
+[INFO] 20:01:49:130 CPU/(5546:5548): Se conecto un cliente!
+[INFO] 20:01:49:132 CPU/(5546:5547): Se conecto un cliente!

@@ -11342,3 +11342,4 @@
 [DEBUG] 01:22:39:348 KERNEL/(11838:11844): Estado Anterior: EXEC , proceso id: 1
 [DEBUG] 01:22:39:348 KERNEL/(11838:11844): Estado, proceso Actual: EXIT  id: 1
 [DEBUG] 01:22:39:348 KERNEL/(11838:11844): Procesos finalizados: 1
+[INFO] 20:01:49:119 KERNEL/(5829:5830): Servidor listo para recibir al cliente

@@ -224,6 +224,15 @@ void pasar_a_exit(t_pcb *pcb)
 	log_debug(logger, "Paso a EXIT el proceso %d", pcb->id);
 }
 
+void pasar_a_block_page_fault(t_pcb *pcb)
+{
+	pthread_mutex_lock(&mutex_lista_block_page_fault);
+	list_add(LISTA_BLOCK_PAGE_FAULT, pcb);
+	pthread_mutex_unlock(&mutex_lista_block_page_fault);
+
+	log_debug(logger, "Paso a READY aux el proceso %d", pcb->id);
+}
+
 void iniciar_listas_y_semaforos()
 {
 	// listas
@@ -238,6 +247,8 @@ void iniciar_listas_y_semaforos()
 	LISTA_READY_AUXILIAR = list_create();
 	LISTA_BLOCKED_IMPRESORA = list_create();
 	LISTA_BLOCKED_DISCO = list_create();
+	LISTA_TABLA_PAGINAS = list_create();
+	LISTA_BLOCK_PAGE_FAULT = list_create();
 	
 
 	// mutex
@@ -252,6 +263,8 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_blocked_teclado, NULL);
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
 	pthread_mutex_init(&mutex_creacion_ID_tabla, NULL);
+	pthread_mutex_init(&mutex_lista_tabla_paginas, NULL);
+	pthread_mutex_init(&mutex_lista_block_page_fault , NULL);
 
 
 	// semaforos

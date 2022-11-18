@@ -192,7 +192,17 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_PAGE_FAULT:
-			// TODO
+			pthread_t thrBloqueoPageFault;
+			dispositivoIO = dispositivoToString(insActual->paramIO);
+
+			pasar_a_block_page_fault(pcb);
+
+			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+
+			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, (void *)insActual);
+
+			pthread_detach(thrBloqueoPageFault);
+			sem_post(&contador_pcb_running);
 			// log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 			break;
 		case INTERRUPT_INTERRUPCION:
@@ -384,6 +394,21 @@ void manejar_bloqueo_general_disco(void *insActual)
 
 	free(dispositivoCpu);
 	sem_post(&contador_bloqueo_disco_running);
+}
+void manejar_bloqueo_page_fault(void *insActual)
+{
+	// sem_wait(&contador_bloqueo_teclado_running);
+	/*t_instruccion *instActualConsola = (t_instruccion *)insActual;
+
+	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
+
+
+	t_paqueteActual *paquete = recibirPaquete(pcb->socket);
+
+
+	pasar_a_ready(pcb);
+	// sem_post(&contador_bloqueo_teclado_running);
+	sem_post(&sem_hay_pcb_lista_ready);*/
 }
 
 void manejar_interrupcion(void *pcbElegida)
@@ -593,16 +618,15 @@ void agregar_pcb()
 	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
 	printf("\nRecibo recursos de memoria\n");
 	pcb = deserializoPCB(paquete->buffer);
-	
-for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)
+
+	for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)
 	{
 		t_tabla_segmantos *tablaSegmento = malloc(sizeof(t_tabla_segmantos));
 
 		t_tabla_segmantos *segmento = list_get(pcb->tablaSegmentos, i);
 		printf("\nel id del segmento es: %d\n", segmento->id);
-		
+
 		printf("\nel id de la tabla es: %d\n", segmento->indiceTablaPaginas);
-	
 	}
 
 	pasar_a_ready(pcb);
@@ -612,7 +636,6 @@ for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)
 
 	printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
-	
 	sem_post(&sem_hay_pcb_lista_ready);
 
 	log_info(logger, "Envie a memoria los recursos para asignar");
@@ -628,9 +651,9 @@ void eliminar_pcb()
 	// serializarPCB(conexionMemoria, pcb, LIBERAR_RECURSOS);
 
 	// memoria me devuelve el pcb modificado
-	//t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
+	// t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
 
-	//pcb = deserializoPCB(paquete->buffer);
+	// pcb = deserializoPCB(paquete->buffer);
 
 	pasar_a_exit(pcb);
 

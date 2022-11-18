@@ -1,4 +1,5 @@
 #include "memoria.h"
+#include <sys/stat.h>
 
 int main(int argc, char **argv)
 {
@@ -10,6 +11,11 @@ int main(int argc, char **argv)
 
 	// creo el struct
 	extraerDatosConfig(config);
+
+	FILE *swap = abrirArchivo(configMemoria.pathSwap);
+	// como saber el tamaño del archivo ?
+
+	fclose(swap);
 
 	pthread_t thrKernel, thrCpu;
 
@@ -103,10 +109,10 @@ void iniciar_servidor_hacia_cpu()
 void crearTablasPaginas(void *pcb)
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
+	t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
 	// printf("\nentro a funcion crear tablas\n");
 	for (int i = 0; i < list_size(pcbActual->tablaSegmentos); i++)
 	{
-		t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
 
 		t_tabla_segmantos *tablaSegmento = list_get(pcbActual->tablaSegmentos, i);
 		tablaPagina->paginas = list_create();
@@ -126,13 +132,11 @@ void crearTablasPaginas(void *pcb)
 			pagina->uso = 0;
 			pagina->nroMarco = 0;
 			pagina->nroPagina = i;
-			
+
 			list_add(tablaPagina->paginas, pagina);
-			
 		}
 	}
-
-	
+	agregar_tabla_paginas(tablaPagina);
 	printf("\nEnvio recursos a kernel\n");
 	serializarPCB(socketAceptadoKernel, pcb, ASIGNAR_RECURSOS);
 	printf("\nEnviados\n");
@@ -144,4 +148,23 @@ void eliminarTablasPaginas(void *pcb)
 	t_pcb *pcbActual = (t_pcb *)pcb;
 
 	// eliminar los recurso de swap
+}
+
+void agregar_tabla_paginas(t_tabla_paginas *tablaPaginas)
+{
+	pthread_mutex_lock(&mutex_lista_tabla_paginas);
+	list_add(LISTA_TABLA_PAGINAS, tablaPaginas);
+	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+}
+
+FILE *abrirArchivo(char *filename)
+{
+	if (filename == NULL)
+	{
+		log_error(logger, "Error: debe informar un path correcto.");
+		exit(1);
+	}
+
+	truncate(filename, configMemoria.tamanioSwap);
+	return fopen(filename, "w+");
 }

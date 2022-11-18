@@ -277,6 +277,8 @@ extern t_list *LISTA_BLOCKED_PANTALLA;
 extern t_list *LISTA_BLOCKED_TECLADO;
 extern t_list *LISTA_BLOCKED_DISCO;
 extern t_list *LISTA_BLOCKED_IMPRESORA;
+extern t_list *LISTA_TABLA_PAGINAS;
+extern t_list *LISTA_BLOCK_PAGE_FAULT;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;
@@ -291,6 +293,8 @@ extern pthread_mutex_t mutex_lista_blocked_teclado;
 extern pthread_mutex_t mutex_lista_exit;
 extern pthread_mutex_t mutex_lista_ready_auxiliar;
 extern pthread_mutex_t mutex_creacion_ID_tabla;
+extern pthread_mutex_t mutex_lista_tabla_paginas;
+extern pthread_mutex_t mutex_lista_block_page_fault ;
 
 // SEMAFOROS
 extern sem_t sem_planif_largo_plazo;
