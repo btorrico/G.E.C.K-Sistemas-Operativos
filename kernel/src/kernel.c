@@ -587,12 +587,23 @@ void agregar_pcb()
 	pthread_mutex_unlock(&mutex_lista_new);
 
 	// solicito que memoria inicialice sus estructuras
-	// serializarPCB(conexionMemoria, pcb, PASAR_A_READY);
-
+	serializarPCB(conexionMemoria, pcb, ASIGNAR_RECURSOS);
+	printf("\nEnvio recursos a memoria\n");
 	// memoria me devuelve el pcb modificado
-	// t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
+	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
+	printf("\nRecibo recursos de memoria\n");
+	pcb = deserializoPCB(paquete->buffer);
+	
+for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)
+	{
+		t_tabla_segmantos *tablaSegmento = malloc(sizeof(t_tabla_segmantos));
 
-	// pcb = deserializoPCB(paquete->buffer);
+		t_tabla_segmantos *segmento = list_get(pcb->tablaSegmentos, i);
+		printf("\nel id del segmento es: %d\n", segmento->id);
+		
+		printf("\nel id de la tabla es: %d\n", segmento->indiceTablaPaginas);
+	
+	}
 
 	pasar_a_ready(pcb);
 
@@ -601,10 +612,10 @@ void agregar_pcb()
 
 	printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
+	
 	sem_post(&sem_hay_pcb_lista_ready);
 
-	serializarPCB(conexionMemoria,pcb,ASIGNAR_RECURSOS);
-	log_info(logger,"Envie a memoria los recursos para asignar");
+	log_info(logger, "Envie a memoria los recursos para asignar");
 }
 
 void eliminar_pcb()
@@ -614,12 +625,12 @@ void eliminar_pcb()
 	pthread_mutex_unlock(&mutex_lista_exec);
 
 	// solicito que memoria libere sus estructuras
-	// serializarPCB(conexionMemoria, pcb, PASAR_A_EXIT);
+	// serializarPCB(conexionMemoria, pcb, LIBERAR_RECURSOS);
 
 	// memoria me devuelve el pcb modificado
-	// t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
+	//t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
 
-	// pcb = deserializoPCB(paquete->buffer);
+	//pcb = deserializoPCB(paquete->buffer);
 
 	pasar_a_exit(pcb);
 

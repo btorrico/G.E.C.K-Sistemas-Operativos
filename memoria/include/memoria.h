@@ -34,6 +34,8 @@ void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
 
 t_configMemoria extraerDatosConfig(t_config* );
+void crearTablasPaginas(void *pcb);
+void eliminarTablasPaginas(void *pcb);
 
 int contadorIdPCB;
 int socketAceptadoKernel;
@@ -46,13 +48,18 @@ int conexionInterrupt;
 void* espacioContiguiMem; // espacio donde el user va a guardar en memoria principal 
 typedef struct {
 	uint16_t idTablaPag;
+	t_list* paginas;
+} __attribute__((packed)) t_tabla_paginas;
+
+typedef struct {
 	int nroPagina;
 	int nroMarco;
 	uint8_t presencia;// 0 v 1
 	uint8_t modificacion;// 0 v 1 
 	uint8_t uso; // 0 v 1
 	uint32_t posicionSwap;
-} __attribute__((packed)) t_tabla_paginas;
+} __attribute__((packed)) t_pagina;
+
 
 //el segmento esta en utils
 

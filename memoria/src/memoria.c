@@ -52,27 +52,32 @@ void iniciar_servidor_hacia_kernel()
 {
 	int server_fd = iniciar_servidor(IP_SERVER, configMemoria.puertoEscuchaUno);
 	log_info(logger, "Servidor listo para recibir al kernel");
-	int cliente_fd = esperar_cliente(server_fd);
-	char *mensaje = recibirMensaje(cliente_fd);
+	socketAceptadoKernel = esperar_cliente(server_fd);
+	char *mensaje = recibirMensaje(socketAceptadoKernel);
 
 	log_info(logger, "Mensaje de confirmacion del Kernel: %s\n", mensaje);
 
 	while (1)
 	{
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoKernel);
-
+		if (paquete == NULL)
+		{
+			printf("\nel paqute es nulo\n");
+		}
+		printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
-
+		printf("\nRecibi el paquete del kernel\n");
 		switch (paquete->codigo_operacion)
 		{
-		case ASIGNAR_RECURSOS: 
+		case ASIGNAR_RECURSOS:
+			printf("\nMI cod de op es: %d", paquete->codigo_operacion);
 			pthread_t thrTablaPaginasCrear;
-
+			printf("\nEntro a asignar recursos\n");
 			pthread_create(&thrTablaPaginasCrear, NULL, (void *)crearTablasPaginas, (void *)pcb);
 			pthread_detach(thrTablaPaginasCrear);
 			break;
 
-		case LIBERAR_RECURSOS: 
+		case LIBERAR_RECURSOS:
 			pthread_t thrTablaPaginasEliminar;
 
 			pthread_create(&thrTablaPaginasEliminar, NULL, (void *)eliminarTablasPaginas, (void *)pcb);
@@ -84,7 +89,7 @@ void iniciar_servidor_hacia_kernel()
 
 void iniciar_servidor_hacia_cpu()
 {
-	int server_fd = iniciar_servidor(IP_SERVER, configMemoria.puertoEscuchaDos); 
+	int server_fd = iniciar_servidor(IP_SERVER, configMemoria.puertoEscuchaDos);
 	log_info(logger, "Servidor listo para recibir al cpu");
 
 	int cliente_fd = esperar_cliente(server_fd);
@@ -98,38 +103,45 @@ void iniciar_servidor_hacia_cpu()
 void crearTablasPaginas(void *pcb)
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
-
+	// printf("\nentro a funcion crear tablas\n");
 	for (int i = 0; i < list_size(pcbActual->tablaSegmentos); i++)
 	{
 		t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
-		tablaPagina->modificacion = 0;
-		tablaPagina->presencia = 0;
-		tablaPagina->uso = 0;
-		tablaPagina->nroMarco = 0;
-		tablaPagina->nroPagina = 0;
 
-		t_tabla_paginas *tablaPag = list_get(pcbActual->tablaSegmentos, i);
-
+		t_tabla_segmantos *tablaSegmento = list_get(pcbActual->tablaSegmentos, i);
+		tablaPagina->paginas = list_create();
 		pthread_mutex_lock(&mutex_creacion_ID_tabla);
+		tablaSegmento->indiceTablaPaginas = contadorIdTablaPag;
 		tablaPagina->idTablaPag = contadorIdTablaPag;
 		contadorIdTablaPag++;
 		pthread_mutex_unlock(&mutex_creacion_ID_tabla);
 
-		list_add(pcbActual->tablaSegmentos, tablaPag);
+		for (int i = 0; i < configMemoria.entradasPorTabla; i++)
+		{
+			printf("\nentro al for crear pagina\n");
+			t_pagina *pagina = malloc(sizeof(t_pagina));
 
-		free(tablaPag);
+			pagina->modificacion = 0;
+			pagina->presencia = 0;
+			pagina->uso = 0;
+			pagina->nroMarco = 0;
+			pagina->nroPagina = i;
+			
+			list_add(tablaPagina->paginas, pagina);
+			
+		}
 	}
 
+	
+	printf("\nEnvio recursos a kernel\n");
 	serializarPCB(socketAceptadoKernel, pcb, ASIGNAR_RECURSOS);
+	printf("\nEnviados\n");
 	free(pcbActual);
-
 }
 
 void eliminarTablasPaginas(void *pcb)
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
 
-	//eliminar los recurso de swap
-
-
+	// eliminar los recurso de swap
 }
