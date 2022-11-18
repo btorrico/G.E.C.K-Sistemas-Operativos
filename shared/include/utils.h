@@ -72,7 +72,8 @@ typedef struct
 
 typedef struct {
 	uint32_t nroMarco;
-	int desplazamiento;
+	int tamPagina;
+	int desplazamientoPagina;
 } t_direccionFisica;
 
 typedef struct {

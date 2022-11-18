@@ -215,11 +215,11 @@ bool cicloInstruccion(t_pcb *pcb)
 		t_direccionFisica* dirFisicaMoveIn = malloc(sizeof(t_direccionFisica));
 			//para probar
 			int indiceSeg=0; //en realidad hay que ir a buscar a la tabla de segmentos
-			dirFisicaMoveIn = calcularDireccionFisica(indiceSeg, insActual->paramInt);
+			dirFisicaMoveIn = calcularDireccionFisica(indiceSeg, insActual->paramInt); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
 
 			MSJ_MEMORIA_CPU_LEER* mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
 
-			mensajeAMemoriaLeer->desplazamiento = dirFisicaMoveIn->desplazamiento;
+			mensajeAMemoriaLeer->desplazamiento = dirFisicaMoveIn->desplazamientoPagina;
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
 			mensajeAMemoriaLeer->pid = pcb->id;
 			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_READ);
@@ -433,6 +433,44 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 
 
 t_direccionFisica *calcularDireccionFisica(int indiceSeg, uint32_t paramInt){
-t_direccionFisica *df;
+t_direccionFisica *df; // Agregue parametro en el struct de la Direccion Fisica 
 return df;
+}
+
+
+
+/************** Traduccion */
+// tam_max_segmento = cant_entradas_por_tabla * tam_pagina
+// num_segmento = floor(dir_logica / tam_max_segmento)
+// desplazamiento_segmento = dir_logica % tam_max_segmento
+// num_pagina = floor(desplazamiento_segmento  / tam_pagina)
+// desplazamiento_pagina = desplazamiento_segmento % tam_pagina
+
+t_direccionFisica* traduccion_de_direccion(){
+	t_direccionFisica *direccion = malloc(sizeof(t_direccionFisica));
+	
+
+}
+int tamañoMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina){
+	int tam_max_segmento = cant_entradas_por_tabla * tam_pagina;
+	return tam_max_segmento;
+}
+
+int numeroDeSegmento(int dir_logica, int tam_max_segmento){
+	int num_segmento = floor(dir_logica / tam_max_segmento);
+	return num_segmento;
+}
+int desplazamientoSegmento(int dir_logica, int tam_max_segmento){
+	int desplazamiento_segmento = dir_logica % tam_max_segmento;
+	return desplazamiento_segmento;
+}
+
+int numeroPagina(int desplazamiento_segmento, int tam_pagina){
+	int num_pagina = floor(desplazamiento_segmento / tam_pagina);
+	return num_pagina;
+}
+
+int desplazamientoPagina(int desplamiento_segmento, int tam_pagina){
+	int desplazamiento_pagina = desplamiento_segmento % tam_pagina;
+	return desplazamiento_pagina;
 }
