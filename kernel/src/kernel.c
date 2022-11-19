@@ -29,6 +29,8 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 	configKernel.dispositivosIO = config_get_array_value(archivoConfig, "DISPOSITIVOS_IO");
 	configKernel.tiemposIO = config_get_array_value(archivoConfig, "TIEMPOS_IO");
 
+
+configKernel.quantum = config_get_int_value(archivoConfig, "QUANTUM_RR");
 	return configKernel;
 }
 
