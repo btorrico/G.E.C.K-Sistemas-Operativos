@@ -192,7 +192,7 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_PAGE_FAULT:
-			pthread_t thrBloqueoPageFault;
+			/*pthread_t thrBloqueoPageFault;
 			dispositivoIO = dispositivoToString(insActual->paramIO);
 
 			pasar_a_block_page_fault(pcb);
@@ -204,7 +204,7 @@ void conectar_dispatch()
 			pthread_detach(thrBloqueoPageFault);
 			sem_post(&contador_pcb_running);
 			// log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
-			break;
+			break;*/
 		case INTERRUPT_INTERRUPCION:
 
 			pthread_t thrInterrupt;
@@ -617,6 +617,9 @@ void agregar_pcb()
 	// memoria me devuelve el pcb modificado
 	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
 	printf("\nRecibo recursos de memoria\n");
+
+	
+	//aca esta el problema 
 	pcb = deserializoPCB(paquete->buffer);
 
 	for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)
