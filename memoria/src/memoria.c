@@ -29,6 +29,12 @@ int main(int argc, char **argv)
 	config_destroy(config);
 
 	contadorIdTablaPag = 0;
+
+	//crear una lista con el tablaño de los marcos/segmanetos para ir guardado y remplazando 
+	//en el caso de que esten ocupados , con los algoritmos correcpondientes 
+
+	// en elarchivo swap se van a guardar las tablas enteras que voy a leer segun en los bytes que esten 
+	// lo voy a buscar con el fseeck y ahi agregar , reemplazar , los tatos quedan ahi es como disco 
 }
 
 t_configMemoria extraerDatosConfig(t_config *archivoConfig)

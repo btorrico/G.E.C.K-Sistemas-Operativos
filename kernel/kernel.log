@@ -11343,3 +11343,41 @@
 [DEBUG] 01:22:39:348 KERNEL/(11838:11844): Estado, proceso Actual: EXIT  id: 1
 [DEBUG] 01:22:39:348 KERNEL/(11838:11844): Procesos finalizados: 1
 [INFO] 20:01:49:119 KERNEL/(5829:5830): Servidor listo para recibir al cliente
+[INFO] 20:02:42:612 KERNEL/(11277:11278): Servidor listo para recibir al cliente
+[INFO] 20:02:51:605 KERNEL/(11277:11278): Se conecto un cliente!
+[INFO] 20:02:51:605 KERNEL/(11277:11278): Llegaron las instrucciones y los segmentos
+[INFO] 20:02:51:609 KERNEL/(11277:11418): Consola conectada, paso a crear el hilo
+[DEBUG] 20:02:51:610 KERNEL/(11277:11418): Paso a NEW el proceso 1
+[DEBUG] 20:02:51:610 KERNEL/(11277:11418): Estado Actual: NEW , proceso id: 1
+[INFO] 20:02:51:611 KERNEL/(11277:11418): Cant de elementos de new: 1
+[INFO] 20:02:51:613 KERNEL/(11277:11281): Agregando un pcb a lista ready
+[INFO] 20:02:52:569 KERNEL/(11277:11278): Se conecto un cliente!
+[INFO] 20:02:52:572 KERNEL/(11277:11278): Llegaron las instrucciones y los segmentos
+[INFO] 20:02:52:595 KERNEL/(11277:11424): Consola conectada, paso a crear el hilo
+[DEBUG] 20:02:52:602 KERNEL/(11277:11424): Paso a NEW el proceso 2
+[DEBUG] 20:02:52:606 KERNEL/(11277:11424): Estado Actual: NEW , proceso id: 2
+[INFO] 20:02:52:612 KERNEL/(11277:11424): Cant de elementos de new: 1
+[INFO] 20:04:57:434 KERNEL/(12031:12032): Servidor listo para recibir al cliente
+[INFO] 20:05:01:520 KERNEL/(12031:12032): Se conecto un cliente!
+[INFO] 20:05:01:522 KERNEL/(12031:12032): Llegaron las instrucciones y los segmentos
+[INFO] 20:05:01:529 KERNEL/(12031:12092): Consola conectada, paso a crear el hilo
+[DEBUG] 20:05:01:533 KERNEL/(12031:12092): Paso a NEW el proceso 1
+[DEBUG] 20:05:01:533 KERNEL/(12031:12092): Estado Actual: NEW , proceso id: 1
+[INFO] 20:05:01:533 KERNEL/(12031:12092): Cant de elementos de new: 1
+[INFO] 20:05:01:534 KERNEL/(12031:12035): Agregando un pcb a lista ready
+[INFO] 20:09:09:468 KERNEL/(13240:13351): Servidor listo para recibir al cliente
+[INFO] 20:09:17:535 KERNEL/(13240:13351): Se conecto un cliente!
+[INFO] 20:09:17:536 KERNEL/(13240:13351): Llegaron las instrucciones y los segmentos
+[INFO] 20:09:17:543 KERNEL/(13240:13493): Consola conectada, paso a crear el hilo
+[DEBUG] 20:09:29:841 KERNEL/(13240:13493): Paso a NEW el proceso 1
+[DEBUG] 20:09:29:842 KERNEL/(13240:13493): Estado Actual: NEW , proceso id: 1
+[INFO] 20:09:29:842 KERNEL/(13240:13493): Cant de elementos de new: 1
+[INFO] 20:09:29:842 KERNEL/(13240:13355): Agregando un pcb a lista ready
+[INFO] 20:11:52:034 KERNEL/(13925:13945): Servidor listo para recibir al cliente
+[INFO] 20:12:35:980 KERNEL/(13925:13945): Se conecto un cliente!
+[INFO] 20:12:35:980 KERNEL/(13925:13945): Llegaron las instrucciones y los segmentos
+[INFO] 20:12:35:994 KERNEL/(13925:14090): Consola conectada, paso a crear el hilo
+[DEBUG] 20:12:59:909 KERNEL/(13925:14090): Paso a NEW el proceso 1
+[DEBUG] 20:12:59:909 KERNEL/(13925:14090): Estado Actual: NEW , proceso id: 1
+[INFO] 20:12:59:910 KERNEL/(13925:14090): Cant de elementos de new: 1
+[INFO] 20:12:59:910 KERNEL/(13925:13949): Agregando un pcb a lista ready

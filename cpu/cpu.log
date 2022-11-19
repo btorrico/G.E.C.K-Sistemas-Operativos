@@ -11116,3 +11116,20 @@
 [INFO] 20:00:31:452 CPU/(5546:5547): Servidor listo para recibir al dispatch kernel
 [INFO] 20:01:49:130 CPU/(5546:5548): Se conecto un cliente!
 [INFO] 20:01:49:132 CPU/(5546:5547): Se conecto un cliente!
+[INFO] 20:02:31:590 CPU/(11133:11135): Servidor listo para recibir al interrupt kernel
+[INFO] 20:02:31:594 CPU/(11133:11134): Servidor listo para recibir al dispatch kernel
+[INFO] 20:02:42:609 CPU/(11133:11135): Se conecto un cliente!
+[INFO] 20:02:42:614 CPU/(11133:11134): Se conecto un cliente!
+[INFO] 20:04:46:095 CPU/(11902:11904): Servidor listo para recibir al interrupt kernel
+[INFO] 20:04:46:103 CPU/(11902:11903): Servidor listo para recibir al dispatch kernel
+[INFO] 20:04:57:439 CPU/(11902:11903): Se conecto un cliente!
+[INFO] 20:04:57:442 CPU/(11902:11904): Se conecto un cliente!
+[INFO] 20:07:44:117 CPU/(13068:13069): Servidor listo para recibir al dispatch kernel
+[INFO] 20:07:44:118 CPU/(13068:13070): Servidor listo para recibir al interrupt kernel
+[INFO] 20:09:09:480 CPU/(13068:13069): Se conecto un cliente!
+[INFO] 20:09:09:489 CPU/(13068:13070): Se conecto un cliente!
+[INFO] 20:10:36:082 CPU/(13765:13766): Servidor listo para recibir al dispatch kernel
+[INFO] 20:10:36:084 CPU/(13765:13767): Servidor listo para recibir al interrupt kernel
+[INFO] 20:11:52:056 CPU/(13765:13766): Se conecto un cliente!
+[INFO] 20:11:52:067 CPU/(13765:13767): Se conecto un cliente!
+[INFO] 20:14:11:612 CPU/(14396:14397): Servidor listo para recibir al dispatch kernel

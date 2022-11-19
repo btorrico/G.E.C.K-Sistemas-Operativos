@@ -28,6 +28,7 @@ t_config* config;
 typedef struct {
 	uint16_t idTablaPag;
 	t_list* paginas;
+	//agregar PID para hacer la busqueda y saber a que proceso pertenece 
 } __attribute__((packed)) t_tabla_paginas;
 
 typedef struct {
@@ -39,7 +40,7 @@ typedef struct {
 	uint32_t posicionSwap;
 } __attribute__((packed)) t_pagina;
 
-
+void* espacioContiguiMem; // espacio que en el que voy a guardar bytes, escribir y leer como hago en el archivo (RAM)
 
 t_configMemoria configMemoria;
 
@@ -62,8 +63,6 @@ int conexionMemoria;
 int conexionDispatch;
 int conexionConsola;
 int conexionInterrupt;
-
-void* espacioContiguiMem; // espacio donde el user va a guardar en memoria principal 
 
 //el segmento esta en utils
 
