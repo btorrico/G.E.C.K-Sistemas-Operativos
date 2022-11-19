@@ -10,7 +10,6 @@
 #include "tests.h"
 
 
-
 t_config* config;
 int conexion;
 int conexionMemoria;
@@ -60,6 +59,7 @@ int numeroDeSegmento(int dir_logica, int tam_max_segmento);
 int desplazamientoSegmento(int dir_logica, int tam_max_segmento);
 int numeroPagina(int desplazamiento_segmento, int tam_pagina);
 int desplazamientoPagina(int desplamiento_segmento, int tam_pagina);
+int primer_acceso(int numero_segmento, int numero_pagina);
 
  int conexionDispatch;
  int conexionConsola;
@@ -112,4 +112,38 @@ pthread_mutex_t mutex_lista_ready_auxiliar;
 sem_t sem_llamar_feedback;
 
 bool hayTimer;
+
+
+
+
+/**********TLB***********/
+typedef struct{
+	int nroPagina;
+	int nroFrame;
+    int nroSegmento;
+    int pid;
+} entrada_tlb;
+
+typedef struct tlb{
+	t_list* entradas;
+	int size; //cantidad de entradas
+	char* algoritmo;
+} tlb;
+
+tlb* TLB;
+int TLBEnable;
+pthread_mutex_t mutexTLB;
+
+
+void iniciar_TLB();
+void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid);
+int buscar_en_TLB(int nroPagina);
+void limpiar_entrada_TLB(int nroPagina, int pid);
+void limpiar_entradas_TLB();
+void reemplazo_fifo(int nroPagina, int nroFrame);
+void reemplazo_lru(int nroPagina, int nroFrame);
+void cerrar_TLB();
+void destruir_entrada(void* entry);
+
+
 #endif

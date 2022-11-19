@@ -225,7 +225,6 @@ bool cicloInstruccion(t_pcb *pcb)
 			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_READ);
 			log_debug(logger, "Envie direccion fisica a memoria swap: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
-traduccion_de_direccion(insActual->paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina);
 
 		/* 	t_paqt paqueteMemoriaSwap;
 			recibirMsje(conexionMemoria, &paqueteMemoriaSwap);
@@ -436,6 +435,8 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 
 t_direccionFisica *calcularDireccionFisica(int indiceSeg, uint32_t paramInt){
 t_direccionFisica *df; // Agregue parametro en el struct de la Direccion Fisica 
+traduccion_de_direccion(paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina);
+
 return df;
 }
 
@@ -476,7 +477,7 @@ t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas
 	printf(PRINT_COLOR_GREEN "---------------------------------------------------\n" PRINT_COLOR_RESET);
 
 
-	direccion->nroMarco = 5 ;//segundo_llamado(primer_numero_pagina, idTablaSegundoNivel);
+	direccion->nroMarco = primer_acceso(numero_segmento, numero_pagina);
 	direccion->desplazamientoPagina = 5 ;// direccion_logica - (primer_numero_pagina * tamanio_pagina);
 	
 	log_debug(logger, "El valor del marco es: %d", direccion->nroMarco);
@@ -484,6 +485,11 @@ t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas
 	return direccion;
 
 }
+
+int primer_acceso(int numero_segmento, int numero_pagina){
+	return 5;
+}
+
 int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina){
 	int tam_max_segmento = cant_entradas_por_tabla * tam_pagina;
 	return tam_max_segmento;
@@ -506,4 +512,65 @@ int numeroPagina(int desplazamiento_segmento, int tam_pagina){
 int desplazamientoPagina(int desplazamiento_segmento, int tam_pagina){
 	int desplazamiento_pagina = desplazamiento_segmento % tam_pagina;
 	return desplazamiento_pagina;
+}
+
+
+
+/*----------------------TLB------------------------------*/
+
+
+void iniciar_TLB(){
+
+	int cantidadEntradasTLB = configCPU.entradasTLB;
+
+	if(cantidadEntradasTLB==0){
+		TLBEnable = 0;
+		return;
+	}
+
+	TLBEnable = 1;
+
+	TLB = malloc(sizeof(tlb));
+
+	TLB->size = cantidadEntradasTLB;
+	TLB->entradas = list_create();
+	TLB->algoritmo = configCPU.reemplazoTLB;
+
+}
+
+int tlbTieneEntradasLibres(){
+	return TLB->size > TLB->entradas->elements_count;
+}
+
+//En este caso, la TLB tiene una o mas entradas libres // Revisar
+void llenar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
+	entrada_tlb* entrada = malloc(sizeof(entrada_tlb));
+	entrada->nroPagina = nroPagina;
+	entrada->nroFrame = nroFrame;
+	entrada->nroSegmento = nroSegmento;
+	entrada->pid = pid;
+	list_add_in_index(TLB->entradas, 0, entrada);
+
+	/**
+	* @NAME: list_add_in_index
+	* @DESC: Agrega un elemento en una posicion determinada de la lista
+	*/
+	//void list_add_in_index(t_list *, int index, void *element);
+
+}
+
+void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
+
+	if(tlbTieneEntradasLibres()){
+		llenar_TLB(nroPagina, nroFrame,nroSegmento,pid);
+		return;
+	}
+
+	//REEMPLAZO DE PAGINA
+	if(strcmp(TLB->algoritmo , "LRU")== 0){
+		reemplazo_lru(nroPagina, nroFrame);
+	} else {
+		reemplazo_fifo(nroPagina, nroFrame);
+	}
+
 }
