@@ -225,6 +225,8 @@ bool cicloInstruccion(t_pcb *pcb)
 			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_READ);
 			log_debug(logger, "Envie direccion fisica a memoria swap: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
+traduccion_de_direccion(insActual->paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina);
+
 		/* 	t_paqt paqueteMemoriaSwap;
 			recibirMsje(conexionMemoria, &paqueteMemoriaSwap);
 			MSJ_INT* mensajeValorLeido = malloc(sizeof(MSJ_INT));
@@ -446,12 +448,43 @@ return df;
 // num_pagina = floor(desplazamiento_segmento  / tam_pagina)
 // desplazamiento_pagina = desplazamiento_segmento % tam_pagina
 
-t_direccionFisica* traduccion_de_direccion(){
+t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina){
+
+	printf(PRINT_COLOR_GREEN "\n---------------------------------------------------" PRINT_COLOR_RESET);
+	log_info(logger, "MMU entrando en acción...");
+	log_info(logger, "Traduccion de la dirección logica");
+	log_info(logger, "direccionLogica: %d", direccionLogica);
 	t_direccionFisica *direccion = malloc(sizeof(t_direccionFisica));
+
+	int tamanio_maximo_segmento = tamanioMaximoPorSegmento(cant_entradas_por_tabla, tam_pagina);
+	log_info(logger, "Tamanio Maximo Por Segmento = %d * %d = %d", cant_entradas_por_tabla, tam_pagina, tamanio_maximo_segmento);
+
+	int numero_segmento = numeroDeSegmento(direccionLogica, tamanioMaximoPorSegmento);
+	log_info(logger, "Número de Segmento = %d / %d = %d", direccionLogica,tamanio_maximo_segmento, numero_segmento);
+
+	int desplazamiento_Segmento = desplazamientoSegmento( direccionLogica, tamanio_maximo_segmento);
+	log_info(logger, "Desplazamiento Segmento = %d ·/. %d = %d", direccionLogica,tamanio_maximo_segmento, desplazamiento_Segmento);
+
+	int numero_pagina= (desplazamiento_Segmento, tam_pagina);
+	log_info(logger, "Número Pagina = %d / %d = %d", desplazamiento_Segmento, tam_pagina, numero_pagina);
+
+	int desplazamiento_pagina = desplazamientoPagina(desplazamiento_Segmento, tam_pagina);
+	log_info(logger, "Desplazamiento Pagina = %d ·/. %d = %d", desplazamiento_Segmento, tam_pagina,desplazamiento_pagina);
+
+
 	
+	printf(PRINT_COLOR_GREEN "---------------------------------------------------\n" PRINT_COLOR_RESET);
+
+
+	direccion->nroMarco = 5 ;//segundo_llamado(primer_numero_pagina, idTablaSegundoNivel);
+	direccion->desplazamientoPagina = 5 ;// direccion_logica - (primer_numero_pagina * tamanio_pagina);
+	
+	log_debug(logger, "El valor del marco es: %d", direccion->nroMarco);
+	log_debug(logger, "El valor del offset es: %d", direccion->desplazamientoPagina);
+	return direccion;
 
 }
-int tamañoMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina){
+int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina){
 	int tam_max_segmento = cant_entradas_por_tabla * tam_pagina;
 	return tam_max_segmento;
 }
@@ -470,7 +503,7 @@ int numeroPagina(int desplazamiento_segmento, int tam_pagina){
 	return num_pagina;
 }
 
-int desplazamientoPagina(int desplamiento_segmento, int tam_pagina){
-	int desplazamiento_pagina = desplamiento_segmento % tam_pagina;
+int desplazamientoPagina(int desplazamiento_segmento, int tam_pagina){
+	int desplazamiento_pagina = desplazamiento_segmento % tam_pagina;
 	return desplazamiento_pagina;
 }

@@ -54,6 +54,12 @@ void asignarValorARegistro(t_pcb *,t_registro ,uint32_t );
 bool cicloInstruccion(t_pcb *);
 t_direccionFisica *calcularDireccionFisica(int indiceSeg , uint32_t);
 
+t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina);
+int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina);
+int numeroDeSegmento(int dir_logica, int tam_max_segmento);
+int desplazamientoSegmento(int dir_logica, int tam_max_segmento);
+int numeroPagina(int desplazamiento_segmento, int tam_pagina);
+int desplazamientoPagina(int desplamiento_segmento, int tam_pagina);
 
  int conexionDispatch;
  int conexionConsola;
