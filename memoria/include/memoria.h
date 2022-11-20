@@ -25,6 +25,7 @@ t_config* config;
 
 }t_configMemoria;
 
+
 typedef struct {
 	uint16_t idTablaPag;
 	t_list* paginas;
@@ -49,12 +50,13 @@ int contadorIdTablaPag;
 
 void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
-void agregar_tabla_paginas(t_tabla_paginas* );
+void agregar_tabla_paginas(t_tabla_paginas *);
 
 t_configMemoria extraerDatosConfig(t_config* );
 void crearTablasPaginas(void *pcb);
 void eliminarTablasPaginas(void *pcb);
 FILE *abrirArchivo(char *filename);
+void crear_hilos_memoria();
 
 int contadorIdPCB;
 int socketAceptadoKernel;

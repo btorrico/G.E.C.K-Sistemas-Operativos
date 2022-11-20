@@ -13,28 +13,24 @@ int main(int argc, char **argv)
 	extraerDatosConfig(config);
 
 	FILE *swap = abrirArchivo(configMemoria.pathSwap);
-	// como saber el tamaño del archivo ?
 
 	fclose(swap);
 
-	pthread_t thrKernel, thrCpu;
-
-	pthread_create(&thrKernel, NULL, (void *)iniciar_servidor_hacia_kernel, NULL);
-	pthread_create(&thrCpu, NULL, (void *)iniciar_servidor_hacia_cpu, NULL);
-
-	pthread_join(thrKernel, NULL);
-	pthread_join(thrCpu, NULL);
-
-	log_destroy(logger);
-	config_destroy(config);
+	iniciar_listas_y_semaforos();
 
 	contadorIdTablaPag = 0;
 
-	//crear una lista con el tablaño de los marcos/segmanetos para ir guardado y remplazando 
-	//en el caso de que esten ocupados , con los algoritmos correcpondientes 
+	crear_hilos_memoria();
 
-	// en elarchivo swap se van a guardar las tablas enteras que voy a leer segun en los bytes que esten 
-	// lo voy a buscar con el fseeck y ahi agregar , reemplazar , los tatos quedan ahi es como disco 
+	log_destroy(logger);
+
+	config_destroy(config);
+
+	// crear una lista con el tablaño de los marcos/segmanetos para ir guardado y remplazando
+	// en el caso de que esten ocupados , con los algoritmos correcpondientes
+
+	// en elarchivo swap se van a guardar las tablas enteras que voy a leer segun en los bytes que esten
+	// lo voy a buscar con el fseeck y ahi agregar , reemplazar , los tatos quedan ahi es como disco
 }
 
 t_configMemoria extraerDatosConfig(t_config *archivoConfig)
@@ -60,6 +56,17 @@ t_configMemoria extraerDatosConfig(t_config *archivoConfig)
 	return configMemoria;
 }
 
+void crear_hilos_memoria()
+{
+	pthread_t thrKernel, thrCpu;
+
+	pthread_create(&thrKernel, NULL, (void *)iniciar_servidor_hacia_kernel, NULL);
+	pthread_create(&thrCpu, NULL, (void *)iniciar_servidor_hacia_cpu, NULL);
+
+	pthread_detach(thrKernel);
+	pthread_join(thrCpu, NULL);
+}
+
 void iniciar_servidor_hacia_kernel()
 {
 	int server_fd = iniciar_servidor(IP_SERVER, configMemoria.puertoEscuchaUno);
@@ -78,7 +85,6 @@ void iniciar_servidor_hacia_kernel()
 		}
 		printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
-		printf("\nRecibi el paquete del kernel\n");
 		switch (paquete->codigo_operacion)
 		{
 		case ASIGNAR_RECURSOS:
@@ -115,12 +121,11 @@ void iniciar_servidor_hacia_cpu()
 void crearTablasPaginas(void *pcb)
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
-	t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
-	// printf("\nentro a funcion crear tablas\n");
 	for (int i = 0; i < list_size(pcbActual->tablaSegmentos); i++)
 	{
-
+		t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
 		t_tabla_segmantos *tablaSegmento = list_get(pcbActual->tablaSegmentos, i);
+
 		tablaPagina->paginas = list_create();
 		pthread_mutex_lock(&mutex_creacion_ID_tabla);
 		tablaSegmento->indiceTablaPaginas = contadorIdTablaPag;
@@ -130,7 +135,7 @@ void crearTablasPaginas(void *pcb)
 
 		for (int i = 0; i < configMemoria.entradasPorTabla; i++)
 		{
-			printf("\nentro al for crear pagina\n");
+
 			t_pagina *pagina = malloc(sizeof(t_pagina));
 
 			pagina->modificacion = 0;
@@ -141,10 +146,13 @@ void crearTablasPaginas(void *pcb)
 
 			list_add(tablaPagina->paginas, pagina);
 		}
+		printf("\n  estoy agregando tabla a la lista ");
+		agregar_tabla_paginas(tablaPagina);
+		printf("\ncant tablas %d\n", list_size(LISTA_TABLA_PAGINAS));
 	}
-	agregar_tabla_paginas(tablaPagina);
+
 	printf("\nEnvio recursos a kernel\n");
-	serializarPCB(socketAceptadoKernel, pcb, ASIGNAR_RECURSOS);
+	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
 	printf("\nEnviados\n");
 	free(pcbActual);
 }
@@ -154,13 +162,6 @@ void eliminarTablasPaginas(void *pcb)
 	t_pcb *pcbActual = (t_pcb *)pcb;
 
 	// eliminar los recurso de swap
-}
-
-void agregar_tabla_paginas(t_tabla_paginas *tablaPaginas)
-{
-	pthread_mutex_lock(&mutex_lista_tabla_paginas);
-	list_add(LISTA_TABLA_PAGINAS, tablaPaginas);
-	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 }
 
 FILE *abrirArchivo(char *filename)
@@ -173,4 +174,10 @@ FILE *abrirArchivo(char *filename)
 
 	truncate(filename, configMemoria.tamanioSwap);
 	return fopen(filename, "w+");
+}
+void agregar_tabla_paginas(t_tabla_paginas *tablaPaginas)
+{
+	pthread_mutex_lock(&mutex_lista_tabla_paginas);
+	list_add(LISTA_TABLA_PAGINAS, tablaPaginas);
+	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 }

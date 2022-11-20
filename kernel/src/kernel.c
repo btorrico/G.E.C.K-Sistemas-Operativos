@@ -452,6 +452,8 @@ void conectar_memoria()
 {
 	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
 	enviarResultado(conexionMemoria, "hola memoria soy el kernel");
+
+
 }
 
 void iniciar_kernel()
@@ -617,9 +619,13 @@ void agregar_pcb()
 	// memoria me devuelve el pcb modificado
 	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
 	printf("\nRecibo recursos de memoria\n");
+	if(paquete == NULL){
+		printf("\n PAquete nulo\n");
 
+	}else {
+		printf("\n PAquete no nulo\n");
+	}
 	
-	//aca esta el problema 
 	pcb = deserializoPCB(paquete->buffer);
 
 	for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)
