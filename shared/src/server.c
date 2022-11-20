@@ -310,7 +310,6 @@ t_pcb *algoritmo_fifo(t_list *lista)
 
 void implementar_feedback()
 {
-	//  implementar_rr();
 
 	pthread_mutex_lock(&mutex_lista_ready);
 	if (list_size(LISTA_READY) == 0)

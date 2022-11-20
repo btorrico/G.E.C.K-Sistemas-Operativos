@@ -184,7 +184,7 @@ void conectar_dispatch()
 			}
 			else
 			{
-				log_info("No exisate el dispositivo", dispositivoIO);
+				log_info("No existe el dispositivo", dispositivoIO);
 			}
 			sem_post(&contador_pcb_running);
 			// pasar_a_block(pcb);
@@ -208,7 +208,7 @@ void conectar_dispatch()
 			// t_pcb *pcb = (t_pcb *)pcbElegida;
 			if (algoritmo == FEEDBACK)
 			{
-				printf("\npasar a ready aux");
+				//log_info(logger, "Paso a ready auxiliar - FIFO");
 				pasar_a_ready_auxiliar(pcb);
 				sem_post(&sem_hay_pcb_lista_ready);
 			}
