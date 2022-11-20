@@ -1549,3 +1549,11 @@
 [INFO] 22:00:09:222 MEMORIA/(73280:73281): Se conecto un cliente!
 [INFO] 22:00:09:225 MEMORIA/(73280:73281): Mensaje de confirmacion del Kernel: hola memoria soy el kernel
 
+[INFO] 22:06:15:332 MEMORIA/(74311:74313): Servidor listo para recibir al cpu
+[INFO] 22:06:15:334 MEMORIA/(74311:74312): Servidor listo para recibir al kernel
+[INFO] 22:06:24:673 MEMORIA/(74311:74313): Se conecto un cliente!
+[INFO] 22:06:24:677 MEMORIA/(74311:74313): Mensaje de confirmacion del CPU: hola memoria soy el cpu
+
+[INFO] 22:06:33:510 MEMORIA/(74311:74312): Se conecto un cliente!
+[INFO] 22:06:33:511 MEMORIA/(74311:74312): Mensaje de confirmacion del Kernel: hola memoria soy el kernel
+

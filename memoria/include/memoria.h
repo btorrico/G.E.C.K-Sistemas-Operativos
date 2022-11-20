@@ -28,8 +28,8 @@ t_config* config;
 
 typedef struct {
 	uint16_t idTablaPag;
+	uint16_t idPCB;
 	t_list* paginas;
-	//agregar PID para hacer la busqueda y saber a que proceso pertenece 
 } __attribute__((packed)) t_tabla_paginas;
 
 typedef struct {

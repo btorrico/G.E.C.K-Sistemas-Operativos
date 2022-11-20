@@ -79,10 +79,6 @@ void iniciar_servidor_hacia_kernel()
 	while (1)
 	{
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoKernel);
-		if (paquete == NULL)
-		{
-			printf("\nel paqute es nulo\n");
-		}
 		printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		switch (paquete->codigo_operacion)
@@ -133,6 +129,8 @@ void crearTablasPaginas(void *pcb)
 		contadorIdTablaPag++;
 		pthread_mutex_unlock(&mutex_creacion_ID_tabla);
 
+		tablaPagina->idPCB = pcbActual->id;
+
 		for (int i = 0; i < configMemoria.entradasPorTabla; i++)
 		{
 
@@ -148,7 +146,7 @@ void crearTablasPaginas(void *pcb)
 		}
 		printf("\n  estoy agregando tabla a la lista ");
 		agregar_tabla_paginas(tablaPagina);
-		printf("\ncant tablas %d\n", list_size(LISTA_TABLA_PAGINAS));
+
 	}
 
 	printf("\nEnvio recursos a kernel\n");
