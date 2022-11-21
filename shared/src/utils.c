@@ -137,7 +137,6 @@ int iniciar_servidor(char *IP, char *PUERTO)
 	hints.ai_flags = AI_PASSIVE;	 /*ai_flags= Input flags.  */
 
 	// char* ip = config_get_string_value(archivoConfig, "IP");
-
 	// char* puerto = config_get_string_value(archivoConfig, "PUERTO");
 
 	getaddrinfo(IP, PUERTO, &hints, &servinfo);
@@ -165,7 +164,6 @@ int iniciar_servidor(char *IP, char *PUERTO)
 		}
 		break;
 	}
-
 	// Escuchamos las conexiones entrantes
 
 	// listen() : toma el socket del servidor creado y lo marca en el sistema como un socket cuya unica responsabilidad es notificar cuando
@@ -318,6 +316,7 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 
 		j++;
 		//printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
+
 	}
 
 

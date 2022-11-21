@@ -36,10 +36,12 @@ void pasar_a_new(t_pcb *);
 void pasar_a_ready(t_pcb *);
 void pasar_a_ready_auxiliar(t_pcb *);
 void pasar_a_exec(t_pcb *);
-void pasar_a_block(t_pcb *);
+void pasar_a_block_impresora(t_pcb *);
+void pasar_a_block_disco(t_pcb *);
 void pasar_a_block_pantalla(t_pcb *);
 void pasar_a_block_teclado(t_pcb *);
 void pasar_a_exit(t_pcb *);
+void pasar_a_block_page_fault(t_pcb *);
 uint32_t* deserializarValor(t_buffer*, int);
 void serializarValor(uint32_t , int ,t_tipoMensaje);
 

@@ -2,10 +2,6 @@
 
 int main(char argc, char **argv)
 {
-	if (argc > 1 && strcmp(argv[1], "-test") == 0)
-		return run_tests();
-	else
-	{
 
 		logger = iniciar_logger("cpu.log", "CPU", LOG_LEVEL_DEBUG);
 
@@ -17,7 +13,7 @@ int main(char argc, char **argv)
 
 		pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
 		pthread_create(&thrInterruptKernel, NULL, (void *)iniciar_servidor_interrupt, NULL);
-		printf(PRINT_COLOR_BLUE "Conectando con mododulo Memoria..."PRINT_COLOR_RESET "\n" );
+		printf(PRINT_COLOR_BLUE "Conectando con modulo Memoria..."PRINT_COLOR_RESET "\n" );
 		pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 		//pthread_create(&thrMemoria, NULL, (void *)recibir_config_memoria, NULL);
 		//recibir_config_memoria();
@@ -28,7 +24,6 @@ int main(char argc, char **argv)
 
 		log_destroy(logger);
 		config_destroy(config);
-	}
 }
 
 t_configCPU extraerDatosConfig(t_config *archivoConfig)
@@ -72,6 +67,8 @@ void iniciar_servidor_dispatch()
 
 		printf("se recibio pcb de running de kernel\n");
 
+		//imprimirInstruccionesYSegmentos(pcb->informacion);
+		
 		do
 		{
 
@@ -565,12 +562,12 @@ void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
 		llenar_TLB(nroPagina, nroFrame,nroSegmento,pid);
 		return;
 	}
-
+/*
 	//REEMPLAZO DE PAGINA
 	if(strcmp(TLB->algoritmo , "LRU")== 0){
 		reemplazo_lru(nroPagina, nroFrame);
 	} else {
 		reemplazo_fifo(nroPagina, nroFrame);
 	}
-
+*/
 }
