@@ -1,8 +1,11 @@
 # Prerequisites
 *.d
 
+# Log
+*.log
+
 # Object files
-#*.o
+*.o
 *.ko
 *.obj
 *.elf
