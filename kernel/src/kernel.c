@@ -29,6 +29,8 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 	configKernel.dispositivosIO = config_get_array_value(archivoConfig, "DISPOSITIVOS_IO");
 	configKernel.tiemposIO = config_get_array_value(archivoConfig, "TIEMPOS_IO");
 
+
+configKernel.quantum = config_get_int_value(archivoConfig, "QUANTUM_RR");
 	return configKernel;
 }
 
@@ -41,6 +43,7 @@ void crear_hilos_kernel()
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
 	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL);
+
 
 	pthread_detach(thrCpu);
 	pthread_detach(thrPlanificadorCortoPlazo);
@@ -182,7 +185,7 @@ void conectar_dispatch()
 			}
 			else
 			{
-				log_info("No exisate el dispositivo", dispositivoIO);
+				log_info("No existe el dispositivo", dispositivoIO);
 			}
 			sem_post(&contador_pcb_running);
 			// pasar_a_block(pcb);
@@ -216,7 +219,7 @@ void conectar_dispatch()
 			// t_pcb *pcb = (t_pcb *)pcbElegida;
 			if (algoritmo == FEEDBACK)
 			{
-				printf("\npasar a ready aux");
+				//log_info(logger, "Paso a ready auxiliar - FIFO");
 				pasar_a_ready_auxiliar(pcb);
 				sem_post(&sem_hay_pcb_lista_ready);
 			}
