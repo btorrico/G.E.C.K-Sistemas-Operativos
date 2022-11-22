@@ -212,14 +212,14 @@ bool cicloInstruccion(t_pcb *pcb)
 		t_direccionFisica* dirFisicaMoveIn = malloc(sizeof(t_direccionFisica));
 			//para probar
 			int indiceSeg=0; //en realidad hay que ir a buscar a la tabla de segmentos
-			dirFisicaMoveIn = calcularDireccionFisica(indiceSeg, insActual->paramInt); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
+			dirFisicaMoveIn = calcularDireccionFisica(insActual->paramInt); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
 
 			MSJ_MEMORIA_CPU_LEER* mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
 
 			mensajeAMemoriaLeer->desplazamiento = dirFisicaMoveIn->desplazamientoPagina;
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
 			mensajeAMemoriaLeer->pid = pcb->id;
-			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_READ);
+			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_LEER);
 			log_debug(logger, "Envie direccion fisica a memoria swap: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
 
@@ -430,14 +430,24 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 }
 
 
-t_direccionFisica *calcularDireccionFisica(int indiceSeg, uint32_t paramInt){
-t_direccionFisica *df; // Agregue parametro en el struct de la Direccion Fisica 
-traduccion_de_direccion(paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina);
+t_direccionFisica *calcularDireccionFisica(uint32_t dirLogica){
+	// Direccion Logica / Tamaño de pagina = Numero de pagina
+	int nroPagina = dirLogica / configCPU.tamanioPagina;
+	int nroMarco = buscar_en_TLB(nroPagina);
+	t_direccionFisica *df = malloc(sizeof(t_direccionFisica)); // Agregue parametro en el struct de la Direccion Fisica 
+	if(nroMarco != -1){ //CASO: LA PAGINA ESTA EN LA TLB
+		// Direccion fisica = Numero de marco * tamaño de marco + offset
+		//dirFisica = malloc(sizeof(t_direccionFisica));
+		df->nroMarco = nroMarco;
+		df->desplazamientoPagina = dirLogica % configCPU.tamanioPagina;
+	} else { //CASO: LA PAGINA NO ESTA EN LA TLB, USA LA MMU
+		df = traduccion_de_direccion(dirLogica,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina);
+		//actualizar_TLB(nroPagina, df->nroMarco);int nroPagina,int nroFrame, int nroSegmento, int pid
 
 return df;
 }
 
-
+}
 
 /************** Traduccion */
 // tam_max_segmento = cant_entradas_por_tabla * tam_pagina
@@ -447,6 +457,7 @@ return df;
 // desplazamiento_pagina = desplazamiento_segmento % tam_pagina
 
 t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina){
+	
 
 	printf(PRINT_COLOR_GREEN "\n---------------------------------------------------" PRINT_COLOR_RESET);
 	log_info(logger, "MMU entrando en acción...");
@@ -463,7 +474,7 @@ t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas
 	int desplazamiento_Segmento = desplazamientoSegmento( direccionLogica, tamanio_maximo_segmento);
 	log_info(logger, "Desplazamiento Segmento = %d ·/. %d = %d", direccionLogica,tamanio_maximo_segmento, desplazamiento_Segmento);
 
-	int numero_pagina= (desplazamiento_Segmento, tam_pagina);
+	int numero_pagina= numeroPagina(desplazamiento_Segmento, tam_pagina);
 	log_info(logger, "Número Pagina = %d / %d = %d", desplazamiento_Segmento, tam_pagina, numero_pagina);
 
 	int desplazamiento_pagina = desplazamientoPagina(desplazamiento_Segmento, tam_pagina);

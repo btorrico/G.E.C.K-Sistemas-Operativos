@@ -58,6 +58,10 @@ void eliminarTablasPaginas(void *pcb);
 FILE *abrirArchivo(char *filename);
 void crear_hilos_memoria();
 
+accesoMemoriaTP(int, int, int);
+				
+accesoMemorialeer(t_direccionFisica*, int, int);
+
 int contadorIdPCB;
 int socketAceptadoKernel;
 
@@ -97,7 +101,8 @@ pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
-pthread_mutex_t mutex_lista_block_page_fault; 
+pthread_mutex_t mutex_lista_block_page_fault;
+pthread_mutex_t mutex_void_memoria_ram; 
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;
