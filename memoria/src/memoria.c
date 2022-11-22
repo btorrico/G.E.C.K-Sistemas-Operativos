@@ -11,11 +11,13 @@ int main(int argc, char **argv)
 	// creo el struct
 	extraerDatosConfig(config);
 
-	FILE *swap = abrirArchivo(configMemoria.pathSwap);
+	memoriaRAM = malloc(sizeof(configMemoria.tamMemoria));
 
-	fclose(swap);
+	swap = abrirArchivo(configMemoria.pathSwap);
 
-	iniciar_listas_y_semaforos();
+	// agregar_tabla_pag_en_swap();
+
+	iniciar_listas_y_semaforos(); // despues ver porque kernel tambien lo utiliza y por ahi lo esta pisando, despues ver si lo dejamos solo aca
 
 	contadorIdTablaPag = 0;
 
@@ -25,6 +27,7 @@ int main(int argc, char **argv)
 
 	config_destroy(config);
 
+	fclose(swap);
 	// crear una lista con el tablaño de los marcos/segmanetos para ir guardado y remplazando
 	// en el caso de que esten ocupados , con los algoritmos correcpondientes
 
@@ -96,11 +99,11 @@ void iniciar_servidor_hacia_kernel()
 			pthread_create(&thrTablaPaginasEliminar, NULL, (void *)eliminarTablasPaginas, (void *)pcb);
 			pthread_detach(thrTablaPaginasEliminar);
 			break;
-		case PASAR_A_EXIT: //solicitud de liberar las estructuras
+		case PASAR_A_EXIT: // solicitud de liberar las estructuras
 
-			//liberar las estructuras y
-			//enviar msj al kernel de que ya estan liberadas
-			//serializarPCB(socketAceptadoKernel, pcb, PASAR_A_EXIT);
+			// liberar las estructuras y
+			// enviar msj al kernel de que ya estan liberadas
+			// serializarPCB(socketAceptadoKernel, pcb, PASAR_A_EXIT);
 			break;
 		}
 	}
@@ -110,7 +113,7 @@ void iniciar_servidor_hacia_cpu()
 {
 
 	int server_fd = iniciar_servidor(IP_SERVER, configMemoria.puertoEscuchaDos); // socket(), bind()listen()
-	
+
 	log_info(logger, "Servidor listo para recibir al cpu");
 
 	int socketAceptadoCPU = esperar_cliente(server_fd);
@@ -119,60 +122,81 @@ void iniciar_servidor_hacia_cpu()
 	log_info(logger, "Mensaje de confirmacion del CPU: %s\n", mensaje);
 
 	t_paqt paqueteCPU;
+
 	recibirMsje(socketAceptadoCPU, &paqueteCPU);
 
-	if(paqueteCPU.header.cliente == CPU){
-		
-		log_debug(logger,"HANSHAKE se conecto CPU");
+	if (paqueteCPU.header.cliente == CPU)
+	{
+
+		log_debug(logger, "HANDSHAKE se conecto CPU");
 
 		conexionCPU(socketAceptadoCPU);
 	}
-    mostrar_mensajes_del_cliente(socketAceptadoCPU);
 
+	printf("\n termine \n");
+	mostrar_mensajes_del_cliente(socketAceptadoCPU);
 }
 
-void conexionCPU(int socketAceptado){ // void*
+void conexionCPU(int socketAceptado)
+{ // void*
 
 	t_paqt paquete;
 
 	int pid;
 	int pagina;
 
-	int y = 1;
-	while(y){
+
+	int valorRegistro = 2;
+	int idPCB = 0;
+	int nroSegmento = 1;
+	int nroPagina = 1;
+
+	// int y = 1;
+	while (1)
+	{
 
 		recibirMsje(socketAceptado, &paquete);
+		printf("avanzo aca");
 
-		switch(paquete.header.tipoMensaje) {
-			case CONFIG_DIR_LOG_A_FISICA:
-				configurarDireccionesCPU(socketAceptado);
-				break;
-			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
+		switch (paquete.header.tipoMensaje)
+		{
+		case CONFIG_DIR_LOG_A_FISICA:
+			configurarDireccionesCPU(socketAceptado);
+			break;
+		case ACCESO_MEMORIA_READ: // MOV_IN
+			// TODO
+
+			break;
+		case ACCESO_MEMORIA_WRITE: // MOV_OUT
+
+			//buscar_pagina_en_memoria();		
+			break;
+
+			/*default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
 				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
-				break;
+				break;*/
 		}
-
 	}
 }
 
-void configurarDireccionesCPU(int socketAceptado){
-	//SE ENVIAN LAS ENTRADAS_POR_TABLA y TAM_PAGINA AL CPU PARA PODER HACER LA TRADUCCION EN EL MMU
-	log_debug(logger,"Se envian las ENTRADAS_POR_TABLA y TAM_PAGINA al CPU ");
+void configurarDireccionesCPU(int socketAceptado)
+{
+	// SE ENVIAN LAS ENTRADAS_POR_TABLA y TAM_PAGINA AL CPU PARA PODER HACER LA TRADUCCION EN EL MMU
+	log_debug(logger, "Se envian las ENTRADAS_POR_TABLA y TAM_PAGINA al CPU ");
 
-	MSJ_MEMORIA_CPU_INIT* infoAcpu = malloc(sizeof(MSJ_MEMORIA_CPU_INIT));
+	MSJ_MEMORIA_CPU_INIT *infoAcpu = malloc(sizeof(MSJ_MEMORIA_CPU_INIT));
 
 	infoAcpu->cantEntradasPorTabla = configMemoria.entradasPorTabla;
 
 	infoAcpu->tamanioPagina = configMemoria.tamPagina;
 
-
-	//usleep(configMemoria.retardoMemoria * 1000); // CHEQUEAR, SI LO DESCOMENTAS NO PASA POR LAS OTRAS LINEAS
+	// usleep(configMemoria.retardoMemoria * 1000); // CHEQUEAR, SI LO DESCOMENTAS NO PASA POR LAS OTRAS LINEAS
 
 	enviarMsje(socketAceptado, MEMORIA, infoAcpu, sizeof(MSJ_MEMORIA_CPU_INIT), CONFIG_DIR_LOG_A_FISICA);
 
 	free(infoAcpu);
 
-	log_debug(logger,"Informacion de la cantidad de entradas por tabla y tamaño pagina enviada al CPU");
+	log_debug(logger, "Informacion de la cantidad de entradas por tabla y tamaño pagina enviada al CPU");
 }
 
 void crearTablasPaginas(void *pcb)
@@ -182,6 +206,7 @@ void crearTablasPaginas(void *pcb)
 	{
 		t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
 		t_tabla_segmentos *tablaSegmento = list_get(pcbActual->tablaSegmentos, i);
+		//aca tengo que crear el malloc de t_listainiciocosas
 
 		tablaPagina->paginas = list_create();
 		pthread_mutex_lock(&mutex_creacion_ID_tabla);
@@ -194,7 +219,6 @@ void crearTablasPaginas(void *pcb)
 
 		for (int i = 0; i < configMemoria.entradasPorTabla; i++)
 		{
-
 			t_pagina *pagina = malloc(sizeof(t_pagina));
 
 			pagina->modificacion = 0;
@@ -205,9 +229,8 @@ void crearTablasPaginas(void *pcb)
 
 			list_add(tablaPagina->paginas, pagina);
 		}
-		printf("\n  estoy agregando tabla a la lista ");
+		printf("\nestoy agregando tabla a la lista");
 		agregar_tabla_paginas(tablaPagina);
-
 	}
 
 	printf("\nEnvio recursos a kernel\n");
@@ -234,9 +257,64 @@ FILE *abrirArchivo(char *filename)
 	truncate(filename, configMemoria.tamanioSwap);
 	return fopen(filename, "w+");
 }
+
 void agregar_tabla_paginas(t_tabla_paginas *tablaPaginas)
 {
 	pthread_mutex_lock(&mutex_lista_tabla_paginas);
 	list_add(LISTA_TABLA_PAGINAS, tablaPaginas);
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+}
+
+void agregar_tabla_pag_en_swap() // esto hay que modificarlo, necesitamos obtener el valor que trae mov_out para guardarlo en swap
+{
+	t_pagina *pagina = malloc(sizeof(t_pagina));
+
+	size_t tamanioSgtePagina = 0;
+
+	for (size_t i = 0; i < list_size(LISTA_TABLA_PAGINAS); i++)
+	{
+		t_tabla_paginas *tablaPagina = list_get(LISTA_TABLA_PAGINAS, i);
+
+		for (size_t j = 0; j < list_size(tablaPagina->paginas); j++)
+		{
+			t_pagina *pagina = list_get(tablaPagina->paginas, j);
+
+			if (esta_vacio_el_archivo(swap))
+			{
+				pagina->posicionSwap = 0;
+			}
+			else
+			{
+				pagina->posicionSwap = tamanioSgtePagina + 1; // tamanioSgtePagina = OFFSET = desplazamiento
+				fseek(swap, pagina->posicionSwap, SEEK_SET);
+			}
+
+			tamanioSgtePagina += fwrite(pagina->nroPagina, sizeof(pagina->nroPagina), 0, swap);
+		}
+	}
+}
+
+bool esta_vacio_el_archivo(FILE *nombreFile)
+{
+
+	if (NULL != nombreFile)
+	{
+		fseek(nombreFile, 0, SEEK_END);
+		size_t size = ftell(nombreFile);
+
+		if (0 == size)
+		{
+			return true;
+		}
+		return false;
+	}
+}
+
+
+bool buscar_pagina_en_memoria(){
+	
+	t_tabla_paginas *tablaPagina;
+	tablaPagina->idTablaPag ;
+
+	//list_find(t_list *, bool(*closure)(void*));
 }

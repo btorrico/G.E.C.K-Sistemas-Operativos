@@ -129,7 +129,6 @@ typedef struct
 	uint8_t id;
 	uint32_t tamanio;
 	uint32_t indiceTablaPaginas;
-
 } __attribute__((packed)) t_tabla_segmentos;
 
 int size_char_array(char **);
@@ -331,6 +330,7 @@ extern t_list *LISTA_BLOCKED_DISCO;
 extern t_list *LISTA_BLOCKED_IMPRESORA;
 extern t_list *LISTA_TABLA_PAGINAS;
 extern t_list *LISTA_BLOCK_PAGE_FAULT;
+extern t_list *LISTA_INICIO_TABLA_PAGINA;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;

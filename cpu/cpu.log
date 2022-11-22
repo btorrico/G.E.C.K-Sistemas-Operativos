@@ -17339,3 +17339,347 @@
 [DEBUG] 00:37:00:582 CPU/(8304:8305): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
 [DEBUG] 00:37:00:582 CPU/(8304:8305): Envie EXIT al kernel
 [DEBUG] 00:37:00:582 CPU/(8304:8305): No hay interrupcion, sigo el ciclo
+[DEBUG] 02:25:40:068 CPU/(15328:15331): Buscando configuracion inicial de memoria
+[DEBUG] 02:25:40:069 CPU/(15328:15331): Se envio Handshake a MEMORIA
+[DEBUG] 02:25:40:069 CPU/(15328:15331): Esperando mensaje de memoria para config inicial
+[DEBUG] 02:25:40:069 CPU/(15328:15331): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 02:25:40:068 CPU/(15328:15330): Servidor listo para recibir al interrupt kernel
+[INFO] 02:25:40:068 CPU/(15328:15329): Servidor listo para recibir al dispatch kernel
+[INFO] 02:25:43:864 CPU/(15328:15330): Se conecto un cliente!
+[INFO] 02:25:43:864 CPU/(15328:15329): Se conecto un cliente!
+[INFO] 02:26:21:088 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:21:088 CPU/(15328:15329): insActual->pc: 0
+[INFO] 02:26:21:088 CPU/(15328:15329):  Valor nuevo Program counter: 1
+[DEBUG] 02:26:21:088 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 02:26:22:088 CPU/(15328:15329): AX = 1
+[DEBUG] 02:26:22:088 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:22:088 CPU/(15328:15329): insActual->instCode: 4
+[INFO] 02:26:22:088 CPU/(15328:15329): insActual->pc: 1
+[INFO] 02:26:22:088 CPU/(15328:15329):  Valor nuevo Program counter: 2
+[DEBUG] 02:26:22:088 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO TECLADO BX  -1'
+[DEBUG] 02:26:22:088 CPU/(15328:15329): Envie BLOCK al kernel por IO_TECLADO
+[DEBUG] 02:26:22:088 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:22:090 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:22:090 CPU/(15328:15329): insActual->pc: 0
+[INFO] 02:26:22:090 CPU/(15328:15329):  Valor nuevo Program counter: 1
+[DEBUG] 02:26:22:090 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: SET  AX  1'
+[DEBUG] 02:26:23:090 CPU/(15328:15329): AX = 1
+[DEBUG] 02:26:23:090 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:23:090 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:23:090 CPU/(15328:15329): insActual->pc: 1
+[INFO] 02:26:23:090 CPU/(15328:15329):  Valor nuevo Program counter: 2
+[DEBUG] 02:26:23:090 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: SET  CX  1'
+[INFO] 02:26:23:589 CPU/(15328:15330): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 02:26:24:091 CPU/(15328:15329): CX = 1
+[DEBUG] 02:26:24:091 CPU/(15328:15329): Devuelvo pcb por interrupcion
+[INFO] 02:26:24:091 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:24:091 CPU/(15328:15329): insActual->pc: 0
+[INFO] 02:26:24:091 CPU/(15328:15329):  Valor nuevo Program counter: 1
+[DEBUG] 02:26:24:091 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  3 - Ejecutando: SET  AX  1'
+[DEBUG] 02:26:25:091 CPU/(15328:15329): AX = 1
+[DEBUG] 02:26:25:091 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:25:091 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:25:091 CPU/(15328:15329): insActual->pc: 1
+[INFO] 02:26:25:091 CPU/(15328:15329):  Valor nuevo Program counter: 2
+[DEBUG] 02:26:25:091 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  3 - Ejecutando: SET  BX  1'
+[INFO] 02:26:25:592 CPU/(15328:15330): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 02:26:26:091 CPU/(15328:15329): BX = 1
+[DEBUG] 02:26:26:092 CPU/(15328:15329): Devuelvo pcb por interrupcion
+[INFO] 02:26:26:092 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:26:092 CPU/(15328:15329): insActual->pc: 0
+[INFO] 02:26:26:092 CPU/(15328:15329):  Valor nuevo Program counter: 1
+[DEBUG] 02:26:26:092 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  4 - Ejecutando: SET  AX  1'
+[DEBUG] 02:26:27:092 CPU/(15328:15329): AX = 1
+[DEBUG] 02:26:27:092 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:27:092 CPU/(15328:15329): insActual->instCode: 4
+[INFO] 02:26:27:092 CPU/(15328:15329): insActual->pc: 1
+[INFO] 02:26:27:092 CPU/(15328:15329):  Valor nuevo Program counter: 2
+[DEBUG] 02:26:27:092 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  4 - Ejecutando: IO DISCO   3'
+[DEBUG] 02:26:27:092 CPU/(15328:15329): Envie BLOCK al kernel por IO
+[DEBUG] 02:26:27:092 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:27:093 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:27:093 CPU/(15328:15329): insActual->pc: 2
+[INFO] 02:26:27:093 CPU/(15328:15329):  Valor nuevo Program counter: 3
+[DEBUG] 02:26:27:093 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: SET  DX  1'
+[DEBUG] 02:26:28:093 CPU/(15328:15329): DX = 1
+[DEBUG] 02:26:28:093 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:28:093 CPU/(15328:15329): insActual->instCode: 1
+[INFO] 02:26:28:093 CPU/(15328:15329): insActual->pc: 3
+[INFO] 02:26:28:093 CPU/(15328:15329):  Valor nuevo Program counter: 4
+[DEBUG] 02:26:28:093 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: ADD  CX DX -1'
+[DEBUG] 02:26:29:094 CPU/(15328:15329): Registro Destino -> CX = 1    &&    Registro Origen -> DX = 1 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 02:26:29:094 CPU/(15328:15329): CX = 2
+[DEBUG] 02:26:29:094 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:29:094 CPU/(15328:15329): insActual->instCode: 1
+[INFO] 02:26:29:094 CPU/(15328:15329): insActual->pc: 4
+[INFO] 02:26:29:094 CPU/(15328:15329):  Valor nuevo Program counter: 5
+[DEBUG] 02:26:29:094 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: ADD  DX CX -1'
+[DEBUG] 02:26:30:094 CPU/(15328:15329): Registro Destino -> DX = 1    &&    Registro Origen -> CX = 2 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 02:26:30:094 CPU/(15328:15329): DX = 3
+[DEBUG] 02:26:30:094 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:30:094 CPU/(15328:15329): insActual->instCode: 1
+[INFO] 02:26:30:094 CPU/(15328:15329): insActual->pc: 5
+[INFO] 02:26:30:094 CPU/(15328:15329):  Valor nuevo Program counter: 6
+[DEBUG] 02:26:30:094 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: ADD  AX CX -1'
+[DEBUG] 02:26:31:094 CPU/(15328:15329): Registro Destino -> AX = 1    &&    Registro Origen -> CX = 2 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 02:26:31:094 CPU/(15328:15329): AX = 3
+[DEBUG] 02:26:31:094 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:31:094 CPU/(15328:15329): insActual->instCode: 4
+[INFO] 02:26:31:094 CPU/(15328:15329): insActual->pc: 6
+[INFO] 02:26:31:094 CPU/(15328:15329):  Valor nuevo Program counter: 7
+[DEBUG] 02:26:31:094 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: IO PANTALLA AX  -1'
+[DEBUG] 02:26:31:094 CPU/(15328:15329): Envie BLOCK al kernel por IO_PANTALLA
+[DEBUG] 02:26:31:094 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:31:094 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:31:094 CPU/(15328:15329): insActual->pc: 2
+[INFO] 02:26:31:094 CPU/(15328:15329):  Valor nuevo Program counter: 3
+[DEBUG] 02:26:31:094 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  4 - Ejecutando: SET  BX  1'
+[DEBUG] 02:26:32:095 CPU/(15328:15329): BX = 1
+[DEBUG] 02:26:32:095 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:32:095 CPU/(15328:15329): insActual->instCode: 4
+[INFO] 02:26:32:095 CPU/(15328:15329): insActual->pc: 3
+[INFO] 02:26:32:095 CPU/(15328:15329):  Valor nuevo Program counter: 4
+[DEBUG] 02:26:32:095 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  4 - Ejecutando: IO IMPRESORA   3'
+[DEBUG] 02:26:32:095 CPU/(15328:15329): Envie BLOCK al kernel por IO
+[DEBUG] 02:26:32:095 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:32:095 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:32:095 CPU/(15328:15329): insActual->pc: 7
+[INFO] 02:26:32:095 CPU/(15328:15329):  Valor nuevo Program counter: 8
+[DEBUG] 02:26:32:095 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: SET  BX  1'
+[DEBUG] 02:26:33:096 CPU/(15328:15329): BX = 1
+[DEBUG] 02:26:33:096 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:33:096 CPU/(15328:15329): insActual->instCode: 4
+[INFO] 02:26:33:096 CPU/(15328:15329): insActual->pc: 8
+[INFO] 02:26:33:096 CPU/(15328:15329):  Valor nuevo Program counter: 9
+[DEBUG] 02:26:33:096 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 02:26:33:096 CPU/(15328:15329): Envie BLOCK al kernel por IO_PANTALLA
+[DEBUG] 02:26:33:096 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:33:097 CPU/(15328:15329): insActual->instCode: 4
+[INFO] 02:26:33:097 CPU/(15328:15329): insActual->pc: 2
+[INFO] 02:26:33:097 CPU/(15328:15329):  Valor nuevo Program counter: 3
+[DEBUG] 02:26:33:097 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  3 - Ejecutando: IO DISCO   7'
+[DEBUG] 02:26:33:097 CPU/(15328:15329): Envie BLOCK al kernel por IO
+[DEBUG] 02:26:33:097 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:33:848 CPU/(15328:15329): insActual->instCode: 1
+[INFO] 02:26:33:848 CPU/(15328:15329): insActual->pc: 9
+[INFO] 02:26:33:848 CPU/(15328:15329):  Valor nuevo Program counter: 10
+[DEBUG] 02:26:33:848 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 02:26:34:848 CPU/(15328:15329): Registro Destino -> AX = 3    &&    Registro Origen -> BX = 1 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 02:26:34:848 CPU/(15328:15329): AX = 4
+[DEBUG] 02:26:34:848 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:34:848 CPU/(15328:15329): insActual->instCode: 5
+[INFO] 02:26:34:848 CPU/(15328:15329): insActual->pc: 10
+[INFO] 02:26:34:848 CPU/(15328:15329):  Valor nuevo Program counter: 11
+[DEBUG] 02:26:34:848 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  2 - Ejecutando: EXIT    -1'
+[DEBUG] 02:26:34:848 CPU/(15328:15329): Envie EXIT al kernel
+[DEBUG] 02:26:34:848 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:38:096 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:38:096 CPU/(15328:15329): insActual->pc: 4
+[INFO] 02:26:38:096 CPU/(15328:15329):  Valor nuevo Program counter: 5
+[DEBUG] 02:26:38:096 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  4 - Ejecutando: SET  CX  1'
+[DEBUG] 02:26:39:096 CPU/(15328:15329): CX = 1
+[DEBUG] 02:26:39:096 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:39:096 CPU/(15328:15329): insActual->instCode: 5
+[INFO] 02:26:39:096 CPU/(15328:15329): insActual->pc: 5
+[INFO] 02:26:39:096 CPU/(15328:15329):  Valor nuevo Program counter: 6
+[DEBUG] 02:26:39:096 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  4 - Ejecutando: EXIT    -1'
+[DEBUG] 02:26:39:097 CPU/(15328:15329): Envie EXIT al kernel
+[DEBUG] 02:26:39:097 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:40:097 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:40:097 CPU/(15328:15329): insActual->pc: 3
+[INFO] 02:26:40:097 CPU/(15328:15329):  Valor nuevo Program counter: 4
+[DEBUG] 02:26:40:098 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  3 - Ejecutando: SET  CX  1'
+[DEBUG] 02:26:41:098 CPU/(15328:15329): CX = 1
+[DEBUG] 02:26:41:098 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:41:098 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:41:098 CPU/(15328:15329): insActual->pc: 4
+[INFO] 02:26:41:098 CPU/(15328:15329):  Valor nuevo Program counter: 5
+[DEBUG] 02:26:41:098 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  3 - Ejecutando: SET  DX  1'
+[INFO] 02:26:41:598 CPU/(15328:15330): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 02:26:42:099 CPU/(15328:15329): DX = 1
+[DEBUG] 02:26:42:099 CPU/(15328:15329): Devuelvo pcb por interrupcion
+[INFO] 02:26:42:099 CPU/(15328:15329): insActual->instCode: 4
+[INFO] 02:26:42:099 CPU/(15328:15329): insActual->pc: 5
+[INFO] 02:26:42:099 CPU/(15328:15329):  Valor nuevo Program counter: 6
+[DEBUG] 02:26:42:099 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  3 - Ejecutando: IO IMPRESORA   2'
+[DEBUG] 02:26:42:099 CPU/(15328:15329): Envie BLOCK al kernel por IO
+[DEBUG] 02:26:42:099 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:46:100 CPU/(15328:15329): insActual->instCode: 0
+[INFO] 02:26:46:100 CPU/(15328:15329): insActual->pc: 6
+[INFO] 02:26:46:100 CPU/(15328:15329):  Valor nuevo Program counter: 7
+[DEBUG] 02:26:46:100 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  3 - Ejecutando: SET  AX  1'
+[DEBUG] 02:26:47:101 CPU/(15328:15329): AX = 1
+[DEBUG] 02:26:47:101 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[INFO] 02:26:47:101 CPU/(15328:15329): insActual->instCode: 5
+[INFO] 02:26:47:101 CPU/(15328:15329): insActual->pc: 7
+[INFO] 02:26:47:101 CPU/(15328:15329):  Valor nuevo Program counter: 8
+[DEBUG] 02:26:47:101 CPU/(15328:15329): Instrucción Ejecutada: 'PID:  3 - Ejecutando: EXIT    -1'
+[DEBUG] 02:26:47:101 CPU/(15328:15329): Envie EXIT al kernel
+[DEBUG] 02:26:47:101 CPU/(15328:15329): No hay interrupcion, sigo el ciclo
+[DEBUG] 00:27:33:185 CPU/(4951:4954): Buscando configuracion inicial de memoria
+[INFO] 00:27:33:186 CPU/(4951:4953): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:27:33:186 CPU/(4951:4954): Se envio Handshake a MEMORIA
+[DEBUG] 00:27:33:186 CPU/(4951:4954): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:27:33:186 CPU/(4951:4954): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:27:33:186 CPU/(4951:4952): Servidor listo para recibir al dispatch kernel
+[INFO] 00:36:55:631 CPU/(5434:5436): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:36:55:632 CPU/(5434:5437): Buscando configuracion inicial de memoria
+[DEBUG] 00:36:55:632 CPU/(5434:5437): Se envio Handshake a MEMORIA
+[DEBUG] 00:36:55:632 CPU/(5434:5437): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:36:55:632 CPU/(5434:5437): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:36:55:632 CPU/(5434:5435): Servidor listo para recibir al dispatch kernel
+[DEBUG] 00:45:34:348 CPU/(6135:6138): Buscando configuracion inicial de memoria
+[INFO] 00:45:34:348 CPU/(6135:6137): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:45:34:348 CPU/(6135:6138): Se envio Handshake a MEMORIA
+[DEBUG] 00:45:34:348 CPU/(6135:6138): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:45:34:348 CPU/(6135:6138): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:45:34:348 CPU/(6135:6136): Servidor listo para recibir al dispatch kernel
+[DEBUG] 00:48:18:095 CPU/(6560:6563): Buscando configuracion inicial de memoria
+[INFO] 00:48:18:095 CPU/(6560:6562): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:48:18:096 CPU/(6560:6563): Se envio Handshake a MEMORIA
+[DEBUG] 00:48:18:096 CPU/(6560:6563): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:48:18:096 CPU/(6560:6563): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:48:18:095 CPU/(6560:6561): Servidor listo para recibir al dispatch kernel
+[DEBUG] 00:49:06:736 CPU/(6763:6766): Buscando configuracion inicial de memoria
+[INFO] 00:49:06:736 CPU/(6763:6765): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:49:06:737 CPU/(6763:6766): Se envio Handshake a MEMORIA
+[DEBUG] 00:49:06:737 CPU/(6763:6766): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:49:06:737 CPU/(6763:6766): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:49:06:736 CPU/(6763:6764): Servidor listo para recibir al dispatch kernel
+[DEBUG] 00:53:06:008 CPU/(7255:7258): Buscando configuracion inicial de memoria
+[DEBUG] 00:53:06:009 CPU/(7255:7258): Se envio Handshake a MEMORIA
+[DEBUG] 00:53:06:009 CPU/(7255:7258): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:53:06:009 CPU/(7255:7258): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:53:06:008 CPU/(7255:7257): Servidor listo para recibir al interrupt kernel
+[INFO] 00:53:06:008 CPU/(7255:7256): Servidor listo para recibir al dispatch kernel
+[DEBUG] 02:20:52:770 CPU/(8462:8465): Buscando configuracion inicial de memoria
+[INFO] 02:20:52:770 CPU/(8462:8464): Servidor listo para recibir al interrupt kernel
+[DEBUG] 02:20:52:771 CPU/(8462:8465): Se envio Handshake a MEMORIA
+[DEBUG] 02:20:52:771 CPU/(8462:8465): Esperando mensaje de memoria para config inicial
+[DEBUG] 02:20:52:771 CPU/(8462:8465): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 02:20:52:770 CPU/(8462:8463): Servidor listo para recibir al dispatch kernel
+[DEBUG] 02:23:04:425 CPU/(9234:9237): Buscando configuracion inicial de memoria
+[INFO] 02:23:04:425 CPU/(9234:9236): Servidor listo para recibir al interrupt kernel
+[DEBUG] 02:23:04:426 CPU/(9234:9237): Se envio Handshake a MEMORIA
+[DEBUG] 02:23:04:426 CPU/(9234:9237): Esperando mensaje de memoria para config inicial
+[DEBUG] 02:23:04:426 CPU/(9234:9237): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 02:23:04:425 CPU/(9234:9235): Servidor listo para recibir al dispatch kernel
+[INFO] 02:24:50:832 CPU/(9593:9595): Servidor listo para recibir al interrupt kernel
+[DEBUG] 02:24:50:832 CPU/(9593:9596): Buscando configuracion inicial de memoria
+[DEBUG] 02:24:50:833 CPU/(9593:9596): Se envio Handshake a MEMORIA
+[DEBUG] 02:24:50:833 CPU/(9593:9596): Esperando mensaje de memoria para config inicial
+[INFO] 02:24:50:832 CPU/(9593:9594): Servidor listo para recibir al dispatch kernel
+[DEBUG] 02:25:39:126 CPU/(10035:10038): Buscando configuracion inicial de memoria
+[INFO] 02:25:39:126 CPU/(10035:10037): Servidor listo para recibir al interrupt kernel
+[DEBUG] 02:25:39:127 CPU/(10035:10038): Se envio Handshake a MEMORIA
+[DEBUG] 02:25:39:127 CPU/(10035:10038): Esperando mensaje de memoria para config inicial
+[INFO] 02:25:39:126 CPU/(10035:10036): Servidor listo para recibir al dispatch kernel
+[DEBUG] 02:26:14:713 CPU/(10363:10366): Buscando configuracion inicial de memoria
+[DEBUG] 02:26:14:713 CPU/(10363:10366): Se envio Handshake a MEMORIA
+[DEBUG] 02:26:14:713 CPU/(10363:10366): Esperando mensaje de memoria para config inicial
+[INFO] 02:26:14:713 CPU/(10363:10365): Servidor listo para recibir al interrupt kernel
+[INFO] 02:26:14:713 CPU/(10363:10364): Servidor listo para recibir al dispatch kernel
+[DEBUG] 02:27:40:220 CPU/(10709:10712): Buscando configuracion inicial de memoria
+[DEBUG] 02:27:40:220 CPU/(10709:10712): Se envio Handshake a MEMORIA
+[DEBUG] 02:27:40:221 CPU/(10709:10712): Esperando mensaje de memoria para config inicial
+[INFO] 02:27:40:220 CPU/(10709:10711): Servidor listo para recibir al interrupt kernel
+[INFO] 02:27:40:220 CPU/(10709:10710): Servidor listo para recibir al dispatch kernel
+[DEBUG] 02:27:40:221 CPU/(10709:10712): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[DEBUG] 02:29:00:259 CPU/(11159:11162): Buscando configuracion inicial de memoria
+[DEBUG] 02:29:00:259 CPU/(11159:11162): Se envio Handshake a MEMORIA
+[DEBUG] 02:29:00:259 CPU/(11159:11162): Esperando mensaje de memoria para config inicial
+[DEBUG] 02:29:00:260 CPU/(11159:11162): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 02:29:00:259 CPU/(11159:11161): Servidor listo para recibir al interrupt kernel
+[INFO] 02:29:00:259 CPU/(11159:11160): Servidor listo para recibir al dispatch kernel
+[DEBUG] 04:17:58:471 CPU/(13860:13863): Buscando configuracion inicial de memoria
+[INFO] 04:17:58:471 CPU/(13860:13862): Servidor listo para recibir al interrupt kernel
+[DEBUG] 04:17:58:472 CPU/(13860:13863): Se envio Handshake a MEMORIA
+[DEBUG] 04:17:58:472 CPU/(13860:13863): Esperando mensaje de memoria para config inicial
+[DEBUG] 04:17:58:472 CPU/(13860:13863): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 04:17:58:471 CPU/(13860:13861): Servidor listo para recibir al dispatch kernel
+[INFO] 04:18:07:980 CPU/(13860:13862): Se conecto un cliente!
+[INFO] 04:18:07:984 CPU/(13860:13861): Se conecto un cliente!
+[INFO] 04:18:13:411 CPU/(13860:13861): insActual->instCode: 0
+[INFO] 04:18:13:412 CPU/(13860:13861): insActual->pc: 0
+[INFO] 04:18:13:412 CPU/(13860:13861):  Valor nuevo Program counter: 1
+[DEBUG] 04:18:13:412 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 04:18:14:412 CPU/(13860:13861): AX = 1
+[DEBUG] 04:18:14:412 CPU/(13860:13861): No hay interrupcion, sigo el ciclo
+[INFO] 04:18:14:412 CPU/(13860:13861): insActual->instCode: 0
+[INFO] 04:18:14:412 CPU/(13860:13861): insActual->pc: 1
+[INFO] 04:18:14:412 CPU/(13860:13861):  Valor nuevo Program counter: 2
+[DEBUG] 04:18:14:412 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 04:18:14:911 CPU/(13860:13862): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 04:18:15:413 CPU/(13860:13861): BX = 7
+[DEBUG] 04:18:15:413 CPU/(13860:13861): Devuelvo pcb por interrupcion
+[INFO] 04:18:15:413 CPU/(13860:13861): insActual->instCode: 1
+[INFO] 04:18:15:413 CPU/(13860:13861): insActual->pc: 2
+[INFO] 04:18:15:413 CPU/(13860:13861):  Valor nuevo Program counter: 3
+[DEBUG] 04:18:15:413 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 04:18:16:413 CPU/(13860:13861): AX = 8
+[DEBUG] 04:18:16:413 CPU/(13860:13861): No hay interrupcion, sigo el ciclo
+[INFO] 04:18:16:413 CPU/(13860:13861): insActual->instCode: 2
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Requiere acceso a Memoria
+[INFO] 04:18:16:413 CPU/(13860:13861): insActual->pc: 3
+[INFO] 04:18:16:413 CPU/(13860:13861):  Valor nuevo Program counter: 4
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Leyendo valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 04:18:16:413 CPU/(13860:13861): MMU entrando en acción...
+[INFO] 04:18:16:413 CPU/(13860:13861): Traduccion de la dirección logica
+[INFO] 04:18:16:413 CPU/(13860:13861): direccionLogica: 4
+[INFO] 04:18:16:413 CPU/(13860:13861): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 04:18:16:413 CPU/(13860:13861): Número de Segmento = 4 / 256 = 0
+[INFO] 04:18:16:413 CPU/(13860:13861): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 04:18:16:413 CPU/(13860:13861): Número Pagina = 4 / 64 = 64
+[INFO] 04:18:16:413 CPU/(13860:13861): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 04:18:16:413 CPU/(13860:13861): El valor del marco es: 5
+[DEBUG] 04:18:16:413 CPU/(13860:13861): El valor del offset es: 5
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Envie direccion fisica a memoria swap: MARCO: -214860208, OFFSET: 1944951748
+
+[DEBUG] 04:18:16:413 CPU/(13860:13861): No hay interrupcion, sigo el ciclo
+[INFO] 04:18:16:413 CPU/(13860:13861): insActual->instCode: 3
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Requiere acceso a Memoria
+[INFO] 04:18:16:413 CPU/(13860:13861): insActual->pc: 4
+[INFO] 04:18:16:413 CPU/(13860:13861):  Valor nuevo Program counter: 5
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  8'
+[DEBUG] 04:18:16:413 CPU/(13860:13861): No hay interrupcion, sigo el ciclo
+[INFO] 04:18:16:413 CPU/(13860:13861): insActual->instCode: 4
+[INFO] 04:18:16:413 CPU/(13860:13861): insActual->pc: 5
+[INFO] 04:18:16:413 CPU/(13860:13861):  Valor nuevo Program counter: 6
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO DISCO   10'
+[DEBUG] 04:18:16:413 CPU/(13860:13861): Envie BLOCK al kernel por IO
+[DEBUG] 04:18:16:413 CPU/(13860:13861): No hay interrupcion, sigo el ciclo
+[INFO] 04:18:26:414 CPU/(13860:13861): insActual->instCode: 4
+[INFO] 04:18:26:414 CPU/(13860:13861): insActual->pc: 6
+[INFO] 04:18:26:414 CPU/(13860:13861):  Valor nuevo Program counter: 7
+[DEBUG] 04:18:26:414 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 04:18:26:414 CPU/(13860:13861): Envie BLOCK al kernel por IO_TECLADO
+[DEBUG] 04:18:26:414 CPU/(13860:13861): No hay interrupcion, sigo el ciclo
+[INFO] 04:18:37:961 CPU/(13860:13861): insActual->instCode: 4
+[INFO] 04:18:37:962 CPU/(13860:13861): insActual->pc: 7
+[INFO] 04:18:37:962 CPU/(13860:13861):  Valor nuevo Program counter: 8
+[DEBUG] 04:18:37:962 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 04:18:37:962 CPU/(13860:13861): Envie BLOCK al kernel por IO_PANTALLA
+[DEBUG] 04:18:37:962 CPU/(13860:13861): No hay interrupcion, sigo el ciclo
+[INFO] 04:18:38:713 CPU/(13860:13861): insActual->instCode: 4
+[INFO] 04:18:38:713 CPU/(13860:13861): insActual->pc: 8
+[INFO] 04:18:38:713 CPU/(13860:13861):  Valor nuevo Program counter: 9
+[DEBUG] 04:18:38:713 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO IMPRESORA   5'
+[DEBUG] 04:18:38:713 CPU/(13860:13861): Envie BLOCK al kernel por IO
+[DEBUG] 04:18:38:713 CPU/(13860:13861): No hay interrupcion, sigo el ciclo
+[INFO] 04:18:48:714 CPU/(13860:13861): insActual->instCode: 5
+[INFO] 04:18:48:714 CPU/(13860:13861): insActual->pc: 9
+[INFO] 04:18:48:714 CPU/(13860:13861):  Valor nuevo Program counter: 10
+[DEBUG] 04:18:48:714 CPU/(13860:13861): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
+[DEBUG] 04:18:48:714 CPU/(13860:13861): Envie EXIT al kernel
+[DEBUG] 04:18:48:714 CPU/(13860:13861): No hay interrupcion, sigo el ciclo

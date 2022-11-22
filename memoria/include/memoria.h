@@ -22,8 +22,15 @@ t_config* config;
     int retardoSwap;
     char* pathSwap;
     int tamanioSwap;
+} t_configMemoria;
 
-}t_configMemoria;
+typedef struct{
+	uint32_t comienzo;
+	uint32_t idPCB;
+} t_inicioTablaXPCB;
+
+//t_inicioTablaXPCB inicioTablaXPCB;
+t_list *LISTA_INICIO_TABLA_PAGINA;
 
 
 typedef struct {
@@ -31,6 +38,7 @@ typedef struct {
 	uint16_t idPCB;
 	t_list* paginas;
 } __attribute__((packed)) t_tabla_paginas;
+
 
 typedef struct {
 	int nroPagina;
@@ -41,7 +49,9 @@ typedef struct {
 	uint32_t posicionSwap;
 } __attribute__((packed)) t_pagina;
 
-void* espacioContiguiMem; // espacio que en el que voy a guardar bytes, escribir y leer como hago en el archivo (RAM)
+
+void* memoriaRAM; // espacio que en el que voy a guardar bytes, escribir y leer como hago en el archivo (RAM)
+FILE *swap;
 
 t_configMemoria configMemoria;
 
@@ -57,10 +67,11 @@ void crearTablasPaginas(void *pcb);
 void eliminarTablasPaginas(void *pcb);
 FILE *abrirArchivo(char *filename);
 void crear_hilos_memoria();
+void agregar_tabla_pag_en_swap();
+bool esta_vacio_el_archivo(FILE *);
 
 int contadorIdPCB;
 int socketAceptadoKernel;
-
 int conexionMemoria;
 int conexionDispatch;
 int conexionConsola;

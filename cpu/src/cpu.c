@@ -71,7 +71,6 @@ void iniciar_servidor_dispatch()
 		
 		do
 		{
-
 			retornePCB = cicloInstruccion(pcb);
 
 			checkInterrupt(pcb, retornePCB);
@@ -122,6 +121,7 @@ void conectar_memoria()
 
 	t_paqt paquete;
 
+	//recibe el mensaje inicial de memoria
 	recibirMsje(conexion, &paquete);
 
 	//Reservo espacio para recibir las ENTRADAS_POR_TABLA y TAM_PAGINA
@@ -134,6 +134,7 @@ void conectar_memoria()
 
 	configCPU.cantidadEntradasPorTabla = infoDeMemoria->cantEntradasPorTabla;
 	configCPU.tamanioPagina = infoDeMemoria->tamanioPagina;
+
 
 	free(infoDeMemoria);
 }
@@ -219,6 +220,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			mensajeAMemoriaLeer->desplazamiento = dirFisicaMoveIn->desplazamientoPagina;
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
 			mensajeAMemoriaLeer->pid = pcb->id;
+
 			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_READ);
 			log_debug(logger, "Envie direccion fisica a memoria swap: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
@@ -232,7 +234,6 @@ bool cicloInstruccion(t_pcb *pcb)
 			
 			log_debug(logger, "Mensaje leido: %d", mensajeValorLeido->numero);
 			log_debug(logger, "Registro %s = %i", registro, insActual->paramReg[0]); */
-
 
 		//  free(dirFisicaMoveIn);
 		//  free(mensajeAMemoriaLeer);

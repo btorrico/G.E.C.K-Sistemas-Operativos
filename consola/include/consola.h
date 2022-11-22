@@ -95,6 +95,7 @@ t_list *LISTA_BLOCKED_DISCO;
 t_list *LISTA_BLOCKED_IMPRESORA;
 t_list *LISTA_TABLA_PAGINAS;
 t_list *LISTA_BLOCK_PAGE_FAULT;
+t_list *LISTA_INICIO_TABLA_PAGINA;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;

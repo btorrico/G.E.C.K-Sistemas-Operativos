@@ -251,6 +251,7 @@ void iniciar_listas_y_semaforos()
 	LISTA_BLOCKED_DISCO = list_create();
 	LISTA_BLOCK_PAGE_FAULT = list_create();
 	LISTA_TABLA_PAGINAS = list_create();
+	LISTA_INICIO_TABLA_PAGINA = list_create();
 	
 
 	// mutex

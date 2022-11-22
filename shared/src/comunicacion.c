@@ -123,11 +123,22 @@ int recibirDatos(void* paquete, int socket, uint32_t cantARecibir) {
 	int recibido = 0;
 	int totalRecibido = 0;
 
-	do {
+	/*do {
 		recibido = recv(socket, datos + totalRecibido, cantARecibir - totalRecibido, 0);
 		totalRecibido += recibido;
 	} while (totalRecibido != cantARecibir && recibido > 0);
+*/
 
+
+recibido = recv(socket, datos + totalRecibido, cantARecibir - totalRecibido, MSG_WAITALL);
+	if (recibido <= 0)
+	{
+		return NULL;
+	}
+totalRecibido += recibido;
+	
+while (totalRecibido != cantARecibir && recibido > 0){
+	recibido = recv(socket, datos + totalRecibido, cantARecibir - totalRecibido, MSG_WAITALL);totalRecibido += recibido;}
 	memcpy(paquete, datos, cantARecibir);
 	free(datos);
 	return recibido;
