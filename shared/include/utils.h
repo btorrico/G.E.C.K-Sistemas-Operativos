@@ -331,6 +331,8 @@ extern t_list *LISTA_BLOCKED_IMPRESORA;
 extern t_list *LISTA_TABLA_PAGINAS;
 extern t_list *LISTA_BLOCK_PAGE_FAULT;
 extern t_list *LISTA_INICIO_TABLA_PAGINA;
+extern t_list *LISTA_BITMAP_MARCO;
+extern t_list *LISTA_INFO_MARCO;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;

@@ -1,59 +1,82 @@
 #ifndef MEMORIA_H
 #define MEMORIA_H
-#include<stdlib.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <commons/log.h>
 #include <stdbool.h>
-#include<string.h>
+#include <string.h>
 #include "client.h"
 #include "server.h"
 #include "comunicacion.h"
 
-t_config* config;
-	typedef struct {
-	char* puertoEscuchaUno;
-	char* puertoEscuchaDos;
+t_config *config;
+typedef struct
+{
+	char *puertoEscuchaUno;
+	char *puertoEscuchaDos;
 	int tamMemoria;
 	int tamPagina;
 	int entradasPorTabla;
 	int retardoMemoria;
-	char* algoritmoReemplazo;
+	char *algoritmoReemplazo;
 	int marcosPorProceso;
-    int retardoSwap;
-    char* pathSwap;
-    int tamanioSwap;
+	int retardoSwap;
+	char *pathSwap;
+	int tamanioSwap;
 } t_configMemoria;
 
-typedef struct{
+t_configMemoria configMemoria;
+typedef struct
+{
 	uint32_t comienzo;
 	uint32_t idPCB;
 } t_inicioTablaXPCB;
 
-//t_inicioTablaXPCB inicioTablaXPCB;
+// t_inicioTablaXPCB inicioTablaXPCB;
 t_list *LISTA_INICIO_TABLA_PAGINA;
 
-
-typedef struct {
-	uint16_t idTablaPag;
-	uint16_t idPCB;
-	t_list* paginas;
+typedef struct
+{
+	uint32_t idTablaPag;
+	uint32_t idPCB;
+	t_list *paginas;
 } __attribute__((packed)) t_tabla_paginas;
 
-
-typedef struct {
+typedef struct
+{
 	int nroPagina;
 	int nroMarco;
-	uint8_t presencia;// 0 v 1
-	uint8_t modificacion;// 0 v 1 
-	uint8_t uso; // 0 v 1
+	uint8_t presencia;	  // 0 v 1
+	uint8_t modificacion; // 0 v 1
+	uint8_t uso;		  // 0 v 1
 	uint32_t posicionSwap;
 } __attribute__((packed)) t_pagina;
 
+typedef struct
+{
+	uint32_t idPCB;
+	uint32_t idSegmento;
+	int nroPagina;
+	int nroMarco;
+	uint8_t modificacion; // 0 v 1
+	uint8_t uso;		  // 0 v 1
+} __attribute__((packed)) t_infoMarco;
 
-void* memoriaRAM; // espacio que en el que voy a guardar bytes, escribir y leer como hago en el archivo (RAM)
+int tamanio;
+
+
+typedef struct {
+	int nroMarco;
+	uint8_t uso;
+} __attribute__((packed)) bitmap_marcos_libres;
+
+bitmap_marcos_libres bitmap_marco[];
+
+
+void *memoriaRAM; // espacio que en el que voy a guardar bytes, escribir y leer como hago en el archivo (RAM)
 FILE *swap;
 
-t_configMemoria configMemoria;
+
 
 t_configKernel configKernel;
 int contadorIdTablaPag;
@@ -62,13 +85,15 @@ void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
 void agregar_tabla_paginas(t_tabla_paginas *);
 
-t_configMemoria extraerDatosConfig(t_config* );
+t_configMemoria extraerDatosConfig(t_config *);
 void crearTablasPaginas(void *pcb);
 void eliminarTablasPaginas(void *pcb);
 FILE *abrirArchivo(char *filename);
 void crear_hilos_memoria();
 void agregar_tabla_pag_en_swap();
 bool esta_vacio_el_archivo(FILE *);
+void* conseguir_puntero_a_base_memoria(int , void *);
+void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
 
 int contadorIdPCB;
 int socketAceptadoKernel;
@@ -77,8 +102,7 @@ int conexionDispatch;
 int conexionConsola;
 int conexionInterrupt;
 
-//el segmento esta en utils
-
+// el segmento esta en utils
 
 // LISTAS
 t_list *LISTA_NEW;
@@ -94,6 +118,8 @@ t_list *LISTA_BLOCKED_DISCO;
 t_list *LISTA_BLOCKED_IMPRESORA;
 t_list *LISTA_TABLA_PAGINAS;
 t_list *LISTA_BLOCK_PAGE_FAULT;
+t_list *LISTA_BITMAP_MARCO;
+t_list *LISTA_INFO_MARCO;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -108,7 +134,7 @@ pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
-pthread_mutex_t mutex_lista_block_page_fault; 
+pthread_mutex_t mutex_lista_block_page_fault;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;
@@ -131,10 +157,8 @@ sem_t sem_timer;
 sem_t sem_desalojar_pcb;
 sem_t sem_kill_trhread;
 
-
 pthread_mutex_t mutex_lista_ready_auxiliar;
 sem_t sem_llamar_feedback;
-
 
 bool hayTimer;
 #endif

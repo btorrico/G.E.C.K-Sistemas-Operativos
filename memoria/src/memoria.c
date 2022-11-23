@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 
 	// creo el struct
 	extraerDatosConfig(config);
+	
 
 	memoriaRAM = malloc(sizeof(configMemoria.tamMemoria));
 
@@ -116,6 +117,10 @@ void iniciar_servidor_hacia_cpu()
 
 	log_info(logger, "Servidor listo para recibir al cpu");
 
+	tamanio = configMemoria.tamMemoria / configMemoria.tamPagina;
+
+	bitmap_marco[tamanio];
+
 	int socketAceptadoCPU = esperar_cliente(server_fd);
 	char *mensaje = recibirMensaje(socketAceptadoCPU);
 
@@ -145,7 +150,6 @@ void conexionCPU(int socketAceptado)
 	int pid;
 	int pagina;
 
-
 	int valorRegistro = 2;
 	int idPCB = 0;
 	int nroSegmento = 1;
@@ -169,7 +173,7 @@ void conexionCPU(int socketAceptado)
 			break;
 		case ACCESO_MEMORIA_WRITE: // MOV_OUT
 
-			//buscar_pagina_en_memoria();		
+			// buscar_pagina_en_memoria();
 			break;
 
 			/*default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
@@ -206,7 +210,7 @@ void crearTablasPaginas(void *pcb)
 	{
 		t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
 		t_tabla_segmentos *tablaSegmento = list_get(pcbActual->tablaSegmentos, i);
-		//aca tengo que crear el malloc de t_listainiciocosas
+		// aca tengo que crear el malloc de t_listainiciocosas
 
 		tablaPagina->paginas = list_create();
 		pthread_mutex_lock(&mutex_creacion_ID_tabla);
@@ -310,11 +314,73 @@ bool esta_vacio_el_archivo(FILE *nombreFile)
 	}
 }
 
+bool buscar_pagina_en_memoria()
+{
 
-bool buscar_pagina_en_memoria(){
-	
 	t_tabla_paginas *tablaPagina;
-	tablaPagina->idTablaPag ;
+	tablaPagina->idTablaPag;
 
-	//list_find(t_list *, bool(*closure)(void*));
+	// list_find(t_list *, bool(*closure)(void*));
+}
+
+void *conseguir_puntero_a_base_memoria(int nro_marco, void *memoriaRAM)
+{ // aca conseguimos el puntero que apunta a la posicion donde comienza el marco
+
+	void *aux = memoriaRAM;
+
+	return (aux + nro_marco * configMemoria.tamPagina);
+}
+
+void *conseguir_puntero_al_desplazamiento_memoria(int nro_marco, void *memoriaRAM, int desplazamiento)
+{ // aca conseguimos el puntero al desplazamiento respecto al marco
+
+	return (conseguir_puntero_a_base_memoria(nro_marco, memoriaRAM) + desplazamiento);
+}
+
+void algoritmo_reemplazo_clock(nroSegmento, idProceso, paginaAReemplazar)
+{
+	void *punteroAuxiliar;
+
+
+
+	
+
+	int posicionMarcoLibre = buscar_marco_vacio();
+
+	if (posicionMarcoLibre)
+	{
+		//asignarPaginaAMarco();
+	}
+	else
+	{
+
+
+/*
+
+		for (int i = 0; i < strlen(infoMarco); i++)
+		{
+			if (infoMarco[i].uso == 0)
+			{
+				punteroAuxiliar = infoMarco[i+1];
+			}
+			
+		}
+		*/
+
+	}
+}
+
+int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
+{
+	for (int i = 0; i < strlen(bitmap_marco); i++)
+	{
+		if (bitmap_marco[i].uso == 0)
+		{
+			return i;
+		}
+		else
+		{
+			return -1;
+		}
+	}
 }
