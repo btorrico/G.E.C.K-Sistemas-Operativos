@@ -239,7 +239,14 @@ void conectar_dispatch()
 			// printf("\nse creo manejar interrupcion:%d,%d\n",i,j);
 			sem_post(&contador_pcb_running);
 			break;
+			case SEGMENTATION_FAULT:
+			/*CPU -> En caso de que el desplazamiento dentro del segmento (desplazamiento_segmento) 
+			sea mayor al tamaño del mismo, deberá devolverse el proceso al Kernel para que este lo 
+			finalice con motivo de Error: Segmentation Fault (SIGSEGV).*/
+			
+			printf("Hola, hola, hola, cuidado con la olaa(?");
 
+			break;
 		default:
 			break;
 		}

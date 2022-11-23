@@ -194,7 +194,8 @@ typedef enum {
 	ACCESO_MEMORIA_COPY,			//entre cpu-memoria
 	HANDSHAKE_INICIAL,
 	LIBERAR_RECURSOS,
-	ASIGNAR_RECURSOS
+	ASIGNAR_RECURSOS,
+	SEGMENTATION_FAULT				//entre cpu-kernel
 } t_tipoMensaje;
 
 typedef enum {

@@ -3801,3 +3801,42 @@
 
 [INFO] 00:29:08:058 CONSOLA/(4095:4095): Consola en espera de nuevos mensajes del kernel..
 [INFO] 00:29:08:822 CONSOLA/(4095:4095): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:38:52:348 CONSOLA/(6895:6895): 
+ Iniciando consola...
+[INFO] 05:38:52:349 CONSOLA/(6895:6895): Se parsearon #Instrucciones: 10
+[INFO] 05:38:52:350 CONSOLA/(6895:6895): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 05:38:52:350 CONSOLA/(6895:6895): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 05:38:52:350 CONSOLA/(6895:6895): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:39:05:353 CONSOLA/(6895:6895): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 05:39:06:894 CONSOLA/(6895:6895): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:39:07:645 CONSOLA/(6895:6895): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:53:46:026 CONSOLA/(7680:7680): 
+ Iniciando consola...
+[INFO] 05:53:46:026 CONSOLA/(7680:7680): Se parsearon #Instrucciones: 10
+[INFO] 05:53:46:027 CONSOLA/(7680:7680): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 05:53:46:027 CONSOLA/(7680:7680): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 05:53:46:027 CONSOLA/(7680:7680): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:53:59:030 CONSOLA/(7680:7680): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 05:54:12:340 CONSOLA/(7680:7680): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:54:13:091 CONSOLA/(7680:7680): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:08:09:508 CONSOLA/(8627:8627): 
+ Iniciando consola...
+[INFO] 06:08:09:508 CONSOLA/(8627:8627): Se parsearon #Instrucciones: 10
+[INFO] 06:08:09:509 CONSOLA/(8627:8627): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 06:08:09:509 CONSOLA/(8627:8627): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 06:08:09:509 CONSOLA/(8627:8627): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:08:22:512 CONSOLA/(8627:8627): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 06:08:37:903 CONSOLA/(8627:8627): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:08:38:653 CONSOLA/(8627:8627): Consola en espera de nuevos mensajes del kernel..

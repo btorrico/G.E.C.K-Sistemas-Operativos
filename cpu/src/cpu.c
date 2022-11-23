@@ -212,7 +212,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		t_direccionFisica* dirFisicaMoveIn = malloc(sizeof(t_direccionFisica));
 			//para probar
 			int indiceSeg=0; //en realidad hay que ir a buscar a la tabla de segmentos
-			dirFisicaMoveIn = calcularDireccionFisica(insActual->paramInt); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
+			dirFisicaMoveIn = calcularDireccionFisica(insActual->paramInt,pcb); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
 
 			MSJ_MEMORIA_CPU_LEER* mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
 
@@ -430,10 +430,10 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 }
 
 
-t_direccionFisica *calcularDireccionFisica(uint32_t dirLogica){
+t_direccionFisica *calcularDireccionFisica(uint32_t dirLogica,t_pcb *pcb){
 	// Direccion Logica / Tamaño de pagina = Numero de pagina
 	int nroPagina = dirLogica / configCPU.tamanioPagina;
-	int nroMarco = buscar_en_TLB(nroPagina);
+	int nroMarco = 0 ;//buscar_en_TLB(nroPagina); DESCOMENTAR
 	t_direccionFisica *df = malloc(sizeof(t_direccionFisica)); // Agregue parametro en el struct de la Direccion Fisica 
 	if(nroMarco != -1){ //CASO: LA PAGINA ESTA EN LA TLB
 		// Direccion fisica = Numero de marco * tamaño de marco + offset
@@ -441,7 +441,7 @@ t_direccionFisica *calcularDireccionFisica(uint32_t dirLogica){
 		df->nroMarco = nroMarco;
 		df->desplazamientoPagina = dirLogica % configCPU.tamanioPagina;
 	} else { //CASO: LA PAGINA NO ESTA EN LA TLB, USA LA MMU
-		df = traduccion_de_direccion(dirLogica,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina);
+		df = traduccion_de_direccion(dirLogica,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina, pcb);
 		//actualizar_TLB(nroPagina, df->nroMarco);int nroPagina,int nroFrame, int nroSegmento, int pid
 
 return df;
@@ -456,7 +456,7 @@ return df;
 // num_pagina = floor(desplazamiento_segmento  / tam_pagina)
 // desplazamiento_pagina = desplazamiento_segmento % tam_pagina
 
-t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina){
+t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina, t_pcb *pcb){ // Ver si es necesario pasarle el PCB
 	
 
 	printf(PRINT_COLOR_GREEN "\n---------------------------------------------------" PRINT_COLOR_RESET);
@@ -484,15 +484,43 @@ t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas
 	
 	printf(PRINT_COLOR_GREEN "---------------------------------------------------\n" PRINT_COLOR_RESET);
 
+//SEGMENTATION FAULT -> Chequea antes de intentar acceder a la memoria?
+   segmentationFault(pcb, desplazamiento_Segmento, numero_segmento);
 
 	direccion->nroMarco = primer_acceso(numero_segmento, numero_pagina);
-	direccion->desplazamientoPagina = 5 ;// direccion_logica - (primer_numero_pagina * tamanio_pagina);
+	direccion->desplazamientoPagina = desplazamiento_pagina; //Checkear
 	
 	log_debug(logger, "El valor del marco es: %d", direccion->nroMarco);
 	log_debug(logger, "El valor del offset es: %d", direccion->desplazamientoPagina);
 	return direccion;
 
 }
+
+/*
+En caso de que el desplazamiento dentro del segmento (desplazamiento_segmento) 
+sea mayor al tamaño del mismo-> QUE TAMAÑO?? EL tamanio_maximo_segmento o... el tamaño que tiene la pcb de cada segmento 
+en la tabla de segmeentos????
+, deberá devolverse el proceso al Kernel para que este lo finalice 
+con motivo de Error: Segmentation Fault (SIGSEGV).
+*/
+// REVISAAAAR
+void segmentationFault(t_pcb *pcb, int desplazamientoSegmento, int indice){
+	//Como indice le termina pasando el numero_segmento calculado en la traduccion, y es ese numero de segmento 
+	//el que busca en la lista de segmentos de la tabla de segmentos y despuies obtiene el tamaño de sicho segmento para 
+	//compararlo con el desplazamiento (TENGO MIS DUDAS CON RESPECTO A ESTO)
+
+	t_tabla_segmentos* segmento = list_get(pcb->tablaSegmentos,indice);//0
+
+	if(desplazamientoSegmento > segmento->tamanio){
+	
+	//Devolvemos el pcb a nuestro bello kernel
+	serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
+	log_debug(logger, "Envie de Nuevo el proceso para ser finalizado...");
+	
+	} 
+   
+}
+
 
 int primer_acceso(int numero_segmento, int numero_pagina){
 	return 5;

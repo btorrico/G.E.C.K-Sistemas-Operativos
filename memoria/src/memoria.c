@@ -159,14 +159,14 @@ void conexionCPU(int socketAceptado){ // void*
 				infoMemoriaCpuTP = paquete.mensaje;
 				idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
 				pagina = infoMemoriaCpuTP->pagina;
-				accesoMemoriaTP(idTablaPagina, pagina, socketAceptado);
+				//accesoMemoriaTP(idTablaPagina, pagina, socketAceptado); DESCOMENTAR
 				break;
 			case ACCESO_MEMORIA_LEER:
 				infoMemoriaCpuLeer = paquete.mensaje;
 				direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
 				direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
 				pid = infoMemoriaCpuLeer->pid;
-				accesoMemorialeer(direccionFisica, pid, socketAceptado);
+				//accesoMemorialeer(direccionFisica, pid, socketAceptado); DESCOMENTAR
 				break;
 			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
 				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
