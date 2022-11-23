@@ -94,6 +94,10 @@ void agregar_tabla_pag_en_swap();
 bool esta_vacio_el_archivo(FILE *);
 void* conseguir_puntero_a_base_memoria(int , void *);
 void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
+int buscar_marco_vacio();
+void algoritmo_reemplazo_clock(t_info_remplazo *);
+void asignarPaginaAMarco(t_info_remplazo*, int);
+t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
 
 int contadorIdPCB;
 int socketAceptadoKernel;

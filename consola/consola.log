@@ -3788,3 +3788,16 @@
 
 [INFO] 04:18:37:950 CONSOLA/(14088:14088): Consola en espera de nuevos mensajes del kernel..
 [INFO] 04:18:38:712 CONSOLA/(14088:14088): Consola en espera de nuevos mensajes del kernel..
+[INFO] 12:24:49:059 CONSOLA/(5797:5797): 
+ Iniciando consola...
+[INFO] 12:24:49:110 CONSOLA/(5797:5797): Se parsearon #Instrucciones: 10
+[INFO] 12:24:49:111 CONSOLA/(5797:5797): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 12:24:49:111 CONSOLA/(5797:5797): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 12:24:49:111 CONSOLA/(5797:5797): Consola en espera de nuevos mensajes del kernel..
+[INFO] 12:25:02:170 CONSOLA/(5797:5797): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 12:25:07:735 CONSOLA/(5797:5797): Consola en espera de nuevos mensajes del kernel..
+[INFO] 12:25:08:495 CONSOLA/(5797:5797): Consola en espera de nuevos mensajes del kernel..

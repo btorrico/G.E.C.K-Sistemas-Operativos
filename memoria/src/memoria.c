@@ -10,7 +10,6 @@ int main(int argc, char **argv)
 
 	// creo el struct
 	extraerDatosConfig(config);
-	
 
 	memoriaRAM = malloc(sizeof(configMemoria.tamMemoria));
 
@@ -105,6 +104,13 @@ void iniciar_servidor_hacia_kernel()
 			// liberar las estructuras y
 			// enviar msj al kernel de que ya estan liberadas
 			// serializarPCB(socketAceptadoKernel, pcb, PASAR_A_EXIT);
+			break;
+
+		case PAGE_FAULT:
+			// recibir del kernel pagina , segmento , id pcb
+			t_info_remplazo *infoRemplazo;
+			implementa_algoritmo_susticion(infoRemplazo);
+
 			break;
 		}
 	}
@@ -337,36 +343,29 @@ void *conseguir_puntero_al_desplazamiento_memoria(int nro_marco, void *memoriaRA
 	return (conseguir_puntero_a_base_memoria(nro_marco, memoriaRAM) + desplazamiento);
 }
 
-void algoritmo_reemplazo_clock(nroSegmento, idProceso, paginaAReemplazar)
+void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 {
-	void *punteroAuxiliar;
-
-
-
-	
 
 	int posicionMarcoLibre = buscar_marco_vacio();
 
 	if (posicionMarcoLibre)
 	{
-		//asignarPaginaAMarco();
+		asignarPaginaAMarco(infoRemplazo,posicionMarcoLibre);
 	}
 	else
 	{
 
+		/*
 
-/*
+				for (int i = 0; i < strlen(infoMarco); i++)
+				{
+					if (infoMarco[i].uso == 0)
+					{
+						punteroAuxiliar = infoMarco[i+1];
+					}
 
-		for (int i = 0; i < strlen(infoMarco); i++)
-		{
-			if (infoMarco[i].uso == 0)
-			{
-				punteroAuxiliar = infoMarco[i+1];
-			}
-			
-		}
-		*/
-
+				}
+				*/
 	}
 }
 
@@ -383,4 +382,51 @@ int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
 			return -1;
 		}
 	}
+}
+
+void asignarPaginaAMarco(t_info_remplazo* infoRemplazo , int posicionMarcoLibre)
+{
+	void *comienzoMarco = conseguir_puntero_a_base_memoria(posicionMarcoLibre, memoriaRAM);
+	
+	//memcpy(posicionMarcoLibre, )
+
+	
+
+}
+
+void implementa_algoritmo_susticion(t_info_remplazo *infoRemplazo)
+{
+
+	switch (obtenerAlgoritmoSustitucion())
+	{
+	case CLOCK:
+		algoritmo_reemplazo_clock(infoRemplazo);
+		break;
+
+	case CLOCK_MODIFICADO:
+		// algoritmo_reemplazo_clock_modificado(infoRemplazo);
+		break;
+
+	default:
+		break;
+	}
+}
+
+t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion()
+{
+
+	char *algoritmo = configMemoria.algoritmoReemplazo;
+
+	t_tipo_algoritmo_sustitucion algoritmoResultado;
+
+	if (!strcmp(algoritmo, "CLOCK"))
+	{
+		algoritmoResultado = CLOCK;
+	}
+	else if (!strcmp(algoritmo, "CLOCK_MODIFICADO"))
+	{
+		algoritmoResultado = CLOCK_MODIFICADO;
+	}
+
+	return algoritmoResultado;
 }

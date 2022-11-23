@@ -16,7 +16,6 @@
 #include <assert.h>
 #include "../globals.h"
 
-
 typedef enum
 {
 	MENSAJE,
@@ -58,28 +57,31 @@ typedef struct
 	int desplazamiento;
 } t_direccion_logica;
 
-
-typedef struct {
+typedef struct
+{
 	uint32_t nroMarco;
 	int tamPagina;
 	int desplazamientoPagina;
 } t_direccionFisica;
 
-typedef struct {
+typedef struct
+{
 	int nroMarco;
 	int desplazamiento;
 	int pid;
-}MSJ_MEMORIA_CPU_LEER;
+} MSJ_MEMORIA_CPU_LEER;
 
-typedef struct {
+typedef struct
+{
 	int numero;
-}MSJ_INT;
+} MSJ_INT;
 
-typedef struct {
-	char* cadena;
-}MSJ_STRING;
+typedef struct
+{
+	char *cadena;
+} MSJ_STRING;
 
-//Utils del cliente
+// Utils del cliente
 typedef struct
 {
 	uint32_t size; // Tamaño del payload
@@ -167,56 +169,73 @@ typedef enum
 } t_tipo_algoritmo;
 
 extern int contadorIdPCB;
-typedef enum {
-	INSTRUCCIONES,    				//entre consola-kernel
-	TERMINAR_CONSOLA,				//entre consola-kernel
-	DISPATCH_PCB,     				//entre kernel-cpu
-	BLOCK_PCB_IO_TECLADO,			//entre kernel-cpu
-	BLOCK_PCB_IO_PANTALLA,			//entre kernel-cpu
-	BLOCK_PCB_IO,					//entre kernel-cpu
-	BLOCK_PCB_PAGE_FAULT,			//entre kernel-cpu
-	INTERRUPT_INTERRUPCION,			//entre kernel-cpu
-	EXIT_PCB,						//entre kernel-cpu
-	PASAR_A_READY,					//entre kernel-memoria
-	SUSPENDER,						//entre kernel-memoria
-	PASAR_A_EXIT,					//entre kernel-memoria
-	CONFIG_DIR_LOG_A_FISICA,   	 	//entre cpu-memoria: ESTO ES PARA PASARLE LA CONFIGURACION DE LAS DIRECCIONES, ES EN EL INIT DE LA CPU
-	TRADUCCION_DIR_PRIMER_PASO,		//entre cpu-memoria
-	TRADUCCION_DIR_SEGUNDO_PASO,	//entre cpu-memoria
-	ACCESO_MEMORIA_READ,			//entre cpu-memoria
-	ACCESO_MEMORIA_WRITE,			//entre cpu-memoria
-	ACCESO_MEMORIA_COPY,			//entre cpu-memoria
+typedef enum
+{
+	INSTRUCCIONES,				 // entre consola-kernel
+	TERMINAR_CONSOLA,			 // entre consola-kernel
+	DISPATCH_PCB,				 // entre kernel-cpu
+	BLOCK_PCB_IO_TECLADO,		 // entre kernel-cpu
+	BLOCK_PCB_IO_PANTALLA,		 // entre kernel-cpu
+	BLOCK_PCB_IO,				 // entre kernel-cpu
+	BLOCK_PCB_PAGE_FAULT,		 // entre kernel-cpu
+	INTERRUPT_INTERRUPCION,		 // entre kernel-cpu
+	EXIT_PCB,					 // entre kernel-cpu
+	PASAR_A_READY,				 // entre kernel-memoria
+	SUSPENDER,					 // entre kernel-memoria
+	PASAR_A_EXIT,				 // entre kernel-memoria
+	CONFIG_DIR_LOG_A_FISICA,	 // entre cpu-memoria: ESTO ES PARA PASARLE LA CONFIGURACION DE LAS DIRECCIONES, ES EN EL INIT DE LA CPU
+	TRADUCCION_DIR_PRIMER_PASO,	 // entre cpu-memoria
+	TRADUCCION_DIR_SEGUNDO_PASO, // entre cpu-memoria
+	ACCESO_MEMORIA_READ,		 // entre cpu-memoria
+	ACCESO_MEMORIA_WRITE,		 // entre cpu-memoria
+	ACCESO_MEMORIA_COPY,		 // entre cpu-memoria
 	HANDSHAKE_INICIAL,
 	LIBERAR_RECURSOS,
-	ASIGNAR_RECURSOS
+	ASIGNAR_RECURSOS,
+	PAGE_FAULT
 } t_tipoMensaje;
 
-typedef enum {
+typedef enum
+{
 	CONSOLA,
 	KERNEL,
 	CPU,
 	MEMORIA
-}t_enviadoPor;
+} t_enviadoPor;
+
+typedef enum
+{
+	CLOCK,
+	CLOCK_MODIFICADO
+} t_tipo_algoritmo_sustitucion;
 
 typedef struct 
+{
+	int idPagina;
+	int idSegmento;
+	int PID;
+}t_info_remplazo;
+
+typedef struct
 {
 	t_tipoMensaje tipoMensaje;
 	int tamanioMensaje;
 	t_enviadoPor cliente;
 } t_infoMensaje;
 
-typedef struct 
+typedef struct
 {
 	t_infoMensaje header;
-	void* mensaje;
+	void *mensaje;
 } t_paqt;
 
-typedef struct {
+typedef struct
+{
 	int cantEntradasPorTabla;
 	int tamanioPagina;
-}MSJ_MEMORIA_CPU_INIT;
+} MSJ_MEMORIA_CPU_INIT;
 
-void imprimirInstruccionesYSegmentos(t_informacion* );
+void imprimirInstruccionesYSegmentos(t_informacion *);
 
 /*
 
@@ -348,7 +367,7 @@ extern pthread_mutex_t mutex_lista_exit;
 extern pthread_mutex_t mutex_lista_ready_auxiliar;
 extern pthread_mutex_t mutex_creacion_ID_tabla;
 extern pthread_mutex_t mutex_lista_tabla_paginas;
-extern pthread_mutex_t mutex_lista_block_page_fault ;
+extern pthread_mutex_t mutex_lista_block_page_fault;
 
 // SEMAFOROS
 extern sem_t sem_planif_largo_plazo;
