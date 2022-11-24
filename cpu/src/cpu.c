@@ -440,7 +440,7 @@ t_direccionFisica *calcularDireccionFisica(uint32_t dirLogica,t_pcb *pcb){
 		//dirFisica = malloc(sizeof(t_direccionFisica));
 		df->nroMarco = nroMarco;
 		df->desplazamientoPagina = dirLogica % configCPU.tamanioPagina;
-	} else { //CASO: LA PAGINA NO ESTA EN LA TLB, USA LA MMU
+	} else { //CASO: LA PAGINA NO ESTA EN LA TLB, USA LA MMU -> TLB MISS
 		df = traduccion_de_direccion(dirLogica,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina, pcb);
 		//actualizar_TLB(nroPagina, df->nroMarco);int nroPagina,int nroFrame, int nroSegmento, int pid
 
@@ -506,12 +506,12 @@ con motivo de Error: Segmentation Fault (SIGSEGV).
 // REVISAAAAR
 void segmentationFault(t_pcb *pcb, int desplazamientoSegmento, int indice){
 	//Como indice le termina pasando el numero_segmento calculado en la traduccion, y es ese numero de segmento 
-	//el que busca en la lista de segmentos de la tabla de segmentos y despuies obtiene el tamaño de sicho segmento para 
+	//el que busca en la lista de segmentos de la tabla de segmentos, despues obtiene el tamaño de dicho segmento para 
 	//compararlo con el desplazamiento (TENGO MIS DUDAS CON RESPECTO A ESTO)
 
 	t_tabla_segmentos* segmento = list_get(pcb->tablaSegmentos,indice);//0
 
-	if(desplazamientoSegmento > segmento->tamanio){
+	if(desplazamientoSegmento > segmento->tamanio){ // Uso el tamanio real
 	
 	//Devolvemos el pcb a nuestro bello kernel
 	serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
@@ -560,21 +560,18 @@ void iniciar_TLB(){
 	int cantidadEntradasTLB = configCPU.entradasTLB;
 
 	if(cantidadEntradasTLB==0){
-		TLBEnable = 0;
+		habilitarTLB = 0;
 		return;
 	}
-
-	TLBEnable = 1;
+	habilitarTLB = 1;
 
 	TLB = malloc(sizeof(tlb));
-
 	TLB->size = cantidadEntradasTLB;
 	TLB->entradas = list_create();
-	TLB->algoritmo = configCPU.reemplazoTLB;
-
+	TLB->algoritmo = configCPU.reemplazoTLB; // FIFO o LRU
 }
 
-int tlbTieneEntradasLibres(){
+int tlbTieneEntradasLibres(){ // Podria ser un Boole 
 	return TLB->size > TLB->entradas->elements_count;
 }
 
@@ -595,18 +592,101 @@ void llenar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
 
 }
 
+//Deveria buscar por nro pagina y nroSegmento?
+int buscar_en_TLB(int nroPagina){ //int nroSegmento, int pid //devuelve numero de frame, si esta en la tlb, devuelve -1 si no esta en la tlb
+	entrada_tlb* entradaActual;
+	for(int i=0; i< TLB->entradas->elements_count; i++){
+		entradaActual = list_get(TLB->entradas, i);
+		if(entradaActual->nroPagina == nroPagina){
+			if(strcmp(TLB->algoritmo , "LRU")== 0){
+				entradaActual = list_remove(TLB->entradas,i);
+				list_add_in_index(TLB->entradas,0,entradaActual);
+			}
+
+			//	TLB Hit: “PID: <PID> - TLB HIT - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA>”
+
+
+			log_debug(logger, "TLB HIT: Pagina: %i, Frame: %i.\n", entradaActual->nroPagina, entradaActual->nroFrame);
+
+			return entradaActual->nroFrame;
+		}
+	}
+
+	//TLB Miss: “PID: <PID> - TLB MISS - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA>”
+	
+	log_debug(logger, "TLB MISS - pagina no encontrada en TLB\n");
+	return -1;
+}
+
+
 void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
 
 	if(tlbTieneEntradasLibres()){
 		llenar_TLB(nroPagina, nroFrame,nroSegmento,pid);
 		return;
 	}
-/*
+
 	//REEMPLAZO DE PAGINA
 	if(strcmp(TLB->algoritmo , "LRU")== 0){
-		reemplazo_lru(nroPagina, nroFrame);
+		reemplazo_algoritmo_lru(nroPagina, nroFrame);
 	} else {
-		reemplazo_fifo(nroPagina, nroFrame);
+		reemplazo_algoritmo_fifo(nroPagina, nroFrame);
 	}
-*/
+
+}
+
+
+
+
+void reemplazo_algoritmo_lru(int nroPagina, int nroFrame){ // int nroSegmento, int pid
+	int i = list_size(TLB->entradas);
+	i--;
+	entrada_tlb* nuevaEntrada = malloc(sizeof(entrada_tlb));
+
+	nuevaEntrada->nroPagina = nroPagina;
+	nuevaEntrada->nroFrame = nroFrame;
+
+	entrada_tlb* entradaRemplazada = list_remove(TLB->entradas, i);
+	log_warning(logger, "Reemplaza pagina: %d por nueva pagina %d", entradaRemplazada->nroPagina, nuevaEntrada->nroPagina);
+	printf("Reemplaza pagina: %d por nueva pagina %d", entradaRemplazada->nroPagina, nuevaEntrada->nroPagina);
+	free(entradaRemplazada);
+	list_add_in_index(TLB->entradas, 0, nuevaEntrada);
+
+}
+
+
+void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame){ //int nroSegmento, int pid
+	entrada_tlb* entradaNueva = malloc(sizeof(entrada_tlb));
+
+	entradaNueva->nroPagina = nroPagina;
+	entradaNueva->nroFrame = nroFrame;
+
+	entrada_tlb* entradaAnterior = list_remove(TLB->entradas, TLB->size-1);
+	log_warning(logger, "Reemplazo de pagina: %d por nueva pagina %d", entradaAnterior->nroPagina, entradaNueva->nroPagina);
+	printf(PRINT_COLOR_YELLOW "Reemplazo de pagina: %d por nueva pagina %d"PRINT_COLOR_RESET, entradaAnterior->nroPagina, entradaNueva->nroPagina);
+	list_add_in_index(TLB->entradas, 0, entradaNueva);
+	free(entradaAnterior);
+}
+
+// Freedoooom(?
+
+void destruir_entrada(void* entrada){
+	entrada_tlb* entradaTlb = (entrada_tlb*) entrada;
+	free(entradaTlb);
+}
+
+void limpiar_entradas_TLB(){
+	list_clean_and_destroy_elements(TLB->entradas, destruir_entrada);
+}
+
+void cerrar_TLB(){
+
+	entrada_tlb* entradaActual;
+	//Va destruyendo todas las entradas
+	for(int i=0; i< TLB->entradas->elements_count; i++){
+		entradaActual = list_get(TLB->entradas, i);
+		list_remove_and_destroy_element(TLB->entradas, i, destruir_entrada);
+	}
+	free(TLB->algoritmo);
+	free(TLB);
 }

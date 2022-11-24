@@ -141,7 +141,7 @@ typedef struct tlb{
 } tlb;
 
 tlb* TLB;
-int TLBEnable;
+int habilitarTLB;
 pthread_mutex_t mutexTLB;
 
 
@@ -150,8 +150,8 @@ void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid);
 int buscar_en_TLB(int nroPagina);
 void limpiar_entrada_TLB(int nroPagina, int pid);
 void limpiar_entradas_TLB();
-void reemplazo_fifo(int nroPagina, int nroFrame);
-void reemplazo_lru(int nroPagina, int nroFrame);
+void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame);
+void reemplazo_algoritmo_lru(int nroPagina, int nroFrame);
 void cerrar_TLB();
 void destruir_entrada(void* entry);
 
