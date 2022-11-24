@@ -187,7 +187,7 @@ typedef enum {
 	SUSPENDER,						//entre kernel-memoria
 	PASAR_A_EXIT,					//entre kernel-memoria
 	CONFIG_DIR_LOG_A_FISICA,   	 	//entre cpu-memoria: ESTO ES PARA PASARLE LA CONFIGURACION DE LAS DIRECCIONES, ES EN EL INIT DE LA CPU
-	TRADUCCION_DIR_PRIMER_PASO,		//entre cpu-memoria
+	TRADUCCION_DIR_PRIMER_ACCESO,	//entre cpu-memoria
 	ACCESO_MEMORIA_TABLA_DE_PAG,	//entre cpu-memoria
 	ACCESO_MEMORIA_LEER,			//entre cpu-memoria
 	ACCESO_MEMORIA_WRITE,			//entre cpu-memoria

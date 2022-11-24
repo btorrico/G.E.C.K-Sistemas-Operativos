@@ -58,7 +58,7 @@ int numeroDeSegmento(int dir_logica, int tam_max_segmento);
 int desplazamientoSegmento(int dir_logica, int tam_max_segmento);
 int numeroPagina(int desplazamiento_segmento, int tam_pagina);
 int desplazamientoPagina(int desplamiento_segmento, int tam_pagina);
-int primer_acceso(int numero_segmento, int numero_pagina);
+int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas);
 
  int conexionDispatch;
  int conexionConsola;
@@ -136,7 +136,7 @@ typedef struct{
 
 typedef struct tlb{
 	t_list* entradas;
-	int size; //cantidad de entradas
+	int cant_entradas; //cantidad de entradas
 	char* algoritmo;
 } tlb;
 

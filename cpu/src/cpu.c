@@ -210,8 +210,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		//traducir valor paramint para asignarlo despues a registroCPU
 	
 		t_direccionFisica* dirFisicaMoveIn = malloc(sizeof(t_direccionFisica));
-			//para probar
-			int indiceSeg=0; //en realidad hay que ir a buscar a la tabla de segmentos
+			
 			dirFisicaMoveIn = calcularDireccionFisica(insActual->paramInt,pcb); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
 
 			MSJ_MEMORIA_CPU_LEER* mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
@@ -433,7 +432,7 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 t_direccionFisica *calcularDireccionFisica(uint32_t dirLogica,t_pcb *pcb){
 	// Direccion Logica / Tamaño de pagina = Numero de pagina
 	int nroPagina = dirLogica / configCPU.tamanioPagina;
-	int nroMarco = 0 ;//buscar_en_TLB(nroPagina); DESCOMENTAR
+	int nroMarco = buscar_en_TLB(nroPagina); //DESCOMENTAR
 	t_direccionFisica *df = malloc(sizeof(t_direccionFisica)); // Agregue parametro en el struct de la Direccion Fisica 
 	if(nroMarco != -1){ //CASO: LA PAGINA ESTA EN LA TLB
 		// Direccion fisica = Numero de marco * tamaño de marco + offset
@@ -443,7 +442,6 @@ t_direccionFisica *calcularDireccionFisica(uint32_t dirLogica,t_pcb *pcb){
 	} else { //CASO: LA PAGINA NO ESTA EN LA TLB, USA LA MMU -> TLB MISS
 		df = traduccion_de_direccion(dirLogica,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina, pcb);
 		//actualizar_TLB(nroPagina, df->nroMarco);int nroPagina,int nroFrame, int nroSegmento, int pid
-
 return df;
 }
 
@@ -465,7 +463,7 @@ t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas
 	log_info(logger, "direccionLogica: %d", direccionLogica);
 	t_direccionFisica *direccion = malloc(sizeof(t_direccionFisica));
 
-	int tamanio_maximo_segmento = tamanioMaximoPorSegmento(cant_entradas_por_tabla, tam_pagina);
+	int tamanio_maximo_segmento = tamanioMaximoPorSegmento(cant_entradas_por_tabla, tam_pagina); 
 	log_info(logger, "Tamanio Maximo Por Segmento = %d * %d = %d", cant_entradas_por_tabla, tam_pagina, tamanio_maximo_segmento);
 
 	int numero_segmento = numeroDeSegmento(direccionLogica, tamanioMaximoPorSegmento);
@@ -474,7 +472,7 @@ t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas
 	int desplazamiento_Segmento = desplazamientoSegmento( direccionLogica, tamanio_maximo_segmento);
 	log_info(logger, "Desplazamiento Segmento = %d ·/. %d = %d", direccionLogica,tamanio_maximo_segmento, desplazamiento_Segmento);
 
-	int numero_pagina= numeroPagina(desplazamiento_Segmento, tam_pagina);
+	int numero_pagina= numeroPagina(desplazamiento_Segmento, tam_pagina);  // numero_pagina CAMBIAR A UINT_32 ??? o esta bien en int?? la misma pregunta por todos los demas int
 	log_info(logger, "Número Pagina = %d / %d = %d", desplazamiento_Segmento, tam_pagina, numero_pagina);
 
 	int desplazamiento_pagina = desplazamientoPagina(desplazamiento_Segmento, tam_pagina);
@@ -486,8 +484,9 @@ t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas
 
 //SEGMENTATION FAULT -> Chequea antes de intentar acceder a la memoria?
    segmentationFault(pcb, desplazamiento_Segmento, numero_segmento);
-
-	direccion->nroMarco = primer_acceso(numero_segmento, numero_pagina);
+	
+	t_tabla_segmentos* segmento = list_get(pcb->tablaSegmentos,numero_segmento);
+	direccion->nroMarco = primer_acceso(numero_pagina, segmento->indiceTablaPaginas);
 	direccion->desplazamientoPagina = desplazamiento_pagina; //Checkear
 	
 	log_debug(logger, "El valor del marco es: %d", direccion->nroMarco);
@@ -521,11 +520,6 @@ void segmentationFault(t_pcb *pcb, int desplazamientoSegmento, int indice){
    
 }
 
-
-int primer_acceso(int numero_segmento, int numero_pagina){
-	return 5;
-}
-
 int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina){
 	int tam_max_segmento = cant_entradas_por_tabla * tam_pagina;
 	return tam_max_segmento;
@@ -550,7 +544,24 @@ int desplazamientoPagina(int desplazamiento_segmento, int tam_pagina){
 	return desplazamiento_pagina;
 }
 
+int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas){ //(int segundo_numero_pagina, int r_entrada_tabla_segundo_nivel){
+	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS *mensajeAMemoriaAccesoTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
+	mensajeAMemoriaAccesoTP->idTablaDePaginas = indiceTablaPaginas;
+	mensajeAMemoriaAccesoTP->pagina = numero_pagina;
+	enviarMsje(socketMemoria, CPU, mensajeAMemoriaAccesoTP, sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS), TRADUCCION_DIR_PRIMER_ACCESO);
 
+	log_debug(logger, "Envie mensaje a memoria para acceder a Tabla de Paginas con ID %d",indiceTablaPaginas);
+
+	t_paqt paqueteMemoria;
+	recibirMsje(socketMemoria, &paqueteMemoria);
+	MSJ_INT* mensajePrimerAcceso = malloc(sizeof(MSJ_INT));
+	mensajePrimerAcceso = paqueteMemoria.mensaje;
+	int nroFrame = mensajePrimerAcceso->numero;
+
+	log_info(logger, "(primer acceso)EL MARCO BUSCADO ES: %d", nroFrame);
+
+	return nroFrame;
+}
 
 /*----------------------TLB------------------------------*/
 
@@ -566,13 +577,13 @@ void iniciar_TLB(){
 	habilitarTLB = 1;
 
 	TLB = malloc(sizeof(tlb));
-	TLB->size = cantidadEntradasTLB;
+	TLB->cant_entradas = cantidadEntradasTLB;
 	TLB->entradas = list_create();
 	TLB->algoritmo = configCPU.reemplazoTLB; // FIFO o LRU
 }
 
 int tlbTieneEntradasLibres(){ // Podria ser un Boole 
-	return TLB->size > TLB->entradas->elements_count;
+	return TLB->cant_entradas > TLB->entradas->elements_count;
 }
 
 //En este caso, la TLB tiene una o mas entradas libres // Revisar
@@ -661,7 +672,7 @@ void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame){ //int nroSegmento, i
 	entradaNueva->nroPagina = nroPagina;
 	entradaNueva->nroFrame = nroFrame;
 
-	entrada_tlb* entradaAnterior = list_remove(TLB->entradas, TLB->size-1);
+	entrada_tlb* entradaAnterior = list_remove(TLB->entradas, TLB->cant_entradas-1);
 	log_warning(logger, "Reemplazo de pagina: %d por nueva pagina %d", entradaAnterior->nroPagina, entradaNueva->nroPagina);
 	printf(PRINT_COLOR_YELLOW "Reemplazo de pagina: %d por nueva pagina %d"PRINT_COLOR_RESET, entradaAnterior->nroPagina, entradaNueva->nroPagina);
 	list_add_in_index(TLB->entradas, 0, entradaNueva);
