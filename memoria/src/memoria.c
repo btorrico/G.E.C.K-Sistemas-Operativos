@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 	config_destroy(config);
 
 	fclose(swap);
-	// crear una lista con el tablaño de los marcos/segmanetos para ir guardado y remplazando
+	// crear una lista con el tamaño de los marcos/segmanetos para ir guardado y remplazando
 	// en el caso de que esten ocupados , con los algoritmos correcpondientes
 
 	// en elarchivo swap se van a guardar las tablas enteras que voy a leer segun en los bytes que esten
@@ -95,10 +95,10 @@ void iniciar_servidor_hacia_kernel()
 
 		case LIBERAR_RECURSOS:
 			pthread_t thrTablaPaginasEliminar;
-
 			pthread_create(&thrTablaPaginasEliminar, NULL, (void *)eliminarTablasPaginas, (void *)pcb);
 			pthread_detach(thrTablaPaginasEliminar);
 			break;
+
 		case PASAR_A_EXIT: // solicitud de liberar las estructuras
 
 			// liberar las estructuras y
@@ -108,12 +108,40 @@ void iniciar_servidor_hacia_kernel()
 
 		case PAGE_FAULT:
 			// recibir del kernel pagina , segmento , id pcb
-			t_info_remplazo *infoRemplazo;
-			implementa_algoritmo_susticion(infoRemplazo);
+			asignacionDeMarcos(declararInfoReemplazo(), declararInfoMarco());
 
 			break;
 		}
 	}
+}
+
+t_infoMarco* declararInfoMarco()
+{
+	int pagina = 1;
+	int segmento = 1;
+	int idPcb = 1;
+	t_infoMarco *infoMarco = malloc(sizeof(t_infoMarco));
+	infoMarco->idPCB = idPcb;
+	infoMarco->idSegmento = segmento;
+	infoMarco->nroPagina = pagina;
+	infoMarco->modificacion = 0;
+	infoMarco->nroMarco = 0;
+	infoMarco->uso = 0;
+
+	return infoMarco;
+}
+
+t_info_remplazo* declararInfoReemplazo()
+{
+	int pagina = 1;
+	int segmento = 1;
+	int idPcb = 1;
+	t_info_remplazo *infoRemplazo = malloc(sizeof(t_info_remplazo));
+	infoRemplazo->idPagina = pagina;
+	infoRemplazo->idSegmento = segmento;
+	infoRemplazo->PID = idPcb;
+
+	return infoRemplazo;
 }
 
 void iniciar_servidor_hacia_cpu()
@@ -246,6 +274,7 @@ void crearTablasPaginas(void *pcb)
 	printf("\nEnvio recursos a kernel\n");
 	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
 	printf("\nEnviados\n");
+	agregar_tabla_pag_en_swap();
 	free(pcbActual);
 }
 
@@ -295,11 +324,11 @@ void agregar_tabla_pag_en_swap() // esto hay que modificarlo, necesitamos obtene
 			}
 			else
 			{
-				pagina->posicionSwap = tamanioSgtePagina + 1; // tamanioSgtePagina = OFFSET = desplazamiento
-				fseek(swap, pagina->posicionSwap, SEEK_SET);
+				pagina->posicionSwap = tamanioSgtePagina; // tamanioSgtePagina = OFFSET = desplazamiento
+				fseek(swap, pagina->posicionSwap, SEEK_CUR);
 			}
 
-			tamanioSgtePagina += fwrite(pagina->nroPagina, sizeof(pagina->nroPagina), 0, swap);
+			tamanioSgtePagina += configMemoria.tamPagina;
 		}
 	}
 }
@@ -343,30 +372,26 @@ void *conseguir_puntero_al_desplazamiento_memoria(int nro_marco, void *memoriaRA
 	return (conseguir_puntero_a_base_memoria(nro_marco, memoriaRAM) + desplazamiento);
 }
 
-void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
+void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_infoMarco *infoMarco)
 {
-
 	int posicionMarcoLibre = buscar_marco_vacio();
 
-	if (posicionMarcoLibre)
+	if (posicionMarcoLibre && chequearCantidadMarcosPorProceso(infoMarco))
 	{
-		asignarPaginaAMarco(infoRemplazo,posicionMarcoLibre);
+		asignarPaginaAMarco(infoRemplazo, posicionMarcoLibre);
 	}
 	else
 	{
-
-		/*
-
-				for (int i = 0; i < strlen(infoMarco); i++)
-				{
-					if (infoMarco[i].uso == 0)
-					{
-						punteroAuxiliar = infoMarco[i+1];
-					}
-
-				}
-				*/
+		implementa_algoritmo_susticion(infoRemplazo);
 	}
+}
+
+void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
+{
+}
+
+void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
+{
 }
 
 int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
@@ -384,14 +409,21 @@ int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
 	}
 }
 
-void asignarPaginaAMarco(t_info_remplazo* infoRemplazo , int posicionMarcoLibre)
+void asignarPaginaAMarco(t_info_remplazo *infoRemplazo, int posicionMarcoLibre)
 {
+	void *pagina = malloc(sizeof(void *));
+
+	t_infoMarco *infoMarco = malloc(sizeof(t_infoMarco));
+
 	void *comienzoMarco = conseguir_puntero_a_base_memoria(posicionMarcoLibre, memoriaRAM);
-	
-	//memcpy(posicionMarcoLibre, )
 
-	
+	for (int i = 0; i < list_size(LISTA_MARCOS_POR_PROCESO); i++)
+	{
 
+		infoMarco = list_get(LISTA_MARCOS_POR_PROCESO, i);
+	}
+
+	memcpy(pagina, comienzoMarco, sizeof(void *));
 }
 
 void implementa_algoritmo_susticion(t_info_remplazo *infoRemplazo)
@@ -404,7 +436,7 @@ void implementa_algoritmo_susticion(t_info_remplazo *infoRemplazo)
 		break;
 
 	case CLOCK_MODIFICADO:
-		// algoritmo_reemplazo_clock_modificado(infoRemplazo);
+		algoritmo_reemplazo_clock_modificado(infoRemplazo);
 		break;
 
 	default:
@@ -429,4 +461,46 @@ t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion()
 	}
 
 	return algoritmoResultado;
+}
+
+void pasar_a_lista_marcos_por_proceso(t_infoMarco *infoMarco)
+{
+	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
+	list_add(LISTA_MARCOS_POR_PROCESO, infoMarco);
+	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
+
+	// log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
+}
+
+bool chequearCantidadMarcosPorProceso(t_infoMarco *infoMarco)
+{
+	t_list *marcosPorProceso = filtrarPorPID(infoMarco->idPCB);
+
+	if (list_size(marcosPorProceso) <= configMemoria.marcosPorProceso)
+	{
+		pasar_a_lista_marcos_por_proceso(infoMarco);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+t_list *filtrarPorPID(int PID)
+{
+	t_list *listaMarco = list_create();
+
+	for (int i = 0; i < list_size(LISTA_MARCOS_POR_PROCESO); i++)
+	{
+		t_infoMarco *infoMarco = list_get(LISTA_MARCOS_POR_PROCESO, i);
+
+		if (infoMarco->idPCB == PID)
+		{
+			list_add(listaMarco, infoMarco);
+		}
+	}
+	// no hacer free de la lista
+
+	return listaMarco;
 }

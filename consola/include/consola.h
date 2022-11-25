@@ -98,6 +98,7 @@ t_list *LISTA_BLOCK_PAGE_FAULT;
 t_list *LISTA_INICIO_TABLA_PAGINA;
 t_list *LISTA_BITMAP_MARCO;
 t_list *LISTA_INFO_MARCO;
+t_list *LISTA_MARCOS_POR_PROCESO;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -114,6 +115,8 @@ pthread_mutex_t mutex_lista_ready_auxiliar;
 pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
 pthread_mutex_t mutex_lista_block_page_fault ;
+pthread_mutex_t mutex_lista_marco_por_proceso;
+
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;
 sem_t contador_multiprogramacion;

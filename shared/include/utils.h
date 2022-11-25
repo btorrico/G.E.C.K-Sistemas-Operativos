@@ -352,6 +352,7 @@ extern t_list *LISTA_BLOCK_PAGE_FAULT;
 extern t_list *LISTA_INICIO_TABLA_PAGINA;
 extern t_list *LISTA_BITMAP_MARCO;
 extern t_list *LISTA_INFO_MARCO;
+extern t_list *LISTA_MARCOS_POR_PROCESO;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;
@@ -368,6 +369,7 @@ extern pthread_mutex_t mutex_lista_ready_auxiliar;
 extern pthread_mutex_t mutex_creacion_ID_tabla;
 extern pthread_mutex_t mutex_lista_tabla_paginas;
 extern pthread_mutex_t mutex_lista_block_page_fault;
+extern pthread_mutex_t mutex_lista_marco_por_proceso;
 
 // SEMAFOROS
 extern sem_t sem_planif_largo_plazo;

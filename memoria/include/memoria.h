@@ -98,6 +98,14 @@ int buscar_marco_vacio();
 void algoritmo_reemplazo_clock(t_info_remplazo *);
 void asignarPaginaAMarco(t_info_remplazo*, int);
 t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
+void pasar_a_lista_marcos_por_proceso(t_infoMarco *);
+void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
+void asignacionDeMarcos(t_info_remplazo * , t_infoMarco *);
+t_list* filtrarPorPID(int );
+bool chequearCantidadMarcosPorProceso(t_infoMarco *);
+t_infoMarco* declararInfoMarco();
+t_info_remplazo* declararInfoReemplazo();
+
 
 int contadorIdPCB;
 int socketAceptadoKernel;
@@ -124,6 +132,7 @@ t_list *LISTA_TABLA_PAGINAS;
 t_list *LISTA_BLOCK_PAGE_FAULT;
 t_list *LISTA_BITMAP_MARCO;
 t_list *LISTA_INFO_MARCO;
+t_list *LISTA_MARCOS_POR_PROCESO;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -139,6 +148,7 @@ pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
 pthread_mutex_t mutex_lista_block_page_fault;
+pthread_mutex_t mutex_lista_marco_por_proceso;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;
@@ -151,6 +161,7 @@ sem_t contador_bloqueo_impresora_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;
+sem_t contador_marcos_por_proceso;
 
 sem_t sem_agregar_pcb;
 sem_t sem_eliminar_pcb;
