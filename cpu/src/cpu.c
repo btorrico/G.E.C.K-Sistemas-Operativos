@@ -483,7 +483,7 @@ t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas
 	printf(PRINT_COLOR_GREEN "---------------------------------------------------\n" PRINT_COLOR_RESET);
 
 //SEGMENTATION FAULT -> Chequea antes de intentar acceder a la memoria?
-   segmentationFault(pcb, desplazamiento_Segmento, numero_segmento);
+   validarSegmentationFault(pcb, desplazamiento_Segmento, numero_segmento);
 	
 	t_tabla_segmentos* segmento = list_get(pcb->tablaSegmentos,numero_segmento);
 	direccion->nroMarco = primer_acceso(numero_pagina, segmento->indiceTablaPaginas);
@@ -503,7 +503,7 @@ en la tabla de segmeentos????
 con motivo de Error: Segmentation Fault (SIGSEGV).
 */
 // REVISAAAAR
-void segmentationFault(t_pcb *pcb, int desplazamientoSegmento, int indice){
+void validarSegmentationFault(t_pcb *pcb, int desplazamientoSegmento, int indice){
 	//Como indice le termina pasando el numero_segmento calculado en la traduccion, y es ese numero de segmento 
 	//el que busca en la lista de segmentos de la tabla de segmentos, despues obtiene el tamaño de dicho segmento para 
 	//compararlo con el desplazamiento (TENGO MIS DUDAS CON RESPECTO A ESTO)
@@ -544,11 +544,11 @@ int desplazamientoPagina(int desplazamiento_segmento, int tam_pagina){
 	return desplazamiento_pagina;
 }
 
-int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas){ //(int segundo_numero_pagina, int r_entrada_tabla_segundo_nivel){
+int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas){ 
 	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS *mensajeAMemoriaAccesoTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
 	mensajeAMemoriaAccesoTP->idTablaDePaginas = indiceTablaPaginas;
 	mensajeAMemoriaAccesoTP->pagina = numero_pagina;
-	enviarMsje(socketMemoria, CPU, mensajeAMemoriaAccesoTP, sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS), TRADUCCION_DIR_PRIMER_ACCESO);
+	enviarMsje(socketMemoria, CPU, mensajeAMemoriaAccesoTP, sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS), ACCESO_MEMORIA_TABLA_DE_PAG);
 
 	log_debug(logger, "Envie mensaje a memoria para acceder a Tabla de Paginas con ID %d",indiceTablaPaginas);
 

@@ -159,14 +159,14 @@ void conexionCPU(int socketAceptado){ // void*
 				infoMemoriaCpuTP = paquete.mensaje;
 				idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
 				pagina = infoMemoriaCpuTP->pagina;
-				//accesoMemoriaTP(idTablaPagina, pagina, socketAceptado); DESCOMENTAR
+				accesoMemoriaTP(idTablaPagina, pagina, socketAceptado);
 				break;
 			case ACCESO_MEMORIA_LEER:
 				infoMemoriaCpuLeer = paquete.mensaje;
 				direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
 				direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
 				pid = infoMemoriaCpuLeer->pid;
-				//accesoMemorialeer(direccionFisica, pid, socketAceptado); DESCOMENTAR
+				accesoMemorialeer(direccionFisica, pid, socketAceptado);
 				break;
 			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
 				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
@@ -341,6 +341,168 @@ void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado){
 	free(cosa2);
 	free(mensajeRead);
 
-	log_debug(logger,"[FIN - ACCESO_MEMORIA_READ] DIR_FISICA: frame%d offset%d",
+	log_debug(logger,"ACCESO_MEMORIA_READ DIR_FISICA: frame%d offset%d",
 				df->nroMarco, df->desplazamientoPagina);
+}
+
+void accesoMemoriaTP(int idTablaPagina, int nroPagina, int socketAceptado){
+	//CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
+	log_debug(logger,"ACCEDIENDO A TABLA DE PAGINA ID: %d NRO_PAGINA: %d",
+				idTablaPagina, nroPagina);
+
+	int marcoBuscado;
+	t_pagina* pagina;
+	t_tabla_paginas* tabla_de_paginas;
+	int indice;
+	bool corte = false;
+	//busco la pagina que piden
+	pthread_mutex_lock(&mutex_lista_tabla_paginas);
+		for(int i=0; i<list_size(LISTA_TABLA_PAGINAS)&& !corte; i++){
+			tabla_de_paginas = list_get(LISTA_TABLA_PAGINAS, i);
+			if(tabla_de_paginas->idTablaPag == idTablaPagina){
+				for(int j=0; j<list_size(tabla_de_paginas->paginas) && !corte; j++){
+					pagina = list_get(tabla_de_paginas->paginas, j);
+					if(pagina->nroPagina == nroPagina){
+						log_debug(logger, "BUSCO PAGINA %d", pagina->nroPagina);
+						indice = j;
+						corte = true;
+					}
+				}
+			}
+		}
+	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+
+	//analiza si esta en memoria
+	if(pagina->presencia == 1 && pagina->nroMarco!=-1){ //la pag esta cargada en la memoria
+		pthread_mutex_lock(&mutex_lista_tabla_paginas);
+			pagina->uso= 1;
+			if(string_equals_ignore_case(configMemoria.algoritmoReemplazo, "CLOCK-M")){
+				pagina->modificacion = 0;
+			}
+		pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+		marcoBuscado = pagina->nroMarco;
+		log_debug(logger,"[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
+	}
+	else{ //la pag no esta en ram. hay que acceder a swap.
+		//1) verificar si hay frames disponibles para ese proceso
+		void* aReemplazar = malloc(configMemoria.tamPagina);
+		int frameAReemplazar = hayFrameLibreParaElPid(tabla_de_paginas->idPCB); //-1: no hay. !=-1:nroFrame a reemplazar
+
+		if(frameAReemplazar != -1){
+			log_debug(logger,"[ACCESO_TABLA_PAGINAS] HAY FRAME LIBRE PARA EL PID %d", tabla_de_paginas->idPCB);
+			//2) si hay 1 frame disponible: pedir a swap la pagina, actualizar la pag a reemplazar en swap y cargar la nueva
+
+			bool condicion(void* elemento) {
+				return (((t_filaMarco*)elemento)->nroMarco == frameAReemplazar);
+			}
+			pthread_mutex_lock(&mutex_lista_frames);
+			t_filaMarco* frameAReemplazarStruct = list_find(tablaDeMarcos,condicion);
+			pthread_mutex_unlock(&mutex_lista_frames);
+
+
+			//busco la pagina vieja que piden
+			t_pagina* pagVieja;
+			t_tabla_paginas* tablatmp;
+			bool corte2 = false;
+			pthread_mutex_lock(&mutex_lista_tabla_paginas);
+				for(int i=0; i<list_size(LISTA_TABLA_PAGINAS)&& !corte2; i++){
+					tablatmp = list_get(LISTA_TABLA_PAGINAS, i);
+					for(int j=0; j<list_size(tablatmp->paginas) && !corte2; j++){
+						pagVieja = list_get(tablatmp->paginas, j);
+						if(pagVieja->nroPagina == frameAReemplazarStruct->nroPag){
+							log_debug(logger, "PAGINA VIEJA ES %d", pagVieja->nroPagina);
+							corte2 = true;
+						}
+					}
+				}
+			pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+
+
+			void* loQueTraigoDeSwap = malloc(configMemoria.tamPagina);
+			log_debug(logger, "posicion swap %d", pagina->posicionSwap);
+			pthread_mutex_lock(&mutex_swap);
+			memcpy(loQueTraigoDeSwap,
+					string_substring((char*)read_in_swap(tabla_de_paginas->idPCB, pagina->posicionSwap, 0), 0, configMemoria.tamPagina),
+					configMemoria.tamPagina);
+			pthread_mutex_unlock(&mutex_swap);
+
+			if(string_is_empty((char*)loQueTraigoDeSwap)){
+				memcpy(aReemplazar, string_repeat('*',tamanioDeCadaFrame), tamanioDeCadaFrame);
+			}
+			else{
+				memcpy(aReemplazar, loQueTraigoDeSwap, tamanioDeCadaFrame);
+			}
+			usleep(configMemoria.retardoSwap * 1000);
+			reemplazarEnRam(aReemplazar, frameAReemplazar, tabla_de_paginas->idPCB, pagVieja->posicionSwap, pagVieja, indice, pagina);
+			marcoBuscado = frameAReemplazar;
+		}
+		else{
+			log_debug(logger,"[INIT - ALGORITMO DE REEMPLAZO]");
+			//3) si no hay frames: arrancar algoritmo de reemplazo para buscar la victima
+			//4) reemplazar victima por pagina nueva.
+			frameAReemplazar = algoritmoDeReemplazo(tabla_de_paginas->idPCB);
+
+			if(frameAReemplazar == -5){
+				log_error(logger, "[ALGORITMO DE REEMPLAZO] No se reconoció el nombre del algoritmo extraido de config");
+				exit(EXIT_FAILURE);
+			}
+
+				//busco la pagina que piden para cambiar su bit de presencia
+
+		bool criterioFrame(void* elemento) {
+			return (((t_filaMarco*)elemento)->nroMarco == frameAReemplazar);
+		}
+		pthread_mutex_lock(&mutex_lista_frames);
+		t_filaMarco* frameAReemplazarStruct = list_find(tablaDeMarcos,criterioFrame);
+		pthread_mutex_unlock(&mutex_lista_frames);
+			
+		log_debug(logger, "frameAreemplazar %i", frameAReemplazarStruct->nroPag);
+		log_debug(logger, "posciicon %d", pagina->posicionSwap);
+		log_debug(logger, "datos pag nro: %d", pagina->nroPagina);
+
+
+		//busco la pagina vieja que piden
+		t_fila2N* pagVIEJA;
+		t_tabla2N* tabla2Ntmp;
+		bool corte2 = false;
+		pthread_mutex_lock(&mutex_lista_tabla_paginas);
+			for(int i=0; i<list_size(LISTA_TABLA_PAGINAS)&& !corte2; i++){
+				tabla2Ntmp = list_get(LISTA_TABLA_PAGINAS, i);
+				for(int j=0; j<list_size(tabla2Ntmp->tablaPaginas2N) && !corte2; j++){
+					pagVIEJA = list_get(tabla2Ntmp->tablaPaginas2N, j);
+					if(pagVIEJA->nroPagina == frameAReemplazarStruct->nroPag){
+						log_debug(logger, "PAGINA VIEJA ES %d", pagVIEJA->nroPagina);
+						corte2 = true;
+					}
+				}
+			}
+		pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+
+
+		log_debug(logger, "posicion swap %d", pagina->posicionSwap);
+			pthread_mutex_lock(&mutex_swap);
+				memcpy(aReemplazar,
+						string_substring((char*)read_in_swap(tabla_de_paginas->idPCB, pagina->posicionSwap, 0), 0, configMemoria.tamanioPagina),
+						tamanioDeCadaFrame);
+			pthread_mutex_unlock(&mutex_swap);
+
+			usleep(configMemoria.retardoSwap * 1000);
+			reemplazarEnRam(aReemplazar, frameAReemplazar, tabla2N->idProceso, pag2N->posicionSwap, pagVIEJA, indice, pag2N);
+			frameBuscado = frameAReemplazar;
+
+			log_debug(loggerMemoria,"[FIN - ALGORITMO DE REEMPLAZO]");
+		}
+	}
+
+	usleep(configMemoriaSwap.retardoMemoria * 1000);
+
+	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
+	mensaje->numero = frameBuscado;
+
+	enviarMensaje(socketAceptado, MEMORIA_SWAP, mensaje, sizeof(MSJ_INT), TRADUCCION_DIR_SEGUNDO_PASO);
+	free(mensaje);
+	log_debug(logger,"[FIN - TRADUCCION_DIR_SEGUNDO_PASO] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA 2DO NIVEL: %d ENVIADO A CPU",
+				frameBuscado, pagina, idTabla2Nivel);
+}
+
 }
