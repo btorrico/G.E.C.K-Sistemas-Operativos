@@ -75,7 +75,7 @@ void crear_hilos_memoria();
 
 void accesoMemoriaTP(int, int, int);
 				
-void accesoMemorialeer(t_direccionFisica*, int, int);
+void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado);
 
 int contadorIdPCB;
 int socketAceptadoKernel;

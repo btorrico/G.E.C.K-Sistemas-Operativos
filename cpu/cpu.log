@@ -18469,3 +18469,39 @@
 [DEBUG] 11:38:54:685 CPU/(3687:3688): Instrucción Ejecutada: 'PID:  3 - Ejecutando: EXIT    -1'
 [DEBUG] 11:38:54:685 CPU/(3687:3688): Envie EXIT al kernel
 [DEBUG] 11:38:54:688 CPU/(3687:3688): No hay interrupcion, sigo el ciclo
+[INFO] 02:11:55:069 CPU/(6960:6962): Servidor listo para recibir al interrupt kernel
+[DEBUG] 02:11:55:076 CPU/(6960:6963): Buscando configuracion inicial de memoria
+[INFO] 02:11:55:077 CPU/(6960:6961): Servidor listo para recibir al dispatch kernel
+[DEBUG] 02:11:55:080 CPU/(6960:6963): Se envio Handshake a MEMORIA
+[DEBUG] 02:11:55:083 CPU/(6960:6963): Esperando mensaje de memoria para config inicial
+[DEBUG] 02:11:55:084 CPU/(6960:6963): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 02:12:19:253 CPU/(6960:6962): Se conecto un cliente!
+[INFO] 02:12:19:255 CPU/(6960:6961): Se conecto un cliente!
+[INFO] 02:12:57:110 CPU/(6960:6961): insActual->instCode: 0
+[INFO] 02:12:57:110 CPU/(6960:6961): insActual->pc: 0
+[INFO] 02:12:57:110 CPU/(6960:6961):  Valor nuevo Program counter: 1
+[DEBUG] 02:12:57:110 CPU/(6960:6961): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 02:12:58:111 CPU/(6960:6961): AX = 1
+[DEBUG] 02:12:58:111 CPU/(6960:6961): No hay interrupcion, sigo el ciclo
+[INFO] 02:12:58:111 CPU/(6960:6961): insActual->instCode: 0
+[INFO] 02:12:58:111 CPU/(6960:6961): insActual->pc: 1
+[INFO] 02:12:58:111 CPU/(6960:6961):  Valor nuevo Program counter: 2
+[DEBUG] 02:12:58:111 CPU/(6960:6961): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  1'
+[INFO] 02:12:58:630 CPU/(6960:6962): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 02:12:59:111 CPU/(6960:6961): BX = 1
+[DEBUG] 02:12:59:113 CPU/(6960:6961): Devuelvo pcb por interrupcion
+[INFO] 02:12:59:113 CPU/(6960:6961): insActual->instCode: 2
+[DEBUG] 02:12:59:113 CPU/(6960:6961): Requiere acceso a Memoria
+[INFO] 02:12:59:113 CPU/(6960:6961): insActual->pc: 2
+[INFO] 02:12:59:113 CPU/(6960:6961):  Valor nuevo Program counter: 3
+[DEBUG] 02:12:59:114 CPU/(6960:6961): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 02:12:59:114 CPU/(6960:6961): Leyendo valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 02:12:59:114 CPU/(6960:6961): MMU entrando en acción...
+[INFO] 02:12:59:114 CPU/(6960:6961): Traduccion de la dirección logica
+[INFO] 02:12:59:115 CPU/(6960:6961): direccionLogica: 4
+[INFO] 02:12:59:115 CPU/(6960:6961): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 02:12:59:115 CPU/(6960:6961): Número de Segmento = 4 / 256 = 0
+[INFO] 02:12:59:115 CPU/(6960:6961): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 02:12:59:115 CPU/(6960:6961): Número Pagina = 4 / 64 = 0
+[INFO] 02:12:59:115 CPU/(6960:6961): Desplazamiento Pagina = 4 ·/. 64 = 4

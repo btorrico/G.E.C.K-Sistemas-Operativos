@@ -71,6 +71,12 @@ typedef struct {
 }MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS;
 
 typedef struct {
+	int nro_segmento;
+	int nro_pagina;
+	//t_pcb* pcb;
+}MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT;
+
+typedef struct {
 	int nroMarco;
 	int desplazamiento;
 	int pid;
@@ -188,12 +194,14 @@ typedef enum {
 	PASAR_A_EXIT,					//entre kernel-memoria
 	CONFIG_DIR_LOG_A_FISICA,   	 	//entre cpu-memoria: ESTO ES PARA PASAR LA CONFIGURACION DE LAS DIRECCIONES, ES EN EL INIT DE LA CPU 
 	ACCESO_MEMORIA_TABLA_DE_PAG,	//entre cpu-memoria: ESTO ES PARA ACCEDER A LA TABLA DE PAGINAS EN MEMORIA Y BUSCAR EL FRAME
+	RESPUESTA_MEMORIA_MARCO_BUSCADO, //entre memoria-cpu: despues de buscar en la tabla de pagina y encontrar el marco buscado se lo retorna a cpu
 	ACCESO_MEMORIA_LEER,			//entre cpu-memoria
 	ACCESO_MEMORIA_WRITE,			//entre cpu-memoria
 	HANDSHAKE_INICIAL,
 	LIBERAR_RECURSOS,
 	ASIGNAR_RECURSOS,
-	SEGMENTATION_FAULT				//entre cpu-kernel
+	SEGMENTATION_FAULT,				//entre cpu-kernel
+	PAGE_FAULT	= -20,					//entre memoria-cpu	
 } t_tipoMensaje;
 
 typedef enum {

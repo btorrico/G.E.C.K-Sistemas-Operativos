@@ -50,7 +50,7 @@ char *ioToString(t_IO );
 uint32_t matchearRegistro(t_registros ,t_registro );
 void asignarValorARegistro(t_pcb *,t_registro ,uint32_t );
 bool cicloInstruccion(t_pcb *);
-t_direccionFisica *calcularDireccionFisica(uint32_t, t_pcb *pcb);
+t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina, t_pcb *pcb);
 void validarSegmentationFault(t_pcb *pcb, int desplazamientoSegmento, int indice);
 t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina, t_pcb *pcb);
 int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina);
