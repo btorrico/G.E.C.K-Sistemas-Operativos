@@ -78,14 +78,14 @@ void iniciar_servidor_hacia_kernel()
 	while (1)
 	{
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoKernel);
-		printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
+		//printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		switch (paquete->codigo_operacion)
 		{
 		case ASIGNAR_RECURSOS:
-			printf("\nMI cod de op es: %d", paquete->codigo_operacion);
+			//printf("\nMI cod de op es: %d", paquete->codigo_operacion);
 			pthread_t thrTablaPaginasCrear;
-			printf("\nEntro a asignar recursos\n");
+			//printf("\nEntro a asignar recursos\n");
 			pthread_create(&thrTablaPaginasCrear, NULL, (void *)crearTablasPaginas, (void *)pcb);
 			pthread_detach(thrTablaPaginasCrear);
 			break;
@@ -116,14 +116,14 @@ void iniciar_servidor_hacia_cpu()
 	int socketAceptadoCPU = esperar_cliente(server_fd);
 	char *mensaje = recibirMensaje(socketAceptadoCPU);
 
-	log_info(logger, "Mensaje de confirmacion del CPU: %s\n", mensaje);
+	//log_info(logger, "Mensaje de confirmacion del CPU: %s\n", mensaje);
 
 	t_paqt paqueteCPU;
 	recibirMsje(socketAceptadoCPU, &paqueteCPU);
 
 	if(paqueteCPU.header.cliente == CPU){
 		
-		log_debug(logger,"HANSHAKE se conecto CPU");
+		//log_debug(logger,"HANSHAKE se conecto CPU");
 
 		conexionCPU(socketAceptadoCPU);
 	}
@@ -148,7 +148,7 @@ void conexionCPU(int socketAceptado){ // void*
 				configurarDireccionesCPU(socketAceptado);
 				break;
 			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
-				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
+				//log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
 				break;
 		}
 
@@ -157,7 +157,7 @@ void conexionCPU(int socketAceptado){ // void*
 
 void configurarDireccionesCPU(int socketAceptado){
 	//SE ENVIAN LAS ENTRADAS_POR_TABLA y TAM_PAGINA AL CPU PARA PODER HACER LA TRADUCCION EN EL MMU
-	log_debug(logger,"Se envian las ENTRADAS_POR_TABLA y TAM_PAGINA al CPU ");
+	//log_debug(logger,"Se envian las ENTRADAS_POR_TABLA y TAM_PAGINA al CPU ");
 
 	MSJ_MEMORIA_CPU_INIT* infoAcpu = malloc(sizeof(MSJ_MEMORIA_CPU_INIT));
 
@@ -172,7 +172,7 @@ void configurarDireccionesCPU(int socketAceptado){
 
 	free(infoAcpu);
 
-	log_debug(logger,"Informacion de la cantidad de entradas por tabla y tamaño pagina enviada al CPU");
+	//log_debug(logger,"Informacion de la cantidad de entradas por tabla y tamaño pagina enviada al CPU");
 }
 
 void crearTablasPaginas(void *pcb)
@@ -205,14 +205,14 @@ void crearTablasPaginas(void *pcb)
 
 			list_add(tablaPagina->paginas, pagina);
 		}
-		printf("\n  estoy agregando tabla a la lista ");
+		//printf("\n  estoy agregando tabla a la lista ");
 		agregar_tabla_paginas(tablaPagina);
 
 	}
 
-	printf("\nEnvio recursos a kernel\n");
+	//printf("\nEnvio recursos a kernel\n");
 	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
-	printf("\nEnviados\n");
+	//printf("\nEnviados\n");
 	free(pcbActual);
 }
 

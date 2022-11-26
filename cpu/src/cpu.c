@@ -106,11 +106,11 @@ void conectar_memoria()
 	// enviar_mensaje("hola memoria, soy el cpu", conexion);
 	enviarResultado(conexion, "hola memoria soy el cpu");
 
-	log_debug(logger,"Buscando configuracion inicial de memoria");
+	//log_debug(logger,"Buscando configuracion inicial de memoria");
 	//socketMemoria = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
 
 	enviarMsje(conexion, CPU, NULL, 0, HANDSHAKE_INICIAL);
-	log_debug(logger,"Se envio Handshake a MEMORIA");
+	//log_debug(logger,"Se envio Handshake a MEMORIA");
 
 
 	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
@@ -118,7 +118,7 @@ void conectar_memoria()
 
 	enviarMsje(conexion, CPU, mensaje, sizeof(MSJ_INT), CONFIG_DIR_LOG_A_FISICA);
 	free(mensaje);
-	log_debug(logger,"Esperando mensaje de memoria para config inicial");
+	//log_debug(logger,"Esperando mensaje de memoria para config inicial");
 
 	t_paqt paquete;
 
@@ -130,7 +130,7 @@ void conectar_memoria()
 	infoDeMemoria = paquete.mensaje;
 
 
-	log_debug(logger,"Se recibio la informacion de memoria: tamanio pagina= %i cantidad de Entradas por Tabla= %i", infoDeMemoria->tamanioPagina, infoDeMemoria->cantEntradasPorTabla);
+	//log_debug(logger,"Se recibio la informacion de memoria: tamanio pagina= %i cantidad de Entradas por Tabla= %i", infoDeMemoria->tamanioPagina, infoDeMemoria->cantEntradasPorTabla);
 
 	configCPU.cantidadEntradasPorTabla = infoDeMemoria->cantEntradasPorTabla;
 	configCPU.tamanioPagina = infoDeMemoria->tamanioPagina;
