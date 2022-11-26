@@ -237,7 +237,7 @@ void configurarDireccionesCPU(int socketAceptado)
 	log_debug(logger, "Informacion de la cantidad de entradas por tabla y tamaño pagina enviada al CPU");
 }
 
-void crearTablasPaginas(void *pcb)
+void crearTablasPaginas(void *pcb)//directamente asignar el la posswap aca para no recorrer 2 veces 
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
 	for (int i = 0; i < list_size(pcbActual->tablaSegmentos); i++)
@@ -274,7 +274,7 @@ void crearTablasPaginas(void *pcb)
 	printf("\nEnvio recursos a kernel\n");
 	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
 	printf("\nEnviados\n");
-	agregar_tabla_pag_en_swap();
+	//agregar_tabla_pag_en_swap();
 	free(pcbActual);
 }
 
@@ -308,6 +308,7 @@ void agregar_tabla_pag_en_swap() // esto hay que modificarlo, necesitamos obtene
 {
 	t_pagina *pagina = malloc(sizeof(t_pagina));
 
+//tamseg/tampagina
 	size_t tamanioSgtePagina = 0;
 
 	for (size_t i = 0; i < list_size(LISTA_TABLA_PAGINAS); i++)
@@ -374,7 +375,7 @@ void *conseguir_puntero_al_desplazamiento_memoria(int nro_marco, void *memoriaRA
 
 void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *marcosPorProceso)
 {
-	int posicionMarcoLibre = buscar_marco_vacio();
+	int posicionMarcoLibre = buscar_marco_vacio();// ponerlo en asignarPaginaAMarco , aca no es necesario 
 
 	if (posicionMarcoLibre && chequearCantidadMarcosPorProceso(marcosPorProceso))
 	{
@@ -498,7 +499,7 @@ bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso *marcosPorProceso)
 	{
 		return true;
 	}
-	else
+	else//cambiar
 	{
 		return false;
 	}
