@@ -70,6 +70,14 @@ typedef struct {
 	uint8_t uso;
 } __attribute__((packed)) bitmap_marcos_libres;
 
+
+typedef struct {
+	int idPCB;
+	int idMarco;
+	t_list* infoMarcos;
+
+}__attribute__((packed)) t_marcos_por_proceso;
+
 bitmap_marcos_libres bitmap_marco[];
 
 
@@ -96,15 +104,16 @@ void* conseguir_puntero_a_base_memoria(int , void *);
 void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
 int buscar_marco_vacio();
 void algoritmo_reemplazo_clock(t_info_remplazo *);
-void asignarPaginaAMarco(t_info_remplazo*, int);
+void asignarPaginaAMarco(t_marcos_por_proceso*, int);
 t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
-void pasar_a_lista_marcos_por_proceso(t_infoMarco *);
+void pasar_a_lista_marcos_por_procesos(t_infoMarco *);
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
-void asignacionDeMarcos(t_info_remplazo * , t_infoMarco *);
+void asignacionDeMarcos(t_info_remplazo * , t_marcos_por_proceso *);
 t_list* filtrarPorPID(int );
-bool chequearCantidadMarcosPorProceso(t_infoMarco *);
+bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso*);
 t_infoMarco* declararInfoMarco();
 t_info_remplazo* declararInfoReemplazo();
+t_list *filtrarPorPIDTabla(int );
 
 
 int contadorIdPCB;
@@ -132,7 +141,7 @@ t_list *LISTA_TABLA_PAGINAS;
 t_list *LISTA_BLOCK_PAGE_FAULT;
 t_list *LISTA_BITMAP_MARCO;
 t_list *LISTA_INFO_MARCO;
-t_list *LISTA_MARCOS_POR_PROCESO;
+t_list *LISTA_MARCOS_POR_PROCESOS;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;

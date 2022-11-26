@@ -352,7 +352,7 @@ extern t_list *LISTA_BLOCK_PAGE_FAULT;
 extern t_list *LISTA_INICIO_TABLA_PAGINA;
 extern t_list *LISTA_BITMAP_MARCO;
 extern t_list *LISTA_INFO_MARCO;
-extern t_list *LISTA_MARCOS_POR_PROCESO;
+extern t_list *LISTA_MARCOS_POR_PROCESOS;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;

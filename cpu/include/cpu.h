@@ -83,7 +83,7 @@ t_list *LISTA_BLOCK_PAGE_FAULT;
 t_list *LISTA_INICIO_TABLA_PAGINA;
 t_list *LISTA_BITMAP_MARCO;
 t_list *LISTA_INFO_MARCO;
-t_list *LISTA_MARCOS_POR_PROCESO;
+t_list *LISTA_MARCOS_POR_PROCESOS;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;

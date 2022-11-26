@@ -115,7 +115,7 @@ void iniciar_servidor_hacia_kernel()
 	}
 }
 
-t_infoMarco* declararInfoMarco()
+t_infoMarco *declararInfoMarco()
 {
 	int pagina = 1;
 	int segmento = 1;
@@ -131,7 +131,7 @@ t_infoMarco* declararInfoMarco()
 	return infoMarco;
 }
 
-t_info_remplazo* declararInfoReemplazo()
+t_info_remplazo *declararInfoReemplazo()
 {
 	int pagina = 1;
 	int segmento = 1;
@@ -372,13 +372,13 @@ void *conseguir_puntero_al_desplazamiento_memoria(int nro_marco, void *memoriaRA
 	return (conseguir_puntero_a_base_memoria(nro_marco, memoriaRAM) + desplazamiento);
 }
 
-void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_infoMarco *infoMarco)
+void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *marcosPorProceso)
 {
 	int posicionMarcoLibre = buscar_marco_vacio();
 
-	if (posicionMarcoLibre && chequearCantidadMarcosPorProceso(infoMarco))
+	if (posicionMarcoLibre && chequearCantidadMarcosPorProceso(marcosPorProceso))
 	{
-		asignarPaginaAMarco(infoRemplazo, posicionMarcoLibre);
+		asignarPaginaAMarco(posicionMarcoLibre, marcosPorProceso);
 	}
 	else
 	{
@@ -409,21 +409,39 @@ int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
 	}
 }
 
-void asignarPaginaAMarco(t_info_remplazo *infoRemplazo, int posicionMarcoLibre)
+void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, int posicionMarcoLibre)
 {
-	void *pagina = malloc(sizeof(void *));
+	t_list *tablasDelPCB = list_create();
 
-	t_infoMarco *infoMarco = malloc(sizeof(t_infoMarco));
+	tablasDelPCB = filtrarPorPIDTabla(LISTA_TABLA_PAGINAS);
 
-	void *comienzoMarco = conseguir_puntero_a_base_memoria(posicionMarcoLibre, memoriaRAM);
-
-	for (int i = 0; i < list_size(LISTA_MARCOS_POR_PROCESO); i++)
+	t_tabla_paginas *tablaPagina;
+	/*for (int i = 0; i < list_size(tablasDelPCB); i++)
 	{
+		tablaPagina = list_get(tablasDelPCB, i);
+		if(tablaPagina->idTablaPag == marcosPorProceso->)
+	}*/
 
-		infoMarco = list_get(LISTA_MARCOS_POR_PROCESO, i);
+	buscarPagina(tablaPagina, marcosPorProceso)->nroMarco = posicionMarcoLibre;
+}
+
+t_pagina *buscarPagina(t_tabla_paginas *tablaPagina, t_marcos_por_proceso *marcosPorProceso)
+{
+
+	for (int i = 0; i < list_size(tablaPagina->paginas); i++)
+	{
+		t_pagina *pagina = list_get(tablaPagina->paginas, i);
+
+		for (int j = 0; list_size(marcosPorProceso->infoMarcos); j++)
+		{
+			t_infoMarco *infoMarco = list_get(marcosPorProceso->infoMarcos, j);
+
+			if (infoMarco->nroPagina == pagina->nroPagina)
+			{
+				return pagina;
+			}
+		}
 	}
-
-	memcpy(pagina, comienzoMarco, sizeof(void *));
 }
 
 void implementa_algoritmo_susticion(t_info_remplazo *infoRemplazo)
@@ -463,22 +481,21 @@ t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion()
 	return algoritmoResultado;
 }
 
-void pasar_a_lista_marcos_por_proceso(t_infoMarco *infoMarco)
+void pasar_a_lista_marcos_por_procesos(t_infoMarco *infoMarco)
 {
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
-	list_add(LISTA_MARCOS_POR_PROCESO, infoMarco);
+	list_add(LISTA_MARCOS_POR_PROCESOS, infoMarco);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 
 	// log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
 }
 
-bool chequearCantidadMarcosPorProceso(t_infoMarco *infoMarco)
+bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso *marcosPorProceso)
 {
-	t_list *marcosPorProceso = filtrarPorPID(infoMarco->idPCB);
+	t_marcos_por_proceso *marcosPorProcesoActual = list_get(LISTA_MARCOS_POR_PROCESOS, marcosPorProceso->idPCB);
 
-	if (list_size(marcosPorProceso) <= configMemoria.marcosPorProceso)
+	if (list_size(marcosPorProcesoActual->infoMarcos) <= configMemoria.marcosPorProceso)
 	{
-		pasar_a_lista_marcos_por_proceso(infoMarco);
 		return true;
 	}
 	else
@@ -487,20 +504,20 @@ bool chequearCantidadMarcosPorProceso(t_infoMarco *infoMarco)
 	}
 }
 
-t_list *filtrarPorPID(int PID)
+t_list *filtrarPorPIDTabla(int PID)
 {
-	t_list *listaMarco = list_create();
+	t_list *listaTabla = list_create();
 
-	for (int i = 0; i < list_size(LISTA_MARCOS_POR_PROCESO); i++)
+	for (int i = 0; i < list_size(LISTA_TABLA_PAGINAS); i++)
 	{
-		t_infoMarco *infoMarco = list_get(LISTA_MARCOS_POR_PROCESO, i);
+		t_tabla_paginas *tablaPagina = list_get(LISTA_TABLA_PAGINAS, i);
 
-		if (infoMarco->idPCB == PID)
+		if (tablaPagina->idPCB == PID)
 		{
-			list_add(listaMarco, infoMarco);
+			list_add(listaTabla, tablaPagina);
 		}
 	}
 	// no hacer free de la lista
 
-	return listaMarco;
+	return listaTabla;
 }
