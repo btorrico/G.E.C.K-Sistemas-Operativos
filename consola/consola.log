@@ -3735,6 +3735,7 @@
 [INFO] 00:36:37:110 CONSOLA/(8519:8519): Consola en espera de nuevos mensajes del kernel..
 [INFO] 00:36:57:830 CONSOLA/(8483:8483): Consola en espera de nuevos mensajes del kernel..
 [INFO] 00:36:59:582 CONSOLA/(8483:8483): Consola en espera de nuevos mensajes del kernel..
+<<<<<<< HEAD
 [INFO] 02:26:21:085 CONSOLA/(15728:15728): 
  Iniciando consola...
 [INFO] 02:26:21:087 CONSOLA/(15728:15728): Se parsearon #Instrucciones: 6
@@ -3840,3 +3841,216 @@
 
 [INFO] 00:06:07:380 CONSOLA/(17080:17080): Consola en espera de nuevos mensajes del kernel..
 [INFO] 00:06:08:155 CONSOLA/(17080:17080): Consola en espera de nuevos mensajes del kernel..
+=======
+[INFO] 00:03:49:729 CONSOLA/(4740:4740): 
+ Iniciando consola...
+[INFO] 00:03:49:745 CONSOLA/(4740:4740): Se parsearon #Instrucciones: 15
+[INFO] 00:03:49:746 CONSOLA/(4740:4740): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:03:49:746 CONSOLA/(4740:4740): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:03:49:747 CONSOLA/(4740:4740): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:03:56:570 CONSOLA/(4877:4877): 
+ Iniciando consola...
+[INFO] 00:03:56:590 CONSOLA/(4877:4877): Se parsearon #Instrucciones: 4
+[INFO] 00:03:56:591 CONSOLA/(4877:4877): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:03:56:591 CONSOLA/(4877:4877): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:03:56:591 CONSOLA/(4877:4877): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:03:59:090 CONSOLA/(4926:4926): 
+ Iniciando consola...
+[INFO] 00:03:59:105 CONSOLA/(4926:4926): Se parsearon #Instrucciones: 14
+[INFO] 00:03:59:106 CONSOLA/(4926:4926): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:03:59:106 CONSOLA/(4926:4926): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:03:59:106 CONSOLA/(4926:4926): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:06:05:482 CONSOLA/(5629:5629): 
+ Iniciando consola...
+[INFO] 00:06:05:499 CONSOLA/(5629:5629): Se parsearon #Instrucciones: 10
+[INFO] 00:06:05:500 CONSOLA/(5629:5629): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:06:05:502 CONSOLA/(5629:5629): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:06:05:502 CONSOLA/(5629:5629): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:06:18:556 CONSOLA/(5629:5629): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 00:06:25:961 CONSOLA/(5629:5629): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:06:26:727 CONSOLA/(5629:5629): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:27:45:944 CONSOLA/(3385:3385): 
+ Iniciando consola...
+[INFO] 00:27:45:962 CONSOLA/(3385:3385): Se parsearon #Instrucciones: 10
+[INFO] 00:27:45:962 CONSOLA/(3385:3385): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:27:45:962 CONSOLA/(3385:3385): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:27:45:962 CONSOLA/(3385:3385): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:27:59:001 CONSOLA/(3385:3385): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 00:28:04:805 CONSOLA/(3385:3385): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:28:05:571 CONSOLA/(3385:3385): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:28:50:541 CONSOLA/(4095:4095): 
+ Iniciando consola...
+[INFO] 00:28:50:556 CONSOLA/(4095:4095): Se parsearon #Instrucciones: 10
+[INFO] 00:28:50:557 CONSOLA/(4095:4095): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 00:28:50:557 CONSOLA/(4095:4095): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 00:28:50:558 CONSOLA/(4095:4095): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:29:03:598 CONSOLA/(4095:4095): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 00:29:08:058 CONSOLA/(4095:4095): Consola en espera de nuevos mensajes del kernel..
+[INFO] 00:29:08:822 CONSOLA/(4095:4095): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:38:52:348 CONSOLA/(6895:6895): 
+ Iniciando consola...
+[INFO] 05:38:52:349 CONSOLA/(6895:6895): Se parsearon #Instrucciones: 10
+[INFO] 05:38:52:350 CONSOLA/(6895:6895): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 05:38:52:350 CONSOLA/(6895:6895): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 05:38:52:350 CONSOLA/(6895:6895): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:39:05:353 CONSOLA/(6895:6895): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 05:39:06:894 CONSOLA/(6895:6895): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:39:07:645 CONSOLA/(6895:6895): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:53:46:026 CONSOLA/(7680:7680): 
+ Iniciando consola...
+[INFO] 05:53:46:026 CONSOLA/(7680:7680): Se parsearon #Instrucciones: 10
+[INFO] 05:53:46:027 CONSOLA/(7680:7680): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 05:53:46:027 CONSOLA/(7680:7680): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 05:53:46:027 CONSOLA/(7680:7680): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:53:59:030 CONSOLA/(7680:7680): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 05:54:12:340 CONSOLA/(7680:7680): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:54:13:091 CONSOLA/(7680:7680): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:08:09:508 CONSOLA/(8627:8627): 
+ Iniciando consola...
+[INFO] 06:08:09:508 CONSOLA/(8627:8627): Se parsearon #Instrucciones: 10
+[INFO] 06:08:09:509 CONSOLA/(8627:8627): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 06:08:09:509 CONSOLA/(8627:8627): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 06:08:09:509 CONSOLA/(8627:8627): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:08:22:512 CONSOLA/(8627:8627): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 06:08:37:903 CONSOLA/(8627:8627): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:08:38:653 CONSOLA/(8627:8627): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:18:54:929 CONSOLA/(2502:2502): 
+ Iniciando consola...
+[INFO] 05:19:21:816 CONSOLA/(2665:2665): 
+ Iniciando consola...
+[INFO] 05:19:21:820 CONSOLA/(2665:2665): Se parsearon #Instrucciones: 10
+[INFO] 05:19:59:396 CONSOLA/(3003:3003): 
+ Iniciando consola...
+[INFO] 05:19:59:398 CONSOLA/(3003:3003): Se parsearon #Instrucciones: 10
+[INFO] 05:19:59:399 CONSOLA/(3003:3003): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 05:19:59:399 CONSOLA/(3003:3003): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 05:19:59:399 CONSOLA/(3003:3003): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:20:12:402 CONSOLA/(3003:3003): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 05:20:17:477 CONSOLA/(3003:3003): Consola en espera de nuevos mensajes del kernel..
+[INFO] 05:20:18:227 CONSOLA/(3003:3003): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:26:36:441 CONSOLA/(4165:4165): 
+ Iniciando consola...
+[INFO] 06:26:36:441 CONSOLA/(4165:4165): Se parsearon #Instrucciones: 10
+[INFO] 06:26:36:442 CONSOLA/(4165:4165): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 06:26:36:442 CONSOLA/(4165:4165): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 06:26:36:442 CONSOLA/(4165:4165): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:26:49:446 CONSOLA/(4165:4165): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 06:26:55:090 CONSOLA/(4165:4165): Consola en espera de nuevos mensajes del kernel..
+[INFO] 06:26:55:841 CONSOLA/(4165:4165): Consola en espera de nuevos mensajes del kernel..
+[INFO] 11:38:25:572 CONSOLA/(4346:4346): 
+ Iniciando consola...
+[INFO] 11:38:25:591 CONSOLA/(4346:4346): Se parsearon #Instrucciones: 15
+[INFO] 11:38:25:594 CONSOLA/(4346:4346): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 11:38:25:596 CONSOLA/(4346:4346): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 11:38:25:597 CONSOLA/(4346:4346): Consola en espera de nuevos mensajes del kernel..
+[INFO] 11:38:29:022 CONSOLA/(4427:4427): 
+ Iniciando consola...
+[INFO] 11:38:29:039 CONSOLA/(4427:4427): Se parsearon #Instrucciones: 4
+[INFO] 11:38:29:041 CONSOLA/(4427:4427): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 11:38:29:041 CONSOLA/(4427:4427): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 11:38:29:041 CONSOLA/(4427:4427): Consola en espera de nuevos mensajes del kernel..
+[INFO] 11:38:31:665 CONSOLA/(4468:4468): 
+ Iniciando consola...
+[INFO] 11:38:31:681 CONSOLA/(4468:4468): Se parsearon #Instrucciones: 14
+[INFO] 11:38:31:682 CONSOLA/(4468:4468): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 11:38:31:682 CONSOLA/(4468:4468): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 11:38:31:682 CONSOLA/(4468:4468): Consola en espera de nuevos mensajes del kernel..
+[INFO] 02:12:57:082 CONSOLA/(7334:7334): 
+ Iniciando consola...
+[INFO] 02:12:57:093 CONSOLA/(7334:7334): Se parsearon #Instrucciones: 15
+[INFO] 02:12:57:095 CONSOLA/(7334:7334): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 02:12:57:100 CONSOLA/(7334:7334): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 02:12:57:100 CONSOLA/(7334:7334): Consola en espera de nuevos mensajes del kernel..
+[INFO] 02:13:10:262 CONSOLA/(7524:7524): 
+ Iniciando consola...
+[INFO] 02:13:10:274 CONSOLA/(7524:7524): Se parsearon #Instrucciones: 4
+>>>>>>> cpuPrueba
+[INFO] 01:06:51:110 CONSOLA/(3921:3921): 
+ Iniciando consola...
+[INFO] 01:06:51:112 CONSOLA/(3921:3921): Se parsearon #Instrucciones: 10
+[INFO] 01:06:51:113 CONSOLA/(3921:3921): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 01:06:51:113 CONSOLA/(3921:3921): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 01:06:51:113 CONSOLA/(3921:3921): Consola en espera de nuevos mensajes del kernel..
+[INFO] 01:09:48:377 CONSOLA/(4981:4981): 
+ Iniciando consola...
+[INFO] 01:09:48:385 CONSOLA/(4981:4981): Se parsearon #Instrucciones: 15
+[INFO] 01:09:48:385 CONSOLA/(4981:4981): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 01:09:48:386 CONSOLA/(4981:4981): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 01:09:48:386 CONSOLA/(4981:4981): Consola en espera de nuevos mensajes del kernel..
+[INFO] 01:09:48:819 CONSOLA/(4989:4989): 
+ Iniciando consola...
+[INFO] 01:09:48:820 CONSOLA/(4989:4989): Se parsearon #Instrucciones: 14
+[INFO] 01:09:48:821 CONSOLA/(4989:4989): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 01:09:48:821 CONSOLA/(4989:4989): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 01:09:48:821 CONSOLA/(4989:4989): Consola en espera de nuevos mensajes del kernel..
+[INFO] 01:09:49:327 CONSOLA/(4996:4996): 
+ Iniciando consola...
+[INFO] 01:09:49:330 CONSOLA/(4996:4996): Se parsearon #Instrucciones: 4
+[INFO] 01:09:49:330 CONSOLA/(4996:4996): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 01:09:49:330 CONSOLA/(4996:4996): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 01:09:49:330 CONSOLA/(4996:4996): Consola en espera de nuevos mensajes del kernel..

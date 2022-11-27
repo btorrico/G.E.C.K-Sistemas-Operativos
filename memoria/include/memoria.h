@@ -61,6 +61,21 @@ typedef struct {
 	uint8_t uso;
 } __attribute__((packed)) bitmap_marcos_libres;
 
+typedef enum {
+	NO_OCUPADO, // 0
+	OCUPADO // 1
+}t_estadoMarco;
+
+typedef struct {
+	int pidProceso;
+	int nroPag;
+	int nroMarco;
+	t_estadoMarco estado;
+	//void* frameVoid;
+}t_filaMarco;
+
+t_list* tablaDeMarcos;	
+
 
 typedef struct {
 	int idPCB;
@@ -106,6 +121,10 @@ t_list *filtrarPorPIDTabla(int );
 void incrementarMarcoSiquiente(t_marcos_por_proceso *);
 
 
+void accesoMemoriaTP(int, int, int);
+				
+void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado);
+
 int contadorIdPCB;
 int socketAceptadoKernel;
 int conexionMemoria;
@@ -150,6 +169,9 @@ pthread_mutex_t mutex_lista_block_page_fault;
 pthread_mutex_t mutex_lista_marco_por_proceso;
 pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
 pthread_mutex_t mutex_lista_tabla_paginas_pagina;
+pthread_mutex_t mutex_void_memoria_ram;
+pthread_mutex_t mutex_lista_frames;
+pthread_mutex_t mutex_swap;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;

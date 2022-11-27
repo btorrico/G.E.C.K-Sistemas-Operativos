@@ -50,15 +50,15 @@ char *ioToString(t_IO );
 uint32_t matchearRegistro(t_registros ,t_registro );
 void asignarValorARegistro(t_pcb *,t_registro ,uint32_t );
 bool cicloInstruccion(t_pcb *);
-t_direccionFisica *calcularDireccionFisica(int indiceSeg , uint32_t);
-
-t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina);
+t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina, t_pcb *pcb);
+void validarSegmentationFault(t_pcb *pcb, int desplazamientoSegmento, int indice);
+t_direccionFisica* traduccion_de_direccion(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina, t_pcb *pcb);
 int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina);
 int numeroDeSegmento(int dir_logica, int tam_max_segmento);
 int desplazamientoSegmento(int dir_logica, int tam_max_segmento);
 int numeroPagina(int desplazamiento_segmento, int tam_pagina);
 int desplazamientoPagina(int desplamiento_segmento, int tam_pagina);
-int primer_acceso(int numero_segmento, int numero_pagina);
+int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas);
 
  int conexionDispatch;
  int conexionConsola;
@@ -143,12 +143,12 @@ typedef struct{
 
 typedef struct tlb{
 	t_list* entradas;
-	int size; //cantidad de entradas
+	int cant_entradas; //cantidad de entradas
 	char* algoritmo;
 } tlb;
 
 tlb* TLB;
-int TLBEnable;
+int habilitarTLB;
 pthread_mutex_t mutexTLB;
 
 
@@ -157,8 +157,8 @@ void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid);
 int buscar_en_TLB(int nroPagina);
 void limpiar_entrada_TLB(int nroPagina, int pid);
 void limpiar_entradas_TLB();
-void reemplazo_fifo(int nroPagina, int nroFrame);
-void reemplazo_lru(int nroPagina, int nroFrame);
+void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame);
+void reemplazo_algoritmo_lru(int nroPagina, int nroFrame);
 void cerrar_TLB();
 void destruir_entrada(void* entry);
 
