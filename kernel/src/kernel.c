@@ -196,16 +196,14 @@ void conectar_dispatch()
 
 		case BLOCK_PCB_PAGE_FAULT:
 			/*pthread_t thrBloqueoPageFault;
-			dispositivoIO = dispositivoToString(insActual->paramIO);
 
 			pasar_a_block_page_fault(pcb);
-
-			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 
 			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, (void *)insActual);
 
 			pthread_detach(thrBloqueoPageFault);
 			sem_post(&contador_pcb_running);
+
 			// log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 			break;*/
 		case INTERRUPT_INTERRUPCION:
@@ -400,7 +398,6 @@ void manejar_bloqueo_general_disco(void *insActual)
 }
 void manejar_bloqueo_page_fault(void *insActual)
 {
-	// sem_wait(&contador_bloqueo_teclado_running);
 	/*t_instruccion *instActualConsola = (t_instruccion *)insActual;
 
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
@@ -408,9 +405,8 @@ void manejar_bloqueo_page_fault(void *insActual)
 
 	t_paqueteActual *paquete = recibirPaquete(pcb->socket);
 
-
+    //serializarPCB(,pcb,PAGE_FAULT);
 	pasar_a_ready(pcb);
-	// sem_post(&contador_bloqueo_teclado_running);
 	sem_post(&sem_hay_pcb_lista_ready);*/
 }
 

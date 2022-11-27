@@ -86,6 +86,8 @@ pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
 pthread_mutex_t mutex_lista_block_page_fault; 
 pthread_mutex_t mutex_lista_marco_por_proceso;
+pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
+pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 
 
 // SEMAFOROS

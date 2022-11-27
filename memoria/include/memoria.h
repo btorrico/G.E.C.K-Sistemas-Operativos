@@ -52,15 +52,6 @@ typedef struct
 	uint32_t posicionSwap;
 } __attribute__((packed)) t_pagina;
 
-typedef struct
-{
-	uint32_t idPCB;
-	uint32_t idSegmento;
-	int nroPagina;
-	int nroMarco;
-	uint8_t modificacion; // 0 v 1
-	uint8_t uso;		  // 0 v 1
-} __attribute__((packed)) t_infoMarco;
 
 int tamanio;
 
@@ -73,8 +64,8 @@ typedef struct {
 
 typedef struct {
 	int idPCB;
-	int idMarco;
-	t_list* infoMarcos;
+	int marcoSiguiente;
+	t_list* paginas;
 
 }__attribute__((packed)) t_marcos_por_proceso;
 
@@ -98,7 +89,6 @@ void crearTablasPaginas(void *pcb);
 void eliminarTablasPaginas(void *pcb);
 FILE *abrirArchivo(char *filename);
 void crear_hilos_memoria();
-void agregar_tabla_pag_en_swap();
 bool esta_vacio_el_archivo(FILE *);
 void* conseguir_puntero_a_base_memoria(int , void *);
 void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
@@ -106,14 +96,14 @@ int buscar_marco_vacio();
 void algoritmo_reemplazo_clock(t_info_remplazo *);
 void asignarPaginaAMarco(t_marcos_por_proceso*, int);
 t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
-void pasar_a_lista_marcos_por_procesos(t_infoMarco *);
+void pasar_a_lista_marcos_por_procesos(t_marcos_por_proceso * );
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
 void asignacionDeMarcos(t_info_remplazo * , t_marcos_por_proceso *);
 t_list* filtrarPorPID(int );
 bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso*);
-t_infoMarco* declararInfoMarco();
 t_info_remplazo* declararInfoReemplazo();
 t_list *filtrarPorPIDTabla(int );
+void incrementarMarcoSiquiente(t_marcos_por_proceso *);
 
 
 int contadorIdPCB;
@@ -158,6 +148,8 @@ pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
 pthread_mutex_t mutex_lista_block_page_fault;
 pthread_mutex_t mutex_lista_marco_por_proceso;
+pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
+pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;

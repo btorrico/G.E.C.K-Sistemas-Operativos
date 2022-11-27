@@ -370,6 +370,8 @@ extern pthread_mutex_t mutex_creacion_ID_tabla;
 extern pthread_mutex_t mutex_lista_tabla_paginas;
 extern pthread_mutex_t mutex_lista_block_page_fault;
 extern pthread_mutex_t mutex_lista_marco_por_proceso;
+extern pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
+extern pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 
 // SEMAFOROS
 extern sem_t sem_planif_largo_plazo;

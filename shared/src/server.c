@@ -268,6 +268,9 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_creacion_ID_tabla, NULL);
 	pthread_mutex_init(&mutex_lista_tabla_paginas, NULL);
 	pthread_mutex_init(&mutex_lista_block_page_fault , NULL);
+	pthread_mutex_init(&mutex_lista_tabla_paginas_pagina, NULL);
+	pthread_mutex_init(&mutex_lista_pagina_marco_por_proceso , NULL);
+	
 
 
 	// semaforos

@@ -108,27 +108,15 @@ void iniciar_servidor_hacia_kernel()
 
 		case PAGE_FAULT:
 			// recibir del kernel pagina , segmento , id pcb
-			asignacionDeMarcos(declararInfoReemplazo(), declararInfoMarco());
+			/*int idPcb = 1;
+			t_marcos_por_proceso *marcosPorProceso;
+			marcosPorProceso->idPCB = idPcb;
+			//cargar marcos por proceso
+			asignacionDeMarcos(declararInfoMarco(),marcosPorProceso);*/
 
 			break;
 		}
 	}
-}
-
-t_infoMarco *declararInfoMarco()
-{
-	int pagina = 1;
-	int segmento = 1;
-	int idPcb = 1;
-	t_infoMarco *infoMarco = malloc(sizeof(t_infoMarco));
-	infoMarco->idPCB = idPcb;
-	infoMarco->idSegmento = segmento;
-	infoMarco->nroPagina = pagina;
-	infoMarco->modificacion = 0;
-	infoMarco->nroMarco = 0;
-	infoMarco->uso = 0;
-
-	return infoMarco;
 }
 
 t_info_remplazo *declararInfoReemplazo()
@@ -237,7 +225,7 @@ void configurarDireccionesCPU(int socketAceptado)
 	log_debug(logger, "Informacion de la cantidad de entradas por tabla y tamaño pagina enviada al CPU");
 }
 
-void crearTablasPaginas(void *pcb)//directamente asignar el la posswap aca para no recorrer 2 veces 
+void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca para no recorrer 2 veces
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
 	for (int i = 0; i < list_size(pcbActual->tablaSegmentos); i++)
@@ -245,7 +233,7 @@ void crearTablasPaginas(void *pcb)//directamente asignar el la posswap aca para 
 		t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
 		t_tabla_segmentos *tablaSegmento = list_get(pcbActual->tablaSegmentos, i);
 		// aca tengo que crear el malloc de t_listainiciocosas
-
+		size_t tamanioSgtePagina = 0;
 		tablaPagina->paginas = list_create();
 		pthread_mutex_lock(&mutex_creacion_ID_tabla);
 		tablaSegmento->indiceTablaPaginas = contadorIdTablaPag;
@@ -265,8 +253,15 @@ void crearTablasPaginas(void *pcb)//directamente asignar el la posswap aca para 
 			pagina->nroMarco = 0;
 			pagina->nroPagina = i;
 
+			pagina->posicionSwap = tamanioSgtePagina; // tamanioSgtePagina = OFFSET = desplazamiento
+			fseek(swap, pagina->posicionSwap, SEEK_CUR);
+
+			pthread_mutex_lock(&mutex_lista_tabla_paginas_pagina);
 			list_add(tablaPagina->paginas, pagina);
+			pthread_mutex_unlock(&mutex_lista_tabla_paginas_pagina);
 		}
+
+		tamanioSgtePagina += configMemoria.tamPagina;
 		printf("\nestoy agregando tabla a la lista");
 		agregar_tabla_paginas(tablaPagina);
 	}
@@ -274,7 +269,7 @@ void crearTablasPaginas(void *pcb)//directamente asignar el la posswap aca para 
 	printf("\nEnvio recursos a kernel\n");
 	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
 	printf("\nEnviados\n");
-	//agregar_tabla_pag_en_swap();
+	// agregar_tabla_pag_en_swap();
 	free(pcbActual);
 }
 
@@ -302,36 +297,6 @@ void agregar_tabla_paginas(t_tabla_paginas *tablaPaginas)
 	pthread_mutex_lock(&mutex_lista_tabla_paginas);
 	list_add(LISTA_TABLA_PAGINAS, tablaPaginas);
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-}
-
-void agregar_tabla_pag_en_swap() // esto hay que modificarlo, necesitamos obtener el valor que trae mov_out para guardarlo en swap
-{
-	t_pagina *pagina = malloc(sizeof(t_pagina));
-
-//tamseg/tampagina
-	size_t tamanioSgtePagina = 0;
-
-	for (size_t i = 0; i < list_size(LISTA_TABLA_PAGINAS); i++)
-	{
-		t_tabla_paginas *tablaPagina = list_get(LISTA_TABLA_PAGINAS, i);
-
-		for (size_t j = 0; j < list_size(tablaPagina->paginas); j++)
-		{
-			t_pagina *pagina = list_get(tablaPagina->paginas, j);
-
-			if (esta_vacio_el_archivo(swap))
-			{
-				pagina->posicionSwap = 0;
-			}
-			else
-			{
-				pagina->posicionSwap = tamanioSgtePagina; // tamanioSgtePagina = OFFSET = desplazamiento
-				fseek(swap, pagina->posicionSwap, SEEK_CUR);
-			}
-
-			tamanioSgtePagina += configMemoria.tamPagina;
-		}
-	}
 }
 
 bool esta_vacio_el_archivo(FILE *nombreFile)
@@ -375,11 +340,9 @@ void *conseguir_puntero_al_desplazamiento_memoria(int nro_marco, void *memoriaRA
 
 void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *marcosPorProceso)
 {
-	int posicionMarcoLibre = buscar_marco_vacio();// ponerlo en asignarPaginaAMarco , aca no es necesario 
-
-	if (posicionMarcoLibre && chequearCantidadMarcosPorProceso(marcosPorProceso))
+	if (chequearCantidadMarcosPorProceso(marcosPorProceso))
 	{
-		asignarPaginaAMarco(posicionMarcoLibre, marcosPorProceso);
+		asignarPaginaAMarco(marcosPorProceso, infoRemplazo->idPagina);
 	}
 	else
 	{
@@ -410,38 +373,48 @@ int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
 	}
 }
 
-void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, int posicionMarcoLibre)
+void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, int nroPagina)
 {
+	int posicionMarcoLibre = buscar_marco_vacio();
+
 	t_list *tablasDelPCB = list_create();
 
-	tablasDelPCB = filtrarPorPIDTabla(LISTA_TABLA_PAGINAS);
+	tablasDelPCB = filtrarPorPIDTabla(marcosPorProceso->idPCB);
 
-	t_tabla_paginas *tablaPagina;
-	/*for (int i = 0; i < list_size(tablasDelPCB); i++)
+	for (int i = 0; i < list_size(tablasDelPCB); i++)
 	{
-		tablaPagina = list_get(tablasDelPCB, i);
-		if(tablaPagina->idTablaPag == marcosPorProceso->)
-	}*/
+		t_tabla_paginas *tablaPagina = list_get(tablasDelPCB, i);
 
-	buscarPagina(tablaPagina, marcosPorProceso)->nroMarco = posicionMarcoLibre;
-}
-
-t_pagina *buscarPagina(t_tabla_paginas *tablaPagina, t_marcos_por_proceso *marcosPorProceso)
-{
-
-	for (int i = 0; i < list_size(tablaPagina->paginas); i++)
-	{
-		t_pagina *pagina = list_get(tablaPagina->paginas, i);
-
-		for (int j = 0; list_size(marcosPorProceso->infoMarcos); j++)
+		for (int j = 0; j < list_size(tablaPagina->paginas); j++)
 		{
-			t_infoMarco *infoMarco = list_get(marcosPorProceso->infoMarcos, j);
+			t_pagina *pagina = list_get(tablaPagina->paginas, j);
 
-			if (infoMarco->nroPagina == pagina->nroPagina)
+			if (nroPagina == pagina->nroPagina)
 			{
-				return pagina;
+				pagina->nroMarco = posicionMarcoLibre;
+
+				pthread_mutex_lock(&mutex_lista_pagina_marco_por_proceso);
+				list_add(marcosPorProceso->paginas, pagina);
+				pthread_mutex_unlock(&mutex_lista_pagina_marco_por_proceso);
+
+				incrementarMarcoSiquiente(marcosPorProceso);
 			}
 		}
+
+		pasar_a_lista_marcos_por_procesos(marcosPorProceso);
+	}
+}
+
+void incrementarMarcoSiquiente(t_marcos_por_proceso *marcosPorProceso)
+{
+
+	if (marcosPorProceso->marcoSiguiente < configMemoria.marcosPorProceso)
+	{
+		marcosPorProceso->marcoSiguiente = list_size(marcosPorProceso->paginas);
+	}
+	else
+	{
+		marcosPorProceso->marcoSiguiente = 0;
 	}
 }
 
@@ -482,10 +455,10 @@ t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion()
 	return algoritmoResultado;
 }
 
-void pasar_a_lista_marcos_por_procesos(t_infoMarco *infoMarco)
+void pasar_a_lista_marcos_por_procesos(t_marcos_por_proceso *marcosPorProceso)
 {
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
-	list_add(LISTA_MARCOS_POR_PROCESOS, infoMarco);
+	list_add(LISTA_MARCOS_POR_PROCESOS, marcosPorProceso);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 
 	// log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
@@ -495,14 +468,7 @@ bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso *marcosPorProceso)
 {
 	t_marcos_por_proceso *marcosPorProcesoActual = list_get(LISTA_MARCOS_POR_PROCESOS, marcosPorProceso->idPCB);
 
-	if (list_size(marcosPorProcesoActual->infoMarcos) <= configMemoria.marcosPorProceso)
-	{
-		return true;
-	}
-	else//cambiar
-	{
-		return false;
-	}
+	return list_size(marcosPorProcesoActual->paginas) <= configMemoria.marcosPorProceso;
 }
 
 t_list *filtrarPorPIDTabla(int PID)
