@@ -108,31 +108,26 @@ void iniciar_servidor_hacia_kernel()
 
 		case PAGE_FAULT:
 			// recibir del kernel pagina , segmento , id pcb
-			/*int idPcb = 1;
-			t_marcos_por_proceso *marcosPorProceso;
-			marcosPorProceso->idPCB = idPcb;
-			//cargar marcos por proceso
-			asignacionDeMarcos(declararInfoMarco(),marcosPorProceso);*/
+			t_paqt *paquete;
+			recibirMsje(socketAceptadoKernel, &paquete);
+			MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensaje = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
+			mensaje = paquete->mensaje;
 
-			//liberar las estructuras y
-			//enviar msj al kernel de que ya estan liberadas
-			//serializarPCB(socketAceptadoKernel, pcb, PASAR_A_EXIT);
+			t_info_remplazo *infoRemplazo = malloc(sizeof(t_info_remplazo));
+			infoRemplazo->idPagina = mensaje->nro_pagina;
+			infoRemplazo->idSegmento = mensaje->nro_segmento;
+
+			t_marcos_por_proceso *marcosPorProceso = malloc(sizeof(t_marcos_por_proceso));
+			marcosPorProceso->idPCB = pcb->id;
+
+			asignacionDeMarcos(infoRemplazo, marcosPorProceso);
+
+			// liberar las estructuras y
+			// enviar msj al kernel de que ya estan liberadas
+			// serializarPCB(socketAceptadoKernel, pcb, PASAR_A_EXIT);
 			break;
 		}
 	}
-}
-
-t_info_remplazo *declararInfoReemplazo()
-{
-	int pagina = 1;
-	int segmento = 1;
-	int idPcb = 1;
-	t_info_remplazo *infoRemplazo = malloc(sizeof(t_info_remplazo));
-	infoRemplazo->idPagina = pagina;
-	infoRemplazo->idSegmento = segmento;
-	infoRemplazo->PID = idPcb;
-
-	return infoRemplazo;
 }
 
 void iniciar_servidor_hacia_cpu()
@@ -175,10 +170,10 @@ void conexionCPU(int socketAceptado)
 	int pid;
 	int pagina;
 	int idTablaPagina;
-	t_direccionFisica* direccionFisica;
+	t_direccionFisica *direccionFisica;
 
-	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS* infoMemoriaCpuTP;
-	MSJ_MEMORIA_CPU_LEER* infoMemoriaCpuLeer;
+	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS *infoMemoriaCpuTP;
+	MSJ_MEMORIA_CPU_LEER *infoMemoriaCpuLeer;
 
 	int valorRegistro = 2;
 	int idPCB = 0;
@@ -195,26 +190,27 @@ void conexionCPU(int socketAceptado)
 		recibirMsje(socketAceptado, &paquete);
 		printf("avanzo aca");
 
-		switch(paquete.header.tipoMensaje) {
-			case CONFIG_DIR_LOG_A_FISICA:
-				configurarDireccionesCPU(socketAceptado);
-				break;
-			case ACCESO_MEMORIA_TABLA_DE_PAG:
-				infoMemoriaCpuTP = paquete.mensaje;
-				idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
-				pagina = infoMemoriaCpuTP->pagina;
-				accesoMemoriaTP(idTablaPagina, pagina, socketAceptado);
-				break;
-			case ACCESO_MEMORIA_LEER:
-				infoMemoriaCpuLeer = paquete.mensaje;
-				direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
-				direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
-				pid = infoMemoriaCpuLeer->pid;
-				//accesoMemorialeer(direccionFisica, pid, socketAceptado);
-				break;
-			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
-				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
-				break;
+		switch (paquete.header.tipoMensaje)
+		{
+		case CONFIG_DIR_LOG_A_FISICA:
+			configurarDireccionesCPU(socketAceptado);
+			break;
+		case ACCESO_MEMORIA_TABLA_DE_PAG:
+			infoMemoriaCpuTP = paquete.mensaje;
+			idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
+			pagina = infoMemoriaCpuTP->pagina;
+			accesoMemoriaTP(idTablaPagina, pagina, socketAceptado);
+			break;
+		case ACCESO_MEMORIA_LEER:
+			infoMemoriaCpuLeer = paquete.mensaje;
+			direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
+			direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
+			pid = infoMemoriaCpuLeer->pid;
+			// accesoMemorialeer(direccionFisica, pid, socketAceptado);
+			break;
+		default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
+			log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
+			break;
 		}
 	}
 }
@@ -313,52 +309,55 @@ void agregar_tabla_paginas(t_tabla_paginas *tablaPaginas)
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 }
 
-
-void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado){
-	log_debug(logger,"[INIT - ACCESO_MEMORIA_READ] DIR_FISICA: %d%d",
-				df->nroMarco, df->desplazamientoPagina);
+void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
+{
+	log_debug(logger, "[INIT - ACCESO_MEMORIA_READ] DIR_FISICA: %d%d",
+			  df->nroMarco, df->desplazamientoPagina);
 
 	int nroFrame = df->nroMarco;
 	int desplazamiento = df->desplazamientoPagina;
-	int tamanioFrame = configMemoria.tamPagina;  // Cambiar cuando este resuelta la inicializacion de estructuras. Ambos pueden ser variables definidas en utils
-	int cantidadTotalDeFrames = 512; // 512 nro de ejemplo, cambiar cuando esten inicializadas las estructuras . Ambos pueden ser variables definidas en utils
-	void* memoriaRAM; // sacarlo cuando se definan las estructuras
-	void* aLeer = malloc(tamanioFrame-desplazamiento);
+	int tamanioFrame = configMemoria.tamPagina; // Cambiar cuando este resuelta la inicializacion de estructuras. Ambos pueden ser variables definidas en utils
+	int cantidadTotalDeFrames = 512;			// 512 nro de ejemplo, cambiar cuando esten inicializadas las estructuras . Ambos pueden ser variables definidas en utils
+	void *memoriaRAM;							// sacarlo cuando se definan las estructuras
+	void *aLeer = malloc(tamanioFrame - desplazamiento);
 	int valorLeido;
-	MSJ_STRING* msjeError;
+	MSJ_STRING *msjeError;
 
-	//valido que el offset sea valido
-	if(desplazamiento>tamanioFrame){
+	// valido que el offset sea valido
+	if (desplazamiento > tamanioFrame)
+	{
 		usleep(configMemoria.retardoMemoria * 1000);
 		msjeError = malloc(sizeof(MSJ_STRING));
 		string_append(&msjeError->cadena, "ERROR_DESPLAZAMIENTO");
 		enviarMsje(socketAceptado, MEMORIA, msjeError, sizeof(MSJ_STRING), ACCESO_MEMORIA_LEER);
 		free(msjeError);
-		log_error(logger,"[ACCESO_MEMORIA_READ] OFFSET MAYOR AL TAMANIO DEL FRAME.  DIR_FISICA: %d%d",
-					df->nroMarco, df->desplazamientoPagina);
+		log_error(logger, "[ACCESO_MEMORIA_READ] OFFSET MAYOR AL TAMANIO DEL FRAME.  DIR_FISICA: %d%d",
+				  df->nroMarco, df->desplazamientoPagina);
 		return;
 	}
 
-	//valido que el nro frame sea valido
-	if(nroFrame>cantidadTotalDeFrames){
+	// valido que el nro frame sea valido
+	if (nroFrame > cantidadTotalDeFrames)
+	{
 		usleep(configMemoria.retardoMemoria * 1000);
 		msjeError = malloc(sizeof(MSJ_STRING));
 		string_append(&msjeError->cadena, "ERROR_NRO_FRAME");
 		enviarMsje(socketAceptado, MEMORIA, msjeError, sizeof(MSJ_STRING), ACCESO_MEMORIA_LEER);
 		free(msjeError);
-		log_error(logger,"[ACCESO_MEMORIA_READ] NRO DE FRAME INEXISTENTE.  DIR_FISICA: %d%d",
-					df->nroMarco, df->desplazamientoPagina);
+		log_error(logger, "[ACCESO_MEMORIA_READ] NRO DE FRAME INEXISTENTE.  DIR_FISICA: %d%d",
+				  df->nroMarco, df->desplazamientoPagina);
 		return;
 	}
 
 	pthread_mutex_lock(&mutex_void_memoria_ram);
-		memcpy(aLeer, memoriaRAM+(nroFrame*tamanioFrame)+desplazamiento, tamanioFrame-desplazamiento);
+	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, tamanioFrame - desplazamiento);
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
-	char** cosa2 = string_array_new();
-	cosa2 = string_split((char*)aLeer, "*");
-	char* leidoStringArray = string_new();
-	int size =string_array_size(cosa2) -1;
-	for(int i = 0; i < size; i++){
+	char **cosa2 = string_array_new();
+	cosa2 = string_split((char *)aLeer, "*");
+	char *leidoStringArray = string_new();
+	int size = string_array_size(cosa2) - 1;
+	for (int i = 0; i < size; i++)
+	{
 		string_append(&leidoStringArray, cosa2[i]);
 	}
 	valorLeido = atoi(leidoStringArray);
@@ -368,88 +367,97 @@ void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado){
 	usleep(configMemoria.retardoMemoria * 1000);
 
 	/***********************************************/
-	t_tabla_paginas* tablaPaginas;
-	t_pagina* pagina;
+	t_tabla_paginas *tablaPaginas;
+	t_pagina *pagina;
 	bool update = false;
 	pthread_mutex_lock(&mutex_lista_tabla_paginas);
-		for(int i=0; i<list_size(LISTA_TABLA_PAGINAS) && !update; i++){
-			tablaPaginas = list_get(LISTA_TABLA_PAGINAS, i);
-			for(int j=0; j<list_size(tablaPaginas->paginas) && !update; j++){
-				pagina = list_get(tablaPaginas->paginas, j);
-				if(pagina->nroMarco == nroFrame){
-					pagina->uso = 1;
-					update = true;
-				}
+	for (int i = 0; i < list_size(LISTA_TABLA_PAGINAS) && !update; i++)
+	{
+		tablaPaginas = list_get(LISTA_TABLA_PAGINAS, i);
+		for (int j = 0; j < list_size(tablaPaginas->paginas) && !update; j++)
+		{
+			pagina = list_get(tablaPaginas->paginas, j);
+			if (pagina->nroMarco == nroFrame)
+			{
+				pagina->uso = 1;
+				update = true;
 			}
 		}
+	}
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 
 	/***********************************************/
-	MSJ_INT* mensajeRead = malloc(sizeof(MSJ_INT));
+	MSJ_INT *mensajeRead = malloc(sizeof(MSJ_INT));
 	mensajeRead->numero = valorLeido;
 	enviarMsje(socketAceptado, MEMORIA, mensajeRead, sizeof(MSJ_INT), ACCESO_MEMORIA_LEER);
 	free(leidoStringArray);
 	free(cosa2);
 	free(mensajeRead);
 
-	log_debug(logger,"ACCESO_MEMORIA_READ DIR_FISICA: frame%d offset%d",
-				df->nroMarco, df->desplazamientoPagina);
+	log_debug(logger, "ACCESO_MEMORIA_READ DIR_FISICA: frame%d offset%d",
+			  df->nroMarco, df->desplazamientoPagina);
 }
 
 /*Acceso a tabla de páginas
-El módulo deberá responder el número de marco correspondiente, en caso de no encontrarse, 
+El módulo deberá responder el número de marco correspondiente, en caso de no encontrarse,
 se deberá retornar Page Fault.*/
 
-void accesoMemoriaTP(int idTablaPagina, int nroPagina, int socketAceptado){
-	//CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
-	log_debug(logger,"ACCEDIENDO A TABLA DE PAGINA ID: %d NRO_PAGINA: %d",
-				idTablaPagina, nroPagina);
+void accesoMemoriaTP(int idTablaPagina, int nroPagina, int socketAceptado)
+{
+	// CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
+	log_debug(logger, "ACCEDIENDO A TABLA DE PAGINA ID: %d NRO_PAGINA: %d",
+			  idTablaPagina, nroPagina);
 
 	int marcoBuscado;
-	t_pagina* pagina;
-	t_tabla_paginas* tabla_de_paginas;
+	t_pagina *pagina;
+	t_tabla_paginas *tabla_de_paginas;
 	int indice;
 	bool corte = false;
-	//busco la pagina que piden
+	// busco la pagina que piden
 	pthread_mutex_lock(&mutex_lista_tabla_paginas);
-		for(int i=0; i<list_size(LISTA_TABLA_PAGINAS)&& !corte; i++){
-			tabla_de_paginas = list_get(LISTA_TABLA_PAGINAS, i);
-			if(tabla_de_paginas->idTablaPag == idTablaPagina){
-				for(int j=0; j<list_size(tabla_de_paginas->paginas) && !corte; j++){
-					pagina = list_get(tabla_de_paginas->paginas, j);
-					if(pagina->nroPagina == nroPagina){
-						log_debug(logger, "BUSCO PAGINA %d", pagina->nroPagina);
-						indice = j;
-						corte = true;
-					}
+	for (int i = 0; i < list_size(LISTA_TABLA_PAGINAS) && !corte; i++)
+	{
+		tabla_de_paginas = list_get(LISTA_TABLA_PAGINAS, i);
+		if (tabla_de_paginas->idTablaPag == idTablaPagina)
+		{
+			for (int j = 0; j < list_size(tabla_de_paginas->paginas) && !corte; j++)
+			{
+				pagina = list_get(tabla_de_paginas->paginas, j);
+				if (pagina->nroPagina == nroPagina)
+				{
+					log_debug(logger, "BUSCO PAGINA %d", pagina->nroPagina);
+					indice = j;
+					corte = true;
 				}
 			}
 		}
+	}
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 
-	if(corte==true){ // REVISAR
-	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-	marcoBuscado = pagina->nroMarco;
-	log_debug(logger,"[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
-	
-	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
-	mensaje->numero = marcoBuscado;
-	
-	enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
-	free(mensaje);
-	log_debug(logger,"[FIN - TRADUCCION_DIR_SEGUNDO_PASO] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA 2DO NIVEL: %d ENVIADO A CPU",
-				marcoBuscado, pagina, idTablaPagina);
+	if (corte == true)
+	{ // REVISAR
+		pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+		marcoBuscado = pagina->nroMarco;
+		log_debug(logger, "[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
+
+		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
+		mensaje->numero = marcoBuscado;
+
+		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
+		free(mensaje);
+		log_debug(logger, "[FIN - TRADUCCION_DIR_SEGUNDO_PASO] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA 2DO NIVEL: %d ENVIADO A CPU",
+				  marcoBuscado, pagina, idTablaPagina);
 	}
-	else{ //la pag no esta en ram. Retornar PAGE FAULT
-		
-		MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
+	else
+	{ // la pag no esta en ram. Retornar PAGE FAULT
+
+		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
 		mensaje->numero = PAGE_FAULT;
 		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), PAGE_FAULT);
 		free(mensaje);
-		log_debug(logger,"PAGE FAULT");
+		log_debug(logger, "PAGE FAULT");
 	}
 }
-
 
 bool esta_vacio_el_archivo(FILE *nombreFile)
 {
@@ -554,6 +562,8 @@ void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, int nroPagina)
 		}
 
 		pasar_a_lista_marcos_por_procesos(marcosPorProceso);
+
+		enviarResultado(socketAceptadoKernel,"Asignacion de marcos realizada correctamente");
 	}
 }
 
