@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 			valorConsola = readline("> ");
 
 			valor = atoi(valorConsola);
-
+			
 			serializarValor(valor, conexionConsola, BLOCK_PCB_IO_TECLADO);
 
 			free(valorConsola);
