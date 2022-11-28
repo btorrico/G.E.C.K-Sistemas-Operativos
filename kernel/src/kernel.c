@@ -29,8 +29,7 @@ t_configKernel extraerDatosConfig(t_config *archivoConfig)
 	configKernel.dispositivosIO = config_get_array_value(archivoConfig, "DISPOSITIVOS_IO");
 	configKernel.tiemposIO = config_get_array_value(archivoConfig, "TIEMPOS_IO");
 
-
-configKernel.quantum = config_get_int_value(archivoConfig, "QUANTUM_RR");
+	configKernel.quantum = config_get_int_value(archivoConfig, "QUANTUM_RR");
 	return configKernel;
 }
 
@@ -43,7 +42,6 @@ void crear_hilos_kernel()
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
 	pthread_create(&thrPlanificadorLargoPlazo, NULL, (void *)planifLargoPlazo, NULL);
 	pthread_create(&thrPlanificadorCortoPlazo, NULL, (void *)planifCortoPlazo, NULL);
-
 
 	pthread_detach(thrCpu);
 	pthread_detach(thrPlanificadorCortoPlazo);
@@ -198,13 +196,17 @@ void conectar_dispatch()
 			pthread_t thrBloqueoPageFault;
 
 			pasar_a_block_page_fault(pcb);
-
-			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, (void *)insActual);
+			printf("\nEntre al case de page fault");
+			//t_paqt paqueteCpu;
+			//recibirMsje(conexionDispatch, &paqueteCpu);
+			// recibirMsje(conexionDispatch, &paquete);
+			printf("\nEntre al case de page fault");
+			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, NULL);
 
 			pthread_detach(thrBloqueoPageFault);
 			sem_post(&contador_pcb_running);
 
-			log_debug(logger, "Llego : 'PID:  %d - Por PAGE FAULT: %s '");
+			// log_debug(logger, "Llego : 'PID:  %d - Por PAGE FAULT: %s '");
 			break;
 		case INTERRUPT_INTERRUPCION:
 
@@ -215,7 +217,7 @@ void conectar_dispatch()
 			printf("\n%d\n", algoritmo);
 			if (algoritmo == FEEDBACK)
 			{
-				//log_info(logger, "Paso a ready auxiliar - FIFO");
+				// log_info(logger, "Paso a ready auxiliar - FIFO");
 				pasar_a_ready_auxiliar(pcb);
 				sem_post(&sem_hay_pcb_lista_ready);
 			}
@@ -232,11 +234,11 @@ void conectar_dispatch()
 			printf("\ntermine de manejar la interrupcion");
 			sem_post(&contador_pcb_running);
 			break;
-			case SEGMENTATION_FAULT:
-			/*CPU -> En caso de que el desplazamiento dentro del segmento (desplazamiento_segmento) 
-			sea mayor al tamaño del mismo, deberá devolverse el proceso al Kernel para que este lo 
+		case SEGMENTATION_FAULT:
+			/*CPU -> En caso de que el desplazamiento dentro del segmento (desplazamiento_segmento)
+			sea mayor al tamaño del mismo, deberá devolverse el proceso al Kernel para que este lo
 			finalice con motivo de Error: Segmentation Fault (SIGSEGV).*/
-			
+
 			printf("Hola, hola, hola, cuidado con la olaa(?");
 
 			break;
@@ -398,19 +400,24 @@ void manejar_bloqueo_general_disco(void *insActual)
 	free(dispositivoCpu);
 	sem_post(&contador_bloqueo_disco_running);
 }
-void manejar_bloqueo_page_fault(void *insActual)
+void manejar_bloqueo_page_fault()
 {
+	printf("\nEstoy en la funcion de manejo de page fault");
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
+	printf("\nEstoy en la funcion de manejo de page fault");
+	t_paqt paquete;
+recibirMsje(conexionDispatch, &paquete);
 
-	t_paqt* paquete; 
-	recibirMsje(conexionDispatch, &paquete);
-    serializarPCB(conexionMemoria,pcb,PAGE_FAULT);
+//enviar a memoria
+	serializarPCB(conexionMemoria, pcb, PAGE_FAULT);
 
-	enviarMsje(conexionMemoria, KERNEL , paquete->mensaje, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), PAGE_FAULT);
+	enviarMsje(conexionMemoria, KERNEL, paquete.mensaje, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), PAGE_FAULT);
 
-    char* mensaje = recibirMensaje(conexionMemoria);
 
-	log_info(logger,"Mensaje recibido por memoria:%s" , mensaje);
+//recibo de memoria
+	char *mensaje = recibirMensaje(conexionMemoria);
+
+	log_info(logger, "Mensaje recibido por memoria:%s", mensaje);
 
 	pasar_a_ready(pcb);
 	sem_post(&sem_hay_pcb_lista_ready);
@@ -457,8 +464,6 @@ void conectar_memoria()
 {
 	conexionMemoria = crear_conexion(configKernel.ipMemoria, configKernel.puertoMemoria);
 	enviarResultado(conexionMemoria, "hola memoria soy el kernel");
-
-
 }
 
 void iniciar_kernel()
@@ -624,13 +629,15 @@ void agregar_pcb()
 	// memoria me devuelve el pcb modificado
 	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
 	printf("\nRecibo recursos de memoria\n");
-	if(paquete == NULL){
+	if (paquete == NULL)
+	{
 		printf("\n PAquete nulo\n");
-
-	}else {
+	}
+	else
+	{
 		printf("\n PAquete no nulo\n");
 	}
-	
+
 	pcb = deserializoPCB(paquete->buffer);
 
 	for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)

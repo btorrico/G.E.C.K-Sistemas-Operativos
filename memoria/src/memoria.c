@@ -108,17 +108,24 @@ void iniciar_servidor_hacia_kernel()
 
 		case PAGE_FAULT:
 			// recibir del kernel pagina , segmento , id pcb
-			t_paqt *paquete;
+			printf("\nestoy en page fault de memoria\n");
+			t_paqt paquete;
 			recibirMsje(socketAceptadoKernel, &paquete);
 			MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensaje = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
-			mensaje = paquete->mensaje;
+			mensaje = paquete.mensaje;
 
 			t_info_remplazo *infoRemplazo = malloc(sizeof(t_info_remplazo));
 			infoRemplazo->idPagina = mensaje->nro_pagina;
 			infoRemplazo->idSegmento = mensaje->nro_segmento;
 
+			printf("\nel id de pagina es: %d", infoRemplazo->idPagina);
+			printf("\nel id de seg es: %d", infoRemplazo->idSegmento);
+
 			t_marcos_por_proceso *marcosPorProceso = malloc(sizeof(t_marcos_por_proceso));
 			marcosPorProceso->idPCB = pcb->id;
+
+			printf("\nel id de pcb es: %d", marcosPorProceso->idPCB);
+
 
 			asignacionDeMarcos(infoRemplazo, marcosPorProceso);
 
@@ -514,7 +521,7 @@ void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 {
 	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, infoRemplazo->PID - 1);
 
-	primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
+	//primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
 	
 }
 

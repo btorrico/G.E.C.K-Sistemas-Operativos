@@ -33,7 +33,7 @@ void manejar_bloqueo_teclado(void *);
 void manejar_bloqueo_pantalla(void *);
 void manejar_bloqueo_general_disco(void *);
 void manejar_bloqueo_general_impresora(void *);
-void manejar_bloqueo_page_fault(void *);
+void manejar_bloqueo_page_fault();
 
 void planifLargoPlazo();
 void planifCortoPlazo();

@@ -501,8 +501,9 @@ t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entrad
 			mensajeAKernelPageFault->nro_segmento = numero_segmento;
 			pcb->program_counter--;
 			//mensajeAKernelPageFault->pcb =pcb;
-			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
+			
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
+			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
 			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
 
 		} else {
