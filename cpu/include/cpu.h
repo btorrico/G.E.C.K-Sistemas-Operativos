@@ -152,7 +152,7 @@ int habilitarTLB;
 pthread_mutex_t mutexTLB;
 
 
-void iniciar_TLB();
+void inicializarTLB();
 void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid);
 int buscar_en_TLB(int nroPagina);
 void limpiar_entrada_TLB(int nroPagina, int pid);

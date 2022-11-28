@@ -8,7 +8,7 @@ int main(char argc, char **argv)
 		config = iniciar_config("cpu.config");
 
 		extraerDatosConfig(config);
-
+	    inicializarTLB();
 		pthread_t thrDispatchKernel, thrInterruptKernel, thrMemoria;
 
 		pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
@@ -474,10 +474,10 @@ t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entrad
 
 	printf("\nel id de la tabla es: %d\n", segmento->indiceTablaPaginas);
  
-	int nroMarco = -1;//buscar_en_TLB(numero_pagina);
+	int nroMarco = buscar_en_TLB(numero_pagina);
 
 	//1ero Chequear SEGMENTATION FAULT
-	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n"PRINT_COLOR_MAGENTA);
+	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n"PRINT_COLOR_RESET);
 	printf( "desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
 
 	if(desplazamiento_Segmento > segmento->tamanio){ // Uso el tamanio real
@@ -577,7 +577,7 @@ int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas,uint32_t pid){
 /*----------------------TLB------------------------------*/
 
 
-void iniciar_TLB(){
+void inicializarTLB(){
 
 	int cantidadEntradasTLB = configCPU.entradasTLB;
 
@@ -614,7 +614,7 @@ void llenar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
 
 }
 
-//Deveria buscar por nro pagina y nroSegmento?
+//Deberia buscar por nro pagina y nroSegmento?
 int buscar_en_TLB(int nroPagina){ //int nroSegmento, int pid //devuelve numero de frame, si esta en la tlb, devuelve -1 si no esta en la tlb
 	entrada_tlb* entradaActual;
 	for(int i=0; i< TLB->entradas->elements_count; i++){
@@ -625,18 +625,27 @@ int buscar_en_TLB(int nroPagina){ //int nroSegmento, int pid //devuelve numero d
 				list_add_in_index(TLB->entradas,0,entradaActual);
 			}
 
-			//	TLB Hit: “PID: <PID> - TLB HIT - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA>”
+	/**
+	* @NAME: list_remove: Remueve un elemento de la lista de una determinada posicion y lo retorna.
 
+	/**
+	* @NAME: list_add_in_index: Agrega un elemento en una posicion determinada de la lista
+	*/
+	
 
-			log_debug(logger, "TLB HIT: Pagina: %i, Frame: %i.\n", entradaActual->nroPagina, entradaActual->nroFrame);
-
+			log_debug(logger, "TLB Hit: PID: <%i> - TLB HIT - Segmento: <%i> - Pagina: <%i> \n",entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina);
+			printf(PRINT_COLOR_MAGENTA"TLB Hit: PID: <%d> TLB HIT - Segmento: <%d> - Pagina: <%d> - Frame: <%d> \n"PRINT_COLOR_RESET,entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina,entradaActual->nroFrame);
 			return entradaActual->nroFrame;
 		}
 	}
 
-	//TLB Miss: “PID: <PID> - TLB MISS - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA>”
 	
 	log_debug(logger, "TLB MISS - pagina no encontrada en TLB\n");
+
+	log_debug(logger, "TLB Miss: PID: <%i> - TLB MISS - Segmento: <%i> - Pagina: <%i> \n",entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina);
+	printf(PRINT_COLOR_MAGENTA"TLB Miss: PID: <%d> TLB MISS - Segmento: <%d> - Pagina: <%d> - Frame: <%d> \n"PRINT_COLOR_RESET,entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina,entradaActual->nroFrame);
+ // No tienen sentido los numeros que devuelve, no tiene cargada ninguna entrada pero devuelve datos, QUE TIENE QUE DEVOLVEER?????????? 
+
 	return -1;
 }
 
