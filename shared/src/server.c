@@ -252,6 +252,7 @@ void iniciar_listas_y_semaforos()
 	LISTA_BLOCK_PAGE_FAULT = list_create();
 	LISTA_TABLA_PAGINAS = list_create();
 	LISTA_INICIO_TABLA_PAGINA = list_create();
+	LISTA_MARCOS_POR_PROCESOS = list_create();
 	
 
 	// mutex
@@ -270,6 +271,7 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_block_page_fault , NULL);
 	pthread_mutex_init(&mutex_lista_tabla_paginas_pagina, NULL);
 	pthread_mutex_init(&mutex_lista_pagina_marco_por_proceso , NULL);
+	pthread_mutex_init(&mutex_lista_marco_por_proceso , NULL);
 	
 
 

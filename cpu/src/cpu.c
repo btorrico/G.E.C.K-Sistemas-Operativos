@@ -529,6 +529,7 @@ int numeroDeSegmento(int dir_logica, int tam_max_segmento){
 	int num_segmento = floor(dir_logica / tam_max_segmento);
 	return num_segmento;
 }
+
 int desplazamientoSegmento(int dir_logica, int tam_max_segmento){
 	int desplazamiento_segmento = dir_logica % tam_max_segmento;
 	return desplazamiento_segmento;

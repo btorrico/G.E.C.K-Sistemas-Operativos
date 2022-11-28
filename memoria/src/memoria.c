@@ -526,6 +526,7 @@ void *conseguir_puntero_al_desplazamiento_memoria(int nro_marco, void *memoriaRA
 
 void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *marcosPorProceso)
 {
+	printf("/entro a asignacion de marcos");
 	if (chequearCantidadMarcosPorProceso(marcosPorProceso))
 	{
 		asignarPaginaAMarco(marcosPorProceso, infoRemplazo->idPagina);
@@ -635,7 +636,7 @@ void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, int nroPagina)
 			}
 		}
 
-		pasar_a_lista_marcos_por_procesos(marcosPorProceso);
+		agregar_marco_por_proceso(marcosPorProceso);
 
 		enviarResultado(socketAceptadoKernel, "Asignacion de marcos realizada correctamente");
 	}
