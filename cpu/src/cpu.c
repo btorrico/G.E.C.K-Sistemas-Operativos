@@ -474,7 +474,7 @@ t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entrad
 
 	printf("\nel id de la tabla es: %d\n", segmento->indiceTablaPaginas);
  
-	int nroMarco = buscar_en_TLB(numero_pagina);
+	int nroMarco = buscar_en_TLB(numero_pagina,numero_segmento,pcb->id);
 
 	//1ero Chequear SEGMENTATION FAULT
 	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n"PRINT_COLOR_RESET);
@@ -615,7 +615,7 @@ void llenar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
 }
 
 //Deberia buscar por nro pagina y nroSegmento?
-int buscar_en_TLB(int nroPagina){ //int nroSegmento, int pid //devuelve numero de frame, si esta en la tlb, devuelve -1 si no esta en la tlb
+int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, int pid //devuelve numero de frame, si esta en la tlb, devuelve -1 si no esta en la tlb
 	entrada_tlb* entradaActual;
 	for(int i=0; i< TLB->entradas->elements_count; i++){
 		entradaActual = list_get(TLB->entradas, i);
@@ -643,7 +643,7 @@ int buscar_en_TLB(int nroPagina){ //int nroSegmento, int pid //devuelve numero d
 	log_debug(logger, "TLB MISS - pagina no encontrada en TLB\n");
 
 	log_debug(logger, "TLB Miss: PID: <%i> - TLB MISS - Segmento: <%i> - Pagina: <%i> \n",entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina);
-	printf(PRINT_COLOR_MAGENTA"TLB Miss: PID: <%d> TLB MISS - Segmento: <%d> - Pagina: <%d> - Frame: <%d> \n"PRINT_COLOR_RESET,entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina,entradaActual->nroFrame);
+	printf(PRINT_COLOR_MAGENTA"TLB Miss: PID: <%d> TLB MISS - Segmento: <%d> - Pagina: <%d> \n"PRINT_COLOR_RESET,pid,nroSegmento,nroPagina);
  // No tienen sentido los numeros que devuelve, no tiene cargada ninguna entrada pero devuelve datos, QUE TIENE QUE DEVOLVEER?????????? 
 
 	return -1;
