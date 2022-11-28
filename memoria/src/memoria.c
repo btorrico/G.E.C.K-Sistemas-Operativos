@@ -121,13 +121,12 @@ void iniciar_servidor_hacia_kernel()
 			printf("\nel id de pagina es: %d", infoRemplazo->idPagina);
 			printf("\nel id de seg es: %d", infoRemplazo->idSegmento);
 
-			t_marcos_por_proceso *marcosPorProceso = malloc(sizeof(t_marcos_por_proceso));
-			marcosPorProceso->idPCB = pcb->id;
+			t_marcos_por_proceso *marcoPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pcb->id -1);
 
-			printf("\nel id de pcb es: %d", marcosPorProceso->idPCB);
+			
+			printf("\nel id de pcb es: %d", marcoPorProceso->idPCB);
 
-
-			asignacionDeMarcos(infoRemplazo, marcosPorProceso);
+			asignacionDeMarcos(infoRemplazo, marcoPorProceso);
 
 			// liberar las estructuras y
 			// enviar msj al kernel de que ya estan liberadas
@@ -196,28 +195,29 @@ void conexionCPU(int socketAceptado)
 
 		recibirMsje(socketAceptado, &paquete);
 
-		switch(paquete.header.tipoMensaje) {
-			case CONFIG_DIR_LOG_A_FISICA:
-				configurarDireccionesCPU(socketAceptado);
-				break;
-			case ACCESO_MEMORIA_TABLA_DE_PAG:
-				infoMemoriaCpuTP = paquete.mensaje;
-				idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
-				pagina = infoMemoriaCpuTP->pagina;
-				pid = infoMemoriaCpuTP->pid;
-				accesoMemoriaTP(idTablaPagina, pagina, pid, socketAceptado);
-				break;
-			case ACCESO_MEMORIA_LEER:
-				printf("llegue aqui");
-				infoMemoriaCpuLeer = paquete.mensaje;
-				direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
-				direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
-				pid = infoMemoriaCpuLeer->pid;
-				//accesoMemorialeer(direccionFisica, pid, socketAceptado);
-				break;
-			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
-				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
-				break;
+		switch (paquete.header.tipoMensaje)
+		{
+		case CONFIG_DIR_LOG_A_FISICA:
+			configurarDireccionesCPU(socketAceptado);
+			break;
+		case ACCESO_MEMORIA_TABLA_DE_PAG:
+			infoMemoriaCpuTP = paquete.mensaje;
+			idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
+			pagina = infoMemoriaCpuTP->pagina;
+			pid = infoMemoriaCpuTP->pid;
+			accesoMemoriaTP(idTablaPagina, pagina, pid, socketAceptado);
+			break;
+		case ACCESO_MEMORIA_LEER:
+			printf("llegue aqui");
+			infoMemoriaCpuLeer = paquete.mensaje;
+			direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
+			direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
+			pid = infoMemoriaCpuLeer->pid;
+			// accesoMemorialeer(direccionFisica, pid, socketAceptado);
+			break;
+		default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
+			log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
+			break;
 		}
 	}
 }
@@ -245,11 +245,13 @@ void configurarDireccionesCPU(int socketAceptado)
 void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca para no recorrer 2 veces
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
+	t_marcos_por_proceso *marcoPorProceso = malloc(sizeof(t_marcos_por_proceso));
+
 	for (int i = 0; i < list_size(pcbActual->tablaSegmentos); i++)
 	{
 		t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
 		t_tabla_segmentos *tablaSegmento = list_get(pcbActual->tablaSegmentos, i);
-		// aca tengo que crear el malloc de t_listainiciocosas
+
 		size_t tamanioSgtePagina = 0;
 		tablaPagina->paginas = list_create();
 		pthread_mutex_lock(&mutex_creacion_ID_tabla);
@@ -273,15 +275,22 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 			pagina->posicionSwap = tamanioSgtePagina; // tamanioSgtePagina = OFFSET = desplazamiento
 			fseek(swap, pagina->posicionSwap, SEEK_CUR);
 
-			pthread_mutex_lock(&mutex_lista_tabla_paginas_pagina);
-			list_add(tablaPagina->paginas, pagina);
-			pthread_mutex_unlock(&mutex_lista_tabla_paginas_pagina);
+			// agrego pagina a lista de paginas de la tabla pagina
+			agregar_pagina_a_tabla_paginas(tablaPagina, pagina);
 		}
 
 		tamanioSgtePagina += configMemoria.tamPagina;
-		printf("\nestoy agregando tabla a la lista");
+
+		// agrego tabla pagina a la lista de tablas pagina
 		agregar_tabla_paginas(tablaPagina);
 	}
+
+	marcoPorProceso->idPCB = pcbActual->id;
+	marcoPorProceso->marcoSiguiente = 0;
+	marcoPorProceso->paginas = list_create();
+
+	// agrego marco por proceso a la lista de marcos por procesos
+	agregar_marco_por_proceso(marcoPorProceso);
 
 	printf("\nEnvio recursos a kernel\n");
 	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
@@ -309,11 +318,18 @@ FILE *abrirArchivo(char *filename)
 	return fopen(filename, "w+");
 }
 
-void agregar_tabla_paginas(t_tabla_paginas *tablaPaginas)
+void agregar_tabla_paginas(t_tabla_paginas *tablaPagina)
 {
 	pthread_mutex_lock(&mutex_lista_tabla_paginas);
-	list_add(LISTA_TABLA_PAGINAS, tablaPaginas);
+	list_add(LISTA_TABLA_PAGINAS, tablaPagina);
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+}
+
+void agregar_pagina_a_tabla_paginas(t_tabla_paginas *tablaPagina, t_pagina *pagina)
+{
+	pthread_mutex_lock(&mutex_lista_tabla_paginas_pagina);
+	list_add(tablaPagina->paginas, pagina);
+	pthread_mutex_unlock(&mutex_lista_tabla_paginas_pagina);
 }
 
 void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
@@ -409,10 +425,11 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 El módulo deberá responder el número de marco correspondiente, en caso de no encontrarse,
 se deberá retornar Page Fault.*/
 
-void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAceptado){
-	//CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
-	log_debug(logger,"ACCEDIENDO A TABLA DE PAGINA ID: %d NRO_PAGINA: %d",
-				idTablaPagina, nroPagina);
+void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAceptado)
+{
+	// CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
+	log_debug(logger, "ACCEDIENDO A TABLA DE PAGINA ID: %d NRO_PAGINA: %d",
+			  idTablaPagina, nroPagina);
 
 	int marcoBuscado;
 	t_pagina *pagina;
@@ -439,26 +456,28 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 		}
 	}
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-	corte=false; //para probar page fault -- BORRAR LUEGO DE PROBAR
-	if(corte==true){ // REVISAR
-	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-	marcoBuscado = pagina->nroMarco;
-	log_debug(logger,"[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
-	
-	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
-	mensaje->numero = marcoBuscado;
-	
-	enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
-	free(mensaje);
-	log_debug(logger,"[FIN - TRADUCCION_DIR] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA DE PAG CON INDICE: %d ENVIADO A CPU",
-				marcoBuscado, pagina->nroPagina, tabla_de_paginas->idTablaPag);//chequear y borrar
-	
-	log_debug(logger,"Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
-				pid, pagina->nroPagina, marcoBuscado);
+	corte = false; // para probar page fault -- BORRAR LUEGO DE PROBAR
+	if (corte == true)
+	{ // REVISAR
+		pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+		marcoBuscado = pagina->nroMarco;
+		log_debug(logger, "[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
+
+		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
+		mensaje->numero = marcoBuscado;
+
+		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
+		free(mensaje);
+		log_debug(logger, "[FIN - TRADUCCION_DIR] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA DE PAG CON INDICE: %d ENVIADO A CPU",
+				  marcoBuscado, pagina->nroPagina, tabla_de_paginas->idTablaPag); // chequear y borrar
+
+		log_debug(logger, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
+				  pid, pagina->nroPagina, marcoBuscado);
 	}
-	else{ //la pag no esta en ram. Retornar PAGE FAULT
-		
-		MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
+	else
+	{ // la pag no esta en ram. Retornar PAGE FAULT
+
+		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
 		mensaje->numero = -1;
 		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), PAGE_FAULT);
 		free(mensaje);
@@ -521,8 +540,7 @@ void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 {
 	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, infoRemplazo->PID - 1);
 
-	//primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
-	
+	// primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
 }
 
 bool primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo)
@@ -536,22 +554,22 @@ bool primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 		if (pagina->nroPagina == infoRemplazo->idPagina)
 		{
-			pagina->uso = 1; 
+			pagina->uso = 1;
 			break;
 		}
 
-		if(pagina->uso == 0)
+		if (pagina->uso == 0)
 		{
 			pagina->nroMarco = marcoSiguiente;
-			marcoSiguiente =  recorrer_marcos(marcoSiguiente);
-			pagina->uso = 1; 
+			marcoSiguiente = recorrer_marcos(marcoSiguiente);
+			pagina->uso = 1;
 			resultado = true;
 			break;
-
-		}else if(pagina->uso == 1){
+		}
+		else if (pagina->uso == 1)
+		{
 
 			pagina->uso = 0;
-			
 		}
 	}
 
@@ -572,8 +590,6 @@ int recorrer_marcos(int marcoSiguiente)
 
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 {
-	
-
 }
 
 int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
@@ -675,20 +691,20 @@ t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion()
 	return algoritmoResultado;
 }
 
-void pasar_a_lista_marcos_por_procesos(t_marcos_por_proceso *marcosPorProceso)
+void agregar_marco_por_proceso(t_marcos_por_proceso *marcosPorProceso)
 {
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
 	list_add(LISTA_MARCOS_POR_PROCESOS, marcosPorProceso);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
-
-	// log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
 }
 
 bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso *marcosPorProceso)
 {
-	t_marcos_por_proceso *marcosPorProcesoActual = list_get(LISTA_MARCOS_POR_PROCESOS, marcosPorProceso->idPCB);
+	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
+	t_marcos_por_proceso *marcosPorProcesoActual = list_get(LISTA_MARCOS_POR_PROCESOS, marcosPorProceso->idPCB - 1);
+	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 
-	return list_size(marcosPorProcesoActual->paginas) <= configMemoria.marcosPorProceso;
+	return list_size(marcosPorProcesoActual->paginas) < configMemoria.marcosPorProceso;
 }
 
 t_list *filtrarPorPIDTabla(int PID)

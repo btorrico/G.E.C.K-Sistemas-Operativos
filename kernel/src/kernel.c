@@ -197,10 +197,6 @@ void conectar_dispatch()
 
 			pasar_a_block_page_fault(pcb);
 			printf("\nEntre al case de page fault");
-			//t_paqt paqueteCpu;
-			//recibirMsje(conexionDispatch, &paqueteCpu);
-			// recibirMsje(conexionDispatch, &paquete);
-			printf("\nEntre al case de page fault");
 			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, NULL);
 
 			pthread_detach(thrBloqueoPageFault);
@@ -367,6 +363,7 @@ void manejar_bloqueo_general_impresora(void *insActual)
 	free(dispositivoCpu);
 	sem_post(&contador_bloqueo_impresora_running);
 }
+
 void manejar_bloqueo_general_disco(void *insActual)
 {
 	sem_wait(&contador_bloqueo_disco_running);
@@ -400,21 +397,21 @@ void manejar_bloqueo_general_disco(void *insActual)
 	free(dispositivoCpu);
 	sem_post(&contador_bloqueo_disco_running);
 }
+
 void manejar_bloqueo_page_fault()
 {
 	printf("\nEstoy en la funcion de manejo de page fault");
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
 	printf("\nEstoy en la funcion de manejo de page fault");
 	t_paqt paquete;
-recibirMsje(conexionDispatch, &paquete);
+	recibirMsje(conexionDispatch, &paquete);
 
-//enviar a memoria
+	// enviar a memoria
 	serializarPCB(conexionMemoria, pcb, PAGE_FAULT);
 
 	enviarMsje(conexionMemoria, KERNEL, paquete.mensaje, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), PAGE_FAULT);
 
-
-//recibo de memoria
+	// recibo de memoria
 	char *mensaje = recibirMensaje(conexionMemoria);
 
 	log_info(logger, "Mensaje recibido por memoria:%s", mensaje);

@@ -81,7 +81,6 @@ typedef struct {
 	int idPCB;
 	int marcoSiguiente;
 	t_list* paginas;
-
 }__attribute__((packed)) t_marcos_por_proceso;
 
 bitmap_marcos_libres bitmap_marco[];
@@ -111,7 +110,7 @@ int buscar_marco_vacio();
 void algoritmo_reemplazo_clock(t_info_remplazo *);
 void asignarPaginaAMarco(t_marcos_por_proceso*, int);
 t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
-void pasar_a_lista_marcos_por_procesos(t_marcos_por_proceso * );
+void agregar_marco_por_proceso(t_marcos_por_proceso * );
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
 void asignacionDeMarcos(t_info_remplazo * , t_marcos_por_proceso *);
 t_list* filtrarPorPID(int );
