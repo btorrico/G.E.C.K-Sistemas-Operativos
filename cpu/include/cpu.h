@@ -58,7 +58,7 @@ int numeroDeSegmento(int dir_logica, int tam_max_segmento);
 int desplazamientoSegmento(int dir_logica, int tam_max_segmento);
 int numeroPagina(int desplazamiento_segmento, int tam_pagina);
 int desplazamientoPagina(int desplamiento_segmento, int tam_pagina);
-int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas);
+int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas,uint32_t pid);
 
  int conexionDispatch;
  int conexionConsola;

@@ -67,6 +67,7 @@ typedef struct
 typedef struct {
 	int idTablaDePaginas;
 	int pagina;
+	int pid;
 }MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS;
 
 typedef struct {
@@ -201,7 +202,7 @@ typedef enum {
 	LIBERAR_RECURSOS,
 	ASIGNAR_RECURSOS,
 	SEGMENTATION_FAULT,				//entre cpu-kernel
-	PAGE_FAULT	= -20,					//entre memoria-cpu	
+	PAGE_FAULT, 					//entre memoria-cpu	
 } t_tipoMensaje;
 
 typedef enum

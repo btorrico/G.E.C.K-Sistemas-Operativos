@@ -213,14 +213,16 @@ bool cicloInstruccion(t_pcb *pcb)
 		t_direccionFisica* dirFisicaMoveIn = malloc(sizeof(t_direccionFisica));
 			
 			dirFisicaMoveIn = calcular_direccion_fisica(insActual->paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina,pcb); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
-
+			if(dirFisicaMoveIn->nroMarco == -1){
+				printf("se envio info a kernel por page fault");
+			} else{
 			MSJ_MEMORIA_CPU_LEER* mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
 
 			mensajeAMemoriaLeer->desplazamiento = dirFisicaMoveIn->desplazamientoPagina;
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
 			mensajeAMemoriaLeer->pid = pcb->id;
-			enviarMsje(conexionMemoria, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_LEER);
-			log_debug(logger, "Envie direccion fisica a memoria swap: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
+			enviarMsje(conexion, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_LEER);
+			log_debug(logger, "Envie direccion fisica a memoria: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
 
 		/* 	t_paqt paqueteMemoriaSwap;
@@ -237,7 +239,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		//  free(mensajeAMemoriaLeer);
 		//	free(mensajeValorLeido);
 			break;
-
+		}
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
 		// pcb->program_counter += 1;
@@ -490,8 +492,9 @@ t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entrad
 		dir_fisica->desplazamientoPagina = desplazamiento_pagina;
 	} else if(nroMarco == -1){ // COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
 
-		int respuestaMemoriaPrimerAcceso = primer_acceso(numero_pagina, segmento->indiceTablaPaginas);
+		int respuestaMemoriaPrimerAcceso = primer_acceso(numero_pagina, segmento->indiceTablaPaginas, pcb->id);
 		if(respuestaMemoriaPrimerAcceso==-1){ //respuesta PAGE FAULT
+			dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
 			//Devolvemos el pcb a nuestro bello kernel
 			MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensajeAKernelPageFault = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
 			mensajeAKernelPageFault->nro_pagina = numero_pagina;
@@ -508,7 +511,7 @@ t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entrad
 	
 			log_debug(logger, "El valor del marco es: %d", dir_fisica->nroMarco);
 			log_debug(logger, "El valor del offset es: %d", dir_fisica->desplazamientoPagina);
-			actualizar_TLB(numero_pagina, dir_fisica->nroMarco, numero_segmento, pcb->id);
+			//actualizar_TLB(numero_pagina, dir_fisica->nroMarco, numero_segmento, pcb->id);
 		}
 	}
 	
@@ -540,23 +543,24 @@ int desplazamientoPagina(int desplazamiento_segmento, int tam_pagina){
 	return desplazamiento_pagina;
 }
 
-int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas){ 
+int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas,uint32_t pid){ 
 	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS *mensajeAMemoriaAccesoTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
 	mensajeAMemoriaAccesoTP->idTablaDePaginas = indiceTablaPaginas;
 	mensajeAMemoriaAccesoTP->pagina = numero_pagina;
-	enviarMsje(socketMemoria, CPU, mensajeAMemoriaAccesoTP, sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS), ACCESO_MEMORIA_TABLA_DE_PAG);
+	mensajeAMemoriaAccesoTP->pid = pid;
+	enviarMsje(conexion, CPU, mensajeAMemoriaAccesoTP, sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS), ACCESO_MEMORIA_TABLA_DE_PAG);
 	free(mensajeAMemoriaAccesoTP);
 	
 	log_debug(logger, "Envie mensaje a memoria para acceder a Tabla de Paginas con ID %d",indiceTablaPaginas);
 
 	t_paqt paqueteMemoria;
-	recibirMsje(socketMemoria, &paqueteMemoria);
+	recibirMsje(conexion, &paqueteMemoria);
 	MSJ_INT* mensajePrimerAcceso = malloc(sizeof(MSJ_INT));
 	mensajePrimerAcceso = paqueteMemoria.mensaje;
-	switch (mensajePrimerAcceso->numero)
+	switch (paqueteMemoria.header.tipoMensaje)
 	{
 	case PAGE_FAULT:
-		return -1;
+		return mensajePrimerAcceso->numero;
 		break;
 	case RESPUESTA_MEMORIA_MARCO_BUSCADO:
 		int nroFrame = mensajePrimerAcceso->numero;

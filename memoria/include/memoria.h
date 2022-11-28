@@ -121,7 +121,7 @@ t_list *filtrarPorPIDTabla(int );
 void incrementarMarcoSiquiente(t_marcos_por_proceso *);
 
 
-void accesoMemoriaTP(int, int, int);
+void accesoMemoriaTP(int, int, int,int);
 				
 void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado);
 

@@ -199,13 +199,14 @@ void conexionCPU(int socketAceptado)
 				configurarDireccionesCPU(socketAceptado);
 				break;
 			case ACCESO_MEMORIA_TABLA_DE_PAG:
-				printf("llegue aqui");
 				infoMemoriaCpuTP = paquete.mensaje;
 				idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
 				pagina = infoMemoriaCpuTP->pagina;
-				accesoMemoriaTP(idTablaPagina, pagina, socketAceptado);
+				pid = infoMemoriaCpuTP->pid;
+				accesoMemoriaTP(idTablaPagina, pagina, pid, socketAceptado);
 				break;
 			case ACCESO_MEMORIA_LEER:
+				printf("llegue aqui");
 				infoMemoriaCpuLeer = paquete.mensaje;
 				direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
 				direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
@@ -400,7 +401,7 @@ void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado){
 El módulo deberá responder el número de marco correspondiente, en caso de no encontrarse, 
 se deberá retornar Page Fault.*/
 
-void accesoMemoriaTP(int idTablaPagina, int nroPagina, int socketAceptado){
+void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAceptado){
 	//CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
 	log_debug(logger,"ACCEDIENDO A TABLA DE PAGINA ID: %d NRO_PAGINA: %d",
 				idTablaPagina, nroPagina);
@@ -426,7 +427,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int socketAceptado){
 			}
 		}
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-
+	corte=false; //para probar page fault -- BORRAR LUEGO DE PROBAR
 	if(corte==true){ // REVISAR
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 	marcoBuscado = pagina->nroMarco;
@@ -437,13 +438,16 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int socketAceptado){
 	
 	enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
 	free(mensaje);
-	log_debug(logger,"[FIN - TRADUCCION_DIR_SEGUNDO_PASO] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA 2DO NIVEL: %d ENVIADO A CPU",
-				marcoBuscado, pagina, idTablaPagina);
+	log_debug(logger,"[FIN - TRADUCCION_DIR] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA DE PAG CON INDICE: %d ENVIADO A CPU",
+				marcoBuscado, pagina->nroPagina, tabla_de_paginas->idTablaPag);//chequear y borrar
+	
+	log_debug(logger,"Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
+				pid, pagina->nroPagina, marcoBuscado);
 	}
 	else{ //la pag no esta en ram. Retornar PAGE FAULT
 		
 		MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
-		mensaje->numero = PAGE_FAULT;
+		mensaje->numero = -1;
 		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), PAGE_FAULT);
 		free(mensaje);
 		log_debug(logger,"PAGE FAULT");
