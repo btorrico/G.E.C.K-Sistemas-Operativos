@@ -180,10 +180,10 @@ void conexionCPU(int socketAceptado)
 	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS* infoMemoriaCpuTP;
 	MSJ_MEMORIA_CPU_LEER* infoMemoriaCpuLeer;
 
-	int valorRegistro = 2;
-	int idPCB = 0;
-	int nroSegmento = 1;
-	int nroPagina = 1;
+	// int valorRegistro = 2;
+	// int idPCB = 0;
+	// int nroSegmento = 1;
+	// int nroPagina = 1;
 
 	// int y = 1;
 	while (1)
@@ -193,13 +193,13 @@ void conexionCPU(int socketAceptado)
 		infoMemoriaCpuLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
 
 		recibirMsje(socketAceptado, &paquete);
-		printf("avanzo aca");
 
 		switch(paquete.header.tipoMensaje) {
 			case CONFIG_DIR_LOG_A_FISICA:
 				configurarDireccionesCPU(socketAceptado);
 				break;
 			case ACCESO_MEMORIA_TABLA_DE_PAG:
+				printf("llegue aqui");
 				infoMemoriaCpuTP = paquete.mensaje;
 				idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
 				pagina = infoMemoriaCpuTP->pagina;

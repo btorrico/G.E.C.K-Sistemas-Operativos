@@ -113,7 +113,7 @@ void conectar_memoria()
 
 
 	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
-	mensaje->numero = 1;
+	//mensaje->numero = 1;
 
 	enviarMsje(conexion, CPU, mensaje, sizeof(MSJ_INT), CONFIG_DIR_LOG_A_FISICA);
 	free(mensaje);
@@ -464,22 +464,31 @@ t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entrad
 	printf(PRINT_COLOR_GREEN "---------------------------------------------------\n" PRINT_COLOR_RESET);
 
     
-   	t_tabla_segmentos* segmento = list_get(pcb->tablaSegmentos,numero_segmento);
-	int nroMarco = buscar_en_TLB(numero_pagina);
 
-	//1ero Chequear SEGMENTATION FAULT 
+
+	t_tabla_segmentos *segmento = malloc(sizeof(t_tabla_segmentos)); //hacer el free(segmento);
+	segmento = list_get(pcb->tablaSegmentos, numero_segmento);
+	printf("\nel id del segmento es: %d\n", segmento->id);
+
+	printf("\nel id de la tabla es: %d\n", segmento->indiceTablaPaginas);
+ 
+	int nroMarco = -1;//buscar_en_TLB(numero_pagina);
+
+	//1ero Chequear SEGMENTATION FAULT
+	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n"PRINT_COLOR_MAGENTA);
+	printf( "desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
+
 	if(desplazamiento_Segmento > segmento->tamanio){ // Uso el tamanio real
-	
 		//Devolvemos el pcb a nuestro bello kernel
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
 		log_debug(logger, "Envie de Nuevo el proceso para ser finalizado...");
 
-	} else if(nroMarco != -1){ // 2do checkear si La PAGINA ESTA EN LA TLB
+	} else if(nroMarco != -1){ // significa que La PAGINA ESTA EN LA TLB
 		// Direccion fisica = Numero de marco * tamaño de marco + offset
 		//dirFisica = malloc(sizeof(t_direccionFisica));
 		dir_fisica->nroMarco = nroMarco;
 		dir_fisica->desplazamientoPagina = desplazamiento_pagina;
-	} else if(nroMarco == -1){ // 3ero COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
+	} else if(nroMarco == -1){ // COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
 
 		int respuestaMemoriaPrimerAcceso = primer_acceso(numero_pagina, segmento->indiceTablaPaginas);
 		if(respuestaMemoriaPrimerAcceso==-1){ //respuesta PAGE FAULT
@@ -536,7 +545,8 @@ int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas){
 	mensajeAMemoriaAccesoTP->idTablaDePaginas = indiceTablaPaginas;
 	mensajeAMemoriaAccesoTP->pagina = numero_pagina;
 	enviarMsje(socketMemoria, CPU, mensajeAMemoriaAccesoTP, sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS), ACCESO_MEMORIA_TABLA_DE_PAG);
-
+	free(mensajeAMemoriaAccesoTP);
+	
 	log_debug(logger, "Envie mensaje a memoria para acceder a Tabla de Paginas con ID %d",indiceTablaPaginas);
 
 	t_paqt paqueteMemoria;
