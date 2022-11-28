@@ -195,7 +195,7 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_PAGE_FAULT:
-			/*pthread_t thrBloqueoPageFault;
+			pthread_t thrBloqueoPageFault;
 
 			pasar_a_block_page_fault(pcb);
 
@@ -204,17 +204,15 @@ void conectar_dispatch()
 			pthread_detach(thrBloqueoPageFault);
 			sem_post(&contador_pcb_running);
 
-			// log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
-			break;*/
+			log_debug(logger, "Llego : 'PID:  %d - Por PAGE FAULT: %s '");
+			break;
 		case INTERRUPT_INTERRUPCION:
 
 			pthread_t thrInterrupt;
 			log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->id);
-			// int i,j;
 			printf("\nentrando a manejar interrupcion\n");
 			t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
 			printf("\n%d\n", algoritmo);
-			// t_pcb *pcb = (t_pcb *)pcbElegida;
 			if (algoritmo == FEEDBACK)
 			{
 				//log_info(logger, "Paso a ready auxiliar - FIFO");
@@ -232,9 +230,6 @@ void conectar_dispatch()
 				printf("\ncantidad de elementos en ready: %d\n", list_size(LISTA_READY));
 			}
 			printf("\ntermine de manejar la interrupcion");
-			// i=pthread_create(&thrInterrupt, NULL, (void *)manejar_interrupcion, (void *)pcb);
-			// j=pthread_detach(thrInterrupt);
-			// printf("\nse creo manejar interrupcion:%d,%d\n",i,j);
 			sem_post(&contador_pcb_running);
 			break;
 			case SEGMENTATION_FAULT:
@@ -405,16 +400,20 @@ void manejar_bloqueo_general_disco(void *insActual)
 }
 void manejar_bloqueo_page_fault(void *insActual)
 {
-	/*t_instruccion *instActualConsola = (t_instruccion *)insActual;
-
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
 
+	t_paqt* paquete; 
+	recibirMsje(conexionDispatch, &paquete);
+    serializarPCB(conexionMemoria,pcb,PAGE_FAULT);
 
-	t_paqueteActual *paquete = recibirPaquete(pcb->socket);
+	enviarMsje(conexionMemoria, KERNEL , paquete->mensaje, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), PAGE_FAULT);
 
-    //serializarPCB(,pcb,PAGE_FAULT);
+    char* mensaje = recibirMensaje(conexionMemoria);
+
+	log_info(logger,"Mensaje recibido por memoria:%s" , mensaje);
+
 	pasar_a_ready(pcb);
-	sem_post(&sem_hay_pcb_lista_ready);*/
+	sem_post(&sem_hay_pcb_lista_ready);
 }
 
 void manejar_interrupcion(void *pcbElegida)
