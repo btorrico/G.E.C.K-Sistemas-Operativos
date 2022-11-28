@@ -4085,3 +4085,12 @@
 
 [INFO] 03:55:41:028 CONSOLA/(22965:22965): Consola en espera de nuevos mensajes del kernel..
 [INFO] 03:55:41:793 CONSOLA/(22965:22965): Consola en espera de nuevos mensajes del kernel..
+[INFO] 23:02:58:247 CONSOLA/(3143:3143): 
+ Iniciando consola...
+[INFO] 23:02:58:262 CONSOLA/(3143:3143): Se parsearon #Instrucciones: 9
+[INFO] 23:02:58:263 CONSOLA/(3143:3143): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 23:02:58:264 CONSOLA/(3143:3143): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 23:02:58:264 CONSOLA/(3143:3143): Consola en espera de nuevos mensajes del kernel..

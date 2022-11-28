@@ -2,80 +2,80 @@
 
 int main(int argc, char **argv)
 {
-	
-		/* ---------------- LOGGING ---------------- */
 
-		logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_DEBUG);
+	/* ---------------- LOGGING ---------------- */
 
-		log_info(logger, "\n Iniciando consola...");
+	logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_DEBUG);
 
-		/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
+	log_info(logger, "\n Iniciando consola...");
 
-		obtenerArgumentos(argc, argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
+	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
-		/* ---------------- LEER DE CONSOLA ---------------- */
+	obtenerArgumentos(argc, argv); // Recibe 3 argumentos, ./consola, la ruta del archivoConfig y la ruta de las instrucciones de pseudocodigo
 
-		FILE *instructionsFile = abrirArchivo(argv[2]);
+	/* ---------------- LEER DE CONSOLA ---------------- */
 
-		t_informacion *informacion = crearInformacion();
+	FILE *instructionsFile = abrirArchivo(argv[2]);
 
-		agregarInstruccionesDesdeArchivo(instructionsFile, informacion->instrucciones);
+	t_informacion *informacion = crearInformacion();
 
-		t_paquete *nuevoPaquete = crear_paquete_programa(informacion);
+	agregarInstruccionesDesdeArchivo(instructionsFile, informacion->instrucciones);
 
-		conexionConsola = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
+	t_paquete *nuevoPaquete = crear_paquete_programa(informacion);
 
-		printf("\nconexion consola %d\n", conexionConsola);
+	conexionConsola = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
-		// Armamos y enviamos el paquete
-		enviar_paquete(nuevoPaquete, conexionConsola);
-		eliminar_paquete(nuevoPaquete);
-		liberar_programa(informacion);
+	printf("\nconexion consola %d\n", conexionConsola);
 
-		log_info(logger, "Se enviaron todas las instrucciones y los segmentos!\n");
+	// Armamos y enviamos el paquete
+	enviar_paquete(nuevoPaquete, conexionConsola);
+	eliminar_paquete(nuevoPaquete);
+	liberar_programa(informacion);
 
-		char *mensaje = recibirMensaje(conexionConsola);
-		log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
-		
+	log_info(logger, "Se enviaron todas las instrucciones y los segmentos!\n");
 
-		while (1)
+	char *mensaje = recibirMensaje(conexionConsola);
+	log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
+
+	while (1)
+	{
+		log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
+		t_paqueteActual *paquete = recibirPaquete(conexionConsola);
+		uint32_t valor;
+		switch (paquete->codigo_operacion)
 		{
-			log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
-			t_paqueteActual *paquete = recibirPaquete(conexionConsola);
-			uint32_t valor;
-			switch (paquete->codigo_operacion)
-			{
-			case BLOCK_PCB_IO_PANTALLA:
+		case BLOCK_PCB_IO_PANTALLA:
+			valor = deserializarValor(paquete->buffer, conexionConsola);
+			log_debug(logger ,"Valor por pantalla recibido desde kernel: %d", valor);
+			// printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
+			usleep(configConsola.tiempoPantalla * 1000);
+			enviarResultado(conexionConsola, "se mostro el valor por pantalla\n");
+			break;
 
-				valor = deserializarValor(paquete->buffer, conexionConsola);
-				printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
-				usleep(configConsola.tiempoPantalla * 1000);
-				enviarResultado(conexionConsola, "se mostro el valor por pantalla\n");
-				break;
-			case BLOCK_PCB_IO_TECLADO:
+		case BLOCK_PCB_IO_TECLADO:
+			char *mensaje = recibirMensaje(conexionConsola);
+			log_info(logger, "Me llego el mensaje: %s\n", mensaje);
 
-				char *mensaje = recibirMensaje(conexionConsola);
-				log_info(logger, "Me llego el mensaje: %s\n", mensaje);
+			char *valorConsola;
+			// printf("\nIngresa un valor por consola: \n");
+			log_info(logger,"Ingresa un valor por consola: ");
+			valorConsola = readline("> ");
 
-				char *valorConsola;
-				printf("\nIngresa un valor por consola: \n");
-				valorConsola = readline("> ");
+			valor = atoi(valorConsola);
 
-				valor = atoi(valorConsola);
+			serializarValor(valor, conexionConsola, BLOCK_PCB_IO_TECLADO);
 
-				serializarValor(valor, conexionConsola, BLOCK_PCB_IO_TECLADO);
-
-				free(valorConsola);
-				break;
-			case TERMINAR_CONSOLA:
-				printf("\nTermino la consola\n");
-				liberar_conexion(conexionConsola);
-				return EXIT_SUCCESS;
-			}
-
-			 //terminar_programa(conexion, logger, config);
+			free(valorConsola);
+			break;
+		case TERMINAR_CONSOLA:
+			log_info(logger , "Termino la consola");
+			// printf("\nTermino la consola\n");
+			liberar_conexion(conexionConsola);
+			return EXIT_SUCCESS;
 		}
-	
+
+		// terminar_programa(conexion, logger, config);
+	}
 }
 
 void leerConfig(char *rutaConfig)
@@ -197,7 +197,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		memcpy(stream + offset, list_get(informacion->instrucciones, i), sizeof(t_instruccion));
 		offset += sizeof(t_instruccion);
 		i++;
-		//printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
+		// printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
 	while (j < list_size(informacion->segmentos))
@@ -207,7 +207,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 
 		offset += sizeof(uint32_t);
 		j++;
-		//printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
+		// printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
 	}
 
 	buffer->stream = stream; // Payload

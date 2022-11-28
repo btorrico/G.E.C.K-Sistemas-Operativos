@@ -15857,3 +15857,27 @@
 [DEBUG] 03:55:51:812 KERNEL/(22858:22864): Estado Anterior: EXEC , proceso id: 1
 [DEBUG] 03:55:51:812 KERNEL/(22858:22864): Estado, proceso Actual: EXIT  id: 1
 [DEBUG] 03:55:51:812 KERNEL/(22858:22864): Procesos finalizados: 1
+[INFO] 23:02:41:589 KERNEL/(2979:2980): Servidor listo para recibir al cliente
+[INFO] 23:02:58:262 KERNEL/(2979:2980): Se conecto un cliente!
+[INFO] 23:02:58:264 KERNEL/(2979:2980): Llegaron las instrucciones y los segmentos
+[INFO] 23:02:58:269 KERNEL/(2979:3144): Consola conectada, paso a crear el hilo
+[DEBUG] 23:02:58:272 KERNEL/(2979:3144): Paso a NEW el proceso 1
+[DEBUG] 23:02:58:273 KERNEL/(2979:3144): Estado Actual: NEW , proceso id: 1
+[INFO] 23:02:58:273 KERNEL/(2979:3144): Cant de elementos de new: 1
+[INFO] 23:02:58:273 KERNEL/(2979:2983): Agregando un pcb a lista ready
+[DEBUG] 23:02:58:279 KERNEL/(2979:2983): Paso a READY el proceso 1
+[DEBUG] 23:02:58:279 KERNEL/(2979:2983): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 23:02:58:279 KERNEL/(2979:2983): Estado Actual: READY , proceso id: 1
+[INFO] 23:02:58:279 KERNEL/(2979:2983): Envie a memoria los recursos para asignar
+[INFO] 23:02:58:279 KERNEL/(2979:2984): Llego pcb a plani corto plazo
+[DEBUG] 23:02:58:279 KERNEL/(2979:2984): Implementando algoritmo FEEDBACK
+[DEBUG] 23:02:58:279 KERNEL/(2979:2984): Paso a EXEC el proceso 1
+[DEBUG] 23:02:58:279 KERNEL/(2979:2984): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:02:58:279 KERNEL/(2979:2984): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 23:03:00:282 KERNEL/(2979:2985): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 23:03:00:282 KERNEL/(2979:2985): Paso a READY aux el proceso 1
+[INFO] 23:03:00:282 KERNEL/(2979:2984): Llego pcb a plani corto plazo
+[DEBUG] 23:03:00:282 KERNEL/(2979:2984): Implementando algoritmo FEEDBACK
+[DEBUG] 23:03:00:282 KERNEL/(2979:2984): Paso a EXEC el proceso 1
+[DEBUG] 23:03:00:282 KERNEL/(2979:2984): Estado Anterior: READY , proceso id: 1
+[DEBUG] 23:03:00:282 KERNEL/(2979:2984): Estado Actual: EXEC , proceso id: 1

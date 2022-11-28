@@ -512,10 +512,61 @@ void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *mar
 
 void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 {
+	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, infoRemplazo->PID - 1);
+
+	primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
+	
+}
+
+bool primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo)
+{
+	int marcoSiguiente = marcosPorProceso->marcoSiguiente;
+	bool resultado = false;
+
+	for (int i = marcoSiguiente; i <= list_size(marcosPorProceso->paginas); recorrer_marcos(marcoSiguiente))
+	{
+		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
+
+		if (pagina->nroPagina == infoRemplazo->idPagina)
+		{
+			pagina->uso = 1; 
+			break;
+		}
+
+		if(pagina->uso == 0)
+		{
+			pagina->nroMarco = marcoSiguiente;
+			marcoSiguiente =  recorrer_marcos(marcoSiguiente);
+			pagina->uso = 1; 
+			resultado = true;
+			break;
+
+		}else if(pagina->uso == 1){
+
+			pagina->uso = 0;
+			
+		}
+	}
+
+	return resultado;
+}
+
+int recorrer_marcos(int marcoSiguiente)
+{
+	if (marcoSiguiente == configMemoria.marcosPorProceso)
+	{
+		return 0;
+	}
+	else
+	{
+		return marcoSiguiente++;
+	}
 }
 
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 {
+	
+
 }
 
 int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
@@ -563,7 +614,7 @@ void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, int nroPagina)
 
 		pasar_a_lista_marcos_por_procesos(marcosPorProceso);
 
-		enviarResultado(socketAceptadoKernel,"Asignacion de marcos realizada correctamente");
+		enviarResultado(socketAceptadoKernel, "Asignacion de marcos realizada correctamente");
 	}
 }
 
