@@ -180,12 +180,6 @@ void conexionCPU(int socketAceptado)
 	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS* infoMemoriaCpuTP;
 	MSJ_MEMORIA_CPU_LEER* infoMemoriaCpuLeer;
 
-	// int valorRegistro = 2;
-	// int idPCB = 0;
-	// int nroSegmento = 1;
-	// int nroPagina = 1;
-
-	// int y = 1;
 	while (1)
 	{
 		direccionFisica = malloc(sizeof(t_direccionFisica));
@@ -211,7 +205,7 @@ void conexionCPU(int socketAceptado)
 				direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
 				direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
 				pid = infoMemoriaCpuLeer->pid;
-				//accesoMemorialeer(direccionFisica, pid, socketAceptado);
+				accesoMemoriaLeer(direccionFisica, pid, socketAceptado);
 				break;
 			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
 				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
@@ -321,9 +315,8 @@ void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado){
 
 	int nroFrame = df->nroMarco;
 	int desplazamiento = df->desplazamientoPagina;
-	int tamanioFrame = configMemoria.tamPagina;  // Cambiar cuando este resuelta la inicializacion de estructuras. Ambos pueden ser variables definidas en utils
-	int cantidadTotalDeFrames = 512; // 512 nro de ejemplo, cambiar cuando esten inicializadas las estructuras . Ambos pueden ser variables definidas en utils
-	void* memoriaRAM; // sacarlo cuando se definan las estructuras
+	int tamanioFrame = configMemoria.tamPagina;
+	int cantidadTotalDeFrames = tamanio;
 	void* aLeer = malloc(tamanioFrame-desplazamiento);
 	int valorLeido;
 	MSJ_STRING* msjeError;
@@ -403,7 +396,7 @@ se deberá retornar Page Fault.*/
 
 void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAceptado){
 	//CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
-	log_debug(logger,"ACCEDIENDO A TABLA DE PAGINA ID: %d NRO_PAGINA: %d",
+	log_debug(logger,"ACCEDIENDO A TABLA DE PAGINA CON INDICE: %d NRO_PAGINA: %d",
 				idTablaPagina, nroPagina);
 
 	int marcoBuscado;
@@ -427,7 +420,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 			}
 		}
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-	corte=false; //para probar page fault -- BORRAR LUEGO DE PROBAR
+	//corte=false; //para probar page fault -- BORRAR LUEGO DE PROBAR
 	if(corte==true){ // REVISAR
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 	marcoBuscado = pagina->nroMarco;
@@ -442,7 +435,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 				marcoBuscado, pagina->nroPagina, tabla_de_paginas->idTablaPag);//chequear y borrar
 	
 	log_debug(logger,"Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
-				pid, pagina->nroPagina, marcoBuscado);
+				pid, pagina->nroPagina, marcoBuscado); //LOG OBLIGATORIO
 	}
 	else{ //la pag no esta en ram. Retornar PAGE FAULT
 		

@@ -157,8 +157,8 @@ void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid);
 int buscar_en_TLB(int nroPagina, int nroSegmento, int pid);
 void limpiar_entrada_TLB(int nroPagina, int pid);
 void limpiar_entradas_TLB();
-void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame);
-void reemplazo_algoritmo_lru(int nroPagina, int nroFrame);
+void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int pid);
+void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid);
 void cerrar_TLB();
 void destruir_entrada(void* entry);
 
