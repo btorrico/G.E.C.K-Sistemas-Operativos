@@ -200,8 +200,8 @@ void conectar_dispatch()
 			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, NULL);
 
 			pthread_detach(thrBloqueoPageFault);
-			sem_post(&contador_pcb_running);
-
+		
+	sem_post(&contador_pcb_running);
 			// log_debug(logger, "Llego : 'PID:  %d - Por PAGE FAULT: %s '");
 			break;
 		case INTERRUPT_INTERRUPCION:

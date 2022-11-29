@@ -86,7 +86,7 @@ void iniciar_servidor_hacia_kernel()
 		switch (paquete->codigo_operacion)
 		{
 		case ASIGNAR_RECURSOS:
-			printf("\nMI cod de op es: %d", paquete->codigo_operacion);
+			printf("\nMi cod de op es: %d", paquete->codigo_operacion);
 			pthread_t thrTablaPaginasCrear;
 			printf("\nEntro a asignar recursos\n");
 			pthread_create(&thrTablaPaginasCrear, NULL, (void *)crearTablasPaginas, (void *)pcb);
@@ -121,9 +121,8 @@ void iniciar_servidor_hacia_kernel()
 			printf("\nel id de pagina es: %d", infoRemplazo->idPagina);
 			printf("\nel id de seg es: %d", infoRemplazo->idSegmento);
 
-			t_marcos_por_proceso *marcoPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pcb->id -1);
+			t_marcos_por_proceso *marcoPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pcb->id - 1);
 
-			
 			printf("\nel id de pcb es: %d", marcoPorProceso->idPCB);
 
 			asignacionDeMarcos(infoRemplazo, marcoPorProceso);
@@ -529,7 +528,8 @@ void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *mar
 	printf("/entro a asignacion de marcos");
 	if (chequearCantidadMarcosPorProceso(marcosPorProceso))
 	{
-		asignarPaginaAMarco(marcosPorProceso, infoRemplazo->idPagina);
+		printf("\nLa cantidad de marcos del proceso es correcta\n");
+		asignarPaginaAMarco(marcosPorProceso, infoRemplazo);
 	}
 	else
 	{
@@ -539,17 +539,22 @@ void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *mar
 
 void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 {
+	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
 	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, infoRemplazo->PID - 1);
+	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 
-	// primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
+	primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
 }
 
-bool primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo)
+void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo)
 {
 	int marcoSiguiente = marcosPorProceso->marcoSiguiente;
-	bool resultado = false;
+	infoRemplazo->idPagina = 2;
 
-	for (int i = marcoSiguiente; i <= list_size(marcosPorProceso->paginas); recorrer_marcos(marcoSiguiente))
+	t_pagina *newPagina =  malloc(sizeof(t_pagina));
+
+	
+	for (int i = marcoSiguiente ; i < list_size(marcosPorProceso->paginas);recorrer_marcos(marcoSiguiente))
 	{
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
 
@@ -561,20 +566,58 @@ bool primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 		if (pagina->uso == 0)
 		{
-			pagina->nroMarco = marcoSiguiente;
+			newPagina = buscarPagina(infoRemplazo);
+			
+			t_pagina * paginaVictima = list_replace(marcosPorProceso->paginas, i, newPagina);
+
+
+			if (paginaVictima->modificacion == 1)
+			{
+				fseek(swap, paginaVictima->posicionSwap, SEEK_SET);
+				fwrite(paginaVictima, sizeof(paginaVictima), NULL, swap);
+			}
+				
+		
+			newPagina->nroMarco = marcoSiguiente;
 			marcoSiguiente = recorrer_marcos(marcoSiguiente);
-			pagina->uso = 1;
-			resultado = true;
+			newPagina->uso = 1;
+			
 			break;
 		}
 		else if (pagina->uso == 1)
 		{
 
 			pagina->uso = 0;
+			marcoSiguiente = recorrer_marcos(marcoSiguiente);
 		}
 	}
 
-	return resultado;
+}
+
+t_pagina *buscarPagina (t_info_remplazo *infoRemplazo){
+	t_pagina *newPagina =  malloc(sizeof(t_pagina));
+
+	t_list *tablasNewPagina = filtrarPorPIDTabla(infoRemplazo->PID);
+
+	for (int i = 0; i < list_size(tablasNewPagina); i++)
+	{
+		t_tabla_paginas *tablaPagina = list_get(tablasNewPagina, i);
+
+		if (tablaPagina->idTablaPag == infoRemplazo->idSegmento)
+		{
+
+			for (int j = 0; j < list_size(tablaPagina->paginas); j++)
+			{
+				t_pagina *pagina = list_get(tablaPagina->paginas, j);
+
+				if (infoRemplazo->idPagina == pagina->nroPagina)
+				{
+					return pagina;
+				}
+			}
+		}	
+		
+	}
 }
 
 int recorrer_marcos(int marcoSiguiente)
@@ -608,10 +651,10 @@ int buscar_marco_vacio() // devuelve la primera posicion del marco vacio
 	}
 }
 
-void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, int nroPagina)
+void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoReemplazo)
 {
 	int posicionMarcoLibre = buscar_marco_vacio();
-
+	printf("\nLa posicion del marco libre es: %d", posicionMarcoLibre);
 	t_list *tablasDelPCB = list_create();
 
 	tablasDelPCB = filtrarPorPIDTabla(marcosPorProceso->idPCB);
@@ -620,26 +663,28 @@ void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, int nroPagina)
 	{
 		t_tabla_paginas *tablaPagina = list_get(tablasDelPCB, i);
 
-		for (int j = 0; j < list_size(tablaPagina->paginas); j++)
+		if (tablaPagina->idTablaPag == infoReemplazo->idSegmento)
 		{
-			t_pagina *pagina = list_get(tablaPagina->paginas, j);
 
-			if (nroPagina == pagina->nroPagina)
+			for (int j = 0; j < list_size(tablaPagina->paginas); j++)
 			{
-				pagina->nroMarco = posicionMarcoLibre;
+				t_pagina *pagina = list_get(tablaPagina->paginas, j);
 
-				pthread_mutex_lock(&mutex_lista_pagina_marco_por_proceso);
-				list_add(marcosPorProceso->paginas, pagina);
-				pthread_mutex_unlock(&mutex_lista_pagina_marco_por_proceso);
+				if (infoReemplazo->idPagina == pagina->nroPagina)
+				{
+					pagina->nroMarco = posicionMarcoLibre;
+					printf("\nEl numero de marco es: %d", pagina->nroMarco);
 
-				incrementarMarcoSiquiente(marcosPorProceso);
+					agregar_pagina_a_lista_de_paginas_marcos_por_proceso(marcosPorProceso, pagina);
+
+					incrementarMarcoSiquiente(marcosPorProceso);
+				}
 			}
 		}
-
-		agregar_marco_por_proceso(marcosPorProceso);
-
-		enviarResultado(socketAceptadoKernel, "Asignacion de marcos realizada correctamente");
 	}
+
+	enviarResultado(socketAceptadoKernel, "Asignacion de marcos realizada correctamente");
+	printf("\nLa cant de pag del marcoPorProceso %d es: %d\n", marcosPorProceso->idPCB, list_size(marcosPorProceso->paginas));
 }
 
 void incrementarMarcoSiquiente(t_marcos_por_proceso *marcosPorProceso)
@@ -657,7 +702,6 @@ void incrementarMarcoSiquiente(t_marcos_por_proceso *marcosPorProceso)
 
 void implementa_algoritmo_susticion(t_info_remplazo *infoRemplazo)
 {
-
 	switch (obtenerAlgoritmoSustitucion())
 	{
 	case CLOCK:
@@ -697,6 +741,15 @@ void agregar_marco_por_proceso(t_marcos_por_proceso *marcosPorProceso)
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
 	list_add(LISTA_MARCOS_POR_PROCESOS, marcosPorProceso);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
+
+	printf("\nLa cantidad de marcos por proceso es: %d", list_size(LISTA_MARCOS_POR_PROCESOS));
+}
+
+void agregar_pagina_a_lista_de_paginas_marcos_por_proceso(t_marcos_por_proceso *marcosPorProceso, t_pagina *pagina)
+{
+	pthread_mutex_lock(&mutex_lista_marcos_por_proceso_pagina);
+	list_add(marcosPorProceso->paginas, pagina);
+	pthread_mutex_unlock(&mutex_lista_marcos_por_proceso_pagina);
 }
 
 bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso *marcosPorProceso)
@@ -711,8 +764,9 @@ bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso *marcosPorProceso)
 t_list *filtrarPorPIDTabla(int PID)
 {
 	t_list *listaTabla = list_create();
+	int i = 0;
 
-	for (int i = 0; i < list_size(LISTA_TABLA_PAGINAS); i++)
+	while (i < list_size(LISTA_TABLA_PAGINAS))
 	{
 		t_tabla_paginas *tablaPagina = list_get(LISTA_TABLA_PAGINAS, i);
 
@@ -720,8 +774,8 @@ t_list *filtrarPorPIDTabla(int PID)
 		{
 			list_add(listaTabla, tablaPagina);
 		}
+		i++;
 	}
-	// no hacer free de la lista
 
 	return listaTabla;
 }

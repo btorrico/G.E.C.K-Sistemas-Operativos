@@ -272,6 +272,7 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_tabla_paginas_pagina, NULL);
 	pthread_mutex_init(&mutex_lista_pagina_marco_por_proceso , NULL);
 	pthread_mutex_init(&mutex_lista_marco_por_proceso , NULL);
+	pthread_mutex_init(&mutex_lista_marcos_por_proceso_pagina, NULL);
 	
 
 
