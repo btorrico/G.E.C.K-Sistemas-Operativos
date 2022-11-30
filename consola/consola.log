@@ -4316,3 +4316,16 @@
 [INFO] 04:12:44:369 CONSOLA/(33758:33758): Consola en espera de nuevos mensajes del kernel..
 [INFO] 04:12:58:417 CONSOLA/(33758:33758): Me llego el mensaje: solicito el ingreso de un valor por teclado
 
+[INFO] 23:05:42:502 CONSOLA/(4980:4980): 
+ Iniciando consola...
+[INFO] 23:05:42:514 CONSOLA/(4980:4980): Se parsearon #Instrucciones: 10
+[INFO] 23:05:42:518 CONSOLA/(4980:4980): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 23:05:42:518 CONSOLA/(4980:4980): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 23:05:42:518 CONSOLA/(4980:4980): Consola en espera de nuevos mensajes del kernel..
+[INFO] 23:05:56:562 CONSOLA/(4980:4980): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 23:06:07:432 CONSOLA/(4980:4980): Consola en espera de nuevos mensajes del kernel..
+[INFO] 23:06:08:203 CONSOLA/(4980:4980): Consola en espera de nuevos mensajes del kernel..
