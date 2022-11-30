@@ -93,6 +93,8 @@ FILE *swap;
 
 t_configKernel configKernel;
 int contadorIdTablaPag;
+int buscar_marco_vacio();
+void inicializar_bitmap();
 void conexionCPU(int socketAceptadoVoid);
 void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
@@ -105,7 +107,7 @@ void crear_hilos_memoria();
 bool esta_vacio_el_archivo(FILE *);
 void* conseguir_puntero_a_base_memoria(int , void *);
 void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
-int buscar_marco_vacio();
+
 void algoritmo_reemplazo_clock(t_info_remplazo *);
 void asignarPaginaAMarco(t_marcos_por_proceso*, t_info_remplazo*);
 t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
@@ -116,7 +118,7 @@ t_list* filtrarPorPID(int );
 bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso*);
 t_info_remplazo* declararInfoReemplazo();
 t_list *filtrarPorPIDTabla(int );
-void incrementarMarcoSiquiente(t_marcos_por_proceso *);
+void incrementarMarcoSiguiente(t_marcos_por_proceso *);
 void agregar_pagina_a_lista_de_paginas_marcos_por_proceso(t_marcos_por_proceso *, t_pagina *);
 void primer_recorrido_paginas_clock(t_marcos_por_proceso *, t_info_remplazo *);
 t_pagina *buscarPagina (t_info_remplazo *);
