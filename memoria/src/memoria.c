@@ -175,16 +175,20 @@ void conexionCPU(int socketAceptado)
 	int pid;
 	int pagina;
 	int idTablaPagina;
+	int valorAEscribir;
+
 	t_direccionFisica* direccionFisica;
 
 	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS* infoMemoriaCpuTP;
 	MSJ_MEMORIA_CPU_LEER* infoMemoriaCpuLeer;
+	MSJ_MEMORIA_CPU_ESCRIBIR* infoMemoriaCpuEscribir;
 
 	while (1)
 	{
 		direccionFisica = malloc(sizeof(t_direccionFisica));
 		infoMemoriaCpuTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
 		infoMemoriaCpuLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
+		infoMemoriaCpuEscribir = malloc(sizeof(MSJ_MEMORIA_CPU_ESCRIBIR));
 
 		recibirMsje(socketAceptado, &paquete);
 
@@ -200,12 +204,20 @@ void conexionCPU(int socketAceptado)
 				accesoMemoriaTP(idTablaPagina, pagina, pid, socketAceptado);
 				break;
 			case ACCESO_MEMORIA_LEER:
-				printf("llegue aqui");
 				infoMemoriaCpuLeer = paquete.mensaje;
 				direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
 				direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
 				pid = infoMemoriaCpuLeer->pid;
 				accesoMemoriaLeer(direccionFisica, pid, socketAceptado);
+				break;
+			case ACCESO_MEMORIA_ESCRIBIR:
+				printf("llegue aqui");
+				infoMemoriaCpuEscribir = paquete.mensaje;
+				direccionFisica->nroMarco = infoMemoriaCpuEscribir->nroMarco;
+				direccionFisica->desplazamientoPagina = infoMemoriaCpuEscribir->desplazamiento;
+				valorAEscribir = infoMemoriaCpuEscribir->valorAEscribir;
+				pid = infoMemoriaCpuEscribir->pid;
+
 				break;
 			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
 				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");

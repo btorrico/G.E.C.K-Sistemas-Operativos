@@ -82,6 +82,13 @@ typedef struct {
 	int pid;
 } MSJ_MEMORIA_CPU_LEER;
 
+typedef struct {
+	int nroMarco;
+	int desplazamiento;
+	int valorAEscribir;
+	int pid;
+}MSJ_MEMORIA_CPU_ESCRIBIR;
+
 typedef struct
 {
 	int numero;
@@ -197,7 +204,7 @@ typedef enum {
 	ACCESO_MEMORIA_TABLA_DE_PAG,	//entre cpu-memoria: ESTO ES PARA ACCEDER A LA TABLA DE PAGINAS EN MEMORIA Y BUSCAR EL FRAME
 	RESPUESTA_MEMORIA_MARCO_BUSCADO, //entre memoria-cpu: despues de buscar en la tabla de pagina y encontrar el marco buscado se lo retorna a cpu
 	ACCESO_MEMORIA_LEER,			//entre cpu-memoria
-	ACCESO_MEMORIA_WRITE,			//entre cpu-memoria
+	ACCESO_MEMORIA_ESCRIBIR,			//entre cpu-memoria
 	HANDSHAKE_INICIAL,
 	LIBERAR_RECURSOS,
 	ASIGNAR_RECURSOS,
