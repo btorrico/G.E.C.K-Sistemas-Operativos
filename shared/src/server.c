@@ -253,6 +253,7 @@ void iniciar_listas_y_semaforos()
 	LISTA_TABLA_PAGINAS = list_create();
 	LISTA_INICIO_TABLA_PAGINA = list_create();
 	LISTA_MARCOS_POR_PROCESOS = list_create();
+	LISTA_BITMAP_MARCO = list_create();
 	
 
 	// mutex

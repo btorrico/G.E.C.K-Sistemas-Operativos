@@ -58,8 +58,8 @@ int tamanio;
 
 typedef struct {
 	int nroMarco;
-	uint8_t uso;
-} __attribute__((packed)) bitmap_marcos_libres;
+	int uso;
+} __attribute__((packed)) t_bitmap_marcos_libres;
 
 typedef enum {
 	NO_OCUPADO, // 0
@@ -83,7 +83,7 @@ typedef struct {
 	t_list* paginas;
 }__attribute__((packed)) t_marcos_por_proceso;
 
-bitmap_marcos_libres bitmap_marco[];
+//bitmap_marcos_libres bitmap_marco[];
 
 
 void *memoriaRAM; // espacio que en el que voy a guardar bytes, escribir y leer como hago en el archivo (RAM)

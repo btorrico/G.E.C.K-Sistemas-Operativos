@@ -20,8 +20,8 @@ int main(int argc, char **argv)
 	iniciar_listas_y_semaforos(); // despues ver porque kernel tambien lo utiliza y por ahi lo esta pisando, despues ver si lo dejamos solo aca
 	tamanio = configMemoria.tamMemoria / configMemoria.tamPagina;
 
-	//inicializar_bitmap();
-	//printf("\n%d",bitmap_marco[0].uso);
+	inicializar_bitmap();
+	// printf("\n%d",bitmap_marco[0].uso);
 	contadorIdTablaPag = 0;
 
 	crear_hilos_memoria();
@@ -632,28 +632,36 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 
 int buscar_marco_vacio() // devuelve la primera posicion del marco vacio, ver bien esto, tiene que incrementar
 {
-
-	for (int i = 0; i < tamanio; i++)
+	for (int i = 0; i < list_size(LISTA_BITMAP_MARCO); i++)
 	{
-		if (bitmap_marco[i].uso == 0)
+		t_bitmap_marcos_libres *marcoLibre = list_get(LISTA_BITMAP_MARCO, i);
+		
+		if (marcoLibre->uso == 0)
 		{
-			bitmap_marco[i].uso = 1;
+			printf("\nencontre un marco libre!!\n");
+			//marcoLibre->nroMarco = i;
+			marcoLibre->uso = 1;
+			printf("\nnroMArco: %d, bit de uso: %d\n", marcoLibre->nroMarco, marcoLibre->uso);
 			return i;
+			
 		}
-		printf("\n la posicion del marco es: %d\n", i);
+		
 	}
+
+	return -1;
 }
 
 void inicializar_bitmap()
 {
-	printf("\ninicializo\n");
 	for (int i = 0; i < tamanio; i++)
 	{
-		bitmap_marco[i].nroMarco = 0;
-		bitmap_marco[i].uso = 0;
-		printf("\ninicializo\n");
+		t_bitmap_marcos_libres *marcoLibre = malloc(sizeof(t_bitmap_marcos_libres));
+		marcoLibre->nroMarco = i;
+		
+		marcoLibre->uso = 0;
+		
+		list_add(LISTA_BITMAP_MARCO, marcoLibre);
 	}
-	printf("\ninicializo\n");
 }
 
 void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoReemplazo)
