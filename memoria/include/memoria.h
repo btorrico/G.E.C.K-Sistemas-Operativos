@@ -37,7 +37,7 @@ t_list *LISTA_INICIO_TABLA_PAGINA;
 
 typedef struct
 {
-	uint32_t idTablaPag;
+	uint32_t idTablaPag; //esto es tambien el nro de segmento
 	uint32_t idPCB;
 	t_list *paginas;
 } __attribute__((packed)) t_tabla_paginas;
@@ -58,8 +58,8 @@ int tamanio;
 
 typedef struct {
 	int nroMarco;
-	uint8_t uso;
-} __attribute__((packed)) bitmap_marcos_libres;
+	int uso;
+} __attribute__((packed)) t_bitmap_marcos_libres;
 
 typedef enum {
 	NO_OCUPADO, // 0
@@ -81,10 +81,9 @@ typedef struct {
 	int idPCB;
 	int marcoSiguiente;
 	t_list* paginas;
-
 }__attribute__((packed)) t_marcos_por_proceso;
 
-bitmap_marcos_libres bitmap_marco[];
+//bitmap_marcos_libres bitmap_marco[];
 
 
 void *memoriaRAM; // espacio que en el que voy a guardar bytes, escribir y leer como hago en el archivo (RAM)
@@ -94,11 +93,12 @@ FILE *swap;
 
 t_configKernel configKernel;
 int contadorIdTablaPag;
+int buscar_marco_vacio();
+void inicializar_bitmap();
 void conexionCPU(int socketAceptadoVoid);
 void iniciar_servidor_hacia_kernel();
 void iniciar_servidor_hacia_cpu();
 void agregar_tabla_paginas(t_tabla_paginas *);
-
 t_configMemoria extraerDatosConfig(t_config *);
 void crearTablasPaginas(void *pcb);
 void eliminarTablasPaginas(void *pcb);
@@ -107,19 +107,21 @@ void crear_hilos_memoria();
 bool esta_vacio_el_archivo(FILE *);
 void* conseguir_puntero_a_base_memoria(int , void *);
 void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
-int buscar_marco_vacio();
+
 void algoritmo_reemplazo_clock(t_info_remplazo *);
-void asignarPaginaAMarco(t_marcos_por_proceso*, int);
+void asignarPaginaAMarco(t_marcos_por_proceso*, t_info_remplazo*);
 t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
-void pasar_a_lista_marcos_por_procesos(t_marcos_por_proceso * );
+void agregar_marco_por_proceso(t_marcos_por_proceso * );
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
 void asignacionDeMarcos(t_info_remplazo * , t_marcos_por_proceso *);
 t_list* filtrarPorPID(int );
 bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso*);
 t_info_remplazo* declararInfoReemplazo();
 t_list *filtrarPorPIDTabla(int );
-void incrementarMarcoSiquiente(t_marcos_por_proceso *);
-
+void incrementarMarcoSiguiente(t_marcos_por_proceso *);
+void agregar_pagina_a_lista_de_paginas_marcos_por_proceso(t_marcos_por_proceso *, t_pagina *);
+void primer_recorrido_paginas_clock(t_marcos_por_proceso *, t_info_remplazo *);
+t_pagina *buscarPagina (t_info_remplazo *);
 
 void accesoMemoriaTP(int, int, int,int);
 				
@@ -172,6 +174,7 @@ pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 pthread_mutex_t mutex_void_memoria_ram;
 pthread_mutex_t mutex_lista_frames;
 pthread_mutex_t mutex_swap;
+pthread_mutex_t mutex_lista_marcos_por_proceso_pagina;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;

@@ -3,27 +3,27 @@
 int main(char argc, char **argv)
 {
 
-		logger = iniciar_logger("cpu.log", "CPU", LOG_LEVEL_DEBUG);
+	logger = iniciar_logger("cpu.log", "CPU", LOG_LEVEL_DEBUG);
 
-		config = iniciar_config("cpu.config");
+	config = iniciar_config("cpu.config");
 
 		extraerDatosConfig(config);
 	    inicializarTLB();
 		pthread_t thrDispatchKernel, thrInterruptKernel, thrMemoria;
 
-		pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
-		pthread_create(&thrInterruptKernel, NULL, (void *)iniciar_servidor_interrupt, NULL);
-		printf(PRINT_COLOR_BLUE "Conectando con modulo Memoria..."PRINT_COLOR_RESET "\n" );
-		pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
-		//pthread_create(&thrMemoria, NULL, (void *)recibir_config_memoria, NULL);
-		//recibir_config_memoria();
+	pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
+	pthread_create(&thrInterruptKernel, NULL, (void *)iniciar_servidor_interrupt, NULL);
+	printf(PRINT_COLOR_BLUE "Conectando con modulo Memoria..." PRINT_COLOR_RESET "\n");
+	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
+	// pthread_create(&thrMemoria, NULL, (void *)recibir_config_memoria, NULL);
+	// recibir_config_memoria();
 
-		pthread_join(thrDispatchKernel,NULL);
-		pthread_join(thrInterruptKernel, NULL);
-		pthread_join(thrMemoria, NULL);
+	pthread_join(thrDispatchKernel, NULL);
+	pthread_join(thrInterruptKernel, NULL);
+	pthread_join(thrMemoria, NULL);
 
-		log_destroy(logger);
-		config_destroy(config);
+	log_destroy(logger);
+	config_destroy(config);
 }
 
 t_configCPU extraerDatosConfig(t_config *archivoConfig)
@@ -67,8 +67,8 @@ void iniciar_servidor_dispatch()
 
 		printf("se recibio pcb de running de kernel\n");
 
-		//imprimirInstruccionesYSegmentos(pcb->informacion);
-		
+		// imprimirInstruccionesYSegmentos(pcb->informacion);
+
 		do
 		{
 			retornePCB = cicloInstruccion(pcb);
@@ -88,7 +88,8 @@ void iniciar_servidor_interrupt()
 	while (1)
 	{
 		char *mensaje = recibirMensaje(cliente_fd);
-		if(mensaje == NULL){
+		if (mensaje == NULL)
+		{
 			break;
 		}
 		log_info(logger, "Me llego el mensaje: %s\n", mensaje);
@@ -105,42 +106,36 @@ void conectar_memoria()
 	// enviar_mensaje("hola memoria, soy el cpu", conexion);
 	enviarResultado(conexion, "hola memoria soy el cpu");
 
-	log_debug(logger,"Buscando configuracion inicial de memoria");
-	//socketMemoria = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
+	log_debug(logger, "Buscando configuracion inicial de memoria");
+	// socketMemoria = crear_conexion(configCPU.ipMemoria, configCPU.puertoMemoria);
 
 	enviarMsje(conexion, CPU, NULL, 0, HANDSHAKE_INICIAL);
-	log_debug(logger,"Se envio Handshake a MEMORIA");
+	log_debug(logger, "Se envio Handshake a MEMORIA");
 
-
-	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
-	//mensaje->numero = 1;
+	MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
+	// mensaje->numero = 1;
 
 	enviarMsje(conexion, CPU, mensaje, sizeof(MSJ_INT), CONFIG_DIR_LOG_A_FISICA);
 	free(mensaje);
-	log_debug(logger,"Esperando mensaje de memoria para config inicial");
+	log_debug(logger, "Esperando mensaje de memoria para config inicial");
 
 	t_paqt paquete;
 
-	//recibe el mensaje inicial de memoria
+	// recibe el mensaje inicial de memoria
 	recibirMsje(conexion, &paquete);
 
-	//Reservo espacio para recibir las ENTRADAS_POR_TABLA y TAM_PAGINA
-	MSJ_MEMORIA_CPU_INIT* infoDeMemoria = malloc(sizeof(MSJ_MEMORIA_CPU_INIT));
+	// Reservo espacio para recibir las ENTRADAS_POR_TABLA y TAM_PAGINA
+	MSJ_MEMORIA_CPU_INIT *infoDeMemoria = malloc(sizeof(MSJ_MEMORIA_CPU_INIT));
 
 	infoDeMemoria = paquete.mensaje;
 
-
-	log_debug(logger,"Se recibio la informacion de memoria: tamanio pagina= %i cantidad de Entradas por Tabla= %i", infoDeMemoria->tamanioPagina, infoDeMemoria->cantEntradasPorTabla);
+	log_debug(logger, "Se recibio la informacion de memoria: tamanio pagina= %i cantidad de Entradas por Tabla= %i", infoDeMemoria->tamanioPagina, infoDeMemoria->cantEntradasPorTabla);
 
 	configCPU.cantidadEntradasPorTabla = infoDeMemoria->cantEntradasPorTabla;
 	configCPU.tamanioPagina = infoDeMemoria->tamanioPagina;
 
-
 	free(infoDeMemoria);
 }
-
-
-
 
 bool cicloInstruccion(t_pcb *pcb)
 {
@@ -438,7 +433,6 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 	}
 }
 
-
 /************** Traduccion */
 // tam_max_segmento = cant_entradas_por_tabla * tam_pagina
 // num_segmento = floor(dir_logica / tam_max_segmento)
@@ -446,8 +440,8 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 // num_pagina = floor(desplazamiento_segmento  / tam_pagina)
 // desplazamiento_pagina = desplazamiento_segmento % tam_pagina
 
-t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entradas_por_tabla, int tam_pagina, t_pcb *pcb){
-	
+t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entradas_por_tabla, int tam_pagina, t_pcb *pcb)
+{
 
 	printf(PRINT_COLOR_GREEN "\n---------------------------------------------------" PRINT_COLOR_RESET);
 	log_info(logger, "MMU entrando en acción...");
@@ -455,28 +449,24 @@ t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entrad
 	log_info(logger, "direccionLogica: %d", direccionLogica);
 	t_direccionFisica *dir_fisica = malloc(sizeof(t_direccionFisica));
 
-	int tamanio_maximo_segmento = tamanioMaximoPorSegmento(cant_entradas_por_tabla, tam_pagina); 
+	int tamanio_maximo_segmento = tamanioMaximoPorSegmento(cant_entradas_por_tabla, tam_pagina);
 	log_info(logger, "Tamanio Maximo Por Segmento = %d * %d = %d", cant_entradas_por_tabla, tam_pagina, tamanio_maximo_segmento);
 
 	int numero_segmento = numeroDeSegmento(direccionLogica, tamanioMaximoPorSegmento);
-	log_info(logger, "Número de Segmento = %d / %d = %d", direccionLogica,tamanio_maximo_segmento, numero_segmento);
+	log_info(logger, "Número de Segmento = %d / %d = %d", direccionLogica, tamanio_maximo_segmento, numero_segmento);
 
-	int desplazamiento_Segmento = desplazamientoSegmento( direccionLogica, tamanio_maximo_segmento);
-	log_info(logger, "Desplazamiento Segmento = %d ·/. %d = %d", direccionLogica,tamanio_maximo_segmento, desplazamiento_Segmento);
+	int desplazamiento_Segmento = desplazamientoSegmento(direccionLogica, tamanio_maximo_segmento);
+	log_info(logger, "Desplazamiento Segmento = %d ·/. %d = %d", direccionLogica, tamanio_maximo_segmento, desplazamiento_Segmento);
 
-	int numero_pagina= numeroPagina(desplazamiento_Segmento, tam_pagina);  // numero_pagina CAMBIAR A UINT_32 ??? o esta bien en int?? la misma pregunta por todos los demas int
+	int numero_pagina = numeroPagina(desplazamiento_Segmento, tam_pagina); // numero_pagina CAMBIAR A UINT_32 ??? o esta bien en int?? la misma pregunta por todos los demas int
 	log_info(logger, "Número Pagina = %d / %d = %d", desplazamiento_Segmento, tam_pagina, numero_pagina);
 
 	int desplazamiento_pagina = desplazamientoPagina(desplazamiento_Segmento, tam_pagina);
-	log_info(logger, "Desplazamiento Pagina = %d ·/. %d = %d", desplazamiento_Segmento, tam_pagina,desplazamiento_pagina);
+	log_info(logger, "Desplazamiento Pagina = %d ·/. %d = %d", desplazamiento_Segmento, tam_pagina, desplazamiento_pagina);
 
-	
 	printf(PRINT_COLOR_GREEN "---------------------------------------------------\n" PRINT_COLOR_RESET);
 
-    
-
-
-	t_tabla_segmentos *segmento = malloc(sizeof(t_tabla_segmentos)); //hacer el free(segmento);
+	t_tabla_segmentos *segmento = malloc(sizeof(t_tabla_segmentos)); // hacer el free(segmento);
 	segmento = list_get(pcb->tablaSegmentos, numero_segmento);
 	printf("\nel id del segmento es: %d\n", segmento->id);
 
@@ -488,70 +478,85 @@ t_direccionFisica* calcular_direccion_fisica(int direccionLogica,int cant_entrad
 	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n"PRINT_COLOR_RESET);
 	printf( "desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
 
-	if(desplazamiento_Segmento > segmento->tamanio){ // Uso el tamanio real
-		//Devolvemos el pcb a nuestro bello kernel
+	if (desplazamiento_Segmento > segmento->tamanio)
+	{ // Uso el tamanio real
+		// Devolvemos el pcb a nuestro bello kernel
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
 		log_debug(logger, "Envie de Nuevo el proceso para ser finalizado...");
-
-	} else if(nroMarco != -1){ // significa que La PAGINA ESTA EN LA TLB
+	}
+	else if (nroMarco != -1)
+	{ // significa que La PAGINA ESTA EN LA TLB
 		// Direccion fisica = Numero de marco * tamaño de marco + offset
-		//dirFisica = malloc(sizeof(t_direccionFisica));
+		// dirFisica = malloc(sizeof(t_direccionFisica));
 		dir_fisica->nroMarco = nroMarco;
 		dir_fisica->desplazamientoPagina = desplazamiento_pagina;
-	} else if(nroMarco == -1){ // COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
+	}
+	else if (nroMarco == -1)
+	{ // COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
 
 		int respuestaMemoriaPrimerAcceso = primer_acceso(numero_pagina, segmento->indiceTablaPaginas, pcb->id);
-		if(respuestaMemoriaPrimerAcceso==-1){ //respuesta PAGE FAULT
+		if (respuestaMemoriaPrimerAcceso == -1)
+		{ // respuesta PAGE FAULT
 			dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
-			//Devolvemos el pcb a nuestro bello kernel
+			// Devolvemos el pcb a nuestro bello kernel
 			MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensajeAKernelPageFault = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
 			mensajeAKernelPageFault->nro_pagina = numero_pagina;
 			mensajeAKernelPageFault->nro_segmento = numero_segmento;
 			pcb->program_counter--;
-			//mensajeAKernelPageFault->pcb =pcb;
-			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
-			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
-			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
+			// mensajeAKernelPageFault->pcb =pcb;
 
-		} else {
+			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
+			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
+			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
+			free(pcb);
+			// free(mensajeAKernelPageFault);
+		}
+		else
+		{
 			dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
-			dir_fisica->desplazamientoPagina = desplazamiento_pagina; //Checkear
-	
+			dir_fisica->desplazamientoPagina = desplazamiento_pagina; // Checkear
+
 			log_debug(logger, "El valor del marco es: %d", dir_fisica->nroMarco);
 			log_debug(logger, "El valor del offset es: %d", dir_fisica->desplazamientoPagina);
 			actualizar_TLB(numero_pagina, dir_fisica->nroMarco, numero_segmento, pcb->id);
 		}
 	}
-	
-	return dir_fisica;
 
+	return dir_fisica;
 }
 
-int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina){
+int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina)
+{
 	int tam_max_segmento = cant_entradas_por_tabla * tam_pagina;
 	return tam_max_segmento;
 }
 
-int numeroDeSegmento(int dir_logica, int tam_max_segmento){
+int numeroDeSegmento(int dir_logica, int tam_max_segmento)
+{
 	int num_segmento = floor(dir_logica / tam_max_segmento);
 	return num_segmento;
 }
-int desplazamientoSegmento(int dir_logica, int tam_max_segmento){
+
+int desplazamientoSegmento(int dir_logica, int tam_max_segmento)
+{
 	int desplazamiento_segmento = dir_logica % tam_max_segmento;
 	return desplazamiento_segmento;
 }
 
-int numeroPagina(int desplazamiento_segmento, int tam_pagina){
+int numeroPagina(int desplazamiento_segmento, int tam_pagina)
+{
 	int num_pagina = floor(desplazamiento_segmento / tam_pagina);
 	return num_pagina;
 }
 
-int desplazamientoPagina(int desplazamiento_segmento, int tam_pagina){
+int desplazamientoPagina(int desplazamiento_segmento, int tam_pagina)
+{
 	int desplazamiento_pagina = desplazamiento_segmento % tam_pagina;
 	return desplazamiento_pagina;
 }
 
-int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas,uint32_t pid){ 
+int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas, uint32_t pid)
+{
 	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS *mensajeAMemoriaAccesoTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
 	mensajeAMemoriaAccesoTP->idTablaDePaginas = indiceTablaPaginas;
 	mensajeAMemoriaAccesoTP->pagina = numero_pagina;
@@ -563,7 +568,7 @@ int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas,uint32_t pid){
 
 	t_paqt paqueteMemoria;
 	recibirMsje(conexion, &paqueteMemoria);
-	MSJ_INT* mensajePrimerAcceso = malloc(sizeof(MSJ_INT));
+	MSJ_INT *mensajePrimerAcceso = malloc(sizeof(MSJ_INT));
 	mensajePrimerAcceso = paqueteMemoria.mensaje;
 	switch (paqueteMemoria.header.tipoMensaje)
 	{
@@ -575,11 +580,10 @@ int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas,uint32_t pid){
 		log_info(logger, "(primer acceso)EL MARCO BUSCADO ES: %d", nroFrame);
 		return nroFrame;
 		break;
-	
+
 	default:
 		break;
 	}
-	
 }
 
 /*----------------------TLB------------------------------*/
@@ -589,7 +593,8 @@ void inicializarTLB(){
 
 	int cantidadEntradasTLB = configCPU.entradasTLB;
 
-	if(cantidadEntradasTLB==0){
+	if (cantidadEntradasTLB == 0)
+	{
 		habilitarTLB = 0;
 		return;
 	}
@@ -601,13 +606,15 @@ void inicializarTLB(){
 	TLB->algoritmo = configCPU.reemplazoTLB; // FIFO o LRU
 }
 
-int tlbTieneEntradasLibres(){ // Podria ser un Boole 
+int tlbTieneEntradasLibres()
+{ // Podria ser un Boole
 	return TLB->cant_entradas > TLB->entradas->elements_count;
 }
 
-//En este caso, la TLB tiene una o mas entradas libres // Revisar
-void llenar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
-	entrada_tlb* entrada = malloc(sizeof(entrada_tlb));
+// En este caso, la TLB tiene una o mas entradas libres // Revisar
+void llenar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
+{
+	entrada_tlb *entrada = malloc(sizeof(entrada_tlb));
 	entrada->nroPagina = nroPagina;
 	entrada->nroFrame = nroFrame;
 	entrada->nroSegmento = nroSegmento;
@@ -615,11 +622,10 @@ void llenar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
 	list_add_in_index(TLB->entradas, 0, entrada);
 	printf("lleno entrada tlb nro pagina %d, nro frame %d, nroSegmento %d, nro pid %d\n", entrada->nroPagina,entrada->nroFrame,entrada->nroSegmento, entrada->pid);
 	/**
-	* @NAME: list_add_in_index
-	* @DESC: Agrega un elemento en una posicion determinada de la lista
-	*/
-	//void list_add_in_index(t_list *, int index, void *element);
-
+	 * @NAME: list_add_in_index
+	 * @DESC: Agrega un elemento en una posicion determinada de la lista
+	 */
+	// void list_add_in_index(t_list *, int index, void *element);
 }
 
 //Deberia buscar por nro pagina y nroSegmento?
@@ -627,10 +633,12 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, i
 	entrada_tlb* entradaActual;
 	for(int i=0; i< TLB->entradas->elements_count; i++){
 		entradaActual = list_get(TLB->entradas, i);
-		if(entradaActual->nroPagina == nroPagina){
-			if(strcmp(TLB->algoritmo , "LRU")== 0){
-				entradaActual = list_remove(TLB->entradas,i);
-				list_add_in_index(TLB->entradas,0,entradaActual);
+		if (entradaActual->nroPagina == nroPagina)
+		{
+			if (strcmp(TLB->algoritmo, "LRU") == 0)
+			{
+				entradaActual = list_remove(TLB->entradas, i);
+				list_add_in_index(TLB->entradas, 0, entradaActual);
 			}
 
 	/**
@@ -647,7 +655,8 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, i
 		}
 	}
 
-	
+	// TLB Miss: “PID: <PID> - TLB MISS - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA>”
+
 	log_debug(logger, "TLB MISS - pagina no encontrada en TLB\n");
 
 	log_debug(logger, "TLB Miss: PID: <%i> - TLB MISS - Segmento: <%i> - Pagina: <%i> \n",entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina);
@@ -657,11 +666,12 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, i
 	return -1;
 }
 
+void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
+{
 
-void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
-
-	if(tlbTieneEntradasLibres()){
-		llenar_TLB(nroPagina, nroFrame,nroSegmento,pid);
+	if (tlbTieneEntradasLibres())
+	{
+		llenar_TLB(nroPagina, nroFrame, nroSegmento, pid);
 		return;
 	}
 
@@ -671,7 +681,6 @@ void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
 	} else {
 		reemplazo_algoritmo_fifo(nroPagina, nroFrame,nroSegmento,pid);
 	}
-
 }
 
 
@@ -680,19 +689,18 @@ void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid){
 void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid){ // int nroSegmento, int pid
 	int i = list_size(TLB->entradas);
 	i--;
-	entrada_tlb* nuevaEntrada = malloc(sizeof(entrada_tlb));
+	entrada_tlb *nuevaEntrada = malloc(sizeof(entrada_tlb));
 
 	nuevaEntrada->nroPagina = nroPagina;
 	nuevaEntrada->nroFrame = nroFrame;
 	nuevaEntrada->nroSegmento = nroSegmento;
 	nuevaEntrada->pid = pid;
 
-	entrada_tlb* entradaRemplazada = list_remove(TLB->entradas, i);
+	entrada_tlb *entradaRemplazada = list_remove(TLB->entradas, i);
 	log_warning(logger, "Reemplaza pagina: %d por nueva pagina %d", entradaRemplazada->nroPagina, nuevaEntrada->nroPagina);
 	printf("Reemplaza pagina: %d por nueva pagina %d", entradaRemplazada->nroPagina, nuevaEntrada->nroPagina);
 	free(entradaRemplazada);
 	list_add_in_index(TLB->entradas, 0, nuevaEntrada);
-
 }
 
 
@@ -704,29 +712,33 @@ void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int 
 	entradaNueva->nroSegmento = nroSegmento;
 	entradaNueva->pid = pid;
 
-	entrada_tlb* entradaAnterior = list_remove(TLB->entradas, TLB->cant_entradas-1);
+	entrada_tlb *entradaAnterior = list_remove(TLB->entradas, TLB->cant_entradas - 1);
 	log_warning(logger, "Reemplazo de pagina: %d por nueva pagina %d", entradaAnterior->nroPagina, entradaNueva->nroPagina);
-	printf(PRINT_COLOR_YELLOW "Reemplazo de pagina: %d por nueva pagina %d"PRINT_COLOR_RESET, entradaAnterior->nroPagina, entradaNueva->nroPagina);
+	printf(PRINT_COLOR_YELLOW "Reemplazo de pagina: %d por nueva pagina %d" PRINT_COLOR_RESET, entradaAnterior->nroPagina, entradaNueva->nroPagina);
 	list_add_in_index(TLB->entradas, 0, entradaNueva);
 	free(entradaAnterior);
 }
 
 // Freedoooom(?
 
-void destruir_entrada(void* entrada){
-	entrada_tlb* entradaTlb = (entrada_tlb*) entrada;
+void destruir_entrada(void *entrada)
+{
+	entrada_tlb *entradaTlb = (entrada_tlb *)entrada;
 	free(entradaTlb);
 }
 
-void limpiar_entradas_TLB(){
+void limpiar_entradas_TLB()
+{
 	list_clean_and_destroy_elements(TLB->entradas, destruir_entrada);
 }
 
-void cerrar_TLB(){
+void cerrar_TLB()
+{
 
-	entrada_tlb* entradaActual;
-	//Va destruyendo todas las entradas
-	for(int i=0; i< TLB->entradas->elements_count; i++){
+	entrada_tlb *entradaActual;
+	// Va destruyendo todas las entradas
+	for (int i = 0; i < TLB->entradas->elements_count; i++)
+	{
 		entradaActual = list_get(TLB->entradas, i);
 		list_remove_and_destroy_element(TLB->entradas, i, destruir_entrada);
 	}
