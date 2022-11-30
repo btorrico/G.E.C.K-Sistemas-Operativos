@@ -267,6 +267,7 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 			pagina->uso = 0;
 			pagina->nroMarco = 0;
 			pagina->nroPagina = i;
+			pagina->nroSegmento = tablaPagina->idTablaPag;
 
 			pagina->posicionSwap = tamanioSgtePagina; // tamanioSgtePagina = OFFSET = desplazamiento
 			fseek(swap, pagina->posicionSwap, SEEK_CUR);
@@ -531,7 +532,9 @@ void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *mar
 	}
 	else
 	{
+		printf("\n entro a los algoritmos de reemplazo\n");
 		implementa_algoritmo_susticion(infoRemplazo);
+		enviarResultado(socketAceptadoKernel, "Algoritmos de reemoplazo realizados correctamente");
 	}
 }
 
@@ -547,19 +550,20 @@ void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo)
 {
 	int marcoSiguiente = marcosPorProceso->marcoSiguiente;
-	infoRemplazo->idPagina = 2;
 
 	t_pagina *newPagina = malloc(sizeof(t_pagina));
 
 	for (int i = marcoSiguiente; i < list_size(marcosPorProceso->paginas); recorrer_marcos(marcoSiguiente))
 	{
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
-
-		if (pagina->nroPagina == infoRemplazo->idPagina)
+		log_info(logger, "Reemplazo - PID:", infoRemplazo->PID);
+		// nunca va a pasar por aca porque a esto lo maneja cpu como es por pf significa que lo que me manden lo va a estar cargado en memoria
+		/*if (pagina->nroPagina == infoRemplazo->idPagina)
 		{
 			pagina->uso = 1;
 			break;
-		}
+		}*/
+		// el puntero no tiene que moverse si la pagina ya esta cargada en memoria
 
 		if (pagina->uso == 0)
 		{
@@ -567,23 +571,25 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, i, newPagina);
 
+			log_info(logger, "Marco:", paginaVictima->nroMarco);
+			log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, newPagina->nroPagina);
+			log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
+
 			if (paginaVictima->modificacion == 1)
 			{
 				fseek(swap, paginaVictima->posicionSwap, SEEK_SET);
-				fwrite(paginaVictima, sizeof(paginaVictima), NULL, swap);
+				fwrite(paginaVictima, sizeof(t_pagina), NULL, swap);
 			}
 
-			newPagina->nroMarco = marcoSiguiente;
-			marcoSiguiente = recorrer_marcos(marcoSiguiente);
+			newPagina->nroMarco = paginaVictima->nroMarco;
+			marcosPorProceso->marcoSiguiente = recorrer_marcos(marcoSiguiente); // para que el puntero al siguiente siga abanzando
 			newPagina->uso = 1;
 
 			break;
 		}
 		else if (pagina->uso == 1)
 		{
-
 			pagina->uso = 0;
-			marcoSiguiente = recorrer_marcos(marcoSiguiente);
 		}
 	}
 }
@@ -614,6 +620,7 @@ t_pagina *buscarPagina(t_info_remplazo *infoRemplazo)
 	}
 }
 
+
 int recorrer_marcos(int marcoSiguiente)
 {
 	if (marcoSiguiente == configMemoria.marcosPorProceso)
@@ -635,17 +642,15 @@ int buscar_marco_vacio() // devuelve la primera posicion del marco vacio, ver bi
 	for (int i = 0; i < list_size(LISTA_BITMAP_MARCO); i++)
 	{
 		t_bitmap_marcos_libres *marcoLibre = list_get(LISTA_BITMAP_MARCO, i);
-		
+
 		if (marcoLibre->uso == 0)
 		{
 			printf("\nencontre un marco libre!!\n");
-			//marcoLibre->nroMarco = i;
+			// marcoLibre->nroMarco = i;
 			marcoLibre->uso = 1;
 			printf("\nnroMArco: %d, bit de uso: %d\n", marcoLibre->nroMarco, marcoLibre->uso);
 			return i;
-			
 		}
-		
 	}
 
 	return -1;
@@ -657,9 +662,9 @@ void inicializar_bitmap()
 	{
 		t_bitmap_marcos_libres *marcoLibre = malloc(sizeof(t_bitmap_marcos_libres));
 		marcoLibre->nroMarco = i;
-		
+
 		marcoLibre->uso = 0;
-		
+
 		list_add(LISTA_BITMAP_MARCO, marcoLibre);
 	}
 }
@@ -703,10 +708,12 @@ void implementa_algoritmo_susticion(t_info_remplazo *infoRemplazo)
 	switch (obtenerAlgoritmoSustitucion())
 	{
 	case CLOCK:
+		printf("\nEntrando a algoritmo Clock\n");
 		algoritmo_reemplazo_clock(infoRemplazo);
 		break;
 
 	case CLOCK_MODIFICADO:
+		printf("\nEntrando a algoritmo Clock Modificado\n");
 		algoritmo_reemplazo_clock_modificado(infoRemplazo);
 		break;
 
