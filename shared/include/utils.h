@@ -82,6 +82,13 @@ typedef struct {
 	int pid;
 } MSJ_MEMORIA_CPU_LEER;
 
+typedef struct {
+	int nroMarco;
+	int desplazamiento;
+	int valorAEscribir;
+	int pid;
+}MSJ_MEMORIA_CPU_ESCRIBIR;
+
 typedef struct
 {
 	int numero;
@@ -181,28 +188,28 @@ typedef enum
 
 extern int contadorIdPCB;
 typedef enum {
-	INSTRUCCIONES,    				//entre consola-kernel 0
-	TERMINAR_CONSOLA,				//entre consola-kernel 1
-	DISPATCH_PCB,     				//entre kernel-cpu 2
-	BLOCK_PCB_IO_TECLADO,			//entre kernel-cpu 3
-	BLOCK_PCB_IO_PANTALLA,			//entre kernel-cpu 4
-	BLOCK_PCB_IO,					//entre kernel-cpu 5
-	BLOCK_PCB_PAGE_FAULT,			//entre kernel-cpu 6
-	INTERRUPT_INTERRUPCION,			//entre kernel-cpu 7
-	EXIT_PCB,						//entre kernel-cpu 8
-	PASAR_A_READY,					//entre kernel-memoria 9
-	SUSPENDER,						//entre kernel-memoria 10
-	PASAR_A_EXIT,					//entre kernel-memoria 11
-	CONFIG_DIR_LOG_A_FISICA,   	 	//entre cpu-memoria: 12 ESTO ES PARA PASAR LA CONFIGURACION DE LAS DIRECCIONES, ES EN EL INIT DE LA CPU 
-	ACCESO_MEMORIA_TABLA_DE_PAG,	//entre cpu-memoria: 13 ESTO ES PARA ACCEDER A LA TABLA DE PAGINAS EN MEMORIA Y BUSCAR EL FRAME
-	RESPUESTA_MEMORIA_MARCO_BUSCADO, //entre memoria-cpu: 14 despues de buscar en la tabla de pagina y encontrar el marco buscado se lo retorna a cpu
-	ACCESO_MEMORIA_LEER,			//entre cpu-memoria 15
-	ACCESO_MEMORIA_WRITE,			//entre cpu-memoria 16
-	HANDSHAKE_INICIAL,				//entre cpu-memoria 17
-	LIBERAR_RECURSOS,				//18
-	ASIGNAR_RECURSOS,				//19
-	SEGMENTATION_FAULT,				//entre cpu-kernel 20
-	PAGE_FAULT, 					//entre memoria-cpu	21
+	INSTRUCCIONES,    				//entre consola-kernel
+	TERMINAR_CONSOLA,				//entre consola-kernel
+	DISPATCH_PCB,     				//entre kernel-cpu
+	BLOCK_PCB_IO_TECLADO,			//entre kernel-cpu
+	BLOCK_PCB_IO_PANTALLA,			//entre kernel-cpu
+	BLOCK_PCB_IO,					//entre kernel-cpu
+	BLOCK_PCB_PAGE_FAULT,			//entre kernel-cpu
+	INTERRUPT_INTERRUPCION,			//entre kernel-cpu
+	EXIT_PCB,						//entre kernel-cpu
+	PASAR_A_READY,					//entre kernel-memoria
+	SUSPENDER,						//entre kernel-memoria
+	PASAR_A_EXIT,					//entre kernel-memoria
+	CONFIG_DIR_LOG_A_FISICA,   	 	//entre cpu-memoria: ESTO ES PARA PASAR LA CONFIGURACION DE LAS DIRECCIONES, ES EN EL INIT DE LA CPU 
+	ACCESO_MEMORIA_TABLA_DE_PAG,	//entre cpu-memoria: ESTO ES PARA ACCEDER A LA TABLA DE PAGINAS EN MEMORIA Y BUSCAR EL FRAME
+	RESPUESTA_MEMORIA_MARCO_BUSCADO, //entre memoria-cpu: despues de buscar en la tabla de pagina y encontrar el marco buscado se lo retorna a cpu
+	ACCESO_MEMORIA_LEER,			//entre cpu-memoria
+	ACCESO_MEMORIA_ESCRIBIR,			//entre cpu-memoria
+	HANDSHAKE_INICIAL,
+	LIBERAR_RECURSOS,
+	ASIGNAR_RECURSOS,
+	SEGMENTATION_FAULT,				//entre cpu-kernel
+	PAGE_FAULT, 					//entre memoria-cpu	
 } t_tipoMensaje;
 
 typedef enum

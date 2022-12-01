@@ -202,12 +202,8 @@ bool cicloInstruccion(t_pcb *pcb)
 		free(registro);
 		break;
 
-	case MOV_OUT:
-	// MOV_OUT (Dirección Lógica, Registro): Lee el valor del Registro y lo escribe en la dirección física de 
-	// memoria del segmento de Datos obtenida a partir de la Dirección Lógica.
-	break;
-
 	case MOV_IN:
+		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion MOV_IN - Etapa Execute \n" PRINT_COLOR_CYAN);
 		log_debug(logger, "Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL %i", insActual->paramInt);
 		//traducir valor paramint para asignarlo despues a registroCPU
 	
@@ -245,8 +241,47 @@ bool cicloInstruccion(t_pcb *pcb)
 		    free(mensajeAMemoriaLeer);
 			free(mensajeValorLeido);
 			
-		}
-		break;
+		}break;
+	
+	case MOV_OUT:
+		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion MOV_OUT - Etapa Execute \n" PRINT_COLOR_CYAN);
+	// MOV_OUT (Dirección Lógica, Registro): Lee el valor del Registro y lo escribe en la dirección física de 
+	// memoria del segmento de Datos obtenida a partir de la Dirección Lógica.
+		
+		log_debug(logger, "MOV_OUT %d %s", insActual->paramInt, registro);
+		
+		//printf("%d",(int) insActual->paramReg[0]);//devuelve 3
+		uint32_t registroActual = matchearRegistro(pcb->registros, insActual->paramReg[0]);
+		printf("%d",registroActual); //devuelve el valor que tiene dentro el registro
+
+		t_direccionFisica* dirFisicaMoveOut = malloc(sizeof(t_direccionFisica));
+		dirFisicaMoveOut = calcular_direccion_fisica(insActual->paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina,pcb);
+	    log_debug(logger, "dir fisica: nroMarco= %d offset=%d", dirFisicaMoveOut->nroMarco,dirFisicaMoveOut->desplazamientoPagina);
+
+			MSJ_MEMORIA_CPU_ESCRIBIR* mensajeAMemoriaEscribir = malloc(sizeof(MSJ_MEMORIA_CPU_ESCRIBIR));
+			mensajeAMemoriaEscribir->desplazamiento = dirFisicaMoveOut->desplazamientoPagina;
+			mensajeAMemoriaEscribir->nroMarco = dirFisicaMoveOut->nroMarco;
+			mensajeAMemoriaEscribir->valorAEscribir = registroActual;
+			mensajeAMemoriaEscribir->pid = pcb->id;
+
+			log_debug(logger, "valor a escribir = %i", registroActual);
+
+			enviarMsje(conexion, CPU, mensajeAMemoriaEscribir, sizeof(MSJ_MEMORIA_CPU_ESCRIBIR), ACCESO_MEMORIA_ESCRIBIR);
+			log_debug(logger, "Envie direccion fisica a memoria swap\n");
+
+			t_paqt paqueteMemoriaWrite;
+			recibirMsje(conexion, &paqueteMemoriaWrite);
+
+			char* mensajeWrite = string_new();
+			string_append(&mensajeWrite, paqueteMemoriaWrite.mensaje);
+
+			log_debug(logger, "Mensaje escrito: %s", mensajeWrite);
+
+			free(mensajeWrite);
+			free(dirFisicaMoveOut);
+			free(mensajeAMemoriaEscribir);
+			break;
+
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
 		// pcb->program_counter += 1;
