@@ -543,20 +543,22 @@ void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
 	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, infoRemplazo->PID - 1);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
-
+	printf("\n Estoy en algoritmo clock\n");
 	primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
 }
 
 void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo)
 {
-	int marcoSiguiente = marcosPorProceso->marcoSiguiente;
 
-	t_pagina *newPagina = malloc(sizeof(t_pagina));
-
-	for (int i = marcoSiguiente; i < list_size(marcosPorProceso->paginas); recorrer_marcos(marcoSiguiente))
+	printf("\n Estoy en algoritmo clock primer recorrido \n");
+	marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente);
+	
+	for (int i = marcosPorProceso->marcoSiguiente; i < list_size(marcosPorProceso->paginas); recorrer_marcos(marcosPorProceso->marcoSiguiente))
 	{
+		log_debug(logger, "entre al for");
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
-		log_info(logger, "Reemplazo - PID:", infoRemplazo->PID);
+		log_info(logger, "Reemplazo - PID: %d", infoRemplazo->PID);
+
 		// nunca va a pasar por aca porque a esto lo maneja cpu como es por pf significa que lo que me manden lo va a estar cargado en memoria
 		/*if (pagina->nroPagina == infoRemplazo->idPagina)
 		{
@@ -567,11 +569,15 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 		if (pagina->uso == 0)
 		{
-			newPagina = buscarPagina(infoRemplazo);
+			t_pagina* newPagina = buscarPagina(infoRemplazo);
+
+			newPagina->nroMarco = pagina->nroMarco;
+			newPagina->uso = 1;
+			newPagina->presencia = 1;
 
 			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, i, newPagina);
 
-			log_info(logger, "Marco:", paginaVictima->nroMarco);
+			log_info(logger, "Marco:%d", paginaVictima->nroMarco);
 			log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, newPagina->nroPagina);
 			log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
 
@@ -580,11 +586,7 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 				fseek(swap, paginaVictima->posicionSwap, SEEK_SET);
 				fwrite(paginaVictima, sizeof(t_pagina), NULL, swap);
 			}
-
-			newPagina->nroMarco = paginaVictima->nroMarco;
-			marcosPorProceso->marcoSiguiente = recorrer_marcos(marcoSiguiente); // para que el puntero al siguiente siga abanzando
-			newPagina->uso = 1;
-
+			marcosPorProceso->marcoSiguiente = recorrer_marcos(i); // para que el puntero al siguiente siga abanzando
 			break;
 		}
 		else if (pagina->uso == 1)
@@ -620,7 +622,6 @@ t_pagina *buscarPagina(t_info_remplazo *infoRemplazo)
 	}
 }
 
-
 int recorrer_marcos(int marcoSiguiente)
 {
 	if (marcoSiguiente == configMemoria.marcosPorProceso)
@@ -635,6 +636,61 @@ int recorrer_marcos(int marcoSiguiente)
 
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 {
+	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
+	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, infoRemplazo->PID - 1);
+	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
+
+	t_pagina *pagina = NULL;
+	while (pagina == NULL)
+	{
+		pagina = buscarMarcoSegun(marcosPorProceso, infoRemplazo, 0, 0);
+		if (pagina == NULL)
+		{ // si no encontro pagina en (0-0) cambio uso
+			pagina = buscarMarcoSegun(marcosPorProceso, infoRemplazo, 0, 1);
+		}
+	}
+	t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente, pagina);
+
+	log_info(logger, "Marco:%d", paginaVictima->nroMarco);
+	log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, pagina->nroPagina);
+	log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
+
+	if (paginaVictima->modificacion == 1)
+	{
+		fseek(swap, paginaVictima->posicionSwap, SEEK_SET);
+		fwrite(paginaVictima, sizeof(t_pagina), NULL, swap);
+	}
+
+	pagina->nroMarco = paginaVictima->nroMarco;
+	marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente); // para que el puntero al siguiente siga abanzando
+	pagina->uso = 1;
+	pagina->presencia = 1;
+}
+
+t_pagina *buscarMarcoSegun(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo, int uso, int modificado)
+{
+
+	int i = marcosPorProceso->marcoSiguiente;
+
+	while (1)
+	{
+		t_pagina *pagina = list_get(marcosPorProceso, i);
+		if (pagina->uso == uso && pagina->modificacion == modificado)
+		{
+			marcosPorProceso->marcoSiguiente = i;
+			return pagina;
+		}
+		// solo entra en busqueda de (0-1)
+		if (modificado == 1)
+		{
+			pagina->uso = 0;
+		}
+		i = recorrer_marcos(i);
+		if (i == marcosPorProceso->marcoSiguiente)
+		{ // si pego la vuelta, inicio
+			return NULL;
+		}
+	}
 }
 
 int buscar_marco_vacio() // devuelve la primera posicion del marco vacio, ver bien esto, tiene que incrementar
@@ -679,6 +735,8 @@ void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo
 	t_pagina *pagina = buscarPagina(infoReemplazo);
 
 	pagina->nroMarco = posicionMarcoLibre;
+	pagina->uso = 1;
+	pagina->presencia = 1;
 
 	printf("\nEl numero de marco asignado a la pagina es: %d", pagina->nroMarco);
 

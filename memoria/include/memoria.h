@@ -127,6 +127,7 @@ int buscarSegmento(t_info_remplazo *);
 void accesoMemoriaTP(int, int, int,int);
 				
 void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado);
+t_pagina *buscarMarcoSegun(t_marcos_por_proceso*,t_info_remplazo*,int, int);
 
 int contadorIdPCB;
 int socketAceptadoKernel;
