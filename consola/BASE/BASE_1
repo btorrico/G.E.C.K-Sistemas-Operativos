@@ -1,9 +1,5 @@
 SET AX 1
 SET BX 1
-<<<<<<< HEAD
-MOV_IN CX 16
-=======
->>>>>>> pageFault
 SET CX 1
 SET DX 1
 ADD AX BX

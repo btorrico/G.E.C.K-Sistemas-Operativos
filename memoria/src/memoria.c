@@ -444,8 +444,8 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 		}
 	}
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-	//corte=false; //para probar page fault -- BORRAR LUEGO DE PROBAR
-	if(corte==true){ // REVISAR
+	
+	if(pagina->presencia==1){ 
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 	marcoBuscado = pagina->nroMarco;
 	log_debug(logger,"[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
@@ -461,7 +461,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 	log_debug(logger,"Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
 				pid, pagina->nroPagina, marcoBuscado); //LOG OBLIGATORIO
 	}
-	else
+	else if(pagina->presencia==0)
 	{ // la pag no esta en ram. Retornar PAGE FAULT
 
 		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));

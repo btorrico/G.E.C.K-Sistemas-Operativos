@@ -74,6 +74,7 @@ void iniciar_servidor_dispatch()
 			retornePCB = cicloInstruccion(pcb);
 
 			checkInterrupt(pcb, retornePCB);
+			printf("\nretornePCB %d\n",retornePCB);
 		} while (!interrupciones && !retornePCB);
 		printf("\nSali del while infinito\n");
 	}
@@ -215,7 +216,9 @@ bool cicloInstruccion(t_pcb *pcb)
 			dirFisicaMoveIn = calcular_direccion_fisica(insActual->paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina,pcb); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
 			
 			if(dirFisicaMoveIn->nroMarco == -1){
+				retornePCB = true;
 				printf("se envio info a kernel por page fault");
+			
 			} else{
 			MSJ_MEMORIA_CPU_LEER* mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
 
@@ -241,8 +244,9 @@ bool cicloInstruccion(t_pcb *pcb)
 		    free(dirFisicaMoveIn);
 		    free(mensajeAMemoriaLeer);
 			free(mensajeValorLeido);
-			break;
+			
 		}
+		break;
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
 		// pcb->program_counter += 1;
@@ -279,7 +283,7 @@ bool cicloInstruccion(t_pcb *pcb)
 	default:
 		break;
 	}
-
+	printf("\nretornePCB%d\n",retornePCB);
 	return retornePCB;
 }
 
@@ -503,12 +507,13 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 			mensajeAKernelPageFault->nro_pagina = numero_pagina;
 			mensajeAKernelPageFault->nro_segmento = numero_segmento;
 			pcb->program_counter--;
+			
 			// mensajeAKernelPageFault->pcb =pcb;
 
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
 			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
 			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
-			free(pcb);
+			//free(pcb);
 			// free(mensajeAKernelPageFault);
 		}
 		else
