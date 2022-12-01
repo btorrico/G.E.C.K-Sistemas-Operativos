@@ -162,6 +162,6 @@ void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int 
 void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid);
 void cerrar_TLB();
 void destruir_entrada(void* entry);
-
+void imprimirModificacionTlb();
 
 #endif
