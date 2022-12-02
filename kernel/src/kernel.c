@@ -117,7 +117,7 @@ void conectar_dispatch()
 		printf("\n Id proceso nuevo que llego de cpu: %d", pcb->id);
 
 		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter - 1);
-		printf("\n dispositivo %s" , dispositivoToString(insActual->paramIO));
+		// printf("\n dispositivo %s" , dispositivoToString(insActual->paramIO));
 
 		char *dispositivoIO;
 
@@ -166,9 +166,10 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO:
-			pthread_t thrBloqueoGeneralImpresora, thrBloqueoGeneralDisco,thrBloqueoGeneralUsb,thrBloqueoGeneralAudio,thrBloqueoGeneralWifi;
+			printf("\nentro al case block io");
+			pthread_t thrBloqueoGeneralImpresora, thrBloqueoGeneralDisco, thrBloqueoGeneralUsb, thrBloqueoGeneralAudio, thrBloqueoGeneralWifi;
 			dispositivoIO = dispositivoToString(insActual->paramIO);
-			printf("\n dispositivo %s" , dispositivoIO);
+			printf("\n dispositivo %s\n", dispositivoIO);
 
 			if (!strcmp("DISCO", dispositivoIO))
 			{
@@ -224,8 +225,8 @@ void conectar_dispatch()
 			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, NULL);
 
 			pthread_detach(thrBloqueoPageFault);
-		
-	sem_post(&contador_pcb_running);
+
+			sem_post(&contador_pcb_running);
 			// log_debug(logger, "Llego : 'PID:  %d - Por PAGE FAULT: %s '");
 			break;
 		case INTERRUPT_INTERRUPCION:
@@ -668,6 +669,18 @@ char *dispositivoToString(t_IO dispositivo)
 		break;
 	case IMPRESORA:
 		string_append(&string, "IMPRESORA");
+		return string;
+		break;
+	case WIFI:
+		string_append(&string, "WIFI");
+		return string;
+		break;
+	case AUDIO:
+		string_append(&string, "AUDIO");
+		return string;
+		break;
+	case USB:
+		string_append(&string, "USB");
 		return string;
 		break;
 	default:

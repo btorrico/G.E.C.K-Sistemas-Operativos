@@ -327,7 +327,7 @@ void iniciar_listas_y_semaforos()
 	sem_init(&contador_bloqueo_impresora_running, 0, 1);
 	sem_init(&contador_bloqueo_wifi_running, 0, 1);
 	sem_init(&contador_bloqueo_usb_running, 0, 1);
-	sem_init(&contador_bloqueo_wifi_running, 0, 1);
+	sem_init(&contador_bloqueo_audio_running, 0, 1);
 	sem_init(&sem_llamar_feedback, 0, 0);
 }
 
