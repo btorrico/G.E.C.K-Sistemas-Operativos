@@ -336,15 +336,14 @@ void agregar_pagina_a_tabla_paginas(t_tabla_paginas *tablaPagina, t_pagina *pagi
 
 void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 {
-	log_debug(logger, "[INIT - ACCESO_MEMORIA_READ] DIR_FISICA: %d%d",
+	log_debug(logger, "[INIT - ACCESO_MEMORIA_READ] DIR_FISICA: %d  %d",
 			  df->nroMarco, df->desplazamientoPagina);
 
 	int nroFrame = df->nroMarco;
 	int desplazamiento = df->desplazamientoPagina;
 	int tamanioFrame = configMemoria.tamPagina;
 	int cantidadTotalDeFrames = tamanio;
-	void* aLeer = malloc(tamanioFrame-desplazamiento);
-	int valorLeido;
+	void* aLeer = malloc(sizeof(uint32_t));
 	MSJ_STRING *msjeError;
 
 	// valido que el offset sea valido
@@ -359,45 +358,40 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 				  df->nroMarco, df->desplazamientoPagina);
 		return;
 	}
-
-	// valido que el nro frame sea valido
-	if (nroFrame > cantidadTotalDeFrames)
-	{
-		usleep(configMemoria.retardoMemoria * 1000);
-		msjeError = malloc(sizeof(MSJ_STRING));
-		string_append(&msjeError->cadena, "ERROR_NRO_FRAME");
-		enviarMsje(socketAceptado, MEMORIA, msjeError, sizeof(MSJ_STRING), ACCESO_MEMORIA_LEER);
-		free(msjeError);
-		log_error(logger, "[ACCESO_MEMORIA_READ] NRO DE FRAME INEXISTENTE.  DIR_FISICA: %d%d",
-				  df->nroMarco, df->desplazamientoPagina);
-		return;
-	}
-
+	uint32_t  aux = 9;   ////miesntras no tengamos moveout lo hardcodeamos
+	uint32_t * aux2 =&aux;  //miesntras no tengamos moveout lo hardcodeamos
 	pthread_mutex_lock(&mutex_void_memoria_ram);
-	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, tamanioFrame - desplazamiento);
+	memcpy(memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento,aux2, sizeof(uint32_t)); //miesntras no tengamos moveout lo hardcodeamos
+	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
+	
+	printf("aLeer%d",*(uint32_t*)aLeer);
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
-	char **cosa2 = string_array_new();
-	cosa2 = string_split((char *)aLeer, "*");
-	char *leidoStringArray = string_new();
-	int size = string_array_size(cosa2) - 1;
-	for (int i = 0; i < size; i++)
-	{
-		string_append(&leidoStringArray, cosa2[i]);
-	}
-	valorLeido = atoi(leidoStringArray);
+	//*puntero es el contenido 
+	//&variable es la direccion
 
-	log_debug(logger, "Valor Leido: %s", leidoStringArray);
+	log_debug(logger, "Valor Leido: %s", aLeer);
 
 	usleep(configMemoria.retardoMemoria * 1000);
 
 	/***********************************************/
+	
 	t_tabla_paginas *tablaPaginas;
 	t_pagina *pagina;
-	bool update = false;
-	pthread_mutex_lock(&mutex_lista_tabla_paginas);
-	for (int i = 0; i < list_size(LISTA_TABLA_PAGINAS) && !update; i++)
+
+	
+	t_list* listaTablas = filtrarPorPIDTabla(pid);
+
+	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
+	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
+	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
+
+	pagina = list_get(marcosPorProceso->paginas,pagina->nroMarco%4);
+	pagina->uso = 1;
+
+
+/* 	for (int i = 0; i < list_size(listaTablas) && !update; i++)
 	{
-		tablaPaginas = list_get(LISTA_TABLA_PAGINAS, i);
+		tablaPaginas = list_get(listaTablas, i);
 		for (int j = 0; j < list_size(tablaPaginas->paginas) && !update; j++)
 		{
 			pagina = list_get(tablaPaginas->paginas, j);
@@ -407,15 +401,12 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 				update = true;
 			}
 		}
-	}
-	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+	} */
 
 	/***********************************************/
 	MSJ_INT *mensajeRead = malloc(sizeof(MSJ_INT));
-	mensajeRead->numero = valorLeido;
+	mensajeRead->numero = *(uint32_t*)aLeer;
 	enviarMsje(socketAceptado, MEMORIA, mensajeRead, sizeof(MSJ_INT), ACCESO_MEMORIA_LEER);
-	free(leidoStringArray);
-	free(cosa2);
 	free(mensajeRead);
 
 	log_debug(logger, "ACCESO_MEMORIA_READ DIR_FISICA: frame%d offset%d",

@@ -230,9 +230,10 @@ bool cicloInstruccion(t_pcb *pcb)
 			MSJ_INT* mensajeValorLeido = malloc(sizeof(MSJ_INT));
 			mensajeValorLeido = paqueteMemoria.mensaje;
 
-			uint32_t registroActual = matchearRegistro(pcb->registros, insActual->paramReg[0]);
+			
 			
 			asignarValorARegistro(pcb, insActual->paramReg[0], mensajeValorLeido->numero);
+			uint32_t registroActual = matchearRegistro(pcb->registros, insActual->paramReg[0]);
 			
 			log_debug(logger, "Mensaje leido: %d", mensajeValorLeido->numero);
 			log_debug(logger, "Registro %s = %d", registro, registroActual); 
