@@ -126,6 +126,7 @@ t_pagina *buscarPagina (t_info_remplazo *);
 void accesoMemoriaTP(int, int, int,int);
 				
 void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado);
+void accesoMemoriaEscribir(t_direccionFisica* dirFisica, uint32_t valorAEscribir, int pid, int socketAceptado);
 
 int contadorIdPCB;
 int socketAceptadoKernel;

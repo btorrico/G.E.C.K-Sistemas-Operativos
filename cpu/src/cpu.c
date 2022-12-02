@@ -7,9 +7,9 @@ int main(char argc, char **argv)
 
 	config = iniciar_config("cpu.config");
 
-		extraerDatosConfig(config);
-	    inicializarTLB();
-		pthread_t thrDispatchKernel, thrInterruptKernel, thrMemoria;
+	extraerDatosConfig(config);
+	inicializarTLB();
+	pthread_t thrDispatchKernel, thrInterruptKernel, thrMemoria;
 
 	pthread_create(&thrDispatchKernel, NULL, (void *)iniciar_servidor_dispatch, NULL);
 	pthread_create(&thrInterruptKernel, NULL, (void *)iniciar_servidor_interrupt, NULL);
@@ -74,7 +74,7 @@ void iniciar_servidor_dispatch()
 			retornePCB = cicloInstruccion(pcb);
 
 			checkInterrupt(pcb, retornePCB);
-			printf("\nretornePCB %d\n",retornePCB);
+			printf("\nretornePCB %d\n", retornePCB);
 		} while (!interrupciones && !retornePCB);
 		printf("\nSali del while infinito\n");
 	}
@@ -205,18 +205,20 @@ bool cicloInstruccion(t_pcb *pcb)
 	case MOV_IN:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion MOV_IN - Etapa Execute \n" PRINT_COLOR_CYAN);
 		log_debug(logger, "Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL %i", insActual->paramInt);
-		//traducir valor paramint para asignarlo despues a registroCPU
-	
-		t_direccionFisica* dirFisicaMoveIn = malloc(sizeof(t_direccionFisica));
-			
-			dirFisicaMoveIn = calcular_direccion_fisica(insActual->paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina,pcb); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
-			
-			if(dirFisicaMoveIn->nroMarco == -1){
-				retornePCB = true;
-				printf("se envio info a kernel por page fault");
-			
-			} else{
-			MSJ_MEMORIA_CPU_LEER* mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
+		// traducir valor paramint para asignarlo despues a registroCPU
+
+		t_direccionFisica *dirFisicaMoveIn = malloc(sizeof(t_direccionFisica));
+
+		dirFisicaMoveIn = calcular_direccion_fisica(insActual->paramInt, configCPU.cantidadEntradasPorTabla, configCPU.tamanioPagina, pcb); // Para el calculo de la DF no necesitariamos tambien incluir el indice de la tabla de paginas como parametro?????
+
+		if (dirFisicaMoveIn->nroMarco == -1)
+		{
+			retornePCB = true;
+			printf("se envio info a kernel por page fault");
+		}
+		else
+		{
+			MSJ_MEMORIA_CPU_LEER *mensajeAMemoriaLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
 
 			mensajeAMemoriaLeer->desplazamiento = dirFisicaMoveIn->desplazamientoPagina;
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
@@ -224,42 +226,46 @@ bool cicloInstruccion(t_pcb *pcb)
 			enviarMsje(conexion, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_LEER);
 			log_debug(logger, "Envie direccion fisica a memoria: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
-
-		 	t_paqt paqueteMemoria;
+			t_paqt paqueteMemoria;
 			recibirMsje(conexion, &paqueteMemoria);
-			MSJ_INT* mensajeValorLeido = malloc(sizeof(MSJ_INT));
+			MSJ_INT *mensajeValorLeido = malloc(sizeof(MSJ_INT));
 			mensajeValorLeido = paqueteMemoria.mensaje;
 
-			
-			
 			asignarValorARegistro(pcb, insActual->paramReg[0], mensajeValorLeido->numero);
 			uint32_t registroActual = matchearRegistro(pcb->registros, insActual->paramReg[0]);
-			
-			log_debug(logger, "Mensaje leido: %d", mensajeValorLeido->numero);
-			log_debug(logger, "Registro %s = %d", registro, registroActual); 
 
-		    free(dirFisicaMoveIn);
-		    free(mensajeAMemoriaLeer);
+			log_debug(logger, "Mensaje leido: %d", mensajeValorLeido->numero);
+			log_debug(logger, "Registro %s = %d", registro, registroActual);
+
+			free(dirFisicaMoveIn);
+			free(mensajeAMemoriaLeer);
 			free(mensajeValorLeido);
-			
-		}break;
-	
+		}
+		break;
+
 	case MOV_OUT:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion MOV_OUT - Etapa Execute \n" PRINT_COLOR_CYAN);
-	// MOV_OUT (Dirección Lógica, Registro): Lee el valor del Registro y lo escribe en la dirección física de 
-	// memoria del segmento de Datos obtenida a partir de la Dirección Lógica.
-		
+		// MOV_OUT (Dirección Lógica, Registro): Lee el valor del Registro y lo escribe en la dirección física de
+		// memoria del segmento de Datos obtenida a partir de la Dirección Lógica.
+
 		log_debug(logger, "MOV_OUT %d %s", insActual->paramInt, registro);
-		
-		//printf("%d",(int) insActual->paramReg[0]);//devuelve 3
+
 		uint32_t registroActual = matchearRegistro(pcb->registros, insActual->paramReg[0]);
-		printf("%d",registroActual); //devuelve el valor que tiene dentro el registro
+		printf("%s = %d", registro, registroActual); // devuelve el valor que tiene dentro el registro
 
-		t_direccionFisica* dirFisicaMoveOut = malloc(sizeof(t_direccionFisica));
-		dirFisicaMoveOut = calcular_direccion_fisica(insActual->paramInt,configCPU.cantidadEntradasPorTabla,configCPU.tamanioPagina,pcb);
-	    log_debug(logger, "dir fisica: nroMarco= %d offset=%d", dirFisicaMoveOut->nroMarco,dirFisicaMoveOut->desplazamientoPagina);
+		t_direccionFisica *dirFisicaMoveOut = malloc(sizeof(t_direccionFisica));
+		dirFisicaMoveOut = calcular_direccion_fisica(insActual->paramInt, configCPU.cantidadEntradasPorTabla, configCPU.tamanioPagina, pcb);
+		if (dirFisicaMoveOut->nroMarco == -1)
+		{
+			retornePCB = true;
+			printf("se envio info a kernel por page fault");
+		}
+		else
+		{
 
-			MSJ_MEMORIA_CPU_ESCRIBIR* mensajeAMemoriaEscribir = malloc(sizeof(MSJ_MEMORIA_CPU_ESCRIBIR));
+			log_debug(logger, "dir fisica: nroMarco= %d offset=%d", dirFisicaMoveOut->nroMarco, dirFisicaMoveOut->desplazamientoPagina);
+
+			MSJ_MEMORIA_CPU_ESCRIBIR *mensajeAMemoriaEscribir = malloc(sizeof(MSJ_MEMORIA_CPU_ESCRIBIR));
 			mensajeAMemoriaEscribir->desplazamiento = dirFisicaMoveOut->desplazamientoPagina;
 			mensajeAMemoriaEscribir->nroMarco = dirFisicaMoveOut->nroMarco;
 			mensajeAMemoriaEscribir->valorAEscribir = registroActual;
@@ -273,7 +279,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			t_paqt paqueteMemoriaWrite;
 			recibirMsje(conexion, &paqueteMemoriaWrite);
 
-			char* mensajeWrite = string_new();
+			char *mensajeWrite = string_new();
 			string_append(&mensajeWrite, paqueteMemoriaWrite.mensaje);
 
 			log_debug(logger, "Mensaje escrito: %s", mensajeWrite);
@@ -281,7 +287,8 @@ bool cicloInstruccion(t_pcb *pcb)
 			free(mensajeWrite);
 			free(dirFisicaMoveOut);
 			free(mensajeAMemoriaEscribir);
-			break;
+		}
+		break;
 
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
@@ -319,7 +326,7 @@ bool cicloInstruccion(t_pcb *pcb)
 	default:
 		break;
 	}
-	printf("\nretornePCB%d\n",retornePCB);
+	printf("\nretornePCB%d\n", retornePCB);
 	return retornePCB;
 }
 
@@ -511,12 +518,12 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	printf("\nel id del segmento es: %d\n", segmento->id);
 
 	printf("\nel id de la tabla es: %d\n", segmento->indiceTablaPaginas);
- 
-	int nroMarco = buscar_en_TLB(numero_pagina,numero_segmento,pcb->id);
 
-	//1ero Chequear SEGMENTATION FAULT
-	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n"PRINT_COLOR_RESET);
-	printf( "desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
+	int nroMarco = buscar_en_TLB(numero_pagina, numero_segmento, pcb->id);
+
+	// 1ero Chequear SEGMENTATION FAULT
+	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n" PRINT_COLOR_RESET);
+	printf("desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
 
 	if (desplazamiento_Segmento > segmento->tamanio)
 	{ // Uso el tamanio real
@@ -543,14 +550,14 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 			mensajeAKernelPageFault->nro_pagina = numero_pagina;
 			mensajeAKernelPageFault->nro_segmento = numero_segmento;
 			pcb->program_counter--;
-			
+
 			// mensajeAKernelPageFault->pcb =pcb;
 
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
 			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
 			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
-			//free(pcb);
-			// free(mensajeAKernelPageFault);
+			// free(pcb);
+			//  free(mensajeAKernelPageFault);
 		}
 		else
 		{
@@ -604,8 +611,8 @@ int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas, uint32_t pid)
 	mensajeAMemoriaAccesoTP->pid = pid;
 	enviarMsje(conexion, CPU, mensajeAMemoriaAccesoTP, sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS), ACCESO_MEMORIA_TABLA_DE_PAG);
 	free(mensajeAMemoriaAccesoTP);
-	
-	log_debug(logger, "Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: %d",indiceTablaPaginas);
+
+	log_debug(logger, "Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: %d", indiceTablaPaginas);
 
 	t_paqt paqueteMemoria;
 	recibirMsje(conexion, &paqueteMemoria);
@@ -629,8 +636,8 @@ int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas, uint32_t pid)
 
 /*----------------------TLB------------------------------*/
 
-
-void inicializarTLB(){
+void inicializarTLB()
+{
 
 	int cantidadEntradasTLB = configCPU.entradasTLB;
 
@@ -662,8 +669,8 @@ void llenar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 	entrada->pid = pid;
 	list_add_in_index(TLB->entradas, 0, entrada);
 
-	printf(PRINT_COLOR_MAGENTA"SE MODIFICA LA TLB"PRINT_COLOR_RESET);
-	printf(PRINT_COLOR_MAGENTA"Se llena la entrada de TLB con: Nro pagina: %d, Nro Frame: %d, Nro Segmento: %d y Nro Pid: %d \n"PRINT_COLOR_RESET, entrada->nroPagina,entrada->nroFrame,entrada->nroSegmento, entrada->pid);
+	printf(PRINT_COLOR_MAGENTA "SE MODIFICA LA TLB" PRINT_COLOR_RESET);
+	printf(PRINT_COLOR_MAGENTA "Se llena la entrada de TLB con: Nro pagina: %d, Nro Frame: %d, Nro Segmento: %d y Nro Pid: %d \n" PRINT_COLOR_RESET, entrada->nroPagina, entrada->nroFrame, entrada->nroSegmento, entrada->pid);
 	/**
 	 * @NAME: list_add_in_index
 	 * @DESC: Agrega un elemento en una posicion determinada de la lista
@@ -671,10 +678,12 @@ void llenar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 	// void list_add_in_index(t_list *, int index, void *element);
 }
 
-//Deberia buscar por nro pagina y nroSegmento?
-int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, int pid //devuelve numero de frame, si esta en la tlb, devuelve -1 si no esta en la tlb
-	entrada_tlb* entradaActual;
-	for(int i=0; i< TLB->entradas->elements_count; i++){
+// Deberia buscar por nro pagina y nroSegmento?
+int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
+{ // int nroSegmento, int pid //devuelve numero de frame, si esta en la tlb, devuelve -1 si no esta en la tlb
+	entrada_tlb *entradaActual;
+	for (int i = 0; i < TLB->entradas->elements_count; i++)
+	{
 		entradaActual = list_get(TLB->entradas, i);
 		if (entradaActual->nroPagina == nroPagina && entradaActual->nroSegmento == nroSegmento)
 		{
@@ -684,16 +693,15 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, i
 				list_add_in_index(TLB->entradas, 0, entradaActual);
 			}
 
-	/**
-	* @NAME: list_remove: Remueve un elemento de la lista de una determinada posicion y lo retorna.
+			/**
+			* @NAME: list_remove: Remueve un elemento de la lista de una determinada posicion y lo retorna.
 
-	/**
-	* @NAME: list_add_in_index: Agrega un elemento en una posicion determinada de la lista
-	*/
-	
+			/**
+			* @NAME: list_add_in_index: Agrega un elemento en una posicion determinada de la lista
+			*/
 
-			log_debug(logger, "TLB Hit: PID: <%i> - TLB HIT - Segmento: <%i> - Pagina: <%i> \n",entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina);
-			printf(PRINT_COLOR_MAGENTA"TLB Hit: PID: <%d> TLB HIT - Segmento: <%d> - Pagina: <%d> - Frame: <%d> \n"PRINT_COLOR_RESET,entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina,entradaActual->nroFrame);
+			log_debug(logger, "TLB Hit: PID: <%i> - TLB HIT - Segmento: <%i> - Pagina: <%i> \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina);
+			printf(PRINT_COLOR_MAGENTA "TLB Hit: PID: <%d> TLB HIT - Segmento: <%d> - Pagina: <%d> - Frame: <%d> \n" PRINT_COLOR_RESET, entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, entradaActual->nroFrame);
 			return entradaActual->nroFrame;
 		}
 	}
@@ -702,8 +710,8 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, i
 
 	log_debug(logger, "TLB MISS - pagina no encontrada en TLB\n");
 
-	log_debug(logger, "TLB Miss: PID: <%i> - TLB MISS - Segmento: <%i> - Pagina: <%i> \n",pid,nroSegmento,nroPagina);
-	
+	log_debug(logger, "TLB Miss: PID: <%i> - TLB MISS - Segmento: <%i> - Pagina: <%i> \n", pid, nroSegmento, nroPagina);
+
 	return -1;
 }
 
@@ -717,32 +725,32 @@ void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 		return;
 	}
 
-	//REEMPLAZO DE PAGINA
-	if(strcmp(TLB->algoritmo , "LRU")== 0){
-		reemplazo_algoritmo_lru(nroPagina, nroFrame ,nroSegmento,pid);
-	    imprimirModificacionTlb();
-	} else {
-		reemplazo_algoritmo_fifo(nroPagina, nroFrame,nroSegmento,pid);
+	// REEMPLAZO DE PAGINA
+	if (strcmp(TLB->algoritmo, "LRU") == 0)
+	{
+		reemplazo_algoritmo_lru(nroPagina, nroFrame, nroSegmento, pid);
 		imprimirModificacionTlb();
-
 	}
-
-	
+	else
+	{
+		reemplazo_algoritmo_fifo(nroPagina, nroFrame, nroSegmento, pid);
+		imprimirModificacionTlb();
+	}
 }
 
-//Modificación de la TLB -> Imprimir todas las entradas de la TLB ordenadas por número de entrada 
-void imprimirModificacionTlb(){
-	entrada_tlb* entrada;
+// Modificación de la TLB -> Imprimir todas las entradas de la TLB ordenadas por número de entrada
+void imprimirModificacionTlb()
+{
+	entrada_tlb *entrada;
 	for (int i = 0; i < TLB->entradas->elements_count; i++)
 	{
 		entrada = list_get(TLB->entradas, i);
-		log_debug(logger, "NRO ENTRADA: %i | PID: %i | SEGMENTO: %i | PAGINA: %i \n",i,entrada->pid,entrada->nroSegmento, entrada->nroPagina);
+		log_debug(logger, "NRO ENTRADA: %i | PID: %i | SEGMENTO: %i | PAGINA: %i \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina);
 	}
-
-
 }
 
-void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid){ // int nroSegmento, int pid
+void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid)
+{ // int nroSegmento, int pid
 	int i = list_size(TLB->entradas);
 	i--;
 	entrada_tlb *nuevaEntrada = malloc(sizeof(entrada_tlb));
@@ -759,9 +767,9 @@ void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int p
 	list_add_in_index(TLB->entradas, 0, nuevaEntrada);
 }
 
-
-void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int pid){ 
-	entrada_tlb* entradaNueva = malloc(sizeof(entrada_tlb));
+void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int pid)
+{
+	entrada_tlb *entradaNueva = malloc(sizeof(entrada_tlb));
 
 	entradaNueva->nroPagina = nroPagina;
 	entradaNueva->nroFrame = nroFrame;

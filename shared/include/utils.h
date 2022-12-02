@@ -85,7 +85,7 @@ typedef struct {
 typedef struct {
 	int nroMarco;
 	int desplazamiento;
-	int valorAEscribir;
+	uint32_t valorAEscribir;
 	int pid;
 }MSJ_MEMORIA_CPU_ESCRIBIR;
 

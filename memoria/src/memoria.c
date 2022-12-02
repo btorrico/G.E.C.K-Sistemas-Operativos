@@ -172,13 +172,13 @@ void conexionCPU(int socketAceptado)
 	int pid;
 	int pagina;
 	int idTablaPagina;
-	int valorAEscribir;
+	uint32_t valorAEscribir;
 
-	t_direccionFisica* direccionFisica;
+	t_direccionFisica *direccionFisica;
 
-	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS* infoMemoriaCpuTP;
-	MSJ_MEMORIA_CPU_LEER* infoMemoriaCpuLeer;
-	MSJ_MEMORIA_CPU_ESCRIBIR* infoMemoriaCpuEscribir;
+	MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS *infoMemoriaCpuTP;
+	MSJ_MEMORIA_CPU_LEER *infoMemoriaCpuLeer;
+	MSJ_MEMORIA_CPU_ESCRIBIR *infoMemoriaCpuEscribir;
 
 	while (1)
 	{
@@ -189,36 +189,37 @@ void conexionCPU(int socketAceptado)
 
 		recibirMsje(socketAceptado, &paquete);
 
-		switch(paquete.header.tipoMensaje) {
-			case CONFIG_DIR_LOG_A_FISICA:
-				configurarDireccionesCPU(socketAceptado);
-				break;
-			case ACCESO_MEMORIA_TABLA_DE_PAG:
-				infoMemoriaCpuTP = paquete.mensaje;
-				idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
-				pagina = infoMemoriaCpuTP->pagina;
-				pid = infoMemoriaCpuTP->pid;
-				accesoMemoriaTP(idTablaPagina, pagina, pid, socketAceptado);
-				break;
-			case ACCESO_MEMORIA_LEER:
-				infoMemoriaCpuLeer = paquete.mensaje;
-				direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
-				direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
-				pid = infoMemoriaCpuLeer->pid;
-				accesoMemoriaLeer(direccionFisica, pid, socketAceptado);
-				break;
-			case ACCESO_MEMORIA_ESCRIBIR:
-				printf("llegue aqui\n");
-				infoMemoriaCpuEscribir = paquete.mensaje;
-				direccionFisica->nroMarco = infoMemoriaCpuEscribir->nroMarco;
-				direccionFisica->desplazamientoPagina = infoMemoriaCpuEscribir->desplazamiento;
-				valorAEscribir = infoMemoriaCpuEscribir->valorAEscribir;
-				pid = infoMemoriaCpuEscribir->pid;
-
-				break;
-			default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
-				log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
-				break;
+		switch (paquete.header.tipoMensaje)
+		{
+		case CONFIG_DIR_LOG_A_FISICA:
+			configurarDireccionesCPU(socketAceptado);
+			break;
+		case ACCESO_MEMORIA_TABLA_DE_PAG:
+			infoMemoriaCpuTP = paquete.mensaje;
+			idTablaPagina = infoMemoriaCpuTP->idTablaDePaginas;
+			pagina = infoMemoriaCpuTP->pagina;
+			pid = infoMemoriaCpuTP->pid;
+			accesoMemoriaTP(idTablaPagina, pagina, pid, socketAceptado);
+			break;
+		case ACCESO_MEMORIA_LEER:
+			infoMemoriaCpuLeer = paquete.mensaje;
+			direccionFisica->nroMarco = infoMemoriaCpuLeer->nroMarco;
+			direccionFisica->desplazamientoPagina = infoMemoriaCpuLeer->desplazamiento;
+			pid = infoMemoriaCpuLeer->pid;
+			accesoMemoriaLeer(direccionFisica, pid, socketAceptado);
+			break;
+		case ACCESO_MEMORIA_ESCRIBIR:
+			printf("llegue aqui\n");
+			infoMemoriaCpuEscribir = paquete.mensaje;
+			direccionFisica->nroMarco = infoMemoriaCpuEscribir->nroMarco;
+			direccionFisica->desplazamientoPagina = infoMemoriaCpuEscribir->desplazamiento;
+			valorAEscribir = infoMemoriaCpuEscribir->valorAEscribir;
+			pid = infoMemoriaCpuEscribir->pid;
+			accesoMemoriaEscribir(direccionFisica, valorAEscribir, pid, socketAceptado);
+			break;
+		default: // TODO CHEKEAR: SI FINALIZO EL CPU ANTES QUE MEMORIA, SE PRODUCE UNA CATARATA DE LOGS. PORQUE? NO HAY PORQUE
+			log_error(logger, "No se reconoce el tipo de mensaje, tas metiendo la patita");
+			break;
 		}
 	}
 }
@@ -334,93 +335,15 @@ void agregar_pagina_a_tabla_paginas(t_tabla_paginas *tablaPagina, t_pagina *pagi
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas_pagina);
 }
 
-void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
-{
-	log_debug(logger, "[INIT - ACCESO_MEMORIA_READ] DIR_FISICA: %d  %d",
-			  df->nroMarco, df->desplazamientoPagina);
-
-	int nroFrame = df->nroMarco;
-	int desplazamiento = df->desplazamientoPagina;
-	int tamanioFrame = configMemoria.tamPagina;
-	int cantidadTotalDeFrames = tamanio;
-	void* aLeer = malloc(sizeof(uint32_t));
-	MSJ_STRING *msjeError;
-
-	// valido que el offset sea valido
-	if (desplazamiento > tamanioFrame)
-	{
-		usleep(configMemoria.retardoMemoria * 1000);
-		msjeError = malloc(sizeof(MSJ_STRING));
-		string_append(&msjeError->cadena, "ERROR_DESPLAZAMIENTO");
-		enviarMsje(socketAceptado, MEMORIA, msjeError, sizeof(MSJ_STRING), ACCESO_MEMORIA_LEER);
-		free(msjeError);
-		log_error(logger, "[ACCESO_MEMORIA_READ] OFFSET MAYOR AL TAMANIO DEL FRAME.  DIR_FISICA: %d%d",
-				  df->nroMarco, df->desplazamientoPagina);
-		return;
-	}
-	uint32_t  aux = 9;   ////miesntras no tengamos moveout lo hardcodeamos
-	uint32_t * aux2 =&aux;  //miesntras no tengamos moveout lo hardcodeamos
-	pthread_mutex_lock(&mutex_void_memoria_ram);
-	memcpy(memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento,aux2, sizeof(uint32_t)); //miesntras no tengamos moveout lo hardcodeamos
-	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
-	
-	printf("aLeer%d",*(uint32_t*)aLeer);
-	pthread_mutex_unlock(&mutex_void_memoria_ram);
-	//*puntero es el contenido 
-	//&variable es la direccion
-
-	log_debug(logger, "Valor Leido: %s", aLeer);
-
-	usleep(configMemoria.retardoMemoria * 1000);
-
-	/***********************************************/
-	
-	t_tabla_paginas *tablaPaginas;
-	t_pagina *pagina;
-
-	
-	t_list* listaTablas = filtrarPorPIDTabla(pid);
-
-	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
-	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
-	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
-
-	pagina = list_get(marcosPorProceso->paginas,pagina->nroMarco%4);
-	pagina->uso = 1;
-
-
-/* 	for (int i = 0; i < list_size(listaTablas) && !update; i++)
-	{
-		tablaPaginas = list_get(listaTablas, i);
-		for (int j = 0; j < list_size(tablaPaginas->paginas) && !update; j++)
-		{
-			pagina = list_get(tablaPaginas->paginas, j);
-			if (pagina->nroMarco == nroFrame)
-			{
-				pagina->uso = 1;
-				update = true;
-			}
-		}
-	} */
-
-	/***********************************************/
-	MSJ_INT *mensajeRead = malloc(sizeof(MSJ_INT));
-	mensajeRead->numero = *(uint32_t*)aLeer;
-	enviarMsje(socketAceptado, MEMORIA, mensajeRead, sizeof(MSJ_INT), ACCESO_MEMORIA_LEER);
-	free(mensajeRead);
-
-	log_debug(logger, "ACCESO_MEMORIA_READ DIR_FISICA: frame%d offset%d",
-			  df->nroMarco, df->desplazamientoPagina);
-}
-
 /*Acceso a tabla de páginas
 El módulo deberá responder el número de marco correspondiente, en caso de no encontrarse,
 se deberá retornar Page Fault.*/
 
-void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAceptado){
-	//CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
-	log_debug(logger,"ACCEDIENDO A TABLA DE PAGINA CON INDICE: %d NRO_PAGINA: %d",
-				idTablaPagina, nroPagina);
+void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAceptado)
+{
+	// CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
+	log_debug(logger, "ACCEDIENDO A TABLA DE PAGINA CON INDICE: %d NRO_PAGINA: %d",
+			  idTablaPagina, nroPagina);
 
 	int marcoBuscado;
 	t_pagina *pagina;
@@ -447,24 +370,25 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 		}
 	}
 	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-	
-	if(pagina->presencia==1){ 
-	pthread_mutex_unlock(&mutex_lista_tabla_paginas);
-	marcoBuscado = pagina->nroMarco;
-	log_debug(logger,"[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
-	
-	MSJ_INT* mensaje = malloc(sizeof(MSJ_INT));
-	mensaje->numero = marcoBuscado;
-	
-	enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
-	free(mensaje);
-	log_debug(logger,"[FIN - TRADUCCION_DIR] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA DE PAG CON INDICE: %d ENVIADO A CPU",
-				marcoBuscado, pagina->nroPagina, tabla_de_paginas->idTablaPag);//chequear y borrar
-	
-	log_debug(logger,"Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
-				pid, pagina->nroPagina, marcoBuscado); //LOG OBLIGATORIO
+
+	if (pagina->presencia == 1)
+	{
+		pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+		marcoBuscado = pagina->nroMarco;
+		log_debug(logger, "[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
+
+		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
+		mensaje->numero = marcoBuscado;
+
+		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
+		free(mensaje);
+		log_debug(logger, "[FIN - TRADUCCION_DIR] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA DE PAG CON INDICE: %d ENVIADO A CPU",
+				  marcoBuscado, pagina->nroPagina, tabla_de_paginas->idTablaPag); // chequear y borrar
+
+		log_debug(logger, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
+				  pid, pagina->nroPagina, marcoBuscado); // LOG OBLIGATORIO
 	}
-	else if(pagina->presencia==0)
+	else if (pagina->presencia == 0)
 	{ // la pag no esta en ram. Retornar PAGE FAULT
 
 		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
@@ -473,6 +397,133 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 		free(mensaje);
 		log_debug(logger, "PAGE FAULT");
 	}
+}
+
+void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
+{
+	log_debug(logger, "[ACCESO_MEMORIA_LEER] DIR_FISICA: %d  %d",
+			  df->nroMarco, df->desplazamientoPagina);
+
+	int nroFrame = df->nroMarco;
+	int desplazamiento = df->desplazamientoPagina;
+	int tamanioFrame = configMemoria.tamPagina;
+	void *aLeer = malloc(sizeof(uint32_t));
+	MSJ_STRING *msjeError;
+
+	// valido que el offset sea valido
+	if (desplazamiento > tamanioFrame)
+	{
+		usleep(configMemoria.retardoMemoria * 1000);
+		msjeError = malloc(sizeof(MSJ_STRING));
+		string_append(&msjeError->cadena, "ERROR_DESPLAZAMIENTO");
+		enviarMsje(socketAceptado, MEMORIA, msjeError, sizeof(MSJ_STRING), ACCESO_MEMORIA_LEER);
+		free(msjeError);
+		log_error(logger, "[ACCESO_MEMORIA_LEER] OFFSET MAYOR AL TAMANIO DEL FRAME.  DIR_FISICA: %d%d",
+				  df->nroMarco, df->desplazamientoPagina);
+		return;
+	}
+	uint32_t aux = 9;	   ////miesntras no tengamos moveout lo hardcodeamos
+	uint32_t *aux2 = &aux; // miesntras no tengamos moveout lo hardcodeamos
+	pthread_mutex_lock(&mutex_void_memoria_ram);
+	memcpy(memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, aux2, sizeof(uint32_t)); // miesntras no tengamos moveout lo hardcodeamos
+	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
+
+	printf("aLeer%d", *(uint32_t *)aLeer);
+	pthread_mutex_unlock(&mutex_void_memoria_ram);
+	//*puntero es el contenido
+	//&variable es la direccion
+
+	log_debug(logger, "Valor Leido: %s", aLeer);
+
+	usleep(configMemoria.retardoMemoria * 1000);
+
+	/***********************************************/
+	t_pagina *pagina;
+
+	t_list *listaTablas = filtrarPorPIDTabla(pid);
+
+	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
+	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
+	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
+
+	pagina = list_get(marcosPorProceso->paginas, pagina->nroMarco % 4);
+	pagina->uso = 1;
+
+	/***********************************************/
+	MSJ_INT *mensajeRead = malloc(sizeof(MSJ_INT));
+	mensajeRead->numero = *(uint32_t *)aLeer;
+	enviarMsje(socketAceptado, MEMORIA, mensajeRead, sizeof(MSJ_INT), ACCESO_MEMORIA_LEER);
+	free(mensajeRead);
+
+	log_debug(logger, "ACCESO_MEMORIA_LEER DIR_FISICA: frame%d offset%d",
+			  df->nroMarco, df->desplazamientoPagina);
+}
+
+void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir, int pid, int socketAceptado)
+{
+	log_debug(logger, "[ACCESO_MEMORIA_ESCRIBIR] DIR_FISICA: nroMarco %d offset %d, VALOR: %d",
+			  dirFisica->nroMarco, dirFisica->desplazamientoPagina, valorAEscribir);
+
+	int nroMarco = dirFisica->nroMarco;
+	int desplazamiento = dirFisica->desplazamientoPagina;
+	int tamanioFrame = configMemoria.tamPagina;
+
+	// valido que el desplazamiento sea valido
+	if (desplazamiento > tamanioFrame)
+	{
+		usleep(configMemoria.retardoMemoria * 1000);
+		char *mensajeError = string_new();
+		string_append(&mensajeError, "ERROR_DESPLAZAMIENTO");
+		enviarMsje(socketAceptado, MEMORIA, mensajeError, strlen(mensajeError) + 1, ACCESO_MEMORIA_ESCRIBIR);
+		free(mensajeError);
+		log_error(logger, "[ACCESO_MEMORIA_WRITE] DESPLAZAMIENTO MAYOR AL TAMANIO DEL FRAME.  DIR_FISICA: %d %d, VALOR: %d",
+				  dirFisica->nroMarco, dirFisica->desplazamientoPagina, valorAEscribir);
+		return;
+	}
+
+	pthread_mutex_lock(&mutex_void_memoria_ram);
+	uint32_t *aEscribir = &valorAEscribir;
+	printf("aEscribir%d", *(uint32_t *)aEscribir);
+	memcpy(memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento, aEscribir, sizeof(uint32_t)); // tercer arg strlen(string_itoa(valorAEscribir))
+	pthread_mutex_unlock(&mutex_void_memoria_ram);
+
+	// busco la pagina que piden y actualizo el bit de modificado porque se hizo write
+	t_pagina *pagina;
+	t_list *listaTablas = filtrarPorPIDTabla(pid);
+
+	if (string_equals_ignore_case(configMemoria.algoritmoReemplazo, "CLOCK-M"))
+	{
+
+		pthread_mutex_lock(&mutex_lista_marco_por_proceso);
+		t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
+		pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
+
+		pagina = list_get(marcosPorProceso->paginas, pagina->nroMarco % 4);
+		pagina->uso = 1;
+		pagina->modificacion = 1;
+
+	}
+	else
+	{
+
+		pthread_mutex_lock(&mutex_lista_marco_por_proceso);
+		t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
+		pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
+
+		pagina = list_get(marcosPorProceso->paginas, pagina->nroMarco % 4);
+		pagina->uso = 1;
+	}
+
+	usleep(configMemoria.retardoMemoria * 1000);
+
+	char *cadena = string_new();
+	string_append(&cadena, "OK");
+
+	enviarMsje(socketAceptado, MEMORIA, cadena, strlen("OK") + 1, ACCESO_MEMORIA_ESCRIBIR);
+
+	free(cadena);
+	log_debug(logger, "[FIN - ACCESO_MEMORIA_WRITE] DIR_FISICA: %d %d, VALOR: %d",
+			  dirFisica->nroMarco, dirFisica->desplazamientoPagina, valorAEscribir);
 }
 
 bool esta_vacio_el_archivo(FILE *nombreFile)
@@ -629,17 +680,15 @@ int buscar_marco_vacio() // devuelve la primera posicion del marco vacio, ver bi
 	for (int i = 0; i < list_size(LISTA_BITMAP_MARCO); i++)
 	{
 		t_bitmap_marcos_libres *marcoLibre = list_get(LISTA_BITMAP_MARCO, i);
-		
+
 		if (marcoLibre->uso == 0)
 		{
 			printf("\nencontre un marco libre!!\n");
-			//marcoLibre->nroMarco = i;
+			// marcoLibre->nroMarco = i;
 			marcoLibre->uso = 1;
 			printf("\nnroMArco: %d, bit de uso: %d\n", marcoLibre->nroMarco, marcoLibre->uso);
 			return i;
-			
 		}
-		
 	}
 
 	return -1;
@@ -651,9 +700,9 @@ void inicializar_bitmap()
 	{
 		t_bitmap_marcos_libres *marcoLibre = malloc(sizeof(t_bitmap_marcos_libres));
 		marcoLibre->nroMarco = i;
-		
+
 		marcoLibre->uso = 0;
-		
+
 		list_add(LISTA_BITMAP_MARCO, marcoLibre);
 	}
 }
