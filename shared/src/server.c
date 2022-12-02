@@ -189,6 +189,30 @@ void pasar_a_block_disco(t_pcb *pcb)
 	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
 }
 
+void pasar_a_block_wifi(t_pcb *pcb)
+{
+	pthread_mutex_lock(&mutex_lista_blocked_wifi);
+	list_add(LISTA_BLOCKED_WIFI, pcb);
+	pthread_mutex_unlock(&mutex_lista_blocked_wifi);
+
+	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
+}
+void pasar_a_block_usb(t_pcb *pcb)
+{
+	pthread_mutex_lock(&mutex_lista_blocked_usb);
+	list_add(LISTA_BLOCKED_USB, pcb);
+	pthread_mutex_unlock(&mutex_lista_blocked_usb);
+
+	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
+}
+void pasar_a_block_audio(t_pcb *pcb)
+{
+	pthread_mutex_lock(&mutex_lista_blocked_audio);
+	list_add(LISTA_BLOCKED_AUDIO, pcb);
+	pthread_mutex_unlock(&mutex_lista_blocked_audio);
+
+	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
+}
 void pasar_a_block_impresora(t_pcb *pcb)
 {
 	pthread_mutex_lock(&mutex_lista_blocked_impresora);
@@ -254,6 +278,9 @@ void iniciar_listas_y_semaforos()
 	LISTA_INICIO_TABLA_PAGINA = list_create();
 	LISTA_MARCOS_POR_PROCESOS = list_create();
 	LISTA_BITMAP_MARCO = list_create();
+	LISTA_BLOCKED_WIFI = list_create();
+	LISTA_BLOCKED_USB = list_create();
+	LISTA_BLOCKED_AUDIO = list_create();
 	
 
 	// mutex
@@ -262,6 +289,9 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_new, NULL);
 	pthread_mutex_init(&mutex_lista_ready, NULL);
 	pthread_mutex_init(&mutex_lista_exec, NULL);
+	pthread_mutex_init(&mutex_lista_blocked_usb, NULL);
+	pthread_mutex_init(&mutex_lista_blocked_wifi, NULL);
+	pthread_mutex_init(&mutex_lista_blocked_audio, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_impresora, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_disco, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_pantalla, NULL);
@@ -295,6 +325,9 @@ void iniciar_listas_y_semaforos()
 	//sem_init(&contador_bloqueo_pantalla_running, 0, 1);
 	sem_init(&contador_bloqueo_disco_running, 0, 1);
 	sem_init(&contador_bloqueo_impresora_running, 0, 1);
+	sem_init(&contador_bloqueo_wifi_running, 0, 1);
+	sem_init(&contador_bloqueo_usb_running, 0, 1);
+	sem_init(&contador_bloqueo_wifi_running, 0, 1);
 	sem_init(&sem_llamar_feedback, 0, 0);
 }
 

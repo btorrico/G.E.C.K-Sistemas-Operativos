@@ -117,6 +117,8 @@ void conectar_dispatch()
 		printf("\n Id proceso nuevo que llego de cpu: %d", pcb->id);
 
 		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter - 1);
+		printf("\n dispositivo %s" , dispositivoToString(insActual->paramIO));
+
 		char *dispositivoIO;
 
 		if (hayTimer == true)
@@ -164,8 +166,9 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO:
-			pthread_t thrBloqueoGeneralImpresora, thrBloqueoGeneralDisco;
+			pthread_t thrBloqueoGeneralImpresora, thrBloqueoGeneralDisco,thrBloqueoGeneralUsb,thrBloqueoGeneralAudio,thrBloqueoGeneralWifi;
 			dispositivoIO = dispositivoToString(insActual->paramIO);
+			printf("\n dispositivo %s" , dispositivoIO);
 
 			if (!strcmp("DISCO", dispositivoIO))
 			{
@@ -180,6 +183,27 @@ void conectar_dispatch()
 				pasar_a_block_impresora(pcb);
 				pthread_create(&thrBloqueoGeneralImpresora, NULL, (void *)manejar_bloqueo_general_impresora, (void *)insActual);
 				pthread_detach(thrBloqueoGeneralImpresora);
+			}
+			else if (!strcmp("WIFI", dispositivoIO))
+			{
+				printf("\nentre a ejecutar wifi");
+				pasar_a_block_wifi(pcb);
+				pthread_create(&thrBloqueoGeneralWifi, NULL, (void *)manejar_bloqueo_general_wifi, (void *)insActual);
+				pthread_detach(thrBloqueoGeneralWifi);
+			}
+			else if (!strcmp("USB", dispositivoIO))
+			{
+				printf("\nentre a ejecutar usb");
+				pasar_a_block_usb(pcb);
+				pthread_create(&thrBloqueoGeneralUsb, NULL, (void *)manejar_bloqueo_general_usb, (void *)insActual);
+				pthread_detach(thrBloqueoGeneralUsb);
+			}
+			else if (!strcmp("AUDIO", dispositivoIO))
+			{
+				printf("\nentre a ejecutar audio");
+				pasar_a_block_audio(pcb);
+				pthread_create(&thrBloqueoGeneralAudio, NULL, (void *)manejar_bloqueo_general_audio, (void *)insActual);
+				pthread_detach(thrBloqueoGeneralAudio);
 			}
 			else
 			{
@@ -396,6 +420,106 @@ void manejar_bloqueo_general_disco(void *insActual)
 
 	free(dispositivoCpu);
 	sem_post(&contador_bloqueo_disco_running);
+}
+
+void manejar_bloqueo_general_wifi(void *insActual)
+{
+	sem_wait(&contador_bloqueo_wifi_running);
+	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
+
+	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+
+	int tamanio = size_char_array(configKernel.dispositivosIO);
+	uint32_t tiempoIO;
+	uint32_t duracionUnidadDeTrabajo;
+	for (int i = 0; i < tamanio; i++)
+	{
+		if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
+		{
+			tiempoIO = atoi(configKernel.tiemposIO[i]);
+
+			duracionUnidadDeTrabajo = tiempoIO * instActualBloqueoGeneral->paramInt;
+
+			log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
+			log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
+
+			t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_WIFI);
+			usleep(duracionUnidadDeTrabajo * 1000);
+			pasar_a_ready(pcb);
+			sem_post(&sem_hay_pcb_lista_ready);
+			break;
+		}
+	}
+
+	free(dispositivoCpu);
+	sem_post(&contador_bloqueo_wifi_running);
+}
+void manejar_bloqueo_general_audio(void *insActual)
+{
+	sem_wait(&contador_bloqueo_audio_running);
+	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
+
+	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+
+	int tamanio = size_char_array(configKernel.dispositivosIO);
+	uint32_t tiempoIO;
+	uint32_t duracionUnidadDeTrabajo;
+	for (int i = 0; i < tamanio; i++)
+	{
+		if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
+		{
+
+			tiempoIO = atoi(configKernel.tiemposIO[i]);
+
+			duracionUnidadDeTrabajo = tiempoIO * instActualBloqueoGeneral->paramInt;
+
+			log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
+			log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
+
+			t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_AUDIO);
+			usleep(duracionUnidadDeTrabajo * 1000);
+			pasar_a_ready(pcb);
+			sem_post(&sem_hay_pcb_lista_ready);
+			break;
+		}
+	}
+
+	free(dispositivoCpu);
+	sem_post(&contador_bloqueo_audio_running);
+}
+
+void manejar_bloqueo_general_usb(void *insActual)
+{
+	sem_wait(&contador_bloqueo_usb_running);
+	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
+
+	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+
+	int tamanio = size_char_array(configKernel.dispositivosIO);
+	uint32_t tiempoIO;
+	uint32_t duracionUnidadDeTrabajo;
+	for (int i = 0; i < tamanio; i++)
+	{
+		if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
+		{
+
+			tiempoIO = atoi(configKernel.tiemposIO[i]);
+
+			duracionUnidadDeTrabajo = tiempoIO * instActualBloqueoGeneral->paramInt;
+
+			log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
+			log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
+
+			t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_USB);
+			usleep(duracionUnidadDeTrabajo * 1000);
+			pasar_a_ready(pcb);
+			sem_post(&sem_hay_pcb_lista_ready);
+			break;
+		}
+	}
+
+	free(dispositivoCpu);
+	sem_post(&contador_bloqueo_usb_running);
 }
 
 void manejar_bloqueo_page_fault()

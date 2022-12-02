@@ -15,6 +15,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 	{
 		char **palabra = string_split(buffer, " ");
 		t_instruccion *instr = malloc(sizeof(t_instruccion));
+		printf("\nDispocitivo enviado a kernel %s",buffer);
 
 		if (strcmp(palabra[0], "SET") == 0)
 		{
@@ -76,6 +77,36 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			else if (strcmp(palabra[1], "IMPRESORA") == 0)
 			{
 				instr->paramIO = IMPRESORA;
+				instr->paramInt = atoi(palabra[2]);
+				instr->paramReg[0] = -1;
+				instr->paramReg[1] = -1;
+				free(palabra[0]);
+				free(palabra[1]);
+				free(palabra[2]);
+			}
+			else if (strcmp(palabra[1], "WIFI") == 0)
+			{
+				instr->paramIO = WIFI;
+				instr->paramInt = atoi(palabra[2]);
+				instr->paramReg[0] = -1;
+				instr->paramReg[1] = -1;
+				free(palabra[0]);
+				free(palabra[1]);
+				free(palabra[2]);
+			}
+			else if (strcmp(palabra[1], "AUDIO") == 0)
+			{
+				instr->paramIO = AUDIO;
+				instr->paramInt = atoi(palabra[2]);
+				instr->paramReg[0] = -1;
+				instr->paramReg[1] = -1;
+				free(palabra[0]);
+				free(palabra[1]);
+				free(palabra[2]);
+			}
+			else if (strcmp(palabra[1], "USB") == 0)
+			{
+				instr->paramIO = USB;
 				instr->paramInt = atoi(palabra[2]);
 				instr->paramReg[0] = -1;
 				instr->paramReg[1] = -1;
