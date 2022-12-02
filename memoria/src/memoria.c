@@ -85,14 +85,14 @@ void iniciar_servidor_hacia_kernel()
 	while (1)
 	{
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoKernel);
-		printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
+		//printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		switch (paquete->codigo_operacion)
 		{
 		case ASIGNAR_RECURSOS:
 			printf("\nMi cod de op es: %d", paquete->codigo_operacion);
 			pthread_t thrTablaPaginasCrear;
-			printf("\nEntro a asignar recursos\n");
+			//printf("\nEntro a asignar recursos\n");
 			pthread_create(&thrTablaPaginasCrear, NULL, (void *)crearTablasPaginas, (void *)pcb);
 			pthread_detach(thrTablaPaginasCrear);
 			break;
@@ -102,14 +102,7 @@ void iniciar_servidor_hacia_kernel()
 			pthread_create(&thrTablaPaginasEliminar, NULL, (void *)eliminarTablasPaginas, (void *)pcb);
 			pthread_detach(thrTablaPaginasEliminar);
 			break;
-
-		case PASAR_A_EXIT: // solicitud de liberar las estructuras
-
-			// liberar las estructuras y
-			// enviar msj al kernel de que ya estan liberadas
-			// serializarPCB(socketAceptadoKernel, pcb, PASAR_A_EXIT);
-			break;
-
+		
 		case PAGE_FAULT:
 			// recibir del kernel pagina , segmento , id pcb
 			printf("\nestoy en page fault de memoria\n");
@@ -210,7 +203,7 @@ void iniciar_servidor_hacia_cpu()
 	int socketAceptadoCPU = esperar_cliente(server_fd);
 	char *mensaje = recibirMensaje(socketAceptadoCPU);
 
-	log_info(logger, "Mensaje de confirmacion del CPU: %s\n", mensaje);
+	//log_info(logger, "Mensaje de confirmacion del CPU: %s\n", mensaje);
 
 	t_paqt paqueteCPU;
 
