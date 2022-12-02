@@ -127,6 +127,30 @@ void iniciar_servidor_hacia_kernel()
 
 			t_marcos_por_proceso *marcoPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pcb->id - 1);
 
+			t_pagina *paginaUno = malloc(sizeof(t_pagina));
+			paginaUno->uso = 1;
+			paginaUno->nroMarco = 2;
+			paginaUno->modificacion = 0;
+			paginaUno->nroPagina = 1;
+			paginaUno->presencia = 0;
+			paginaUno->nroSegmento = 1;
+			paginaUno->posicionSwap = 1;
+
+			t_pagina *paginaDos = malloc(sizeof(t_pagina));
+			paginaUno->uso = 0;
+			paginaUno->nroMarco = 0;
+			paginaUno->modificacion = 0;
+			paginaUno->nroPagina = 3;
+			paginaUno->presencia = 0;
+			paginaUno->nroSegmento = 1;
+			paginaUno->posicionSwap = 1;
+
+			agregar_pagina_a_lista_de_paginas_marcos_por_proceso(marcoPorProceso, paginaUno);
+			agregar_pagina_a_lista_de_paginas_marcos_por_proceso(marcoPorProceso, paginaDos);
+			agregar_pagina_a_lista_de_paginas_marcos_por_proceso(marcoPorProceso, paginaUno);
+			agregar_pagina_a_lista_de_paginas_marcos_por_proceso(marcoPorProceso, paginaUno);
+
+			marcoPorProceso->marcoSiguiente=0;
 			printf("\nel id de pcb es: %d\n", marcoPorProceso->idPCB);
 
 			asignacionDeMarcos(infoRemplazo, marcoPorProceso);
@@ -292,7 +316,6 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 	// agrego marco por proceso a la lista de marcos por procesos
 	agregar_marco_por_proceso(marcoPorProceso);
 
-
 	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
 
 	// agregar_tabla_pag_en_swap();
@@ -309,24 +332,22 @@ void eliminarTablasPaginas(void *pcb)
 
 	for (int i = 0; i < list_size(tablasDelPCB); i++)
 	{
-		t_tabla_paginas *tablaPagina = list_get(tablasDelPCB,i);
+		t_tabla_paginas *tablaPagina = list_get(tablasDelPCB, i);
 
 		for (int i = 0; i < list_size(tablaPagina->paginas); i++)
 		{
-			t_pagina *pagina = list_get(tablaPagina->paginas,i);
+			t_pagina *pagina = list_get(tablaPagina->paginas, i);
 
 			pagina->posicionSwap = -1;
-			pagina->presencia=-1;
-			pagina->nroMarco=-1;
-			pagina->modificacion=-1;
-			pagina->uso=-1;
+			pagina->presencia = -1;
+			pagina->nroMarco = -1;
+			pagina->modificacion = -1;
+			pagina->uso = -1;
 		}
 		log_info(logger, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
 	}
-	
-	enviarResultado(socketAceptadoKernel, "se liberaron las estructuras");
-	
 
+	enviarResultado(socketAceptadoKernel, "se liberaron las estructuras");
 }
 
 FILE *abrirArchivo(char *filename)
@@ -594,23 +615,39 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 		if (pagina->uso == 0)
 		{
+			if (pagina->modificacion == 1)
+			{
+				fseek(swap, pagina->posicionSwap, SEEK_SET);
+				fwrite(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina, NULL, swap);
+				usleep(configMemoria.retardoSwap * 1000);
+				log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
+			}
+
 			t_pagina *newPagina = buscarPagina(infoRemplazo);
 
 			newPagina->nroMarco = pagina->nroMarco;
 			newPagina->uso = 1;
 			newPagina->presencia = 1;
+			newPagina->modificacion = 0;
+
+			void *pagina = malloc(configMemoria.tamPagina);
+			fseek(swap, newPagina->posicionSwap, SEEK_SET);
+			fread(pagina, configMemoria.tamPagina, NULL, swap);
+
+			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), pagina, configMemoria.tamPagina);
+
+			usleep(configMemoria.retardoSwap * 1000);
 
 			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, i, newPagina);
 
-			log_info(logger, "Marco:%d", paginaVictima->nroMarco);
-			log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, newPagina->nroPagina);
+			paginaVictima->uso = 0;
+			paginaVictima->modificacion = 0;
+			paginaVictima->presencia = 0;
+
+			log_info(logger, "Marco:%d", newPagina->nroMarco);
+			log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, infoRemplazo->idPagina);
 			log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
 
-			if (paginaVictima->modificacion == 1)
-			{
-				fseek(swap, paginaVictima->posicionSwap, SEEK_SET);
-				fwrite(paginaVictima, sizeof(t_pagina), NULL, swap);
-			}
 			marcosPorProceso->marcoSiguiente = recorrer_marcos(i); // para que el puntero al siguiente siga abanzando
 			break;
 		}
