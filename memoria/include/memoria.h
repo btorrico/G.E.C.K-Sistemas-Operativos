@@ -109,6 +109,7 @@ void* conseguir_puntero_a_base_memoria(int , void *);
 void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
 
 void algoritmo_reemplazo_clock(t_info_remplazo *);
+void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
 void asignarPaginaAMarco(t_marcos_por_proceso*, t_info_remplazo*);
 t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
 void agregar_marco_por_proceso(t_marcos_por_proceso * );
@@ -125,7 +126,7 @@ t_pagina *buscarPagina (t_info_remplazo *);
 int buscarSegmento(t_info_remplazo *);
 void filtrarYEliminarMarcoPorPIDTabla(int );
 void eliminarEstructura(t_marcos_por_proceso *);
-
+void imprimirMarcosPorProceso();
 void accesoMemoriaTP(int, int, int,int);
 				
 void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado);
