@@ -661,7 +661,9 @@ void llenar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 	entrada->nroSegmento = nroSegmento;
 	entrada->pid = pid;
 	list_add_in_index(TLB->entradas, 0, entrada);
-	printf("lleno entrada tlb nro pagina %d, nro frame %d, nroSegmento %d, nro pid %d\n", entrada->nroPagina,entrada->nroFrame,entrada->nroSegmento, entrada->pid);
+
+	printf(PRINT_COLOR_MAGENTA"SE MODIFICA LA TLB"PRINT_COLOR_RESET);
+	printf(PRINT_COLOR_MAGENTA"Se llena la entrada de TLB con: Nro pagina: %d, Nro Frame: %d, Nro Segmento: %d y Nro Pid: %d \n"PRINT_COLOR_RESET, entrada->nroPagina,entrada->nroFrame,entrada->nroSegmento, entrada->pid);
 	/**
 	 * @NAME: list_add_in_index
 	 * @DESC: Agrega un elemento en una posicion determinada de la lista
@@ -674,7 +676,7 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, i
 	entrada_tlb* entradaActual;
 	for(int i=0; i< TLB->entradas->elements_count; i++){
 		entradaActual = list_get(TLB->entradas, i);
-		if (entradaActual->nroPagina == nroPagina)
+		if (entradaActual->nroPagina == nroPagina && entradaActual->nroSegmento == nroSegmento)
 		{
 			if (strcmp(TLB->algoritmo, "LRU") == 0)
 			{
@@ -700,10 +702,8 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid){ //int nroSegmento, i
 
 	log_debug(logger, "TLB MISS - pagina no encontrada en TLB\n");
 
-	log_debug(logger, "TLB Miss: PID: <%i> - TLB MISS - Segmento: <%i> - Pagina: <%i> \n",entradaActual->pid,entradaActual->nroSegmento, entradaActual->nroPagina);
-	printf(PRINT_COLOR_MAGENTA"TLB Miss: PID: <%d> TLB MISS - Segmento: <%d> - Pagina: <%d> \n"PRINT_COLOR_RESET,pid,nroSegmento,nroPagina);
- // No tienen sentido los numeros que devuelve, no tiene cargada ninguna entrada pero devuelve datos, QUE TIENE QUE DEVOLVEER?????????? 
-
+	log_debug(logger, "TLB Miss: PID: <%i> - TLB MISS - Segmento: <%i> - Pagina: <%i> \n",pid,nroSegmento,nroPagina);
+	
 	return -1;
 }
 
@@ -713,19 +713,34 @@ void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 	if (tlbTieneEntradasLibres())
 	{
 		llenar_TLB(nroPagina, nroFrame, nroSegmento, pid);
+		imprimirModificacionTlb();
 		return;
 	}
 
 	//REEMPLAZO DE PAGINA
 	if(strcmp(TLB->algoritmo , "LRU")== 0){
 		reemplazo_algoritmo_lru(nroPagina, nroFrame ,nroSegmento,pid);
+	    imprimirModificacionTlb();
 	} else {
 		reemplazo_algoritmo_fifo(nroPagina, nroFrame,nroSegmento,pid);
+		imprimirModificacionTlb();
+
 	}
+
+	
 }
 
+//Modificación de la TLB -> Imprimir todas las entradas de la TLB ordenadas por número de entrada 
+void imprimirModificacionTlb(){
+	entrada_tlb* entrada;
+	for (int i = 0; i < TLB->entradas->elements_count; i++)
+	{
+		entrada = list_get(TLB->entradas, i);
+		log_debug(logger, "NRO ENTRADA: %i | PID: %i | SEGMENTO: %i | PAGINA: %i \n",i,entrada->pid,entrada->nroSegmento, entrada->nroPagina);
+	}
 
 
+}
 
 void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid){ // int nroSegmento, int pid
 	int i = list_size(TLB->entradas);
