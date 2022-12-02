@@ -132,7 +132,12 @@ void conectar_dispatch()
 			printf("\nestoy en %d: ", paquete->codigo_operacion);
 			pasar_a_exec(pcb);
 			eliminar_pcb();
-			serializarValor(0, pcb->socket, TERMINAR_CONSOLA);
+			
+			serializarPCB(conexionMemoria,pcb,LIBERAR_RECURSOS);
+			char *mensaje = recibirMensaje(conexionMemoria);
+			log_info(logger, "Mensaje de confirmacion de memoria: %s\n", mensaje);
+	
+			serializarValor(0, pcb->socket, TERMINAR_CONSOLA); //esto le mando a la consola
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:

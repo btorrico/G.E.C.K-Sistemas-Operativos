@@ -123,6 +123,8 @@ void agregar_pagina_a_lista_de_paginas_marcos_por_proceso(t_marcos_por_proceso *
 void primer_recorrido_paginas_clock(t_marcos_por_proceso *, t_info_remplazo *);
 t_pagina *buscarPagina (t_info_remplazo *);
 int buscarSegmento(t_info_remplazo *);
+void filtrarYEliminarMarcoPorPIDTabla(int );
+void eliminarEstructura(t_marcos_por_proceso *);
 
 void accesoMemoriaTP(int, int, int,int);
 				

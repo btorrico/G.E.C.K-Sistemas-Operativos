@@ -281,6 +281,8 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 		// agrego tabla pagina a la lista de tablas pagina
 		agregar_tabla_paginas(tablaPagina);
 		printf("\nla cant de elem que tiene listatablapaginas es: %d\n", list_size(LISTA_TABLA_PAGINAS));
+
+		log_info(logger, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
 	}
 
 	marcoPorProceso->idPCB = pcbActual->id;
@@ -290,9 +292,9 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 	// agrego marco por proceso a la lista de marcos por procesos
 	agregar_marco_por_proceso(marcoPorProceso);
 
-	printf("\nEnvio recursos a kernel\n");
+
 	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
-	printf("\nEnviados\n");
+
 	// agregar_tabla_pag_en_swap();
 	free(pcbActual);
 }
@@ -301,14 +303,37 @@ void eliminarTablasPaginas(void *pcb)
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
 
-	// eliminar los recurso de swap
+	filtrarYEliminarMarcoPorPIDTabla(pcbActual->id);
+
+	t_list *tablasDelPCB = filtrarPorPIDTabla(pcbActual->id);
+
+	for (int i = 0; i < list_size(tablasDelPCB); i++)
+	{
+		t_tabla_paginas *tablaPagina = list_get(tablasDelPCB,i);
+
+		for (int i = 0; i < list_size(tablaPagina->paginas); i++)
+		{
+			t_pagina *pagina = list_get(tablaPagina->paginas,i);
+
+			pagina->posicionSwap = -1;
+			pagina->presencia=-1;
+			pagina->nroMarco=-1;
+			pagina->modificacion=-1;
+			pagina->uso=-1;
+		}
+		log_info(logger, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
+	}
+	
+	enviarResultado(socketAceptadoKernel, "se liberaron las estructuras");
+	
+
 }
 
 FILE *abrirArchivo(char *filename)
 {
 	if (filename == NULL)
 	{
-		log_error(logger, "Error: debe informar un path correcto.");
+		log_error(logger, "Error: debe informar un path correcto");
 		exit(1);
 	}
 
@@ -552,7 +577,7 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 	printf("\n Estoy en algoritmo clock primer recorrido \n");
 	marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente);
-	
+
 	for (int i = marcosPorProceso->marcoSiguiente; i < list_size(marcosPorProceso->paginas); recorrer_marcos(marcosPorProceso->marcoSiguiente))
 	{
 		log_debug(logger, "entre al for");
@@ -569,7 +594,7 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 		if (pagina->uso == 0)
 		{
-			t_pagina* newPagina = buscarPagina(infoRemplazo);
+			t_pagina *newPagina = buscarPagina(infoRemplazo);
 
 			newPagina->nroMarco = pagina->nroMarco;
 			newPagina->uso = 1;
@@ -841,4 +866,33 @@ t_list *filtrarPorPIDTabla(int PID)
 	}
 
 	return listaTabla;
+}
+
+void filtrarYEliminarMarcoPorPIDTabla(int PID)
+{
+	int i = 0;
+
+	while (i < list_size(LISTA_MARCOS_POR_PROCESOS))
+	{
+		t_marcos_por_proceso *marcoPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, i);
+
+		if (marcoPorProceso->idPCB == PID)
+		{
+			t_marcos_por_proceso *marcoAEliminar = list_remove(LISTA_MARCOS_POR_PROCESOS, i);
+
+			eliminarEstructura(marcoAEliminar);
+		}
+		i++;
+	}
+}
+
+void eliminarEstructura(t_marcos_por_proceso *marcoAEliminar)
+{
+	for (int i = 0; i < list_size(marcoAEliminar->paginas); i++)
+	{
+		t_pagina *paginaAEliminar = list_remove(marcoAEliminar->paginas, i);
+
+		free(paginaAEliminar);
+	}
+	free(marcoAEliminar);
 }
