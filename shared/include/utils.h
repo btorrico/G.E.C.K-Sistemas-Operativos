@@ -62,6 +62,7 @@ typedef struct
 	uint32_t nroMarco;
 	int tamPagina;
 	int desplazamientoPagina;
+	t_direccion_logica dl;
 } t_direccionFisica;
 
 typedef struct {

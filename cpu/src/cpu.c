@@ -224,7 +224,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
 			mensajeAMemoriaLeer->pid = pcb->id;
 			enviarMsje(conexion, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_LEER);
-			log_debug(logger,"Acceso Memoria: PID: %d - Acción: LEER - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA> - Dirección Fisica: %d %d",pcb->id,mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
+			log_debug(logger,"Acceso Memoria: PID: %d - Acción: LEER - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d",pcb->id, dirFisicaMoveIn->dl.nroSegmento, dirFisicaMoveIn->dl.nroPagina, mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 			log_debug(logger, "Envie direccion fisica a memoria: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
 			t_paqt paqueteMemoria;
@@ -275,7 +275,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			log_debug(logger, "valor a escribir = %i", registroActual);
 
 			enviarMsje(conexion, CPU, mensajeAMemoriaEscribir, sizeof(MSJ_MEMORIA_CPU_ESCRIBIR), ACCESO_MEMORIA_ESCRIBIR);
-			log_debug(logger,"Acceso Memoria: PID: %d - Acción: ESCRIBIR - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA> - Dirección Fisica: %d %d",pcb->id,mensajeAMemoriaEscribir->nroMarco, mensajeAMemoriaEscribir->desplazamiento);
+			log_debug(logger,"Acceso Memoria: PID: %d - Acción: ESCRIBIR - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d",pcb->id,dirFisicaMoveOut->dl.nroSegmento, dirFisicaMoveOut->dl.nroPagina, mensajeAMemoriaEscribir->nroMarco, mensajeAMemoriaEscribir->desplazamiento);
 
 			t_paqt paqueteMemoriaWrite;
 			recibirMsje(conexion, &paqueteMemoriaWrite);
@@ -513,6 +513,9 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	log_info(logger, "Desplazamiento Pagina = %d ·/. %d = %d", desplazamiento_Segmento, tam_pagina, desplazamiento_pagina);
 
 	printf(PRINT_COLOR_GREEN "---------------------------------------------------\n" PRINT_COLOR_RESET);
+
+	dir_fisica->dl.nroPagina = numero_pagina;
+	dir_fisica->dl.nroSegmento = numero_segmento;
 
 	t_tabla_segmentos *segmento = malloc(sizeof(t_tabla_segmentos)); // hacer el free(segmento);
 	segmento = list_get(pcb->tablaSegmentos, numero_segmento);

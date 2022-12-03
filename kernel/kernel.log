@@ -23457,3 +23457,87 @@
 [DEBUG] 01:36:11:649 KERNEL/(14081:14087): Estado Anterior: EXEC , proceso id: 1
 [DEBUG] 01:36:11:649 KERNEL/(14081:14087): Estado, proceso Actual: EXIT  id: 1
 [DEBUG] 01:36:11:650 KERNEL/(14081:14087): Procesos finalizados: 1
+[INFO] 03:19:04:108 KERNEL/(15559:15560): Servidor listo para recibir al cliente
+[INFO] 03:19:13:751 KERNEL/(15559:15560): Se conecto un cliente!
+[INFO] 03:19:13:753 KERNEL/(15559:15560): Llegaron las instrucciones y los segmentos
+[INFO] 03:19:13:756 KERNEL/(15559:15677): Consola conectada, paso a crear el hilo
+[DEBUG] 03:19:13:758 KERNEL/(15559:15677): Paso a NEW el proceso 1
+[DEBUG] 03:19:13:758 KERNEL/(15559:15677): Estado Actual: NEW , proceso id: 1
+[INFO] 03:19:13:761 KERNEL/(15559:15677): Cant de elementos de new: 1
+[INFO] 03:19:13:762 KERNEL/(15559:15563): Agregando un pcb a lista ready
+[DEBUG] 03:19:13:772 KERNEL/(15559:15563): Paso a READY el proceso 1
+[DEBUG] 03:19:13:772 KERNEL/(15559:15563): Estado Anterior: NEW , proceso id: 1
+[DEBUG] 03:19:13:772 KERNEL/(15559:15563): Estado Actual: READY , proceso id: 1
+[INFO] 03:19:13:772 KERNEL/(15559:15563): Envie a memoria los recursos para asignar
+[INFO] 03:19:13:772 KERNEL/(15559:15564): Llego pcb a plani corto plazo
+[DEBUG] 03:19:13:772 KERNEL/(15559:15564): Implementando algoritmo FEEDBACK
+[DEBUG] 03:19:13:772 KERNEL/(15559:15564): Paso a EXEC el proceso 1
+[DEBUG] 03:19:13:773 KERNEL/(15559:15564): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:19:13:773 KERNEL/(15559:15564): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:19:15:779 KERNEL/(15559:15565): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 03:19:15:779 KERNEL/(15559:15565): Paso a READY aux el proceso 1
+[INFO] 03:19:15:779 KERNEL/(15559:15564): Llego pcb a plani corto plazo
+[DEBUG] 03:19:15:780 KERNEL/(15559:15564): Implementando algoritmo FEEDBACK
+[DEBUG] 03:19:15:780 KERNEL/(15559:15564): Paso a EXEC el proceso 1
+[DEBUG] 03:19:15:780 KERNEL/(15559:15564): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:19:15:780 KERNEL/(15559:15564): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:19:17:789 KERNEL/(15559:15565): Paso a READY aux el proceso 1
+[INFO] 03:19:17:879 KERNEL/(15559:15758): Mensaje recibido por memoria: asignacion de marcos realizada correctamente
+[DEBUG] 03:19:17:879 KERNEL/(15559:15758): Paso a READY el proceso 1
+[INFO] 03:19:17:879 KERNEL/(15559:15564): Llego pcb a plani corto plazo
+[DEBUG] 03:19:17:880 KERNEL/(15559:15564): Implementando algoritmo FEEDBACK
+[DEBUG] 03:19:17:880 KERNEL/(15559:15564): Paso a EXEC el proceso 1
+[DEBUG] 03:19:17:880 KERNEL/(15559:15564): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:19:17:880 KERNEL/(15559:15564): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:19:19:891 KERNEL/(15559:15565): Ejecutada: 'PID:  1 - Desalojado por fin de Quantum'
+[DEBUG] 03:19:19:891 KERNEL/(15559:15565): Paso a READY aux el proceso 1
+[INFO] 03:19:19:891 KERNEL/(15559:15564): Llego pcb a plani corto plazo
+[DEBUG] 03:19:19:891 KERNEL/(15559:15564): Implementando algoritmo FEEDBACK
+[DEBUG] 03:19:19:891 KERNEL/(15559:15564): Paso a EXEC el proceso 1
+[DEBUG] 03:19:19:891 KERNEL/(15559:15564): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:19:19:891 KERNEL/(15559:15564): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:19:19:894 KERNEL/(15559:15565): Paso a BLOCK el proceso 1
+[DEBUG] 03:19:19:895 KERNEL/(15559:15565): Ejecutada: 'PID:  1 - Bloqueado por: DISCO '
+[INFO] 03:19:19:902 KERNEL/(15559:15809): Ejecutando el dispositivo DISCO
+[INFO] 03:19:19:905 KERNEL/(15559:15809): Por un tiempo de: 10000
+[DEBUG] 03:19:29:909 KERNEL/(15559:15809): Paso a READY el proceso 1
+[INFO] 03:19:29:910 KERNEL/(15559:15564): Llego pcb a plani corto plazo
+[DEBUG] 03:19:29:910 KERNEL/(15559:15564): Implementando algoritmo FEEDBACK
+[DEBUG] 03:19:29:910 KERNEL/(15559:15564): Paso a EXEC el proceso 1
+[DEBUG] 03:19:29:910 KERNEL/(15559:15564): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:19:29:910 KERNEL/(15559:15564): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:19:29:911 KERNEL/(15559:15565): Paso a BLOCK el proceso 1
+[DEBUG] 03:19:29:911 KERNEL/(15559:15565): Ejecutada: 'PID:  1 - Bloqueado por: TECLADO '
+[INFO] 03:21:32:331 KERNEL/(15559:15889): El valor del registro ingresado por consola es: 0
+[DEBUG] 03:21:32:331 KERNEL/(15559:15889): Paso a READY el proceso 1
+[INFO] 03:21:32:332 KERNEL/(15559:15564): Llego pcb a plani corto plazo
+[DEBUG] 03:21:32:332 KERNEL/(15559:15564): Implementando algoritmo FEEDBACK
+[DEBUG] 03:21:32:332 KERNEL/(15559:15564): Paso a EXEC el proceso 1
+[DEBUG] 03:21:32:332 KERNEL/(15559:15564): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:21:32:332 KERNEL/(15559:15564): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:21:32:332 KERNEL/(15559:15565): Paso a BLOCK el proceso 1
+[INFO] 03:21:32:339 KERNEL/(15559:16025): El valor del registro que se muestra por pantalla es: 7
+[INFO] 03:21:33:099 KERNEL/(15559:16025): Me llego el mensaje: se mostro el valor por pantalla
+
+
+[DEBUG] 03:21:33:099 KERNEL/(15559:16025): Paso a READY el proceso 1
+[INFO] 03:21:33:100 KERNEL/(15559:15564): Llego pcb a plani corto plazo
+[DEBUG] 03:21:33:100 KERNEL/(15559:15564): Implementando algoritmo FEEDBACK
+[DEBUG] 03:21:33:100 KERNEL/(15559:15564): Paso a EXEC el proceso 1
+[DEBUG] 03:21:33:100 KERNEL/(15559:15564): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:21:33:100 KERNEL/(15559:15564): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:21:33:100 KERNEL/(15559:15565): Paso a BLOCK el proceso 1
+[DEBUG] 03:21:33:100 KERNEL/(15559:15565): Ejecutada: 'PID:  1 - Bloqueado por: IMPRESORA '
+[INFO] 03:21:33:107 KERNEL/(15559:16027): Ejecutando el dispositivo IMPRESORA
+[INFO] 03:21:33:110 KERNEL/(15559:16027): Por un tiempo de: 10000
+[DEBUG] 03:21:43:112 KERNEL/(15559:16027): Paso a READY el proceso 1
+[INFO] 03:21:43:113 KERNEL/(15559:15564): Llego pcb a plani corto plazo
+[DEBUG] 03:21:43:113 KERNEL/(15559:15564): Implementando algoritmo FEEDBACK
+[DEBUG] 03:21:43:113 KERNEL/(15559:15564): Paso a EXEC el proceso 1
+[DEBUG] 03:21:43:114 KERNEL/(15559:15564): Estado Anterior: READY , proceso id: 1
+[DEBUG] 03:21:43:114 KERNEL/(15559:15564): Estado Actual: EXEC , proceso id: 1
+[DEBUG] 03:21:43:115 KERNEL/(15559:15565): Paso a EXEC el proceso 1
+[DEBUG] 03:21:43:115 KERNEL/(15559:15565): Paso a EXIT el proceso 1
+[DEBUG] 03:21:43:115 KERNEL/(15559:15565): Estado Anterior: EXEC , proceso id: 1
+[DEBUG] 03:21:43:115 KERNEL/(15559:15565): Estado, proceso Actual: EXIT  id: 1
+[DEBUG] 03:21:43:115 KERNEL/(15559:15565): Procesos finalizados: 1

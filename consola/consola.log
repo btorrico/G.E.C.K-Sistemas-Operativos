@@ -5807,3 +5807,19 @@
 [DEBUG] 01:36:00:862 CONSOLA/(14134:14134): Valor por pantalla recibido desde kernel: 7
 [INFO] 01:36:01:613 CONSOLA/(14134:14134): Consola en espera de nuevos mensajes del kernel..
 [INFO] 01:36:11:650 CONSOLA/(14134:14134): Termino la consola
+[INFO] 03:19:13:733 CONSOLA/(15676:15676): 
+ Iniciando consola...
+[INFO] 03:19:13:750 CONSOLA/(15676:15676): Se parsearon #Instrucciones: 11
+[INFO] 03:19:13:754 CONSOLA/(15676:15676): Se enviaron todas las instrucciones y los segmentos!
+
+[INFO] 03:19:13:754 CONSOLA/(15676:15676): Mensaje de confirmacion del Kernel : Quedate tranqui Consola, llego todo lo que mandaste ;)
+
+
+[INFO] 03:19:13:754 CONSOLA/(15676:15676): Consola en espera de nuevos mensajes del kernel..
+[INFO] 03:19:29:914 CONSOLA/(15676:15676): Me llego el mensaje: solicito el ingreso de un valor por teclado
+
+[INFO] 03:19:29:916 CONSOLA/(15676:15676): Ingresa un valor por consola: 
+[INFO] 03:21:32:331 CONSOLA/(15676:15676): Consola en espera de nuevos mensajes del kernel..
+[DEBUG] 03:21:32:349 CONSOLA/(15676:15676): Valor por pantalla recibido desde kernel: 7
+[INFO] 03:21:33:099 CONSOLA/(15676:15676): Consola en espera de nuevos mensajes del kernel..
+[INFO] 03:21:43:116 CONSOLA/(15676:15676): Termino la consola
