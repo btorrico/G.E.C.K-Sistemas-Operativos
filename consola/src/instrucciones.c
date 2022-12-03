@@ -15,7 +15,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 	{
 		char **palabra = string_split(buffer, " ");
 		t_instruccion *instr = malloc(sizeof(t_instruccion));
-		printf("\nDispocitivo enviado a kernel %s",buffer);
+		
 
 		if (strcmp(palabra[0], "SET") == 0)
 		{

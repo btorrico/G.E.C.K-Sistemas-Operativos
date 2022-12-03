@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
 	char *mensaje = recibirMensaje(conexionConsola);
 	log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
-
+	free(mensaje);
 	while (1)
 	{
 		log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
@@ -74,6 +74,7 @@ int main(int argc, char **argv)
 			return EXIT_SUCCESS;
 		}
 
+		
 		// terminar_programa(conexion, logger, config);
 	}
 }
