@@ -224,6 +224,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
 			mensajeAMemoriaLeer->pid = pcb->id;
 			enviarMsje(conexion, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_LEER);
+			log_debug(logger,"Acceso Memoria: PID: %d - Acción: LEER - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA> - Dirección Fisica: %d %d",pcb->id,mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 			log_debug(logger, "Envie direccion fisica a memoria: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
 			t_paqt paqueteMemoria;
@@ -274,7 +275,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			log_debug(logger, "valor a escribir = %i", registroActual);
 
 			enviarMsje(conexion, CPU, mensajeAMemoriaEscribir, sizeof(MSJ_MEMORIA_CPU_ESCRIBIR), ACCESO_MEMORIA_ESCRIBIR);
-			log_debug(logger, "Envie direccion fisica a memoria swap\n");
+			log_debug(logger,"Acceso Memoria: PID: %d - Acción: ESCRIBIR - Segmento: <NUMERO_SEGMENTO> - Pagina: <NUMERO_PAGINA> - Dirección Fisica: %d %d",pcb->id,mensajeAMemoriaEscribir->nroMarco, mensajeAMemoriaEscribir->desplazamiento);
 
 			t_paqt paqueteMemoriaWrite;
 			recibirMsje(conexion, &paqueteMemoriaWrite);
@@ -555,9 +556,10 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
 			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
+			log_debug(logger,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
 			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
-			// free(pcb);
-			//  free(mensajeAKernelPageFault);
+			//free(pcb);
+			free(mensajeAKernelPageFault);
 		}
 		else
 		{
@@ -626,6 +628,7 @@ int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas, uint32_t pid)
 	case RESPUESTA_MEMORIA_MARCO_BUSCADO:
 		int nroFrame = mensajePrimerAcceso->numero;
 		log_info(logger, "(primer acceso)EL MARCO BUSCADO ES: %d", nroFrame);
+		free(mensajePrimerAcceso);
 		return nroFrame;
 		break;
 

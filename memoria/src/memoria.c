@@ -382,11 +382,11 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 
 		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
 		free(mensaje);
+		log_debug(logger, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
+				  pid, pagina->nroPagina, marcoBuscado); // LOG OBLIGATORIO
 		log_debug(logger, "[FIN - TRADUCCION_DIR] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA DE PAG CON INDICE: %d ENVIADO A CPU",
 				  marcoBuscado, pagina->nroPagina, tabla_de_paginas->idTablaPag); // chequear y borrar
 
-		log_debug(logger, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
-				  pid, pagina->nroPagina, marcoBuscado); // LOG OBLIGATORIO
 	}
 	else if (pagina->presencia == 0)
 	{ // la pag no esta en ram. Retornar PAGE FAULT
@@ -401,6 +401,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 
 void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 {
+	log_debug(logger,"Acceso a espacio de usuario: “PID: %d - Acción: LEER - Dirección física: %d  %d",pid,df->nroMarco, df->desplazamientoPagina);
 	log_debug(logger, "[ACCESO_MEMORIA_LEER] DIR_FISICA: %d  %d",
 			  df->nroMarco, df->desplazamientoPagina);
 
@@ -422,12 +423,9 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 				  df->nroMarco, df->desplazamientoPagina);
 		return;
 	}
-	// uint32_t aux = 9;	   ////miesntras no tengamos moveout lo hardcodeamos
-	// uint32_t *aux2 = &aux; // miesntras no tengamos moveout lo hardcodeamos
-	pthread_mutex_lock(&mutex_void_memoria_ram);
-	//memcpy(memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, aux2, sizeof(uint32_t)); // miesntras no tengamos moveout lo hardcodeamos
-	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
 
+	pthread_mutex_lock(&mutex_void_memoria_ram);
+	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
 	printf("aLeer%d", *(uint32_t *)aLeer);
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	//*puntero es el contenido
@@ -460,6 +458,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 
 void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir, int pid, int socketAceptado)
 {
+	log_debug(logger,"Acceso a espacio de usuario: “PID: %d - Acción: ESCRIBIR - Dirección física: %d  %d",pid,dirFisica->nroMarco, dirFisica->desplazamientoPagina);
 	log_debug(logger, "[ACCESO_MEMORIA_ESCRIBIR] DIR_FISICA: nroMarco %d offset %d, VALOR: %d",
 			  dirFisica->nroMarco, dirFisica->desplazamientoPagina, valorAEscribir);
 
