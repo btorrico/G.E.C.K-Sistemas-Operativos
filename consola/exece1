@@ -1,6 +1,6 @@
 #!/bin/bash
 FILE=consola
-CONFIG=consola.config
+CONFIG=consolaAyBe.config
 ESTABILIDAD_1=geck-pruebas/ESTABILIDAD_1
 if test -f "./$FILE"; then
     ./$FILE $CONFIG $ESTABILIDAD_1
