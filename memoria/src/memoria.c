@@ -422,10 +422,10 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 				  df->nroMarco, df->desplazamientoPagina);
 		return;
 	}
-	uint32_t aux = 9;	   ////miesntras no tengamos moveout lo hardcodeamos
-	uint32_t *aux2 = &aux; // miesntras no tengamos moveout lo hardcodeamos
+	// uint32_t aux = 9;	   ////miesntras no tengamos moveout lo hardcodeamos
+	// uint32_t *aux2 = &aux; // miesntras no tengamos moveout lo hardcodeamos
 	pthread_mutex_lock(&mutex_void_memoria_ram);
-	memcpy(memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, aux2, sizeof(uint32_t)); // miesntras no tengamos moveout lo hardcodeamos
+	//memcpy(memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, aux2, sizeof(uint32_t)); // miesntras no tengamos moveout lo hardcodeamos
 	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
 
 	printf("aLeer%d", *(uint32_t *)aLeer);
@@ -433,25 +433,24 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	//*puntero es el contenido
 	//&variable es la direccion
 
-	log_debug(logger, "Valor Leido: %s", aLeer);
+	log_debug(logger, "Valor Leido: %d", *(uint32_t *)aLeer);
 
 	usleep(configMemoria.retardoMemoria * 1000);
 
 	/***********************************************/
 	t_pagina *pagina;
 
-	t_list *listaTablas = filtrarPorPIDTabla(pid);
-
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
 	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
-
-	pagina = list_get(marcosPorProceso->paginas, pagina->nroMarco % 4);
+	printf("memorialeeeer\n");
+	pagina = list_get(marcosPorProceso->paginas, nroFrame % 4);
 	pagina->uso = 1;
-
+	printf("memorialeeeer2\n");
 	/***********************************************/
 	MSJ_INT *mensajeRead = malloc(sizeof(MSJ_INT));
-	mensajeRead->numero = *(uint32_t *)aLeer;
+	mensajeRead->numero = *(int *)aLeer;
+	printf("casteanding a int\n");
 	enviarMsje(socketAceptado, MEMORIA, mensajeRead, sizeof(MSJ_INT), ACCESO_MEMORIA_LEER);
 	free(mensajeRead);
 
@@ -481,39 +480,26 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 		return;
 	}
 
+
 	pthread_mutex_lock(&mutex_void_memoria_ram);
 	uint32_t *aEscribir = &valorAEscribir;
-	printf("aEscribir%d", *(uint32_t *)aEscribir);
+	printf("aEscribir%d\n", *aEscribir);
 	memcpy(memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento, aEscribir, sizeof(uint32_t)); // tercer arg strlen(string_itoa(valorAEscribir))
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
+	printf("aEscribir%d\n", *aEscribir);
+
 
 	// busco la pagina que piden y actualizo el bit de modificado porque se hizo write
 	t_pagina *pagina;
-	t_list *listaTablas = filtrarPorPIDTabla(pid);
 
-	if (string_equals_ignore_case(configMemoria.algoritmoReemplazo, "CLOCK-M"))
-	{
-
-		pthread_mutex_lock(&mutex_lista_marco_por_proceso);
-		t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
-		pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
-
-		pagina = list_get(marcosPorProceso->paginas, pagina->nroMarco % 4);
-		pagina->uso = 1;
-		pagina->modificacion = 1;
-
-	}
-	else
-	{
-
-		pthread_mutex_lock(&mutex_lista_marco_por_proceso);
-		t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
-		pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
-
-		pagina = list_get(marcosPorProceso->paginas, pagina->nroMarco % 4);
-		pagina->uso = 1;
-	}
-
+	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
+	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
+	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
+	printf("llegue acaaaaaaa\n");
+	pagina = list_get(marcosPorProceso->paginas, nroMarco % 4);
+	pagina->uso = 1;
+	pagina->modificacion = 1;
+	printf("llegue aca\n");
 	usleep(configMemoria.retardoMemoria * 1000);
 
 	char *cadena = string_new();

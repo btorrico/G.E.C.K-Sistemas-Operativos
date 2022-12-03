@@ -38984,3 +38984,1265 @@
 [DEBUG] 03:04:51:362 CPU/(18406:18407): valor a escribir = 8
 [DEBUG] 03:04:51:362 CPU/(18406:18407): Envie direccion fisica a memoria swap
 
+[INFO] 23:25:28:609 CPU/(3460:3462): Servidor listo para recibir al interrupt kernel
+[DEBUG] 23:25:28:612 CPU/(3460:3463): Buscando configuracion inicial de memoria
+[DEBUG] 23:25:28:621 CPU/(3460:3463): Se envio Handshake a MEMORIA
+[INFO] 23:25:28:612 CPU/(3460:3461): Servidor listo para recibir al dispatch kernel
+[DEBUG] 23:25:28:622 CPU/(3460:3463): Esperando mensaje de memoria para config inicial
+[DEBUG] 23:25:28:622 CPU/(3460:3463): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 23:25:40:342 CPU/(3460:3462): Se conecto un cliente!
+[INFO] 23:25:40:345 CPU/(3460:3461): Se conecto un cliente!
+[INFO] 23:25:51:364 CPU/(3460:3461): insActual->instCode: 0
+[INFO] 23:25:51:364 CPU/(3460:3461): insActual->pc: 0
+[INFO] 23:25:51:364 CPU/(3460:3461):  Valor nuevo Program counter: 1
+[DEBUG] 23:25:51:365 CPU/(3460:3461): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 23:25:52:365 CPU/(3460:3461): AX = 1
+[DEBUG] 23:25:52:365 CPU/(3460:3461): No hay interrupcion, sigo el ciclo
+[INFO] 23:25:52:365 CPU/(3460:3461): insActual->instCode: 0
+[INFO] 23:25:52:365 CPU/(3460:3461): insActual->pc: 1
+[INFO] 23:25:52:366 CPU/(3460:3461):  Valor nuevo Program counter: 2
+[DEBUG] 23:25:52:366 CPU/(3460:3461): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 23:25:52:871 CPU/(3460:3462): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:25:53:366 CPU/(3460:3461): BX = 7
+[DEBUG] 23:25:53:367 CPU/(3460:3461): Devuelvo pcb por interrupcion
+[INFO] 23:25:53:368 CPU/(3460:3461): insActual->instCode: 0
+[INFO] 23:25:53:368 CPU/(3460:3461): insActual->pc: 2
+[INFO] 23:25:53:368 CPU/(3460:3461):  Valor nuevo Program counter: 3
+[DEBUG] 23:25:53:368 CPU/(3460:3461): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 23:25:54:368 CPU/(3460:3461): DX = 8
+[DEBUG] 23:25:54:370 CPU/(3460:3461): No hay interrupcion, sigo el ciclo
+[INFO] 23:25:54:370 CPU/(3460:3461): insActual->instCode: 1
+[INFO] 23:25:54:370 CPU/(3460:3461): insActual->pc: 3
+[INFO] 23:25:54:370 CPU/(3460:3461):  Valor nuevo Program counter: 4
+[DEBUG] 23:25:54:371 CPU/(3460:3461): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 23:25:55:373 CPU/(3460:3461): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 23:25:55:377 CPU/(3460:3461): AX = 8
+[DEBUG] 23:25:55:377 CPU/(3460:3461): No hay interrupcion, sigo el ciclo
+[INFO] 23:25:55:377 CPU/(3460:3461): insActual->instCode: 2
+[DEBUG] 23:25:55:377 CPU/(3460:3461): Requiere acceso a Memoria
+[INFO] 23:25:55:377 CPU/(3460:3461): insActual->pc: 4
+[INFO] 23:25:55:377 CPU/(3460:3461):  Valor nuevo Program counter: 5
+[DEBUG] 23:25:55:377 CPU/(3460:3461): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:25:55:377 CPU/(3460:3461): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:25:55:377 CPU/(3460:3461): MMU entrando en acción...
+[INFO] 23:25:55:377 CPU/(3460:3461): Traduccion de la dirección logica
+[INFO] 23:25:55:377 CPU/(3460:3461): direccionLogica: 4
+[INFO] 23:25:55:377 CPU/(3460:3461): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:25:55:377 CPU/(3460:3461): Número de Segmento = 4 / 256 = 0
+[INFO] 23:25:55:377 CPU/(3460:3461): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:25:55:378 CPU/(3460:3461): Número Pagina = 4 / 64 = 0
+[INFO] 23:25:55:378 CPU/(3460:3461): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:25:55:378 CPU/(3460:3461): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:25:55:378 CPU/(3460:3461): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:25:55:378 CPU/(3460:3461): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 23:25:55:378 CPU/(3460:3461): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 23:25:55:380 CPU/(3460:3461): No hay interrupcion, sigo el ciclo
+[INFO] 23:25:55:467 CPU/(3460:3461): insActual->instCode: 2
+[DEBUG] 23:25:55:467 CPU/(3460:3461): Requiere acceso a Memoria
+[INFO] 23:25:55:467 CPU/(3460:3461): insActual->pc: 4
+[INFO] 23:25:55:467 CPU/(3460:3461):  Valor nuevo Program counter: 5
+[DEBUG] 23:25:55:467 CPU/(3460:3461): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:25:55:467 CPU/(3460:3461): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:25:55:467 CPU/(3460:3461): MMU entrando en acción...
+[INFO] 23:25:55:467 CPU/(3460:3461): Traduccion de la dirección logica
+[INFO] 23:25:55:467 CPU/(3460:3461): direccionLogica: 4
+[INFO] 23:25:55:467 CPU/(3460:3461): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:25:55:467 CPU/(3460:3461): Número de Segmento = 4 / 256 = 0
+[INFO] 23:25:55:467 CPU/(3460:3461): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:25:55:467 CPU/(3460:3461): Número Pagina = 4 / 64 = 0
+[INFO] 23:25:55:467 CPU/(3460:3461): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:25:55:468 CPU/(3460:3461): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:25:55:468 CPU/(3460:3461): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:25:55:468 CPU/(3460:3461): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 23:25:55:469 CPU/(3460:3461): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 23:25:55:470 CPU/(3460:3461): El valor del marco es: 0
+[DEBUG] 23:25:55:470 CPU/(3460:3461): El valor del offset es: 4
+[DEBUG] 23:25:55:470 CPU/(3460:3461): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 23:25:55:470 CPU/(3460:3461): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[DEBUG] 23:25:56:472 CPU/(3460:3461): Mensaje leido: 9
+[DEBUG] 23:25:56:472 CPU/(3460:3461): Registro CX = 9
+[DEBUG] 23:25:56:472 CPU/(3460:3461): No hay interrupcion, sigo el ciclo
+[INFO] 23:25:56:472 CPU/(3460:3461): insActual->instCode: 3
+[DEBUG] 23:25:56:472 CPU/(3460:3461): Requiere acceso a Memoria
+[INFO] 23:25:56:472 CPU/(3460:3461): insActual->pc: 5
+[INFO] 23:25:56:472 CPU/(3460:3461):  Valor nuevo Program counter: 6
+[DEBUG] 23:25:56:472 CPU/(3460:3461): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 23:25:56:472 CPU/(3460:3461): MOV_OUT 4 DX
+[INFO] 23:25:56:472 CPU/(3460:3461): MMU entrando en acción...
+[INFO] 23:25:56:472 CPU/(3460:3461): Traduccion de la dirección logica
+[INFO] 23:25:56:472 CPU/(3460:3461): direccionLogica: 4
+[INFO] 23:25:56:473 CPU/(3460:3461): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:25:56:473 CPU/(3460:3461): Número de Segmento = 4 / 256 = 0
+[INFO] 23:25:56:473 CPU/(3460:3461): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:25:56:473 CPU/(3460:3461): Número Pagina = 4 / 64 = 0
+[INFO] 23:25:56:473 CPU/(3460:3461): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:25:56:473 CPU/(3460:3461): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:25:56:473 CPU/(3460:3461): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 23:25:56:473 CPU/(3460:3461): valor a escribir = 8
+[DEBUG] 23:25:56:473 CPU/(3460:3461): Envie direccion fisica a memoria swap
+
+[INFO] 23:34:46:363 CPU/(4376:4377): Servidor listo para recibir al dispatch kernel
+[INFO] 23:34:46:363 CPU/(4376:4378): Servidor listo para recibir al interrupt kernel
+[DEBUG] 23:34:46:402 CPU/(4376:4379): Buscando configuracion inicial de memoria
+[DEBUG] 23:34:46:404 CPU/(4376:4379): Se envio Handshake a MEMORIA
+[DEBUG] 23:34:46:405 CPU/(4376:4379): Esperando mensaje de memoria para config inicial
+[DEBUG] 23:34:46:409 CPU/(4376:4379): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 23:34:58:204 CPU/(4376:4378): Se conecto un cliente!
+[INFO] 23:34:58:205 CPU/(4376:4377): Se conecto un cliente!
+[INFO] 23:35:38:159 CPU/(4376:4377): insActual->instCode: 0
+[INFO] 23:35:38:159 CPU/(4376:4377): insActual->pc: 0
+[INFO] 23:35:38:159 CPU/(4376:4377):  Valor nuevo Program counter: 1
+[DEBUG] 23:35:38:159 CPU/(4376:4377): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 23:35:39:160 CPU/(4376:4377): AX = 1
+[DEBUG] 23:35:39:162 CPU/(4376:4377): No hay interrupcion, sigo el ciclo
+[INFO] 23:35:39:162 CPU/(4376:4377): insActual->instCode: 0
+[INFO] 23:35:39:162 CPU/(4376:4377): insActual->pc: 1
+[INFO] 23:35:39:162 CPU/(4376:4377):  Valor nuevo Program counter: 2
+[DEBUG] 23:35:39:162 CPU/(4376:4377): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 23:35:39:661 CPU/(4376:4378): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:35:40:162 CPU/(4376:4377): BX = 7
+[DEBUG] 23:35:40:163 CPU/(4376:4377): Devuelvo pcb por interrupcion
+[INFO] 23:35:40:164 CPU/(4376:4377): insActual->instCode: 0
+[INFO] 23:35:40:164 CPU/(4376:4377): insActual->pc: 2
+[INFO] 23:35:40:164 CPU/(4376:4377):  Valor nuevo Program counter: 3
+[DEBUG] 23:35:40:164 CPU/(4376:4377): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 23:35:41:164 CPU/(4376:4377): DX = 8
+[DEBUG] 23:35:41:165 CPU/(4376:4377): No hay interrupcion, sigo el ciclo
+[INFO] 23:35:41:165 CPU/(4376:4377): insActual->instCode: 1
+[INFO] 23:35:41:165 CPU/(4376:4377): insActual->pc: 3
+[INFO] 23:35:41:165 CPU/(4376:4377):  Valor nuevo Program counter: 4
+[DEBUG] 23:35:41:165 CPU/(4376:4377): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 23:35:42:165 CPU/(4376:4377): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 23:35:42:165 CPU/(4376:4377): AX = 8
+[DEBUG] 23:35:42:165 CPU/(4376:4377): No hay interrupcion, sigo el ciclo
+[INFO] 23:35:42:165 CPU/(4376:4377): insActual->instCode: 2
+[DEBUG] 23:35:42:165 CPU/(4376:4377): Requiere acceso a Memoria
+[INFO] 23:35:42:165 CPU/(4376:4377): insActual->pc: 4
+[INFO] 23:35:42:165 CPU/(4376:4377):  Valor nuevo Program counter: 5
+[DEBUG] 23:35:42:166 CPU/(4376:4377): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:35:42:166 CPU/(4376:4377): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:35:42:166 CPU/(4376:4377): MMU entrando en acción...
+[INFO] 23:35:42:166 CPU/(4376:4377): Traduccion de la dirección logica
+[INFO] 23:35:42:166 CPU/(4376:4377): direccionLogica: 4
+[INFO] 23:35:42:166 CPU/(4376:4377): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:35:42:166 CPU/(4376:4377): Número de Segmento = 4 / 256 = 0
+[INFO] 23:35:42:166 CPU/(4376:4377): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:35:42:166 CPU/(4376:4377): Número Pagina = 4 / 64 = 0
+[INFO] 23:35:42:166 CPU/(4376:4377): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:35:42:166 CPU/(4376:4377): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:35:42:166 CPU/(4376:4377): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:35:42:166 CPU/(4376:4377): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 23:35:42:167 CPU/(4376:4377): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 23:35:42:167 CPU/(4376:4377): No hay interrupcion, sigo el ciclo
+[INFO] 23:35:42:255 CPU/(4376:4377): insActual->instCode: 2
+[DEBUG] 23:35:42:255 CPU/(4376:4377): Requiere acceso a Memoria
+[INFO] 23:35:42:255 CPU/(4376:4377): insActual->pc: 4
+[INFO] 23:35:42:255 CPU/(4376:4377):  Valor nuevo Program counter: 5
+[DEBUG] 23:35:42:255 CPU/(4376:4377): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:35:42:255 CPU/(4376:4377): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:35:42:255 CPU/(4376:4377): MMU entrando en acción...
+[INFO] 23:35:42:255 CPU/(4376:4377): Traduccion de la dirección logica
+[INFO] 23:35:42:255 CPU/(4376:4377): direccionLogica: 4
+[INFO] 23:35:42:255 CPU/(4376:4377): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:35:42:255 CPU/(4376:4377): Número de Segmento = 4 / 256 = 0
+[INFO] 23:35:42:255 CPU/(4376:4377): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:35:42:255 CPU/(4376:4377): Número Pagina = 4 / 64 = 0
+[INFO] 23:35:42:255 CPU/(4376:4377): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:35:42:255 CPU/(4376:4377): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:35:42:255 CPU/(4376:4377): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:35:42:255 CPU/(4376:4377): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 23:35:42:255 CPU/(4376:4377): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 23:35:42:255 CPU/(4376:4377): El valor del marco es: 0
+[DEBUG] 23:35:42:255 CPU/(4376:4377): El valor del offset es: 4
+[DEBUG] 23:35:42:255 CPU/(4376:4377): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 23:35:42:255 CPU/(4376:4377): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[DEBUG] 23:35:43:257 CPU/(4376:4377): Mensaje leido: 9
+[DEBUG] 23:35:43:257 CPU/(4376:4377): Registro CX = 9
+[DEBUG] 23:35:43:257 CPU/(4376:4377): No hay interrupcion, sigo el ciclo
+[INFO] 23:35:43:257 CPU/(4376:4377): insActual->instCode: 3
+[DEBUG] 23:35:43:257 CPU/(4376:4377): Requiere acceso a Memoria
+[INFO] 23:35:43:257 CPU/(4376:4377): insActual->pc: 5
+[INFO] 23:35:43:257 CPU/(4376:4377):  Valor nuevo Program counter: 6
+[DEBUG] 23:35:43:257 CPU/(4376:4377): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 23:35:43:257 CPU/(4376:4377): MOV_OUT 4 DX
+[INFO] 23:35:43:257 CPU/(4376:4377): MMU entrando en acción...
+[INFO] 23:35:43:257 CPU/(4376:4377): Traduccion de la dirección logica
+[INFO] 23:35:43:257 CPU/(4376:4377): direccionLogica: 4
+[INFO] 23:35:43:257 CPU/(4376:4377): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:35:43:257 CPU/(4376:4377): Número de Segmento = 4 / 256 = 0
+[INFO] 23:35:43:257 CPU/(4376:4377): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:35:43:257 CPU/(4376:4377): Número Pagina = 4 / 64 = 0
+[INFO] 23:35:43:257 CPU/(4376:4377): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:35:43:257 CPU/(4376:4377): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:35:43:257 CPU/(4376:4377): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 23:35:43:257 CPU/(4376:4377): valor a escribir = 8
+[DEBUG] 23:35:43:257 CPU/(4376:4377): Envie direccion fisica a memoria swap
+
+[DEBUG] 23:39:29:107 CPU/(4913:4916): Buscando configuracion inicial de memoria
+[INFO] 23:39:29:115 CPU/(4913:4915): Servidor listo para recibir al interrupt kernel
+[DEBUG] 23:39:29:117 CPU/(4913:4916): Se envio Handshake a MEMORIA
+[INFO] 23:39:29:117 CPU/(4913:4914): Servidor listo para recibir al dispatch kernel
+[DEBUG] 23:39:29:118 CPU/(4913:4916): Esperando mensaje de memoria para config inicial
+[DEBUG] 23:39:29:118 CPU/(4913:4916): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 23:39:30:723 CPU/(4913:4915): Se conecto un cliente!
+[INFO] 23:39:30:727 CPU/(4913:4914): Se conecto un cliente!
+[INFO] 23:39:34:925 CPU/(4913:4914): insActual->instCode: 0
+[INFO] 23:39:34:925 CPU/(4913:4914): insActual->pc: 0
+[INFO] 23:39:34:925 CPU/(4913:4914):  Valor nuevo Program counter: 1
+[DEBUG] 23:39:34:925 CPU/(4913:4914): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 23:39:35:925 CPU/(4913:4914): AX = 1
+[DEBUG] 23:39:35:926 CPU/(4913:4914): No hay interrupcion, sigo el ciclo
+[INFO] 23:39:35:926 CPU/(4913:4914): insActual->instCode: 0
+[INFO] 23:39:35:926 CPU/(4913:4914): insActual->pc: 1
+[INFO] 23:39:35:926 CPU/(4913:4914):  Valor nuevo Program counter: 2
+[DEBUG] 23:39:35:929 CPU/(4913:4914): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 23:39:36:431 CPU/(4913:4915): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:39:36:929 CPU/(4913:4914): BX = 7
+[DEBUG] 23:39:36:929 CPU/(4913:4914): Devuelvo pcb por interrupcion
+[INFO] 23:39:36:930 CPU/(4913:4914): insActual->instCode: 0
+[INFO] 23:39:36:930 CPU/(4913:4914): insActual->pc: 2
+[INFO] 23:39:36:930 CPU/(4913:4914):  Valor nuevo Program counter: 3
+[DEBUG] 23:39:36:930 CPU/(4913:4914): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 23:39:37:931 CPU/(4913:4914): DX = 8
+[DEBUG] 23:39:37:931 CPU/(4913:4914): No hay interrupcion, sigo el ciclo
+[INFO] 23:39:37:931 CPU/(4913:4914): insActual->instCode: 1
+[INFO] 23:39:37:931 CPU/(4913:4914): insActual->pc: 3
+[INFO] 23:39:37:931 CPU/(4913:4914):  Valor nuevo Program counter: 4
+[DEBUG] 23:39:37:931 CPU/(4913:4914): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 23:39:38:932 CPU/(4913:4914): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 23:39:38:934 CPU/(4913:4914): AX = 8
+[DEBUG] 23:39:38:934 CPU/(4913:4914): No hay interrupcion, sigo el ciclo
+[INFO] 23:39:38:934 CPU/(4913:4914): insActual->instCode: 2
+[DEBUG] 23:39:38:934 CPU/(4913:4914): Requiere acceso a Memoria
+[INFO] 23:39:38:934 CPU/(4913:4914): insActual->pc: 4
+[INFO] 23:39:38:934 CPU/(4913:4914):  Valor nuevo Program counter: 5
+[DEBUG] 23:39:38:934 CPU/(4913:4914): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:39:38:935 CPU/(4913:4914): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:39:38:937 CPU/(4913:4914): MMU entrando en acción...
+[INFO] 23:39:38:937 CPU/(4913:4914): Traduccion de la dirección logica
+[INFO] 23:39:38:937 CPU/(4913:4914): direccionLogica: 4
+[INFO] 23:39:38:937 CPU/(4913:4914): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:39:38:937 CPU/(4913:4914): Número de Segmento = 4 / 256 = 0
+[INFO] 23:39:38:937 CPU/(4913:4914): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:39:38:937 CPU/(4913:4914): Número Pagina = 4 / 64 = 0
+[INFO] 23:39:38:937 CPU/(4913:4914): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:39:38:937 CPU/(4913:4914): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:39:38:938 CPU/(4913:4914): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:39:38:939 CPU/(4913:4914): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 23:39:38:939 CPU/(4913:4914): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 23:39:38:939 CPU/(4913:4914): No hay interrupcion, sigo el ciclo
+[INFO] 23:39:39:027 CPU/(4913:4914): insActual->instCode: 2
+[DEBUG] 23:39:39:027 CPU/(4913:4914): Requiere acceso a Memoria
+[INFO] 23:39:39:027 CPU/(4913:4914): insActual->pc: 4
+[INFO] 23:39:39:028 CPU/(4913:4914):  Valor nuevo Program counter: 5
+[DEBUG] 23:39:39:029 CPU/(4913:4914): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:39:39:029 CPU/(4913:4914): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:39:39:029 CPU/(4913:4914): MMU entrando en acción...
+[INFO] 23:39:39:029 CPU/(4913:4914): Traduccion de la dirección logica
+[INFO] 23:39:39:029 CPU/(4913:4914): direccionLogica: 4
+[INFO] 23:39:39:029 CPU/(4913:4914): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:39:39:030 CPU/(4913:4914): Número de Segmento = 4 / 256 = 0
+[INFO] 23:39:39:030 CPU/(4913:4914): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:39:39:030 CPU/(4913:4914): Número Pagina = 4 / 64 = 0
+[INFO] 23:39:39:030 CPU/(4913:4914): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:39:39:031 CPU/(4913:4914): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:39:39:031 CPU/(4913:4914): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:39:39:032 CPU/(4913:4914): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 23:39:39:032 CPU/(4913:4914): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 23:39:39:032 CPU/(4913:4914): El valor del marco es: 0
+[DEBUG] 23:39:39:033 CPU/(4913:4914): El valor del offset es: 4
+[DEBUG] 23:39:39:034 CPU/(4913:4914): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 23:39:39:034 CPU/(4913:4914): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[DEBUG] 23:39:40:035 CPU/(4913:4914): Mensaje leido: 9
+[DEBUG] 23:39:40:037 CPU/(4913:4914): Registro CX = 9
+[DEBUG] 23:39:40:037 CPU/(4913:4914): No hay interrupcion, sigo el ciclo
+[INFO] 23:39:40:037 CPU/(4913:4914): insActual->instCode: 3
+[DEBUG] 23:39:40:037 CPU/(4913:4914): Requiere acceso a Memoria
+[INFO] 23:39:40:037 CPU/(4913:4914): insActual->pc: 5
+[INFO] 23:39:40:037 CPU/(4913:4914):  Valor nuevo Program counter: 6
+[DEBUG] 23:39:40:037 CPU/(4913:4914): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 23:39:40:037 CPU/(4913:4914): MOV_OUT 4 DX
+[INFO] 23:39:40:038 CPU/(4913:4914): MMU entrando en acción...
+[INFO] 23:39:40:038 CPU/(4913:4914): Traduccion de la dirección logica
+[INFO] 23:39:40:038 CPU/(4913:4914): direccionLogica: 4
+[INFO] 23:39:40:038 CPU/(4913:4914): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:39:40:038 CPU/(4913:4914): Número de Segmento = 4 / 256 = 0
+[INFO] 23:39:40:038 CPU/(4913:4914): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:39:40:039 CPU/(4913:4914): Número Pagina = 4 / 64 = 0
+[INFO] 23:39:40:039 CPU/(4913:4914): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:39:40:039 CPU/(4913:4914): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:39:40:039 CPU/(4913:4914): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 23:39:40:039 CPU/(4913:4914): valor a escribir = 8
+[DEBUG] 23:39:40:039 CPU/(4913:4914): Envie direccion fisica a memoria swap
+
+[INFO] 23:45:23:238 CPU/(5410:5412): Servidor listo para recibir al interrupt kernel
+[INFO] 23:45:23:245 CPU/(5410:5411): Servidor listo para recibir al dispatch kernel
+[DEBUG] 23:45:23:250 CPU/(5410:5413): Buscando configuracion inicial de memoria
+[DEBUG] 23:45:23:252 CPU/(5410:5413): Se envio Handshake a MEMORIA
+[DEBUG] 23:45:23:253 CPU/(5410:5413): Esperando mensaje de memoria para config inicial
+[DEBUG] 23:45:23:255 CPU/(5410:5413): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 23:45:27:493 CPU/(5410:5412): Se conecto un cliente!
+[INFO] 23:45:27:495 CPU/(5410:5411): Se conecto un cliente!
+[INFO] 23:45:32:833 CPU/(5410:5411): insActual->instCode: 0
+[INFO] 23:45:32:833 CPU/(5410:5411): insActual->pc: 0
+[INFO] 23:45:32:833 CPU/(5410:5411):  Valor nuevo Program counter: 1
+[DEBUG] 23:45:32:833 CPU/(5410:5411): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 23:45:33:833 CPU/(5410:5411): AX = 1
+[DEBUG] 23:45:33:834 CPU/(5410:5411): No hay interrupcion, sigo el ciclo
+[INFO] 23:45:33:834 CPU/(5410:5411): insActual->instCode: 0
+[INFO] 23:45:33:834 CPU/(5410:5411): insActual->pc: 1
+[INFO] 23:45:33:834 CPU/(5410:5411):  Valor nuevo Program counter: 2
+[DEBUG] 23:45:33:834 CPU/(5410:5411): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 23:45:34:340 CPU/(5410:5412): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:45:34:834 CPU/(5410:5411): BX = 7
+[DEBUG] 23:45:34:838 CPU/(5410:5411): Devuelvo pcb por interrupcion
+[INFO] 23:45:34:839 CPU/(5410:5411): insActual->instCode: 0
+[INFO] 23:45:34:839 CPU/(5410:5411): insActual->pc: 2
+[INFO] 23:45:34:839 CPU/(5410:5411):  Valor nuevo Program counter: 3
+[DEBUG] 23:45:34:840 CPU/(5410:5411): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 23:45:35:840 CPU/(5410:5411): DX = 8
+[DEBUG] 23:45:35:841 CPU/(5410:5411): No hay interrupcion, sigo el ciclo
+[INFO] 23:45:35:841 CPU/(5410:5411): insActual->instCode: 1
+[INFO] 23:45:35:841 CPU/(5410:5411): insActual->pc: 3
+[INFO] 23:45:35:841 CPU/(5410:5411):  Valor nuevo Program counter: 4
+[DEBUG] 23:45:35:841 CPU/(5410:5411): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 23:45:36:841 CPU/(5410:5411): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 23:45:36:842 CPU/(5410:5411): AX = 8
+[DEBUG] 23:45:36:843 CPU/(5410:5411): No hay interrupcion, sigo el ciclo
+[INFO] 23:45:36:843 CPU/(5410:5411): insActual->instCode: 2
+[DEBUG] 23:45:36:843 CPU/(5410:5411): Requiere acceso a Memoria
+[INFO] 23:45:36:843 CPU/(5410:5411): insActual->pc: 4
+[INFO] 23:45:36:843 CPU/(5410:5411):  Valor nuevo Program counter: 5
+[DEBUG] 23:45:36:843 CPU/(5410:5411): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:45:36:843 CPU/(5410:5411): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:45:36:843 CPU/(5410:5411): MMU entrando en acción...
+[INFO] 23:45:36:843 CPU/(5410:5411): Traduccion de la dirección logica
+[INFO] 23:45:36:843 CPU/(5410:5411): direccionLogica: 4
+[INFO] 23:45:36:844 CPU/(5410:5411): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:45:36:844 CPU/(5410:5411): Número de Segmento = 4 / 256 = 0
+[INFO] 23:45:36:844 CPU/(5410:5411): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:45:36:845 CPU/(5410:5411): Número Pagina = 4 / 64 = 0
+[INFO] 23:45:36:845 CPU/(5410:5411): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:45:36:846 CPU/(5410:5411): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:45:36:846 CPU/(5410:5411): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:45:36:846 CPU/(5410:5411): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 23:45:36:846 CPU/(5410:5411): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 23:45:36:846 CPU/(5410:5411): No hay interrupcion, sigo el ciclo
+[INFO] 23:45:36:939 CPU/(5410:5411): insActual->instCode: 2
+[DEBUG] 23:45:36:939 CPU/(5410:5411): Requiere acceso a Memoria
+[INFO] 23:45:36:939 CPU/(5410:5411): insActual->pc: 4
+[INFO] 23:45:36:939 CPU/(5410:5411):  Valor nuevo Program counter: 5
+[DEBUG] 23:45:36:939 CPU/(5410:5411): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:45:36:939 CPU/(5410:5411): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:45:36:939 CPU/(5410:5411): MMU entrando en acción...
+[INFO] 23:45:36:939 CPU/(5410:5411): Traduccion de la dirección logica
+[INFO] 23:45:36:939 CPU/(5410:5411): direccionLogica: 4
+[INFO] 23:45:36:939 CPU/(5410:5411): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:45:36:939 CPU/(5410:5411): Número de Segmento = 4 / 256 = 0
+[INFO] 23:45:36:939 CPU/(5410:5411): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:45:36:939 CPU/(5410:5411): Número Pagina = 4 / 64 = 0
+[INFO] 23:45:36:939 CPU/(5410:5411): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:45:36:939 CPU/(5410:5411): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:45:36:939 CPU/(5410:5411): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:45:36:939 CPU/(5410:5411): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 23:45:36:940 CPU/(5410:5411): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 23:45:36:940 CPU/(5410:5411): El valor del marco es: 0
+[DEBUG] 23:45:36:940 CPU/(5410:5411): El valor del offset es: 4
+[DEBUG] 23:45:36:940 CPU/(5410:5411): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 23:45:36:940 CPU/(5410:5411): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[DEBUG] 23:45:37:941 CPU/(5410:5411): Mensaje leido: 9
+[DEBUG] 23:45:37:941 CPU/(5410:5411): Registro CX = 9
+[DEBUG] 23:45:37:941 CPU/(5410:5411): No hay interrupcion, sigo el ciclo
+[INFO] 23:45:37:941 CPU/(5410:5411): insActual->instCode: 3
+[DEBUG] 23:45:37:941 CPU/(5410:5411): Requiere acceso a Memoria
+[INFO] 23:45:37:941 CPU/(5410:5411): insActual->pc: 5
+[INFO] 23:45:37:941 CPU/(5410:5411):  Valor nuevo Program counter: 6
+[DEBUG] 23:45:37:941 CPU/(5410:5411): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 23:45:37:941 CPU/(5410:5411): MOV_OUT 4 DX
+[INFO] 23:45:37:941 CPU/(5410:5411): MMU entrando en acción...
+[INFO] 23:45:37:941 CPU/(5410:5411): Traduccion de la dirección logica
+[INFO] 23:45:37:941 CPU/(5410:5411): direccionLogica: 4
+[INFO] 23:45:37:941 CPU/(5410:5411): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:45:37:941 CPU/(5410:5411): Número de Segmento = 4 / 256 = 0
+[INFO] 23:45:37:941 CPU/(5410:5411): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:45:37:941 CPU/(5410:5411): Número Pagina = 4 / 64 = 0
+[INFO] 23:45:37:941 CPU/(5410:5411): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:45:37:942 CPU/(5410:5411): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:45:37:942 CPU/(5410:5411): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 23:45:37:942 CPU/(5410:5411): valor a escribir = 8
+[DEBUG] 23:45:37:942 CPU/(5410:5411): Envie direccion fisica a memoria swap
+
+[INFO] 23:50:53:011 CPU/(5864:5866): Servidor listo para recibir al interrupt kernel
+[INFO] 23:50:53:016 CPU/(5864:5865): Servidor listo para recibir al dispatch kernel
+[DEBUG] 23:50:53:027 CPU/(5864:5867): Buscando configuracion inicial de memoria
+[DEBUG] 23:50:53:029 CPU/(5864:5867): Se envio Handshake a MEMORIA
+[DEBUG] 23:50:53:030 CPU/(5864:5867): Esperando mensaje de memoria para config inicial
+[DEBUG] 23:50:53:030 CPU/(5864:5867): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 23:50:54:698 CPU/(5864:5866): Se conecto un cliente!
+[INFO] 23:50:54:699 CPU/(5864:5865): Se conecto un cliente!
+[INFO] 23:51:01:450 CPU/(5864:5865): insActual->instCode: 0
+[INFO] 23:51:01:450 CPU/(5864:5865): insActual->pc: 0
+[INFO] 23:51:01:450 CPU/(5864:5865):  Valor nuevo Program counter: 1
+[DEBUG] 23:51:01:450 CPU/(5864:5865): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 23:51:02:450 CPU/(5864:5865): AX = 1
+[DEBUG] 23:51:02:451 CPU/(5864:5865): No hay interrupcion, sigo el ciclo
+[INFO] 23:51:02:451 CPU/(5864:5865): insActual->instCode: 0
+[INFO] 23:51:02:451 CPU/(5864:5865): insActual->pc: 1
+[INFO] 23:51:02:451 CPU/(5864:5865):  Valor nuevo Program counter: 2
+[DEBUG] 23:51:02:451 CPU/(5864:5865): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 23:51:02:959 CPU/(5864:5866): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:51:03:451 CPU/(5864:5865): BX = 7
+[DEBUG] 23:51:03:451 CPU/(5864:5865): Devuelvo pcb por interrupcion
+[INFO] 23:51:03:452 CPU/(5864:5865): insActual->instCode: 0
+[INFO] 23:51:03:452 CPU/(5864:5865): insActual->pc: 2
+[INFO] 23:51:03:452 CPU/(5864:5865):  Valor nuevo Program counter: 3
+[DEBUG] 23:51:03:452 CPU/(5864:5865): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 23:51:04:453 CPU/(5864:5865): DX = 8
+[DEBUG] 23:51:04:453 CPU/(5864:5865): No hay interrupcion, sigo el ciclo
+[INFO] 23:51:04:453 CPU/(5864:5865): insActual->instCode: 1
+[INFO] 23:51:04:453 CPU/(5864:5865): insActual->pc: 3
+[INFO] 23:51:04:453 CPU/(5864:5865):  Valor nuevo Program counter: 4
+[DEBUG] 23:51:04:453 CPU/(5864:5865): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 23:51:05:453 CPU/(5864:5865): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 23:51:05:456 CPU/(5864:5865): AX = 8
+[DEBUG] 23:51:05:456 CPU/(5864:5865): No hay interrupcion, sigo el ciclo
+[INFO] 23:51:05:456 CPU/(5864:5865): insActual->instCode: 2
+[DEBUG] 23:51:05:456 CPU/(5864:5865): Requiere acceso a Memoria
+[INFO] 23:51:05:456 CPU/(5864:5865): insActual->pc: 4
+[INFO] 23:51:05:456 CPU/(5864:5865):  Valor nuevo Program counter: 5
+[DEBUG] 23:51:05:456 CPU/(5864:5865): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:51:05:456 CPU/(5864:5865): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:51:05:457 CPU/(5864:5865): MMU entrando en acción...
+[INFO] 23:51:05:457 CPU/(5864:5865): Traduccion de la dirección logica
+[INFO] 23:51:05:457 CPU/(5864:5865): direccionLogica: 4
+[INFO] 23:51:05:457 CPU/(5864:5865): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:51:05:457 CPU/(5864:5865): Número de Segmento = 4 / 256 = 0
+[INFO] 23:51:05:457 CPU/(5864:5865): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:51:05:457 CPU/(5864:5865): Número Pagina = 4 / 64 = 0
+[INFO] 23:51:05:457 CPU/(5864:5865): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:51:05:459 CPU/(5864:5865): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:51:05:459 CPU/(5864:5865): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:51:05:459 CPU/(5864:5865): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 23:51:05:459 CPU/(5864:5865): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 23:51:05:459 CPU/(5864:5865): No hay interrupcion, sigo el ciclo
+[INFO] 23:51:05:547 CPU/(5864:5865): insActual->instCode: 2
+[DEBUG] 23:51:05:547 CPU/(5864:5865): Requiere acceso a Memoria
+[INFO] 23:51:05:547 CPU/(5864:5865): insActual->pc: 4
+[INFO] 23:51:05:547 CPU/(5864:5865):  Valor nuevo Program counter: 5
+[DEBUG] 23:51:05:547 CPU/(5864:5865): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:51:05:547 CPU/(5864:5865): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:51:05:547 CPU/(5864:5865): MMU entrando en acción...
+[INFO] 23:51:05:547 CPU/(5864:5865): Traduccion de la dirección logica
+[INFO] 23:51:05:547 CPU/(5864:5865): direccionLogica: 4
+[INFO] 23:51:05:547 CPU/(5864:5865): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:51:05:547 CPU/(5864:5865): Número de Segmento = 4 / 256 = 0
+[INFO] 23:51:05:547 CPU/(5864:5865): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:51:05:548 CPU/(5864:5865): Número Pagina = 4 / 64 = 0
+[INFO] 23:51:05:549 CPU/(5864:5865): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:51:05:549 CPU/(5864:5865): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:51:05:551 CPU/(5864:5865): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:51:05:551 CPU/(5864:5865): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 23:51:05:552 CPU/(5864:5865): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 23:51:05:552 CPU/(5864:5865): El valor del marco es: 0
+[DEBUG] 23:51:05:552 CPU/(5864:5865): El valor del offset es: 4
+[DEBUG] 23:51:05:553 CPU/(5864:5865): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 23:51:05:553 CPU/(5864:5865): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[DEBUG] 23:51:06:553 CPU/(5864:5865): Mensaje leido: 9
+[DEBUG] 23:51:06:554 CPU/(5864:5865): Registro CX = 9
+[DEBUG] 23:51:06:554 CPU/(5864:5865): No hay interrupcion, sigo el ciclo
+[INFO] 23:51:06:554 CPU/(5864:5865): insActual->instCode: 3
+[DEBUG] 23:51:06:554 CPU/(5864:5865): Requiere acceso a Memoria
+[INFO] 23:51:06:554 CPU/(5864:5865): insActual->pc: 5
+[INFO] 23:51:06:554 CPU/(5864:5865):  Valor nuevo Program counter: 6
+[DEBUG] 23:51:06:554 CPU/(5864:5865): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 23:51:06:554 CPU/(5864:5865): MOV_OUT 4 DX
+[INFO] 23:51:06:554 CPU/(5864:5865): MMU entrando en acción...
+[INFO] 23:51:06:554 CPU/(5864:5865): Traduccion de la dirección logica
+[INFO] 23:51:06:554 CPU/(5864:5865): direccionLogica: 4
+[INFO] 23:51:06:554 CPU/(5864:5865): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:51:06:554 CPU/(5864:5865): Número de Segmento = 4 / 256 = 0
+[INFO] 23:51:06:554 CPU/(5864:5865): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:51:06:554 CPU/(5864:5865): Número Pagina = 4 / 64 = 0
+[INFO] 23:51:06:554 CPU/(5864:5865): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:51:06:554 CPU/(5864:5865): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:51:06:555 CPU/(5864:5865): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 23:51:06:555 CPU/(5864:5865): valor a escribir = 8
+[DEBUG] 23:51:06:555 CPU/(5864:5865): Envie direccion fisica a memoria swap
+
+[DEBUG] 23:52:32:626 CPU/(6327:6330): Buscando configuracion inicial de memoria
+[INFO] 23:52:32:627 CPU/(6327:6329): Servidor listo para recibir al interrupt kernel
+[DEBUG] 23:52:32:629 CPU/(6327:6330): Se envio Handshake a MEMORIA
+[DEBUG] 23:52:32:630 CPU/(6327:6330): Esperando mensaje de memoria para config inicial
+[INFO] 23:52:32:629 CPU/(6327:6328): Servidor listo para recibir al dispatch kernel
+[DEBUG] 23:52:32:635 CPU/(6327:6330): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 23:52:33:725 CPU/(6327:6329): Se conecto un cliente!
+[INFO] 23:52:33:730 CPU/(6327:6328): Se conecto un cliente!
+[INFO] 23:52:42:730 CPU/(6327:6328): insActual->instCode: 0
+[INFO] 23:52:42:730 CPU/(6327:6328): insActual->pc: 0
+[INFO] 23:52:42:731 CPU/(6327:6328):  Valor nuevo Program counter: 1
+[DEBUG] 23:52:42:731 CPU/(6327:6328): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 23:52:43:731 CPU/(6327:6328): AX = 1
+[DEBUG] 23:52:43:733 CPU/(6327:6328): No hay interrupcion, sigo el ciclo
+[INFO] 23:52:43:733 CPU/(6327:6328): insActual->instCode: 0
+[INFO] 23:52:43:733 CPU/(6327:6328): insActual->pc: 1
+[INFO] 23:52:43:733 CPU/(6327:6328):  Valor nuevo Program counter: 2
+[DEBUG] 23:52:43:733 CPU/(6327:6328): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 23:52:44:236 CPU/(6327:6329): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:52:44:734 CPU/(6327:6328): BX = 7
+[DEBUG] 23:52:44:737 CPU/(6327:6328): Devuelvo pcb por interrupcion
+[INFO] 23:52:44:738 CPU/(6327:6328): insActual->instCode: 0
+[INFO] 23:52:44:738 CPU/(6327:6328): insActual->pc: 2
+[INFO] 23:52:44:739 CPU/(6327:6328):  Valor nuevo Program counter: 3
+[DEBUG] 23:52:44:739 CPU/(6327:6328): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 23:52:45:741 CPU/(6327:6328): DX = 8
+[DEBUG] 23:52:45:750 CPU/(6327:6328): No hay interrupcion, sigo el ciclo
+[INFO] 23:52:45:750 CPU/(6327:6328): insActual->instCode: 1
+[INFO] 23:52:45:750 CPU/(6327:6328): insActual->pc: 3
+[INFO] 23:52:45:750 CPU/(6327:6328):  Valor nuevo Program counter: 4
+[DEBUG] 23:52:45:750 CPU/(6327:6328): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 23:52:46:751 CPU/(6327:6328): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 23:52:46:753 CPU/(6327:6328): AX = 8
+[DEBUG] 23:52:46:753 CPU/(6327:6328): No hay interrupcion, sigo el ciclo
+[INFO] 23:52:46:753 CPU/(6327:6328): insActual->instCode: 2
+[DEBUG] 23:52:46:753 CPU/(6327:6328): Requiere acceso a Memoria
+[INFO] 23:52:46:753 CPU/(6327:6328): insActual->pc: 4
+[INFO] 23:52:46:753 CPU/(6327:6328):  Valor nuevo Program counter: 5
+[DEBUG] 23:52:46:753 CPU/(6327:6328): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:52:46:753 CPU/(6327:6328): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:52:46:754 CPU/(6327:6328): MMU entrando en acción...
+[INFO] 23:52:46:754 CPU/(6327:6328): Traduccion de la dirección logica
+[INFO] 23:52:46:754 CPU/(6327:6328): direccionLogica: 4
+[INFO] 23:52:46:754 CPU/(6327:6328): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:52:46:754 CPU/(6327:6328): Número de Segmento = 4 / 256 = 0
+[INFO] 23:52:46:754 CPU/(6327:6328): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:52:46:754 CPU/(6327:6328): Número Pagina = 4 / 64 = 0
+[INFO] 23:52:46:754 CPU/(6327:6328): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:52:46:755 CPU/(6327:6328): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:52:46:755 CPU/(6327:6328): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:52:46:755 CPU/(6327:6328): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 23:52:46:755 CPU/(6327:6328): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 23:52:46:755 CPU/(6327:6328): No hay interrupcion, sigo el ciclo
+[INFO] 23:52:46:847 CPU/(6327:6328): insActual->instCode: 2
+[DEBUG] 23:52:46:847 CPU/(6327:6328): Requiere acceso a Memoria
+[INFO] 23:52:46:847 CPU/(6327:6328): insActual->pc: 4
+[INFO] 23:52:46:847 CPU/(6327:6328):  Valor nuevo Program counter: 5
+[DEBUG] 23:52:46:847 CPU/(6327:6328): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:52:46:847 CPU/(6327:6328): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:52:46:847 CPU/(6327:6328): MMU entrando en acción...
+[INFO] 23:52:46:847 CPU/(6327:6328): Traduccion de la dirección logica
+[INFO] 23:52:46:847 CPU/(6327:6328): direccionLogica: 4
+[INFO] 23:52:46:848 CPU/(6327:6328): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:52:46:850 CPU/(6327:6328): Número de Segmento = 4 / 256 = 0
+[INFO] 23:52:46:851 CPU/(6327:6328): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:52:46:852 CPU/(6327:6328): Número Pagina = 4 / 64 = 0
+[INFO] 23:52:46:852 CPU/(6327:6328): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:52:46:852 CPU/(6327:6328): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:52:46:852 CPU/(6327:6328): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:52:46:852 CPU/(6327:6328): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 23:52:46:855 CPU/(6327:6328): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 23:52:46:855 CPU/(6327:6328): El valor del marco es: 0
+[DEBUG] 23:52:46:855 CPU/(6327:6328): El valor del offset es: 4
+[DEBUG] 23:52:46:855 CPU/(6327:6328): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 23:52:46:855 CPU/(6327:6328): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[DEBUG] 23:52:47:857 CPU/(6327:6328): Mensaje leido: 9
+[DEBUG] 23:52:47:865 CPU/(6327:6328): Registro CX = 9
+[DEBUG] 23:52:47:867 CPU/(6327:6328): No hay interrupcion, sigo el ciclo
+[INFO] 23:52:47:867 CPU/(6327:6328): insActual->instCode: 3
+[DEBUG] 23:52:47:868 CPU/(6327:6328): Requiere acceso a Memoria
+[INFO] 23:52:47:870 CPU/(6327:6328): insActual->pc: 5
+[INFO] 23:52:47:870 CPU/(6327:6328):  Valor nuevo Program counter: 6
+[DEBUG] 23:52:47:870 CPU/(6327:6328): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  8'
+[DEBUG] 23:52:47:871 CPU/(6327:6328): MOV_OUT 8 DX
+[INFO] 23:52:47:871 CPU/(6327:6328): MMU entrando en acción...
+[INFO] 23:52:47:871 CPU/(6327:6328): Traduccion de la dirección logica
+[INFO] 23:52:47:872 CPU/(6327:6328): direccionLogica: 8
+[INFO] 23:52:47:873 CPU/(6327:6328): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:52:47:873 CPU/(6327:6328): Número de Segmento = 8 / 256 = 0
+[INFO] 23:52:47:873 CPU/(6327:6328): Desplazamiento Segmento = 8 ·/. 256 = 8
+[INFO] 23:52:47:873 CPU/(6327:6328): Número Pagina = 8 / 64 = 0
+[INFO] 23:52:47:874 CPU/(6327:6328): Desplazamiento Pagina = 8 ·/. 64 = 8
+[DEBUG] 23:52:47:874 CPU/(6327:6328): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:52:47:880 CPU/(6327:6328): dir fisica: nroMarco= 0 offset=8
+[DEBUG] 23:52:47:880 CPU/(6327:6328): valor a escribir = 8
+[DEBUG] 23:52:47:889 CPU/(6327:6328): Envie direccion fisica a memoria swap
+
+[INFO] 23:52:48:370 CPU/(6327:6329): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 23:56:19:389 CPU/(6971:6973): Servidor listo para recibir al interrupt kernel
+[DEBUG] 23:56:19:414 CPU/(6971:6974): Buscando configuracion inicial de memoria
+[INFO] 23:56:19:400 CPU/(6971:6972): Servidor listo para recibir al dispatch kernel
+[DEBUG] 23:56:19:418 CPU/(6971:6974): Se envio Handshake a MEMORIA
+[DEBUG] 23:56:19:424 CPU/(6971:6974): Esperando mensaje de memoria para config inicial
+[DEBUG] 23:56:19:425 CPU/(6971:6974): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 23:56:24:823 CPU/(6971:6973): Se conecto un cliente!
+[INFO] 23:56:24:825 CPU/(6971:6972): Se conecto un cliente!
+[INFO] 23:56:32:420 CPU/(6971:6972): insActual->instCode: 0
+[INFO] 23:56:32:420 CPU/(6971:6972): insActual->pc: 0
+[INFO] 23:56:32:420 CPU/(6971:6972):  Valor nuevo Program counter: 1
+[DEBUG] 23:56:32:420 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 23:56:33:420 CPU/(6971:6972): AX = 1
+[DEBUG] 23:56:33:421 CPU/(6971:6972): No hay interrupcion, sigo el ciclo
+[INFO] 23:56:33:421 CPU/(6971:6972): insActual->instCode: 0
+[INFO] 23:56:33:421 CPU/(6971:6972): insActual->pc: 1
+[INFO] 23:56:33:421 CPU/(6971:6972):  Valor nuevo Program counter: 2
+[DEBUG] 23:56:33:421 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 23:56:33:925 CPU/(6971:6973): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:56:34:421 CPU/(6971:6972): BX = 7
+[DEBUG] 23:56:34:421 CPU/(6971:6972): Devuelvo pcb por interrupcion
+[INFO] 23:56:34:422 CPU/(6971:6972): insActual->instCode: 0
+[INFO] 23:56:34:422 CPU/(6971:6972): insActual->pc: 2
+[INFO] 23:56:34:422 CPU/(6971:6972):  Valor nuevo Program counter: 3
+[DEBUG] 23:56:34:422 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 23:56:35:422 CPU/(6971:6972): DX = 8
+[DEBUG] 23:56:35:422 CPU/(6971:6972): No hay interrupcion, sigo el ciclo
+[INFO] 23:56:35:422 CPU/(6971:6972): insActual->instCode: 1
+[INFO] 23:56:35:422 CPU/(6971:6972): insActual->pc: 3
+[INFO] 23:56:35:423 CPU/(6971:6972):  Valor nuevo Program counter: 4
+[DEBUG] 23:56:35:423 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 23:56:36:423 CPU/(6971:6972): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 23:56:36:424 CPU/(6971:6972): AX = 8
+[DEBUG] 23:56:36:425 CPU/(6971:6972): No hay interrupcion, sigo el ciclo
+[INFO] 23:56:36:425 CPU/(6971:6972): insActual->instCode: 2
+[DEBUG] 23:56:36:425 CPU/(6971:6972): Requiere acceso a Memoria
+[INFO] 23:56:36:425 CPU/(6971:6972): insActual->pc: 4
+[INFO] 23:56:36:425 CPU/(6971:6972):  Valor nuevo Program counter: 5
+[DEBUG] 23:56:36:425 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:56:36:425 CPU/(6971:6972): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:56:36:425 CPU/(6971:6972): MMU entrando en acción...
+[INFO] 23:56:36:426 CPU/(6971:6972): Traduccion de la dirección logica
+[INFO] 23:56:36:426 CPU/(6971:6972): direccionLogica: 4
+[INFO] 23:56:36:426 CPU/(6971:6972): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:56:36:426 CPU/(6971:6972): Número de Segmento = 4 / 256 = 0
+[INFO] 23:56:36:426 CPU/(6971:6972): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:56:36:426 CPU/(6971:6972): Número Pagina = 4 / 64 = 0
+[INFO] 23:56:36:426 CPU/(6971:6972): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:56:36:426 CPU/(6971:6972): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:56:36:426 CPU/(6971:6972): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:56:36:427 CPU/(6971:6972): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 23:56:36:429 CPU/(6971:6972): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 23:56:36:429 CPU/(6971:6972): No hay interrupcion, sigo el ciclo
+[INFO] 23:56:36:516 CPU/(6971:6972): insActual->instCode: 2
+[DEBUG] 23:56:36:516 CPU/(6971:6972): Requiere acceso a Memoria
+[INFO] 23:56:36:516 CPU/(6971:6972): insActual->pc: 4
+[INFO] 23:56:36:516 CPU/(6971:6972):  Valor nuevo Program counter: 5
+[DEBUG] 23:56:36:516 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 23:56:36:516 CPU/(6971:6972): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 23:56:36:516 CPU/(6971:6972): MMU entrando en acción...
+[INFO] 23:56:36:516 CPU/(6971:6972): Traduccion de la dirección logica
+[INFO] 23:56:36:516 CPU/(6971:6972): direccionLogica: 4
+[INFO] 23:56:36:516 CPU/(6971:6972): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:56:36:516 CPU/(6971:6972): Número de Segmento = 4 / 256 = 0
+[INFO] 23:56:36:516 CPU/(6971:6972): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:56:36:516 CPU/(6971:6972): Número Pagina = 4 / 64 = 0
+[INFO] 23:56:36:516 CPU/(6971:6972): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:56:36:520 CPU/(6971:6972): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:56:36:521 CPU/(6971:6972): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:56:36:521 CPU/(6971:6972): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 23:56:36:521 CPU/(6971:6972): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 23:56:36:522 CPU/(6971:6972): El valor del marco es: 0
+[DEBUG] 23:56:36:522 CPU/(6971:6972): El valor del offset es: 4
+[DEBUG] 23:56:36:522 CPU/(6971:6972): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 23:56:36:522 CPU/(6971:6972): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[DEBUG] 23:56:37:523 CPU/(6971:6972): Mensaje leido: 9
+[DEBUG] 23:56:37:523 CPU/(6971:6972): Registro CX = 9
+[DEBUG] 23:56:37:524 CPU/(6971:6972): No hay interrupcion, sigo el ciclo
+[INFO] 23:56:37:526 CPU/(6971:6972): insActual->instCode: 3
+[DEBUG] 23:56:37:526 CPU/(6971:6972): Requiere acceso a Memoria
+[INFO] 23:56:37:526 CPU/(6971:6972): insActual->pc: 5
+[INFO] 23:56:37:526 CPU/(6971:6972):  Valor nuevo Program counter: 6
+[DEBUG] 23:56:37:526 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  8'
+[DEBUG] 23:56:37:526 CPU/(6971:6972): MOV_OUT 8 DX
+[INFO] 23:56:37:526 CPU/(6971:6972): MMU entrando en acción...
+[INFO] 23:56:37:527 CPU/(6971:6972): Traduccion de la dirección logica
+[INFO] 23:56:37:527 CPU/(6971:6972): direccionLogica: 8
+[INFO] 23:56:37:527 CPU/(6971:6972): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:56:37:527 CPU/(6971:6972): Número de Segmento = 8 / 256 = 0
+[INFO] 23:56:37:527 CPU/(6971:6972): Desplazamiento Segmento = 8 ·/. 256 = 8
+[INFO] 23:56:37:527 CPU/(6971:6972): Número Pagina = 8 / 64 = 0
+[INFO] 23:56:37:527 CPU/(6971:6972): Desplazamiento Pagina = 8 ·/. 64 = 8
+[DEBUG] 23:56:37:527 CPU/(6971:6972): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:56:37:527 CPU/(6971:6972): dir fisica: nroMarco= 0 offset=8
+[DEBUG] 23:56:37:527 CPU/(6971:6972): valor a escribir = 8
+[DEBUG] 23:56:37:528 CPU/(6971:6972): Envie direccion fisica a memoria swap
+
+[INFO] 23:56:38:044 CPU/(6971:6973): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:56:38:528 CPU/(6971:6972): Mensaje escrito: OK
+[DEBUG] 23:56:38:528 CPU/(6971:6972): Devuelvo pcb por interrupcion
+[INFO] 23:56:38:529 CPU/(6971:6972): insActual->instCode: 4
+[INFO] 23:56:38:529 CPU/(6971:6972): insActual->pc: 6
+[INFO] 23:56:38:529 CPU/(6971:6972):  Valor nuevo Program counter: 7
+[DEBUG] 23:56:38:529 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO DISCO   10'
+[DEBUG] 23:56:38:529 CPU/(6971:6972): Envie BLOCK al kernel por IO
+[DEBUG] 23:56:38:530 CPU/(6971:6972): No hay interrupcion, sigo el ciclo
+[INFO] 23:56:48:556 CPU/(6971:6972): insActual->instCode: 4
+[INFO] 23:56:48:556 CPU/(6971:6972): insActual->pc: 7
+[INFO] 23:56:48:556 CPU/(6971:6972):  Valor nuevo Program counter: 8
+[DEBUG] 23:56:48:556 CPU/(6971:6972): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 23:56:48:556 CPU/(6971:6972): Envie BLOCK al kernel por IO_TECLADO
+[DEBUG] 23:56:48:557 CPU/(6971:6972): No hay interrupcion, sigo el ciclo
+[INFO] 23:59:36:119 CPU/(7681:7683): Servidor listo para recibir al interrupt kernel
+[INFO] 23:59:36:128 CPU/(7681:7682): Servidor listo para recibir al dispatch kernel
+[DEBUG] 23:59:36:138 CPU/(7681:7684): Buscando configuracion inicial de memoria
+[DEBUG] 23:59:36:145 CPU/(7681:7684): Se envio Handshake a MEMORIA
+[DEBUG] 23:59:36:150 CPU/(7681:7684): Esperando mensaje de memoria para config inicial
+[DEBUG] 23:59:36:151 CPU/(7681:7684): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 23:59:41:529 CPU/(7681:7683): Se conecto un cliente!
+[INFO] 23:59:41:531 CPU/(7681:7682): Se conecto un cliente!
+[INFO] 23:59:46:270 CPU/(7681:7682): insActual->instCode: 0
+[INFO] 23:59:46:270 CPU/(7681:7682): insActual->pc: 0
+[INFO] 23:59:46:270 CPU/(7681:7682):  Valor nuevo Program counter: 1
+[DEBUG] 23:59:46:270 CPU/(7681:7682): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 23:59:47:271 CPU/(7681:7682): AX = 1
+[DEBUG] 23:59:47:273 CPU/(7681:7682): No hay interrupcion, sigo el ciclo
+[INFO] 23:59:47:273 CPU/(7681:7682): insActual->instCode: 0
+[INFO] 23:59:47:274 CPU/(7681:7682): insActual->pc: 1
+[INFO] 23:59:47:274 CPU/(7681:7682):  Valor nuevo Program counter: 2
+[DEBUG] 23:59:47:274 CPU/(7681:7682): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 23:59:47:774 CPU/(7681:7683): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 23:59:48:274 CPU/(7681:7682): BX = 7
+[DEBUG] 23:59:48:274 CPU/(7681:7682): Devuelvo pcb por interrupcion
+[INFO] 23:59:48:275 CPU/(7681:7682): insActual->instCode: 0
+[INFO] 23:59:48:275 CPU/(7681:7682): insActual->pc: 2
+[INFO] 23:59:48:275 CPU/(7681:7682):  Valor nuevo Program counter: 3
+[DEBUG] 23:59:48:275 CPU/(7681:7682): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 23:59:49:275 CPU/(7681:7682): DX = 8
+[DEBUG] 23:59:49:277 CPU/(7681:7682): No hay interrupcion, sigo el ciclo
+[INFO] 23:59:49:278 CPU/(7681:7682): insActual->instCode: 1
+[INFO] 23:59:49:278 CPU/(7681:7682): insActual->pc: 3
+[INFO] 23:59:49:278 CPU/(7681:7682):  Valor nuevo Program counter: 4
+[DEBUG] 23:59:49:278 CPU/(7681:7682): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 23:59:50:278 CPU/(7681:7682): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 23:59:50:279 CPU/(7681:7682): AX = 8
+[DEBUG] 23:59:50:279 CPU/(7681:7682): No hay interrupcion, sigo el ciclo
+[INFO] 23:59:50:279 CPU/(7681:7682): insActual->instCode: 3
+[DEBUG] 23:59:50:279 CPU/(7681:7682): Requiere acceso a Memoria
+[INFO] 23:59:50:279 CPU/(7681:7682): insActual->pc: 4
+[INFO] 23:59:50:280 CPU/(7681:7682):  Valor nuevo Program counter: 5
+[DEBUG] 23:59:50:280 CPU/(7681:7682): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 23:59:50:280 CPU/(7681:7682): MOV_OUT 4 DX
+[INFO] 23:59:50:280 CPU/(7681:7682): MMU entrando en acción...
+[INFO] 23:59:50:280 CPU/(7681:7682): Traduccion de la dirección logica
+[INFO] 23:59:50:280 CPU/(7681:7682): direccionLogica: 4
+[INFO] 23:59:50:280 CPU/(7681:7682): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:59:50:280 CPU/(7681:7682): Número de Segmento = 4 / 256 = 0
+[INFO] 23:59:50:281 CPU/(7681:7682): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:59:50:281 CPU/(7681:7682): Número Pagina = 4 / 64 = 0
+[INFO] 23:59:50:281 CPU/(7681:7682): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:59:50:281 CPU/(7681:7682): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:59:50:281 CPU/(7681:7682): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:59:50:281 CPU/(7681:7682): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 23:59:50:282 CPU/(7681:7682): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 23:59:50:282 CPU/(7681:7682): No hay interrupcion, sigo el ciclo
+[INFO] 23:59:50:375 CPU/(7681:7682): insActual->instCode: 3
+[DEBUG] 23:59:50:375 CPU/(7681:7682): Requiere acceso a Memoria
+[INFO] 23:59:50:375 CPU/(7681:7682): insActual->pc: 4
+[INFO] 23:59:50:375 CPU/(7681:7682):  Valor nuevo Program counter: 5
+[DEBUG] 23:59:50:375 CPU/(7681:7682): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 23:59:50:375 CPU/(7681:7682): MOV_OUT 4 DX
+[INFO] 23:59:50:375 CPU/(7681:7682): MMU entrando en acción...
+[INFO] 23:59:50:375 CPU/(7681:7682): Traduccion de la dirección logica
+[INFO] 23:59:50:375 CPU/(7681:7682): direccionLogica: 4
+[INFO] 23:59:50:375 CPU/(7681:7682): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 23:59:50:375 CPU/(7681:7682): Número de Segmento = 4 / 256 = 0
+[INFO] 23:59:50:375 CPU/(7681:7682): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 23:59:50:376 CPU/(7681:7682): Número Pagina = 4 / 64 = 0
+[INFO] 23:59:50:376 CPU/(7681:7682): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 23:59:50:376 CPU/(7681:7682): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 23:59:50:376 CPU/(7681:7682): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 23:59:50:378 CPU/(7681:7682): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 23:59:50:378 CPU/(7681:7682): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 23:59:50:378 CPU/(7681:7682): El valor del marco es: 0
+[DEBUG] 23:59:50:378 CPU/(7681:7682): El valor del offset es: 4
+[DEBUG] 23:59:50:378 CPU/(7681:7682): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 23:59:50:378 CPU/(7681:7682): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 23:59:50:378 CPU/(7681:7682): valor a escribir = 8
+[DEBUG] 23:59:50:378 CPU/(7681:7682): Envie direccion fisica a memoria swap
+
+[INFO] 00:11:21:599 CPU/(8467:8469): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:11:21:607 CPU/(8467:8470): Buscando configuracion inicial de memoria
+[INFO] 00:11:21:609 CPU/(8467:8468): Servidor listo para recibir al dispatch kernel
+[DEBUG] 00:11:21:610 CPU/(8467:8470): Se envio Handshake a MEMORIA
+[DEBUG] 00:11:21:611 CPU/(8467:8470): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:11:21:621 CPU/(8467:8470): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:11:27:263 CPU/(8467:8469): Se conecto un cliente!
+[INFO] 00:11:27:267 CPU/(8467:8468): Se conecto un cliente!
+[INFO] 00:11:39:099 CPU/(8467:8468): insActual->instCode: 0
+[INFO] 00:11:39:099 CPU/(8467:8468): insActual->pc: 0
+[INFO] 00:11:39:099 CPU/(8467:8468):  Valor nuevo Program counter: 1
+[DEBUG] 00:11:39:099 CPU/(8467:8468): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 00:11:40:100 CPU/(8467:8468): AX = 1
+[DEBUG] 00:11:40:100 CPU/(8467:8468): No hay interrupcion, sigo el ciclo
+[INFO] 00:11:40:100 CPU/(8467:8468): insActual->instCode: 0
+[INFO] 00:11:40:100 CPU/(8467:8468): insActual->pc: 1
+[INFO] 00:11:40:101 CPU/(8467:8468):  Valor nuevo Program counter: 2
+[DEBUG] 00:11:40:101 CPU/(8467:8468): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 00:11:40:605 CPU/(8467:8469): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 00:11:41:101 CPU/(8467:8468): BX = 7
+[DEBUG] 00:11:41:103 CPU/(8467:8468): Devuelvo pcb por interrupcion
+[INFO] 00:11:41:104 CPU/(8467:8468): insActual->instCode: 0
+[INFO] 00:11:41:104 CPU/(8467:8468): insActual->pc: 2
+[INFO] 00:11:41:104 CPU/(8467:8468):  Valor nuevo Program counter: 3
+[DEBUG] 00:11:41:106 CPU/(8467:8468): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 00:11:42:107 CPU/(8467:8468): DX = 8
+[DEBUG] 00:11:42:108 CPU/(8467:8468): No hay interrupcion, sigo el ciclo
+[INFO] 00:11:42:109 CPU/(8467:8468): insActual->instCode: 1
+[INFO] 00:11:42:109 CPU/(8467:8468): insActual->pc: 3
+[INFO] 00:11:42:109 CPU/(8467:8468):  Valor nuevo Program counter: 4
+[DEBUG] 00:11:42:109 CPU/(8467:8468): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:11:43:109 CPU/(8467:8468): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:11:43:109 CPU/(8467:8468): AX = 8
+[DEBUG] 00:11:43:110 CPU/(8467:8468): No hay interrupcion, sigo el ciclo
+[INFO] 00:11:43:110 CPU/(8467:8468): insActual->instCode: 3
+[DEBUG] 00:11:43:110 CPU/(8467:8468): Requiere acceso a Memoria
+[INFO] 00:11:43:110 CPU/(8467:8468): insActual->pc: 4
+[INFO] 00:11:43:110 CPU/(8467:8468):  Valor nuevo Program counter: 5
+[DEBUG] 00:11:43:110 CPU/(8467:8468): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 00:11:43:110 CPU/(8467:8468): MOV_OUT 4 DX
+[INFO] 00:11:43:112 CPU/(8467:8468): MMU entrando en acción...
+[INFO] 00:11:43:112 CPU/(8467:8468): Traduccion de la dirección logica
+[INFO] 00:11:43:112 CPU/(8467:8468): direccionLogica: 4
+[INFO] 00:11:43:113 CPU/(8467:8468): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:11:43:113 CPU/(8467:8468): Número de Segmento = 4 / 256 = 0
+[INFO] 00:11:43:113 CPU/(8467:8468): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:11:43:113 CPU/(8467:8468): Número Pagina = 4 / 64 = 0
+[INFO] 00:11:43:113 CPU/(8467:8468): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:11:43:113 CPU/(8467:8468): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 00:11:43:113 CPU/(8467:8468): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:11:43:115 CPU/(8467:8468): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 00:11:43:115 CPU/(8467:8468): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 00:11:43:115 CPU/(8467:8468): No hay interrupcion, sigo el ciclo
+[INFO] 00:11:43:208 CPU/(8467:8468): insActual->instCode: 3
+[DEBUG] 00:11:43:208 CPU/(8467:8468): Requiere acceso a Memoria
+[INFO] 00:11:43:208 CPU/(8467:8468): insActual->pc: 4
+[INFO] 00:11:43:208 CPU/(8467:8468):  Valor nuevo Program counter: 5
+[DEBUG] 00:11:43:208 CPU/(8467:8468): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 00:11:43:208 CPU/(8467:8468): MOV_OUT 4 DX
+[INFO] 00:11:43:208 CPU/(8467:8468): MMU entrando en acción...
+[INFO] 00:11:43:208 CPU/(8467:8468): Traduccion de la dirección logica
+[INFO] 00:11:43:208 CPU/(8467:8468): direccionLogica: 4
+[INFO] 00:11:43:208 CPU/(8467:8468): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:11:43:208 CPU/(8467:8468): Número de Segmento = 4 / 256 = 0
+[INFO] 00:11:43:208 CPU/(8467:8468): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:11:43:208 CPU/(8467:8468): Número Pagina = 4 / 64 = 0
+[INFO] 00:11:43:208 CPU/(8467:8468): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:11:43:209 CPU/(8467:8468): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 00:11:43:209 CPU/(8467:8468): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:11:43:209 CPU/(8467:8468): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 00:11:43:209 CPU/(8467:8468): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 00:11:43:209 CPU/(8467:8468): El valor del marco es: 0
+[DEBUG] 00:11:43:209 CPU/(8467:8468): El valor del offset es: 4
+[DEBUG] 00:11:43:209 CPU/(8467:8468): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 00:11:43:209 CPU/(8467:8468): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 00:11:43:209 CPU/(8467:8468): valor a escribir = 8
+[DEBUG] 00:11:43:209 CPU/(8467:8468): Envie direccion fisica a memoria swap
+
+[INFO] 00:13:54:304 CPU/(9040:9041): Servidor listo para recibir al dispatch kernel
+[INFO] 00:13:54:304 CPU/(9040:9042): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:13:54:320 CPU/(9040:9043): Buscando configuracion inicial de memoria
+[DEBUG] 00:13:54:323 CPU/(9040:9043): Se envio Handshake a MEMORIA
+[DEBUG] 00:13:54:325 CPU/(9040:9043): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:13:54:326 CPU/(9040:9043): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:13:58:779 CPU/(9040:9042): Se conecto un cliente!
+[INFO] 00:13:58:782 CPU/(9040:9041): Se conecto un cliente!
+[INFO] 00:14:04:473 CPU/(9040:9041): insActual->instCode: 0
+[INFO] 00:14:04:473 CPU/(9040:9041): insActual->pc: 0
+[INFO] 00:14:04:473 CPU/(9040:9041):  Valor nuevo Program counter: 1
+[DEBUG] 00:14:04:474 CPU/(9040:9041): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 00:14:05:474 CPU/(9040:9041): AX = 1
+[DEBUG] 00:14:05:474 CPU/(9040:9041): No hay interrupcion, sigo el ciclo
+[INFO] 00:14:05:474 CPU/(9040:9041): insActual->instCode: 0
+[INFO] 00:14:05:474 CPU/(9040:9041): insActual->pc: 1
+[INFO] 00:14:05:474 CPU/(9040:9041):  Valor nuevo Program counter: 2
+[DEBUG] 00:14:05:474 CPU/(9040:9041): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 00:14:05:982 CPU/(9040:9042): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 00:14:06:475 CPU/(9040:9041): BX = 7
+[DEBUG] 00:14:06:476 CPU/(9040:9041): Devuelvo pcb por interrupcion
+[INFO] 00:14:06:477 CPU/(9040:9041): insActual->instCode: 0
+[INFO] 00:14:06:477 CPU/(9040:9041): insActual->pc: 2
+[INFO] 00:14:06:479 CPU/(9040:9041):  Valor nuevo Program counter: 3
+[DEBUG] 00:14:06:479 CPU/(9040:9041): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 00:14:07:479 CPU/(9040:9041): DX = 8
+[DEBUG] 00:14:07:483 CPU/(9040:9041): No hay interrupcion, sigo el ciclo
+[INFO] 00:14:07:485 CPU/(9040:9041): insActual->instCode: 1
+[INFO] 00:14:07:485 CPU/(9040:9041): insActual->pc: 3
+[INFO] 00:14:07:485 CPU/(9040:9041):  Valor nuevo Program counter: 4
+[DEBUG] 00:14:07:485 CPU/(9040:9041): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:14:08:486 CPU/(9040:9041): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:14:08:488 CPU/(9040:9041): AX = 8
+[DEBUG] 00:14:08:488 CPU/(9040:9041): No hay interrupcion, sigo el ciclo
+[INFO] 00:14:08:488 CPU/(9040:9041): insActual->instCode: 3
+[DEBUG] 00:14:08:488 CPU/(9040:9041): Requiere acceso a Memoria
+[INFO] 00:14:08:488 CPU/(9040:9041): insActual->pc: 4
+[INFO] 00:14:08:488 CPU/(9040:9041):  Valor nuevo Program counter: 5
+[DEBUG] 00:14:08:488 CPU/(9040:9041): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 00:14:08:488 CPU/(9040:9041): MOV_OUT 4 DX
+[INFO] 00:14:08:488 CPU/(9040:9041): MMU entrando en acción...
+[INFO] 00:14:08:488 CPU/(9040:9041): Traduccion de la dirección logica
+[INFO] 00:14:08:489 CPU/(9040:9041): direccionLogica: 4
+[INFO] 00:14:08:489 CPU/(9040:9041): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:14:08:489 CPU/(9040:9041): Número de Segmento = 4 / 256 = 0
+[INFO] 00:14:08:489 CPU/(9040:9041): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:14:08:489 CPU/(9040:9041): Número Pagina = 4 / 64 = 0
+[INFO] 00:14:08:489 CPU/(9040:9041): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:14:08:490 CPU/(9040:9041): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 00:14:08:490 CPU/(9040:9041): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:14:08:490 CPU/(9040:9041): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 00:14:08:492 CPU/(9040:9041): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 00:14:08:492 CPU/(9040:9041): No hay interrupcion, sigo el ciclo
+[INFO] 00:14:08:581 CPU/(9040:9041): insActual->instCode: 3
+[DEBUG] 00:14:08:581 CPU/(9040:9041): Requiere acceso a Memoria
+[INFO] 00:14:08:581 CPU/(9040:9041): insActual->pc: 4
+[INFO] 00:14:08:581 CPU/(9040:9041):  Valor nuevo Program counter: 5
+[DEBUG] 00:14:08:581 CPU/(9040:9041): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 00:14:08:581 CPU/(9040:9041): MOV_OUT 4 DX
+[INFO] 00:14:08:581 CPU/(9040:9041): MMU entrando en acción...
+[INFO] 00:14:08:582 CPU/(9040:9041): Traduccion de la dirección logica
+[INFO] 00:14:08:582 CPU/(9040:9041): direccionLogica: 4
+[INFO] 00:14:08:582 CPU/(9040:9041): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:14:08:582 CPU/(9040:9041): Número de Segmento = 4 / 256 = 0
+[INFO] 00:14:08:582 CPU/(9040:9041): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:14:08:582 CPU/(9040:9041): Número Pagina = 4 / 64 = 0
+[INFO] 00:14:08:582 CPU/(9040:9041): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:14:08:582 CPU/(9040:9041): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 00:14:08:582 CPU/(9040:9041): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:14:08:582 CPU/(9040:9041): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 00:14:08:582 CPU/(9040:9041): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 00:14:08:582 CPU/(9040:9041): El valor del marco es: 0
+[DEBUG] 00:14:08:582 CPU/(9040:9041): El valor del offset es: 4
+[DEBUG] 00:14:08:582 CPU/(9040:9041): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 00:14:08:583 CPU/(9040:9041): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 00:14:08:583 CPU/(9040:9041): valor a escribir = 8
+[DEBUG] 00:14:08:583 CPU/(9040:9041): Envie direccion fisica a memoria swap
+
+[INFO] 00:17:30:702 CPU/(9500:9502): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:17:30:704 CPU/(9500:9503): Buscando configuracion inicial de memoria
+[INFO] 00:17:30:704 CPU/(9500:9501): Servidor listo para recibir al dispatch kernel
+[DEBUG] 00:17:30:715 CPU/(9500:9503): Se envio Handshake a MEMORIA
+[DEBUG] 00:17:30:717 CPU/(9500:9503): Esperando mensaje de memoria para config inicial
+[DEBUG] 00:17:30:718 CPU/(9500:9503): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:17:35:026 CPU/(9500:9502): Se conecto un cliente!
+[INFO] 00:17:35:028 CPU/(9500:9501): Se conecto un cliente!
+[INFO] 00:17:39:755 CPU/(9500:9501): insActual->instCode: 0
+[INFO] 00:17:39:755 CPU/(9500:9501): insActual->pc: 0
+[INFO] 00:17:39:755 CPU/(9500:9501):  Valor nuevo Program counter: 1
+[DEBUG] 00:17:39:755 CPU/(9500:9501): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 00:17:40:755 CPU/(9500:9501): AX = 1
+[DEBUG] 00:17:40:756 CPU/(9500:9501): No hay interrupcion, sigo el ciclo
+[INFO] 00:17:40:756 CPU/(9500:9501): insActual->instCode: 0
+[INFO] 00:17:40:756 CPU/(9500:9501): insActual->pc: 1
+[INFO] 00:17:40:756 CPU/(9500:9501):  Valor nuevo Program counter: 2
+[DEBUG] 00:17:40:756 CPU/(9500:9501): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 00:17:41:262 CPU/(9500:9502): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 00:17:41:758 CPU/(9500:9501): BX = 7
+[DEBUG] 00:17:41:759 CPU/(9500:9501): Devuelvo pcb por interrupcion
+[INFO] 00:17:41:760 CPU/(9500:9501): insActual->instCode: 0
+[INFO] 00:17:41:760 CPU/(9500:9501): insActual->pc: 2
+[INFO] 00:17:41:760 CPU/(9500:9501):  Valor nuevo Program counter: 3
+[DEBUG] 00:17:41:760 CPU/(9500:9501): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 00:17:42:760 CPU/(9500:9501): DX = 8
+[DEBUG] 00:17:42:762 CPU/(9500:9501): No hay interrupcion, sigo el ciclo
+[INFO] 00:17:42:762 CPU/(9500:9501): insActual->instCode: 1
+[INFO] 00:17:42:762 CPU/(9500:9501): insActual->pc: 3
+[INFO] 00:17:42:763 CPU/(9500:9501):  Valor nuevo Program counter: 4
+[DEBUG] 00:17:42:763 CPU/(9500:9501): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:17:43:763 CPU/(9500:9501): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:17:43:764 CPU/(9500:9501): AX = 8
+[DEBUG] 00:17:43:764 CPU/(9500:9501): No hay interrupcion, sigo el ciclo
+[INFO] 00:17:43:764 CPU/(9500:9501): insActual->instCode: 3
+[DEBUG] 00:17:43:764 CPU/(9500:9501): Requiere acceso a Memoria
+[INFO] 00:17:43:764 CPU/(9500:9501): insActual->pc: 4
+[INFO] 00:17:43:764 CPU/(9500:9501):  Valor nuevo Program counter: 5
+[DEBUG] 00:17:43:764 CPU/(9500:9501): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 00:17:43:764 CPU/(9500:9501): MOV_OUT 4 DX
+[INFO] 00:17:43:765 CPU/(9500:9501): MMU entrando en acción...
+[INFO] 00:17:43:765 CPU/(9500:9501): Traduccion de la dirección logica
+[INFO] 00:17:43:765 CPU/(9500:9501): direccionLogica: 4
+[INFO] 00:17:43:765 CPU/(9500:9501): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:17:43:765 CPU/(9500:9501): Número de Segmento = 4 / 256 = 0
+[INFO] 00:17:43:766 CPU/(9500:9501): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:17:43:766 CPU/(9500:9501): Número Pagina = 4 / 64 = 0
+[INFO] 00:17:43:766 CPU/(9500:9501): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:17:43:767 CPU/(9500:9501): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 00:17:43:767 CPU/(9500:9501): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:17:43:767 CPU/(9500:9501): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 00:17:43:767 CPU/(9500:9501): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 00:17:43:768 CPU/(9500:9501): No hay interrupcion, sigo el ciclo
+[INFO] 00:17:43:858 CPU/(9500:9501): insActual->instCode: 3
+[DEBUG] 00:17:43:858 CPU/(9500:9501): Requiere acceso a Memoria
+[INFO] 00:17:43:858 CPU/(9500:9501): insActual->pc: 4
+[INFO] 00:17:43:858 CPU/(9500:9501):  Valor nuevo Program counter: 5
+[DEBUG] 00:17:43:858 CPU/(9500:9501): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 00:17:43:858 CPU/(9500:9501): MOV_OUT 4 DX
+[INFO] 00:17:43:859 CPU/(9500:9501): MMU entrando en acción...
+[INFO] 00:17:43:860 CPU/(9500:9501): Traduccion de la dirección logica
+[INFO] 00:17:43:860 CPU/(9500:9501): direccionLogica: 4
+[INFO] 00:17:43:860 CPU/(9500:9501): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:17:43:860 CPU/(9500:9501): Número de Segmento = 4 / 256 = 0
+[INFO] 00:17:43:860 CPU/(9500:9501): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:17:43:860 CPU/(9500:9501): Número Pagina = 4 / 64 = 0
+[INFO] 00:17:43:860 CPU/(9500:9501): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:17:43:860 CPU/(9500:9501): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 00:17:43:860 CPU/(9500:9501): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:17:43:860 CPU/(9500:9501): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 00:17:43:860 CPU/(9500:9501): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 00:17:43:861 CPU/(9500:9501): El valor del marco es: 0
+[DEBUG] 00:17:43:861 CPU/(9500:9501): El valor del offset es: 4
+[DEBUG] 00:17:43:861 CPU/(9500:9501): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 00:17:43:861 CPU/(9500:9501): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 00:17:43:861 CPU/(9500:9501): valor a escribir = 8
+[DEBUG] 00:17:43:862 CPU/(9500:9501): Envie direccion fisica a memoria swap
+
+[DEBUG] 00:17:44:862 CPU/(9500:9501): Mensaje escrito: OK
+[DEBUG] 00:17:44:862 CPU/(9500:9501): No hay interrupcion, sigo el ciclo
+[INFO] 00:17:44:862 CPU/(9500:9501): insActual->instCode: 2
+[DEBUG] 00:17:44:862 CPU/(9500:9501): Requiere acceso a Memoria
+[INFO] 00:17:44:862 CPU/(9500:9501): insActual->pc: 5
+[INFO] 00:17:44:862 CPU/(9500:9501):  Valor nuevo Program counter: 6
+[DEBUG] 00:17:44:862 CPU/(9500:9501): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 00:17:44:863 CPU/(9500:9501): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 00:17:44:863 CPU/(9500:9501): MMU entrando en acción...
+[INFO] 00:17:44:864 CPU/(9500:9501): Traduccion de la dirección logica
+[INFO] 00:17:44:865 CPU/(9500:9501): direccionLogica: 4
+[INFO] 00:17:44:865 CPU/(9500:9501): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:17:44:865 CPU/(9500:9501): Número de Segmento = 4 / 256 = 0
+[INFO] 00:17:44:865 CPU/(9500:9501): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:17:44:865 CPU/(9500:9501): Número Pagina = 4 / 64 = 0
+[INFO] 00:17:44:865 CPU/(9500:9501): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:17:44:867 CPU/(9500:9501): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:17:44:867 CPU/(9500:9501): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[INFO] 00:17:45:370 CPU/(9500:9502): Me llego el mensaje: interrupcion de la instruccion
+
+[INFO] 00:30:39:014 CPU/(10615:10617): Servidor listo para recibir al interrupt kernel
+[DEBUG] 00:30:39:015 CPU/(10615:10618): Buscando configuracion inicial de memoria
+[DEBUG] 00:30:39:022 CPU/(10615:10618): Se envio Handshake a MEMORIA
+[DEBUG] 00:30:39:024 CPU/(10615:10618): Esperando mensaje de memoria para config inicial
+[INFO] 00:30:39:031 CPU/(10615:10616): Servidor listo para recibir al dispatch kernel
+[DEBUG] 00:30:39:031 CPU/(10615:10618): Se recibio la informacion de memoria: tamanio pagina= 64 cantidad de Entradas por Tabla= 4
+[INFO] 00:30:43:564 CPU/(10615:10617): Se conecto un cliente!
+[INFO] 00:30:43:565 CPU/(10615:10616): Se conecto un cliente!
+[INFO] 00:30:48:797 CPU/(10615:10616): insActual->instCode: 0
+[INFO] 00:30:48:797 CPU/(10615:10616): insActual->pc: 0
+[INFO] 00:30:48:797 CPU/(10615:10616):  Valor nuevo Program counter: 1
+[DEBUG] 00:30:48:797 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  AX  1'
+[DEBUG] 00:30:49:798 CPU/(10615:10616): AX = 1
+[DEBUG] 00:30:49:798 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:30:49:798 CPU/(10615:10616): insActual->instCode: 0
+[INFO] 00:30:49:798 CPU/(10615:10616): insActual->pc: 1
+[INFO] 00:30:49:798 CPU/(10615:10616):  Valor nuevo Program counter: 2
+[DEBUG] 00:30:49:799 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  BX  7'
+[INFO] 00:30:50:303 CPU/(10615:10617): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 00:30:50:799 CPU/(10615:10616): BX = 7
+[DEBUG] 00:30:50:799 CPU/(10615:10616): Devuelvo pcb por interrupcion
+[INFO] 00:30:50:800 CPU/(10615:10616): insActual->instCode: 0
+[INFO] 00:30:50:800 CPU/(10615:10616): insActual->pc: 2
+[INFO] 00:30:50:800 CPU/(10615:10616):  Valor nuevo Program counter: 3
+[DEBUG] 00:30:50:800 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: SET  DX  8'
+[DEBUG] 00:30:51:801 CPU/(10615:10616): DX = 8
+[DEBUG] 00:30:51:801 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:30:51:801 CPU/(10615:10616): insActual->instCode: 1
+[INFO] 00:30:51:801 CPU/(10615:10616): insActual->pc: 3
+[INFO] 00:30:51:801 CPU/(10615:10616):  Valor nuevo Program counter: 4
+[DEBUG] 00:30:51:801 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: ADD  AX BX -1'
+[DEBUG] 00:30:52:801 CPU/(10615:10616): Registro Destino -> AX = 1    &&    Registro Origen -> BX = 7 
+ Registro Destino = Registro Destino + Registro Origen 
+[DEBUG] 00:30:52:802 CPU/(10615:10616): AX = 8
+[DEBUG] 00:30:52:802 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:30:52:802 CPU/(10615:10616): insActual->instCode: 3
+[DEBUG] 00:30:52:802 CPU/(10615:10616): Requiere acceso a Memoria
+[INFO] 00:30:52:802 CPU/(10615:10616): insActual->pc: 4
+[INFO] 00:30:52:802 CPU/(10615:10616):  Valor nuevo Program counter: 5
+[DEBUG] 00:30:52:803 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 00:30:52:803 CPU/(10615:10616): MOV_OUT 4 DX
+[INFO] 00:30:52:803 CPU/(10615:10616): MMU entrando en acción...
+[INFO] 00:30:52:803 CPU/(10615:10616): Traduccion de la dirección logica
+[INFO] 00:30:52:803 CPU/(10615:10616): direccionLogica: 4
+[INFO] 00:30:52:803 CPU/(10615:10616): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:30:52:803 CPU/(10615:10616): Número de Segmento = 4 / 256 = 0
+[INFO] 00:30:52:804 CPU/(10615:10616): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:30:52:804 CPU/(10615:10616): Número Pagina = 4 / 64 = 0
+[INFO] 00:30:52:804 CPU/(10615:10616): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:30:52:804 CPU/(10615:10616): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 00:30:52:804 CPU/(10615:10616): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:30:52:804 CPU/(10615:10616): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[DEBUG] 00:30:52:804 CPU/(10615:10616): Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)
+[DEBUG] 00:30:52:805 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:30:52:897 CPU/(10615:10616): insActual->instCode: 3
+[DEBUG] 00:30:52:897 CPU/(10615:10616): Requiere acceso a Memoria
+[INFO] 00:30:52:898 CPU/(10615:10616): insActual->pc: 4
+[INFO] 00:30:52:898 CPU/(10615:10616):  Valor nuevo Program counter: 5
+[DEBUG] 00:30:52:898 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_OUT  DX  4'
+[DEBUG] 00:30:52:898 CPU/(10615:10616): MOV_OUT 4 DX
+[INFO] 00:30:52:898 CPU/(10615:10616): MMU entrando en acción...
+[INFO] 00:30:52:898 CPU/(10615:10616): Traduccion de la dirección logica
+[INFO] 00:30:52:899 CPU/(10615:10616): direccionLogica: 4
+[INFO] 00:30:52:899 CPU/(10615:10616): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:30:52:899 CPU/(10615:10616): Número de Segmento = 4 / 256 = 0
+[INFO] 00:30:52:899 CPU/(10615:10616): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:30:52:899 CPU/(10615:10616): Número Pagina = 4 / 64 = 0
+[INFO] 00:30:52:899 CPU/(10615:10616): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:30:52:899 CPU/(10615:10616): TLB MISS - pagina no encontrada en TLB
+
+[DEBUG] 00:30:52:899 CPU/(10615:10616): TLB Miss: PID: <1> - TLB MISS - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:30:52:899 CPU/(10615:10616): Envie mensaje a memoria para acceder a Tabla de Paginas con Indice: 0
+[INFO] 00:30:52:900 CPU/(10615:10616): (primer acceso)EL MARCO BUSCADO ES: 0
+[DEBUG] 00:30:52:904 CPU/(10615:10616): El valor del marco es: 0
+[DEBUG] 00:30:52:905 CPU/(10615:10616): El valor del offset es: 4
+[DEBUG] 00:30:52:907 CPU/(10615:10616): NRO ENTRADA: 0 | PID: 1 | SEGMENTO: 0 | PAGINA: 0 
+
+[DEBUG] 00:30:52:911 CPU/(10615:10616): dir fisica: nroMarco= 0 offset=4
+[DEBUG] 00:30:52:913 CPU/(10615:10616): valor a escribir = 8
+[DEBUG] 00:30:52:913 CPU/(10615:10616): Envie direccion fisica a memoria swap
+
+[DEBUG] 00:30:53:914 CPU/(10615:10616): Mensaje escrito: OK
+[DEBUG] 00:30:53:914 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:30:53:914 CPU/(10615:10616): insActual->instCode: 2
+[DEBUG] 00:30:53:914 CPU/(10615:10616): Requiere acceso a Memoria
+[INFO] 00:30:53:914 CPU/(10615:10616): insActual->pc: 5
+[INFO] 00:30:53:914 CPU/(10615:10616):  Valor nuevo Program counter: 6
+[DEBUG] 00:30:53:914 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: MOV_IN  CX  4'
+[DEBUG] 00:30:53:915 CPU/(10615:10616): Instruccion que lee el valor de memoria del segmento de Datos correspondiente a la DL 4
+[INFO] 00:30:53:915 CPU/(10615:10616): MMU entrando en acción...
+[INFO] 00:30:53:915 CPU/(10615:10616): Traduccion de la dirección logica
+[INFO] 00:30:53:915 CPU/(10615:10616): direccionLogica: 4
+[INFO] 00:30:53:915 CPU/(10615:10616): Tamanio Maximo Por Segmento = 4 * 64 = 256
+[INFO] 00:30:53:915 CPU/(10615:10616): Número de Segmento = 4 / 256 = 0
+[INFO] 00:30:53:915 CPU/(10615:10616): Desplazamiento Segmento = 4 ·/. 256 = 4
+[INFO] 00:30:53:915 CPU/(10615:10616): Número Pagina = 4 / 64 = 0
+[INFO] 00:30:53:915 CPU/(10615:10616): Desplazamiento Pagina = 4 ·/. 64 = 4
+[DEBUG] 00:30:53:915 CPU/(10615:10616): TLB Hit: PID: <1> - TLB HIT - Segmento: <0> - Pagina: <0> 
+
+[DEBUG] 00:30:53:915 CPU/(10615:10616): Envie direccion fisica a memoria: MARCO: 0, OFFSET: 4
+
+[INFO] 00:30:54:421 CPU/(10615:10617): Me llego el mensaje: interrupcion de la instruccion
+
+[DEBUG] 00:30:54:918 CPU/(10615:10616): Mensaje leido: 8
+[DEBUG] 00:30:54:918 CPU/(10615:10616): Registro CX = 8
+[DEBUG] 00:30:54:918 CPU/(10615:10616): Devuelvo pcb por interrupcion
+[INFO] 00:30:54:919 CPU/(10615:10616): insActual->instCode: 4
+[INFO] 00:30:54:919 CPU/(10615:10616): insActual->pc: 6
+[INFO] 00:30:54:919 CPU/(10615:10616):  Valor nuevo Program counter: 7
+[DEBUG] 00:30:54:919 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO DISCO   10'
+[DEBUG] 00:30:54:919 CPU/(10615:10616): Envie BLOCK al kernel por IO
+[DEBUG] 00:30:54:919 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:31:04:939 CPU/(10615:10616): insActual->instCode: 4
+[INFO] 00:31:04:939 CPU/(10615:10616): insActual->pc: 7
+[INFO] 00:31:04:939 CPU/(10615:10616):  Valor nuevo Program counter: 8
+[DEBUG] 00:31:04:939 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO TECLADO AX  -1'
+[DEBUG] 00:31:04:939 CPU/(10615:10616): Envie BLOCK al kernel por IO_TECLADO
+[DEBUG] 00:31:04:940 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:31:11:708 CPU/(10615:10616): insActual->instCode: 4
+[INFO] 00:31:11:708 CPU/(10615:10616): insActual->pc: 8
+[INFO] 00:31:11:708 CPU/(10615:10616):  Valor nuevo Program counter: 9
+[DEBUG] 00:31:11:708 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO PANTALLA BX  -1'
+[DEBUG] 00:31:11:709 CPU/(10615:10616): Envie BLOCK al kernel por IO_PANTALLA
+[DEBUG] 00:31:11:709 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:31:12:472 CPU/(10615:10616): insActual->instCode: 4
+[INFO] 00:31:12:473 CPU/(10615:10616): insActual->pc: 9
+[INFO] 00:31:12:473 CPU/(10615:10616):  Valor nuevo Program counter: 10
+[DEBUG] 00:31:12:473 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: IO IMPRESORA   5'
+[DEBUG] 00:31:12:473 CPU/(10615:10616): Envie BLOCK al kernel por IO
+[DEBUG] 00:31:12:473 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
+[INFO] 00:31:22:488 CPU/(10615:10616): insActual->instCode: 5
+[INFO] 00:31:22:488 CPU/(10615:10616): insActual->pc: 10
+[INFO] 00:31:22:488 CPU/(10615:10616):  Valor nuevo Program counter: 11
+[DEBUG] 00:31:22:488 CPU/(10615:10616): Instrucción Ejecutada: 'PID:  1 - Ejecutando: EXIT    -1'
+[DEBUG] 00:31:22:488 CPU/(10615:10616): Envie EXIT al kernel
+[DEBUG] 00:31:22:489 CPU/(10615:10616): No hay interrupcion, sigo el ciclo
