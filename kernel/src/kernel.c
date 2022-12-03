@@ -227,7 +227,7 @@ void conectar_dispatch()
 			pthread_t thrBloqueoPageFault;
 
 			pasar_a_block_page_fault(pcb);
-			printf("\nEntre al case de page fault");
+			printf("\nEntre al case de page fault\n");
 			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, NULL);
 
 			pthread_detach(thrBloqueoPageFault);
@@ -531,9 +531,10 @@ void manejar_bloqueo_general_usb(void *insActual)
 
 void manejar_bloqueo_page_fault()
 {
+	
 	printf("\nEstoy en la funcion de manejo de page fault");
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
-	printf("\nEstoy en la funcion de manejo de page fault");
+	printf("\nel pid es :%d", pcb->id);
 	t_paqt paquete;
 	recibirMsje(conexionDispatch, &paquete);
 
@@ -548,7 +549,9 @@ void manejar_bloqueo_page_fault()
 	log_info(logger, "Mensaje recibido por memoria:%s", mensaje);
 
 	pasar_a_ready(pcb);
+	
 	sem_post(&sem_hay_pcb_lista_ready);
+	
 }
 
 void manejar_interrupcion(void *pcbElegida)

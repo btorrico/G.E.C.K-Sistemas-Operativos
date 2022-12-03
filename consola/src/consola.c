@@ -154,6 +154,7 @@ t_list *listaSegmentos()
 
 		uint32_t segmentoResultado = atoi(segmento);
 
+printf("\nsegmento lista:%d\n",segmentoResultado);
 		list_add(listaDeSegmentos, segmentoResultado);
 	}
 
@@ -205,7 +206,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	{
 		uint32_t segmento = list_get(informacion->segmentos, j);
 		memcpy(stream + offset, &segmento, sizeof(uint32_t));
-
+		printf("\nsegmento: %d\n", segmento);
 		offset += sizeof(uint32_t);
 		j++;
 		// printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
