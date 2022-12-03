@@ -329,13 +329,16 @@ void eliminarTablasPaginas(void *pcb)
 
 	t_list *tablasDelPCB = filtrarPorPIDTabla(pcbActual->id);
 
+printf("\nTamaño tabla pagina %d :\n", list_size(tablasDelPCB));
+
 	for (int i = 0; i < list_size(tablasDelPCB); i++)
 	{
+		printf("\ntabla de pagina  %d\n", i);
 		t_tabla_paginas *tablaPagina = list_get(tablasDelPCB, i);
 
-		for (int i = 0; i < list_size(tablaPagina->paginas); i++)
+		for (int j = 0; j < list_size(tablaPagina->paginas); j++)
 		{
-			t_pagina *pagina = list_get(tablaPagina->paginas, i);
+			t_pagina *pagina = list_get(tablaPagina->paginas, j);
 
 			pagina->posicionSwap = -1;
 			pagina->presencia = -1;
@@ -969,7 +972,7 @@ void eliminarEstructura(t_marcos_por_proceso *marcoAEliminar)
 	{
 		t_pagina *paginaAEliminar = list_remove(marcoAEliminar->paginas, i);
 
-		free(paginaAEliminar);
+		//free(paginaAEliminar);
 	}
 	free(marcoAEliminar);
 }
