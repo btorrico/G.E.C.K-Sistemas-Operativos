@@ -47,7 +47,10 @@ typedef enum
 	DISCO,
 	TECLADO,
 	PANTALLA,
-	IMPRESORA
+	IMPRESORA,
+	WIFI,
+	USB,
+	AUDIO,
 } t_IO;
 
 typedef struct
@@ -370,6 +373,9 @@ extern t_list *LISTA_INICIO_TABLA_PAGINA;
 extern t_list *LISTA_BITMAP_MARCO;
 extern t_list *LISTA_INFO_MARCO;
 extern t_list *LISTA_MARCOS_POR_PROCESOS;
+extern t_list *LISTA_BLOCKED_WIFI;
+extern t_list *LISTA_BLOCKED_USB;
+extern t_list *LISTA_BLOCKED_AUDIO;
 
 // MUTEX
 extern pthread_mutex_t mutex_creacion_ID;
@@ -381,6 +387,9 @@ extern pthread_mutex_t mutex_lista_blocked_disco;
 extern pthread_mutex_t mutex_lista_blocked_impresora;
 extern pthread_mutex_t mutex_lista_blocked_pantalla;
 extern pthread_mutex_t mutex_lista_blocked_teclado;
+extern pthread_mutex_t mutex_lista_blocked_audio;
+extern pthread_mutex_t mutex_lista_blocked_wifi;
+extern pthread_mutex_t mutex_lista_blocked_usb;
 extern pthread_mutex_t mutex_lista_exit;
 extern pthread_mutex_t mutex_lista_ready_auxiliar;
 extern pthread_mutex_t mutex_creacion_ID_tabla;
@@ -391,6 +400,7 @@ extern pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
 extern pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 extern pthread_mutex_t mutex_lista_marcos_por_proceso_pagina;
 
+
 // SEMAFOROS
 extern sem_t sem_planif_largo_plazo;
 extern sem_t contador_multiprogramacion;
@@ -399,6 +409,9 @@ extern sem_t contador_bloqueo_teclado_running;
 extern sem_t contador_bloqueo_pantalla_running;
 extern sem_t contador_bloqueo_disco_running;
 extern sem_t contador_bloqueo_impresora_running;
+extern sem_t contador_bloqueo_wifi_running;
+extern sem_t contador_bloqueo_usb_running;
+extern sem_t contador_bloqueo_audio_running;
 extern sem_t sem_ready;
 extern sem_t sem_bloqueo;
 extern sem_t sem_procesador;

@@ -43,7 +43,7 @@ typedef struct
 } __attribute__((packed)) t_tabla_paginas;
 
 typedef struct
-{
+{   int nroSegmento;
 	int nroPagina;
 	int nroMarco;
 	uint8_t presencia;	  // 0 v 1
@@ -109,6 +109,7 @@ void* conseguir_puntero_a_base_memoria(int , void *);
 void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
 
 void algoritmo_reemplazo_clock(t_info_remplazo *);
+void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
 void asignarPaginaAMarco(t_marcos_por_proceso*, t_info_remplazo*);
 t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
 void agregar_marco_por_proceso(t_marcos_por_proceso * );
@@ -122,10 +123,14 @@ void incrementarMarcoSiguiente(t_marcos_por_proceso *);
 void agregar_pagina_a_lista_de_paginas_marcos_por_proceso(t_marcos_por_proceso *, t_pagina *);
 void primer_recorrido_paginas_clock(t_marcos_por_proceso *, t_info_remplazo *);
 t_pagina *buscarPagina (t_info_remplazo *);
-
+int buscarSegmento(t_info_remplazo *);
+void filtrarYEliminarMarcoPorPIDTabla(int );
+void eliminarEstructura(t_marcos_por_proceso *);
+void imprimirMarcosPorProceso();
 void accesoMemoriaTP(int, int, int,int);
 				
 void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado);
+t_pagina *buscarMarcoSegun(t_marcos_por_proceso*,t_info_remplazo*,int, int);
 void accesoMemoriaEscribir(t_direccionFisica* dirFisica, uint32_t valorAEscribir, int pid, int socketAceptado);
 
 int contadorIdPCB;
@@ -154,6 +159,9 @@ t_list *LISTA_BLOCK_PAGE_FAULT;
 t_list *LISTA_BITMAP_MARCO;
 t_list *LISTA_INFO_MARCO;
 t_list *LISTA_MARCOS_POR_PROCESOS;
+t_list *LISTA_BLOCKED_WIFI;
+t_list *LISTA_BLOCKED_USB;
+t_list *LISTA_BLOCKED_AUDIO;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -165,6 +173,9 @@ pthread_mutex_t mutex_lista_blocked_disco;
 pthread_mutex_t mutex_lista_blocked_impresora;
 pthread_mutex_t mutex_lista_blocked_pantalla;
 pthread_mutex_t mutex_lista_blocked_teclado;
+pthread_mutex_t mutex_lista_blocked_audio;
+pthread_mutex_t mutex_lista_blocked_wifi;
+pthread_mutex_t mutex_lista_blocked_usb;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
@@ -185,6 +196,9 @@ sem_t contador_bloqueo_teclado_running;
 sem_t contador_bloqueo_pantalla_running;
 sem_t contador_bloqueo_disco_running;
 sem_t contador_bloqueo_impresora_running;
+sem_t contador_bloqueo_wifi_running;
+sem_t contador_bloqueo_usb_running;
+sem_t contador_bloqueo_audio_running;
 sem_t sem_ready;
 sem_t sem_bloqueo;
 sem_t sem_procesador;

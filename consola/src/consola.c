@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
 	char *mensaje = recibirMensaje(conexionConsola);
 	log_info(logger, "Mensaje de confirmacion del Kernel : %s\n", mensaje);
-
+	free(mensaje);
 	while (1)
 	{
 		log_info(logger, "Consola en espera de nuevos mensajes del kernel..");
@@ -74,6 +74,7 @@ int main(int argc, char **argv)
 			return EXIT_SUCCESS;
 		}
 
+		
 		// terminar_programa(conexion, logger, config);
 	}
 }
@@ -85,7 +86,7 @@ void leerConfig(char *rutaConfig)
 
 	printf(PRINT_COLOR_GREEN "\n===== Archivo de configuracion =====\n IP: %s \n PUERTO: %s \n TIEMPO PANTALLA: %d \n SEGMENTOS: [", configConsola.ipKernel, configConsola.puertoKernel, configConsola.tiempoPantalla);
 
-	/*for (int i = 0; i < size_char_array(configConsola.segmentos); i++)
+	for (int i = 0; i < size_char_array(configConsola.segmentos); i++)
 	{
 		printf("%s", configConsola.segmentos[i]);
 
@@ -93,7 +94,7 @@ void leerConfig(char *rutaConfig)
 		{
 			printf(", ");
 		}
-	}*/
+	}
 	printf("]" PRINT_COLOR_RESET);
 }
 

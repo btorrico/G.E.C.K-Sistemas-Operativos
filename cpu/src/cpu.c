@@ -433,6 +433,16 @@ char *ioToString(t_IO io)
 	case IMPRESORA:
 		return "IMPRESORA";
 		break;
+	case USB:
+		return "USB";
+		break;
+	case WIFI:
+		return "WIFI";
+		break;
+	case AUDIO:
+		return "AUDIO";
+		break;			
+
 	default:
 		return "";
 		break;
