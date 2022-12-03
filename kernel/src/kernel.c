@@ -531,6 +531,7 @@ void manejar_bloqueo_general_usb(void *insActual)
 
 void manejar_bloqueo_page_fault()
 {
+	
 	printf("\nEstoy en la funcion de manejo de page fault");
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
 	printf("\nEstoy en la funcion de manejo de page fault");
@@ -548,7 +549,9 @@ void manejar_bloqueo_page_fault()
 	log_info(logger, "Mensaje recibido por memoria:%s", mensaje);
 
 	pasar_a_ready(pcb);
+	
 	sem_post(&sem_hay_pcb_lista_ready);
+	
 }
 
 void manejar_interrupcion(void *pcbElegida)

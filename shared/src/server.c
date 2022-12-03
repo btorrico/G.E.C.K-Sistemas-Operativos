@@ -120,18 +120,17 @@ t_informacion recibir_informacion(cliente_fd)
 			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
 	}
 
+printf("\nimprimo segmentos tamaño: %d",programa.segmentos_size);
 	while (l < (programa.segmentos_size))
 	{
 		// segmento = malloc(sizeof(uint32_t));
 		memcpy(&segmento, buffer + offset, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 		list_add(programa.segmentos, segmento);
+		printf("\nSegmento n°%d: %d\n",l , segmento);
 		l++;
 	}
 
-	printf("\n\nSegmentos:");
-
-	printf("\n[%d,%d,%d,%d]\n", list_get(programa.segmentos, 0), list_get(programa.segmentos, 1), list_get(programa.segmentos, 2), list_get(programa.segmentos, 3));
 
 	free(buffer);
 
@@ -255,7 +254,7 @@ void pasar_a_block_page_fault(t_pcb *pcb)
 	list_add(LISTA_BLOCK_PAGE_FAULT, pcb);
 	pthread_mutex_unlock(&mutex_lista_block_page_fault);
 
-	log_debug(logger, "Paso a READY aux el proceso %d", pcb->id);
+	log_debug(logger, "Paso a READY el proceso %d", pcb->id);
 }
 
 
@@ -321,7 +320,7 @@ void iniciar_listas_y_semaforos()
 	sem_init(&sem_kill_trhread, 0, 0);
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
-	//sem_init(&contador_bloqueo_teclado_running, 0, 1);
+	sem_init(&contador_bloqueo_teclado_running, 0, 1);
 	//sem_init(&contador_bloqueo_pantalla_running, 0, 1);
 	sem_init(&contador_bloqueo_disco_running, 0, 1);
 	sem_init(&contador_bloqueo_impresora_running, 0, 1);
