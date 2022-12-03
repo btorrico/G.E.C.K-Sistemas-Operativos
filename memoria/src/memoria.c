@@ -626,6 +626,9 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 	for (int i = marcosPorProceso->marcoSiguiente; i < list_size(marcosPorProceso->paginas); recorrer_marcos(marcosPorProceso->marcoSiguiente))
 	{
+
+		//crear las funciones repetidas entre clock y clock modificado y reutilizarlas
+		//hacer un while(pagina->uso!=0) entonces haga todo y despues agregar un chequeo de if para cuando sea el bit de uso 1 y solo actualizarlo a 0 como ya hacemos  
 		log_debug(logger, "entre al for");
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
 		log_info(logger, "Reemplazo - PID: %d", infoRemplazo->PID);
@@ -665,8 +668,10 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, i, newPagina);
 
-			paginaVictima->uso = 0;
-			paginaVictima->modificacion = 0;
+//no es necesario que los cambiemos , una vez que vuelva a pasar se va a cargar el bit de uso en 0 y el modificado tambien
+//donde se carga el modificado en 0?
+			//paginaVictima->uso = 0;
+			//paginaVictima->modificacion = 0;
 			paginaVictima->presencia = 0;
 
 			log_info(logger, "Marco:%d", newPagina->nroMarco);
@@ -747,6 +752,7 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 		usleep(configMemoria.retardoSwap * 1000);
 		log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 	}
+
 	t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente, pagina);
 
 	log_info(logger, "Marco:%d", paginaVictima->nroMarco);
