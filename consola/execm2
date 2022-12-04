@@ -1,6 +1,10 @@
 #!/bin/bash
 FILE=consola
+<<<<<<< HEAD
 CONFIG=consolaB.config
+=======
+CONFIG=consolaBm.config
+>>>>>>> f6d4d523995ec75887c8aa79d2c8b7152524f939
 MEMORIA_2=geck-pruebas/MEMORIA_2
 if test -f "./$FILE"; then
     ./$FILE $CONFIG $MEMORIA_2

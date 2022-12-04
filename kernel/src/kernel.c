@@ -93,11 +93,16 @@ void crear_hilo_cpu()
 
 void conectar_dispatch()
 {
+	//VALGRID que no haya ... y que no se esten modificando las cargas de memoria en la ejecucion , se va a ver en las pruebas de estabilidad
 	// Enviar PCB
 	conexionDispatch = crear_conexion(configKernel.ipCPU, configKernel.puertoCPUDispatch);
 
 	while (1)
 	{
+		//recomendacion: hacer que solo se lea el codigo del paquete para hacer los case , pero despues el recibir los mensajes
+		//y pcbs esten dentro de cada case particular y ahi mandar lo que se necesita 
+		//En los io no leer la instruccion desde el quernel sino que directamente el cpu nos mande el dispositivo a ejecutar y en el caso 
+		// de los del kernel tambien el tiempo de ejecucion 
 
 		sem_wait(&sem_pasar_pcb_running);
 		printf("Llego un pcb a dispatch");
@@ -173,6 +178,9 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_IO:
+		// crear una estructura para poder hacer la ejecucion de io de cualquier dispositivo que traiga el config kernel
+		// la estructura va a tener la lista , los semaforos y mutex necesario , el dispositivo que es string 
+		//podemos tenes harcodeado teclado y pantalla pero los dispositivos de config kernel no 
 			printf("\nentro al case block io");
 			pthread_t thrBloqueoGeneralImpresora, thrBloqueoGeneralDisco, thrBloqueoGeneralUsb, thrBloqueoGeneralAudio, thrBloqueoGeneralWifi;
 			dispositivoIO = dispositivoToString(insActual->paramIO);
@@ -226,6 +234,8 @@ void conectar_dispatch()
 
 		case BLOCK_PCB_PAGE_FAULT:
 			printf("\nEntre al case de page fault");
+
+		//que se lea el mensaje de cpu desde aca y no desde otro hilo 
 			pthread_t thrBloqueoPageFault;
 
 			pasar_a_block_page_fault(pcb);

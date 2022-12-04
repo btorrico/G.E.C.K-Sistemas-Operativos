@@ -1,6 +1,6 @@
 #!/bin/bash
 FILE=consola
-CONFIG=consolaB.config
+CONFIG=consolaBt.config
 TLB_2=geck-pruebas/TLB_2
 if test -f "./$FILE"; then
     ./$FILE $CONFIG $TLB_2
