@@ -130,17 +130,18 @@ void conectar_dispatch()
 
 		switch (paquete->codigo_operacion)
 		{
+		case SEGMENTATION_FAULT:
 		case EXIT_PCB:
 			printf("\nestoy en %d: ", paquete->codigo_operacion);
 			pasar_a_exec(pcb);
 			eliminar_pcb();
-			
-			serializarPCB(conexionMemoria,pcb,LIBERAR_RECURSOS);
-			
+
+			serializarPCB(conexionMemoria, pcb, LIBERAR_RECURSOS);
+
 			char *mensaje = recibirMensaje(conexionMemoria);
 			log_info(logger, "Mensaje de confirmacion de memoria: %s\n", mensaje);
-	
-			serializarValor(0, pcb->socket, TERMINAR_CONSOLA); //esto le mando a la consola
+
+			serializarValor(0, pcb->socket, TERMINAR_CONSOLA); // esto le mando a la consola
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:
@@ -224,11 +225,19 @@ void conectar_dispatch()
 			break;
 
 		case BLOCK_PCB_PAGE_FAULT:
+			printf("\nEntre al case de page fault");
 			pthread_t thrBloqueoPageFault;
 
 			pasar_a_block_page_fault(pcb);
-			printf("\nEntre al case de page fault");
-			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, NULL);
+
+			printf("\nEstoy en la funcion de manejo de page fault");
+
+			printf("\nEstoy en la funcion de manejo de page fault");
+
+			t_paqt paquete;
+			recibirMsje(conexionDispatch, &paquete);
+
+			pthread_create(&thrBloqueoPageFault, NULL, (void *)manejar_bloqueo_page_fault, (void *)&paquete);
 
 			pthread_detach(thrBloqueoPageFault);
 
@@ -261,14 +270,14 @@ void conectar_dispatch()
 			printf("\ntermine de manejar la interrupcion");
 			sem_post(&contador_pcb_running);
 			break;
-		case SEGMENTATION_FAULT:
+			// case SEGMENTATION_FAULT:
 			/*CPU -> En caso de que el desplazamiento dentro del segmento (desplazamiento_segmento)
 			sea mayor al tamaño del mismo, deberá devolverse el proceso al Kernel para que este lo
 			finalice con motivo de Error: Segmentation Fault (SIGSEGV).*/
 
-			printf("Hola, hola, hola, cuidado con la olaa(?");
+			// printf("Hola, hola, hola, cuidado con la olaa(?");
 
-			break;
+			// break;
 		default:
 			break;
 		}
@@ -529,19 +538,14 @@ void manejar_bloqueo_general_usb(void *insActual)
 	sem_post(&contador_bloqueo_usb_running);
 }
 
-void manejar_bloqueo_page_fault()
+void manejar_bloqueo_page_fault(void *paquete)
 {
-	
-	printf("\nEstoy en la funcion de manejo de page fault");
+	t_paqt *paqueteActual = (t_paqt*)paquete;
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
-	printf("\nEstoy en la funcion de manejo de page fault");
-	t_paqt paquete;
-	recibirMsje(conexionDispatch, &paquete);
-
 	// enviar a memoria
 	serializarPCB(conexionMemoria, pcb, PAGE_FAULT);
 
-	enviarMsje(conexionMemoria, KERNEL, paquete.mensaje, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), PAGE_FAULT);
+	enviarMsje(conexionMemoria, KERNEL, paqueteActual->mensaje, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), PAGE_FAULT);
 
 	// recibo de memoria
 	char *mensaje = recibirMensaje(conexionMemoria);
@@ -549,9 +553,8 @@ void manejar_bloqueo_page_fault()
 	log_info(logger, "Mensaje recibido por memoria:%s", mensaje);
 
 	pasar_a_ready(pcb);
-	
+
 	sem_post(&sem_hay_pcb_lista_ready);
-	
 }
 
 void manejar_interrupcion(void *pcbElegida)
@@ -774,11 +777,11 @@ void agregar_pcb()
 	printf("\nRecibo recursos de memoria\n");
 	if (paquete == NULL)
 	{
-		printf("\n PAquete nulo\n");
+		printf("\n Paquete nulo\n");
 	}
 	else
 	{
-		printf("\n PAquete no nulo\n");
+		printf("\n Paquete no nulo\n");
 	}
 
 	pcb = deserializoPCB(paquete->buffer);

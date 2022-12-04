@@ -84,17 +84,21 @@ void iniciar_servidor_hacia_kernel()
 
 	while (1)
 	{
+		printf("\nestoy esperando paquete, soy memoria\n");
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoKernel);
 		//printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
+
 		switch (paquete->codigo_operacion)
 		{
 		case ASIGNAR_RECURSOS:
+
 			printf("\nMi cod de op es: %d", paquete->codigo_operacion);
-			pthread_t thrTablaPaginasCrear;
+			//pthread_t thrTablaPaginasCrear;
 			//printf("\nEntro a asignar recursos\n");
-			pthread_create(&thrTablaPaginasCrear, NULL, (void *)crearTablasPaginas, (void *)pcb);
-			pthread_detach(thrTablaPaginasCrear);
+			crearTablasPaginas(pcb); 
+			//pthread_create(&thrTablaPaginasCrear, NULL, (void *)crearTablasPaginas, (void *)pcb);
+			//pthread_detach(thrTablaPaginasCrear);
 			break;
 
 		case LIBERAR_RECURSOS:
@@ -264,6 +268,7 @@ void configurarDireccionesCPU(int socketAceptado)
 void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca para no recorrer 2 veces
 {
 	t_pcb *pcbActual = (t_pcb *)pcb;
+
 	t_marcos_por_proceso *marcoPorProceso = malloc(sizeof(t_marcos_por_proceso));
 
 	for (int i = 0; i < list_size(pcbActual->tablaSegmentos); i++)
@@ -317,7 +322,6 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 
 	serializarPCB(socketAceptadoKernel, pcbActual, ASIGNAR_RECURSOS);
 
-	// agregar_tabla_pag_en_swap();
 	free(pcbActual);
 }
 
