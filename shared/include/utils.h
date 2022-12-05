@@ -126,7 +126,7 @@ typedef struct
 {
 	t_instCode instCode;
 	uint32_t paramInt;
-	t_IO paramIO;
+	char* paramIO;
 	t_registro paramReg[2];
 } __attribute__((packed)) t_instruccion;
 
@@ -256,7 +256,8 @@ typedef struct
 	int tamanioPagina;
 } MSJ_MEMORIA_CPU_INIT;
 
-void imprimirInstruccionesYSegmentos(t_informacion *);
+void imprimirInstruccionesYSegmentos(t_informacion );
+
 
 /*
 

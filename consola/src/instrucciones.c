@@ -23,7 +23,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramReg[0] = devolverRegistro(palabra[1]);
 			instr->paramInt = atoi(palabra[2]);
 			instr->paramReg[1] = -1; // Se asigna -1 a los parametros que no se usa en la instruccion
-			instr->paramIO = -1;
+			instr->paramIO = "";
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -34,7 +34,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramReg[0] = devolverRegistro(palabra[1]);
 			instr->paramReg[1] = devolverRegistro(palabra[2]);
 			instr->paramInt = -1;
-			instr->paramIO = -1;
+			instr->paramIO = "";
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -45,7 +45,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramReg[0] = devolverRegistro(palabra[1]);
 			instr->paramInt = atoi(palabra[2]);
 			instr->paramReg[1] = -1;
-			instr->paramIO = -1;
+			instr->paramIO = "";
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -56,7 +56,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramInt = atoi(palabra[1]);
 			instr->paramReg[0] = devolverRegistro(palabra[2]);
 			instr->paramReg[1] = -1;
-			instr->paramIO = -1;
+			instr->paramIO = "";
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -64,59 +64,11 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 		else if (strcmp(palabra[0], "I/O") == 0)
 		{
 			instr->instCode = IO;
-			if (strcmp(palabra[1], "DISCO") == 0)
-			{
-				instr->paramIO = DISCO;
-				instr->paramInt = atoi(palabra[2]);
-				instr->paramReg[0] = -1;
-				instr->paramReg[1] = -1;
-				free(palabra[0]);
-				free(palabra[1]);
-				free(palabra[2]);
-			}
-			else if (strcmp(palabra[1], "IMPRESORA") == 0)
-			{
-				instr->paramIO = IMPRESORA;
-				instr->paramInt = atoi(palabra[2]);
-				instr->paramReg[0] = -1;
-				instr->paramReg[1] = -1;
-				free(palabra[0]);
-				free(palabra[1]);
-				free(palabra[2]);
-			}
-			else if (strcmp(palabra[1], "WIFI") == 0)
-			{
-				instr->paramIO = WIFI;
-				instr->paramInt = atoi(palabra[2]);
-				instr->paramReg[0] = -1;
-				instr->paramReg[1] = -1;
-				free(palabra[0]);
-				free(palabra[1]);
-				free(palabra[2]);
-			}
-			else if (strcmp(palabra[1], "AUDIO") == 0)
-			{
-				instr->paramIO = AUDIO;
-				instr->paramInt = atoi(palabra[2]);
-				instr->paramReg[0] = -1;
-				instr->paramReg[1] = -1;
-				free(palabra[0]);
-				free(palabra[1]);
-				free(palabra[2]);
-			}
-			else if (strcmp(palabra[1], "USB") == 0)
-			{
-				instr->paramIO = USB;
-				instr->paramInt = atoi(palabra[2]);
-				instr->paramReg[0] = -1;
-				instr->paramReg[1] = -1;
-				free(palabra[0]);
-				free(palabra[1]);
-				free(palabra[2]);
-			}
-			else if (strcmp(palabra[1], "TECLADO") == 0)
-			{
-				instr->paramIO = TECLADO;
+			if (strcmp(palabra[1], "TECLADO") == 0 || strcmp(palabra[1], "PANTALLA") == 0)
+			{	
+				char * io = string_new();
+				string_append(&io,palabra[1]);
+				instr->paramIO = io;
 				instr->paramReg[0] = devolverRegistro(palabra[2]);
 				instr->paramInt = -1;
 				instr->paramReg[1] = -1;
@@ -124,30 +76,33 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 				free(palabra[1]);
 				free(palabra[2]);
 			}
-			else if (strcmp(palabra[1], "PANTALLA") == 0)
+			else 
 			{
-				instr->paramIO = PANTALLA;
-				instr->paramReg[0] = devolverRegistro(palabra[2]);
-				instr->paramInt = -1;
+				char * io = string_new();
+				string_append(&io,palabra[1]);
+				instr->paramIO = io;
+				instr->paramInt = atoi(palabra[2]);
+				instr->paramReg[0] = -1;
 				instr->paramReg[1] = -1;
 				free(palabra[0]);
 				free(palabra[1]);
 				free(palabra[2]);
 			}
 		}
+		
 		else if (strcmp(palabra[0], "EXIT") == 0)
 		{
 			instr->instCode = EXIT;
 			instr->paramInt = -1;
 			instr->paramReg[0] = -1;
 			instr->paramReg[1] = -1;
-			instr->paramIO = -1;
+			instr->paramIO = "";
 
 			free(palabra[0]);
 		}
 		list_add(instrucciones, instr);
-		/*printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d\n",
-			   instr->instCode, instr->paramInt, instr->paramReg[0], instr->paramReg[1], instr->paramIO);*/
+		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %s\n",
+			   instr->instCode, instr->paramInt, instr->paramReg[0], instr->paramReg[1], instr->paramIO);
 
 		free(palabra);
 	}

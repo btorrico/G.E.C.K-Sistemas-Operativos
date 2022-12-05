@@ -454,26 +454,28 @@ t_pcb *deserializoPCB(t_buffer *buffer)
 }
 
 // Imprimir instrucciones y segmentos
-void imprimirInstruccionesYSegmentos(t_informacion *informacion)
+void imprimirInstruccionesYSegmentos(t_informacion informacion)
 {
 	t_instruccion *instruccion = malloc(sizeof(t_instruccion));
 
 	// mostrar instrucciones
 	printf("Instrucciones:");
-	for (int i = 0; i < informacion->instrucciones_size; ++i)
+	for (int i = 0; i < informacion.instrucciones_size; ++i)
 	{
-		instruccion = list_get(informacion->instrucciones, i);
+		instruccion = list_get(informacion.instrucciones, i);
 
-		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
+		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %s",
 			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
 	}
 
 	// mostrar segmentos
-	printf("\n\nSegmentos:");
-	for (int i = 0; i < informacion->segmentos_size; ++i)
+	printf("\n\nimprimo cantidad de segmentos: %d\n",informacion.segmentos_size);
+	for (int i = 0; i < informacion.segmentos_size; ++i)
 	{
-		uint32_t segmento = list_get(informacion->segmentos, i);
+		uint32_t segmento = list_get(informacion.segmentos, i);
 
-		printf("\n%d\n", segmento);
+		printf("Segmento n°%d: %d\n",i , segmento);
 	}
 }
+
+

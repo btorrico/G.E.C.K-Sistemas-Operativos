@@ -158,7 +158,7 @@ bool cicloInstruccion(t_pcb *pcb)
 	char *instruccion = string_new();
 	string_append(&instruccion, instruccionToString(insActual->instCode));
 	char *io = string_new();
-	string_append(&io, ioToString(insActual->paramIO));
+	string_append(&io, insActual->paramIO);
 	char *registro = string_new();
 	string_append(&registro, registroToString(insActual->paramReg[0]));
 	char *registro2 = string_new();
@@ -181,6 +181,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		log_debug(logger, "%s = %i", registro, insActual->paramInt);
 		free(registro);
 		free(registro2);
+		free(io);
 		printf("estado de la interrupcion: %d", interrupciones);
 		break;
 
@@ -200,6 +201,7 @@ bool cicloInstruccion(t_pcb *pcb)
 
 		log_debug(logger, "%s = %i", registro, registroDestino);
 		free(registro);
+		free(io);
 		break;
 
 	case MOV_IN:
@@ -241,6 +243,9 @@ bool cicloInstruccion(t_pcb *pcb)
 			free(dirFisicaMoveIn);
 			free(mensajeAMemoriaLeer);
 			free(mensajeValorLeido);
+			free(registro);
+			free(registro2);
+			free(io);
 		}
 		break;
 
@@ -288,31 +293,35 @@ bool cicloInstruccion(t_pcb *pcb)
 			free(mensajeWrite);
 			free(dirFisicaMoveOut);
 			free(mensajeAMemoriaEscribir);
+			free(registro);
+			free(registro2);
+			free(io);
 		}
 		break;
 
 	case IO:
 		printf(PRINT_COLOR_CYAN "\nEjecutando instruccion IO - Etapa Execute \n" PRINT_COLOR_CYAN);
 		// pcb->program_counter += 1;
-		switch (insActual->paramIO)
+		if (strcmp(insActual->paramIO, "TECLADO") == 0)
 		{
-		case TECLADO:
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO_TECLADO);
 			log_debug(logger, "Envie BLOCK al kernel por IO_TECLADO");
 			retornePCB = true;
-			break;
-		case PANTALLA:
+		} else if(strcmp(insActual->paramIO, "PANTALLA") == 0)
+		{
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO_PANTALLA);
 			log_debug(logger, "Envie BLOCK al kernel por IO_PANTALLA");
 			retornePCB = true;
-			break;
-		default:
+		} else {
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO);
 			log_debug(logger, "Envie BLOCK al kernel por IO");
 			retornePCB = true;
-			break;
 		}
+	
 		free(pcb);
+		free(registro);
+		free(registro2);
+		free(io);
 		break;
 
 	case EXIT:
@@ -321,6 +330,9 @@ bool cicloInstruccion(t_pcb *pcb)
 		log_debug(logger, "Envie EXIT al kernel");
 		retornePCB = true;
 		free(pcb);
+		free(registro);
+		free(registro2);
+		free(io);
 		printf("\nLlegue al retorno: %d\n", retornePCB);
 		// limpiar_entradas_TLB();
 		break;
@@ -417,7 +429,7 @@ char *instruccionToString(t_instCode codigoInstruccion)
 	}
 }
 
-char *ioToString(t_IO io)
+/* char *ioToString(t_IO io)
 {
 	switch (io)
 	{
@@ -447,7 +459,7 @@ char *ioToString(t_IO io)
 		return "";
 		break;
 	}
-}
+} */
 
 uint32_t matchearRegistro(t_registros registros, t_registro registro)
 {

@@ -111,27 +111,16 @@ t_informacion recibir_informacion(cliente_fd)
 		k++;
 	}
 
-	printf("Instrucciones:");
-	for (int i = 0; i < programa.instrucciones_size; ++i)
-	{
-		t_instruccion *instruccion = list_get(programa.instrucciones, i);
-
-		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d, dispIO: %d",
-			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1], instruccion->paramIO);
-	}
-
-printf("\nimprimo segmentos tamaño: %d",programa.segmentos_size);
 	while (l < (programa.segmentos_size))
 	{
 		// segmento = malloc(sizeof(uint32_t));
 		memcpy(&segmento, buffer + offset, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 		list_add(programa.segmentos, segmento);
-		printf("\nSegmento n°%d: %d\n",l , segmento);
 		l++;
 	}
 
-
+	imprimirInstruccionesYSegmentos(programa);
 	free(buffer);
 
 	return programa;
@@ -257,7 +246,6 @@ void pasar_a_block_page_fault(t_pcb *pcb)
 	log_debug(logger, "Paso a READY el proceso %d", pcb->id);
 }
 
-
 void iniciar_listas_y_semaforos()
 {
 	// listas
@@ -280,7 +268,6 @@ void iniciar_listas_y_semaforos()
 	LISTA_BLOCKED_WIFI = list_create();
 	LISTA_BLOCKED_USB = list_create();
 	LISTA_BLOCKED_AUDIO = list_create();
-	
 
 	// mutex
 	pthread_mutex_init(&mutex_creacion_ID, NULL);
@@ -298,13 +285,11 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
 	pthread_mutex_init(&mutex_creacion_ID_tabla, NULL);
 	pthread_mutex_init(&mutex_lista_tabla_paginas, NULL);
-	pthread_mutex_init(&mutex_lista_block_page_fault , NULL);
+	pthread_mutex_init(&mutex_lista_block_page_fault, NULL);
 	pthread_mutex_init(&mutex_lista_tabla_paginas_pagina, NULL);
-	pthread_mutex_init(&mutex_lista_pagina_marco_por_proceso , NULL);
-	pthread_mutex_init(&mutex_lista_marco_por_proceso , NULL);
+	pthread_mutex_init(&mutex_lista_pagina_marco_por_proceso, NULL);
+	pthread_mutex_init(&mutex_lista_marco_por_proceso, NULL);
 	pthread_mutex_init(&mutex_lista_marcos_por_proceso_pagina, NULL);
-	
-
 
 	// semaforos
 	sem_init(&sem_ready, 0, 0);
@@ -321,7 +306,7 @@ void iniciar_listas_y_semaforos()
 	sem_init(&contador_multiprogramacion, 0, configKernel.gradoMultiprogramacion);
 	sem_init(&contador_pcb_running, 0, 1);
 	sem_init(&contador_bloqueo_teclado_running, 0, 1);
-	//sem_init(&contador_bloqueo_pantalla_running, 0, 1);
+	// sem_init(&contador_bloqueo_pantalla_running, 0, 1);
 	sem_init(&contador_bloqueo_disco_running, 0, 1);
 	sem_init(&contador_bloqueo_impresora_running, 0, 1);
 	sem_init(&contador_bloqueo_wifi_running, 0, 1);
@@ -375,14 +360,12 @@ void implementar_feedback()
 		pthread_mutex_unlock(&mutex_lista_ready);
 		printf("\nentrando fifo auxiliar");
 		implementar_fifo_auxiliar();
-		
 	}
 	else
 	{
 		pthread_mutex_unlock(&mutex_lista_ready);
 		printf("\nentrando round robin");
 		implementar_rr();
-		
 	}
 }
 
@@ -458,10 +441,10 @@ void hilo_timer()
 	usleep(configKernel.quantum * 1000);
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
-	 printf("\nme desperte!\n");
+	printf("\nme desperte!\n");
 	sem_post(&sem_desalojar_pcb);
 
-	 printf("\nenvie post desalojar pcb\n");
+	printf("\nenvie post desalojar pcb\n");
 }
 
 void serializarValor(uint32_t valorRegistro, int socket, t_tipoMensaje tipoMensaje)
