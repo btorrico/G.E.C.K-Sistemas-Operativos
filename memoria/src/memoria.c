@@ -542,7 +542,10 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 	printf("llegue acaaaaaaa\n");
-	pagina = list_get(marcosPorProceso->paginas, nroMarco % 4);
+
+
+	pagina = list_get(marcosPorProceso->paginas, nroMarco % configMemoria.marcosPorProceso);
+	
 	pagina->uso = 1;
 	pagina->modificacion = 1;
 	printf("llegue aca\n");
