@@ -172,5 +172,7 @@ void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int p
 void cerrar_TLB();
 void destruir_entrada(void* entry);
 void imprimirModificacionTlb();
+void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, int pid);
+
 
 #endif

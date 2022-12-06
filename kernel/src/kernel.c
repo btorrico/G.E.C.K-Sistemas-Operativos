@@ -168,7 +168,10 @@ void conectar_dispatch()
 
 			pasar_a_block_teclado(pcb);
 
-			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+			//log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+			//Motivo de Bloqueo:
+			log_debug(loggerMinimo,"PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+
 
 			pthread_create(&thrBloqueoTeclado, NULL, (void *)manejar_bloqueo_teclado, (void *)insActual);
 
@@ -228,7 +231,10 @@ void conectar_dispatch()
 			sem_post(&contador_pcb_running);
 			// pasar_a_block(pcb);
 
-			log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+			//log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+			//Motivo de Bloqueo:
+			log_debug(loggerMinimo,"PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+
 
 			break;
 
@@ -258,6 +264,10 @@ void conectar_dispatch()
 
 			pthread_t thrInterrupt;
 			log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->id);
+			//Fin de quantum
+			log_debug(loggerMinimo, "PID: %d - Desalojado por fin de Quantum", pcb->id);
+
+
 			printf("\nentrando a manejar interrupcion\n");
 			t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
 			printf("\n%d\n", algoritmo);
@@ -280,14 +290,7 @@ void conectar_dispatch()
 			printf("\ntermine de manejar la interrupcion");
 			sem_post(&contador_pcb_running);
 			break;
-			// case SEGMENTATION_FAULT:
-			/*CPU -> En caso de que el desplazamiento dentro del segmento (desplazamiento_segmento)
-			sea mayor al tamaño del mismo, deberá devolverse el proceso al Kernel para que este lo
-			finalice con motivo de Error: Segmentation Fault (SIGSEGV).*/
 
-			// printf("Hola, hola, hola, cuidado con la olaa(?");
-
-			// break;
 		default:
 			break;
 		}
@@ -615,6 +618,8 @@ void iniciar_kernel()
 
 	// Parte Server
 	logger = iniciar_logger("kernel.log", "KERNEL", LOG_LEVEL_DEBUG);
+	loggerMinimo = iniciar_logger("kernelLoggsObligatorios.log", "KERNEL", LOG_LEVEL_DEBUG);
+
 
 	config = iniciar_config("kernel.config");
 
@@ -667,6 +672,7 @@ void crear_pcb(void *argumentos)
 
 	pasar_a_new(pcb);
 	log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
+	log_debug(loggerMinimo, "Se crea el proceso: %d en NEW", pcb->id); // Creacion de Proceso?
 	log_info(logger, "Cant de elementos de new: %d", list_size(LISTA_NEW));
 
 	sem_post(&sem_agregar_pcb);
@@ -810,6 +816,9 @@ void agregar_pcb()
 
 	log_debug(logger, "Estado Anterior: NEW , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: READY , proceso id: %d", pcb->id);
+	//Cambio de estado
+	log_debug(loggerMinimo, "PID: %d - Estado Anterior: NEW , Estado Actual: READY", pcb->id);
+
 
 	printf("Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
@@ -837,6 +846,9 @@ void eliminar_pcb()
 	sem_post(&contador_pcb_running);
 	log_debug(logger, "Estado Anterior: EXEC , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
+	//Cambio de estado
+	log_debug(loggerMinimo, "PID: %d - Estado Anterior: EXEC , Estado Actual: EXIT", pcb->id);
+
 
 	for (int i = 0; i < list_size(LISTA_EXIT); i++)
 	{

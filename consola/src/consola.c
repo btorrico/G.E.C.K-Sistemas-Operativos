@@ -7,6 +7,7 @@ int main(int argc, char **argv)
 
 	logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_DEBUG);
 
+
 	log_info(logger, "\n Iniciando consola...");
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */

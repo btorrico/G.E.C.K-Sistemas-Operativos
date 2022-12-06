@@ -351,6 +351,8 @@ typedef struct
 extern t_configKernel configKernel;
 
 extern t_log *logger;
+extern t_log *loggerMinimo;
+
 
 // extern t_log* loggerKernel;
 

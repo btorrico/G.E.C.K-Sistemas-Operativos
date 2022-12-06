@@ -4,6 +4,8 @@ int main(char argc, char **argv)
 {
 
 	logger = iniciar_logger("cpu.log", "CPU", LOG_LEVEL_DEBUG);
+	loggerMinimo = iniciar_logger("cpuLoggsObligatorios.log", "CPU", LOG_LEVEL_DEBUG);
+
 
 	config = iniciar_config("cpu.config");
 
@@ -164,8 +166,12 @@ bool cicloInstruccion(t_pcb *pcb)
 	char *registro2 = string_new();
 	string_append(&registro2, registroToString(insActual->paramReg[1]));
 
-	log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %s %i'",
-			  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio
+	//log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %s %i'",
+	//		  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio
+
+	//Instruccion Ejecutada
+	log_debug(loggerMinimo, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %s %i'",
+			  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio		  
 	free(instruccion);
 
 	// interrupciones = false;
@@ -510,7 +516,7 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	int tamanio_maximo_segmento = tamanioMaximoPorSegmento(cant_entradas_por_tabla, tam_pagina);
 	log_info(logger, "Tamanio Maximo Por Segmento = %d * %d = %d", cant_entradas_por_tabla, tam_pagina, tamanio_maximo_segmento);
 
-	int numero_segmento = numeroDeSegmento(direccionLogica, tamanioMaximoPorSegmento);
+	int numero_segmento = numeroDeSegmento(direccionLogica, tamanio_maximo_segmento);
 	log_info(logger, "Número de Segmento = %d / %d = %d", direccionLogica, tamanio_maximo_segmento, numero_segmento);
 
 	int desplazamiento_Segmento = desplazamientoSegmento(direccionLogica, tamanio_maximo_segmento);
@@ -569,7 +575,10 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
 			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
-			log_debug(logger,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
+			//log_debug(logger,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
+			//Page Fault
+			log_debug(loggerMinimo,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
+
 			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
 			//free(pcb);
 			free(mensajeAKernelPageFault);
@@ -640,7 +649,7 @@ int primer_acceso(int numero_pagina, uint32_t indiceTablaPaginas, uint32_t pid)
 		break;
 	case RESPUESTA_MEMORIA_MARCO_BUSCADO:
 		int nroFrame = mensajePrimerAcceso->numero;
-		log_info(logger, "(primer acceso)EL MARCO BUSCADO ES: %d", nroFrame);
+		log_info(logger, "(primer acceso) EL MARCO BUSCADO ES: %d", nroFrame);
 		free(mensajePrimerAcceso);
 		return nroFrame;
 		break;
@@ -683,7 +692,9 @@ void llenar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 	entrada->nroFrame = nroFrame;
 	entrada->nroSegmento = nroSegmento;
 	entrada->pid = pid;
-	list_add_in_index(TLB->entradas, 0, entrada);
+	///list_add_in_index(TLB->entradas, 0, entrada);
+	list_add(TLB->entradas, entrada);
+
 
 	printf(PRINT_COLOR_MAGENTA "SE MODIFICA LA TLB" PRINT_COLOR_RESET);
 	printf(PRINT_COLOR_MAGENTA "Se llena la entrada de TLB con: Nro pagina: %d, Nro Frame: %d, Nro Segmento: %d y Nro Pid: %d \n" PRINT_COLOR_RESET, entrada->nroPagina, entrada->nroFrame, entrada->nroSegmento, entrada->pid);
@@ -701,7 +712,7 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 	for (int i = 0; i < TLB->entradas->elements_count; i++)
 	{
 		entradaActual = list_get(TLB->entradas, i);
-		if (entradaActual->nroPagina == nroPagina && entradaActual->nroSegmento == nroSegmento)
+		if (entradaActual->nroPagina == nroPagina && entradaActual->nroSegmento == nroSegmento && entradaActual -> pid == pid)
 		{
 			if (strcmp(TLB->algoritmo, "LRU") == 0)
 			{
@@ -716,8 +727,11 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 			* @NAME: list_add_in_index: Agrega un elemento en una posicion determinada de la lista
 			*/
 
-			log_debug(logger, "TLB Hit: PID: <%i> - TLB HIT - Segmento: <%i> - Pagina: <%i> \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina);
-			printf(PRINT_COLOR_MAGENTA "TLB Hit: PID: <%d> TLB HIT - Segmento: <%d> - Pagina: <%d> - Frame: <%d> \n" PRINT_COLOR_RESET, entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, entradaActual->nroFrame);
+			//log_debug(logger, "TLB Hit: PID: %i - TLB HIT - Segmento: %i - Pagina: %i \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina);
+			//Tlb Hit
+			log_debug(loggerMinimo, "TLB Hit: PID: %i - TLB HIT - Segmento: %i - Pagina: %i \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina);
+
+			printf(PRINT_COLOR_MAGENTA "TLB Hit: PID: %d TLB HIT - Segmento: %d - Pagina: %d - Frame: %d \n" PRINT_COLOR_RESET, entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, entradaActual->nroFrame);
 			return entradaActual->nroFrame;
 		}
 	}
@@ -726,7 +740,9 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 
 	log_debug(logger, "TLB MISS - pagina no encontrada en TLB\n");
 
-	log_debug(logger, "TLB Miss: PID: <%i> - TLB MISS - Segmento: <%i> - Pagina: <%i> \n", pid, nroSegmento, nroPagina);
+	//log_debug(logger, "TLB Miss: PID: %i - TLB MISS - Segmento: %i - Pagina: %i \n", pid, nroSegmento, nroPagina);
+	//Tlb Miss
+	log_debug(loggerMinimo, "TLB Miss: PID: %i - TLB MISS - Segmento: %i - Pagina: %i \n", pid, nroSegmento, nroPagina);
 
 	return -1;
 }
@@ -739,7 +755,20 @@ void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 		llenar_TLB(nroPagina, nroFrame, nroSegmento, pid);
 		imprimirModificacionTlb();
 		return;
+	}else{
+		log_debug(logger, "La TLB ya no tiene mas entradas disponilbles");
+		log_debug(logger, "Algoritmos de reemplazo entrando en acción");
+ 
+ 		usarAlgoritmosDeReemplazoTlb(nroPagina, nroFrame, nroSegmento, pid);
+
+
 	}
+	
+
+
+}
+
+ void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, int pid){
 
 	// REEMPLAZO DE PAGINA
 	if (strcmp(TLB->algoritmo, "LRU") == 0)
@@ -761,7 +790,10 @@ void imprimirModificacionTlb()
 	for (int i = 0; i < TLB->entradas->elements_count; i++)
 	{
 		entrada = list_get(TLB->entradas, i);
-		log_debug(logger, "NRO ENTRADA: %i | PID: %i | SEGMENTO: %i | PAGINA: %i \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina);
+		//log_debug(logger, "NRO ENTRADA: %i | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina, entrada->nroFrame);
+		//Modificacion de la Tlb
+		log_debug(loggerMinimo, "NRO ENTRADA: %i | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina, entrada->nroFrame);
+
 	}
 }
 

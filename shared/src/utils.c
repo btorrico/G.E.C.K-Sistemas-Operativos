@@ -122,6 +122,7 @@ void liberar_conexion(int socket_cliente)
 // Esto es del servidor
 
 t_log *logger;
+t_log *loggerMinimo;
 
 
 int iniciar_servidor(char *IP, char *PUERTO)
