@@ -221,6 +221,9 @@ bool cicloInstruccion(t_pcb *pcb)
 		{
 			retornePCB = true;
 			printf("se envio info a kernel por page fault");
+
+		}else if(dirFisicaMoveIn->nroMarco == -10){
+			printf("Kernel finaliza el proceso por Segmentation Fault");
 		}
 		else
 		{
@@ -266,6 +269,10 @@ bool cicloInstruccion(t_pcb *pcb)
 		{
 			retornePCB = true;
 			printf("se envio info a kernel por page fault");
+
+		}else if(dirFisicaMoveOut->nroMarco == -10){
+			printf("Kernel finaliza el proceso por Segmentation Fault");
+
 		}
 		else
 		{
@@ -550,6 +557,7 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 		// Devolvemos el pcb a nuestro bello kernel
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
 		log_debug(logger, "Envie de Nuevo el proceso para ser finalizado...");
+		dir_fisica->nroMarco = -10;
 	}
 	else if (nroMarco != -1)
 	{ // significa que La PAGINA ESTA EN LA TLB
