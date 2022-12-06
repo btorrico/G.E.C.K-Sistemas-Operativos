@@ -328,7 +328,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		retornePCB = true;
 		free(pcb);
 		printf("\nLlegue al retorno: %d\n", retornePCB);
-		// limpiar_entradas_TLB();
+		limpiar_entradas_TLB();
 		break;
 	default:
 		break;
