@@ -180,7 +180,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
 	buffer->size = sizeof(uint32_t) * 2 + list_size(informacion->instrucciones) * sizeof(t_instruccion) // instrucciones_size
-				   + list_size(informacion->segmentos) * sizeof(uint32_t);								// segmentos_size
+				   + list_size(informacion->segmentos) * sizeof(uint32_t);// segmentos_size							
 
 	void *stream = malloc(buffer->size);
 
@@ -199,7 +199,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		memcpy(stream + offset, list_get(informacion->instrucciones, i), sizeof(t_instruccion));
 		offset += sizeof(t_instruccion);
 		i++;
-		// printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
+		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
 	while (j < list_size(informacion->segmentos))

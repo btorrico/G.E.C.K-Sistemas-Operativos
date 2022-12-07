@@ -150,7 +150,7 @@ void conectar_dispatch()
 
 		case BLOCK_PCB_IO_PANTALLA:
 			pthread_t thrBloqueoPantalla;
-			dispositivoIO = dispositivoToString(insActual->paramIO);
+			dispositivoIO = insActual->paramIO;
 
 			pasar_a_block_pantalla(pcb);
 
@@ -162,8 +162,8 @@ void conectar_dispatch()
 
 		case BLOCK_PCB_IO_TECLADO:
 			pthread_t thrBloqueoTeclado;
-			dispositivoIO = dispositivoToString(insActual->paramIO);
-			dispositivoIO = dispositivoToString(insActual->paramIO);
+			dispositivoIO = insActual->paramIO;
+			dispositivoIO = insActual->paramIO;
 
 			pasar_a_block_teclado(pcb);
 
@@ -182,7 +182,7 @@ void conectar_dispatch()
 		//podemos tenes harcodeado teclado y pantalla pero los dispositivos de config kernel no 
 			printf("\nentro al case block io");
 			pthread_t thrBloqueoGeneralImpresora, thrBloqueoGeneralDisco, thrBloqueoGeneralUsb, thrBloqueoGeneralAudio, thrBloqueoGeneralWifi;
-			dispositivoIO = dispositivoToString(insActual->paramIO);
+			dispositivoIO = insActual->paramIO;
 			printf("\n dispositivo %s\n", dispositivoIO);
 
 			if (!strcmp("DISCO", dispositivoIO))
@@ -377,7 +377,7 @@ void manejar_bloqueo_general_impresora(void *insActual)
 	sem_wait(&contador_bloqueo_impresora_running);
 	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
 
-	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+	char *dispositivoCpu = instActualBloqueoGeneral->paramIO;
 
 	int tamanio = size_char_array(configKernel.dispositivosIO);
 	uint32_t tiempoIO;
@@ -410,7 +410,7 @@ void manejar_bloqueo_general_disco(void *insActual)
 	sem_wait(&contador_bloqueo_disco_running);
 	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
 
-	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+	char *dispositivoCpu = instActualBloqueoGeneral->paramIO;
 
 	int tamanio = size_char_array(configKernel.dispositivosIO);
 	uint32_t tiempoIO;
@@ -444,7 +444,7 @@ void manejar_bloqueo_general_wifi(void *insActual)
 	sem_wait(&contador_bloqueo_wifi_running);
 	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
 
-	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+	char *dispositivoCpu = instActualBloqueoGeneral->paramIO;
 
 	int tamanio = size_char_array(configKernel.dispositivosIO);
 	uint32_t tiempoIO;
@@ -476,7 +476,7 @@ void manejar_bloqueo_general_audio(void *insActual)
 	sem_wait(&contador_bloqueo_audio_running);
 	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
 
-	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+	char *dispositivoCpu = instActualBloqueoGeneral->paramIO;
 
 	int tamanio = size_char_array(configKernel.dispositivosIO);
 	uint32_t tiempoIO;
@@ -510,7 +510,7 @@ void manejar_bloqueo_general_usb(void *insActual)
 	sem_wait(&contador_bloqueo_usb_running);
 	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
 
-	char *dispositivoCpu = dispositivoToString(instActualBloqueoGeneral->paramIO);
+	char *dispositivoCpu = instActualBloqueoGeneral->paramIO;
 
 	int tamanio = size_char_array(configKernel.dispositivosIO);
 	uint32_t tiempoIO;
