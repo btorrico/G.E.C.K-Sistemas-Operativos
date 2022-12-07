@@ -7,6 +7,8 @@
 #include "client.h"
 #include "server.h"
 #include "comunicacion.h"
+//#include <commons/collections/list.h>
+
 
 
 t_config* config;
@@ -176,5 +178,5 @@ void imprimirModificacionTlb();
 void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, int pid);
 char *calcularHorasMinutosSegundos(int valor);
 entrada_tlb* entradaConMenorTiempoDeReferencia();
-
+ void *esMenor(void *_unaEntrada, void *_otraEntrada);
 #endif

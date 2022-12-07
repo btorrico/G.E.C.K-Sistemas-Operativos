@@ -10,7 +10,8 @@
         "kernel.h": "c",
         "memoria.h": "c",
         "tests.h": "c",
-        "comunicacion.h": "c"
+        "comunicacion.h": "c",
+        "list.h": "c"
     },
-    "C_Cpp.errorSquiggles": "Enabled"
+    "C_Cpp.errorSquiggles": "disabled"
 }

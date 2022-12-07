@@ -824,39 +824,35 @@ char *calcularHorasMinutosSegundos(int valor)
   string_append_with_format(&formato, "min:%d seg:%d", minutos, segundos);
   return formato;
 }
-/*
-bool tiempoDeUltimaReferencia(entrada_tlb* entrada1, entrada_tlb* entrada2){
-	return entrada1->ultimaReferencia < entrada2->ultimaReferencia;
-}*/
+
 
 entrada_tlb* entradaConMenorTiempoDeReferencia(){
-	
-	entrada_tlb* primerEntrada = list_get(TLB->entradas,0);
-	entrada_tlb* entradaVictima;
-	int instantePrimerEntrada = primerEntrada->ultimaReferencia;
+	void* esMenor(void *_unaEntrada, void *_otraEntrada){
+  
+    entrada_tlb *unaEntrada = _unaEntrada;
+    entrada_tlb *otraEntrada = _otraEntrada;
 
-	for(int i =0; i< list_size(TLB->entradas); i++){
-		
-		entrada_tlb* entradaSiguiente = list_get(TLB->entradas,i++);
-		int referenciaEntradaSiguiente = entradaSiguiente->ultimaReferencia;
-		
-		if(instantePrimerEntrada< referenciaEntradaSiguiente){
-			entradaVictima = primerEntrada;
-		}
-		else{
-			entradaVictima = entradaSiguiente;
-		}
-	}
+    if (unaEntrada->ultimaReferencia <= otraEntrada->ultimaReferencia){
+
+      return unaEntrada;
+   } else
+
+      return otraEntrada;
+}
+	entrada_tlb* entradaVictima = list_get_minimum(TLB->entradas, &esMenor);
 	char *tiempo = calcularHorasMinutosSegundos(entradaVictima->ultimaReferencia);
 
 	printf(PRINT_COLOR_MAGENTA"ENTRADA VICTIMA:PID Entrada con menor tiempo de referencia: %d, Tiempo De Referencia: %s\n"PRINT_COLOR_RESET,entradaVictima->pid,tiempo);
 	free(tiempo);
 	return entradaVictima;
-	
 }
+
+
 
 void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid)
 { 
+	printf(PRINT_COLOR_MAGENTA "Reemplazo por algoritmo LRU" PRINT_COLOR_RESET);
+
 	entrada_tlb* entradaVictima = entradaConMenorTiempoDeReferencia();
 	
 
@@ -876,11 +872,12 @@ void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int p
 	
 	list_add_in_index(TLB->entradas, entradaVictima, nuevaEntrada);
 
-	//REEMPLZA BIEN LA PRIMERA VEZ PERO SEGURO FALLA LA SEGUNDA VEZ
 }
 
 void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int pid)
 {
+	printf(PRINT_COLOR_MAGENTA "Reemplazo por algoritmo FIFO" PRINT_COLOR_RESET);
+
 	entrada_tlb *entradaNueva = malloc(sizeof(entrada_tlb));
 
 	entradaNueva->nroPagina = nroPagina;
