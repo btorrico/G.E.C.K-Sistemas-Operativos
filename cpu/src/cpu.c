@@ -711,7 +711,7 @@ void llenar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 
 	printf(PRINT_COLOR_MAGENTA "SE MODIFICA LA TLB" PRINT_COLOR_RESET);
 	printf(PRINT_COLOR_MAGENTA "Se llena la entrada de TLB con: PID: %d , Nro pagina: %d, Nro Frame: %d, Nro Segmento: %d, instante de Referencia: %s \n" PRINT_COLOR_RESET,entrada->pid, entrada->nroPagina, entrada->nroFrame, entrada->nroSegmento, tiempo);
-
+	free(tiempo);
 
 }
 
@@ -783,11 +783,13 @@ void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 	if (strcmp(TLB->algoritmo, "LRU") == 0)
 	{
 		reemplazo_algoritmo_lru(nroPagina, nroFrame, nroSegmento, pid);
+		printf(PRINT_COLOR_MAGENTA "ACTUALIZACION:" PRINT_COLOR_RESET);
 		imprimirModificacionTlb();
 	}
 	else
 	{
 		reemplazo_algoritmo_fifo(nroPagina, nroFrame, nroSegmento, pid);
+		printf(PRINT_COLOR_MAGENTA "ACTUALIZACION:" PRINT_COLOR_RESET);
 		imprimirModificacionTlb();
 	}
 }
@@ -847,14 +849,16 @@ entrada_tlb* entradaConMenorTiempoDeReferencia(){
 	}
 	char *tiempo = calcularHorasMinutosSegundos(entradaVictima->ultimaReferencia);
 
-	printf(PRINT_COLOR_MAGENTA"PID Entrada con menor tiempo de referencia: %d, Tiempo De Referencia: %s\n"PRINT_COLOR_RESET,entradaVictima->pid,tiempo);
-	
+	printf(PRINT_COLOR_MAGENTA"ENTRADA VICTIMA:PID Entrada con menor tiempo de referencia: %d, Tiempo De Referencia: %s\n"PRINT_COLOR_RESET,entradaVictima->pid,tiempo);
+	free(tiempo);
 	return entradaVictima;
+	
 }
 
 void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid)
 { 
 	entrada_tlb* entradaVictima = entradaConMenorTiempoDeReferencia();
+	
 
 	entrada_tlb *nuevaEntrada = malloc(sizeof(entrada_tlb));
 
@@ -866,12 +870,13 @@ void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int p
 
 	
 	log_warning(logger, "Reemplaza pagina: %d por nueva pagina %d", entradaVictima->nroPagina, nuevaEntrada->nroPagina);
-	printf("Reemplaza pagina: %d por nueva pagina %d", entradaVictima->nroPagina, nuevaEntrada->nroPagina);
 	
 	list_remove(TLB->entradas, entradaVictima);
 	free(entradaVictima);
+	
+	list_add_in_index(TLB->entradas, entradaVictima, nuevaEntrada);
 
-	list_add(TLB->entradas, nuevaEntrada);
+	//REEMPLZA BIEN LA PRIMERA VEZ PERO SEGURO FALLA LA SEGUNDA VEZ
 }
 
 void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int pid)
@@ -890,7 +895,7 @@ void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int 
 	printf(PRINT_COLOR_YELLOW "Reemplazo de pagina: %d por nueva pagina %d" PRINT_COLOR_RESET, entradaAReemplazar->nroPagina, entradaNueva->nroPagina);
 	
 	list_remove(TLB->entradas, 0); //Elimino la entrada victima
-	list_add(TLB->entradas, entradaNueva); //Agrego la nueva
+	list_add_in_index(TLB->entradas,0, entradaNueva); //Agrego la nueva entrada en la primera posicion de la lista
 	free(entradaAReemplazar);
 }
 
