@@ -557,7 +557,9 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 		// Devolvemos el pcb a nuestro bello kernel
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
 		log_debug(logger, "Envie de Nuevo el proceso para ser finalizado...");
+		retornePCB = true;
 		dir_fisica->nroMarco = -10;
+
 	}
 	else if (nroMarco != -1)
 	{ // significa que La PAGINA ESTA EN LA TLB

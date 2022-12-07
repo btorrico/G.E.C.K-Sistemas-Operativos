@@ -124,6 +124,7 @@ void iniciar_servidor_hacia_kernel()
 
 			printf("\nel id de pagina es: %d", infoRemplazo->idPagina);
 			printf("\nel id de seg es: %d", infoRemplazo->idSegmento);
+			printf("\nel id de pcb es: %d\n", infoRemplazo->PID);
 
 			t_marcos_por_proceso *marcoPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pcb->id - 1);
 
@@ -205,10 +206,10 @@ void conexionCPU(int socketAceptado)
 
 	while (1)
 	{
-		direccionFisica = malloc(sizeof(t_direccionFisica));
-		infoMemoriaCpuTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
-		infoMemoriaCpuLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
-		infoMemoriaCpuEscribir = malloc(sizeof(MSJ_MEMORIA_CPU_ESCRIBIR));
+		//direccionFisica = malloc(sizeof(t_direccionFisica));
+		//infoMemoriaCpuTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
+		//infoMemoriaCpuLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
+		//infoMemoriaCpuEscribir = malloc(sizeof(MSJ_MEMORIA_CPU_ESCRIBIR));
 
 		recibirMsje(socketAceptado, &paquete);
 
@@ -280,11 +281,14 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 
 		size_t tamanioSgtePagina = 0;
 		tablaPagina->paginas = list_create();
-		pthread_mutex_lock(&mutex_creacion_ID_tabla);
+		tablaPagina->idTablaPag = i;
+		tablaSegmento->indiceTablaPaginas = i;
+
+	/* 	pthread_mutex_lock(&mutex_creacion_ID_tabla);
 		tablaSegmento->indiceTablaPaginas = contadorIdTablaPag;
 		tablaPagina->idTablaPag = contadorIdTablaPag;
 		contadorIdTablaPag++;
-		pthread_mutex_unlock(&mutex_creacion_ID_tabla);
+		pthread_mutex_unlock(&mutex_creacion_ID_tabla); */
 
 		tablaPagina->idPCB = pcbActual->id;
 
@@ -397,8 +401,8 @@ se deberá retornar Page Fault.*/
 void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAceptado)
 {
 	// CPU SOLICITA CUAL ES EL MARCO DONDE ESTA LA PAGINA DE ESA TABLA DE PAGINA
-	log_debug(logger, "ACCEDIENDO A TABLA DE PAGINA CON INDICE: %d NRO_PAGINA: %d",
-			  idTablaPagina, nroPagina);
+	log_debug(logger, "ACCEDIENDO A TABLA DE PAGINA CON INDICE: %d NRO_PAGINA: %d PID: %d",
+			  idTablaPagina, nroPagina, pid);
 
 	int marcoBuscado;
 	t_pagina *pagina;
@@ -407,9 +411,10 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 	bool corte = false;
 	// busco la pagina que piden
 	pthread_mutex_lock(&mutex_lista_tabla_paginas);
-	for (int i = 0; i < list_size(LISTA_TABLA_PAGINAS) && !corte; i++)
+	t_list * tablasFiltradasPorPid = filtrarPorPIDTabla(pid);
+	for (int i = 0; i < list_size(tablasFiltradasPorPid) && !corte; i++)
 	{
-		tabla_de_paginas = list_get(LISTA_TABLA_PAGINAS, i);
+		tabla_de_paginas = list_get(tablasFiltradasPorPid, i);
 		if (tabla_de_paginas->idTablaPag == idTablaPagina)
 		{
 			for (int j = 0; j < list_size(tabla_de_paginas->paginas) && !corte; j++)
@@ -428,7 +433,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 
 	if (pagina->presencia == 1)
 	{
-		pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+		//pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 		marcoBuscado = pagina->nroMarco;
 		log_debug(logger, "[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
 
@@ -504,7 +509,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 	printf("memorialeeeer\n");
-	pagina = list_get(marcosPorProceso->paginas, nroFrame % 4);
+	pagina = list_get(marcosPorProceso->paginas, nroFrame % configMemoria.marcosPorProceso);
 	pagina->uso = 1;
 	printf("memorialeeeer2\n");
 	/***********************************************/
@@ -719,12 +724,15 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 t_pagina *buscarPagina(t_info_remplazo *infoRemplazo)
 {
-	t_list *tablasNewPagina = list_create();
+	t_list *tablasNewPagina;
 	tablasNewPagina = filtrarPorPIDTabla(infoRemplazo->PID);
 	printf("\ncant de tablas en pcb : %d\n", list_size(tablasNewPagina));
 	for (int i = 0; i < list_size(tablasNewPagina); i++)
 	{
+		printf("\nentre al for antes del list_get\n");
 		t_tabla_paginas *tablaPagina = list_get(tablasNewPagina, i);
+		printf("\nsali del list_get\n");
+		printf("\n tablaPagina = %d", tablaPagina->idTablaPag);
 
 		if (tablaPagina->idTablaPag == infoRemplazo->idSegmento)
 		{

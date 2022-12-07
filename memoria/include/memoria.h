@@ -115,7 +115,7 @@ t_tipo_algoritmo_sustitucion obtenerAlgoritmoSustitucion();
 void agregar_marco_por_proceso(t_marcos_por_proceso * );
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
 void asignacionDeMarcos(t_info_remplazo * , t_marcos_por_proceso *);
-t_list* filtrarPorPID(int );
+//t_list* filtrarPorPID(int );
 bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso*);
 t_info_remplazo* declararInfoReemplazo();
 t_list *filtrarPorPIDTabla(int );
