@@ -149,6 +149,7 @@ typedef struct{
 	int nroFrame;
     int nroSegmento;
     int pid;
+	int ultimaReferencia;
 } entrada_tlb;
 
 typedef struct tlb{
@@ -161,7 +162,7 @@ tlb* TLB;
 int habilitarTLB;
 pthread_mutex_t mutexTLB;
 
-
+int obtenerMomentoActual();
 void inicializarTLB();
 void actualizar_TLB(int nroPagina,int nroFrame, int nroSegmento, int pid);
 int buscar_en_TLB(int nroPagina, int nroSegmento, int pid);
@@ -173,6 +174,7 @@ void cerrar_TLB();
 void destruir_entrada(void* entry);
 void imprimirModificacionTlb();
 void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, int pid);
-
+char *calcularHorasMinutosSegundos(int valor);
+entrada_tlb* entradaConMenorTiempoDeReferencia();
 
 #endif
