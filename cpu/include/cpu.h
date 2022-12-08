@@ -176,7 +176,7 @@ void destruir_entrada(void *entry);
 void imprimirModificacionTlb();
 void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, int pid);
 char *calcularHorasMinutosSegundos(int valor);
-entrada_tlb *entradaConMenorTiempoDeReferencia();
+int entradaConMenorTiempoDeReferencia();
 void *esMenor(void *_unaEntrada, void *_otraEntrada);
 bool coincideMarcoYpid(void *_entrada);
 #endif

@@ -13,5 +13,5 @@
         "comunicacion.h": "c",
         "list.h": "c"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "enabled"
 }
