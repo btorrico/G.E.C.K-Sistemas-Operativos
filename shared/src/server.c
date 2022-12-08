@@ -133,7 +133,7 @@ t_informacion recibir_informacion(cliente_fd)
 		l++;
 	}
 
-	imprimirInstruccionesYSegmentos(programa);
+	//imprimirInstruccionesYSegmentos(programa);
 	free(buffer);
 
 	return programa;
