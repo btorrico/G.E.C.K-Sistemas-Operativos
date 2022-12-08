@@ -198,7 +198,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	while (i < list_size(informacion->instrucciones))
 	{
 		t_instruccion* instrucccion = list_get(informacion->instrucciones, i);
-		memcpy(stream + offset,&instrucccion->instCode, sizeof(uint8_t));
+		memcpy(stream + offset,&instrucccion->instCode, sizeof(t_instCode));
 		offset += sizeof(t_instCode);
 		memcpy(stream + offset,&instrucccion->paramInt, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
@@ -207,9 +207,9 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		printf("\ndispositivo%s\n" ,instrucccion->paramIO);
 		memcpy(stream + offset,instrucccion->paramIO,instrucccion->sizeParamIO);
 		offset += instrucccion->sizeParamIO;
-		memcpy(stream + offset,&instrucccion->paramReg[0], sizeof(uint8_t));
+		memcpy(stream + offset,&instrucccion->paramReg[0], sizeof(t_registro));
 		offset += sizeof(t_registro);
-		memcpy(stream + offset,&instrucccion->paramReg[1], sizeof(uint8_t));
+		memcpy(stream + offset,&instrucccion->paramReg[1], sizeof(t_registro));
 		offset += sizeof(t_registro);
 		i++;
 		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);

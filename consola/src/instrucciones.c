@@ -24,7 +24,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramInt = atoi(palabra[2]);
 			instr->paramReg[1] = -1; // Se asigna -1 a los parametros que no se usa en la instruccion
 			instr->paramIO = "";
-			instr->sizeParamIO = 0;
+			instr->sizeParamIO = 1;
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -36,7 +36,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramReg[1] = devolverRegistro(palabra[2]);
 			instr->paramInt = -1;
 			instr->paramIO = "";
-			instr->sizeParamIO = 0;
+			instr->sizeParamIO = 1;
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -48,7 +48,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramInt = atoi(palabra[2]);
 			instr->paramReg[1] = -1;
 			instr->paramIO = "";
-			instr->sizeParamIO = 0;
+			instr->sizeParamIO = 1;
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -60,7 +60,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramReg[0] = devolverRegistro(palabra[2]);
 			instr->paramReg[1] = -1;
 			instr->paramIO = "";
-			instr->sizeParamIO = 0;
+			instr->sizeParamIO = 1;
 			free(palabra[0]);
 			free(palabra[1]);
 			free(palabra[2]);
@@ -104,7 +104,7 @@ void agregarInstruccionesDesdeArchivo(FILE *instructionsFile, t_list *instruccio
 			instr->paramReg[0] = -1;
 			instr->paramReg[1] = -1;
 			instr->paramIO = "";
-			instr->sizeParamIO = 0;
+			instr->sizeParamIO = 1;
 			free(palabra[0]);
 		}
 		list_add(instrucciones, instr);
