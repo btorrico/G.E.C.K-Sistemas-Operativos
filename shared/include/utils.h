@@ -257,6 +257,17 @@ typedef struct
 	int tamanioPagina;
 } MSJ_MEMORIA_CPU_INIT;
 
+typedef struct
+{
+	t_list* lista_block;
+	pthread_mutex_t mutex_lista_blocked;
+	sem_t contador_bloqueo;
+	char* dispositivo;
+	int tiempoEjecucion;
+
+} t_dispositivo;
+
+
 void imprimirInstruccionesYSegmentos(t_informacion );
 
 
@@ -371,6 +382,7 @@ extern t_list *LISTA_BLOCKED_PANTALLA;
 extern t_list *LISTA_BLOCKED_TECLADO;
 extern t_list *LISTA_BLOCKED_DISCO;
 extern t_list *LISTA_BLOCKED_IMPRESORA;
+extern t_list *LISTA_BLOCKED_GENERAL;
 extern t_list *LISTA_TABLA_PAGINAS;
 extern t_list *LISTA_BLOCK_PAGE_FAULT;
 extern t_list *LISTA_INICIO_TABLA_PAGINA;
@@ -394,6 +406,7 @@ extern pthread_mutex_t mutex_lista_blocked_teclado;
 extern pthread_mutex_t mutex_lista_blocked_audio;
 extern pthread_mutex_t mutex_lista_blocked_wifi;
 extern pthread_mutex_t mutex_lista_blocked_usb;
+extern pthread_mutex_t mutex_lista_blocked;
 extern pthread_mutex_t mutex_lista_exit;
 extern pthread_mutex_t mutex_lista_ready_auxiliar;
 extern pthread_mutex_t mutex_creacion_ID_tabla;
@@ -403,6 +416,7 @@ extern pthread_mutex_t mutex_lista_marco_por_proceso;
 extern pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
 extern pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 extern pthread_mutex_t mutex_lista_marcos_por_proceso_pagina;
+extern pthread_mutex_t mutex_lista_blockeados_por_dispositivo;
 
 
 // SEMAFOROS

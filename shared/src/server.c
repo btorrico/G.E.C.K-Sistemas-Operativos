@@ -281,6 +281,7 @@ void iniciar_listas_y_semaforos()
 	LISTA_BLOCKED_WIFI = list_create();
 	LISTA_BLOCKED_USB = list_create();
 	LISTA_BLOCKED_AUDIO = list_create();
+	LISTA_BLOCKED_GENERAL = list_create();
 
 	// mutex
 	pthread_mutex_init(&mutex_creacion_ID, NULL);
@@ -295,6 +296,9 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_blocked_disco, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_pantalla, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_teclado, NULL);
+
+	pthread_mutex_init(&mutex_lista_blocked, NULL);
+	
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
 	pthread_mutex_init(&mutex_creacion_ID_tabla, NULL);
 	pthread_mutex_init(&mutex_lista_tabla_paginas, NULL);
@@ -303,6 +307,8 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_pagina_marco_por_proceso, NULL);
 	pthread_mutex_init(&mutex_lista_marco_por_proceso, NULL);
 	pthread_mutex_init(&mutex_lista_marcos_por_proceso_pagina, NULL);
+	
+	
 
 	// semaforos
 	sem_init(&sem_ready, 0, 0);

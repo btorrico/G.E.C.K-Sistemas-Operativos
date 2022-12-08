@@ -154,6 +154,7 @@ t_list *LISTA_SOCKETS;
 t_list *LISTA_READY_AUXILIAR;
 t_list *LISTA_BLOCKED_DISCO;
 t_list *LISTA_BLOCKED_IMPRESORA;
+t_list *LISTA_BLOCKED_GENERAL;
 t_list *LISTA_TABLA_PAGINAS;
 t_list *LISTA_BLOCK_PAGE_FAULT;
 t_list *LISTA_BITMAP_MARCO;
@@ -176,6 +177,7 @@ pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_blocked_audio;
 pthread_mutex_t mutex_lista_blocked_wifi;
 pthread_mutex_t mutex_lista_blocked_usb;
+pthread_mutex_t mutex_lista_blocked;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
@@ -187,6 +189,7 @@ pthread_mutex_t mutex_void_memoria_ram;
 pthread_mutex_t mutex_lista_frames;
 pthread_mutex_t mutex_swap;
 pthread_mutex_t mutex_lista_marcos_por_proceso_pagina;
+pthread_mutex_t mutex_lista_blockeados_por_dispositivo;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;

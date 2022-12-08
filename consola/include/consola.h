@@ -102,6 +102,7 @@ t_list *LISTA_MARCOS_POR_PROCESOS;
 t_list *LISTA_BLOCKED_WIFI;
 t_list *LISTA_BLOCKED_USB;
 t_list *LISTA_BLOCKED_AUDIO;
+t_list *LISTA_BLOCKED_GENERAL;
 
 // MUTEX
 pthread_mutex_t mutex_creacion_ID;
@@ -116,6 +117,7 @@ pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_blocked_audio;
 pthread_mutex_t mutex_lista_blocked_wifi;
 pthread_mutex_t mutex_lista_blocked_usb;
+pthread_mutex_t mutex_lista_blocked;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_lista_ready_auxiliar;
 pthread_mutex_t mutex_creacion_ID_tabla;
@@ -125,6 +127,7 @@ pthread_mutex_t mutex_lista_marco_por_proceso;
 pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
 pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 pthread_mutex_t mutex_lista_marcos_por_proceso_pagina;
+pthread_mutex_t mutex_lista_blockeados_por_dispositivo;
 
 // SEMAFOROS
 sem_t sem_planif_largo_plazo;

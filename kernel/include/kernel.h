@@ -31,11 +31,7 @@ char *dispositivoToString(t_IO );
 void manejar_interrupcion(void *);
 void manejar_bloqueo_teclado(void *);
 void manejar_bloqueo_pantalla(void *);
-void manejar_bloqueo_general_disco(void *);
-void manejar_bloqueo_general_impresora(void *);
-void manejar_bloqueo_general_wifi(void *);
-void manejar_bloqueo_general_usb(void *);
-void manejar_bloqueo_general_audio(void *);
+void manejar_bloqueo_general(void *);
 void manejar_bloqueo_page_fault();
 
 void planifLargoPlazo();
@@ -43,6 +39,8 @@ void planifCortoPlazo();
 void agregar_pcb();
 void eliminar_pcb();
 void cargarListaReadyIdPCB(t_list*);
+void agregar_a_lista_blokeados(t_dispositivo *, t_pcb*);
+t_dispositivo* buscarDispositivoBlocked(char* );
 typedef struct
 {
     int socketCliente;
@@ -67,6 +65,7 @@ t_list *LISTA_SOCKETS;
 t_list *LISTA_READY_AUXILIAR;
 t_list *LISTA_BLOCKED_DISCO;
 t_list *LISTA_BLOCKED_IMPRESORA;
+t_list *LISTA_BLOCKED_GENERAL;
 t_list *LISTA_TABLA_PAGINAS;
 t_list *LISTA_BLOCK_PAGE_FAULT;
 t_list *LISTA_INICIO_TABLA_PAGINA;
@@ -90,6 +89,7 @@ pthread_mutex_t mutex_lista_blocked_teclado;
 pthread_mutex_t mutex_lista_blocked_audio;
 pthread_mutex_t mutex_lista_blocked_wifi;
 pthread_mutex_t mutex_lista_blocked_usb;
+pthread_mutex_t mutex_lista_blocked;
 pthread_mutex_t mutex_lista_exit;
 pthread_mutex_t mutex_creacion_ID_tabla;
 pthread_mutex_t mutex_lista_tabla_paginas;
@@ -98,6 +98,7 @@ pthread_mutex_t mutex_lista_marco_por_proceso;
 pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
 pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 pthread_mutex_t mutex_lista_marcos_por_proceso_pagina;
+pthread_mutex_t mutex_lista_blockeados_por_dispositivo;
 
 
 // SEMAFOROS
