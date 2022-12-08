@@ -163,7 +163,6 @@ void conectar_dispatch()
 		case BLOCK_PCB_IO_TECLADO:
 			pthread_t thrBloqueoTeclado;
 			dispositivoIO = insActual->paramIO;
-			dispositivoIO = insActual->paramIO;
 
 			pasar_a_block_teclado(pcb);
 
@@ -180,12 +179,18 @@ void conectar_dispatch()
 			// crear una estructura para poder hacer la ejecucion de io de cualquier dispositivo que traiga el config kernel
 			// la estructura va a tener la lista , los semaforos y mutex necesario , el dispositivo que es string
 			// podemos tenes harcodeado teclado y pantalla pero los dispositivos de config kernel no
-			printf("\nentro al case block io");
+			printf("\nentro al case block io\n");
 			pthread_t thrBloqueoGeneral;
 			dispositivoIO = insActual->paramIO;
+			t_dispositivo *dispositivoEnKernel = buscarDispositivoBlocked(dispositivoIO);
 
-			printf("\nentre a ejecutar %s", dispositivoIO);
-			pasar_a_block_disco(pcb);
+			printf("\ndispositivoKernel %s\n", dispositivoEnKernel->dispositivo);
+			if (dispositivoEnKernel == NULL)
+			{
+				printf("\nEl dispositivo no se encontro\n");
+			}
+			agregar_a_lista_blokeados(dispositivoEnKernel, pcb);
+
 			pthread_create(&thrBloqueoGeneral, NULL, (void *)manejar_bloqueo_general, (void *)insActual);
 			pthread_detach(thrBloqueoGeneral);
 
@@ -339,61 +344,56 @@ void manejar_bloqueo_pantalla(void *insActual)
 
 void manejar_bloqueo_general(void *insActual)
 {
-	//sem_wait(&contador_bloqueo_impresora_running);
+	// sem_wait(&contador_bloqueo_impresora_running);
 	t_instruccion *instActualBloqueoGeneral = (t_instruccion *)insActual;
-
 	char *dispositivoCpu = instActualBloqueoGeneral->paramIO;
 
-	/*int tamanio = size_char_array(configKernel.dispositivosIO);
-	uint32_t tiempoIO;
-	uint32_t duracionUnidadDeTrabajo;
-	for (int i = 0; i < tamanio; i++)
-	{*/
-		t_dispositivo* dispositivoEnKernel =  buscarDispositivoBlocked(dispositivoCpu);
-		printf("\ndispositivoKernel %s\n",dispositivoEnKernel->dispositivo);
-		if(dispositivoEnKernel == NULL){
-			printf("\nEl dispositivo no se encontro\n");
-		}
-		/*if (!strcmp(configKernel.dispositivosIO[i], dispositivoCpu))
-		{
-			tiempoIO = atoi(configKernel.tiemposIO[i]);
-
-			duracionUnidadDeTrabajo = tiempoIO * instActualBloqueoGeneral->paramInt;
-
-			log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
-			log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
-
-			t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_IMPRESORA);
-
-			usleep(duracionUnidadDeTrabajo * 1000);
-			pasar_a_ready(pcb);
-			sem_post(&sem_hay_pcb_lista_ready);
-			break;
-		}
+	t_dispositivo *dispositivoEnKernel = buscarDispositivoBlocked(dispositivoCpu);
+	printf("\ndispositivoKernel %s\n", dispositivoEnKernel->dispositivo);
+	if (dispositivoEnKernel == NULL)
+	{
+		printf("\nEl dispositivo no se encontro\n");
 	}
 
-	free(dispositivoCpu);
-	sem_post(&contador_bloqueo_impresora_running);*/
-	
-}
-t_dispositivo* buscarDispositivoBlocked(char* dispositivo){
-	t_dispositivo* dispositivoIO = NULL;
-	for(int i = 0 ; i < list_size(LISTA_BLOCKED); i++){
-		t_dispositivo* dispositivoNuevo = list_get(LISTA_BLOCKED,i);
+	sem_wait(&dispositivoEnKernel->contador_bloqueo);
+	uint32_t duracionUnidadDeTrabajo;
 
-		if(!strcmp(dispositivoNuevo->dispositivo,dispositivo)){
-            dispositivoIO = dispositivoNuevo;
+	if (!strcmp(dispositivoEnKernel->dispositivo, dispositivoCpu))
+	{
+		duracionUnidadDeTrabajo = dispositivoEnKernel->tiempoEjecucion * instActualBloqueoGeneral->paramInt;
+
+		log_info(logger, "Ejecutando el dispositivo %s", dispositivoCpu);
+		log_info(logger, "Por un tiempo de: %d", duracionUnidadDeTrabajo);
+
+		t_pcb *pcb = algoritmo_fifo(dispositivoEnKernel->lista_block);
+
+		usleep(duracionUnidadDeTrabajo * 1000);
+		pasar_a_ready(pcb);
+		sem_post(&sem_hay_pcb_lista_ready);
+	}
+	//free(dispositivoCpu);
+	sem_post(&dispositivoEnKernel->contador_bloqueo);
+}
+t_dispositivo *buscarDispositivoBlocked(char *dispositivo)
+{
+	t_dispositivo *dispositivoIO = NULL;
+	for (int i = 0; i < list_size(LISTA_BLOCKED); i++)
+	{
+		t_dispositivo *dispositivoNuevo = list_get(LISTA_BLOCKED, i);
+
+		if (!strcmp(dispositivoNuevo->dispositivo, dispositivo))
+		{
+			dispositivoIO = dispositivoNuevo;
 		}
 		return dispositivoIO;
 	}
-
 }
 
 void cargarDispositivos()
 {
 	for (int i = 0; i < size_char_array(configKernel.dispositivosIO); i++)
 	{
-		printf("\ntamaño %d\n",size_char_array(configKernel.dispositivosIO));
+		printf("\ntamaño %d\n", size_char_array(configKernel.dispositivosIO));
 		char *dispositivoNuevo = configKernel.dispositivosIO[i];
 		t_dispositivo *dispositivo = malloc(sizeof(t_dispositivo));
 
@@ -403,7 +403,7 @@ void cargarDispositivos()
 		sem_init(&dispositivo->contador_bloqueo, 0, 1);
 		pthread_mutex_init(&dispositivo->mutex_lista_blocked, NULL);
 
-		printf("\ndispositivos %s , %d \n", dispositivo->dispositivo,dispositivo->tiempoEjecucion);
+		printf("\ndispositivos %s , %d \n", dispositivo->dispositivo, dispositivo->tiempoEjecucion);
 		agregrar_dispositivo(dispositivo);
 	}
 }
@@ -424,7 +424,7 @@ bool noEstaEnBlocked(char *dispositivo)
 	return valor;
 }
 
-void agregar_a_lista_blokeados(t_dispositivo *dispositivo, t_pcb* pcb)
+void agregar_a_lista_blokeados(t_dispositivo *dispositivo, t_pcb *pcb)
 {
 	pthread_mutex_lock(&dispositivo->mutex_lista_blocked);
 	list_add(dispositivo->lista_block, pcb);
