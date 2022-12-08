@@ -385,8 +385,9 @@ t_dispositivo *buscarDispositivoBlocked(char *dispositivo)
 		{
 			dispositivoIO = dispositivoNuevo;
 		}
-		return dispositivoIO;
 	}
+	
+	return dispositivoIO;
 }
 
 void cargarDispositivos()
