@@ -467,8 +467,8 @@ void imprimirInstruccionesYSegmentos(t_informacion informacion)
 		//printf("\n codigo %d", instruccion->instCode);
 		//printf("\n dispositivo io %s", instruccion->paramIO);
 
-		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d\n",
-			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1]);
+		printf("\ninstCode: %d, Num: %d, RegCPU[0]: %d,RegCPU[1] %d , dispIO: %s\n",
+			   instruccion->instCode, instruccion->paramInt, instruccion->paramReg[0], instruccion->paramReg[1],instruccion->paramIO);
 	}
 
 	// mostrar segmentos

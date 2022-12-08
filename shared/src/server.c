@@ -105,8 +105,21 @@ t_informacion recibir_informacion(cliente_fd)
 	while (k < (programa.instrucciones_size))
 	{
 		instruccion = malloc(sizeof(t_instruccion));
-		memcpy(instruccion, buffer + offset, sizeof(t_instruccion));
-		offset += sizeof(t_instruccion);
+
+		memcpy(&instruccion->instCode,buffer + offset, sizeof(t_instCode));
+		offset += sizeof(t_instCode);
+		memcpy(&instruccion->paramInt,buffer + offset, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+		memcpy(&instruccion->sizeParamIO, buffer + offset, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+		instruccion->paramIO = malloc(instruccion->sizeParamIO);
+		memcpy(instruccion->paramIO,buffer + offset, instruccion->sizeParamIO);
+		offset += instruccion->sizeParamIO;
+		memcpy(&instruccion->paramReg[0],buffer + offset, sizeof(t_registro));
+		offset += sizeof(t_registro);
+		memcpy(&instruccion->paramReg[1],buffer + offset , sizeof(t_registro));
+		offset += sizeof(t_registro);
+
 		list_add(programa.instrucciones, instruccion);
 		k++;
 	}
