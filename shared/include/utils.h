@@ -126,7 +126,8 @@ typedef struct
 {
 	t_instCode instCode;
 	uint32_t paramInt;
-	t_IO paramIO;
+	char* paramIO;
+	uint32_t sizeParamIO;
 	t_registro paramReg[2];
 } __attribute__((packed)) t_instruccion;
 
@@ -256,7 +257,19 @@ typedef struct
 	int tamanioPagina;
 } MSJ_MEMORIA_CPU_INIT;
 
-void imprimirInstruccionesYSegmentos(t_informacion *);
+typedef struct
+{
+	t_list* lista_block;
+	pthread_mutex_t mutex_lista_blocked;
+	sem_t contador_bloqueo;
+	char* dispositivo;
+	int tiempoEjecucion;
+
+} t_dispositivo;
+
+
+void imprimirInstruccionesYSegmentos(t_informacion );
+
 
 /*
 
@@ -297,6 +310,7 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje);
 void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket);
 t_paqueteActual *recibirPaquete(int socket);
 t_pcb *deserializoPCB(t_buffer *buffer);
+int calcularSizeInfo(t_informacion* );
 /*
 ███████╗███████╗██████╗ ██╗   ██╗██╗██████╗  ██████╗ ██████╗
 ██╔════╝██╔════╝██╔══██╗██║   ██║██║██╔══██╗██╔═══██╗██╔══██╗
@@ -368,6 +382,7 @@ extern t_list *LISTA_BLOCKED_PANTALLA;
 extern t_list *LISTA_BLOCKED_TECLADO;
 extern t_list *LISTA_BLOCKED_DISCO;
 extern t_list *LISTA_BLOCKED_IMPRESORA;
+extern t_list *LISTA_BLOCKED_GENERAL;
 extern t_list *LISTA_TABLA_PAGINAS;
 extern t_list *LISTA_BLOCK_PAGE_FAULT;
 extern t_list *LISTA_INICIO_TABLA_PAGINA;
@@ -387,10 +402,11 @@ extern pthread_mutex_t mutex_lista_exec;
 extern pthread_mutex_t mutex_lista_blocked_disco;
 extern pthread_mutex_t mutex_lista_blocked_impresora;
 extern pthread_mutex_t mutex_lista_blocked_pantalla;
-extern pthread_mutex_t mutex_lista_blocked_teclado;
+extern pthread_mutex_t mutex_conexion_memoria;
 extern pthread_mutex_t mutex_lista_blocked_audio;
 extern pthread_mutex_t mutex_lista_blocked_wifi;
 extern pthread_mutex_t mutex_lista_blocked_usb;
+extern pthread_mutex_t mutex_lista_blocked;
 extern pthread_mutex_t mutex_lista_exit;
 extern pthread_mutex_t mutex_lista_ready_auxiliar;
 extern pthread_mutex_t mutex_creacion_ID_tabla;
@@ -400,6 +416,7 @@ extern pthread_mutex_t mutex_lista_marco_por_proceso;
 extern pthread_mutex_t mutex_lista_pagina_marco_por_proceso;
 extern pthread_mutex_t mutex_lista_tabla_paginas_pagina;
 extern pthread_mutex_t mutex_lista_marcos_por_proceso_pagina;
+extern pthread_mutex_t mutex_lista_blockeados_por_dispositivo;
 
 
 // SEMAFOROS

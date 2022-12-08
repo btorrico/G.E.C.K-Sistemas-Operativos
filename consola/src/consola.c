@@ -177,10 +177,10 @@ void liberar_programa(t_informacion *informacion)
 
 t_paquete *crear_paquete_programa(t_informacion *informacion)
 {
+	printf("\n entro a serializar\n");
 	t_buffer *buffer = malloc(sizeof(t_buffer));
-
-	buffer->size = sizeof(uint32_t) * 2 + list_size(informacion->instrucciones) * sizeof(t_instruccion) // instrucciones_size
-				   + list_size(informacion->segmentos) * sizeof(uint32_t);								// segmentos_size
+	buffer->size = sizeof(uint32_t) * 2 + calcularSizeInfo(informacion) // instrucciones_size
+				   + list_size(informacion->segmentos) * sizeof(uint32_t); // segmentos_size
 
 	void *stream = malloc(buffer->size);
 
@@ -194,12 +194,25 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	int i = 0;
 	int j = 0;
 
+
 	while (i < list_size(informacion->instrucciones))
 	{
-		memcpy(stream + offset, list_get(informacion->instrucciones, i), sizeof(t_instruccion));
-		offset += sizeof(t_instruccion);
+		t_instruccion* instrucccion = list_get(informacion->instrucciones, i);
+		memcpy(stream + offset,&instrucccion->instCode, sizeof(t_instCode));
+		offset += sizeof(t_instCode);
+		memcpy(stream + offset,&instrucccion->paramInt, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+		memcpy(stream + offset,&instrucccion->sizeParamIO, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+		//printf("\ndispositivo%s\n" ,instrucccion->paramIO);
+		memcpy(stream + offset,instrucccion->paramIO,instrucccion->sizeParamIO);
+		offset += instrucccion->sizeParamIO;
+		memcpy(stream + offset,&instrucccion->paramReg[0], sizeof(t_registro));
+		offset += sizeof(t_registro);
+		memcpy(stream + offset,&instrucccion->paramReg[1], sizeof(t_registro));
+		offset += sizeof(t_registro);
 		i++;
-		// printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
+		//printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
 	while (j < list_size(informacion->segmentos))
@@ -209,7 +222,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		printf("\nsegmento: %d\n", segmento);
 		offset += sizeof(uint32_t);
 		j++;
-		// printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
+		printf(PRINT_COLOR_YELLOW "Estoy serializando el segmento: %d" PRINT_COLOR_RESET "\n", j);
 	}
 
 	buffer->stream = stream; // Payload
@@ -223,3 +236,5 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	paquete->buffer = buffer;
 	return paquete;
 }
+
+
