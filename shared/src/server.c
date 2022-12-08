@@ -399,6 +399,10 @@ void implementar_fifo()
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
+	//Cambio de estado
+	log_debug(loggerMinimo, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
+
+
 	sem_post(&sem_pasar_pcb_running);
 }
 
@@ -406,12 +410,16 @@ void implementar_fifo_auxiliar()
 {
 
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY_AUXILIAR);
-	printf("\nAgregando UN pcb a lista exec");
+	printf("\nAgregando un pcb a lista exec");
 	pasar_a_exec(pcb);
 	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
+
+	//Cambio de estado
+	log_debug(loggerMinimo, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
+
 
 	sem_post(&sem_pasar_pcb_running);
 }
@@ -433,6 +441,10 @@ void implementar_rr()
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
+
+	//Cambio de estado
+	log_debug(loggerMinimo, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
+
 
 	sem_post(&sem_timer);
 	sem_post(&sem_pasar_pcb_running);
