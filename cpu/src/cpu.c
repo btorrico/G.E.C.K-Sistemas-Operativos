@@ -564,7 +564,7 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n" PRINT_COLOR_RESET);
 	printf("desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
 
-	if (desplazamiento_Segmento > segmento->tamanio)
+	if (desplazamiento_Segmento >= segmento->tamanio)
 	{ // Uso el tamanio real
 		// Devolvemos el pcb a nuestro bello kernel
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);

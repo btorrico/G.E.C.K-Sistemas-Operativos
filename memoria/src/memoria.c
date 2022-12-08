@@ -509,8 +509,18 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 	printf("memorialeeeer\n");
-	pagina = list_get(marcosPorProceso->paginas, nroFrame % configMemoria.marcosPorProceso);
-	pagina->uso = 1;
+	//pagina = list_get(marcosPorProceso->paginas, nroFrame % configMemoria.marcosPorProceso);
+	//pagina->uso = 1;
+
+		
+	for(int i=0; i< marcosPorProceso->paginas->elements_count; i++){
+		pagina = list_get(marcosPorProceso->paginas, i);
+			if(pagina->nroMarco == nroFrame){
+				pagina->uso = 1;
+	
+				break;
+			}
+	}
 	printf("memorialeeeer2\n");
 	/***********************************************/
 	MSJ_INT *mensajeRead = malloc(sizeof(MSJ_INT));
@@ -567,12 +577,21 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 	printf("llegue acaaaaaaa\n");
 
 
-	pagina = list_get(marcosPorProceso->paginas, nroMarco % configMemoria.marcosPorProceso);
+	//pagina = list_get(marcosPorProceso->paginas, nroMarco % configMemoria.marcosPorProceso);
+	printf("llegue acaaaaaaaooooo\n");
+
+	for(int i=0; i< marcosPorProceso->paginas->elements_count; i++){
+		pagina = list_get(marcosPorProceso->paginas, i);
+			if(pagina->nroMarco == nroMarco){
+				pagina->uso = 1;
+				pagina->modificacion = 1;
+				usleep(configMemoria.retardoMemoria * 1000);
+				break;
+			}
+	}
 	
-	pagina->uso = 1;
-	pagina->modificacion = 1;
 	printf("llegue aca\n");
-	usleep(configMemoria.retardoMemoria * 1000);
+	
 
 	char *cadena = string_new();
 	string_append(&cadena, "OK");
