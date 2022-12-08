@@ -267,7 +267,7 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 {
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 
-	buffer->size = sizeof(uint32_t) * 5 + list_size(pcb->informacion->instrucciones) * sizeof(t_instruccion) 
+	buffer->size = sizeof(uint32_t) * 5 + calcularSizeInfo(pcb->informacion)
 	+ list_size(pcb->informacion->segmentos) * sizeof(uint32_t)
 	+ list_size(pcb->tablaSegmentos) * sizeof(t_tabla_segmentos) 
 	+ sizeof(int) + sizeof(t_registros);
@@ -301,10 +301,22 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 
 	while (i < list_size(pcb->informacion->instrucciones))
 	{
-		memcpy(stream + offset, list_get(pcb->informacion->instrucciones, i), sizeof(t_instruccion));
-		offset += sizeof(t_instruccion);
+		t_instruccion* instrucccion = list_get(pcb->informacion->instrucciones, i);
+		memcpy(stream + offset,&instrucccion->instCode, sizeof(t_instCode));
+		offset += sizeof(t_instCode);
+		memcpy(stream + offset,&instrucccion->paramInt, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+		memcpy(stream + offset,&instrucccion->sizeParamIO, sizeof(uint32_t));
+		offset += sizeof(uint32_t);
+		printf("\ndispositivo%s\n" ,instrucccion->paramIO);
+		memcpy(stream + offset,instrucccion->paramIO,instrucccion->sizeParamIO);
+		offset += instrucccion->sizeParamIO;
+		memcpy(stream + offset,&instrucccion->paramReg[0], sizeof(t_registro));
+		offset += sizeof(t_registro);
+		memcpy(stream + offset,&instrucccion->paramReg[1], sizeof(t_registro));
+		offset += sizeof(t_registro);
 		i++;
-		//printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
+		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
 	while (j < list_size(pcb->informacion->segmentos))
@@ -334,6 +346,20 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje)
 	crearPaquete(buffer, tipoMensaje, socket);
 
 	//free(buffer);
+}
+
+int calcularSizeInfo(t_informacion* info){
+	int total = 0;
+	for (int i = 0 ; i < list_size(info->instrucciones); i++){
+
+		t_instruccion* instruccion = list_get(info->instrucciones,i);
+		total += instruccion->sizeParamIO;
+		total += sizeof(uint32_t) * 2;
+		total += sizeof(t_instCode);
+		total += sizeof(t_registro) * 2;
+	}
+
+	return total;
 }
 
 void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket)
@@ -424,8 +450,20 @@ t_pcb *deserializoPCB(t_buffer *buffer)
 	while (k < (pcb->informacion->instrucciones_size))
 	{
 		instruccion = malloc(sizeof(t_instruccion));
-		memcpy(instruccion, stream, sizeof(t_instruccion));
-		stream += sizeof(t_instruccion);
+		memcpy(&instruccion->instCode,stream, sizeof(t_instCode));
+		stream += sizeof(t_instCode);
+		memcpy(&instruccion->paramInt,stream, sizeof(uint32_t));
+		stream += sizeof(uint32_t);
+		memcpy(&instruccion->sizeParamIO, stream, sizeof(uint32_t));
+		stream += sizeof(uint32_t);
+		instruccion->paramIO = malloc(instruccion->sizeParamIO);
+		memcpy(instruccion->paramIO,stream, instruccion->sizeParamIO);
+		stream += instruccion->sizeParamIO;
+		memcpy(&instruccion->paramReg[0],stream, sizeof(t_registro));
+		stream += sizeof(t_registro);
+		memcpy(&instruccion->paramReg[1],stream , sizeof(t_registro));
+		stream += sizeof(t_registro);
+		
 		list_add(pcb->informacion->instrucciones, instruccion);
 		k++;
 	}

@@ -299,6 +299,7 @@ void serializarPCB(int socket, t_pcb *pcb, t_tipoMensaje tipoMensaje);
 void crearPaquete(t_buffer *buffer, t_tipoMensaje op, int unSocket);
 t_paqueteActual *recibirPaquete(int socket);
 t_pcb *deserializoPCB(t_buffer *buffer);
+int calcularSizeInfo(t_informacion* );
 /*
 ███████╗███████╗██████╗ ██╗   ██╗██╗██████╗  ██████╗ ██████╗
 ██╔════╝██╔════╝██╔══██╗██║   ██║██║██╔══██╗██╔═══██╗██╔══██╗

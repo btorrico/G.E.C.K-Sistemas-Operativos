@@ -237,17 +237,4 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 	return paquete;
 }
 
-int calcularSizeInfo(t_informacion* info){
-	int total = 0;
-	for (int i = 0 ; i < list_size(info->instrucciones); i++){
-
-		t_instruccion* instruccion = list_get(info->instrucciones,i);
-		total += instruccion->sizeParamIO;
-		total += sizeof(uint32_t) * 2;
-		total += sizeof(t_instCode);
-		total += sizeof(t_registro) * 2;
-	}
-
-	return total;
-}
 
