@@ -204,7 +204,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		offset += sizeof(uint32_t);
 		memcpy(stream + offset,&instrucccion->sizeParamIO, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
-		printf("\ndispositivo%s\n" ,instrucccion->paramIO);
+		//printf("\ndispositivo%s\n" ,instrucccion->paramIO);
 		memcpy(stream + offset,instrucccion->paramIO,instrucccion->sizeParamIO);
 		offset += instrucccion->sizeParamIO;
 		memcpy(stream + offset,&instrucccion->paramReg[0], sizeof(t_registro));
@@ -212,7 +212,7 @@ t_paquete *crear_paquete_programa(t_informacion *informacion)
 		memcpy(stream + offset,&instrucccion->paramReg[1], sizeof(t_registro));
 		offset += sizeof(t_registro);
 		i++;
-		printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
+		//printf(PRINT_COLOR_MAGENTA "Estoy serializando las instruccion %d" PRINT_COLOR_RESET "\n", i);
 	}
 
 	while (j < list_size(informacion->segmentos))

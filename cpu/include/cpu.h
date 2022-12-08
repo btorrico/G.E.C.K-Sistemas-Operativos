@@ -98,7 +98,7 @@ pthread_mutex_t mutex_lista_exec;
 pthread_mutex_t mutex_lista_blocked_disco;
 pthread_mutex_t mutex_lista_blocked_impresora;
 pthread_mutex_t mutex_lista_blocked_pantalla;
-pthread_mutex_t mutex_lista_blocked_teclado;
+pthread_mutex_t mutex_conexion_memoria;
 pthread_mutex_t mutex_lista_blocked_audio;
 pthread_mutex_t mutex_lista_blocked_wifi;
 pthread_mutex_t mutex_lista_blocked_usb;

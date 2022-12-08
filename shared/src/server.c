@@ -234,9 +234,9 @@ void pasar_a_block_pantalla(t_pcb *pcb)
 
 void pasar_a_block_teclado(t_pcb *pcb)
 {
-	pthread_mutex_lock(&mutex_lista_blocked_teclado);
+	pthread_mutex_lock(&mutex_conexion_memoria);
 	list_add(LISTA_BLOCKED_TECLADO, pcb);
-	pthread_mutex_unlock(&mutex_lista_blocked_teclado);
+	pthread_mutex_unlock(&mutex_conexion_memoria);
 
 	log_debug(logger, "Paso a BLOCK el proceso %d", pcb->id);
 }
@@ -295,7 +295,7 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_blocked_impresora, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_disco, NULL);
 	pthread_mutex_init(&mutex_lista_blocked_pantalla, NULL);
-	pthread_mutex_init(&mutex_lista_blocked_teclado, NULL);
+	pthread_mutex_init(&mutex_conexion_memoria, NULL);
 
 	pthread_mutex_init(&mutex_lista_blocked, NULL);
 	

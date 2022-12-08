@@ -402,7 +402,7 @@ extern pthread_mutex_t mutex_lista_exec;
 extern pthread_mutex_t mutex_lista_blocked_disco;
 extern pthread_mutex_t mutex_lista_blocked_impresora;
 extern pthread_mutex_t mutex_lista_blocked_pantalla;
-extern pthread_mutex_t mutex_lista_blocked_teclado;
+extern pthread_mutex_t mutex_conexion_memoria;
 extern pthread_mutex_t mutex_lista_blocked_audio;
 extern pthread_mutex_t mutex_lista_blocked_wifi;
 extern pthread_mutex_t mutex_lista_blocked_usb;

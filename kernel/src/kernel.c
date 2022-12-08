@@ -139,10 +139,14 @@ void conectar_dispatch()
 			printf("\nestoy en %d: ", paquete->codigo_operacion);
 			pasar_a_exec(pcb);
 			eliminar_pcb();
-
+			pthread_mutex_lock(&mutex_conexion_memoria);
 			serializarPCB(conexionMemoria, pcb, LIBERAR_RECURSOS);
+			pthread_mutex_unlock(&mutex_conexion_memoria);
 
+            pthread_mutex_lock(&mutex_conexion_memoria);
 			char *mensaje = recibirMensaje(conexionMemoria);
+			pthread_mutex_unlock(&mutex_conexion_memoria);
+
 			log_info(logger, "Mensaje de confirmacion de memoria: %s\n", mensaje);
 
 			serializarValor(0, pcb->socket, TERMINAR_CONSOLA); // esto le mando a la consola
@@ -386,7 +390,7 @@ t_dispositivo *buscarDispositivoBlocked(char *dispositivo)
 			dispositivoIO = dispositivoNuevo;
 		}
 	}
-	
+
 	return dispositivoIO;
 }
 
@@ -677,10 +681,15 @@ void agregar_pcb()
 	pthread_mutex_unlock(&mutex_lista_new);
 
 	// solicito que memoria inicialice sus estructuras
+	pthread_mutex_lock(&mutex_conexion_memoria);
 	serializarPCB(conexionMemoria, pcb, ASIGNAR_RECURSOS);
+	pthread_mutex_unlock(&mutex_conexion_memoria);
+
 	printf("\nEnvio recursos a memoria\n");
 	// memoria me devuelve el pcb modificado
+	pthread_mutex_lock(&mutex_conexion_memoria);
 	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
+	pthread_mutex_unlock(&mutex_conexion_memoria);
 	printf("\nRecibo recursos de memoria\n");
 	if (paquete == NULL)
 	{
