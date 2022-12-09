@@ -458,7 +458,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
 		mensaje->numero = -1;
 		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), PAGE_FAULT);
-		free(mensaje);
+		//free(mensaje);
 		log_debug(logger, "PAGE FAULT");
 	}
 }
@@ -475,7 +475,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	int nroFrame = df->nroMarco;
 	int desplazamiento = df->desplazamientoPagina;
 	int tamanioFrame = configMemoria.tamPagina;
-	void *aLeer = malloc(sizeof(uint32_t));
+	uint32_t *aLeer = malloc(sizeof(uint32_t));
 	MSJ_STRING *msjeError;
 	
 	// valido que el offset sea valido
@@ -485,7 +485,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 		msjeError = malloc(sizeof(MSJ_STRING));
 		string_append(&msjeError->cadena, "ERROR_DESPLAZAMIENTO");
 		enviarMsje(socketAceptado, MEMORIA, msjeError, sizeof(MSJ_STRING), ACCESO_MEMORIA_LEER);
-		free(msjeError);
+		//free(msjeError);
 		log_error(logger, "[ACCESO_MEMORIA_LEER] OFFSET MAYOR AL TAMANIO DEL FRAME.  DIR_FISICA: %d%d",
 				  df->nroMarco, df->desplazamientoPagina);
 		return;
@@ -528,7 +528,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	mensajeRead->numero = *(uint32_t *)aLeer;
 	printf("casteanding a int: %d \n",mensajeRead->numero);
 	enviarMsje(socketAceptado, MEMORIA, mensajeRead, sizeof(MSJ_INT), ACCESO_MEMORIA_LEER);
-	free(mensajeRead);
+	//free(mensajeRead);
 
 	log_debug(logger, "ACCESO_MEMORIA_LEER DIR_FISICA: frame%d offset%d",
 			  df->nroMarco, df->desplazamientoPagina);
