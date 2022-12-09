@@ -494,7 +494,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	pthread_mutex_lock(&mutex_void_memoria_ram);
 	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
 	printf("aLeer%d", *(uint32_t *)aLeer);
-	printf("Hola %d",*(uint32_t*)memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento);
+	printf("Hola %d",(uint32_t*)memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento);
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	//*puntero es el contenido
 	//&variable es la direccion
@@ -525,8 +525,8 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	printf("memorialeeeer2\n");
 	/***********************************************/
 	MSJ_INT *mensajeRead = malloc(sizeof(MSJ_INT));
-	mensajeRead->numero = *(int *)aLeer;
-	printf("casteanding a int\n");
+	mensajeRead->numero = *(uint32_t *)aLeer;
+	printf("casteanding a int: %d \n",mensajeRead->numero);
 	enviarMsje(socketAceptado, MEMORIA, mensajeRead, sizeof(MSJ_INT), ACCESO_MEMORIA_LEER);
 	free(mensajeRead);
 

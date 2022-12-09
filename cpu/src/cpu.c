@@ -347,7 +347,10 @@ bool cicloInstruccion(t_pcb *pcb)
 		free(registro2);
 		free(io);
 		printf("\nLlegue al retorno: %d\n", retornePCB);
+		
+		if(habilitarTLB ==1 ){
 		limpiar_entradas_TLB();
+		}
 		break;
 	default:
 		break;
