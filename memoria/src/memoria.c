@@ -494,6 +494,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	pthread_mutex_lock(&mutex_void_memoria_ram);
 	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
 	printf("aLeer%d", *(uint32_t *)aLeer);
+	printf("Hola %d",*(uint32_t*)memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento);
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	//*puntero es el contenido
 	//&variable es la direccion
@@ -566,7 +567,7 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 	memcpy(memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento, aEscribir, sizeof(uint32_t)); // tercer arg strlen(string_itoa(valorAEscribir))
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	printf("aEscribir%d\n", *aEscribir);
-
+	printf("%d",*(uint32_t*)memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento);
 
 	// busco la pagina que piden y actualizo el bit de modificado porque se hizo write
 	t_pagina *pagina;

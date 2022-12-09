@@ -557,9 +557,11 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	printf("\nel id del segmento es: %d\n", segmento->id);
 
 	printf("\nel id de la tabla es: %d\n", segmento->indiceTablaPaginas);
-
-	int nroMarco = buscar_en_TLB(numero_pagina, numero_segmento, pcb->id);
-
+	int nroMarco = -1; 
+	if(habilitarTLB == 1){
+		 nroMarco = buscar_en_TLB(numero_pagina, numero_segmento, pcb->id);
+	}
+	
 	// 1ero Chequear SEGMENTATION FAULT
 	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n" PRINT_COLOR_RESET);
 	printf("desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
@@ -611,7 +613,10 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 
 			log_debug(logger, "El valor del marco es: %d", dir_fisica->nroMarco);
 			log_debug(logger, "El valor del offset es: %d", dir_fisica->desplazamientoPagina);
+			
+			if(habilitarTLB == 1){
 			actualizar_TLB(numero_pagina, dir_fisica->nroMarco, numero_segmento, pcb->id);
+			}
 		}
 	}
 
