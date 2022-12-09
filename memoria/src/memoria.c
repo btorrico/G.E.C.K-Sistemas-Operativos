@@ -16,8 +16,8 @@ int main(int argc, char **argv)
 	memoriaRAM = malloc(sizeof(configMemoria.tamMemoria));
 
 	swap = abrirArchivo(configMemoria.pathSwap);
-
-	// agregar_tabla_pag_en_swap();
+	fclose(swap);
+		// agregar_tabla_pag_en_swap();
 
 	iniciar_listas_y_semaforos(); // despues ver porque kernel tambien lo utiliza y por ahi lo esta pisando, despues ver si lo dejamos solo aca
 	tamanio = configMemoria.tamMemoria / configMemoria.tamPagina;
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 
 	config_destroy(config);
 
-	fclose(swap);
+
 	// crear una lista con el tamaño de los marcos/segmanetos para ir guardado y remplazando
 	// en el caso de que esten ocupados , con los algoritmos correcpondientes
 
@@ -275,7 +275,7 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 		t_tabla_paginas *tablaPagina = malloc(sizeof(t_tabla_paginas));
 		t_tabla_segmentos *tablaSegmento = list_get(pcbActual->tablaSegmentos, i);
 
-		size_t tamanioSgtePagina = 0;
+		long tamanioSgtePagina = 0;
 		tablaPagina->paginas = list_create();
 		tablaPagina->idTablaPag = i;
 		tablaSegmento->indiceTablaPaginas = i;
@@ -300,7 +300,7 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 			pagina->nroSegmento = tablaPagina->idTablaPag;
 
 			pagina->posicionSwap = tamanioSgtePagina; // tamanioSgtePagina = OFFSET = desplazamiento
-			fseek(swap, pagina->posicionSwap, SEEK_CUR);
+			//fseek(swap, pagina->posicionSwap, SEEK_CUR);
 
 			// agrego pagina a lista de paginas de la tabla pagina
 			agregar_pagina_a_tabla_paginas(tablaPagina, pagina);
@@ -363,7 +363,8 @@ void eliminarTablasPaginas(void *pcb)
 }
 
 FILE *abrirArchivo(char *filename)
-{
+{	
+
 	if (filename == NULL)
 	{
 		log_error(logger, "Error: debe informar un path correcto");
@@ -372,6 +373,7 @@ FILE *abrirArchivo(char *filename)
 
 	truncate(filename, configMemoria.tamanioSwap);
 	return fopen(filename, "w+");
+	
 }
 
 void agregar_tabla_paginas(t_tabla_paginas *tablaPagina)
@@ -682,12 +684,14 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 		{
 			if (pagina->modificacion == 1)
 			{
+				fopen(swap,"r+");
 				fseek(swap, pagina->posicionSwap, SEEK_SET);
 				fwrite(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina, NULL, swap);
 				usleep(configMemoria.retardoSwap * 1000);
 				// log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 				// Escritura de Pagina en SWAP
 				log_info(loggerMinimo, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
+				fclose(swap);
 			}
 
 			t_pagina *newPagina = buscarPagina(infoRemplazo);
@@ -698,9 +702,10 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			newPagina->modificacion = 0;
 
 			void *paginaBuffer = malloc(configMemoria.tamPagina);
+			fopen(swap,"r");
 			fseek(swap, newPagina->posicionSwap, SEEK_SET);
 			fread(paginaBuffer, configMemoria.tamPagina, NULL, swap);
-
+			fclose(swap);
 			printf("\npagina %i\n",*(int*)paginaBuffer);
 
 			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
