@@ -76,6 +76,7 @@ typedef struct {
 
 t_list* tablaDeMarcos;	
 
+size_t tamanioSgtePagina;
 
 typedef struct {
 	int idPCB;
@@ -116,7 +117,7 @@ void agregar_marco_por_proceso(t_marcos_por_proceso * );
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
 void asignacionDeMarcos(t_info_remplazo * , t_marcos_por_proceso *);
 //t_list* filtrarPorPID(int );
-bool chequearCantidadMarcosPorProceso(t_marcos_por_proceso*);
+bool chequearCantidadMarcosPorProceso(t_info_remplazo *);
 t_info_remplazo* declararInfoReemplazo();
 t_list *filtrarPorPIDTabla(int );
 void incrementarMarcoSiguiente(t_marcos_por_proceso *);
@@ -132,6 +133,8 @@ void accesoMemoriaTP(int, int, int,int);
 void accesoMemoriaLeer(t_direccionFisica* df, int pid, int socketAceptado);
 t_pagina *buscarMarcoSegun(t_marcos_por_proceso*,t_info_remplazo*,int, int);
 void accesoMemoriaEscribir(t_direccionFisica* dirFisica, uint32_t valorAEscribir, int pid, int socketAceptado);
+t_marcos_por_proceso* buscarMarcosPorProcesos(t_info_remplazo* );
+int recorrer_marcos(int );
 
 int contadorIdPCB;
 int socketAceptadoKernel;
