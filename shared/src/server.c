@@ -400,7 +400,7 @@ void implementar_fifo()
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
 	//Cambio de estado
-	log_debug(loggerMinimo, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
+	log_debug(logger, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
 
 
 	sem_post(&sem_pasar_pcb_running);
@@ -418,7 +418,7 @@ void implementar_fifo_auxiliar()
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
 	//Cambio de estado
-	log_debug(loggerMinimo, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
+	log_debug(logger, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
 
 
 	sem_post(&sem_pasar_pcb_running);
@@ -443,7 +443,7 @@ void implementar_rr()
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
 	//Cambio de estado
-	log_debug(loggerMinimo, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
+	log_debug(logger, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
 
 
 	sem_post(&sem_timer);

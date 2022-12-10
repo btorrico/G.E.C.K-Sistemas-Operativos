@@ -2,5 +2,5 @@
 FILE=memoria
 make $FILE
 if test -f "./$FILE"; then
-    valgrind --leak-check=full ./$FILE
+    valgrind --leak-check=full --track-origins=yes ./$FILE
 fi
