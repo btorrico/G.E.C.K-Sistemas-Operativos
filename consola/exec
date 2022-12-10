@@ -2,7 +2,6 @@
 FILE=consola
 CONFIG=consola.config
 PSEUDOCODIGO=pseudocodigo/pseudocodigo
-make $FILE
 if test -f "./$FILE"; then
     ./$FILE $CONFIG $PSEUDOCODIGO
 fi

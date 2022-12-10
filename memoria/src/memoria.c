@@ -691,14 +691,22 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 		log_debug(logger, "entre al for");
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
 		printf("\nentrando a la pagina %d , segmento %d, bit uso %d\n", pagina->nroPagina, pagina->nroSegmento, pagina->uso);
-		log_info(logger, "Reemplazo - PID: %d", infoRemplazo->PID);
+		//log_info(logger, "Reemplazo - PID: %d", infoRemplazo->PID);
 
 		if (pagina->uso == 0)
 		{
 			if (pagina->modificacion == 1)
 			{
+				mem_hexdump(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina);
 				fseek(swap, pagina->posicionSwap, SEEK_SET);
-				fwrite(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina, NULL, swap);
+				size_t valorEscribir = fwrite(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), 1, configMemoria.tamPagina, swap);
+				if (valorEscribir!=configMemoria.tamPagina){
+					perror("fallo fwrite: ");
+					printf("\nvalor tamaño pagina%d \n",configMemoria.tamPagina);
+					printf("\nvalor a escribir%d \n",valorEscribir);
+					exit(1);
+				}
+			
 				usleep(configMemoria.retardoSwap * 1000);
 				// Escritura de Pagina en SWAP
 				log_info(loggerMinimo, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
@@ -715,9 +723,10 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 
 			void *paginaBuffer = malloc(configMemoria.tamPagina);
 			fseek(swap, newPagina->posicionSwap, SEEK_SET);
-			fread(paginaBuffer, configMemoria.tamPagina, NULL, swap);
-
+			fread(paginaBuffer, 1, configMemoria.tamPagina, swap);
 			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
+			mem_hexdump(paginaBuffer, configMemoria.tamPagina);
+			printf("\npagina buffer %s\n", paginaBuffer);
 
 			usleep(configMemoria.retardoSwap * 1000);
 
