@@ -40,7 +40,7 @@ int crear_conexion(char *ip, char *puerto)
 	// connect():
 	if (connect(socket_cliente, server_info->ai_addr, server_info->ai_addrlen) == -1)
 	{
-		printf("error");
+		log_error(logger,"error");
 	}
 
 	freeaddrinfo(server_info);

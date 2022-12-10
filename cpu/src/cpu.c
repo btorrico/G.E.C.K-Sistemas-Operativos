@@ -66,7 +66,7 @@ void iniciar_servidor_dispatch()
 		free(paquete->buffer);
 		free(paquete);
 
-		printf("se recibio pcb de running de kernel\n");
+		log_info(logger,"se recibio pcb de running de kernel\n");
 
 		// imprimirInstruccionesYSegmentos(pcb->informacion);
 
@@ -75,9 +75,9 @@ void iniciar_servidor_dispatch()
 			retornePCB = cicloInstruccion(pcb);
 
 			checkInterrupt(pcb, retornePCB);
-			printf("\nretornePCB %d\n", retornePCB);
+			log_info(logger,"retornePCB %d\n", retornePCB);
 		} while (!interrupciones && !retornePCB);
-		printf("\nSali del while infinito\n");
+		log_info(logger,"Sali del while infinito\n");
 	}
 }
 
@@ -99,7 +99,7 @@ void iniciar_servidor_interrupt()
 		interrupciones = true;
 		free(mensaje);
 	}
-	printf("\nse desconecto interrupt\n");
+	log_error(logger,"Se desconecto interrupt\n");
 }
 
 void conectar_memoria()
@@ -187,7 +187,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		free(registro);
 		free(registro2);
 		free(io);
-		printf("estado de la interrupcion: %d", interrupciones);
+		log_info(logger,"estado de la interrupcion: %d", interrupciones);
 		break;
 
 	case ADD:
@@ -221,11 +221,11 @@ bool cicloInstruccion(t_pcb *pcb)
 		if (dirFisicaMoveIn->nroMarco == -1)
 		{
 			retornePCB = true;
-			printf("se envio info a kernel por page fault");
+			log_info(logger,"se envio info a kernel por page fault");
 		}
 		else if (dirFisicaMoveIn->nroMarco == -10)
 		{
-			printf("Kernel finaliza el proceso por Segmentation Fault");
+			log_info(logger,"Kernel finaliza el proceso por Segmentation Fault");
 		}
 		else
 		{
@@ -266,18 +266,18 @@ bool cicloInstruccion(t_pcb *pcb)
 		log_debug(logger, "MOV_OUT %d %s", insActual->paramInt, registro);
 
 		uint32_t registroActual = matchearRegistro(pcb->registros, insActual->paramReg[0]);
-		printf("%s = %d", registro, registroActual); // devuelve el valor que tiene dentro el registro
+		log_info(logger,"%s = %d", registro, registroActual); // devuelve el valor que tiene dentro el registro
 
 		t_direccionFisica *dirFisicaMoveOut = malloc(sizeof(t_direccionFisica));
 		dirFisicaMoveOut = calcular_direccion_fisica(insActual->paramInt, configCPU.cantidadEntradasPorTabla, configCPU.tamanioPagina, pcb);
 		if (dirFisicaMoveOut->nroMarco == -1)
 		{
 			retornePCB = true;
-			printf("se envio info a kernel por page fault");
+			log_info(logger,"se envio info a kernel por page fault");
 		}
 		else if (dirFisicaMoveOut->nroMarco == -10)
 		{
-			printf("Kernel finaliza el proceso por Segmentation Fault");
+			log_info(logger,"Kernel finaliza el proceso por Segmentation Fault");
 		}
 		else
 		{
@@ -346,7 +346,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		free(registro);
 		free(registro2);
 		free(io);
-		printf("\nLlegue al retorno: %d\n", retornePCB);
+		log_info(logger,"\nLlegue al retorno: %d\n", retornePCB);
 		
 		if(habilitarTLB ==1 ){
 		limpiar_entradas_TLB();
@@ -355,7 +355,7 @@ bool cicloInstruccion(t_pcb *pcb)
 	default:
 		break;
 	}
-	printf("\nretornePCB%d\n", retornePCB);
+	log_info(logger,"\nretornePCB%d\n", retornePCB);
 	return retornePCB;
 }
 
@@ -529,7 +529,7 @@ void asignarValorARegistro(t_pcb *pcb, t_registro registro, uint32_t valor)
 t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entradas_por_tabla, int tam_pagina, t_pcb *pcb)
 {
 
-	printf(PRINT_COLOR_GREEN "\n---------------------------------------------------" PRINT_COLOR_RESET);
+	printf(PRINT_COLOR_GREEN "\n----------------------------------------------------------------------------" PRINT_COLOR_RESET);
 	log_info(logger, "MMU entrando en acción...");
 	log_info(logger, "Traduccion de la dirección logica");
 	log_info(logger, "direccionLogica: %d", direccionLogica);
@@ -550,16 +550,16 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	int desplazamiento_pagina = desplazamientoPagina(desplazamiento_Segmento, tam_pagina);
 	log_info(logger, "Desplazamiento Pagina = %d ·/. %d = %d", desplazamiento_Segmento, tam_pagina, desplazamiento_pagina);
 
-	printf(PRINT_COLOR_GREEN "---------------------------------------------------\n" PRINT_COLOR_RESET);
+	printf(PRINT_COLOR_GREEN "\n----------------------------------------------------------------------------" PRINT_COLOR_RESET);
 
 	dir_fisica->dl.nroPagina = numero_pagina;
 	dir_fisica->dl.nroSegmento = numero_segmento;
 
 	t_tabla_segmentos *segmento = malloc(sizeof(t_tabla_segmentos)); // hacer el free(segmento);
 	segmento = list_get(pcb->tablaSegmentos, numero_segmento);
-	printf("\nel id del segmento es: %d\n", segmento->id);
+	log_info(logger,"El id del segmento es: %d\n", segmento->id);
 
-	printf("\nel id de la tabla es: %d\n", segmento->indiceTablaPaginas);
+	log_info(logger,"El id de la tabla es: %d\n", segmento->indiceTablaPaginas);
 	int nroMarco = -1; 
 	if(habilitarTLB == 1){
 		 nroMarco = buscar_en_TLB(numero_pagina, numero_segmento, pcb->id);
@@ -567,7 +567,7 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	
 	// 1ero Chequear SEGMENTATION FAULT
 	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n" PRINT_COLOR_RESET);
-	printf("desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
+	log_info(logger,"desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
 
 	if (desplazamiento_Segmento >= segmento->tamanio)
 	{ // Uso el tamanio real
@@ -747,8 +747,14 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 
 			printf(PRINT_COLOR_MAGENTA "TLB Hit: PID: %d TLB HIT - Segmento: %d - Pagina: %d - Frame: %d \n" PRINT_COLOR_RESET, entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, entradaActual->nroFrame);
 
-			log_info(logger, "Actualizando ultima referencia a la pagina %d", entradaActual->nroPagina);
+			log_info(logger, "----------------Actualizando ultima referencia--------------------");
+			char *tiempoAnterior = calcularHorasMinutosSegundos(entradaActual->ultimaReferencia);
+			log_info(logger, "Referencia anterior:");
+			log_debug(logger, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoAnterior);
+			log_info(logger, "Referencia nueva:");
 			entradaActual->ultimaReferencia = obtenerMomentoActual();
+			char *tiempoNuevo = calcularHorasMinutosSegundos(entradaActual->ultimaReferencia);
+			log_debug(logger, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoNuevo);
 
 			return entradaActual->nroFrame;
 		}
@@ -779,9 +785,9 @@ void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 
 	if (list_find(TLB->entradas, &coincideMarcoYpid)){
 		
-		printf( "---------------------------------------------------------------------------------------------\n");
+		printf( "---------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-		log_info(logger, "\nEl marco %d  del PID: %d ya se encuentraba en TLB pero asociado a otra pagina y segmento.\t Borrando entrada desactualizada.", nroFrame, pid);
+		log_info(logger, "El marco %d  del PID: %d ya se encontraba en TLB pero asociado a otra pagina y segmento.\t Borrando entrada desactualizada.", nroFrame, pid);
 		list_remove_and_destroy_by_condition(TLB->entradas, &coincideMarcoYpid, &free);
 
 	}
@@ -833,7 +839,7 @@ void imprimirModificacionTlb()
 		free(tiempo);
 	}
 	entradaConMenorTiempoDeReferencia();
-	printf( "-------------------------------------------------------------------------------------------------------\n");
+	printf( "--------------------------------------------------------------------------------------------------------------------------------\n");
 }
 
 char *calcularHorasMinutosSegundos(int valor)
