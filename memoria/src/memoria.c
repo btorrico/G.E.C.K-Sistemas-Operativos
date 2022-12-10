@@ -12,10 +12,9 @@ int main(int argc, char **argv)
 
 	extraerDatosConfig(config);
 
-	memoriaRAM = malloc(sizeof(configMemoria.tamMemoria));
-
+memoriaRAM = malloc(configMemoria.tamMemoria);
 	swap = abrirArchivo(configMemoria.pathSwap);
-
+	ftruncate(swap, configMemoria.tamanioSwap);
 	// agregar_tabla_pag_en_swap();
 
 	iniciar_listas_y_semaforos(); // despues ver porque kernel tambien lo utiliza y por ahi lo esta pisando, despues ver si lo dejamos solo aca
@@ -383,7 +382,6 @@ FILE *abrirArchivo(char *filename)
 		exit(1);
 	}
 
-	truncate(filename, configMemoria.tamanioSwap);
 	return fopen(filename, "w+");
 }
 
@@ -696,9 +694,18 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 		{
 			if (pagina->modificacion == 1)
 			{
+
 				mem_hexdump(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina);
 				fseek(swap, pagina->posicionSwap, SEEK_SET);
 				size_t valorEscribir = fwrite(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), 1, configMemoria.tamPagina, swap);
+				/*
+				uint64_t *paginaBuffer = malloc(configMemoria.tamPagina);
+				fseek(swap, pagina->posicionSwap, SEEK_SET);
+				fread(paginaBuffer,1, configMemoria.tamPagina, swap);
+				mem_hexdump(paginaBuffer, configMemoria.tamPagina);*/
+
+				printf("\nvalor tamaño pagina%d \n", configMemoria.tamPagina);
+				printf("\nvalor a escribir%d \n", valorEscribir);
 				if (valorEscribir != configMemoria.tamPagina)
 				{
 					perror("fallo fwrite: ");
@@ -721,15 +728,26 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			newPagina->presencia = 1;
 			newPagina->modificacion = 0;
 
-			void *paginaBuffer = malloc(configMemoria.tamPagina);
+			uint64_t *paginaBuffer = malloc(configMemoria.tamPagina);
 			fseek(swap, newPagina->posicionSwap, SEEK_SET);
 			fread(paginaBuffer, 1, configMemoria.tamPagina, swap);
-			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
-			mem_hexdump(paginaBuffer, configMemoria.tamPagina);
-			printf("\npagina buffer %s\n", paginaBuffer);
 
 			usleep(configMemoria.retardoSwap * 1000);
+			mem_hexdump(paginaBuffer, configMemoria.tamPagina);
+			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
+			/*
+						void *paginaBuffer = malloc(configMemoria.tamPagina);
 
+						fseek(swap, newPagina->posicionSwap, SEEK_SET);
+
+						fread(paginaBuffer, configMemoria.tamPagina, 1, swap);
+						memcpy(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
+						mem_hexdump(paginaBuffer, configMemoria.tamPagina);
+						printf("\npagina buffer %s\n", paginaBuffer);
+
+						// free(paginaBuffer);
+						usleep(configMemoria.retardoSwap * 1000);
+			*/
 			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, i, newPagina);
 
 			// no es necesario que los cambiemos , una vez que vuelva a pasar se va a cargar el bit de uso en 0 y el modificado tambien

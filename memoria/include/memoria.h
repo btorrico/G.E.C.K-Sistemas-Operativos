@@ -10,6 +10,8 @@
 #include "comunicacion.h"
 
 t_config *config;
+
+int socketAceptadoCPU;
 typedef struct
 {
 	char *puertoEscuchaUno;
