@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 
 	extraerDatosConfig(config);
 
-memoriaRAM = malloc(configMemoria.tamMemoria);
+	memoriaRAM = malloc(configMemoria.tamMemoria);
 	swap = abrirArchivo(configMemoria.pathSwap);
 	ftruncate(swap, configMemoria.tamanioSwap);
 	// agregar_tabla_pag_en_swap();
@@ -498,7 +498,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	pthread_mutex_lock(&mutex_void_memoria_ram);
 	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
 	printf("aLeer%d", *(uint32_t *)aLeer);
-	printf("Hola %d", (uint32_t *)memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento);
+	//	printf("Hola %d", (uint32_t *)memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento);
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	//*puntero es el contenido
 	//&variable es la direccion
@@ -511,7 +511,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	t_pagina *pagina;
 
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
-	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
+	t_marcos_por_proceso *marcosPorProceso = buscarMarcosPorProcesosAccesos(pid);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 	printf("memorialeeeer\n");
 	// pagina = list_get(marcosPorProceso->paginas, nroFrame % configMemoria.marcosPorProceso);
@@ -571,18 +571,15 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 	memcpy(memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento, aEscribir, sizeof(uint32_t)); // tercer arg strlen(string_itoa(valorAEscribir))
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	printf("aEscribir%d\n", *aEscribir);
-	printf("%d", *(uint32_t *)memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento);
+	// printf("%d", *(uint32_t *)memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento);
 
 	// busco la pagina que piden y actualizo el bit de modificado porque se hizo write
 	t_pagina *pagina;
 
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
-	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, pid - 1);
+	t_marcos_por_proceso *marcosPorProceso = buscarMarcosPorProcesosAccesos(pid);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 	printf("llegue acaaaaaaa\n");
-
-	// pagina = list_get(marcosPorProceso->paginas, nroMarco % configMemoria.marcosPorProceso);
-	printf("llegue acaaaaaaaooooo\n");
 
 	for (int i = 0; i < marcosPorProceso->paginas->elements_count; i++)
 	{
@@ -606,6 +603,21 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 	free(cadena);
 	log_debug(logger, "[FIN - ACCESO_MEMORIA_WRITE] DIR_FISICA: %d %d, VALOR: %d",
 			  dirFisica->nroMarco, dirFisica->desplazamientoPagina, valorAEscribir);
+}
+
+t_marcos_por_proceso *buscarMarcosPorProcesosAccesos(int pid)
+{
+	t_marcos_por_proceso *marcoPorProceso = NULL;
+	for (int i = 0; i < list_size(LISTA_MARCOS_POR_PROCESOS); i++)
+	{
+
+		marcoPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, i);
+		if (marcoPorProceso->idPCB == pid)
+		{
+			return marcoPorProceso;
+		}
+	}
+	return marcoPorProceso;
 }
 
 bool esta_vacio_el_archivo(FILE *nombreFile)
@@ -854,7 +866,7 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 {
 	printf("\n entre a clock modificado\n");
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
-	t_marcos_por_proceso *marcosPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, infoRemplazo->PID - 1);
+	t_marcos_por_proceso *marcosPorProceso = buscarMarcosPorProcesos(infoRemplazo);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 
 	t_pagina *pagina = NULL;

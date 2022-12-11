@@ -110,7 +110,7 @@ void crear_hilos_memoria();
 bool esta_vacio_el_archivo(FILE *);
 void* conseguir_puntero_a_base_memoria(int , void *);
 void* conseguir_puntero_al_desplazamiento_memoria(int , void *, int );
-
+t_marcos_por_proceso *buscarMarcosPorProcesosAccesos(int );
 void algoritmo_reemplazo_clock(t_info_remplazo *);
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *);
 void asignarPaginaAMarco(t_marcos_por_proceso*, t_info_remplazo*);
