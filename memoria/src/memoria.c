@@ -4,18 +4,19 @@ int main(int argc, char **argv)
 {
 
 	// Parte Server
-	logger = iniciar_logger("memoria.log", "MEMORIA", LOG_LEVEL_DEBUG);
-
 	config = iniciar_config("memoria.config");
+	logger = iniciar_logger("memoria.log", "MEMORIA", LOG_LEVEL_DEBUG);
 
 	// creo el struct
 
 	extraerDatosConfig(config);
 
-	memoriaRAM = malloc(configMemoria.tamMemoria);
 	swap = abrirArchivo(configMemoria.pathSwap);
-	ftruncate(swap, configMemoria.tamanioSwap);
+	// ftruncate(swap, configMemoria.tamanioSwap);
+	truncate(configMemoria.pathSwap, configMemoria.tamanioSwap);
 	// agregar_tabla_pag_en_swap();
+
+	memoriaRAM = malloc(configMemoria.tamMemoria);
 
 	iniciar_listas_y_semaforos(); // despues ver porque kernel tambien lo utiliza y por ahi lo esta pisando, despues ver si lo dejamos solo aca
 	tamanio = configMemoria.tamMemoria / configMemoria.tamPagina;
@@ -740,7 +741,7 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			newPagina->presencia = 1;
 			newPagina->modificacion = 0;
 
-			uint64_t *paginaBuffer = malloc(configMemoria.tamPagina);
+			void *paginaBuffer = malloc(configMemoria.tamPagina);
 			fseek(swap, newPagina->posicionSwap, SEEK_SET);
 			fread(paginaBuffer, 1, configMemoria.tamPagina, swap);
 

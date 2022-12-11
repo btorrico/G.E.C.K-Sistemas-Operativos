@@ -396,6 +396,7 @@ void manejar_bloqueo_general(void *insActual)
 	// free(dispositivoCpu);
 	sem_post(&dispositivoEnKernel->contador_bloqueo);
 }
+
 t_dispositivo *buscarDispositivoBlocked(char *dispositivo)
 {
 	t_dispositivo *dispositivoIO = NULL;
