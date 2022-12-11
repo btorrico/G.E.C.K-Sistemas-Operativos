@@ -53,18 +53,24 @@ void iniciar_servidor_dispatch()
 {
 	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaDispatch); // socket(), bind(), listen()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
-
+pthread_mutex_lock(&mutex_lista_blocked_audio);
 	socketAceptadoDispatch = esperar_cliente(server_fd);
+	pthread_mutex_unlock(&mutex_lista_blocked_audio);
 
 	while (1)
 	{
+		pthread_mutex_lock(&mutex_lista_blocked_audio);
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoDispatch);
+		pthread_mutex_unlock(&mutex_lista_blocked_audio);
 		interrupciones = false;
 		retornePCB = false;
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		free(paquete->buffer->stream);
 		free(paquete->buffer);
 		free(paquete);
+
+
+		imprimirInstruccionesYSegmentos(*(pcb->informacion));
 
 		printf("se recibio pcb de running de kernel\n");
 
