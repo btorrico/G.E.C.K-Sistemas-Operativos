@@ -777,11 +777,11 @@ int obtenerMomentoActual()
 void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 {
 
-	bool coincideMarcoYpid(void *_entrada){ // Parece funcionar bien, probar con varios casos
+	bool coincideMarcoYpid(void *_entrada){ // Parece funcionar bien, probar con varios casos;
 
-		entrada_tlb *entrada = _entrada;
+		entrada_tlb *entrada = (entrada_tlb*) _entrada;
 		return (entrada->nroFrame == nroFrame && entrada->pid == pid);
-	}
+	};
 
 	if (list_find(TLB->entradas, &coincideMarcoYpid)){
 		
@@ -856,21 +856,22 @@ char *calcularHorasMinutosSegundos(int valor)
 
 int entradaConMenorTiempoDeReferencia()
 {
-	void *esMenor(void *_unaEntrada, void *_otraEntrada)
-	{
+	void *esMenor(void *_unaEntrada, void *_otraEntrada){
 
-		entrada_tlb *unaEntrada = _unaEntrada;
-		entrada_tlb *otraEntrada = _otraEntrada;
+		entrada_tlb *unaEntrada = (entrada_tlb*) _unaEntrada;
+		entrada_tlb *otraEntrada = (entrada_tlb*) _otraEntrada;
 
 		if (unaEntrada->ultimaReferencia <= otraEntrada->ultimaReferencia)
 		{
 
 			return unaEntrada;
 		}
-		else
+		else{
 
 			return otraEntrada;
+			}
 	}
+
 	entrada_tlb *entradaVictima = list_get_minimum(TLB->entradas, &esMenor);
 
 	char *tiempo = calcularHorasMinutosSegundos(entradaVictima->ultimaReferencia);

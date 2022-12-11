@@ -62,17 +62,17 @@ void crear_hilo_consola()
 	while (1)
 	{
 		pthread_t hilo_atender_consola;
-		t_args_pcb argumentos;
+		t_args_pcb* argumentos = malloc(sizeof(t_args_pcb));
 		// esto se podria cambiar como int* cliente_fd= malloc(sizeof(int)); si lo ponemos, va antes del while
-		argumentos.socketCliente = esperar_cliente(server_fd);
+		argumentos->socketCliente = esperar_cliente(server_fd);
 
-		int cod_op = recibir_operacion(argumentos.socketCliente);
+		int cod_op = recibir_operacion(argumentos->socketCliente);
 
 		log_info(logger, "Llegaron las instrucciones y los segmentos");
-		argumentos.informacion = recibir_informacion(argumentos.socketCliente);
+		argumentos->informacion = recibir_informacion(argumentos->socketCliente);
 
-		enviarResultado(argumentos.socketCliente, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
-		pthread_create(&hilo_atender_consola, NULL, (void *)crear_pcb, (void *)&argumentos);
+		enviarResultado(argumentos->socketCliente, "Quedate tranqui Consola, llego todo lo que mandaste ;)\n");
+		pthread_create(&hilo_atender_consola, NULL, (void *)crear_pcb, (void *)argumentos);
 		pthread_detach(hilo_atender_consola);
 	}
 
@@ -692,15 +692,15 @@ void agregar_pcb()
 
 	pthread_mutex_lock(&mutex_lista_new);
 
-	for (size_t i = 0; i < list_size(LISTA_NEW); i++)
+	for (int i = 0; i < list_size(LISTA_NEW); i++)
 	{
-		t_pcb *pcb = list_get(LISTA_NEW, i);
-		printf("\nposicion pcb %d\n tamanio segmentos %d", i,list_size(pcb->informacion->segmentos));
-		imprimirInstruccionesYSegmentos(*(pcb->informacion));
+		t_pcb *pcbAux = list_get(LISTA_NEW, i);
+		printf("\nposicion pcb %d, pcbid:%d, tamanio segmentos %d", i,pcbAux->id, list_size(pcbAux->informacion->segmentos));
+		imprimirInstruccionesYSegmentos(*(pcbAux->informacion));
 		
 	}
 	
-	t_pcb *pcb = (t_pcb *)list_remove(LISTA_NEW, 0); // aca esta el problema, imprimir el list_size
+	t_pcb *pcb = list_remove(LISTA_NEW, 0); // aca esta el problema, imprimir el list_size
 	
 	
 	
@@ -711,12 +711,13 @@ void agregar_pcb()
 	pthread_mutex_lock(&mutex_conexion_memoria);
 	serializarPCB(conexionMemoria, pcb, ASIGNAR_RECURSOS);
 	pthread_mutex_unlock(&mutex_conexion_memoria);
-
+	free(pcb);
 	printf("\nEnvio recursos a memoria\n");
+
 	// memoria me devuelve el pcb modificado
 	pthread_mutex_lock(&mutex_conexion_memoria);
 	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
-	pthread_mutex_unlock(&mutex_conexion_memoria);
+	//pthread_mutex_unlock(&mutex_conexion_memoria);
 	printf("\nRecibo recursos de memoria\n");
 	if (paquete == NULL)
 	{
@@ -726,7 +727,7 @@ void agregar_pcb()
 	{
 		printf("\n Paquete no nulo\n");
 	}
-	pthread_mutex_lock(&mutex_conexion_memoria);
+	//pthread_mutex_lock(&mutex_conexion_memoria);
 	pcb = deserializoPCB(paquete->buffer);
 	pthread_mutex_unlock(&mutex_conexion_memoria);
 
