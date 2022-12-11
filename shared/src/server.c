@@ -149,7 +149,7 @@ void pasar_a_new(t_pcb *pcb)
 {
 	pthread_mutex_lock(&mutex_lista_new);
 	list_add(LISTA_NEW, pcb);
-	pthread_mutex_unlock(&mutex_lista_new);
+	pthread_mutex_unlock(&mutex_lista_new); 
 printf("\ninstrucciones en new\n");
 imprimirInstruccionesYSegmentos(*(pcb->informacion));
 
