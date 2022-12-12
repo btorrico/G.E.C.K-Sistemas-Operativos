@@ -691,14 +691,12 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 	printf("\n Estoy en algoritmo clock primer recorrido \n");
 	printf("\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
 	// marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente);
-	//int i = marcosPorProceso->marcoSiguiente;
+	// int i = marcosPorProceso->marcoSiguiente;
 	bool encontrado = false;
 	while (!encontrado)
 	{
-log_debug(logger, "entre a reemplazar");
-		
-		// crear las funciones repetidas entre clock y clock modificado y reutilizarlas
-		
+		log_debug(logger, "entre a reemplazar");
+
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente);
 		printf("\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
 		printf("\nentrando a la pagina %d , segmento %d, bit uso %d\n", pagina->nroPagina, pagina->nroSegmento, pagina->uso);
@@ -710,17 +708,7 @@ log_debug(logger, "entre a reemplazar");
 			{
 
 				escribirEnSwap(pagina->nroMarco, pagina->posicionSwap);
-				/*mem_hexdump(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina);
-				fseek(swap, pagina->posicionSwap, SEEK_SET);
-				size_t valorEscribir = fwrite(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), 1, configMemoria.tamPagina, swap);
-				*/
-				/*
-			  uint64_t *paginaBuffer = malloc(configMemoria.tamPagina);
-			  fseek(swap, pagina->posicionSwap, SEEK_SET);
-			  fread(paginaBuffer,1, configMemoria.tamPagina, swap);
-			  mem_hexdump(paginaBuffer, configMemoria.tamPagina);*/
 
-				// usleep(configMemoria.retardoSwap * 1000);
 				//  Escritura de Pagina en SWAP
 				log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 			}
@@ -735,13 +723,6 @@ log_debug(logger, "entre a reemplazar");
 			newPagina->modificacion = 0;
 
 			leerEnSwap(newPagina->nroMarco, newPagina->posicionSwap);
-			/*void *paginaBuffer = malloc(configMemoria.tamPagina);
-			fseek(swap, newPagina->posicionSwap, SEEK_SET);
-			fread(paginaBuffer, 1, configMemoria.tamPagina, swap);
-
-			usleep(configMemoria.retardoSwap * 1000);
-			mem_hexdump(paginaBuffer, configMemoria.tamPagina);
-			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);*/
 
 			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente, newPagina);
 
@@ -755,20 +736,6 @@ log_debug(logger, "entre a reemplazar");
 			log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, infoRemplazo->idPagina);
 			log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
 			// arranca a reemplazar en el marco 1
-
-		/*	if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
-			{
-
-				marcosPorProceso->marcoSiguiente++;
-				
-			}
-			else
-			{
-
-				marcosPorProceso->marcoSiguiente = 0;
-			}*/
-
-			// marcosPorProceso->marcoSiguiente= recorrer_marcos(marcosPorProceso->marcoSiguiente);
 		}
 		else if (pagina->uso == 1)
 		{
@@ -776,8 +743,7 @@ log_debug(logger, "entre a reemplazar");
 			pagina->uso = 0;
 		}
 
-
-		if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso -1))
+		if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
 		{
 
 			marcosPorProceso->marcoSiguiente++;
@@ -846,7 +812,7 @@ int recorrer_marcos(int marcoSiguiente)
 	if (marcoSiguiente < (configMemoria.marcosPorProceso - 1))
 	{
 
-		return marcoSiguiente ++;
+		return marcoSiguiente++;
 	}
 	else
 	{
@@ -896,8 +862,17 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 	newPagina->modificacion = 0;
 
 	leerEnSwap(newPagina->nroMarco, newPagina->posicionSwap);
+	if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
+	{
 
-	marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente); // para que el puntero al siguiente siga abanzando
+		marcosPorProceso->marcoSiguiente++;
+	}
+	else
+	{
+
+		marcosPorProceso->marcoSiguiente = 0;
+	}
+	// marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente); // para que el puntero al siguiente siga abanzando
 }
 
 t_pagina *buscarMarcoSegun(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo, int uso, int modificado)
@@ -907,10 +882,10 @@ t_pagina *buscarMarcoSegun(t_marcos_por_proceso *marcosPorProceso, t_info_rempla
 
 	while (1)
 	{
-		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
+		t_pagina *pagina = list_get(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente);
 		if (pagina->uso == uso && pagina->modificacion == modificado)
 		{
-			marcosPorProceso->marcoSiguiente = i;
+			//marcosPorProceso->marcoSiguiente = i;
 			return pagina;
 		}
 		// solo entra en busqueda de (0-1)
@@ -918,7 +893,14 @@ t_pagina *buscarMarcoSegun(t_marcos_por_proceso *marcosPorProceso, t_info_rempla
 		{
 			pagina->uso = 0;
 		}
-		i = recorrer_marcos(i);
+		if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
+		{
+			marcosPorProceso->marcoSiguiente++;
+		}
+		else
+		{
+			marcosPorProceso->marcoSiguiente = 0;
+		}
 		if (i == marcosPorProceso->marcoSiguiente)
 		{ // si pego la vuelta, inicio
 			return NULL;
