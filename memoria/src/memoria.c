@@ -691,15 +691,16 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 	printf("\n Estoy en algoritmo clock primer recorrido \n");
 	printf("\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
 	// marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente);
-	int i = marcosPorProceso->marcoSiguiente;
+	//int i = marcosPorProceso->marcoSiguiente;
 	bool encontrado = false;
 	while (!encontrado)
 	{
-
-		printf("\n marcos por poroceso siguiente %d\n", i);
+log_debug(logger, "entre a reemplazar");
+		
 		// crear las funciones repetidas entre clock y clock modificado y reutilizarlas
-		log_debug(logger, "entre al for");
-		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
+		
+		t_pagina *pagina = list_get(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente);
+		printf("\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
 		printf("\nentrando a la pagina %d , segmento %d, bit uso %d\n", pagina->nroPagina, pagina->nroSegmento, pagina->uso);
 		// log_info(logger, "Reemplazo - PID: %d", infoRemplazo->PID);
 
@@ -742,7 +743,7 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			mem_hexdump(paginaBuffer, configMemoria.tamPagina);
 			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);*/
 
-			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, i, newPagina);
+			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente, newPagina);
 
 			// no es necesario que los cambiemos , una vez que vuelva a pasar se va a cargar el bit de uso en 0 y el modificado tambien
 			// donde se carga el modificado en 0?
@@ -755,16 +756,19 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
 			// arranca a reemplazar en el marco 1
 
-			if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
+		/*	if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
 			{
 
-				marcosPorProceso->marcoSiguiente += 1;
+				marcosPorProceso->marcoSiguiente++;
+				
 			}
 			else
 			{
 
 				marcosPorProceso->marcoSiguiente = 0;
-			}
+			}*/
+
+			// marcosPorProceso->marcoSiguiente= recorrer_marcos(marcosPorProceso->marcoSiguiente);
 		}
 		else if (pagina->uso == 1)
 		{
@@ -772,17 +776,19 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			pagina->uso = 0;
 		}
 
-		if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
+
+		if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso -1))
 		{
 
-			i = marcosPorProceso->marcoSiguiente + 1;
+			marcosPorProceso->marcoSiguiente++;
 		}
 		else
 		{
 
-			i = 0;
+			marcosPorProceso->marcoSiguiente = 0;
 		}
-		printf("\n marcos por poroceso siguiente %d\n", i);
+
+		printf("\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
 	}
 }
 
@@ -834,27 +840,13 @@ t_pagina *buscarPagina(t_info_remplazo *infoRemplazo)
 	}
 }
 
-int recorrer(int marco)
-{
-
-	if (marco < (configMemoria.marcosPorProceso - 1))
-	{
-
-		return marco++;
-	}
-	else
-	{
-
-		return 0;
-	}
-}
 int recorrer_marcos(int marcoSiguiente)
 {
 
 	if (marcoSiguiente < (configMemoria.marcosPorProceso - 1))
 	{
 
-		return marcoSiguiente++;
+		return marcoSiguiente ++;
 	}
 	else
 	{
@@ -871,7 +863,7 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 
 	t_pagina *pagina = NULL;
-	
+
 	while (pagina == NULL)
 	{
 		printf("\n entre a clock modificado while\n");
