@@ -708,27 +708,19 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			if (pagina->modificacion == 1)
 			{
 
-				mem_hexdump(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina);
+				escribirEnSwap(pagina->nroMarco, pagina->posicionSwap);
+				/*mem_hexdump(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina);
 				fseek(swap, pagina->posicionSwap, SEEK_SET);
 				size_t valorEscribir = fwrite(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), 1, configMemoria.tamPagina, swap);
+				*/
 				/*
-				uint64_t *paginaBuffer = malloc(configMemoria.tamPagina);
-				fseek(swap, pagina->posicionSwap, SEEK_SET);
-				fread(paginaBuffer,1, configMemoria.tamPagina, swap);
-				mem_hexdump(paginaBuffer, configMemoria.tamPagina);*/
+			  uint64_t *paginaBuffer = malloc(configMemoria.tamPagina);
+			  fseek(swap, pagina->posicionSwap, SEEK_SET);
+			  fread(paginaBuffer,1, configMemoria.tamPagina, swap);
+			  mem_hexdump(paginaBuffer, configMemoria.tamPagina);*/
 
-				printf("\nvalor tamaño pagina%d \n", configMemoria.tamPagina);
-				printf("\nvalor a escribir%d \n", valorEscribir);
-				if (valorEscribir != configMemoria.tamPagina)
-				{
-					perror("fallo fwrite: ");
-					printf("\nvalor tamaño pagina%d \n", configMemoria.tamPagina);
-					printf("\nvalor a escribir%d \n", valorEscribir);
-					exit(1);
-				}
-
-				usleep(configMemoria.retardoSwap * 1000);
-				// Escritura de Pagina en SWAP
+				// usleep(configMemoria.retardoSwap * 1000);
+				//  Escritura de Pagina en SWAP
 				log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 			}
 
@@ -741,26 +733,15 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			newPagina->presencia = 1;
 			newPagina->modificacion = 0;
 
-			void *paginaBuffer = malloc(configMemoria.tamPagina);
+			leerEnSwap(newPagina->nroMarco, newPagina->posicionSwap);
+			/*void *paginaBuffer = malloc(configMemoria.tamPagina);
 			fseek(swap, newPagina->posicionSwap, SEEK_SET);
 			fread(paginaBuffer, 1, configMemoria.tamPagina, swap);
 
 			usleep(configMemoria.retardoSwap * 1000);
 			mem_hexdump(paginaBuffer, configMemoria.tamPagina);
-			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
-			/*
-						void *paginaBuffer = malloc(configMemoria.tamPagina);
+			memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);*/
 
-						fseek(swap, newPagina->posicionSwap, SEEK_SET);
-
-						fread(paginaBuffer, configMemoria.tamPagina, 1, swap);
-						memcpy(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
-						mem_hexdump(paginaBuffer, configMemoria.tamPagina);
-						printf("\npagina buffer %s\n", paginaBuffer);
-
-						// free(paginaBuffer);
-						usleep(configMemoria.retardoSwap * 1000);
-			*/
 			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, i, newPagina);
 
 			// no es necesario que los cambiemos , una vez que vuelva a pasar se va a cargar el bit de uso en 0 y el modificado tambien
@@ -803,6 +784,25 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 		}
 		printf("\n marcos por poroceso siguiente %d\n", i);
 	}
+}
+
+void escribirEnSwap(int nroMarco, int posicionSwap)
+{
+	mem_hexdump(conseguir_puntero_a_base_memoria(nroMarco, memoriaRAM), configMemoria.tamPagina);
+	fseek(swap, posicionSwap, SEEK_SET);
+	size_t valorEscribir = fwrite(conseguir_puntero_a_base_memoria(nroMarco, memoriaRAM), 1, configMemoria.tamPagina, swap);
+	usleep(configMemoria.retardoSwap * 1000);
+}
+
+void leerEnSwap(int nroMarco, int posicionSwap)
+{
+	void *paginaBuffer = malloc(configMemoria.tamPagina);
+	fseek(swap, posicionSwap, SEEK_SET);
+	fread(paginaBuffer, 1, configMemoria.tamPagina, swap);
+
+	usleep(configMemoria.retardoSwap * 1000);
+	mem_hexdump(paginaBuffer, configMemoria.tamPagina);
+	memcpy(conseguir_puntero_a_base_memoria(nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
 }
 
 t_pagina *buscarPagina(t_info_remplazo *infoRemplazo)
@@ -871,6 +871,7 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 
 	t_pagina *pagina = NULL;
+	
 	while (pagina == NULL)
 	{
 		printf("\n entre a clock modificado while\n");
@@ -883,11 +884,9 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 	printf("\n entre a clock modificado");
 	if (pagina->modificacion == 1)
 	{
-		fseek(swap, pagina->posicionSwap, SEEK_SET);
-		fwrite(conseguir_puntero_a_base_memoria(pagina->nroMarco, memoriaRAM), configMemoria.tamPagina, NULL, swap);
-		usleep(configMemoria.retardoSwap * 1000);
-		// log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 		// Escritura de pagina en Swap
+		escribirEnSwap(pagina->nroMarco, pagina->posicionSwap);
+
 		log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 	}
 
@@ -904,13 +903,7 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 	newPagina->presencia = 1;
 	newPagina->modificacion = 0;
 
-	void *paginaBuffer = malloc(configMemoria.tamPagina);
-	fseek(swap, newPagina->posicionSwap, SEEK_SET);
-	fread(paginaBuffer, configMemoria.tamPagina, NULL, swap);
-
-	memcpy(conseguir_puntero_a_base_memoria(newPagina->nroMarco, memoriaRAM), paginaBuffer, configMemoria.tamPagina);
-
-	usleep(configMemoria.retardoSwap * 1000);
+	leerEnSwap(newPagina->nroMarco, newPagina->posicionSwap);
 
 	marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente); // para que el puntero al siguiente siga abanzando
 }
