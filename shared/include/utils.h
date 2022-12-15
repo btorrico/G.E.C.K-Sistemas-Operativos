@@ -267,6 +267,21 @@ typedef struct
 
 } t_dispositivo;
 
+typedef struct 
+{
+	t_registro registro;
+	char dispositivo;
+
+} t_io_dispositivo;
+
+
+typedef struct 
+{
+	uint32_t tiempo;
+	char dispositivo;
+
+} t_io_dispositivo_kernel;
+
 
 void imprimirInstruccionesYSegmentos(t_informacion );
 

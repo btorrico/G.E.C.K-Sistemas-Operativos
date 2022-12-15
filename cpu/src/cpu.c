@@ -70,11 +70,10 @@ pthread_mutex_lock(&mutex_lista_blocked_audio);
 		free(paquete);
 
 
-		imprimirInstruccionesYSegmentos(*(pcb->informacion));
+		//imprimirInstruccionesYSegmentos(*(pcb->informacion));
 
 		printf("se recibio pcb de running de kernel\n");
 
-		// imprimirInstruccionesYSegmentos(pcb->informacion);
 
 		do
 		{
@@ -323,15 +322,33 @@ bool cicloInstruccion(t_pcb *pcb)
 		// pcb->program_counter += 1;
 		if (strcmp(insActual->paramIO, "TECLADO") == 0)
 		{
+			//enviar mensaje a kernel. priero envio el pcb
+			//cargarlos valores del mensaje 
+			/*t_io_dispositivo* mensajeAKernel;
+			mensajeAKernel->dispositivo;
+			mensajeAKernel->registro;
+			enviarMsje(conexionDispatch, CPU, mensajeAKernel,sizeof(t_io_dispositivo) ,BLOCK_PCB_IO_TECLADO);*/
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO_TECLADO);
 			log_debug(logger, "Envie BLOCK al kernel por IO_TECLADO");
 			retornePCB = true;
 		} else if(strcmp(insActual->paramIO, "PANTALLA") == 0)
 		{
+			//enviar mensaje a kernel. priero envio el pcb
+			//cargarlos valores del mensaje 
+			/*t_io_dispositivo* mensajeAKernel;
+			mensajeAKernel->dispositivo;
+			mensajeAKernel->registro;
+			enviarMsje(conexionDispatch, CPU, mensajeAKernel,sizeof(t_io_dispositivo) ,BLOCK_PCB_IO_TECLADO);*/
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO_PANTALLA);
 			log_debug(logger, "Envie BLOCK al kernel por IO_PANTALLA");
 			retornePCB = true;
 		} else {
+			//enviar mensaje a kernel , antes enviar el pcb 
+			//cargarlos valores del mensaje 
+			/*t_io_dispositivo_kernel* mensajeAKernel;
+			mensajeAKernel->dispositivo;
+			mensajeAKernel->tiempo;
+			enviarMsje(conexionDispatch, CPU, mensajeAKernel,sizeof(t_io_dispositivo_kernel) ,BLOCK_PCB_IO_TECLADO);*/
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO);
 			log_debug(logger, "Envie BLOCK al kernel por IO");
 			retornePCB = true;

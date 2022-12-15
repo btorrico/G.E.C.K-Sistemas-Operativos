@@ -133,7 +133,7 @@ t_informacion recibir_informacion(cliente_fd)
 		l++;
 	}
 
-	imprimirInstruccionesYSegmentos(programa);
+	//imprimirInstruccionesYSegmentos(programa);
 	free(buffer);
 
 	return programa;
@@ -151,14 +151,14 @@ void pasar_a_new(t_pcb *pcb)
 	list_add(LISTA_NEW, pcb);
 	pthread_mutex_unlock(&mutex_lista_new); 
 printf("\ninstrucciones en new\n");
-imprimirInstruccionesYSegmentos(*(pcb->informacion));
+//imprimirInstruccionesYSegmentos(*(pcb->informacion));
 
 printf("\n imprimo todas las intrucciones y segmentos de todos los pcb en lista new\n");
 	for (size_t i = 0; i < list_size(LISTA_NEW); i++)
 	{
 		t_pcb *pcb = list_get(LISTA_NEW, i);
 		printf("\nposicion pcb %d\n tamanio segmentos %d", i,list_size(pcb->informacion->segmentos));
-		imprimirInstruccionesYSegmentos(*(pcb->informacion));
+		//imprimirInstruccionesYSegmentos(*(pcb->informacion));
 		
 	}
 	
@@ -171,7 +171,7 @@ void pasar_a_ready(t_pcb *pcb)
 	list_add(LISTA_READY, pcb);
 	pthread_mutex_unlock(&mutex_lista_ready);
 	printf("\ninstrucciones en ready\n");
-imprimirInstruccionesYSegmentos(*(pcb->informacion));
+//imprimirInstruccionesYSegmentos(*(pcb->informacion));
 	log_debug(logger, "Paso a READY el proceso %d", pcb->id);
 }
 

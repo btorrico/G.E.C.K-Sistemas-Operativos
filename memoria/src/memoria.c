@@ -723,14 +723,16 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			newPagina->modificacion = 0;
 
 			leerEnSwap(newPagina->nroMarco, newPagina->posicionSwap);
+			log_info(logger, "SWAP IN -  PID: %d - Marco: %d - Page In: %d|%d", marcosPorProceso->idPCB, newPagina->nroMarco, newPagina->nroSegmento, newPagina->nroPagina);
 
 			t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente, newPagina);
-
-			// no es necesario que los cambiemos , una vez que vuelva a pasar se va a cargar el bit de uso en 0 y el modificado tambien
-			// donde se carga el modificado en 0?
+			// printf("\npagina victima: segmento %d , pagina%d \n",paginaVictima->nroSegmento, paginaVictima->nroPagina );
+			//  no es necesario que los cambiemos , una vez que vuelva a pasar se va a cargar el bit de uso en 0 y el modificado tambien
+			//  donde se carga el modificado en 0?
 			paginaVictima->uso = 0;
 			paginaVictima->modificacion = 0;
 			paginaVictima->presencia = 0;
+			// printf("\npagina victima: segmento %d , pagina%d \n",paginaVictima->nroSegmento, paginaVictima->nroPagina);
 
 			log_info(logger, "Marco:%d", newPagina->nroMarco);
 			log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, infoRemplazo->idPagina);
@@ -848,12 +850,6 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 		log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 	}
 
-	t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente, pagina);
-
-	log_info(logger, "Marco:%d", paginaVictima->nroMarco);
-	log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, pagina->nroPagina);
-	log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
-
 	t_pagina *newPagina = buscarPagina(infoRemplazo);
 
 	newPagina->nroMarco = pagina->nroMarco;
@@ -862,6 +858,18 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 	newPagina->modificacion = 0;
 
 	leerEnSwap(newPagina->nroMarco, newPagina->posicionSwap);
+	log_info(logger, "SWAP IN -  PID: %d - Marco: %d - Page In: %d|%d", marcosPorProceso->idPCB, newPagina->nroMarco, newPagina->nroSegmento, newPagina->nroPagina);
+
+printf("\ncantidad de paginas por marcos por proceso %d :\n", list_size(marcosPorProceso->paginas));
+	t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente, newPagina);
+	paginaVictima->uso = 0;
+	paginaVictima->modificacion = 0;
+	paginaVictima->presencia = 0;
+
+	log_info(logger, "Marco:%d", paginaVictima->nroMarco);
+	log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, pagina->nroPagina);
+	log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
+
 	if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
 	{
 
@@ -879,18 +887,20 @@ t_pagina *buscarMarcoSegun(t_marcos_por_proceso *marcosPorProceso, t_info_rempla
 {
 
 	int i = marcosPorProceso->marcoSiguiente;
+	printf("\n marcos por proceso arranca %d\n", i);
 
 	while (1)
 	{
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente);
 		if (pagina->uso == uso && pagina->modificacion == modificado)
 		{
-			//marcosPorProceso->marcoSiguiente = i;
+			marcosPorProceso->marcoSiguiente = i;
 			return pagina;
 		}
 		// solo entra en busqueda de (0-1)
 		if (modificado == 1)
 		{
+			printf("\nAsigne el bit de uso en 0\n");
 			pagina->uso = 0;
 		}
 		if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
@@ -905,6 +915,7 @@ t_pagina *buscarMarcoSegun(t_marcos_por_proceso *marcosPorProceso, t_info_rempla
 		{ // si pego la vuelta, inicio
 			return NULL;
 		}
+		printf("\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
 	}
 }
 

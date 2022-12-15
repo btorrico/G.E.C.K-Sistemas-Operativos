@@ -417,7 +417,7 @@ void cargarDispositivos()
 {
 	for (int i = 0; i < size_char_array(configKernel.dispositivosIO); i++)
 	{
-		printf("\ntamaño %d\n", size_char_array(configKernel.dispositivosIO));
+		//printf("\ntamaño %d\n", size_char_array(configKernel.dispositivosIO));
 		char *dispositivoNuevo = configKernel.dispositivosIO[i];
 		t_dispositivo *dispositivo = malloc(sizeof(t_dispositivo));
 
@@ -427,7 +427,7 @@ void cargarDispositivos()
 		sem_init(&dispositivo->contador_bloqueo, 0, 1);
 		pthread_mutex_init(&dispositivo->mutex_lista_blocked, NULL);
 
-		printf("\ndispositivos %s , %d \n", dispositivo->dispositivo, dispositivo->tiempoEjecucion);
+		//printf("\ndispositivos %s , %d \n", dispositivo->dispositivo, dispositivo->tiempoEjecucion);
 		agregrar_dispositivo(dispositivo);
 	}
 }
@@ -697,7 +697,7 @@ void agregar_pcb()
 	{
 		t_pcb *pcbAux = list_get(LISTA_NEW, i);
 		printf("\nposicion pcb %d, pcbid:%d, tamanio segmentos %d", i,pcbAux->id, list_size(pcbAux->informacion->segmentos));
-		imprimirInstruccionesYSegmentos(*(pcbAux->informacion));
+		//imprimirInstruccionesYSegmentos(*(pcbAux->informacion));
 		
 	}
 	
@@ -732,7 +732,7 @@ void agregar_pcb()
 	pcb = deserializoPCB(paquete->buffer);
 	pthread_mutex_unlock(&mutex_conexion_memoria);
 
-	imprimirInstruccionesYSegmentos(*(pcb->informacion));
+	//imprimirInstruccionesYSegmentos(*(pcb->informacion));
 	/*for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)
 	{
 		t_tabla_segmentos *tablaSegmento = malloc(sizeof(t_tabla_segmentos));
