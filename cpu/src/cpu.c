@@ -728,13 +728,14 @@ void llenar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 	entrada->nroSegmento = nroSegmento;
 	entrada->pid = pid;
 	entrada->ultimaReferencia = obtenerMomentoActual();
+	entrada->instanteDeCarga = obtenerMomentoActual();
 
 	list_add(TLB->entradas, entrada);
 
 	char *tiempo = calcularHorasMinutosSegundos(entrada->ultimaReferencia);
 
 	printf(PRINT_COLOR_MAGENTA "----------SE MODIFICA LA TLB------" PRINT_COLOR_RESET);
-	printf(PRINT_COLOR_MAGENTA "Se llena la entrada de TLB con: PID: %d , Nro pagina: %d, Nro Frame: %d, Nro Segmento: %d, instante de Referencia: %s \n" PRINT_COLOR_RESET, entrada->pid, entrada->nroPagina, entrada->nroFrame, entrada->nroSegmento, tiempo);
+	printf(PRINT_COLOR_MAGENTA "Se llena la entrada de TLB con: PID: %d , Nro pagina: %d, Nro Frame: %d, Nro Segmento: %d, instante de Referencia: %s , instante de Carga %s \n" PRINT_COLOR_RESET, entrada->pid, entrada->nroPagina, entrada->nroFrame, entrada->nroSegmento, tiempo, tiempo);
 	free(tiempo);
 }
 
@@ -754,13 +755,19 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 			printf(PRINT_COLOR_MAGENTA "TLB Hit: PID: %d TLB HIT - Segmento: %d - Pagina: %d - Frame: %d \n" PRINT_COLOR_RESET, entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, entradaActual->nroFrame);
 
 			log_info(logger, "----------------Actualizando ultima referencia--------------------");
+
 			char *tiempoAnterior = calcularHorasMinutosSegundos(entradaActual->ultimaReferencia);
+			char *instanteDeCarga = calcularHorasMinutosSegundos(entradaActual->instanteDeCarga);
 			log_info(logger, "Referencia anterior:");
-			log_debug(logger, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoAnterior);
+			log_debug(logger, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s , Instante de Carga: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoAnterior,instanteDeCarga);
 			log_info(logger, "Referencia nueva:");
 			entradaActual->ultimaReferencia = obtenerMomentoActual();
 			char *tiempoNuevo = calcularHorasMinutosSegundos(entradaActual->ultimaReferencia);
-			log_debug(logger, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoNuevo);
+			log_debug(loggerMinimo, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s, Instante de Carga: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoNuevo, instanteDeCarga);
+			
+			log_info(logger, "------------------------------------------------------------------");
+
+			imprimirModificacionTlb();
 
 			return entradaActual->nroFrame;
 		}
@@ -821,6 +828,7 @@ void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, 
 	{
 		reemplazo_algoritmo_lru(nroPagina, nroFrame, nroSegmento, pid);
 		printf(PRINT_COLOR_MAGENTA "----------ACTUALIZACION DE TLB----------" PRINT_COLOR_RESET);
+	    entradaConMenorTiempoDeReferencia();
 		imprimirModificacionTlb();
 	}
 	else
@@ -839,12 +847,15 @@ void imprimirModificacionTlb()
 	{
 		entrada = list_get(TLB->entradas, i);
 		char *tiempo = calcularHorasMinutosSegundos(entrada->ultimaReferencia);
+		char *instanteDeCarga = calcularHorasMinutosSegundos(entrada->instanteDeCarga);
 
 
-		log_debug(loggerMinimo, "NRO ENTRADA: %i | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO: %s\n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina, entrada->nroFrame, tiempo);
+
+		log_debug(loggerMinimo, " %i | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE ULTIMA REFERENCIA: %s | INSTANTE DE CARGA: %s \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina, entrada->nroFrame, tiempo,instanteDeCarga);
 		free(tiempo);
+		free(instanteDeCarga);
 	}
-	entradaConMenorTiempoDeReferencia();
+	//entradaConMenorTiempoDeReferencia();
 	printf( "--------------------------------------------------------------------------------------------------------------------------------\n");
 }
 
@@ -898,6 +909,46 @@ int entradaConMenorTiempoDeReferencia()
 	return posicion;
 }
 
+
+
+int entradaConMenorInstanteDeCarga()
+{
+	void *esMenor(void *_unaEntrada, void *_otraEntrada){
+
+		entrada_tlb *unaEntrada = (entrada_tlb*) _unaEntrada;
+		entrada_tlb *otraEntrada = (entrada_tlb*) _otraEntrada;
+
+		if (unaEntrada->instanteDeCarga<= otraEntrada->instanteDeCarga)
+		{
+
+			return unaEntrada;
+		}
+		else{
+
+			return otraEntrada;
+			}
+	}
+
+	entrada_tlb *entradaVictima = list_get_minimum(TLB->entradas, &esMenor);
+
+	char *tiempo = calcularHorasMinutosSegundos(entradaVictima->instanteDeCarga);
+	
+	int posicion;
+
+	for(int i=0; i < configCPU.entradasTLB;i++ ){
+		entrada_tlb* entradaAuxiliar = list_get(TLB->entradas,i);
+		
+		if(entradaVictima->pid == entradaAuxiliar->pid && entradaVictima->nroSegmento == entradaAuxiliar->nroSegmento && entradaVictima->nroPagina == entradaAuxiliar->nroPagina && entradaVictima->nroFrame == entradaAuxiliar->nroFrame){
+			posicion = i;
+			break;
+		}
+
+	}
+	printf(PRINT_COLOR_MAGENTA "ENTRADA VICTIMA:PID Entrada con menor tiempo de carga: %d, Tiempo De Carga: %s\n" PRINT_COLOR_RESET, entradaVictima->pid, tiempo);
+	free(tiempo);
+	return posicion;
+}
+
 void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int pid)
 {
 	printf(PRINT_COLOR_MAGENTA "Reemplazo por algoritmo LRU" PRINT_COLOR_RESET);
@@ -911,6 +962,7 @@ void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int p
 	nuevaEntrada->nroSegmento = nroSegmento;
 	nuevaEntrada->pid = pid;
 	nuevaEntrada->ultimaReferencia = obtenerMomentoActual();
+	nuevaEntrada->instanteDeCarga =obtenerMomentoActual();
  	
 	entrada_tlb * entradaVictima = list_replace(TLB->entradas,posicionVictima,nuevaEntrada);
 
@@ -923,15 +975,14 @@ void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int p
 
 	//entradaVictima = list_remove(TLB->entradas, entradaVictima);
 
-	
 
-	//list_add_in_index(, entradaVictima, nuevaEntrada);
+
 }
 
 void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int pid)
 {
 	printf(PRINT_COLOR_MAGENTA "Reemplazo por algoritmo FIFO" PRINT_COLOR_RESET);
-
+	int posicionVictima = entradaConMenorInstanteDeCarga();
 	entrada_tlb *entradaNueva = malloc(sizeof(entrada_tlb));
 
 	entradaNueva->nroPagina = nroPagina;
@@ -939,20 +990,23 @@ void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int 
 	entradaNueva->nroSegmento = nroSegmento;
 	entradaNueva->pid = pid;
 	entradaNueva->ultimaReferencia = obtenerMomentoActual();
+	entradaNueva->instanteDeCarga = obtenerMomentoActual();
 
-	entrada_tlb *entradaAReemplazar = list_get(TLB->entradas, 0); // Selecciono la primer entrada de la lista de entradas
+	entrada_tlb * entradaVictima = list_replace(TLB->entradas,posicionVictima,entradaNueva); // Selecciono la primer entrada de la lista de entradas
 
 	//log_warning(logger, "Reemplazo de pagina: %d por nueva pagina %d", entradaAReemplazar->nroPagina, entradaNueva->nroPagina);
 	//printf(PRINT_COLOR_YELLOW "Reemplazo de pagina: %d por nueva pagina %d" PRINT_COLOR_RESET, entradaAReemplazar->nroPagina, entradaNueva->nroPagina);
 	
-	char *tiempoVictima = calcularHorasMinutosSegundos(entradaAReemplazar->ultimaReferencia);
+	char *tiempoVictima = calcularHorasMinutosSegundos(entradaVictima->ultimaReferencia);
 	char *tiempoNuevo = calcularHorasMinutosSegundos(entradaNueva->ultimaReferencia);
+	char *instanteVictima = calcularHorasMinutosSegundos(entradaVictima->instanteDeCarga);
+	char *instanteNuevo = calcularHorasMinutosSegundos(entradaNueva->instanteDeCarga);
 	
-	log_warning(logger, "Entrada anterior: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO: %s\n",entradaAReemplazar->pid, entradaAReemplazar->nroSegmento,entradaAReemplazar->nroPagina, entradaAReemplazar->nroFrame, tiempoVictima);
-	log_warning(logger, "Entrada nueva: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO: %s\n ", entradaNueva->pid, entradaNueva->nroSegmento,entradaNueva->nroPagina, entradaNueva->nroFrame, tiempoNuevo);
+	log_warning(logger, "Entrada anterior: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE REFERENCIA: %s | INSTANTE DE CARGA: %s \n",entradaVictima->pid, entradaVictima->nroSegmento,entradaVictima->nroPagina, entradaVictima->nroFrame, tiempoVictima, instanteVictima);
+	log_warning(logger, "Entrada nueva: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE REFERENCIA: %s | INSTANTE DE CARGA: %s\n ", entradaNueva->pid, entradaNueva->nroSegmento,entradaNueva->nroPagina, entradaNueva->nroFrame, tiempoNuevo, instanteNuevo);
 	
-	list_remove(TLB->entradas, 0);					   // Elimino la entrada victima
-	list_add_in_index(TLB->entradas, 0, entradaNueva); // Agrego la nueva entrada en la primera posicion de la lista
+	//list_remove(TLB->entradas, 0);					   // Elimino la entrada victima
+	//list_add_in_index(TLB->entradas, 0, entradaNueva); // Agrego la nueva entrada en la primera posicion de la lista
 	//free(entradaAReemplazar);
 }
 
