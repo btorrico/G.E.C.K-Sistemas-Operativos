@@ -70,7 +70,7 @@ pthread_mutex_lock(&mutex_lista_blocked_audio);
 		free(paquete);
 
 
-		imprimirInstruccionesYSegmentos(*(pcb->informacion));
+		//imprimirInstruccionesYSegmentos(*(pcb->informacion));
 
 		log_info(logger,"se recibio pcb de running de kernel\n");
 

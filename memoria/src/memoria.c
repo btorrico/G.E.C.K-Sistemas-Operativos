@@ -692,8 +692,8 @@ void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo)
 {
 
-log_info(logger, "Estoy en algoritmo clock primer recorrido \n");
-log_info(logger,"\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
+	log_info(logger,"\n Estoy en algoritmo clock primer recorrido \n");
+	log_info(logger,"\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
 	// marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente);
 	// int i = marcosPorProceso->marcoSiguiente;
 	bool encontrado = false;
@@ -701,16 +701,10 @@ log_info(logger,"\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
 	{
 		log_debug(logger, "entre a reemplazar");
 
-		//crear las funciones repetidas entre clock y clock modificado y reutilizarlas
-		//hacer un while(pagina->uso!=0) entonces haga todo y despues agregar un chequeo de if para cuando sea el bit de uso 1 y solo actualizarlo a 0 como ya hacemos  
-		log_debug(logger, "entre al for");
-		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
-		log_info(logger, "Reemplazo - PID: %d", infoRemplazo->PID);
-
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente);
-		printf("\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
-		printf("\nentrando a la pagina %d , segmento %d, bit uso %d\n", pagina->nroPagina, pagina->nroSegmento, pagina->uso);
-		// log_info(logger, "Reemplazo - PID: %d", infoRemplazo->PID);
+		log_info(logger,"\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
+		log_info(logger,"\nentrando a la pagina %d , segmento %d, bit uso %d\n", pagina->nroPagina, pagina->nroSegmento, pagina->uso);
+		// log_info(loggerMinimo, "Reemplazo - PID: %d", infoRemplazo->PID);
 
 		if (pagina->uso == 0)
 		{
@@ -720,7 +714,7 @@ log_info(logger,"\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
 				escribirEnSwap(pagina->nroMarco, pagina->posicionSwap);
 
 				//  Escritura de Pagina en SWAP
-				log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
+				log_info(loggerMinimo, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 			}
 
 			encontrado = true;
@@ -749,9 +743,8 @@ log_info(logger,"\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
 		}
 		else if (pagina->uso == 1)
 		{
-			log_info(logger, "Asigne el bit de uso en 0\n");
+			log_info(logger,"\nAsigne el bit de uso en 0\n");
 			pagina->uso = 0;
-			i++;
 		}
 
 		if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
@@ -765,7 +758,7 @@ log_info(logger,"\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
 			marcosPorProceso->marcoSiguiente = 0;
 		}
 
-		printf("\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
+		log_info(logger,"\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
 	}
 }
 
