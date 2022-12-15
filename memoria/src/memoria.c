@@ -6,6 +6,8 @@ int main(int argc, char **argv)
 	// Parte Server
 	config = iniciar_config("memoria.config");
 	logger = iniciar_logger("memoria.log", "MEMORIA", LOG_LEVEL_DEBUG);
+	loggerMinimo = iniciar_logger("memoriaLoggsObligatorios.log", "MEMORIA", LOG_LEVEL_DEBUG);
+
 
 	// creo el struct
 
@@ -33,6 +35,7 @@ int main(int argc, char **argv)
 	config_destroy(config);
 
 	fclose(swap);
+
 	// crear una lista con el tamaño de los marcos/segmanetos para ir guardado y remplazando
 	// en el caso de que esten ocupados , con los algoritmos correcpondientes
 
@@ -85,16 +88,16 @@ void iniciar_servidor_hacia_kernel()
 
 	while (1)
 	{
-		printf("\nestoy esperando paquete, soy memoria\n");
+		log_info(logger, "Estoy esperando paquete, soy memoria\n");
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoKernel);
-		// printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
+		//  printf("\nRecibi el paquete del kernel%d\n", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 
 		switch (paquete->codigo_operacion)
 		{
 		case ASIGNAR_RECURSOS:
 
-			printf("\nMi cod de op es: %d", paquete->codigo_operacion);
+			log_info(logger, "Mi cod de op es: %d", paquete->codigo_operacion);
 			// pthread_t thrTablaPaginasCrear;
 			// printf("\nEntro a asignar recursos\n");
 			crearTablasPaginas(pcb);
@@ -110,7 +113,7 @@ void iniciar_servidor_hacia_kernel()
 
 		case PAGE_FAULT:
 			// recibir del kernel pagina , segmento , id pcb
-			printf("\nestoy en page fault de memoria\n");
+			log_info(logger, "Estoy en page fault de memoria\n");
 			t_paqt paquete;
 			recibirMsje(socketAceptadoKernel, &paquete);
 			MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensaje = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
@@ -121,13 +124,13 @@ void iniciar_servidor_hacia_kernel()
 			infoRemplazo->idSegmento = mensaje->nro_segmento;
 			infoRemplazo->PID = pcb->id;
 
-			printf("\nel id de pagina es: %d", infoRemplazo->idPagina);
-			printf("\nel id de seg es: %d", infoRemplazo->idSegmento);
-			printf("\nel id de pcb es: %d\n", infoRemplazo->PID);
+			log_info(logger, "El id de pagina es: %d", infoRemplazo->idPagina);
+			log_info(logger, "El id de seg es: %d", infoRemplazo->idSegmento);
+			log_info(logger, "El id de pcb es: %d\n", infoRemplazo->PID);
 
 			t_marcos_por_proceso *marcoPorProceso = buscarMarcosPorProcesos(infoRemplazo);
 
-			printf("\nel id de pcb es: %d\n", marcoPorProceso->idPCB);
+			log_info(logger, "El id de pcb es: %d\n", marcoPorProceso->idPCB);
 
 			asignacionDeMarcos(infoRemplazo, marcoPorProceso);
 
@@ -157,16 +160,16 @@ void imprimirMarcosPorProceso()
 	{
 
 		t_marcos_por_proceso *marcoPorProceso = list_get(LISTA_MARCOS_POR_PROCESOS, i);
-		printf("\nMarco por proceso , el proceso es PID: %d", marcoPorProceso->idPCB);
-		printf("\nMarco por proceso , el marco siguiente es: %d", marcoPorProceso->marcoSiguiente);
+		log_info(logger, "Marco por proceso , el proceso es PID: %d", marcoPorProceso->idPCB);
+		log_info(logger, "Marco por proceso , el marco siguiente es: %d", marcoPorProceso->marcoSiguiente);
 
 		for (int j = 0; j < list_size(marcoPorProceso->paginas); j++)
 		{
 			t_pagina *pagina = list_get(marcoPorProceso->paginas, j);
-			printf("\nBit de uso:  %d", pagina->uso);
-			printf("\nNumero de marco:  %d", pagina->nroMarco);
-			printf("\nNumero de pagina:  %d", pagina->nroPagina);
-			printf("\nNumero de segmento:  %d", pagina->nroSegmento);
+			log_info(logger, "Bit de uso:  %d", pagina->uso);
+			log_info(logger, "Numero de marco:  %d", pagina->nroMarco);
+			log_info(logger, "Numero de pagina:  %d", pagina->nroPagina);
+			log_info(logger, "Numero de segmento:  %d", pagina->nroSegmento);
 		}
 	}
 }
@@ -195,7 +198,7 @@ void iniciar_servidor_hacia_cpu()
 		conexionCPU(socketAceptadoCPU);
 	}
 
-	printf("\n termine \n");
+	log_info(logger, "Termine \n");
 	mostrar_mensajes_del_cliente(socketAceptadoCPU);
 	// free(&paqueteCPU);
 }
@@ -217,10 +220,10 @@ void conexionCPU(int socketAceptado)
 
 	while (1)
 	{
-		// direccionFisica = malloc(sizeof(t_direccionFisica));
-		// infoMemoriaCpuTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
-		// infoMemoriaCpuLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
-		// infoMemoriaCpuEscribir = malloc(sizeof(MSJ_MEMORIA_CPU_ESCRIBIR));
+		//  direccionFisica = malloc(sizeof(t_direccionFisica));
+		//  infoMemoriaCpuTP = malloc(sizeof(MSJ_MEMORIA_CPU_ACCESO_TABLA_DE_PAGINAS));
+		//  infoMemoriaCpuLeer = malloc(sizeof(MSJ_MEMORIA_CPU_LEER));
+		//  infoMemoriaCpuEscribir = malloc(sizeof(MSJ_MEMORIA_CPU_ESCRIBIR));
 
 		recibirMsje(socketAceptado, &paquete);
 
@@ -244,7 +247,7 @@ void conexionCPU(int socketAceptado)
 			accesoMemoriaLeer(direccionFisica, pid, socketAceptado);
 			break;
 		case ACCESO_MEMORIA_ESCRIBIR:
-			printf("llegue aqui\n");
+			log_info(logger, "llegue aqui\n");
 			infoMemoriaCpuEscribir = paquete.mensaje;
 			direccionFisica->nroMarco = infoMemoriaCpuEscribir->nroMarco;
 			direccionFisica->desplazamientoPagina = infoMemoriaCpuEscribir->desplazamiento;
@@ -294,11 +297,11 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 		tablaPagina->idTablaPag = i;
 		tablaSegmento->indiceTablaPaginas = i;
 
-		/* 	pthread_mutex_lock(&mutex_creacion_ID_tabla);
-			tablaSegmento->indiceTablaPaginas = contadorIdTablaPag;
-			tablaPagina->idTablaPag = contadorIdTablaPag;
-			contadorIdTablaPag++;
-			pthread_mutex_unlock(&mutex_creacion_ID_tabla); */
+			/* 	pthread_mutex_lock(&mutex_creacion_ID_tabla);
+				tablaSegmento->indiceTablaPaginas = contadorIdTablaPag;
+				tablaPagina->idTablaPag = contadorIdTablaPag;
+				contadorIdTablaPag++;
+				pthread_mutex_unlock(&mutex_creacion_ID_tabla); */
 
 		tablaPagina->idPCB = pcbActual->id;
 
@@ -314,7 +317,7 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 			pagina->nroSegmento = tablaPagina->idTablaPag;
 
 			pagina->posicionSwap = tamanioSgtePagina; // tamanioSgtePagina = OFFSET = desplazamiento
-			// fseek(swap, pagina->posicionSwap, SEEK_CUR);
+			// // fseek(swap, pagina->posicionSwap, SEEK_CUR);
 
 			// agrego pagina a lista de paginas de la tabla pagina
 			agregar_pagina_a_tabla_paginas(tablaPagina, pagina);
@@ -323,11 +326,11 @@ void crearTablasPaginas(void *pcb) // directamente asignar el la posswap aca par
 
 		// agrego tabla pagina a la lista de tablas pagina
 		agregar_tabla_paginas(tablaPagina);
-		printf("\nla cant de elem que tiene listatablapaginas es: %d\n", list_size(LISTA_TABLA_PAGINAS));
+		log_info(logger, "la cant de elem que tiene listatablapaginas es: %d\n", list_size(LISTA_TABLA_PAGINAS));
 
 		// log_info(logger, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
 		// Creacion
-		log_info(logger, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
+		log_info(loggerMinimo, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
 	}
 
 	marcoPorProceso->idPCB = pcbActual->id;
@@ -350,11 +353,11 @@ void eliminarTablasPaginas(void *pcb)
 
 	t_list *tablasDelPCB = filtrarPorPIDTabla(pcbActual->id);
 
-	printf("\nTamaño tabla pagina %d :\n", list_size(tablasDelPCB));
+	log_info(logger, "Tamaño tabla pagina %d :\n", list_size(tablasDelPCB));
 
 	for (int i = 0; i < list_size(tablasDelPCB); i++)
 	{
-		printf("\ntabla de pagina  %d\n", i);
+		log_info(logger, "Tabla de pagina  %d\n", i);
 		t_tabla_paginas *tablaPagina = list_get(tablasDelPCB, i);
 
 		for (int j = 0; j < list_size(tablaPagina->paginas); j++)
@@ -369,7 +372,7 @@ void eliminarTablasPaginas(void *pcb)
 		}
 		// log_info(logger, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
 		// Destruccion de paginas
-		log_info(logger, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
+		log_info(loggerMinimo, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
 	}
 
 	enviarResultado(socketAceptadoKernel, "se liberaron las estructuras");
@@ -377,6 +380,7 @@ void eliminarTablasPaginas(void *pcb)
 
 FILE *abrirArchivo(char *filename)
 {
+
 	if (filename == NULL)
 	{
 		log_error(logger, "Error: debe informar un path correcto");
@@ -439,7 +443,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 
 	if (pagina->presencia == 1)
 	{
-		// pthread_mutex_unlock(&mutex_lista_tabla_paginas);
+		//  pthread_mutex_unlock(&mutex_lista_tabla_paginas);
 		marcoBuscado = pagina->nroMarco;
 		log_debug(logger, "[ACCESO_TABLA_PAGINAS] LA PAGINA ESTA EN RAM");
 
@@ -448,10 +452,10 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 
 		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), RESPUESTA_MEMORIA_MARCO_BUSCADO);
 		free(mensaje);
-		// log_debug(logger, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
+		//  log_debug(logger, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
 		//		  pid, pagina->nroPagina, marcoBuscado); // LOG OBLIGATORIO
 		// Acceso a Tabla de Paginas
-		log_debug(logger, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
+		log_debug(loggerMinimo, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: %d ",
 				  pid, pagina->nroPagina, marcoBuscado);
 
 		log_debug(logger, "[FIN - TRADUCCION_DIR] FRAME BUSCADO = %d ,DE LA PAGINA: %d DE TABLA DE PAG CON INDICE: %d ENVIADO A CPU",
@@ -463,7 +467,7 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 		MSJ_INT *mensaje = malloc(sizeof(MSJ_INT));
 		mensaje->numero = -1;
 		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), PAGE_FAULT);
-		free(mensaje);
+		// free(mensaje);
 		log_debug(logger, "PAGE FAULT");
 	}
 }
@@ -472,7 +476,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 {
 	// log_debug(logger,"Acceso a espacio de usuario: “PID: %d - Acción: LEER - Dirección física: %d  %d",pid,df->nroMarco, df->desplazamientoPagina);
 	// Acceso a espacio de Usuario
-	log_debug(logger, "Acceso a espacio de usuario: “PID: %d - Acción: LEER - Dirección física: %d  %d", pid, df->nroMarco, df->desplazamientoPagina);
+	log_debug(loggerMinimo, "Acceso a espacio de usuario: “PID: %d - Acción: LEER - Dirección física: %d  %d", pid, df->nroMarco, df->desplazamientoPagina);
 
 	log_debug(logger, "[ACCESO_MEMORIA_LEER] DIR_FISICA: %d  %d",
 			  df->nroMarco, df->desplazamientoPagina);
@@ -480,7 +484,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	int nroFrame = df->nroMarco;
 	int desplazamiento = df->desplazamientoPagina;
 	int tamanioFrame = configMemoria.tamPagina;
-	void *aLeer = malloc(sizeof(uint32_t));
+	uint32_t *aLeer = malloc(sizeof(uint32_t));
 	MSJ_STRING *msjeError;
 
 	// valido que el offset sea valido
@@ -490,7 +494,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 		msjeError = malloc(sizeof(MSJ_STRING));
 		string_append(&msjeError->cadena, "ERROR_DESPLAZAMIENTO");
 		enviarMsje(socketAceptado, MEMORIA, msjeError, sizeof(MSJ_STRING), ACCESO_MEMORIA_LEER);
-		free(msjeError);
+		// free(msjeError);
 		log_error(logger, "[ACCESO_MEMORIA_LEER] OFFSET MAYOR AL TAMANIO DEL FRAME.  DIR_FISICA: %d%d",
 				  df->nroMarco, df->desplazamientoPagina);
 		return;
@@ -499,7 +503,7 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	pthread_mutex_lock(&mutex_void_memoria_ram);
 	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
 	printf("aLeer%d", *(uint32_t *)aLeer);
-	//	printf("Hola %d", (uint32_t *)memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento);
+	//	printf("Hola %d",  (uint32_t  *)memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento);
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	//*puntero es el contenido
 	//&variable es la direccion
@@ -515,8 +519,8 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	t_marcos_por_proceso *marcosPorProceso = buscarMarcosPorProcesosAccesos(pid);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 	printf("memorialeeeer\n");
-	// pagina = list_get(marcosPorProceso->paginas, nroFrame % configMemoria.marcosPorProceso);
-	// pagina->uso = 1;
+	//  pagina = list_get(marcosPorProceso->paginas, nroFrame % configMemoria.marcosPorProceso);
+	//  pagina->uso = 1;
 
 	for (int i = 0; i < marcosPorProceso->paginas->elements_count; i++)
 	{
@@ -532,9 +536,9 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	/***********************************************/
 	MSJ_INT *mensajeRead = malloc(sizeof(MSJ_INT));
 	mensajeRead->numero = *(uint32_t *)aLeer;
-	printf("casteanding a int: %d \n", mensajeRead->numero);
+	printf("casteanding a int: %d \n",  mensajeRead->numero);
 	enviarMsje(socketAceptado, MEMORIA, mensajeRead, sizeof(MSJ_INT), ACCESO_MEMORIA_LEER);
-	free(mensajeRead);
+	// free(mensajeRead);
 
 	log_debug(logger, "ACCESO_MEMORIA_LEER DIR_FISICA: frame%d offset%d",
 			  df->nroMarco, df->desplazamientoPagina);
@@ -544,7 +548,7 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 {
 	// log_debug(logger,"Acceso a espacio de usuario: “PID: %d - Acción: ESCRIBIR - Dirección física: %d  %d",pid,dirFisica->nroMarco, dirFisica->desplazamientoPagina);
 	// Acceso a Espacio de Usuario
-	log_debug(logger, "Acceso a espacio de usuario: “PID: %d - Acción: ESCRIBIR - Dirección física: %d  %d", pid, dirFisica->nroMarco, dirFisica->desplazamientoPagina);
+	log_debug(loggerMinimo, "Acceso a espacio de usuario: “PID: %d - Acción: ESCRIBIR - Dirección física: %d  %d", pid, dirFisica->nroMarco, dirFisica->desplazamientoPagina);
 
 	log_debug(logger, "[ACCESO_MEMORIA_ESCRIBIR] DIR_FISICA: nroMarco %d offset %d, VALOR: %d",
 			  dirFisica->nroMarco, dirFisica->desplazamientoPagina, valorAEscribir);
@@ -572,7 +576,7 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 	memcpy(memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento, aEscribir, sizeof(uint32_t)); // tercer arg strlen(string_itoa(valorAEscribir))
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	printf("aEscribir%d\n", *aEscribir);
-	// printf("%d", *(uint32_t *)memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento);
+	// printf("%d",  *(uint32_t  *)memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento);
 
 	// busco la pagina que piden y actualizo el bit de modificado porque se hizo write
 	t_pagina *pagina;
@@ -662,15 +666,15 @@ void *conseguir_puntero_al_desplazamiento_memoria(int nro_marco, void *memoriaRA
 
 void asignacionDeMarcos(t_info_remplazo *infoRemplazo, t_marcos_por_proceso *marcosPorProceso)
 {
-	printf("\nentro a asignacion de marcos\n");
+	log_info(logger, "Entro a asignacion de marcos\n");
 	if (chequearCantidadMarcosPorProceso(infoRemplazo))
 	{
-		printf("\nLa cantidad de marcos del proceso es correcta\n");
+		log_info(logger, "La cantidad de marcos del proceso es correcta\n");
 		asignarPaginaAMarco(marcosPorProceso, infoRemplazo);
 	}
 	else
 	{
-		printf("\n entro a los algoritmos de reemplazo\n");
+		log_info(logger, "Entro a los algoritmos de reemplazo\n");
 		implementa_algoritmo_susticion(infoRemplazo);
 		enviarResultado(socketAceptadoKernel, "Algoritmos de reemoplazo realizados correctamente");
 	}
@@ -681,21 +685,27 @@ void algoritmo_reemplazo_clock(t_info_remplazo *infoRemplazo)
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
 	t_marcos_por_proceso *marcosPorProceso = buscarMarcosPorProcesos(infoRemplazo);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
-	printf("\n Estoy en algoritmo clock\n");
+	log_info(logger, "Estoy en algoritmo clock\n");
 	primer_recorrido_paginas_clock(marcosPorProceso, infoRemplazo);
 }
 
 void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoRemplazo)
 {
 
-	printf("\n Estoy en algoritmo clock primer recorrido \n");
-	printf("\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
+log_info(logger, "Estoy en algoritmo clock primer recorrido \n");
+log_info(logger,"\n Marco que llega %d\n", marcosPorProceso->marcoSiguiente);
 	// marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente);
 	// int i = marcosPorProceso->marcoSiguiente;
 	bool encontrado = false;
 	while (!encontrado)
 	{
 		log_debug(logger, "entre a reemplazar");
+
+		//crear las funciones repetidas entre clock y clock modificado y reutilizarlas
+		//hacer un while(pagina->uso!=0) entonces haga todo y despues agregar un chequeo de if para cuando sea el bit de uso 1 y solo actualizarlo a 0 como ya hacemos  
+		log_debug(logger, "entre al for");
+		t_pagina *pagina = list_get(marcosPorProceso->paginas, i);
+		log_info(logger, "Reemplazo - PID: %d", infoRemplazo->PID);
 
 		t_pagina *pagina = list_get(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente);
 		printf("\n marcos por proceso siguiente %d\n", marcosPorProceso->marcoSiguiente);
@@ -732,15 +742,16 @@ void primer_recorrido_paginas_clock(t_marcos_por_proceso *marcosPorProceso, t_in
 			paginaVictima->modificacion = 0;
 			paginaVictima->presencia = 0;
 
-			log_info(logger, "Marco:%d", newPagina->nroMarco);
-			log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, infoRemplazo->idPagina);
-			log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
+			log_info(loggerMinimo, "Marco:%d", newPagina->nroMarco);
+			log_info(loggerMinimo, "Page In: %d | %d ", infoRemplazo->idSegmento, infoRemplazo->idPagina);
+			log_info(loggerMinimo, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
 			// arranca a reemplazar en el marco 1
 		}
 		else if (pagina->uso == 1)
 		{
-			printf("\nAsigne el bit de uso en 0\n");
+			log_info(logger, "Asigne el bit de uso en 0\n");
 			pagina->uso = 0;
+			i++;
 		}
 
 		if (marcosPorProceso->marcoSiguiente < (configMemoria.marcosPorProceso - 1))
@@ -781,24 +792,24 @@ t_pagina *buscarPagina(t_info_remplazo *infoRemplazo)
 {
 	t_list *tablasNewPagina;
 	tablasNewPagina = filtrarPorPIDTabla(infoRemplazo->PID);
-	printf("\ncant de tablas en pcb : %d\n", list_size(tablasNewPagina));
+	log_info(logger, "Cant de tablas en pcb : %d\n", list_size(tablasNewPagina));
 	for (int i = 0; i < list_size(tablasNewPagina); i++)
 	{
-		printf("\nentre al for antes del list_get\n");
+		log_info(logger, "Entre al for antes del list_get\n");
 		t_tabla_paginas *tablaPagina = list_get(tablasNewPagina, i);
-		printf("\nsali del list_get\n");
-		printf("\n tablaPagina = %d", tablaPagina->idTablaPag);
+		log_info(logger, "Sali del list_get\n");
+		log_info(logger, "TablaPagina = %d", tablaPagina->idTablaPag);
 
 		if (tablaPagina->idTablaPag == infoRemplazo->idSegmento)
 		{
-			printf("\nconcuerda el id de la tabla con el segmento, encontramos la tabla!!\n");
+			log_info(logger, "Concuerda el id de la tabla con el segmento, encontramos la tabla!!\n");
 			for (int j = 0; j < list_size(tablaPagina->paginas); j++)
 			{
 				t_pagina *pagina = list_get(tablaPagina->paginas, j);
 
 				if (infoRemplazo->idPagina == pagina->nroPagina)
 				{
-					printf("\nconcuerda el id de la pagina, con la pagina que queriamos encontrar, encontramos la pagina!!\n");
+					log_info(logger, "Concuerda el id de la pagina, con la pagina que queriamos encontrar, encontramos la pagina!!\n");
 					return pagina;
 				}
 			}
@@ -823,7 +834,7 @@ int recorrer_marcos(int marcoSiguiente)
 
 void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 {
-	printf("\n entre a clock modificado\n");
+	log_info(logger, "Entre a clock modificado\n");
 	pthread_mutex_lock(&mutex_lista_marco_por_proceso);
 	t_marcos_por_proceso *marcosPorProceso = buscarMarcosPorProcesos(infoRemplazo);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
@@ -832,27 +843,27 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 
 	while (pagina == NULL)
 	{
-		printf("\n entre a clock modificado while\n");
+		log_info(logger, "Entre a clock modificado while\n");
 		pagina = buscarMarcoSegun(marcosPorProceso, infoRemplazo, 0, 0);
 		if (pagina == NULL)
 		{ // si no encontro pagina en (0-0) cambio uso
 			pagina = buscarMarcoSegun(marcosPorProceso, infoRemplazo, 0, 1);
 		}
 	}
-	printf("\n entre a clock modificado");
+	log_info(logger, "Entre a clock modificado");
 	if (pagina->modificacion == 1)
 	{
 		// Escritura de pagina en Swap
 		escribirEnSwap(pagina->nroMarco, pagina->posicionSwap);
 
-		log_info(logger, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
+		log_info(loggerMinimo, "SWAP OUT -  PID: %d - Marco: %d - Page Out: %d|%d", marcosPorProceso->idPCB, pagina->nroMarco, pagina->nroSegmento, pagina->nroPagina);
 	}
 
 	t_pagina *paginaVictima = list_replace(marcosPorProceso->paginas, marcosPorProceso->marcoSiguiente, pagina);
 
-	log_info(logger, "Marco:%d", paginaVictima->nroMarco);
-	log_info(logger, "Page In: %d | %d ", infoRemplazo->idSegmento, pagina->nroPagina);
-	log_info(logger, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
+	log_info(loggerMinimo, "Marco:%d", paginaVictima->nroMarco);
+	log_info(loggerMinimo, "Page In: %d | %d ", infoRemplazo->idSegmento, pagina->nroPagina);
+	log_info(loggerMinimo, "Page Out: %d | %d ", paginaVictima->nroSegmento, paginaVictima->nroPagina);
 
 	t_pagina *newPagina = buscarPagina(infoRemplazo);
 
@@ -869,7 +880,6 @@ void algoritmo_reemplazo_clock_modificado(t_info_remplazo *infoRemplazo)
 	}
 	else
 	{
-
 		marcosPorProceso->marcoSiguiente = 0;
 	}
 	// marcosPorProceso->marcoSiguiente = recorrer_marcos(marcosPorProceso->marcoSiguiente); // para que el puntero al siguiente siga abanzando
@@ -916,10 +926,10 @@ int buscar_marco_vacio() // devuelve la primera posicion del marco vacio, ver bi
 
 		if (marcoLibre->uso == 0)
 		{
-			printf("\nencontre un marco libre!!\n");
+			log_info(logger, "Encontre un marco libre!!\n");
 			// marcoLibre->nroMarco = i;
 			marcoLibre->uso = 1;
-			printf("\nnroMArco: %d, bit de uso: %d\n", marcoLibre->nroMarco, marcoLibre->uso);
+			log_info(logger, "NroMArco: %d, bit de uso: %d\n", marcoLibre->nroMarco, marcoLibre->uso);
 			return i;
 		}
 	}
@@ -942,10 +952,10 @@ void inicializar_bitmap()
 
 void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo *infoReemplazo)
 {
-	printf("\nentro a asignar marcos por proceso");
+	log_info(logger, "Entro a asignar marcos por proceso");
 	int posicionMarcoLibre = buscar_marco_vacio();
 
-	printf("\nLa posicion del marco libre es: %d\n", posicionMarcoLibre);
+	log_info(logger, "La posicion del marco libre es: %d\n", posicionMarcoLibre);
 
 	t_pagina *pagina = buscarPagina(infoReemplazo);
 
@@ -953,14 +963,14 @@ void asignarPaginaAMarco(t_marcos_por_proceso *marcosPorProceso, t_info_remplazo
 	pagina->uso = 1;
 	pagina->presencia = 1;
 
-	printf("\nEl numero de marco asignado a la pagina es: %d", pagina->nroMarco);
+	log_info(logger, "El numero de marco asignado a la pagina es: %d", pagina->nroMarco);
 
 	agregar_pagina_a_lista_de_paginas_marcos_por_proceso(marcosPorProceso, pagina);
 
 	incrementarMarcoSiguiente(marcosPorProceso);
 
 	enviarResultado(socketAceptadoKernel, " asignacion de marcos realizada correctamente");
-	printf("\nLa cant de pag del pcb %d del marcoPorProceso es: %d\n", marcosPorProceso->idPCB, list_size(marcosPorProceso->paginas));
+	log_info(logger, "La cant de pag del pcb %d del marcoPorProceso es: %d\n", marcosPorProceso->idPCB, list_size(marcosPorProceso->paginas));
 }
 
 void incrementarMarcoSiguiente(t_marcos_por_proceso *marcosPorProceso)
@@ -980,12 +990,12 @@ void implementa_algoritmo_susticion(t_info_remplazo *infoRemplazo)
 	switch (obtenerAlgoritmoSustitucion())
 	{
 	case CLOCK:
-		printf("\nEntrando a algoritmo Clock\n");
+		log_info(logger, "Entrando a algoritmo Clock\n");
 		algoritmo_reemplazo_clock(infoRemplazo);
 		break;
 
 	case CLOCK_MODIFICADO:
-		printf("\nEntrando a algoritmo Clock Modificado\n");
+		log_info(logger, "Entrando a algoritmo Clock Modificado\n");
 		algoritmo_reemplazo_clock_modificado(infoRemplazo);
 		break;
 
@@ -1019,7 +1029,7 @@ void agregar_marco_por_proceso(t_marcos_por_proceso *marcosPorProceso)
 	list_add(LISTA_MARCOS_POR_PROCESOS, marcosPorProceso);
 	pthread_mutex_unlock(&mutex_lista_marco_por_proceso);
 
-	printf("\nLa cantidad de marcos por proceso es: %d", list_size(LISTA_MARCOS_POR_PROCESOS));
+	log_info(logger, "La cantidad de marcos por proceso es: %d", list_size(LISTA_MARCOS_POR_PROCESOS));
 }
 
 void agregar_pagina_a_lista_de_paginas_marcos_por_proceso(t_marcos_por_proceso *marcosPorProceso, t_pagina *pagina)
@@ -1081,7 +1091,7 @@ void eliminarEstructura(t_marcos_por_proceso *marcoAEliminar)
 	{
 		t_pagina *paginaAEliminar = list_remove(marcoAEliminar->paginas, i);
 
-		// free(paginaAEliminar);
+		//  free(paginaAEliminar);
 	}
 	free(marcoAEliminar);
 }

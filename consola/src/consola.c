@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 
 	conexionConsola = crear_conexion(configConsola.ipKernel, configConsola.puertoKernel);
 
-	printf("\nconexion consola %d\n", conexionConsola);
+	log_warning(logger,"\nconexion consola %d\n", conexionConsola);
 
 	// Armamos y enviamos el paquete
 	enviar_paquete(nuevoPaquete, conexionConsola);
@@ -155,7 +155,7 @@ t_list *listaSegmentos()
 
 		uint32_t segmentoResultado = atoi(segmento);
 
-printf("\nsegmento lista:%d\n",segmentoResultado);
+		printf("\nsegmento lista:%d\n",segmentoResultado);
 		list_add(listaDeSegmentos, segmentoResultado);
 	}
 
@@ -178,7 +178,7 @@ void liberar_programa(t_informacion *informacion)
 
 t_paquete *crear_paquete_programa(t_informacion *informacion)
 {
-	printf("\n entro a serializar\n");
+	log_info(logger,"\n entro a serializar\n");
 	t_buffer *buffer = malloc(sizeof(t_buffer));
 	buffer->size = sizeof(uint32_t) * 2 + calcularSizeInfo(informacion) // instrucciones_size
 				   + list_size(informacion->segmentos) * sizeof(uint32_t); // segmentos_size
