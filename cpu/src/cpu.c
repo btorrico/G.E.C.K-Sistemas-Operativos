@@ -839,6 +839,7 @@ void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 
 void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, int pid)
 {
+	
 
 	// REEMPLAZO
 	if (strcmp(TLB->algoritmo, "LRU") == 0)
