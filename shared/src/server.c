@@ -389,13 +389,13 @@ void implementar_feedback()
 	{
 
 		pthread_mutex_unlock(&mutex_lista_ready);
-		printf("\nentrando fifo auxiliar");
+		log_info(loggerMinimo,"Entrando fifo auxiliar");
 		implementar_fifo_auxiliar();
 	}
 	else
 	{
 		pthread_mutex_unlock(&mutex_lista_ready);
-		printf("\nentrando round robin");
+		log_info(loggerMinimo,"Entrando round robin");
 		implementar_rr();
 	}
 }
@@ -404,9 +404,9 @@ void implementar_fifo()
 {
 
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
-	printf("\nAgregando UN pcb a lista exec");
+	log_info(logger,"Agregando UN pcb a lista exec");
 	pasar_a_exec(pcb);
-	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	log_info(logger,"Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
@@ -422,9 +422,9 @@ void implementar_fifo_auxiliar()
 {
 
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY_AUXILIAR);
-	printf("\nAgregando un pcb a lista exec");
+	log_info(logger,"Agregando un pcb a lista exec");
 	pasar_a_exec(pcb);
-	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	log_info(logger,"Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
@@ -445,11 +445,11 @@ void implementar_rr()
 	int hiloTimerCreado = pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
 
 	int detach = pthread_detach(thrTimer);
-	printf("\nse creo el hilo timer correctamente?: %d, %d\n ", hiloTimerCreado, detach);
+	log_info(logger,"se creo el hilo timer correctamente?: %d, %d\n ", hiloTimerCreado, detach);
 	hayTimer = true;
-	printf("\nAgregando UN pcb a lista exec rr");
+	log_info(logger,"Agregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
-	printf("\nCant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	log_info(logger,"Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
@@ -461,33 +461,33 @@ void implementar_rr()
 	sem_post(&sem_timer);
 	sem_post(&sem_pasar_pcb_running);
 
-	printf("\nesperando matar el timer\n");
+	log_info(logger,"Esperando matar el timer\n");
 	sem_wait(&sem_kill_trhread);
 
 	// pthread_cancel(thrTimer);
 
 	if (pthread_cancel(thrTimer) == 0)
 	{
-		printf("Hilo cancelado con exito");
+		log_info(logger,"Hilo cancelado con exito");
 	}
 	else
 	{
-		printf("No mate el hilo");
+		log_info(logger,"No mate el hilo");
 	}
-	printf("\n saliendo de RR\n");
+	log_warning(logger,"saliendo de RR\n");
 }
 
 void hilo_timer()
 {
 	sem_wait(&sem_timer);
-	printf("\nvoy a dormir, soy el timer\n");
+	log_info(logger,"voy a dormir, soy el timer\n");
 	usleep(configKernel.quantum * 1000);
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
-	printf("\nme desperte!\n");
+	log_info(logger,"me desperte!\n");
 	sem_post(&sem_desalojar_pcb);
 
-	printf("\nenvie post desalojar pcb\n");
+	log_info(logger,"envie post desalojar pcb\n");
 }
 
 void serializarValor(uint32_t valorRegistro, int socket, t_tipoMensaje tipoMensaje)

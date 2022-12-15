@@ -150,6 +150,7 @@ typedef struct
 	int nroSegmento;
 	int pid;
 	int ultimaReferencia;
+	int instanteDeCarga; // Instante de carga en memoria
 } entrada_tlb;
 
 typedef struct tlb
@@ -177,6 +178,7 @@ void imprimirModificacionTlb();
 void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, int pid);
 char *calcularHorasMinutosSegundos(int valor);
 int entradaConMenorTiempoDeReferencia();
+int entradaConMenorInstanteDeCarga();
 void *esMenor(void *_unaEntrada, void *_otraEntrada);
 bool coincideMarcoYpid(void *_entrada);
 #endif
