@@ -465,38 +465,6 @@ char *instruccionToString(t_instCode codigoInstruccion)
 	}
 }
 
-/* char *ioToString(t_IO io)
-{
-	switch (io)
-	{
-	case DISCO:
-		return "DISCO";
-		break;
-	case PANTALLA:
-		return "PANTALLA";
-		break;
-	case TECLADO:
-		return "TECLADO";
-		break;
-	case IMPRESORA:
-		return "IMPRESORA";
-		break;
-	case USB:
-		return "USB";
-		break;
-	case WIFI:
-		return "WIFI";
-		break;
-	case AUDIO:
-		return "AUDIO";
-		break;
-
-	default:
-		return "";
-		break;
-	}
-} */
-
 uint32_t matchearRegistro(t_registros registros, t_registro registro)
 {
 	switch (registro)

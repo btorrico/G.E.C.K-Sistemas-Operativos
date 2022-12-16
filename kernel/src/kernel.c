@@ -144,7 +144,12 @@ void conectar_dispatch()
 		{
 		case SEGMENTATION_FAULT:
 		case EXIT_PCB:
-			log_info(logger, "estoy en %d: ", paquete->codigo_operacion);
+			if(paquete->codigo_operacion == 20){
+				log_info(loggerMinimo, "Motivo de finalizacion: Segmentation Fault");
+			}else if(paquete->codigo_operacion == 8){
+				log_info(loggerMinimo, "Motivo de finalizacion: Exit");
+			}
+			
 			pasar_a_exec(pcb);
 			eliminar_pcb();
 			pthread_mutex_lock(&mutex_conexion_memoria);
