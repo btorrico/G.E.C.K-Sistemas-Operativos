@@ -67,21 +67,18 @@ void iniciar_servidor_dispatch()
 		free(paquete->buffer);
 		free(paquete);
 
+		// imprimirInstruccionesYSegmentos(*(pcb->informacion));
 
-		//imprimirInstruccionesYSegmentos(*(pcb->informacion));
-
-		log_info(logger,"se recibio pcb de running de kernel\n");
-
+		log_info(logger, "se recibio pcb de running de kernel\n");
 
 		do
 		{
 			retornePCB = cicloInstruccion(pcb);
 
 			checkInterrupt(pcb, retornePCB);
-			log_info(logger,"retornePCB %d\n", retornePCB);
-		} 
-		while (!interrupciones && !retornePCB);
-		log_info(logger,"Sali del while infinito\n");
+			log_info(logger, "retornePCB %d\n", retornePCB);
+		} while (!interrupciones && !retornePCB);
+		log_info(logger, "Sali del while infinito\n");
 	}
 }
 
@@ -103,7 +100,7 @@ void iniciar_servidor_interrupt()
 		interrupciones = true;
 		free(mensaje);
 	}
-	log_error(logger,"Se desconecto interrupt\n");
+	log_error(logger, "Se desconecto interrupt\n");
 }
 
 void conectar_memoria()
@@ -188,7 +185,7 @@ bool cicloInstruccion(t_pcb *pcb)
 		free(registro);
 		free(registro2);
 		free(io);
-		log_info(logger,"estado de la interrupcion: %d", interrupciones);
+		log_info(logger, "estado de la interrupcion: %d", interrupciones);
 		break;
 
 	case ADD:
@@ -222,11 +219,11 @@ bool cicloInstruccion(t_pcb *pcb)
 		if (dirFisicaMoveIn->nroMarco == -1)
 		{
 			retornePCB = true;
-			log_info(logger,"se envio info a kernel por page fault");
+			log_info(logger, "se envio info a kernel por page fault");
 		}
 		else if (dirFisicaMoveIn->nroMarco == -10)
 		{
-			log_info(logger,"Kernel finaliza el proceso por Segmentation Fault");
+			log_info(logger, "Kernel finaliza el proceso por Segmentation Fault");
 		}
 		else
 		{
@@ -267,18 +264,18 @@ bool cicloInstruccion(t_pcb *pcb)
 		log_debug(logger, "MOV_OUT %d %s", insActual->paramInt, registro);
 
 		uint32_t registroActual = matchearRegistro(pcb->registros, insActual->paramReg[0]);
-		log_info(logger,"%s = %d", registro, registroActual); // devuelve el valor que tiene dentro el registro
+		log_info(logger, "%s = %d", registro, registroActual); // devuelve el valor que tiene dentro el registro
 
 		t_direccionFisica *dirFisicaMoveOut = malloc(sizeof(t_direccionFisica));
 		dirFisicaMoveOut = calcular_direccion_fisica(insActual->paramInt, configCPU.cantidadEntradasPorTabla, configCPU.tamanioPagina, pcb);
 		if (dirFisicaMoveOut->nroMarco == -1)
 		{
 			retornePCB = true;
-			log_info(logger,"se envio info a kernel por page fault");
+			log_info(logger, "se envio info a kernel por page fault");
 		}
 		else if (dirFisicaMoveOut->nroMarco == -10)
 		{
-			log_info(logger,"Kernel finaliza el proceso por Segmentation Fault");
+			log_info(logger, "Kernel finaliza el proceso por Segmentation Fault");
 		}
 		else
 		{
@@ -318,8 +315,8 @@ bool cicloInstruccion(t_pcb *pcb)
 		// pcb->program_counter += 1;
 		if (strcmp(insActual->paramIO, "TECLADO") == 0)
 		{
-			//enviar mensaje a kernel. priero envio el pcb
-			//cargarlos valores del mensaje 
+			// enviar mensaje a kernel. priero envio el pcb
+			// cargarlos valores del mensaje
 			/*t_io_dispositivo* mensajeAKernel;
 			mensajeAKernel->dispositivo;
 			mensajeAKernel->registro;
@@ -327,10 +324,11 @@ bool cicloInstruccion(t_pcb *pcb)
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO_TECLADO);
 			log_debug(logger, "Envie BLOCK al kernel por IO_TECLADO");
 			retornePCB = true;
-		} else if(strcmp(insActual->paramIO, "PANTALLA") == 0)
+		}
+		else if (strcmp(insActual->paramIO, "PANTALLA") == 0)
 		{
-			//enviar mensaje a kernel. priero envio el pcb
-			//cargarlos valores del mensaje 
+			// enviar mensaje a kernel. priero envio el pcb
+			// cargarlos valores del mensaje
 			/*t_io_dispositivo* mensajeAKernel;
 			mensajeAKernel->dispositivo;
 			mensajeAKernel->registro;
@@ -338,9 +336,11 @@ bool cicloInstruccion(t_pcb *pcb)
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_IO_PANTALLA);
 			log_debug(logger, "Envie BLOCK al kernel por IO_PANTALLA");
 			retornePCB = true;
-		} else {
-			//enviar mensaje a kernel , antes enviar el pcb 
-			//cargarlos valores del mensaje 
+		}
+		else
+		{
+			// enviar mensaje a kernel , antes enviar el pcb
+			// cargarlos valores del mensaje
 			/*t_io_dispositivo_kernel* mensajeAKernel;
 			mensajeAKernel->dispositivo;
 			mensajeAKernel->tiempo;
@@ -349,7 +349,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			log_debug(logger, "Envie BLOCK al kernel por IO");
 			retornePCB = true;
 		}
-	
+
 		free(pcb);
 		free(registro);
 		free(registro2);
@@ -365,16 +365,17 @@ bool cicloInstruccion(t_pcb *pcb)
 		free(registro);
 		free(registro2);
 		free(io);
-		log_info(logger,"\nLlegue al retorno: %d\n", retornePCB);
-		
-		if(habilitarTLB ==1 ){
-		limpiar_entradas_TLB();
+		log_info(logger, "\nLlegue al retorno: %d\n", retornePCB);
+
+		if (habilitarTLB == 1)
+		{
+			limpiar_entradas_TLB();
 		}
 		break;
 	default:
 		break;
 	}
-	log_info(logger,"\nretornePCB%d\n", retornePCB);
+	log_info(logger, "\nretornePCB%d\n", retornePCB);
 	return retornePCB;
 }
 
@@ -575,74 +576,76 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	dir_fisica->dl.nroSegmento = numero_segmento;
 
 	t_tabla_segmentos *segmento = list_get(pcb->tablaSegmentos, numero_segmento);
-	//segmento = list_get(pcb->tablaSegmentos, numero_segmento);
-	log_info(logger,"El id del segmento es: %d\n", segmento->id);
+	// segmento = list_get(pcb->tablaSegmentos, numero_segmento);
+	log_info(logger, "El id del segmento es: %d\n", segmento->id);
 
-	log_info(logger,"El id de la tabla es: %d\n", segmento->indiceTablaPaginas);
-	int nroMarco = -1; 
-	if(habilitarTLB == 1){
-		 nroMarco = buscar_en_TLB(numero_pagina, numero_segmento, pcb->id);
-	}
-	
+	log_info(logger, "El id de la tabla es: %d\n", segmento->indiceTablaPaginas);
+	int nroMarco = -1;
+
 	// 1ero Chequear SEGMENTATION FAULT
 	printf(PRINT_COLOR_MAGENTA "Chequeando que no haya SEGMENTATION FAULT \n" PRINT_COLOR_RESET);
-	log_info(logger,"desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
+	log_info(logger, "desplazamiento_Segmento:%d > segmento->tamanio: %d ???\n", desplazamiento_Segmento, segmento->tamanio);
 
 	if (desplazamiento_Segmento >= segmento->tamanio)
 	{ // Uso el tamanio real
 		// Devolvemos el pcb a nuestro bello kernel
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
-		log_debug(loggerMinimo, "Segmentation Fault: Envie de Nuevo el proceso para ser finalizado...");
+		log_debug(loggerMinimo, "SEGMENTATION FAULT: devuelvo el proceso a kernel para ser finalizado...");
 		retornePCB = true;
 		dir_fisica->nroMarco = -10;
 	}
-	else if (nroMarco != -1)
-	{ // significa que La PAGINA ESTA EN LA TLB
-		// Direccion fisica = Numero de marco * tamaño de marco + offset
-		// dirFisica = malloc(sizeof(t_direccionFisica));
-		dir_fisica->nroMarco = nroMarco;
-		dir_fisica->desplazamientoPagina = desplazamiento_pagina;
-	}
-	else if (nroMarco == -1)
-	{ // COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
-
-		int respuestaMemoriaPrimerAcceso = primer_acceso(numero_pagina, segmento->indiceTablaPaginas, pcb->id);
-		if (respuestaMemoriaPrimerAcceso == -1)
-		{ // respuesta PAGE FAULT
-			dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
-			// Devolvemos el pcb a nuestro bello kernel
-			MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensajeAKernelPageFault = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
-			mensajeAKernelPageFault->nro_pagina = numero_pagina;
-			mensajeAKernelPageFault->nro_segmento = numero_segmento;
-			pcb->program_counter--;
-
-			// mensajeAKernelPageFault->pcb =pcb;
-
-			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
-			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
-			// log_debug(logger,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
-			// Page Fault
-			log_debug(loggerMinimo, "Page Fault PID: %d - Segmento: %d - Pagina: %d", pcb->id, numero_segmento, numero_pagina);
-
-			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
-			// free(pcb);
-			free(mensajeAKernelPageFault);
+	else if (habilitarTLB == 1)
+	{
+		nroMarco = buscar_en_TLB(numero_pagina, numero_segmento, pcb->id);
+		if (nroMarco != -1)
+		{ // significa que La PAGINA ESTA EN LA TLB
+			// Direccion fisica = Numero de marco * tamaño de marco + offset
+			// dirFisica = malloc(sizeof(t_direccionFisica));
+			dir_fisica->nroMarco = nroMarco;
+			dir_fisica->desplazamientoPagina = desplazamiento_pagina;
 		}
-		else
-		{
-			dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
-			dir_fisica->desplazamientoPagina = desplazamiento_pagina; // Checkear
+		else if (nroMarco == -1)
+		{ // COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
 
-			log_debug(logger, "El valor del marco es: %d", dir_fisica->nroMarco);
-			log_debug(logger, "El valor del offset es: %d", dir_fisica->desplazamientoPagina);
-			
-			if(habilitarTLB == 1){
-			actualizar_TLB(numero_pagina, dir_fisica->nroMarco, numero_segmento, pcb->id);
+			int respuestaMemoriaPrimerAcceso = primer_acceso(numero_pagina, segmento->indiceTablaPaginas, pcb->id);
+			if (respuestaMemoriaPrimerAcceso == -1)
+			{ // respuesta PAGE FAULT
+				dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
+				// Devolvemos el pcb a nuestro bello kernel
+				MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensajeAKernelPageFault = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
+				mensajeAKernelPageFault->nro_pagina = numero_pagina;
+				mensajeAKernelPageFault->nro_segmento = numero_segmento;
+				pcb->program_counter--;
+
+				// mensajeAKernelPageFault->pcb =pcb;
+
+				serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
+				enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
+				// log_debug(logger,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
+				// Page Fault
+				log_debug(loggerMinimo, "Page Fault PID: %d - Segmento: %d - Pagina: %d", pcb->id, numero_segmento, numero_pagina);
+
+				log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
+				// free(pcb);
+				free(mensajeAKernelPageFault);
+			}
+			else
+			{
+				dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
+				dir_fisica->desplazamientoPagina = desplazamiento_pagina; // Checkear
+
+				log_debug(logger, "El valor del marco es: %d", dir_fisica->nroMarco);
+				log_debug(logger, "El valor del offset es: %d", dir_fisica->desplazamientoPagina);
+
+				if (habilitarTLB == 1)
+				{
+					actualizar_TLB(numero_pagina, dir_fisica->nroMarco, numero_segmento, pcb->id);
+				}
 			}
 		}
-	}
 
-	return dir_fisica;
+		return dir_fisica;
+	}
 }
 
 int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina)
@@ -772,12 +775,12 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 			char *tiempoAnterior = calcularHorasMinutosSegundos(entradaActual->ultimaReferencia);
 			char *instanteDeCarga = calcularHorasMinutosSegundos(entradaActual->instanteDeCarga);
 			log_info(logger, "Referencia anterior:");
-			log_debug(logger, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s , Instante de Carga: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoAnterior,instanteDeCarga);
+			log_debug(logger, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s , Instante de Carga: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoAnterior, instanteDeCarga);
 			log_info(logger, "Referencia nueva:");
 			entradaActual->ultimaReferencia = obtenerMomentoActual();
 			char *tiempoNuevo = calcularHorasMinutosSegundos(entradaActual->ultimaReferencia);
 			log_debug(loggerMinimo, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s, Instante de Carga: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoNuevo, instanteDeCarga);
-			
+
 			log_info(logger, "------------------------------------------------------------------");
 
 			imprimirModificacionTlb();
@@ -803,19 +806,20 @@ int obtenerMomentoActual()
 void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 {
 
-	bool coincideMarcoYpid(void *_entrada){ // Parece funcionar bien, probar con varios casos;
+	bool coincideMarcoYpid(void *_entrada)
+	{ // Parece funcionar bien, probar con varios casos;
 
-		entrada_tlb *entrada = (entrada_tlb*) _entrada;
+		entrada_tlb *entrada = (entrada_tlb *)_entrada;
 		return (entrada->nroFrame == nroFrame && entrada->pid == pid);
 	};
 
-	if (list_find(TLB->entradas, &coincideMarcoYpid)){
-		
-		printf( "---------------------------------------------------------------------------------------------------------------------------------------------------\n");
+	if (list_find(TLB->entradas, &coincideMarcoYpid))
+	{
+
+		printf("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
 		log_info(logger, "El marco %d  del PID: %d ya se encontraba en TLB pero asociado a otra pagina y segmento.\t Borrando entrada desactualizada.", nroFrame, pid);
 		list_remove_and_destroy_by_condition(TLB->entradas, &coincideMarcoYpid, &free);
-
 	}
 
 	if (tlbTieneEntradasLibres())
@@ -835,14 +839,13 @@ void actualizar_TLB(int nroPagina, int nroFrame, int nroSegmento, int pid)
 
 void usarAlgoritmosDeReemplazoTlb(int nroPagina, int nroFrame, int nroSegmento, int pid)
 {
-	
 
 	// REEMPLAZO
 	if (strcmp(TLB->algoritmo, "LRU") == 0)
 	{
 		reemplazo_algoritmo_lru(nroPagina, nroFrame, nroSegmento, pid);
 		printf(PRINT_COLOR_MAGENTA "----------ACTUALIZACION DE TLB----------" PRINT_COLOR_RESET);
-	    entradaConMenorTiempoDeReferencia();
+		entradaConMenorTiempoDeReferencia();
 		imprimirModificacionTlb();
 	}
 	else
@@ -863,14 +866,12 @@ void imprimirModificacionTlb()
 		char *tiempo = calcularHorasMinutosSegundos(entrada->ultimaReferencia);
 		char *instanteDeCarga = calcularHorasMinutosSegundos(entrada->instanteDeCarga);
 
-
-
-		log_debug(loggerMinimo, " %i | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE ULTIMA REFERENCIA: %s | INSTANTE DE CARGA: %s \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina, entrada->nroFrame, tiempo,instanteDeCarga);
+		log_debug(loggerMinimo, " %i | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE ULTIMA REFERENCIA: %s | INSTANTE DE CARGA: %s \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina, entrada->nroFrame, tiempo, instanteDeCarga);
 		free(tiempo);
 		free(instanteDeCarga);
 	}
-	//entradaConMenorTiempoDeReferencia();
-	printf( "--------------------------------------------------------------------------------------------------------------------------------\n");
+	// entradaConMenorTiempoDeReferencia();
+	printf("--------------------------------------------------------------------------------------------------------------------------------\n");
 }
 
 char *calcularHorasMinutosSegundos(int valor)
@@ -887,76 +888,80 @@ char *calcularHorasMinutosSegundos(int valor)
 
 int entradaConMenorTiempoDeReferencia()
 {
-	void *esMenor(void *_unaEntrada, void *_otraEntrada){
+	void *esMenor(void *_unaEntrada, void *_otraEntrada)
+	{
 
-		entrada_tlb *unaEntrada = (entrada_tlb*) _unaEntrada;
-		entrada_tlb *otraEntrada = (entrada_tlb*) _otraEntrada;
+		entrada_tlb *unaEntrada = (entrada_tlb *)_unaEntrada;
+		entrada_tlb *otraEntrada = (entrada_tlb *)_otraEntrada;
 
 		if (unaEntrada->ultimaReferencia <= otraEntrada->ultimaReferencia)
 		{
 
 			return unaEntrada;
 		}
-		else{
+		else
+		{
 
 			return otraEntrada;
-			}
+		}
 	}
 
 	entrada_tlb *entradaVictima = list_get_minimum(TLB->entradas, &esMenor);
 
 	char *tiempo = calcularHorasMinutosSegundos(entradaVictima->ultimaReferencia);
-	
+
 	int posicion;
 
-	for(int i=0; i < configCPU.entradasTLB;i++ ){
-		entrada_tlb* entradaAuxiliar = list_get(TLB->entradas,i);
-		
-		if(entradaVictima->pid == entradaAuxiliar->pid && entradaVictima->nroSegmento == entradaAuxiliar->nroSegmento && entradaVictima->nroPagina == entradaAuxiliar->nroPagina && entradaVictima->nroFrame == entradaAuxiliar->nroFrame){
+	for (int i = 0; i < configCPU.entradasTLB; i++)
+	{
+		entrada_tlb *entradaAuxiliar = list_get(TLB->entradas, i);
+
+		if (entradaVictima->pid == entradaAuxiliar->pid && entradaVictima->nroSegmento == entradaAuxiliar->nroSegmento && entradaVictima->nroPagina == entradaAuxiliar->nroPagina && entradaVictima->nroFrame == entradaAuxiliar->nroFrame)
+		{
 			posicion = i;
 			break;
 		}
-
 	}
 	printf(PRINT_COLOR_MAGENTA "ENTRADA VICTIMA:PID Entrada con menor tiempo de referencia: %d, Tiempo De Referencia: %s\n" PRINT_COLOR_RESET, entradaVictima->pid, tiempo);
 	free(tiempo);
 	return posicion;
 }
 
-
-
 int entradaConMenorInstanteDeCarga()
 {
-	void *esMenor(void *_unaEntrada, void *_otraEntrada){
+	void *esMenor(void *_unaEntrada, void *_otraEntrada)
+	{
 
-		entrada_tlb *unaEntrada = (entrada_tlb*) _unaEntrada;
-		entrada_tlb *otraEntrada = (entrada_tlb*) _otraEntrada;
+		entrada_tlb *unaEntrada = (entrada_tlb *)_unaEntrada;
+		entrada_tlb *otraEntrada = (entrada_tlb *)_otraEntrada;
 
-		if (unaEntrada->instanteDeCarga<= otraEntrada->instanteDeCarga)
+		if (unaEntrada->instanteDeCarga <= otraEntrada->instanteDeCarga)
 		{
 
 			return unaEntrada;
 		}
-		else{
+		else
+		{
 
 			return otraEntrada;
-			}
+		}
 	}
 
 	entrada_tlb *entradaVictima = list_get_minimum(TLB->entradas, &esMenor);
 
 	char *tiempo = calcularHorasMinutosSegundos(entradaVictima->instanteDeCarga);
-	
+
 	int posicion;
 
-	for(int i=0; i < configCPU.entradasTLB;i++ ){
-		entrada_tlb* entradaAuxiliar = list_get(TLB->entradas,i);
-		
-		if(entradaVictima->pid == entradaAuxiliar->pid && entradaVictima->nroSegmento == entradaAuxiliar->nroSegmento && entradaVictima->nroPagina == entradaAuxiliar->nroPagina && entradaVictima->nroFrame == entradaAuxiliar->nroFrame){
+	for (int i = 0; i < configCPU.entradasTLB; i++)
+	{
+		entrada_tlb *entradaAuxiliar = list_get(TLB->entradas, i);
+
+		if (entradaVictima->pid == entradaAuxiliar->pid && entradaVictima->nroSegmento == entradaAuxiliar->nroSegmento && entradaVictima->nroPagina == entradaAuxiliar->nroPagina && entradaVictima->nroFrame == entradaAuxiliar->nroFrame)
+		{
 			posicion = i;
 			break;
 		}
-
 	}
 	printf(PRINT_COLOR_MAGENTA "ENTRADA VICTIMA:PID Entrada con menor tiempo de carga: %d, Tiempo De Carga: %s\n" PRINT_COLOR_RESET, entradaVictima->pid, tiempo);
 	free(tiempo);
@@ -976,21 +981,18 @@ void reemplazo_algoritmo_lru(int nroPagina, int nroFrame, int nroSegmento, int p
 	nuevaEntrada->nroSegmento = nroSegmento;
 	nuevaEntrada->pid = pid;
 	nuevaEntrada->ultimaReferencia = obtenerMomentoActual();
-	nuevaEntrada->instanteDeCarga =obtenerMomentoActual();
- 	
-	entrada_tlb * entradaVictima = list_replace(TLB->entradas,posicionVictima,nuevaEntrada);
+	nuevaEntrada->instanteDeCarga = obtenerMomentoActual();
+
+	entrada_tlb *entradaVictima = list_replace(TLB->entradas, posicionVictima, nuevaEntrada);
 
 	char *tiempoVictima = calcularHorasMinutosSegundos(entradaVictima->ultimaReferencia);
 	char *tiempoNuevo = calcularHorasMinutosSegundos(nuevaEntrada->ultimaReferencia);
-	//log_warning(logger, "Reemplaza pagina: %d por nueva pagina %d", entradaVictima->nroPagina, nuevaEntrada->nroPagina);
+	// log_warning(logger, "Reemplaza pagina: %d por nueva pagina %d", entradaVictima->nroPagina, nuevaEntrada->nroPagina);
 
-	log_warning(logger, "Entrada anterior: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO: %s\n",entradaVictima->pid, entradaVictima->nroSegmento,entradaVictima->nroPagina, entradaVictima->nroFrame, tiempoVictima);
-	log_warning(logger, "Entrada nueva: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO: %s\n ", nuevaEntrada->pid, nuevaEntrada->nroSegmento,nuevaEntrada->nroPagina, nuevaEntrada->nroFrame, tiempoNuevo);
+	log_warning(logger, "Entrada anterior: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO: %s\n", entradaVictima->pid, entradaVictima->nroSegmento, entradaVictima->nroPagina, entradaVictima->nroFrame, tiempoVictima);
+	log_warning(logger, "Entrada nueva: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO: %s\n ", nuevaEntrada->pid, nuevaEntrada->nroSegmento, nuevaEntrada->nroPagina, nuevaEntrada->nroFrame, tiempoNuevo);
 
-	//entradaVictima = list_remove(TLB->entradas, entradaVictima);
-
-
-
+	// entradaVictima = list_remove(TLB->entradas, entradaVictima);
 }
 
 void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int pid)
@@ -1006,22 +1008,22 @@ void reemplazo_algoritmo_fifo(int nroPagina, int nroFrame, int nroSegmento, int 
 	entradaNueva->ultimaReferencia = obtenerMomentoActual();
 	entradaNueva->instanteDeCarga = obtenerMomentoActual();
 
-	entrada_tlb * entradaVictima = list_replace(TLB->entradas,posicionVictima,entradaNueva); // Selecciono la primer entrada de la lista de entradas
+	entrada_tlb *entradaVictima = list_replace(TLB->entradas, posicionVictima, entradaNueva); // Selecciono la primer entrada de la lista de entradas
 
-	//log_warning(logger, "Reemplazo de pagina: %d por nueva pagina %d", entradaAReemplazar->nroPagina, entradaNueva->nroPagina);
-	//printf(PRINT_COLOR_YELLOW "Reemplazo de pagina: %d por nueva pagina %d" PRINT_COLOR_RESET, entradaAReemplazar->nroPagina, entradaNueva->nroPagina);
-	
+	// log_warning(logger, "Reemplazo de pagina: %d por nueva pagina %d", entradaAReemplazar->nroPagina, entradaNueva->nroPagina);
+	// printf(PRINT_COLOR_YELLOW "Reemplazo de pagina: %d por nueva pagina %d" PRINT_COLOR_RESET, entradaAReemplazar->nroPagina, entradaNueva->nroPagina);
+
 	char *tiempoVictima = calcularHorasMinutosSegundos(entradaVictima->ultimaReferencia);
 	char *tiempoNuevo = calcularHorasMinutosSegundos(entradaNueva->ultimaReferencia);
 	char *instanteVictima = calcularHorasMinutosSegundos(entradaVictima->instanteDeCarga);
 	char *instanteNuevo = calcularHorasMinutosSegundos(entradaNueva->instanteDeCarga);
-	
-	log_warning(logger, "Entrada anterior: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE REFERENCIA: %s | INSTANTE DE CARGA: %s \n",entradaVictima->pid, entradaVictima->nroSegmento,entradaVictima->nroPagina, entradaVictima->nroFrame, tiempoVictima, instanteVictima);
-	log_warning(logger, "Entrada nueva: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE REFERENCIA: %s | INSTANTE DE CARGA: %s\n ", entradaNueva->pid, entradaNueva->nroSegmento,entradaNueva->nroPagina, entradaNueva->nroFrame, tiempoNuevo, instanteNuevo);
-	
-	//list_remove(TLB->entradas, 0);					   // Elimino la entrada victima
-	//list_add_in_index(TLB->entradas, 0, entradaNueva); // Agrego la nueva entrada en la primera posicion de la lista
-	//free(entradaAReemplazar);
+
+	log_warning(logger, "Entrada anterior: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE REFERENCIA: %s | INSTANTE DE CARGA: %s \n", entradaVictima->pid, entradaVictima->nroSegmento, entradaVictima->nroPagina, entradaVictima->nroFrame, tiempoVictima, instanteVictima);
+	log_warning(logger, "Entrada nueva: | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE REFERENCIA: %s | INSTANTE DE CARGA: %s\n ", entradaNueva->pid, entradaNueva->nroSegmento, entradaNueva->nroPagina, entradaNueva->nroFrame, tiempoNuevo, instanteNuevo);
+
+	// list_remove(TLB->entradas, 0);					   // Elimino la entrada victima
+	// list_add_in_index(TLB->entradas, 0, entradaNueva); // Agrego la nueva entrada en la primera posicion de la lista
+	// free(entradaAReemplazar);
 }
 
 // Freedoooom(?
