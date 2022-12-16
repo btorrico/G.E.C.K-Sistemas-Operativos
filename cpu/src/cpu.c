@@ -4,7 +4,7 @@ int main(char argc, char **argv)
 {
 
 	logger = iniciar_logger("cpu.log", "CPU", LOG_LEVEL_DEBUG);
-	loggerMinimo = iniciar_logger("cpuLoggsObligatorios.log", "CPU", LOG_LEVEL_DEBUG);
+	loggerMinimo = iniciar_logger("cpuLoggsObligatorios.log", "CPU", LOG_LEVEL_INFO);
 
 	config = iniciar_config("cpu.config");
 
@@ -167,7 +167,7 @@ bool cicloInstruccion(t_pcb *pcb)
 	string_append(&registro2, registroToString(insActual->paramReg[1]));
 
 	// Instruccion Ejecutada
-	log_debug(loggerMinimo, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %s %i'",
+	log_info(loggerMinimo, "Instrucción Ejecutada: PID:  %i - Ejecutando: %s %s %s %s %i",
 			  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio
 	free(instruccion);
 
@@ -233,7 +233,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
 			mensajeAMemoriaLeer->pid = pcb->id;
 			enviarMsje(conexion, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_LEER);
-			log_debug(loggerMinimo, "Acceso Memoria: PID: %d - Acción: LEER - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d", pcb->id, dirFisicaMoveIn->dl.nroSegmento, dirFisicaMoveIn->dl.nroPagina, mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
+			log_info(loggerMinimo, "Acceso Memoria: PID: %d - Acción: LEER - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d", pcb->id, dirFisicaMoveIn->dl.nroSegmento, dirFisicaMoveIn->dl.nroPagina, mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 			log_debug(logger, "Envie direccion fisica a memoria: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
 			t_paqt paqueteMemoria;
@@ -291,7 +291,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			log_debug(logger, "valor a escribir = %i", registroActual);
 
 			enviarMsje(conexion, CPU, mensajeAMemoriaEscribir, sizeof(MSJ_MEMORIA_CPU_ESCRIBIR), ACCESO_MEMORIA_ESCRIBIR);
-			log_debug(loggerMinimo, "Acceso Memoria: PID: %d - Acción: ESCRIBIR - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d", pcb->id, dirFisicaMoveOut->dl.nroSegmento, dirFisicaMoveOut->dl.nroPagina, mensajeAMemoriaEscribir->nroMarco, mensajeAMemoriaEscribir->desplazamiento);
+			log_info(loggerMinimo, "Acceso Memoria: PID: %d - Acción: ESCRIBIR - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d", pcb->id, dirFisicaMoveOut->dl.nroSegmento, dirFisicaMoveOut->dl.nroPagina, mensajeAMemoriaEscribir->nroMarco, mensajeAMemoriaEscribir->desplazamiento);
 
 			t_paqt paqueteMemoriaWrite;
 			recibirMsje(conexion, &paqueteMemoriaWrite);
@@ -590,63 +590,66 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	{ // Uso el tamanio real
 		// Devolvemos el pcb a nuestro bello kernel
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
-		log_debug(loggerMinimo, "SEGMENTATION FAULT: devuelvo el proceso a kernel para ser finalizado...");
+		log_info(loggerMinimo, "SEGMENTATION FAULT: devuelvo el proceso a kernel para ser finalizado...");
 		retornePCB = true;
 		dir_fisica->nroMarco = -10;
 	}
-	else if (habilitarTLB == 1)
+
+	if (habilitarTLB == 1)
 	{
 		nroMarco = buscar_en_TLB(numero_pagina, numero_segmento, pcb->id);
-		if (nroMarco != -1)
-		{ // significa que La PAGINA ESTA EN LA TLB
-			// Direccion fisica = Numero de marco * tamaño de marco + offset
-			// dirFisica = malloc(sizeof(t_direccionFisica));
-			dir_fisica->nroMarco = nroMarco;
-			dir_fisica->desplazamientoPagina = desplazamiento_pagina;
-		}
-		else if (nroMarco == -1)
-		{ // COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
-
-			int respuestaMemoriaPrimerAcceso = primer_acceso(numero_pagina, segmento->indiceTablaPaginas, pcb->id);
-			if (respuestaMemoriaPrimerAcceso == -1)
-			{ // respuesta PAGE FAULT
-				dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
-				// Devolvemos el pcb a nuestro bello kernel
-				MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensajeAKernelPageFault = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
-				mensajeAKernelPageFault->nro_pagina = numero_pagina;
-				mensajeAKernelPageFault->nro_segmento = numero_segmento;
-				pcb->program_counter--;
-
-				// mensajeAKernelPageFault->pcb =pcb;
-
-				serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
-				enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
-				// log_debug(logger,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
-				// Page Fault
-				log_debug(loggerMinimo, "Page Fault PID: %d - Segmento: %d - Pagina: %d", pcb->id, numero_segmento, numero_pagina);
-
-				log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
-				// free(pcb);
-				free(mensajeAKernelPageFault);
-			}
-			else
-			{
-				dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
-				dir_fisica->desplazamientoPagina = desplazamiento_pagina; // Checkear
-
-				log_debug(logger, "El valor del marco es: %d", dir_fisica->nroMarco);
-				log_debug(logger, "El valor del offset es: %d", dir_fisica->desplazamientoPagina);
-
-				if (habilitarTLB == 1)
-				{
-					actualizar_TLB(numero_pagina, dir_fisica->nroMarco, numero_segmento, pcb->id);
-				}
-			}
-		}
-
-		return dir_fisica;
 	}
+
+	if (nroMarco != -1)
+	{ // significa que La PAGINA ESTA EN LA TLB
+		// Direccion fisica = Numero de marco * tamaño de marco + offset
+		// dirFisica = malloc(sizeof(t_direccionFisica));
+		dir_fisica->nroMarco = nroMarco;
+		dir_fisica->desplazamientoPagina = desplazamiento_pagina;
+	}
+	else if (nroMarco == -1)
+	{ // COMO LA PAG NO ESTA EN LA TLB, TRADUCIR DIR CON MMU -> TLB MISS
+
+		int respuestaMemoriaPrimerAcceso = primer_acceso(numero_pagina, segmento->indiceTablaPaginas, pcb->id);
+		if (respuestaMemoriaPrimerAcceso == -1)
+		{ // respuesta PAGE FAULT
+			dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
+			// Devolvemos el pcb a nuestro bello kernel
+			MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensajeAKernelPageFault = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
+			mensajeAKernelPageFault->nro_pagina = numero_pagina;
+			mensajeAKernelPageFault->nro_segmento = numero_segmento;
+			pcb->program_counter--;
+
+			// mensajeAKernelPageFault->pcb =pcb;
+
+			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
+			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
+			// log_debug(logger,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
+			// Page Fault
+			log_info(loggerMinimo, "Page Fault PID: %d - Segmento: %d - Pagina: %d", pcb->id, numero_segmento, numero_pagina);
+
+			log_debug(logger, "Envie de Nuevo el proceso a Kernel sin actualizar Program Counter (para bloquear por PAGE FAULT)");
+			// free(pcb);
+			free(mensajeAKernelPageFault);
+		}
+		else
+		{
+			dir_fisica->nroMarco = respuestaMemoriaPrimerAcceso;
+			dir_fisica->desplazamientoPagina = desplazamiento_pagina; // Checkear
+
+			log_debug(logger, "El valor del marco es: %d", dir_fisica->nroMarco);
+			log_debug(logger, "El valor del offset es: %d", dir_fisica->desplazamientoPagina);
+
+			if (habilitarTLB == 1)
+			{
+				actualizar_TLB(numero_pagina, dir_fisica->nroMarco, numero_segmento, pcb->id);
+			}
+		}
+	}
+
+	return dir_fisica;
 }
+
 
 int tamanioMaximoPorSegmento(int cant_entradas_por_tabla, int tam_pagina)
 {
@@ -766,7 +769,7 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 
 			// log_debug(logger, "TLB Hit: PID: %i - TLB HIT - Segmento: %i - Pagina: %i \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina);
 			// Tlb Hit
-			log_debug(loggerMinimo, "TLB Hit: PID: %i - TLB HIT - Segmento: %i - Pagina: %i \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina);
+			log_info(loggerMinimo, "TLB Hit: PID: %i - TLB HIT - Segmento: %i - Pagina: %i \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina);
 
 			printf(PRINT_COLOR_MAGENTA "TLB Hit: PID: %d TLB HIT - Segmento: %d - Pagina: %d - Frame: %d \n" PRINT_COLOR_RESET, entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, entradaActual->nroFrame);
 
@@ -779,7 +782,7 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 			log_info(logger, "Referencia nueva:");
 			entradaActual->ultimaReferencia = obtenerMomentoActual();
 			char *tiempoNuevo = calcularHorasMinutosSegundos(entradaActual->ultimaReferencia);
-			log_debug(loggerMinimo, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s, Instante de Carga: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoNuevo, instanteDeCarga);
+			log_info(loggerMinimo, "PID: %i - TLB HIT - Segmento: %i - Pagina: %i, Tiempo de Referencia: %s, Instante de Carga: %s \n", entradaActual->pid, entradaActual->nroSegmento, entradaActual->nroPagina, tiempoNuevo, instanteDeCarga);
 
 			log_info(logger, "------------------------------------------------------------------");
 
@@ -793,7 +796,7 @@ int buscar_en_TLB(int nroPagina, int nroSegmento, int pid)
 
 	log_debug(logger, "TLB MISS - pagina no encontrada en TLB\n");
 
-	log_debug(loggerMinimo, "TLB Miss: PID: %i - TLB MISS - Segmento: %i - Pagina: %i \n", pid, nroSegmento, nroPagina);
+	log_info(loggerMinimo, "TLB Miss: PID: %i - TLB MISS - Segmento: %i - Pagina: %i \n", pid, nroSegmento, nroPagina);
 
 	return -1;
 }
@@ -866,7 +869,7 @@ void imprimirModificacionTlb()
 		char *tiempo = calcularHorasMinutosSegundos(entrada->ultimaReferencia);
 		char *instanteDeCarga = calcularHorasMinutosSegundos(entrada->instanteDeCarga);
 
-		log_debug(loggerMinimo, " %i | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE ULTIMA REFERENCIA: %s | INSTANTE DE CARGA: %s \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina, entrada->nroFrame, tiempo, instanteDeCarga);
+		log_info(loggerMinimo, " %i | PID: %i | SEGMENTO: %i | PAGINA: %i  | MARCO: %i | TIEMPO DE ULTIMA REFERENCIA: %s | INSTANTE DE CARGA: %s \n", i, entrada->pid, entrada->nroSegmento, entrada->nroPagina, entrada->nroFrame, tiempo, instanteDeCarga);
 		free(tiempo);
 		free(instanteDeCarga);
 	}

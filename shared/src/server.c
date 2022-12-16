@@ -106,18 +106,18 @@ t_informacion recibir_informacion(cliente_fd)
 	{
 		instruccion = malloc(sizeof(t_instruccion));
 
-		memcpy(&instruccion->instCode,buffer + offset, sizeof(t_instCode));
+		memcpy(&instruccion->instCode, buffer + offset, sizeof(t_instCode));
 		offset += sizeof(t_instCode);
-		memcpy(&instruccion->paramInt,buffer + offset, sizeof(uint32_t));
+		memcpy(&instruccion->paramInt, buffer + offset, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 		memcpy(&instruccion->sizeParamIO, buffer + offset, sizeof(uint32_t));
 		offset += sizeof(uint32_t);
 		instruccion->paramIO = malloc(instruccion->sizeParamIO);
-		memcpy(instruccion->paramIO,buffer + offset, instruccion->sizeParamIO);
+		memcpy(instruccion->paramIO, buffer + offset, instruccion->sizeParamIO);
 		offset += instruccion->sizeParamIO;
-		memcpy(&instruccion->paramReg[0],buffer + offset, sizeof(t_registro));
+		memcpy(&instruccion->paramReg[0], buffer + offset, sizeof(t_registro));
 		offset += sizeof(t_registro);
-		memcpy(&instruccion->paramReg[1],buffer + offset , sizeof(t_registro));
+		memcpy(&instruccion->paramReg[1], buffer + offset, sizeof(t_registro));
 		offset += sizeof(t_registro);
 
 		list_add(programa.instrucciones, instruccion);
@@ -133,7 +133,7 @@ t_informacion recibir_informacion(cliente_fd)
 		l++;
 	}
 
-	//imprimirInstruccionesYSegmentos(programa);
+	// imprimirInstruccionesYSegmentos(programa);
 	free(buffer);
 
 	return programa;
@@ -149,19 +149,18 @@ void pasar_a_new(t_pcb *pcb)
 {
 	pthread_mutex_lock(&mutex_lista_new);
 	list_add(LISTA_NEW, pcb);
-	pthread_mutex_unlock(&mutex_lista_new); 
-printf("\ninstrucciones en new\n");
-//imprimirInstruccionesYSegmentos(*(pcb->informacion));
+	pthread_mutex_unlock(&mutex_lista_new);
+	printf("\ninstrucciones en new\n");
+	// imprimirInstruccionesYSegmentos(*(pcb->informacion));
 
-printf("\n imprimo todas las intrucciones y segmentos de todos los pcb en lista new\n");
+	printf("\n imprimo todas las intrucciones y segmentos de todos los pcb en lista new\n");
 	for (size_t i = 0; i < list_size(LISTA_NEW); i++)
 	{
 		t_pcb *pcb = list_get(LISTA_NEW, i);
-		printf("\nposicion pcb %d\n tamanio segmentos %d", i,list_size(pcb->informacion->segmentos));
-		//imprimirInstruccionesYSegmentos(*(pcb->informacion));
-		
+		printf("\nposicion pcb %d\n tamanio segmentos %d", i, list_size(pcb->informacion->segmentos));
+		// imprimirInstruccionesYSegmentos(*(pcb->informacion));
 	}
-	
+
 	log_debug(logger, "Paso a NEW el proceso %d", pcb->id);
 }
 
@@ -171,7 +170,7 @@ void pasar_a_ready(t_pcb *pcb)
 	list_add(LISTA_READY, pcb);
 	pthread_mutex_unlock(&mutex_lista_ready);
 	printf("\ninstrucciones en ready\n");
-//imprimirInstruccionesYSegmentos(*(pcb->informacion));
+	// imprimirInstruccionesYSegmentos(*(pcb->informacion));
 	log_debug(logger, "Paso a READY el proceso %d", pcb->id);
 }
 
@@ -310,7 +309,7 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_conexion_memoria, NULL);
 
 	pthread_mutex_init(&mutex_lista_blocked, NULL);
-	
+
 	pthread_mutex_init(&mutex_lista_ready_auxiliar, NULL);
 	pthread_mutex_init(&mutex_creacion_ID_tabla, NULL);
 	pthread_mutex_init(&mutex_lista_tabla_paginas, NULL);
@@ -319,8 +318,6 @@ void iniciar_listas_y_semaforos()
 	pthread_mutex_init(&mutex_lista_pagina_marco_por_proceso, NULL);
 	pthread_mutex_init(&mutex_lista_marco_por_proceso, NULL);
 	pthread_mutex_init(&mutex_lista_marcos_por_proceso_pagina, NULL);
-	
-	
 
 	// semaforos
 	sem_init(&sem_ready, 0, 0);
@@ -350,6 +347,14 @@ void iteratorInt(int value)
 {
 
 	log_info(logger, "Segmento = %d", value);
+}
+void cargarListaReadyIdPCB(t_list *listaReady)
+{
+	for (int i = 0; i < list_size(listaReady); i++)
+	{
+		t_pcb *pcb = list_get(listaReady, i);
+		log_info(loggerMinimo, "Cola ready %s: [%d]", configKernel.algoritmo, pcb->id);
+	}
 }
 
 t_tipo_algoritmo obtenerAlgoritmo()
@@ -389,13 +394,15 @@ void implementar_feedback()
 	{
 
 		pthread_mutex_unlock(&mutex_lista_ready);
-		log_info(loggerMinimo,"Entrando fifo auxiliar");
+		// log_info(loggerMinimo,"Entrando fifo auxiliar");
+		cargarListaReadyIdPCB(LISTA_READY_AUXILIAR);
 		implementar_fifo_auxiliar();
 	}
 	else
 	{
 		pthread_mutex_unlock(&mutex_lista_ready);
-		log_info(loggerMinimo,"Entrando round robin");
+		// log_info(loggerMinimo,"Entrando round robin");
+		cargarListaReadyIdPCB(LISTA_READY);
 		implementar_rr();
 	}
 }
@@ -404,16 +411,15 @@ void implementar_fifo()
 {
 
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
-	log_info(logger,"Agregando UN pcb a lista exec");
+	log_info(logger, "Agregando UN pcb a lista exec");
 	pasar_a_exec(pcb);
-	log_info(logger,"Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
-	//Cambio de estado
-	log_debug(logger, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
-
+	// Cambio de estado
+	log_info(loggerMinimo, "Cambio de Estado: PID %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
 
 	sem_post(&sem_pasar_pcb_running);
 }
@@ -422,16 +428,16 @@ void implementar_fifo_auxiliar()
 {
 
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY_AUXILIAR);
-	log_info(logger,"Agregando un pcb a lista exec");
+	log_info(logger, "Agregando un pcb a lista exec");
 	pasar_a_exec(pcb);
-	log_info(logger,"Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
-	//Cambio de estado
-	log_debug(logger, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
+	// Cambio de estado
 
+	log_info(loggerMinimo, "Cambio de Estado: PID %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
 
 	sem_post(&sem_pasar_pcb_running);
 }
@@ -445,49 +451,48 @@ void implementar_rr()
 	int hiloTimerCreado = pthread_create(&thrTimer, NULL, (void *)hilo_timer, NULL);
 
 	int detach = pthread_detach(thrTimer);
-	log_info(logger,"se creo el hilo timer correctamente?: %d, %d\n ", hiloTimerCreado, detach);
+	log_info(logger, "se creo el hilo timer correctamente?: %d, %d\n ", hiloTimerCreado, detach);
 	hayTimer = true;
-	log_info(logger,"Agregando UN pcb a lista exec rr");
+	log_info(logger, "Agregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
-	log_info(logger,"Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
 
-	//Cambio de estado
-	log_debug(logger, "PID: %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
-
+	// Cambio de estado
+	log_info(loggerMinimo, "Cambio de Estado: PID %d - Estado Anterior: READY , Estado Actual: EXEC", pcb->id);
 
 	sem_post(&sem_timer);
 	sem_post(&sem_pasar_pcb_running);
 
-	log_info(logger,"Esperando matar el timer\n");
+	log_info(logger, "Esperando matar el timer\n");
 	sem_wait(&sem_kill_trhread);
 
 	// pthread_cancel(thrTimer);
 
 	if (pthread_cancel(thrTimer) == 0)
 	{
-		log_info(logger,"Hilo cancelado con exito");
+		log_info(logger, "Hilo cancelado con exito");
 	}
 	else
 	{
-		log_info(logger,"No mate el hilo");
+		log_info(logger, "No mate el hilo");
 	}
-	log_warning(logger,"saliendo de RR\n");
+	log_warning(logger, "saliendo de RR\n");
 }
 
 void hilo_timer()
 {
 	sem_wait(&sem_timer);
-	log_info(logger,"voy a dormir, soy el timer\n");
+	log_info(logger, "voy a dormir, soy el timer\n");
 	usleep(configKernel.quantum * 1000);
 	pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
 
-	log_info(logger,"me desperte!\n");
+	log_info(logger, "me desperte!\n");
 	sem_post(&sem_desalojar_pcb);
 
-	log_info(logger,"envie post desalojar pcb\n");
+	log_info(logger, "envie post desalojar pcb\n");
 }
 
 void serializarValor(uint32_t valorRegistro, int socket, t_tipoMensaje tipoMensaje)

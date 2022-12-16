@@ -38,7 +38,7 @@ void planifLargoPlazo();
 void planifCortoPlazo();
 void agregar_pcb();
 void eliminar_pcb();
-void cargarListaReadyIdPCB(t_list*);
+
 void agregar_a_lista_blokeados(t_dispositivo *, t_pcb*);
 t_dispositivo* buscarDispositivoBlocked(char* );
 typedef struct

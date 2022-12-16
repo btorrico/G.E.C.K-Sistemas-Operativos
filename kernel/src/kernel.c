@@ -62,7 +62,7 @@ void crear_hilo_consola()
 	while (1)
 	{
 		pthread_t hilo_atender_consola;
-		t_args_pcb* argumentos = malloc(sizeof(t_args_pcb));
+		t_args_pcb *argumentos = malloc(sizeof(t_args_pcb));
 		// esto se podria cambiar como int* cliente_fd= malloc(sizeof(int)); si lo ponemos, va antes del while
 		argumentos->socketCliente = esperar_cliente(server_fd);
 
@@ -107,26 +107,26 @@ void conectar_dispatch()
 		//  de los del kernel tambien el tiempo de ejecucion
 
 		sem_wait(&sem_pasar_pcb_running);
-		log_info(logger,"Llego un pcb a dispatch");
+		log_info(logger, "Llego un pcb a dispatch");
 		pthread_mutex_lock(&mutex_lista_blocked_audio);
 
 		serializarPCB(conexionDispatch, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
 		pthread_mutex_unlock(&mutex_lista_blocked_audio);
 
-		log_info(logger,"Se envio pcb a cpu\n");
+		log_info(logger, "Se envio pcb a cpu\n");
 		void *pcbAEliminar = list_remove(LISTA_EXEC, 0);
 		free(pcbAEliminar);
-		log_info(logger,"Cantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
+		log_info(logger, "Cantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
 
 		// Recibir PCB
 		pthread_mutex_lock(&mutex_lista_blocked_audio);
 		t_paqueteActual *paquete = recibirPaquete(conexionDispatch);
 		pthread_mutex_unlock(&mutex_lista_blocked_audio);
-		log_info(logger,"Recibi de nuevo el pcb\n");
-		log_info(logger,"estoy en %d: ", paquete->codigo_operacion);
+		log_info(logger, "Recibi de nuevo el pcb\n");
+		log_info(logger, "estoy en %d: ", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
-		log_info(logger,"estoy en %d: ", paquete->codigo_operacion);
-		log_info(logger,"Id proceso nuevo que llego de cpu: %d", pcb->id);
+		log_info(logger, "estoy en %d: ", paquete->codigo_operacion);
+		log_info(logger, "Id proceso nuevo que llego de cpu: %d", pcb->id);
 
 		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter - 1);
 		// printf("\n dispositivo %s" , dispositivoToString(insActual->paramIO));
@@ -135,7 +135,7 @@ void conectar_dispatch()
 
 		if (hayTimer == true)
 		{
-			log_info(logger,"sempostkilltrhread\n");
+			log_info(logger, "sempostkilltrhread\n");
 			sem_post(&sem_kill_trhread);
 			hayTimer = false;
 		}
@@ -144,7 +144,7 @@ void conectar_dispatch()
 		{
 		case SEGMENTATION_FAULT:
 		case EXIT_PCB:
-			log_info(logger,"estoy en %d: ", paquete->codigo_operacion);
+			log_info(logger, "estoy en %d: ", paquete->codigo_operacion);
 			pasar_a_exec(pcb);
 			eliminar_pcb();
 			pthread_mutex_lock(&mutex_conexion_memoria);
@@ -165,7 +165,7 @@ void conectar_dispatch()
 			dispositivoIO = insActual->paramIO;
 
 			pasar_a_block_pantalla(pcb);
-log_debug(loggerMinimo, "PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+			log_info(loggerMinimo, "Motivo de Bloqueo: PID %d - Bloqueado por: %s ", pcb->id, dispositivoIO);
 			pthread_create(&thrBloqueoPantalla, NULL, (void *)manejar_bloqueo_pantalla, (void *)insActual);
 
 			pthread_detach(thrBloqueoPantalla);
@@ -180,7 +180,7 @@ log_debug(loggerMinimo, "PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO
 
 			// log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 			// Motivo de Bloqueo:
-			log_debug(loggerMinimo, "PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+			log_info(loggerMinimo, "Motivo de Bloqueo: PID  %d - Bloqueado por: %s ", pcb->id, dispositivoIO);
 
 			pthread_create(&thrBloqueoTeclado, NULL, (void *)manejar_bloqueo_teclado, (void *)insActual);
 
@@ -193,15 +193,15 @@ log_debug(loggerMinimo, "PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO
 			// crear una estructura para poder hacer la ejecucion de io de cualquier dispositivo que traiga el config kernel
 			// la estructura va a tener la lista , los semaforos y mutex necesario , el dispositivo que es string
 			// podemos tenes harcodeado teclado y pantalla pero los dispositivos de config kernel no
-			log_debug(logger,"entro al case block io\n");
+			log_debug(logger, "entro al case block io\n");
 			pthread_t thrBloqueoGeneral;
 			dispositivoIO = insActual->paramIO;
 			t_dispositivo *dispositivoEnKernel = buscarDispositivoBlocked(dispositivoIO);
 
-			log_info(logger,"dispositivoKernel %s\n", dispositivoEnKernel->dispositivo);
+			log_info(logger, "dispositivoKernel %s\n", dispositivoEnKernel->dispositivo);
 			if (dispositivoEnKernel == NULL)
 			{
-				log_info(logger,"El dispositivo no se encontro\n");
+				log_info(logger, "El dispositivo no se encontro\n");
 			}
 			agregar_a_lista_blokeados(dispositivoEnKernel, pcb);
 
@@ -213,21 +213,21 @@ log_debug(loggerMinimo, "PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO
 
 			// log_debug(logger, "Ejecutada: 'PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
 			// Motivo de Bloqueo:
-			log_debug(loggerMinimo, "PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO);
+			log_info(loggerMinimo, "Motivo de Bloqueo: PID %d - Bloqueado por: %s ", pcb->id, dispositivoIO);
 
 			break;
 
 		case BLOCK_PCB_PAGE_FAULT:
-			log_info(logger,"Entre al case de page fault");
+			log_info(logger, "Entre al case de page fault");
 
 			// que se lea el mensaje de cpu desde aca y no desde otro hilo
 			pthread_t thrBloqueoPageFault;
 
 			pasar_a_block_page_fault(pcb);
 
-			log_info(logger,"Estoy en la funcion de manejo de page fault");
+			log_info(logger, "Estoy en la funcion de manejo de page fault");
 
-			log_info(logger,"Estoy en la funcion de manejo de page fault");
+			log_info(logger, "Estoy en la funcion de manejo de page fault");
 
 			t_paqt paquete;
 			pthread_mutex_lock(&mutex_lista_blocked_audio);
@@ -239,18 +239,18 @@ log_debug(loggerMinimo, "PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO
 			pthread_detach(thrBloqueoPageFault);
 
 			sem_post(&contador_pcb_running);
-			// log_debug(logger, "Llego : 'PID:  %d - Por PAGE FAULT: %s '");
+
 			break;
 		case INTERRUPT_INTERRUPCION:
 
 			pthread_t thrInterrupt;
-			log_debug(logger, "Ejecutada: 'PID:  %d - Desalojado por fin de Quantum'", pcb->id);
+			log_debug(logger, "Fin de Quantum: PID %d - Desalojado por fin de Quantum", pcb->id);
 			// Fin de quantum
-			log_debug(loggerMinimo, "PID: %d - Desalojado por fin de Quantum", pcb->id);
+			log_info(loggerMinimo, "Fin de Quantum: PID %d - Desalojado por fin de Quantum", pcb->id);
 
-			log_info(logger,"entrando a manejar interrupcion\n");
+			log_info(logger, "entrando a manejar interrupcion\n");
 			t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
-			log_info(logger,"%d\n", algoritmo);
+			log_info(logger, "%d\n", algoritmo);
 			if (algoritmo == FEEDBACK)
 			{
 				// log_info(logger, "Paso a ready auxiliar - FIFO");
@@ -259,15 +259,15 @@ log_debug(loggerMinimo, "PID:  %d - Bloqueado por: %s '", pcb->id, dispositivoIO
 			}
 			else if (algoritmo == RR)
 			{
-				log_info(logger,"El algoritmo obtenido es: %d\n", obtenerAlgoritmo());
-				log_info(logger,"Cantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
+				log_info(logger, "El algoritmo obtenido es: %d\n", obtenerAlgoritmo());
+				log_info(logger, "Cantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
 
 				pasar_a_ready(pcb);
-				log_info(logger,"Cantidad de elementos en ready: %d\n", list_size(LISTA_READY));
+				log_info(logger, "Cantidad de elementos en ready: %d\n", list_size(LISTA_READY));
 				sem_post(&sem_hay_pcb_lista_ready);
-				log_info(logger,"Cantidad de elementos en ready: %d\n", list_size(LISTA_READY));
+				log_info(logger, "Cantidad de elementos en ready: %d\n", list_size(LISTA_READY));
 			}
-			log_info(logger,"Termine de manejar la interrupcion");
+			log_info(logger, "Termine de manejar la interrupcion");
 			sem_post(&contador_pcb_running);
 			break;
 
@@ -294,7 +294,7 @@ void manejar_bloqueo_teclado(void *insActual)
 	t_paqueteActual *paquete = recibirPaquete(pcb->socket);
 
 	valorRegistroTeclado = deserializarValor(paquete->buffer, pcb->socket);
-	log_info(logger,"El valor de teclado es:%d\n", valorRegistroTeclado);
+	log_info(logger, "El valor de teclado es:%d\n", valorRegistroTeclado);
 	switch (instActualConsola->paramReg[0])
 	{
 	case AX:
@@ -329,26 +329,26 @@ void manejar_bloqueo_pantalla(void *insActual)
 
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_PANTALLA);
 
-	log_info(logger,"%d", instActualPantalla->paramReg[0]);
+	log_info(logger, "%d", instActualPantalla->paramReg[0]);
 
 	switch (instActualPantalla->paramReg[0])
 	{
 	case AX:
 		valorRegistro = pcb->registros.AX;
-		log_info(logger,"valor registro %d", valorRegistro);
+		log_info(logger, "valor registro %d", valorRegistro);
 
 		break;
 	case BX:
 		valorRegistro = pcb->registros.BX;
-		log_info(logger,"valor registro %d", valorRegistro);
+		log_info(logger, "valor registro %d", valorRegistro);
 		break;
 	case CX:
 		valorRegistro = pcb->registros.CX;
-		log_info(logger,"valor registro %d", valorRegistro);
+		log_info(logger, "valor registro %d", valorRegistro);
 		break;
 	case DX:
 		valorRegistro = pcb->registros.DX;
-		log_info(logger,"valor registro %d", valorRegistro);
+		log_info(logger, "valor registro %d", valorRegistro);
 		break;
 	}
 
@@ -374,7 +374,7 @@ void manejar_bloqueo_general(void *insActual)
 
 	if (dispositivoEnKernel == NULL)
 	{
-		log_info(logger,"El dispositivo no se encontro\n");
+		log_info(logger, "El dispositivo no se encontro\n");
 	}
 	printf("DispositivoKernel %s\n", dispositivoEnKernel->dispositivo);
 	sem_wait(&dispositivoEnKernel->contador_bloqueo);
@@ -417,7 +417,7 @@ void cargarDispositivos()
 {
 	for (int i = 0; i < size_char_array(configKernel.dispositivosIO); i++)
 	{
-		log_info(logger,"Tamaño %d\n", size_char_array(configKernel.dispositivosIO));
+		log_info(logger, "Tamaño %d\n", size_char_array(configKernel.dispositivosIO));
 		char *dispositivoNuevo = configKernel.dispositivosIO[i];
 		t_dispositivo *dispositivo = malloc(sizeof(t_dispositivo));
 
@@ -427,7 +427,7 @@ void cargarDispositivos()
 		sem_init(&dispositivo->contador_bloqueo, 0, 1);
 		pthread_mutex_init(&dispositivo->mutex_lista_blocked, NULL);
 
-		log_info(logger,"Dispositivos %s , %d \n", dispositivo->dispositivo, dispositivo->tiempoEjecucion);
+		log_info(logger, "Dispositivos %s , %d \n", dispositivo->dispositivo, dispositivo->tiempoEjecucion);
 		agregrar_dispositivo(dispositivo);
 	}
 }
@@ -465,7 +465,11 @@ void agregrar_dispositivo(t_dispositivo *dispositivo)
 void manejar_bloqueo_page_fault(void *paquete)
 {
 	t_paqt *paqueteActual = (t_paqt *)paquete;
+	MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT *mensajePaquete = malloc(sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT));
+	mensajePaquete = paqueteActual->mensaje;
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCK_PAGE_FAULT);
+
+	log_info(loggerMinimo, "Page Fault PID: %d - Segmento: %d - Pagina: %d", pcb->id, mensajePaquete->nro_segmento, mensajePaquete->nro_pagina);
 	// enviar a memoria
 	serializarPCB(conexionMemoria, pcb, PAGE_FAULT);
 
@@ -483,27 +487,27 @@ void manejar_bloqueo_page_fault(void *paquete)
 
 void manejar_interrupcion(void *pcbElegida)
 {
-	log_info(logger,"Entrando a manejar interrupcion\n");
+	log_info(logger, "Entrando a manejar interrupcion\n");
 	t_tipo_algoritmo algoritmo = obtenerAlgoritmo();
-	log_info(logger,"%d\n", algoritmo);
+	log_info(logger, "%d\n", algoritmo);
 	t_pcb *pcb = (t_pcb *)pcbElegida;
 	if (algoritmo == FEEDBACK)
 	{
-		log_info(logger,"pasar a ready aux");
+		log_info(logger, "pasar a ready aux");
 		pasar_a_ready_auxiliar(pcb);
 		sem_post(&sem_hay_pcb_lista_ready);
 	}
 	else if (algoritmo == RR)
 	{
-		log_info(logger,"El algoritmo obtenido es: %d\n", obtenerAlgoritmo());
-		log_info(logger,"cantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
+		log_info(logger, "El algoritmo obtenido es: %d\n", obtenerAlgoritmo());
+		log_info(logger, "cantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
 
 		pasar_a_ready(pcb);
-		log_info(logger,"cantidad de elementos en ready: %d\n", list_size(LISTA_READY));
+		log_info(logger, "cantidad de elementos en ready: %d\n", list_size(LISTA_READY));
 		sem_post(&sem_hay_pcb_lista_ready);
-		log_info(logger,"cantidad de elementos en ready: %d\n", list_size(LISTA_READY));
+		log_info(logger, "cantidad de elementos en ready: %d\n", list_size(LISTA_READY));
 	}
-	log_info(logger,"termine de manejar la interrupcion");
+	log_info(logger, "termine de manejar la interrupcion");
 }
 
 void conectar_interrupt()
@@ -513,7 +517,7 @@ void conectar_interrupt()
 	while (1)
 	{
 		sem_wait(&sem_desalojar_pcb);
-		log_info(logger,"desalojo pcb\n");
+		log_info(logger, "desalojo pcb\n");
 		enviarResultado(conexionInterrupt, "interrupcion de la instruccion");
 	}
 }
@@ -529,7 +533,7 @@ void iniciar_kernel()
 
 	// Parte Server
 	logger = iniciar_logger("kernel.log", "KERNEL", LOG_LEVEL_DEBUG);
-	loggerMinimo = iniciar_logger("kernelLoggsObligatorios.log", "KERNEL", LOG_LEVEL_DEBUG);
+	loggerMinimo = iniciar_logger("kernelLoggsObligatorios.log", "KERNEL", LOG_LEVEL_INFO);
 
 	config = iniciar_config("kernel.config");
 
@@ -583,7 +587,7 @@ void crear_pcb(void *argumentos)
 
 	pasar_a_new(pcb);
 	log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
-	log_debug(loggerMinimo, "Se crea el proceso: %d en NEW", pcb->id); // Creacion de Proceso?
+	log_info(loggerMinimo, "Creación de Proceso: se crea el proceso %d en NEW", pcb->id); // Creacion de Proceso?
 	log_info(logger, "Cant de elementos de new: %d", list_size(LISTA_NEW));
 
 	sem_post(&sem_agregar_pcb);
@@ -675,15 +679,6 @@ void planifCortoPlazo()
 	}
 }
 
-void cargarListaReadyIdPCB(t_list *listaReady)
-{
-
-	for (int i = 0; i < list_size(listaReady); i++)
-	{
-		t_pcb *pcb = list_get(listaReady, i);
-		log_debug(loggerMinimo, "Cola ready %s: '[ %d ] '",configKernel.algoritmo, pcb->id);
-	}
-}
 
 void agregar_pcb()
 {
@@ -696,43 +691,40 @@ void agregar_pcb()
 	for (int i = 0; i < list_size(LISTA_NEW); i++)
 	{
 		t_pcb *pcbAux = list_get(LISTA_NEW, i);
-		printf("\nposicion pcb %d, pcbid:%d, tamanio segmentos %d", i,pcbAux->id, list_size(pcbAux->informacion->segmentos));
-		//imprimirInstruccionesYSegmentos(*(pcbAux->informacion));
-		
+		printf("\nposicion pcb %d, pcbid:%d, tamanio segmentos %d", i, pcbAux->id, list_size(pcbAux->informacion->segmentos));
+		// imprimirInstruccionesYSegmentos(*(pcbAux->informacion));
 	}
-	
+
 	t_pcb *pcb = list_remove(LISTA_NEW, 0); // aca esta el problema, imprimir el list_size
-	
-	
-	
-	log_info(logger,"\nCant de elementos de new: %d\n", list_size(LISTA_NEW));
+
+	log_info(logger, "\nCant de elementos de new: %d\n", list_size(LISTA_NEW));
 	pthread_mutex_unlock(&mutex_lista_new);
-	
+
 	// solicito que memoria inicialice sus estructuras
 	pthread_mutex_lock(&mutex_conexion_memoria);
 	serializarPCB(conexionMemoria, pcb, ASIGNAR_RECURSOS);
 	pthread_mutex_unlock(&mutex_conexion_memoria);
 	free(pcb);
-	log_info(logger,"Envio recursos a memoria\n");
+	log_info(logger, "Envio recursos a memoria\n");
 
 	// memoria me devuelve el pcb modificado
 	pthread_mutex_lock(&mutex_conexion_memoria);
 	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
-	//pthread_mutex_unlock(&mutex_conexion_memoria);
-	log_info(logger,"Recibo recursos de memoria\n");
+	// pthread_mutex_unlock(&mutex_conexion_memoria);
+	log_info(logger, "Recibo recursos de memoria\n");
 	if (paquete == NULL)
 	{
-		log_error(logger,"Paquete nulo\n");
+		log_error(logger, "Paquete nulo\n");
 	}
 	else
 	{
-		log_info(logger,"Paquete no nulo\n");
+		log_info(logger, "Paquete no nulo\n");
 	}
-	//pthread_mutex_lock(&mutex_conexion_memoria);
+	// pthread_mutex_lock(&mutex_conexion_memoria);
 	pcb = deserializoPCB(paquete->buffer);
 	pthread_mutex_unlock(&mutex_conexion_memoria);
 
-	//imprimirInstruccionesYSegmentos(*(pcb->informacion));
+	// imprimirInstruccionesYSegmentos(*(pcb->informacion));
 	/*for (int i = 0; i < list_size(pcb->tablaSegmentos); i++)
 	{
 		t_tabla_segmentos *tablaSegmento = malloc(sizeof(t_tabla_segmentos));
@@ -748,9 +740,9 @@ void agregar_pcb()
 	log_debug(logger, "Estado Anterior: NEW , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: READY , proceso id: %d", pcb->id);
 	// Cambio de estado
-	log_debug(loggerMinimo, "PID: %d - Estado Anterior: NEW, Estado Actual: READY", pcb->id);
+	log_info(loggerMinimo, "Cambio de Estado: PID %d - Estado Anterior: NEW, Estado Actual: READY", pcb->id);
 
-	log_info(logger,"Cant de elementos de ready: %d\n", list_size(LISTA_READY));
+	log_info(logger, "Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
 	sem_post(&sem_hay_pcb_lista_ready);
 
@@ -777,7 +769,7 @@ void eliminar_pcb()
 	log_debug(logger, "Estado Anterior: EXEC , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
 	// Cambio de estado
-	log_debug(loggerMinimo, "PID: %d - Estado Anterior: EXEC , Estado Actual: EXIT", pcb->id);
+	log_info(loggerMinimo, "Cambio de Estado: PID %d - Estado Anterior: EXEC , Estado Actual: EXIT", pcb->id);
 
 	for (int i = 0; i < list_size(LISTA_EXIT); i++)
 	{

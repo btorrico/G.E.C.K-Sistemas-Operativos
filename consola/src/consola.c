@@ -5,7 +5,7 @@ int main(int argc, char **argv)
 
 	/* ---------------- LOGGING ---------------- */
 
-	logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_DEBUG);
+	logger = iniciar_logger("consola.log", "CONSOLA", LOG_LEVEL_INFO);
 
 
 	log_info(logger, "\n Iniciando consola...");
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 		{
 		case BLOCK_PCB_IO_PANTALLA:
 			valor = deserializarValor(paquete->buffer, conexionConsola);
-			log_debug(logger ,"Valor por pantalla recibido desde kernel: %d", valor);
+			log_info(logger ,"Valor por pantalla recibido desde kernel: %d", valor);
 			// printf("\nValor por pantalla recibido desde kernel: %d\n", valor);
 			usleep(configConsola.tiempoPantalla * 1000);
 			enviarResultado(conexionConsola, "se mostro el valor por pantalla\n");
