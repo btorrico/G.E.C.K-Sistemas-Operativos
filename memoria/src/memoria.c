@@ -484,12 +484,11 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 
 	int nroFrame = df->nroMarco;
 	int desplazamiento = df->desplazamientoPagina;
-	int tamanioFrame = configMemoria.tamPagina;
 	uint32_t *aLeer = malloc(sizeof(uint32_t));
 	MSJ_STRING *msjeError;
 
 	// valido que el offset sea valido
-	if (desplazamiento > tamanioFrame)
+	if (desplazamiento > configMemoria.tamPagina)
 	{
 		usleep(configMemoria.retardoMemoria * 1000);
 		msjeError = malloc(sizeof(MSJ_STRING));
@@ -502,9 +501,9 @@ void accesoMemoriaLeer(t_direccionFisica *df, int pid, int socketAceptado)
 	}
 
 	pthread_mutex_lock(&mutex_void_memoria_ram);
-	memcpy(aLeer, memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento, sizeof(uint32_t));
+	memcpy(aLeer, memoriaRAM + (nroFrame * configMemoria.tamPagina) + desplazamiento, sizeof(uint32_t));
 	printf("aLeer%d", *(uint32_t *)aLeer);
-	//	printf("Hola %d",  (uint32_t  *)memoriaRAM + (nroFrame * tamanioFrame) + desplazamiento);
+	//	printf("Hola %d",  (uint32_t  *)memoriaRAM + (nroFrame * configMemoria.tamPagina) + desplazamiento);
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	//*puntero es el contenido
 	//&variable es la direccion
@@ -556,10 +555,9 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 
 	int nroMarco = dirFisica->nroMarco;
 	int desplazamiento = dirFisica->desplazamientoPagina;
-	int tamanioFrame = configMemoria.tamPagina;
 
 	// valido que el desplazamiento sea valido
-	if (desplazamiento > tamanioFrame)
+	if (desplazamiento > configMemoria.tamPagina)
 	{
 		usleep(configMemoria.retardoMemoria * 1000);
 		char *mensajeError = string_new();
@@ -574,10 +572,10 @@ void accesoMemoriaEscribir(t_direccionFisica *dirFisica, uint32_t valorAEscribir
 	pthread_mutex_lock(&mutex_void_memoria_ram);
 	uint32_t *aEscribir = &valorAEscribir;
 	printf("aEscribir%d\n", *aEscribir);
-	memcpy(memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento, aEscribir, sizeof(uint32_t)); // tercer arg strlen(string_itoa(valorAEscribir))
+	memcpy(memoriaRAM + (nroMarco * configMemoria.tamPagina) + desplazamiento, aEscribir, sizeof(uint32_t)); // tercer arg strlen(string_itoa(valorAEscribir))
 	pthread_mutex_unlock(&mutex_void_memoria_ram);
 	printf("aEscribir%d\n", *aEscribir);
-	// printf("%d",  *(uint32_t  *)memoriaRAM + (nroMarco * tamanioFrame) + desplazamiento);
+	// printf("%d",  *(uint32_t  *)memoriaRAM + (nroMarco * configMemoria.tamPagina) + desplazamiento);
 
 	// busco la pagina que piden y actualizo el bit de modificado porque se hizo write
 	t_pagina *pagina;
