@@ -468,7 +468,8 @@ void accesoMemoriaTP(int idTablaPagina, int nroPagina, int pid, int socketAcepta
 		mensaje->numero = -1;
 		enviarMsje(socketAceptado, MEMORIA, mensaje, sizeof(MSJ_INT), PAGE_FAULT);
 		// free(mensaje);
-		log_debug(logger, "PAGE FAULT");
+		log_debug(loggerMinimo, "Acceso a Tabla de Páginas: “PID: %d - Página: %d - Marco: PAGE FAULT",
+				  pid, pagina->nroPagina);
 	}
 }
 

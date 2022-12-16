@@ -16,8 +16,6 @@ int main(char argc, char **argv)
 	pthread_create(&thrInterruptKernel, NULL, (void *)iniciar_servidor_interrupt, NULL);
 	printf(PRINT_COLOR_BLUE "Conectando con modulo Memoria..." PRINT_COLOR_RESET "\n");
 	pthread_create(&thrMemoria, NULL, (void *)conectar_memoria, NULL);
-	// pthread_create(&thrMemoria, NULL, (void *)recibir_config_memoria, NULL);
-	// recibir_config_memoria();
 
 	pthread_join(thrDispatchKernel, NULL);
 	pthread_join(thrInterruptKernel, NULL);
@@ -53,7 +51,7 @@ void iniciar_servidor_dispatch()
 {
 	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaDispatch); // socket(), bind(), listen()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
-pthread_mutex_lock(&mutex_lista_blocked_audio);
+	pthread_mutex_lock(&mutex_lista_blocked_audio);
 	socketAceptadoDispatch = esperar_cliente(server_fd);
 	pthread_mutex_unlock(&mutex_lista_blocked_audio);
 
@@ -81,7 +79,8 @@ pthread_mutex_lock(&mutex_lista_blocked_audio);
 
 			checkInterrupt(pcb, retornePCB);
 			log_info(logger,"retornePCB %d\n", retornePCB);
-		} while (!interrupciones && !retornePCB);
+		} 
+		while (!interrupciones && !retornePCB);
 		log_info(logger,"Sali del while infinito\n");
 	}
 }
@@ -170,9 +169,6 @@ bool cicloInstruccion(t_pcb *pcb)
 	char *registro2 = string_new();
 	string_append(&registro2, registroToString(insActual->paramReg[1]));
 
-	// log_debug(logger, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %s %i'",
-	//		  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio
-
 	// Instruccion Ejecutada
 	log_debug(loggerMinimo, "Instrucción Ejecutada: 'PID:  %i - Ejecutando: %s %s %s %s %i'",
 			  pcb->id, instruccion, io, registro, registro2, insActual->paramInt); // log minimo y obligatorio
@@ -240,7 +236,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			mensajeAMemoriaLeer->nroMarco = dirFisicaMoveIn->nroMarco;
 			mensajeAMemoriaLeer->pid = pcb->id;
 			enviarMsje(conexion, CPU, mensajeAMemoriaLeer, sizeof(MSJ_MEMORIA_CPU_LEER), ACCESO_MEMORIA_LEER);
-			log_debug(logger, "Acceso Memoria: PID: %d - Acción: LEER - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d", pcb->id, dirFisicaMoveIn->dl.nroSegmento, dirFisicaMoveIn->dl.nroPagina, mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
+			log_debug(loggerMinimo, "Acceso Memoria: PID: %d - Acción: LEER - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d", pcb->id, dirFisicaMoveIn->dl.nroSegmento, dirFisicaMoveIn->dl.nroPagina, mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 			log_debug(logger, "Envie direccion fisica a memoria: MARCO: %d, OFFSET: %d\n", mensajeAMemoriaLeer->nroMarco, mensajeAMemoriaLeer->desplazamiento);
 
 			t_paqt paqueteMemoria;
@@ -298,7 +294,7 @@ bool cicloInstruccion(t_pcb *pcb)
 			log_debug(logger, "valor a escribir = %i", registroActual);
 
 			enviarMsje(conexion, CPU, mensajeAMemoriaEscribir, sizeof(MSJ_MEMORIA_CPU_ESCRIBIR), ACCESO_MEMORIA_ESCRIBIR);
-			log_debug(logger, "Acceso Memoria: PID: %d - Acción: ESCRIBIR - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d", pcb->id, dirFisicaMoveOut->dl.nroSegmento, dirFisicaMoveOut->dl.nroPagina, mensajeAMemoriaEscribir->nroMarco, mensajeAMemoriaEscribir->desplazamiento);
+			log_debug(loggerMinimo, "Acceso Memoria: PID: %d - Acción: ESCRIBIR - Segmento: %d - Pagina: %d - Dirección Fisica: %d %d", pcb->id, dirFisicaMoveOut->dl.nroSegmento, dirFisicaMoveOut->dl.nroPagina, mensajeAMemoriaEscribir->nroMarco, mensajeAMemoriaEscribir->desplazamiento);
 
 			t_paqt paqueteMemoriaWrite;
 			recibirMsje(conexion, &paqueteMemoriaWrite);
@@ -578,8 +574,8 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	dir_fisica->dl.nroPagina = numero_pagina;
 	dir_fisica->dl.nroSegmento = numero_segmento;
 
-	t_tabla_segmentos *segmento = malloc(sizeof(t_tabla_segmentos)); // hacer el free(segmento);
-	segmento = list_get(pcb->tablaSegmentos, numero_segmento);
+	t_tabla_segmentos *segmento = list_get(pcb->tablaSegmentos, numero_segmento);
+	//segmento = list_get(pcb->tablaSegmentos, numero_segmento);
 	log_info(logger,"El id del segmento es: %d\n", segmento->id);
 
 	log_info(logger,"El id de la tabla es: %d\n", segmento->indiceTablaPaginas);
@@ -596,7 +592,7 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	{ // Uso el tamanio real
 		// Devolvemos el pcb a nuestro bello kernel
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
-		log_debug(logger, "Envie de Nuevo el proceso para ser finalizado...");
+		log_debug(loggerMinimo, "Segmentation Fault: Envie de Nuevo el proceso para ser finalizado...");
 		retornePCB = true;
 		dir_fisica->nroMarco = -10;
 	}
