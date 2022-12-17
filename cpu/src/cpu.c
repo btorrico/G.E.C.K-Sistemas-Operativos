@@ -561,6 +561,7 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 		log_info(loggerMinimo, "SEGMENTATION FAULT: devuelvo el proceso a kernel para ser finalizado...");
 		retornePCB = true;
 		dir_fisica->nroMarco = -10;
+		return dir_fisica;
 	}
 
 	if (habilitarTLB == 1)

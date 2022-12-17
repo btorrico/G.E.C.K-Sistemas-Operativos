@@ -373,7 +373,7 @@ void eliminarTablasPaginas(void *pcb)
 		}
 		// log_info(logger, "PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
 		// Destruccion de paginas
-		log_info(loggerMinimo, "Destrucción de Tabla de Páginas:PID: %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
+		log_info(loggerMinimo, "Destrucción de Tabla de Páginas: PID %d - Segmento: %d - TAMAÑO: %d paginas", tablaPagina->idPCB, tablaPagina->idTablaPag, list_size(tablaPagina->paginas));
 	}
 
 	enviarResultado(socketAceptadoKernel, "se liberaron las estructuras");
