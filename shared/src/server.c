@@ -149,18 +149,19 @@ void pasar_a_new(t_pcb *pcb)
 {
 	pthread_mutex_lock(&mutex_lista_new);
 	list_add(LISTA_NEW, pcb);
-	pthread_mutex_unlock(&mutex_lista_new);
-	printf("\ninstrucciones en new\n");
+	
+	//printf("\ninstrucciones en new\n");
 	// imprimirInstruccionesYSegmentos(*(pcb->informacion));
 
 	printf("\n imprimo todas las intrucciones y segmentos de todos los pcb en lista new\n");
+	t_pcb * pcbnew;
 	for (size_t i = 0; i < list_size(LISTA_NEW); i++)
 	{
-		t_pcb *pcb = list_get(LISTA_NEW, i);
-		printf("\nposicion pcb %d\n tamanio segmentos %d", i, list_size(pcb->informacion->segmentos));
+		pcbnew = list_get(LISTA_NEW, i);
+		printf("\nposicion pcb %d\n tamanio segmentos %d", i, list_size(pcbnew->informacion->segmentos));
 		// imprimirInstruccionesYSegmentos(*(pcb->informacion));
 	}
-
+	pthread_mutex_unlock(&mutex_lista_new);
 	log_debug(logger, "Paso a NEW el proceso %d", pcb->id);
 }
 
@@ -349,12 +350,15 @@ void iteratorInt(int value)
 	log_info(logger, "Segmento = %d", value);
 }
 void cargarListaReadyIdPCB(t_list *listaReady)
-{
+{	
+	pthread_mutex_lock(&mutex_lista_ready);
+	t_pcb *pcb;
 	for (int i = 0; i < list_size(listaReady); i++)
 	{
-		t_pcb *pcb = list_get(listaReady, i);
+		pcb = list_get(listaReady, i);
 		log_info(loggerMinimo, "Cola ready %s: [%d]", configKernel.algoritmo, pcb->id);
 	}
+	pthread_mutex_unlock(&mutex_lista_ready);
 }
 
 t_tipo_algoritmo obtenerAlgoritmo()
@@ -413,7 +417,7 @@ void implementar_fifo()
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY);
 	log_info(logger, "Agregando UN pcb a lista exec");
 	pasar_a_exec(pcb);
-	log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	//log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
@@ -430,7 +434,7 @@ void implementar_fifo_auxiliar()
 	t_pcb *pcb = algoritmo_fifo(LISTA_READY_AUXILIAR);
 	log_info(logger, "Agregando un pcb a lista exec");
 	pasar_a_exec(pcb);
-	log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	//log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);
@@ -455,7 +459,7 @@ void implementar_rr()
 	hayTimer = true;
 	log_info(logger, "Agregando UN pcb a lista exec rr");
 	pasar_a_exec(pcb);
-	log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
+	//log_info(logger, "Cant de elementos de exec: %d\n", list_size(LISTA_EXEC));
 
 	log_debug(logger, "Estado Anterior: READY , proceso id: %d", pcb->id);
 	log_debug(logger, "Estado Actual: EXEC , proceso id: %d", pcb->id);

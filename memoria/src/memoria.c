@@ -105,9 +105,10 @@ void iniciar_servidor_hacia_kernel()
 			break;
 
 		case LIBERAR_RECURSOS:
-			pthread_t thrTablaPaginasEliminar;
-			pthread_create(&thrTablaPaginasEliminar, NULL, (void *)eliminarTablasPaginas, (void *)pcb);
-			pthread_detach(thrTablaPaginasEliminar);
+			//pthread_t thrTablaPaginasEliminar;
+			//pthread_create(&thrTablaPaginasEliminar, NULL, (void *)eliminarTablasPaginas, (void *)pcb);
+			//pthread_detach(thrTablaPaginasEliminar);
+			eliminarTablasPaginas(pcb);
 			break;
 
 		case PAGE_FAULT:

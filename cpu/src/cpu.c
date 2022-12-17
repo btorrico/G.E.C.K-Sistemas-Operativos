@@ -51,15 +51,15 @@ void iniciar_servidor_dispatch()
 {
 	int server_fd = iniciar_servidor(IP_SERVER, configCPU.puertoEscuchaDispatch); // socket(), bind(), listen()
 	log_info(logger, "Servidor listo para recibir al dispatch kernel");
-	pthread_mutex_lock(&mutex_lista_blocked_audio);
+	//pthread_mutex_lock(&mutex_lista_blocked_audio);
 	socketAceptadoDispatch = esperar_cliente(server_fd);
-	pthread_mutex_unlock(&mutex_lista_blocked_audio);
+	//pthread_mutex_unlock(&mutex_lista_blocked_audio);
 
 	while (1)
 	{
-		pthread_mutex_lock(&mutex_lista_blocked_audio);
+		pthread_mutex_lock(&mutex_lista_blocked_usb);
 		t_paqueteActual *paquete = recibirPaquete(socketAceptadoDispatch);
-		pthread_mutex_unlock(&mutex_lista_blocked_audio);
+		pthread_mutex_unlock(&mutex_lista_blocked_usb);
 		interrupciones = false;
 		retornePCB = false;
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
@@ -396,7 +396,10 @@ void checkInterrupt(t_pcb *pcb, bool retornePCB)
 	{
 		// devuelvo pcb a kernel
 		log_debug(logger, "Devuelvo pcb por interrupcion");
+		pthread_mutex_lock(&mutex_lista_blocked_usb);
 		serializarPCB(socketAceptadoDispatch, pcb, INTERRUPT_INTERRUPCION);
+		pthread_mutex_unlock(&mutex_lista_blocked_usb);
+
 		retornePCB = true;
 		// interrupciones = false;
 		free(pcb);
@@ -557,7 +560,9 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 	if (desplazamiento_Segmento >= segmento->tamanio)
 	{ // Uso el tamanio real
 		// Devolvemos el pcb a nuestro bello kernel
+		pthread_mutex_lock(&mutex_lista_blocked_usb);
 		serializarPCB(socketAceptadoDispatch, pcb, SEGMENTATION_FAULT);
+		pthread_mutex_unlock(&mutex_lista_blocked_usb);
 		log_info(loggerMinimo, "SEGMENTATION FAULT: devuelvo el proceso a kernel para ser finalizado...");
 		retornePCB = true;
 		dir_fisica->nroMarco = -10;
@@ -590,9 +595,10 @@ t_direccionFisica *calcular_direccion_fisica(int direccionLogica, int cant_entra
 			pcb->program_counter--;
 
 			// mensajeAKernelPageFault->pcb =pcb;
-
+			pthread_mutex_lock(&mutex_lista_blocked_usb);
 			serializarPCB(socketAceptadoDispatch, pcb, BLOCK_PCB_PAGE_FAULT);
 			enviarMsje(socketAceptadoDispatch, CPU, mensajeAKernelPageFault, sizeof(MSJ_CPU_KERNEL_BLOCK_PAGE_FAULT), BLOCK_PCB_PAGE_FAULT);
+			pthread_mutex_unlock(&mutex_lista_blocked_usb);
 			// log_debug(logger,"Page Fault PID: %d - Segmento: %d - Pagina: %d",pcb->id,numero_segmento,numero_pagina);
 			// Page Fault
 			log_info(loggerMinimo, "Page Fault PID: %d - Segmento: %d - Pagina: %d", pcb->id, numero_segmento, numero_pagina);
@@ -860,8 +866,7 @@ char *calcularHorasMinutosSegundos(int valor)
 
 int entradaConMenorTiempoDeReferencia()
 {
-	void *esMenor(void *_unaEntrada, void *_otraEntrada)
-	{
+	void *esMenor(void *_unaEntrada, void *_otraEntrada){
 
 		entrada_tlb *unaEntrada = (entrada_tlb *)_unaEntrada;
 		entrada_tlb *otraEntrada = (entrada_tlb *)_otraEntrada;
@@ -876,9 +881,9 @@ int entradaConMenorTiempoDeReferencia()
 
 			return otraEntrada;
 		}
-	}
+	};
 
-	entrada_tlb *entradaVictima = list_get_minimum(TLB->entradas, &esMenor);
+	entrada_tlb* entradaVictima = list_get_minimum(TLB->entradas, &esMenor);
 
 	char *tiempo = calcularHorasMinutosSegundos(entradaVictima->ultimaReferencia);
 
@@ -917,7 +922,7 @@ int entradaConMenorInstanteDeCarga()
 
 			return otraEntrada;
 		}
-	}
+	};
 
 	entrada_tlb *entradaVictima = list_get_minimum(TLB->entradas, &esMenor);
 

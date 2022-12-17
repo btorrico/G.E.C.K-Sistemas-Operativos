@@ -109,25 +109,27 @@ void conectar_dispatch()
 		sem_wait(&sem_pasar_pcb_running);
 		log_info(logger, "Llego un pcb a dispatch");
 		pthread_mutex_lock(&mutex_lista_blocked_audio);
-
-		serializarPCB(conexionDispatch, list_get(LISTA_EXEC, 0), DISPATCH_PCB);
-		pthread_mutex_unlock(&mutex_lista_blocked_audio);
-
-		log_info(logger, "Se envio pcb a cpu\n");
-		void *pcbAEliminar = list_remove(LISTA_EXEC, 0);
+		t_pcb *pcbAEliminar = list_remove(LISTA_EXEC, 0);
+		serializarPCB(conexionDispatch, pcbAEliminar, DISPATCH_PCB);
+		//pthread_mutex_unlock(&mutex_lista_blocked_audio);
 		free(pcbAEliminar);
+		log_info(logger, "Se envio pcb a cpu\n");
+		
+		
 		log_info(logger, "Cantidad de elementos en lista exec: %d\n", list_size(LISTA_EXEC));
 
 		// Recibir PCB
-		pthread_mutex_lock(&mutex_lista_blocked_audio);
+		//pthread_mutex_lock(&mutex_lista_blocked_audio);
 		t_paqueteActual *paquete = recibirPaquete(conexionDispatch);
-		pthread_mutex_unlock(&mutex_lista_blocked_audio);
+		
 		log_info(logger, "Recibi de nuevo el pcb\n");
 		log_info(logger, "estoy en %d: ", paquete->codigo_operacion);
 		t_pcb *pcb = deserializoPCB(paquete->buffer);
 		log_info(logger, "estoy en %d: ", paquete->codigo_operacion);
 		log_info(logger, "Id proceso nuevo que llego de cpu: %d", pcb->id);
-
+		if(paquete->codigo_operacion != 6){
+			pthread_mutex_unlock(&mutex_lista_blocked_audio);
+		}
 		t_instruccion *insActual = list_get(pcb->informacion->instrucciones, pcb->program_counter - 1);
 		// printf("\n dispositivo %s" , dispositivoToString(insActual->paramIO));
 
@@ -154,15 +156,17 @@ void conectar_dispatch()
 			eliminar_pcb();
 			pthread_mutex_lock(&mutex_conexion_memoria);
 			serializarPCB(conexionMemoria, pcb, LIBERAR_RECURSOS);
-			pthread_mutex_unlock(&mutex_conexion_memoria);
+			//pthread_mutex_unlock(&mutex_conexion_memoria);
 
-			pthread_mutex_lock(&mutex_conexion_memoria);
+			//pthread_mutex_lock(&mutex_conexion_memoria);
 			char *mensaje = recibirMensaje(conexionMemoria);
 			pthread_mutex_unlock(&mutex_conexion_memoria);
 
 			log_info(logger, "Mensaje de confirmacion de memoria: %s\n", mensaje);
 
 			serializarValor(0, pcb->socket, TERMINAR_CONSOLA); // esto le mando a la consola
+			free(pcb);
+			sem_post(&contador_multiprogramacion);
 			break;
 
 		case BLOCK_PCB_IO_PANTALLA:
@@ -235,7 +239,7 @@ void conectar_dispatch()
 			log_info(logger, "Estoy en la funcion de manejo de page fault");
 
 			t_paqt paquete;
-			pthread_mutex_lock(&mutex_lista_blocked_audio);
+			//pthread_mutex_lock(&mutex_lista_blocked_audio);
 			recibirMsje(conexionDispatch, &paquete);
 			pthread_mutex_unlock(&mutex_lista_blocked_audio);
 
@@ -331,8 +335,9 @@ void manejar_bloqueo_pantalla(void *insActual)
 	t_instruccion *instActualPantalla = (t_instruccion *)insActual;
 
 	uint32_t valorRegistro;
-
+	pthread_mutex_lock(&mutex_lista_blocked_pantalla);
 	t_pcb *pcb = algoritmo_fifo(LISTA_BLOCKED_PANTALLA);
+	pthread_mutex_unlock(&mutex_lista_blocked_pantalla);
 
 	log_info(logger, "%d", instActualPantalla->paramReg[0]);
 
@@ -359,7 +364,7 @@ void manejar_bloqueo_pantalla(void *insActual)
 
 	//  Serializamos valor registro y se envia a la consola
 	log_info(logger, "El valor del registro que se muestra por pantalla es: %d", valorRegistro);
-	;
+
 	serializarValor(valorRegistro, pcb->socket, BLOCK_PCB_IO_PANTALLA);
 	char *mensaje = recibirMensaje(pcb->socket);
 	log_info(logger, "Me llego el mensaje: %s\n", mensaje);
@@ -405,6 +410,8 @@ void manejar_bloqueo_general(void *insActual)
 t_dispositivo *buscarDispositivoBlocked(char *dispositivo)
 {
 	t_dispositivo *dispositivoIO = NULL;
+	pthread_mutex_lock(&mutex_lista_blocked);
+
 	for (int i = 0; i < list_size(LISTA_BLOCKED); i++)
 	{
 		t_dispositivo *dispositivoNuevo = list_get(LISTA_BLOCKED, i);
@@ -414,6 +421,7 @@ t_dispositivo *buscarDispositivoBlocked(char *dispositivo)
 			dispositivoIO = dispositivoNuevo;
 		}
 	}
+	pthread_mutex_unlock(&mutex_lista_blocked);
 
 	return dispositivoIO;
 }
@@ -593,7 +601,9 @@ void crear_pcb(void *argumentos)
 	pasar_a_new(pcb);
 	log_debug(logger, "Estado Actual: NEW , proceso id: %d", pcb->id);
 	log_info(loggerMinimo, "Creación de Proceso: se crea el proceso %d en NEW", pcb->id); // Creacion de Proceso?
+	pthread_mutex_lock(&mutex_lista_new);
 	log_info(logger, "Cant de elementos de new: %d", list_size(LISTA_NEW));
+	pthread_mutex_unlock(&mutex_lista_new);
 
 	sem_post(&sem_agregar_pcb);
 }
@@ -692,10 +702,10 @@ void agregar_pcb()
 	log_info(logger, "Agregando un pcb a lista ready");
 
 	pthread_mutex_lock(&mutex_lista_new);
-
+	t_pcb * pcbAux;
 	for (int i = 0; i < list_size(LISTA_NEW); i++)
 	{
-		t_pcb *pcbAux = list_get(LISTA_NEW, i);
+		pcbAux = list_get(LISTA_NEW, i);
 		printf("\nposicion pcb %d, pcbid:%d, tamanio segmentos %d", i, pcbAux->id, list_size(pcbAux->informacion->segmentos));
 		// imprimirInstruccionesYSegmentos(*(pcbAux->informacion));
 	}
@@ -708,12 +718,12 @@ void agregar_pcb()
 	// solicito que memoria inicialice sus estructuras
 	pthread_mutex_lock(&mutex_conexion_memoria);
 	serializarPCB(conexionMemoria, pcb, ASIGNAR_RECURSOS);
-	pthread_mutex_unlock(&mutex_conexion_memoria);
+	//pthread_mutex_unlock(&mutex_conexion_memoria);
 	free(pcb);
 	log_info(logger, "Envio recursos a memoria\n");
 
 	// memoria me devuelve el pcb modificado
-	pthread_mutex_lock(&mutex_conexion_memoria);
+	//pthread_mutex_lock(&mutex_conexion_memoria);
 	t_paqueteActual *paquete = recibirPaquete(conexionMemoria);
 	// pthread_mutex_unlock(&mutex_conexion_memoria);
 	log_info(logger, "Recibo recursos de memoria\n");
@@ -727,6 +737,9 @@ void agregar_pcb()
 	}
 	// pthread_mutex_lock(&mutex_conexion_memoria);
 	pcb = deserializoPCB(paquete->buffer);
+	free(paquete->buffer->stream);
+	free(paquete->buffer);
+	free(paquete);
 	pthread_mutex_unlock(&mutex_conexion_memoria);
 
 	// imprimirInstruccionesYSegmentos(*(pcb->informacion));
@@ -747,7 +760,7 @@ void agregar_pcb()
 	// Cambio de estado
 	log_info(loggerMinimo, "Cambio de Estado: PID %d - Estado Anterior: NEW, Estado Actual: READY", pcb->id);
 
-	log_info(logger, "Cant de elementos de ready: %d\n", list_size(LISTA_READY));
+	//log_info(logger, "Cant de elementos de ready: %d\n", list_size(LISTA_READY));
 
 	sem_post(&sem_hay_pcb_lista_ready);
 
@@ -775,12 +788,12 @@ void eliminar_pcb()
 	log_debug(logger, "Estado, proceso Actual: EXIT  id: %d", pcb->id);
 	// Cambio de estado
 	log_info(loggerMinimo, "Cambio de Estado: PID %d - Estado Anterior: EXEC , Estado Actual: EXIT", pcb->id);
-
+	t_pcb * pcbaux;
 	for (int i = 0; i < list_size(LISTA_EXIT); i++)
 	{
-		t_pcb *pcb = list_get(LISTA_EXIT, i);
-		log_debug(logger, "Procesos finalizados: %d", pcb->id);
+		pcbaux = list_get(LISTA_EXIT, i);
+		log_debug(logger, "Procesos finalizados: %d", pcbaux->id);
 	}
 
-	sem_post(&contador_multiprogramacion);
+	
 }
